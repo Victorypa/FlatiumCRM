@@ -62551,8 +62551,6 @@ exports.push([module.i, "\n.form-control[data-v-799e8745] {\n  border-radius: 0;
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-var _methods;
-
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
 //
@@ -62791,23 +62789,21 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     },
     mounted: function mounted() {
         this.getServiceTypes();
-        this.getServiceUnits();
         this.getServices();
         this.getRoomServices();
     },
 
 
-    methods: (_methods = {
+    methods: {
         getRoomServices: function getRoomServices() {
             var _this = this;
 
-            this.room.services.forEach(function (item) {
-                _this.room_service_ids.push(item.id);
-
-                if (item.pivot.quantity != null) {
-                    _this.service_quantities[item.id] = item.pivot.quantity;
+            this.room.room_services.forEach(function (item) {
+                _this.room_service_ids.push(item.service_id);
+                if (item.quantity != null) {
+                    _this.service_quantities[item.service_id] = item.quantity;
                 } else {
-                    _this.service_quantities[item.id] = 1;
+                    _this.service_quantities[item.service_id] = 1;
                 }
             });
         },
@@ -62834,68 +62830,55 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
                 }
             });
         },
-        getServiceUnits: function getServiceUnits() {
+        getServices: function getServices() {
             var _this3 = this;
 
-            if (localStorage.getItem('units')) {
-                this.units = JSON.parse(localStorage.getItem('units'));
-            } else {
-                return axios.get('/api/units').then(function (response) {
-                    _this3.units = response.data;
-                    localStorage.setItem('units', JSON.stringify(_this3.units));
-                });
-            }
-        },
-        getServices: function getServices() {
-            var _this4 = this;
-
             return axios.get('/api/services').then(function (response) {
-                _this4.services = response.data;
+                _this3.services = response.data;
 
-                if (_this4.order.discount) {
+                if (_this3.order.discount) {
                     response.data.forEach(function (item) {
                         if (item.can_be_discounted) {
-                            _this4.service_prices[item.id] = item.price * (1 - parseFloat(_this4.order.discount) / 100);
+                            _this3.service_prices[item.id] = item.price * (1 - parseFloat(_this3.order.discount) / 100);
                         }
                         if (!item.can_be_discounted) {
-                            _this4.service_prices[item.id] = item.price;
+                            _this3.service_prices[item.id] = item.price;
                         }
                     });
                 }
 
-                if (_this4.order.markup) {
+                if (_this3.order.markup) {
                     response.data.forEach(function (item) {
-                        _this4.service_prices[item.id] = item.price * (1 + parseFloat(_this4.order.markup) / 100);
+                        _this3.service_prices[item.id] = item.price * (1 + parseFloat(_this3.order.markup) / 100);
                     });
                 }
 
-                if (_this4.order.discount === null && _this4.order.markup === null) {
+                if (_this3.order.discount === null && _this3.order.markup === null) {
                     response.data.forEach(function (item) {
-                        _this4.service_prices[item.id] = item.price;
+                        _this3.service_prices[item.id] = item.price;
                     });
                 }
 
                 response.data.forEach(function (item) {
-
-                    if (!_this4.room_service_ids.includes(item.id)) {
+                    if (!_this3.room_service_ids.includes(item.id)) {
                         switch (item.unit.id) {
                             case 1:
                                 if (item.service_type_id === 1) {
-                                    _this4.service_quantities[item.id] = _this4.room.area;
+                                    _this3.service_quantities[item.id] = _this3.room.area;
                                 }
                                 if (item.service_type_id === 2) {
-                                    _this4.service_quantities[item.id] = _this4.room.wall_area;
+                                    _this3.service_quantities[item.id] = _this3.room.wall_area;
                                 }
 
                                 if (item.service_type_id === 3) {
-                                    _this4.service_quantities[item.id] = _this4.room.area;
+                                    _this3.service_quantities[item.id] = _this3.room.area;
                                 }
                                 break;
                             case 2:
-                                _this4.service_quantities[item.id] = _this4.room.perimeter;
+                                _this3.service_quantities[item.id] = _this3.room.perimeter;
                                 break;
                             default:
-                                _this4.service_quantities[item.id] = 1;
+                                _this3.service_quantities[item.id] = 1;
                         }
                     }
                 });
@@ -62913,22 +62896,22 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
             this.linkServicesToRoom();
         },
         linkServicesToRoom: function linkServicesToRoom() {
-            var _this5 = this;
+            var _this4 = this;
 
             axios.post('/api/orders/' + this.$route.params.id + '/rooms/' + this.$route.params.room_id + '/services/store', {
                 'room_service_ids': this.removeEmptyElem(this.room_service_ids),
                 'service_quantities': this.removeEmptyElem(this.service_quantities),
                 'service_prices': this.service_prices
             }).then(function (response) {
-                _this5.$emit('price', parseInt(response.data.room.price));
+                _this4.$emit('price', parseInt(response.data.room.price));
             });
         },
         getServiceTypeName: function getServiceTypeName(service_type_id) {
-            var _this6 = this;
+            var _this5 = this;
 
             if (this.service_types.length) {
                 return this.service_types.filter(function (row) {
-                    return row.id === _this6.service_type_id;
+                    return row.id === _this5.service_type_id;
                 })[0].name;
             }
         },
@@ -62937,62 +62920,67 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         },
         getMaterialSummary: function getMaterialSummary(rate, quantity, price) {
             return parseFloat(Math.ceil(rate / quantity) * price).toFixed(2);
-        }
-    }, _defineProperty(_methods, 'getServiceUnits', function getServiceUnits() {
-        var _this7 = this;
+        },
+        getServiceUnits: function getServiceUnits() {
+            var _this6 = this;
 
-        if (localStorage.getItem('units')) {
-            this.units = JSON.parse(localStorage.getItem('units'));
-        } else {
-            return axios.get('/api/units').then(function (response) {
-                _this7.units = response.data;
-                localStorage.setItem('units', JSON.stringify(_this7.units));
-            });
-        }
-    }), _defineProperty(_methods, 'addNewService', function addNewService() {
-        this.newServices.push({
-            unit_id: 1,
-            service_type_id: 1,
-            name: null,
-            price: null,
-            can_be_discounted: false
-        });
-    }), _defineProperty(_methods, 'saveNewServices', function saveNewServices() {
-        var _this8 = this;
-
-        this.newServices.forEach(function (item) {
-            axios.post('/api/services/store', {
-                'service_type_id': item.service_type_id,
-                'name': item.name,
-                'unit_id': item.unit_id,
-                'price': item.price,
-                'can_be_discounted': item.can_be_discounted
-            }).then(function (response) {
-                _this8.getServices();
-                _this8.newServices = [];
-            });
-        });
-    }), _defineProperty(_methods, 'deleteService', function deleteService(id) {
-        if (confirm('Удалить ?')) {
-            axios.delete('/api/services/' + id + '/destroy').then(function (response) {
-                window.location.reload(true);
-            });
-        }
-    }), _defineProperty(_methods, 'removeEmptyElem', function removeEmptyElem(obj) {
-        var newObj = {};
-
-        Object.keys(obj).forEach(function (prop) {
-            if (obj[prop]) {
-                newObj[prop] = obj[prop];
+            if (localStorage.getItem('units')) {
+                this.units = JSON.parse(localStorage.getItem('units'));
+            } else {
+                return axios.get('/api/units').then(function (response) {
+                    _this6.units = response.data;
+                    localStorage.setItem('units', JSON.stringify(_this6.units));
+                });
             }
-        });
+        },
+        addNewService: function addNewService() {
+            this.newServices.push({
+                unit_id: 1,
+                service_type_id: 1,
+                name: null,
+                price: null,
+                can_be_discounted: false
+            });
+        },
+        saveNewServices: function saveNewServices() {
+            var _this7 = this;
 
-        return newObj;
-    }), _methods),
+            this.newServices.forEach(function (item) {
+                axios.post('/api/services/store', {
+                    'service_type_id': item.service_type_id,
+                    'name': item.name,
+                    'unit_id': item.unit_id,
+                    'price': item.price,
+                    'can_be_discounted': item.can_be_discounted
+                }).then(function (response) {
+                    _this7.getServices();
+                    _this7.newServices = [];
+                });
+            });
+        },
+        deleteService: function deleteService(id) {
+            if (confirm('Удалить ?')) {
+                axios.delete('/api/services/' + id + '/destroy').then(function (response) {
+                    window.location.reload(true);
+                });
+            }
+        },
+        removeEmptyElem: function removeEmptyElem(obj) {
+            var newObj = {};
+
+            Object.keys(obj).forEach(function (prop) {
+                if (obj[prop]) {
+                    newObj[prop] = obj[prop];
+                }
+            });
+
+            return newObj;
+        }
+    },
 
     computed: {
         filteredServices: function filteredServices() {
-            var _this9 = this;
+            var _this8 = this;
 
             var data = this.services;
 
@@ -63001,12 +62989,12 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
             }
 
             data = data.filter(function (row) {
-                return row.service_type_id === _this9.service_type_id;
+                return row.service_type_id === _this8.service_type_id;
             });
 
             data = data.filter(function (row) {
                 return Object.keys(row).some(function (key) {
-                    return String(row[key]).toLowerCase().indexOf(_this9.searchQuery.toLowerCase()) > -1;
+                    return String(row[key]).toLowerCase().indexOf(_this8.searchQuery.toLowerCase()) > -1;
                 });
             });
 

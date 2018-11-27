@@ -236,20 +236,18 @@
 
         mounted () {
             this.getServiceTypes()
-            this.getServiceUnits()
             this.getServices()
             this.getRoomServices()
         },
 
         methods: {
             getRoomServices() {
-                this.room.services.forEach(item => {
-                    this.room_service_ids.push(item.id)
-
-                    if (item.pivot.quantity != null) {
-                        this.service_quantities[item.id] = item.pivot.quantity
+                this.room.room_services.forEach(item => {
+                    this.room_service_ids.push(item.service_id)
+                    if (item.quantity != null) {
+                        this.service_quantities[item.service_id] = item.quantity
                     } else {
-                        this.service_quantities[item.id] = 1
+                        this.service_quantities[item.service_id] = 1
                     }
                 })
             },
@@ -275,18 +273,6 @@
                             }
 
                     })
-            },
-
-            getServiceUnits () {
-                if (localStorage.getItem('units')) {
-                    this.units = JSON.parse(localStorage.getItem('units'))
-                } else {
-                    return axios.get(`/api/units`)
-                                .then(response => {
-                                    this.units = response.data
-                                    localStorage.setItem('units', JSON.stringify(this.units))
-                                })
-                }
             },
 
             getServices () {
@@ -317,7 +303,6 @@
                     }
 
                     response.data.forEach(item => {
-
                         if (!this.room_service_ids.includes(item.id)) {
                             switch (item.unit.id) {
                                 case 1:

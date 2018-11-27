@@ -11,15 +11,17 @@ use App\Models\Services\Acts\ServiceAct;
 use App\Models\Orders\Acts\Rooms\FinishedRoom;
 use App\Models\Types\RoomType;
 use App\Models\Materials\Material;
+use App\Models\Orders\Rooms\Services\RoomService;
 use App\Models\Traits\Rooms\{
     RoomCalculationTrait, RoomPriceCalculationTrait,
-    RoomWindowCalculation
+    RoomWindowCalculation, RoomServiceTrait
 };
 
 class Room extends Model
 {
     use RoomCalculationTrait;
     use RoomPriceCalculationTrait;
+    use RoomServiceTrait;
 
     protected $guarded = [];
 
@@ -44,6 +46,11 @@ class Room extends Model
             $room->finished_rooms_automation($room, 'deleted');
             $room->extra_rooms_automation($room, 'deleted');
         });
+    }
+
+    public function room_services()
+    {
+        return $this->hasMany(RoomService::class);
     }
 
     public function finished_room()
