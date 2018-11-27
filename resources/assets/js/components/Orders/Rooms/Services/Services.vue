@@ -177,7 +177,7 @@
                   </div>
                 </div>
 
-                <template v-if="room_service_ids.includes(service.id)">
+                <!-- <template v-if="room_service_ids.includes(service.id) && room.room_services.filter(room_service => room_service.service_id === service.id)[0].materials">
                         <div class="row col-12" v-for="material in room.room_services.filter(room_service => room_service.service_id === service.id)[0].materials">
                           <div class="col-4 pl-5 mb-3">
                             <div class="subtitle-list">
@@ -197,7 +197,7 @@
                               </div>
                           </template>
                         </div>
-                </template>
+                </template> -->
 
               </div>
               </div>

@@ -38,7 +38,6 @@ class Room extends Model
 
         static::deleting(function($room) {
             $room->windows()->delete();
-            $room->services()->detach();
         });
 
         static::deleted(function ($room) {
@@ -56,11 +55,6 @@ class Room extends Model
     public function finished_room()
     {
         return $this->hasMany(FinishedRoom::class);
-    }
-
-    public function services()
-    {
-        return $this->belongsToMany(Service::class, 'room_service')->withPivot('quantity', 'price');
     }
 
     public function windows()

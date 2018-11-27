@@ -211,20 +211,20 @@
                                                             <table class="table table-hover">
 
                                                                 <tbody>
-                                                                    <tr v-for="room_service in getServicesByServiceType(room.services, service_type.id)">
+                                                                    <tr v-for="room_service in getServicesByServiceType(room.room_services, service_type.id)">
                                                                         <th scope="row" class="w-50">
-                                                                            {{ room_service.name }}
+                                                                            {{ room_service }}
                                                                         </th>
-                                                                        <td>{{ room_service.pivot.quantity }} м<sup>2</sup></td>
+                                                                        <!-- <td>{{ room_service.pivot.quantity }} м<sup>2</sup></td> -->
 
-                                                                        <template v-if="room_service.can_be_discounted">
+                                                                        <!-- <template v-if="room_service.can_be_discounted">
                                                                             <td>{{ parseInt(room_service.price) * (1 - parseInt(order.discount)/100) }} Р/м<sup>2</sup></td>
                                                                             <td>{{ priceCount(room_service.pivot.quantity, room_service.price) * (1 - parseFloat(order.discount)/100) }} Р</td>
                                                                         </template>
                                                                         <template v-if="!room_service.can_be_discounted">
                                                                             <td>{{ parseInt(room_service.price) }} Р/м<sup>2</sup></td>
                                                                             <td>{{ priceCount(room_service.pivot.quantity, room_service.price) }} Р</td>
-                                                                        </template>
+                                                                        </template> -->
                                                                     </tr>
                                                                 </tbody>
                                                             </table>
@@ -456,7 +456,7 @@
                                                             <table class="table table-hover">
 
                                                                 <tbody>
-                                                                    <tr v-for="room_service in getServicesByServiceType(room.services, service_type.id)">
+                                                                    <tr v-for="room_service in room.room_services">
                                                                         <th scope="row" class="w-50">
                                                                             {{ room_service.name }}
                                                                         </th>
@@ -474,7 +474,7 @@
                                             </template>
 
 
-                                            <template v-if="room.room_type_id === 2">
+                                            <!-- <template v-if="room.room_type_id === 2">
                                                 <template v-for="service_type in service_types.slice(3, 4)">
                                                     <div class="row bg px-15">
 
@@ -561,12 +561,12 @@
                                                         </div>
                                                     </div>
                                                 </template>
-                                            </template>
+                                            </template> -->
 
                                         </div>
                                     </template>
 
-                                    <div class="row bg py-4">
+                                    <!-- <div class="row bg py-4">
                                         <div class="col-12 d-flex align-items-center justify-content-end">
                                              <div class="col-2">
                                                 <select class="form-control"
@@ -602,12 +602,12 @@
                                                   @change="orderUpdate()"
                                                   >
                                         </textarea>
-                                    </div>
+                                    </div> -->
 
                                 </template>
                             </template>
 
-                            <template v-if="order.discount === null && order.markup === null">
+                            <!-- <template v-if="order.discount === null && order.markup === null">
                                 <template v-if="order.rooms">
                                     <template v-for="(room, index) in order.rooms">
                                         <div class="projects__information">
@@ -678,7 +678,7 @@
                                                             <table class="table table-hover">
 
                                                                 <tbody>
-                                                                    <tr v-for="room_service in getServicesByServiceType(room.services, service_type.id)">
+                                                                    <tr v-for="room_service in getServicesByServiceType(room.room_services, service_type.id)">
                                                                         <th scope="row" class="w-50">
                                                                             {{ room_service.name }}
                                                                         </th>
@@ -832,7 +832,7 @@
                                     </div>
 
                                 </template>
-                            </template>
+                            </template> -->
                         </div>
 
                 </div>
@@ -863,7 +863,10 @@
                 show: false,
                 descriptions: [],
 
-                selected_id: null
+                selected_id: null,
+
+                room_services: [],
+
             }
         },
 
@@ -874,7 +877,6 @@
         mounted () {
             this.getOrder()
             this.getManagers()
-            this.getServiceTypes()
         },
 
         methods: {
@@ -899,19 +901,11 @@
                                 this.square = 0
                                 this.order.rooms.forEach(room => {
                                     this.square += parseInt(room.area)
-                                })
-                            })
-            },
+                                    this.room_services[room.id] = _.groupBy(room.room_services, 'service_type_id')
 
-            getServiceTypes () {
-                if (localStorage.getItem('service_types')) {
-                    this.service_types = JSON.parse(localStorage.getItem('service_types'))
-                } else {
-                    return axios.get(`/api/service_types`).then(response => {
-                        this.service_types = response.data
-                        localStorage.setItem('service_types', JSON.stringify(this.service_types))
-                    })
-                }
+                                })
+                                console.log(this.room_services);
+                            })
             },
 
             getManagers() {
@@ -922,12 +916,6 @@
                                     this.manager_phones[item.id] = item.phone
                                 })
                             })
-            },
-
-            getServicesByServiceType(services, service_type_id) {
-                return services.filter(row => {
-                    return row.service_type_id === parseInt(service_type_id)
-                })
             },
 
             orderUpdate () {

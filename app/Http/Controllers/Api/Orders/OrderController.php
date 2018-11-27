@@ -34,11 +34,9 @@ class OrderController extends Controller
         $filterdOrder = Order::where('id', $order->id)
                              ->with([
                                  'rooms', 'rooms.roomType', 'manager',
-                                 'rooms.services', 'rooms.services.service_type',
-                                 'rooms.services.unit', 'finished_order_acts',
+                                 'finished_order_acts',
                                  'rooms.finished_room', 'extra_order_acts',
-                                 'finances', 'finished_order_acts', 'rooms.services.actual_materials',
-                                 'rooms.services.actual_materials.material_unit'
+                                 'finances', 'finished_order_acts', 'rooms.room_services',
                                  ])
                              ->first();
 
@@ -64,8 +62,8 @@ class OrderController extends Controller
     {
         $filteredOrder = Order::where('id', $order->id)
                          ->with([
-                             'rooms', 'rooms.roomType', 'rooms.services',
-                             'rooms.services.service_type', 'rooms.services.unit',
+                             'rooms', 'rooms.roomType',
+
                              'manager'
                          ])->first();
 
@@ -77,9 +75,7 @@ class OrderController extends Controller
     {
         $filteredOrder = Order::where('id', $order->id)
                          ->with([
-                             'rooms', 'rooms.roomType', 'rooms.services',
-                             'rooms.services.service_type', 'rooms.services.unit',
-                             'rooms.services.actual_materials', 'rooms.services.actual_materials.material_unit'
+                             'rooms', 'rooms.roomType'
                          ])->first();
 
         return $this->exportWithMaterials($filteredOrder, 'export.pdf_material');
@@ -89,8 +85,7 @@ class OrderController extends Controller
     {
         $filteredOrder = Order::where('id', $order->id)
                          ->with([
-                             'rooms', 'rooms.roomType', 'rooms.services',
-                             'rooms.services.service_type', 'rooms.services.unit'
+                             'rooms', 'rooms.roomType'
                          ])->first();
 
         $name = str_random(12);
