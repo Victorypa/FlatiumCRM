@@ -1,0 +1,87 @@
+.img-responsive {
+	display: block;
+
+	max-width: 100%;
+	height: auto;
+}
+
+.text-center {
+	text-align: center;
+}
+
+.text-left {
+	text-align: left;
+}
+
+.text-right {
+	text-align: right;
+}
+
+.px-0 {
+	padding-left: 0px;
+	padding-right: 0px;
+}
+
+.mx-0 {
+	margin-left: 0;
+	margin-right: 0;
+}
+
+.px-15 {
+	padding-left: 15px;
+	padding-right: 15px;
+}
+
+.px-30 {
+	padding-left: 30px;
+	padding-right: 30px;
+}
+
+.pl-30 {
+	padding-left: 30px;
+}
+
+.pt-90 {
+	padding-top:90px;
+}
+
+.pt-70 {
+	padding-top: 70px;
+}
+
+.pt-40 {
+	padding-top: 40px;
+}
+
+.pt-20 {
+	padding-top: 20px;
+}
+
+.py-50 {
+	padding-top: 50px;
+	padding-bottom: 50px;
+}
+
+.py-40 {
+	padding-top: 40px;
+	padding-bottom: 40px;
+}
+
+.py-30 {
+	padding-top: 30px;
+	padding-bottom: 30px;
+}
+
+.py-15 {
+	padding-top: 15px;
+	padding-bottom: 15px;
+}
+
+.container-fluid {
+	&.px-0 {
+		.row {
+			margin-left: 0;
+			margin-right: 0;
+		}
+	}
+}
