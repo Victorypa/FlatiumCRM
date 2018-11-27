@@ -3,6 +3,7 @@
 namespace App\Models\Orders\Rooms\Services;
 
 use App\Models\Orders\Rooms\Room;
+use App\Models\Materials\Material;
 use Illuminate\Database\Eloquent\Model;
 
 class RoomService extends Model
@@ -16,6 +17,6 @@ class RoomService extends Model
 
     public function materials()
     {
-        return $this->belongsToMany(Material::class, 'room_service_material');
+        return $this->belongsToMany(Material::class, 'room_service_material')->withPivot('rate');
     }
 }

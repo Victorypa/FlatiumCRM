@@ -19,7 +19,7 @@ class RoomController extends Controller
                        ->with([
                            'order', 'roomType',
                            'windows', 'order.rooms',
-                           'room_services'
+                           'room_services', 'room_services.materials'
                            ])->first();
 
         return $filterdRoom;

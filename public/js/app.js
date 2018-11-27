@@ -63652,88 +63652,97 @@ var render = function() {
                             )
                           ]),
                           _vm._v(" "),
-                          _vm.room_service_ids.includes(service.id) &&
-                          service.actual_materials
-                            ? _vm._l(service.actual_materials, function(
-                                material
-                              ) {
-                                return _c(
-                                  "div",
-                                  { staticClass: "row col-12" },
-                                  [
-                                    _c(
-                                      "div",
-                                      { staticClass: "col-4 pl-5 mb-3" },
-                                      [
-                                        _c(
-                                          "div",
-                                          { staticClass: "subtitle-list" },
-                                          [
+                          _vm.room_service_ids.includes(service.id)
+                            ? _vm._l(
+                                _vm.room.room_services.filter(function(
+                                  room_service
+                                ) {
+                                  return room_service.service_id === service.id
+                                })[0].materials,
+                                function(material) {
+                                  return _c(
+                                    "div",
+                                    { staticClass: "row col-12" },
+                                    [
+                                      _c(
+                                        "div",
+                                        { staticClass: "col-4 pl-5 mb-3" },
+                                        [
+                                          _c(
+                                            "div",
+                                            { staticClass: "subtitle-list" },
+                                            [
+                                              _c(
+                                                "div",
+                                                {
+                                                  staticClass:
+                                                    "subtitle-list__item"
+                                                },
+                                                [
+                                                  _vm._v(
+                                                    "\n                              " +
+                                                      _vm._s(material.name) +
+                                                      "\n                          "
+                                                  )
+                                                ]
+                                              )
+                                            ]
+                                          )
+                                        ]
+                                      ),
+                                      _vm._v(" "),
+                                      material.pivot.rate
+                                        ? [
                                             _c(
                                               "div",
-                                              {
-                                                staticClass:
-                                                  "subtitle-list__item"
-                                              },
+                                              { staticClass: "col-8" },
                                               [
-                                                _vm._v(
-                                                  "\n                              " +
-                                                    _vm._s(material.name) +
-                                                    "\n                          "
-                                                )
-                                              ]
-                                            )
-                                          ]
-                                        )
-                                      ]
-                                    ),
-                                    _vm._v(" "),
-                                    material.pivot.rate
-                                      ? [
-                                          _c("div", { staticClass: "col-8" }, [
-                                            _c(
-                                              "div",
-                                              {
-                                                staticClass:
-                                                  "d-flex align-items-center"
-                                              },
-                                              [
-                                                _c("div", {
-                                                  staticClass: "col-4",
-                                                  staticStyle: {
-                                                    "margin-left": "163px"
-                                                  }
-                                                }),
-                                                _vm._v(" "),
                                                 _c(
                                                   "div",
                                                   {
                                                     staticClass:
-                                                      "form-group__calc col-md-2"
+                                                      "d-flex align-items-center"
                                                   },
                                                   [
-                                                    _vm._v(
-                                                      "\n                                  " +
-                                                        _vm._s(
-                                                          _vm.getMaterialSummary(
-                                                            material.pivot.rate,
-                                                            material.quantity,
-                                                            material.price
-                                                          )
-                                                        ) +
-                                                        " Р\n                              "
+                                                    _c("div", {
+                                                      staticClass: "col-4",
+                                                      staticStyle: {
+                                                        "margin-left": "163px"
+                                                      }
+                                                    }),
+                                                    _vm._v(" "),
+                                                    _c(
+                                                      "div",
+                                                      {
+                                                        staticClass:
+                                                          "form-group__calc col-md-2"
+                                                      },
+                                                      [
+                                                        _vm._v(
+                                                          "\n                                  " +
+                                                            _vm._s(
+                                                              _vm.getMaterialSummary(
+                                                                material.pivot
+                                                                  .rate,
+                                                                material.quantity,
+                                                                material.price
+                                                              )
+                                                            ) +
+                                                            " Р\n                              "
+                                                        )
+                                                      ]
                                                     )
                                                   ]
                                                 )
                                               ]
                                             )
-                                          ])
-                                        ]
-                                      : _vm._e()
-                                  ],
-                                  2
-                                )
-                              })
+                                          ]
+                                        : _vm._e()
+                                    ],
+                                    2
+                                  )
+                                }
+                              )
                             : _vm._e()
                         ],
                         2

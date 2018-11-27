@@ -141,8 +141,8 @@ use Illuminate\Http\Request;
                  * Rooms - Services - Materials
                 */
                 Route::group(['namespace' => 'Materials'], function () {
-                    Route::get('/{order}/rooms/{room}/services/{service}/materials', 'ActualServiceMaterialController@index');
-                    Route::post('/{order}/rooms/{room}/services/{service}/materials/store', 'ActualServiceMaterialController@store');
+                    Route::get('/{order}/rooms/{room}/services/{service}/materials', 'RoomServiceMaterialController@index');
+                    Route::post('/{order}/rooms/{room}/services/{service}/materials/store', 'RoomServiceMaterialController@store');
 
                 });
             });
