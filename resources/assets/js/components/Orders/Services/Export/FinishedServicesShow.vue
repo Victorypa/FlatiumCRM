@@ -87,253 +87,62 @@
                               {{ finished_room.room.room_type.type }}
                           </h2>
                       </template>
-                    <div class="projects__desc col-8 d-flex justify-content-between align-items-center py-3 pl-0">
-                        <template v-if="finished_room.room.room_type_id === 1">
-                            <div class="projects__desc-item">Общая площадь: {{ finished_room.room.area }} м<sup>2</sup></div>
-                            <div class="projects__desc-item">Высота потолка: {{ finished_room.room.heigth }} м</div>
-                            <div class="projects__desc-item">Площадь стен: {{ finished_room.room.wall_area }} м<sup>2</sup></div>
-                            <div class="projects__desc-item">Периметр: {{ finished_room.room.perimeter }}</div>
-
-                        </template>
-
-                    </div>
-                  </div>
-
-                  <div class="projects__information ">
-
                       <template v-if="finished_room.room.room_type_id === 1">
-                          <div class="row bg px-3">
-
-                            <div class="main-subtitle main-subtitle--fz col-12 pt-4 pl-3">
-                              Пол
+                            <div class="projects__desc col-8 d-flex justify-content-between align-items-center py-3 pl-0">
+                                <div class="projects__desc-item">Общая площадь: {{ finished_room.room.area }} м<sup>2</sup></div>
+                                <div class="projects__desc-item">Высота потолка: {{ finished_room.room.heigth }} м</div>
+                                <div class="projects__desc-item">Площадь стен: {{ finished_room.room.wall_area }} м<sup>2</sup></div>
+                                <div class="projects__desc-item">Периметр: {{ finished_room.room.perimeter }}</div>
                             </div>
-
-                            <div class="col-12 px-0">
-
-                              <table class="table table-hover">
-
-                                <tbody>
-                                  <tr v-for="finished_service in filterServices(finished_room.finished_services, 1)">
-                                    <th scope="row" class="w-50">
-                                        {{ finished_service.name }}
-                                    </th>
-                                    <td>{{ finished_service.pivot.quantity }}м<sup>2</sup></td>
-
-                                    <template v-if="finished_order.order.discount">
-                                        <template v-if="finished_service.can_be_discounted">
-                                            <td>{{ finished_service.price * (1 - parseInt(finished_order.order.discount)/100) }} Р/М<sup>2</sup></td>
-                                            <td>{{ calculateServicePrice(finished_service.pivot.quantity, finished_service.price) * (1 - parseInt(finished_order.order.discount)/100) }} Р</td>
-                                        </template>
-                                        <template v-if="!finished_service.can_be_discounted">
-                                            <td>{{ finished_service.price }}</td>
-                                            <td>{{ calculateServicePrice(finished_service.pivot.quantity, finished_service.price) }}</td>
-                                        </template>
-                                    </template>
-
-                                    <template v-if="finished_order.order.markup">
-                                        <td>{{ finished_service.price * (1 + parseInt(finished_order.order.markup)/100) }} Р/М<sup>2</sup></td>
-                                        <td>{{ calculateServicePrice(finished_service.pivot.quantity, finished_service.price) * (1 + parseInt(finished_order.order.markup)/100) }} Р</td>
-                                    </template>
-
-                                    <template v-if="finished_order.order.discount === null && finished_order.order.markup === null">
-                                        <td>{{ finished_service.price }} Р/М<sup>2</sup></td>
-                                        <td>{{ calculateServicePrice(finished_service.pivot.quantity, finished_service.price) }} Р</td>
-                                    </template>
-
-                                  </tr>
-
-                                </tbody>
-                              </table>
-
-                            </div>
-                          </div>
-
-                          <div class="row bg px-3">
-
-                            <div class="main-subtitle main-subtitle--fz col-12 pl-3">
-                              Стены
-                            </div>
-
-                            <div class="col-12  px-0">
-
-                              <table class="table table-hover">
-
-                                <tbody>
-                                    <tr v-for="finished_service in filterServices(finished_room.finished_services, 2)">
-                                      <th scope="row" class="w-50">
-                                          {{ finished_service.name }}
-                                      </th>
-                                      <td>{{ finished_service.pivot.quantity }}м<sup>2</sup></td>
-
-                                      <template v-if="finished_order.order.discount">
-                                          <template v-if="finished_service.can_be_discounted">
-                                              <td>{{ finished_service.price * (1 - parseInt(finished_order.order.discount)/100) }} Р/М<sup>2</sup></td>
-                                              <td>{{ calculateServicePrice(finished_service.pivot.quantity, finished_service.price) * (1 - parseInt(finished_order.order.discount)/100) }} Р</td>
-                                          </template>
-                                          <template v-if="!finished_service.can_be_discounted">
-                                              <td>{{ finished_service.price }}</td>
-                                              <td>{{ calculateServicePrice(finished_service.pivot.quantity, finished_service.price) }}</td>
-                                          </template>
-                                      </template>
-
-                                      <template v-if="finished_order.order.markup">
-                                          <td>{{ finished_service.price * (1 + parseInt(finished_order.order.markup)/100) }} Р/М<sup>2</sup></td>
-                                          <td>{{ calculateServicePrice(finished_service.pivot.quantity, finished_service.price) * (1 + parseInt(finished_order.order.markup)/100) }} Р</td>
-                                      </template>
-
-                                      <template v-if="finished_order.order.discount === null && finished_order.order.markup === null">
-                                          <td>{{ finished_service.price }} Р/М<sup>2</sup></td>
-                                          <td>{{ calculateServicePrice(finished_service.pivot.quantity, finished_service.price) }} Р</td>
-                                      </template>
-
-                                    </tr>
-                                </tbody>
-                              </table>
-
-                            </div>
-                          </div>
-
-                          <div class="row bg px-3">
-
-                            <div class="main-subtitle main-subtitle--fz col-12 pl-3">
-                              Потолок
-                            </div>
-
-                            <div class="col-12  px-0">
-
-                              <table class="table table-hover">
-
-                                <tbody>
-                                    <tr v-for="finished_service in filterServices(finished_room.finished_services, 3)">
-                                      <th scope="row" class="w-50">
-                                          {{ finished_service.name }}
-                                      </th>
-                                      <td>{{ finished_service.pivot.quantity }}м<sup>2</sup></td>
-
-                                      <template v-if="finished_order.order.discount">
-                                          <template v-if="finished_service.can_be_discounted">
-                                              <td>{{ finished_service.price * (1 - parseInt(finished_order.order.discount)/100) }} Р/М<sup>2</sup></td>
-                                              <td>{{ calculateServicePrice(finished_service.pivot.quantity, finished_service.price) * (1 - parseInt(finished_order.order.discount)/100) }} Р</td>
-                                          </template>
-                                          <template v-if="!finished_service.can_be_discounted">
-                                              <td>{{ finished_service.price }}</td>
-                                              <td>{{ calculateServicePrice(finished_service.pivot.quantity, finished_service.price) }}</td>
-                                          </template>
-                                      </template>
-
-                                      <template v-if="finished_order.order.markup">
-                                          <td>{{ finished_service.price * (1 + parseInt(finished_order.order.markup)/100) }} Р/М<sup>2</sup></td>
-                                          <td>{{ calculateServicePrice(finished_service.pivot.quantity, finished_service.price) * (1 + parseInt(finished_order.order.markup)/100) }} Р</td>
-                                      </template>
-
-                                      <template v-if="finished_order.order.discount === null && finished_order.order.markup === null">
-                                          <td>{{ finished_service.price }} Р/М<sup>2</sup></td>
-                                          <td>{{ calculateServicePrice(finished_service.pivot.quantity, finished_service.price) }} Р</td>
-                                      </template>
-
-                                    </tr>
-                                </tbody>
-                              </table>
-
-                            </div>
-                          </div>
-                      </template>
-
-                      <template v-if="finished_room.room.room_type_id === 2">
-                          <div class="row bg px-3">
-
-                            <div class="main-subtitle main-subtitle--fz col-12 pt-4 pl-3">
-                              Электричество
-                            </div>
-
-                            <div class="col-12 px-0">
-
-                              <table class="table table-hover">
-
-                                <tbody>
-                                  <tr v-for="finished_service in filterServices(finished_room.finished_services, 5)">
-                                    <th scope="row" class="w-50">
-                                        {{ finished_service.name }}
-                                    </th>
-                                    <td>{{ finished_service.pivot.quantity }}м<sup>2</sup></td>
-
-                                    <template v-if="finished_order.order.discount">
-                                        <template v-if="finished_service.can_be_discounted">
-                                            <td>{{ finished_service.price * (1 - parseInt(finished_order.order.discount)/100) }} Р/М<sup>2</sup></td>
-                                            <td>{{ calculateServicePrice(finished_service.pivot.quantity, finished_service.price) * (1 - parseInt(finished_order.order.discount)/100) }} Р</td>
-                                        </template>
-                                        <template v-if="!finished_service.can_be_discounted">
-                                            <td>{{ finished_service.price }}</td>
-                                            <td>{{ calculateServicePrice(finished_service.pivot.quantity, finished_service.price) }}</td>
-                                        </template>
-                                    </template>
-
-                                    <template v-if="finished_order.order.markup">
-                                        <td>{{ finished_service.price * (1 + parseInt(finished_order.order.markup)/100) }} Р/М<sup>2</sup></td>
-                                        <td>{{ calculateServicePrice(finished_service.pivot.quantity, finished_service.price) * (1 + parseInt(finished_order.order.markup)/100) }} Р</td>
-                                    </template>
-
-                                    <template v-if="finished_order.order.discount === null && finished_order.order.markup === null">
-                                        <td>{{ finished_service.price }} Р/М<sup>2</sup></td>
-                                        <td>{{ calculateServicePrice(finished_service.pivot.quantity, finished_service.price) }} Р</td>
-                                    </template>
-                                  </tr>
-
-                                </tbody>
-                              </table>
-
-                            </div>
-                          </div>
-                      </template>
-
-                      <template v-if="finished_room.room.room_type_id === 3">
-                          <div class="row bg px-3">
-
-                            <div class="main-subtitle main-subtitle--fz col-12 pt-4 pl-3">
-                              Электричество
-                            </div>
-
-                            <div class="col-12 px-0">
-
-                              <table class="table table-hover">
-
-                                <tbody>
-                                  <tr v-for="finished_service in filterServices(finished_room.finished_services, 4)">
-                                    <th scope="row" class="w-50">
-                                        {{ finished_service.name }}
-                                    </th>
-                                    <td>{{ finished_service.pivot.quantity }}м<sup>2</sup></td>
-
-                                    <template v-if="finished_order.order.discount">
-                                        <template v-if="finished_service.can_be_discounted">
-                                            <td>{{ finished_service.price * (1 - parseInt(finished_order.order.discount)/100) }} Р/М<sup>2</sup></td>
-                                            <td>{{ calculateServicePrice(finished_service.pivot.quantity, finished_service.price) * (1 - parseInt(finished_order.order.discount)/100) }} Р</td>
-                                        </template>
-                                        <template v-if="!finished_service.can_be_discounted">
-                                            <td>{{ finished_service.price }}</td>
-                                            <td>{{ calculateServicePrice(finished_service.pivot.quantity, finished_service.price) }}</td>
-                                        </template>
-                                    </template>
-
-                                    <template v-if="finished_order.order.markup">
-                                        <td>{{ finished_service.price * (1 + parseInt(finished_order.order.markup)/100) }} Р/М<sup>2</sup></td>
-                                        <td>{{ calculateServicePrice(finished_service.pivot.quantity, finished_service.price) * (1 + parseInt(finished_order.order.markup)/100) }} Р</td>
-                                    </template>
-
-                                    <template v-if="finished_order.order.discount === null && finished_order.order.markup === null">
-                                        <td>{{ finished_service.price }} Р/М<sup>2</sup></td>
-                                        <td>{{ calculateServicePrice(finished_service.pivot.quantity, finished_service.price) }} Р</td>
-                                    </template>
-                                  </tr>
-
-                                </tbody>
-                              </table>
-
-                            </div>
-                          </div>
-                      </template>
-
+                        </template>
                   </div>
+
+                  <template v-if="finished_room.finished_services">
+                      <template v-for="(finished_services, service_type_id) in groupByServiceType(finished_room.finished_services)">
+                          <div class="projects__information ">
+                              <div class="row bg px-3">
+
+                                <div class="main-subtitle main-subtitle--fz col-12 pt-4 pl-3">
+                                  {{ getServiceTypeName(service_type_id) }}
+                                </div>
+
+                                <div class="col-12 px-0">
+
+                                  <table class="table table-hover">
+
+                                    <tbody>
+                                      <tr v-for="finished_service in finished_services">
+                                        <th scope="row" class="w-50">{{ finished_service.name }}</th>
+                                        <td>{{ finished_service.pivot.quantity }}м<sup>2</sup></td>
+
+                                        <template v-if="finished_order.order.discount">
+                                            <template v-if="finished_service.can_be_discounted">
+                                                <td>{{ finished_service.price * (1 - parseInt(finished_order.order.discount)/100) }} Р</td>
+                                                <td>{{ priceCount(finished_service.pivot.quantity, finished_service.price * (1 - parseInt(finished_order.order.discount)/100)) }} Р</td>
+                                            </template>
+                                            <template v-else>
+                                                <td>{{ finished_service.price }} Р</td>
+                                                <td>{{ priceCount(finished_service.pivot.quantity, finished_service.price) }}</td>
+                                            </template>
+                                        </template>
+                                        <template v-if="finished_order.order.markup">
+                                            <td>{{ finished_service.price * (1 + parseInt(finished_order.order.markup)/100) }} Р</td>
+                                            <td>{{ priceCount(finished_service.pivot.quantity, finished_service.price * (1 + parseInt(finished_order.order.markup)/100)) }} Р</td>
+                                        </template>
+                                        <template v-if="finished_order.order.discount === null && finished_order.order.markup === null">
+                                            <td>{{ finished_service.price }} Р</td>
+                                            <td>{{ priceCount(finished_service.pivot.quantity, finished_service.price) }}</td>
+                                        </template>
+                                      </tr>
+
+                                    </tbody>
+                                  </table>
+
+                                </div>
+                              </div>
+                          </div>
+                      </template>
+                  </template>
 
                 </div>
 
@@ -348,11 +157,14 @@
 
 
 <script>
+let moment = require("moment")
 import Datepicker from 'vuejs-datepicker';
 import { ru } from 'vuejs-datepicker/dist/locale'
-var moment = require("moment")
+import OrderExportCollection from '../../../../mixins/OrderExportCollection'
 
 export default {
+    mixins: [OrderExportCollection],
+
     data () {
         return {
             finished_order: [],
@@ -372,7 +184,8 @@ export default {
     components: {
         Datepicker
     },
-    beforeMount () {
+
+    mounted () {
         this.getFinishedOrderAct()
     },
 
@@ -399,16 +212,6 @@ export default {
                  .then(response => {
                      window.open(`${response.data.url}/storage/${response.data.data}`)
                  })
-        },
-
-        filterServices (services, service_type_id) {
-            return services.filter(row => {
-                return row.service_type_id === service_type_id
-            })
-        },
-
-        calculateServicePrice (quantity, price) {
-            return new Intl.NumberFormat().format(parseFloat(quantity) * parseFloat(price))
         },
     }
 };

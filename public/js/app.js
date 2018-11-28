@@ -52591,8 +52591,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
-//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -53550,6 +53548,7 @@ exports.push([module.i, "\n.fixed-part[data-v-4adc577a] {\n  position: fixed;\n 
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vuejs_datepicker__ = __webpack_require__(10);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_vuejs_datepicker_dist_locale__ = __webpack_require__(11);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__mixins_OrderExportCollection__ = __webpack_require__(297);
 //
 //
 //
@@ -53708,203 +53707,15 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-
-
 
 var moment = __webpack_require__(0);
 
+
+
+
 /* harmony default export */ __webpack_exports__["default"] = ({
+    mixins: [__WEBPACK_IMPORTED_MODULE_2__mixins_OrderExportCollection__["a" /* default */]],
+
     data: function data() {
         return {
             finished_order: [],
@@ -53925,7 +53736,8 @@ var moment = __webpack_require__(0);
     components: {
         Datepicker: __WEBPACK_IMPORTED_MODULE_0_vuejs_datepicker__["a" /* default */]
     },
-    beforeMount: function beforeMount() {
+
+    mounted: function mounted() {
         this.getFinishedOrderAct();
     },
 
@@ -53951,14 +53763,6 @@ var moment = __webpack_require__(0);
             axios.get('/api/orders/' + this.$route.params.id + '/finished_order_act/' + this.$route.params.finished_act_id + '/export/pdf').then(function (response) {
                 window.open(response.data.url + '/storage/' + response.data.data);
             });
-        },
-        filterServices: function filterServices(services, service_type_id) {
-            return services.filter(function (row) {
-                return row.service_type_id === service_type_id;
-            });
-        },
-        calculateServicePrice: function calculateServicePrice(quantity, price) {
-            return new Intl.NumberFormat().format(parseFloat(quantity) * parseFloat(price));
         }
     }
 });
@@ -54156,1315 +53960,438 @@ var render = function() {
                     ? _vm._l(_vm.finished_order.finished_rooms, function(
                         finished_room
                       ) {
-                        return _c("div", { staticClass: "col-12 px-0" }, [
-                          _c(
-                            "div",
-                            { staticClass: "px-15" },
-                            [
-                              finished_room.room.description
-                                ? [
-                                    _c(
-                                      "h2",
-                                      {
-                                        staticClass:
-                                          "main-subtitle main-subtitle--room pl-3"
-                                      },
-                                      [
-                                        _vm._v(
-                                          "\n                            " +
-                                            _vm._s(
-                                              finished_room.room.description
-                                            ) +
-                                            "\n                        "
-                                        )
-                                      ]
-                                    )
-                                  ]
-                                : [
-                                    _c(
-                                      "h2",
-                                      {
-                                        staticClass:
-                                          "main-subtitle main-subtitle--room"
-                                      },
-                                      [
-                                        _vm._v(
-                                          "\n                            " +
-                                            _vm._s(
-                                              finished_room.room.room_type.type
-                                            ) +
-                                            "\n                        "
-                                        )
-                                      ]
-                                    )
-                                  ],
-                              _vm._v(" "),
-                              _c(
-                                "div",
-                                {
-                                  staticClass:
-                                    "projects__desc col-8 d-flex justify-content-between align-items-center py-3 pl-0"
-                                },
-                                [
-                                  finished_room.room.room_type_id === 1
-                                    ? [
+                        return _c(
+                          "div",
+                          { staticClass: "col-12 px-0" },
+                          [
+                            _c(
+                              "div",
+                              { staticClass: "px-15" },
+                              [
+                                finished_room.room.description
+                                  ? [
+                                      _c(
+                                        "h2",
+                                        {
+                                          staticClass:
+                                            "main-subtitle main-subtitle--room pl-3"
+                                        },
+                                        [
+                                          _vm._v(
+                                            "\n                            " +
+                                              _vm._s(
+                                                finished_room.room.description
+                                              ) +
+                                              "\n                        "
+                                          )
+                                        ]
+                                      )
+                                    ]
+                                  : [
+                                      _c(
+                                        "h2",
+                                        {
+                                          staticClass:
+                                            "main-subtitle main-subtitle--room"
+                                        },
+                                        [
+                                          _vm._v(
+                                            "\n                            " +
+                                              _vm._s(
+                                                finished_room.room.room_type
+                                                  .type
+                                              ) +
+                                              "\n                        "
+                                          )
+                                        ]
+                                      )
+                                    ],
+                                _vm._v(" "),
+                                finished_room.room.room_type_id === 1
+                                  ? [
+                                      _c(
+                                        "div",
+                                        {
+                                          staticClass:
+                                            "projects__desc col-8 d-flex justify-content-between align-items-center py-3 pl-0"
+                                        },
+                                        [
+                                          _c(
+                                            "div",
+                                            {
+                                              staticClass: "projects__desc-item"
+                                            },
+                                            [
+                                              _vm._v(
+                                                "Общая площадь: " +
+                                                  _vm._s(
+                                                    finished_room.room.area
+                                                  ) +
+                                                  " м"
+                                              ),
+                                              _c("sup", [_vm._v("2")])
+                                            ]
+                                          ),
+                                          _vm._v(" "),
+                                          _c(
+                                            "div",
+                                            {
+                                              staticClass: "projects__desc-item"
+                                            },
+                                            [
+                                              _vm._v(
+                                                "Высота потолка: " +
+                                                  _vm._s(
+                                                    finished_room.room.heigth
+                                                  ) +
+                                                  " м"
+                                              )
+                                            ]
+                                          ),
+                                          _vm._v(" "),
+                                          _c(
+                                            "div",
+                                            {
+                                              staticClass: "projects__desc-item"
+                                            },
+                                            [
+                                              _vm._v(
+                                                "Площадь стен: " +
+                                                  _vm._s(
+                                                    finished_room.room.wall_area
+                                                  ) +
+                                                  " м"
+                                              ),
+                                              _c("sup", [_vm._v("2")])
+                                            ]
+                                          ),
+                                          _vm._v(" "),
+                                          _c(
+                                            "div",
+                                            {
+                                              staticClass: "projects__desc-item"
+                                            },
+                                            [
+                                              _vm._v(
+                                                "Периметр: " +
+                                                  _vm._s(
+                                                    finished_room.room.perimeter
+                                                  )
+                                              )
+                                            ]
+                                          )
+                                        ]
+                                      )
+                                    ]
+                                  : _vm._e()
+                              ],
+                              2
+                            ),
+                            _vm._v(" "),
+                            finished_room.finished_services
+                              ? [
+                                  _vm._l(
+                                    _vm.groupByServiceType(
+                                      finished_room.finished_services
+                                    ),
+                                    function(
+                                      finished_services,
+                                      service_type_id
+                                    ) {
+                                      return [
                                         _c(
                                           "div",
                                           {
-                                            staticClass: "projects__desc-item"
+                                            staticClass:
+                                              "projects__information "
                                           },
                                           [
-                                            _vm._v(
-                                              "Общая площадь: " +
-                                                _vm._s(
-                                                  finished_room.room.area
-                                                ) +
-                                                " м"
-                                            ),
-                                            _c("sup", [_vm._v("2")])
-                                          ]
-                                        ),
-                                        _vm._v(" "),
-                                        _c(
-                                          "div",
-                                          {
-                                            staticClass: "projects__desc-item"
-                                          },
-                                          [
-                                            _vm._v(
-                                              "Высота потолка: " +
-                                                _vm._s(
-                                                  finished_room.room.heigth
-                                                ) +
-                                                " м"
+                                            _c(
+                                              "div",
+                                              { staticClass: "row bg px-3" },
+                                              [
+                                                _c(
+                                                  "div",
+                                                  {
+                                                    staticClass:
+                                                      "main-subtitle main-subtitle--fz col-12 pt-4 pl-3"
+                                                  },
+                                                  [
+                                                    _vm._v(
+                                                      "\n                                " +
+                                                        _vm._s(
+                                                          _vm.getServiceTypeName(
+                                                            service_type_id
+                                                          )
+                                                        ) +
+                                                        "\n                              "
+                                                    )
+                                                  ]
+                                                ),
+                                                _vm._v(" "),
+                                                _c(
+                                                  "div",
+                                                  {
+                                                    staticClass: "col-12 px-0"
+                                                  },
+                                                  [
+                                                    _c(
+                                                      "table",
+                                                      {
+                                                        staticClass:
+                                                          "table table-hover"
+                                                      },
+                                                      [
+                                                        _c(
+                                                          "tbody",
+                                                          _vm._l(
+                                                            finished_services,
+                                                            function(
+                                                              finished_service
+                                                            ) {
+                                                              return _c(
+                                                                "tr",
+                                                                [
+                                                                  _c(
+                                                                    "th",
+                                                                    {
+                                                                      staticClass:
+                                                                        "w-50",
+                                                                      attrs: {
+                                                                        scope:
+                                                                          "row"
+                                                                      }
+                                                                    },
+                                                                    [
+                                                                      _vm._v(
+                                                                        _vm._s(
+                                                                          finished_service.name
+                                                                        )
+                                                                      )
+                                                                    ]
+                                                                  ),
+                                                                  _vm._v(" "),
+                                                                  _c("td", [
+                                                                    _vm._v(
+                                                                      _vm._s(
+                                                                        finished_service
+                                                                          .pivot
+                                                                          .quantity
+                                                                      ) + "м"
+                                                                    ),
+                                                                    _c("sup", [
+                                                                      _vm._v(
+                                                                        "2"
+                                                                      )
+                                                                    ])
+                                                                  ]),
+                                                                  _vm._v(" "),
+                                                                  _vm
+                                                                    .finished_order
+                                                                    .order
+                                                                    .discount
+                                                                    ? [
+                                                                        finished_service.can_be_discounted
+                                                                          ? [
+                                                                              _c(
+                                                                                "td",
+                                                                                [
+                                                                                  _vm._v(
+                                                                                    _vm._s(
+                                                                                      finished_service.price *
+                                                                                        (1 -
+                                                                                          parseInt(
+                                                                                            _vm
+                                                                                              .finished_order
+                                                                                              .order
+                                                                                              .discount
+                                                                                          ) /
+                                                                                            100)
+                                                                                    ) +
+                                                                                      " Р"
+                                                                                  )
+                                                                                ]
+                                                                              ),
+                                                                              _vm._v(
+                                                                                " "
+                                                                              ),
+                                                                              _c(
+                                                                                "td",
+                                                                                [
+                                                                                  _vm._v(
+                                                                                    _vm._s(
+                                                                                      _vm.priceCount(
+                                                                                        finished_service
+                                                                                          .pivot
+                                                                                          .quantity,
+                                                                                        finished_service.price *
+                                                                                          (1 -
+                                                                                            parseInt(
+                                                                                              _vm
+                                                                                                .finished_order
+                                                                                                .order
+                                                                                                .discount
+                                                                                            ) /
+                                                                                              100)
+                                                                                      )
+                                                                                    ) +
+                                                                                      " Р"
+                                                                                  )
+                                                                                ]
+                                                                              )
+                                                                            ]
+                                                                          : [
+                                                                              _c(
+                                                                                "td",
+                                                                                [
+                                                                                  _vm._v(
+                                                                                    _vm._s(
+                                                                                      finished_service.price
+                                                                                    ) +
+                                                                                      " Р"
+                                                                                  )
+                                                                                ]
+                                                                              ),
+                                                                              _vm._v(
+                                                                                " "
+                                                                              ),
+                                                                              _c(
+                                                                                "td",
+                                                                                [
+                                                                                  _vm._v(
+                                                                                    _vm._s(
+                                                                                      _vm.priceCount(
+                                                                                        finished_service
+                                                                                          .pivot
+                                                                                          .quantity,
+                                                                                        finished_service.price
+                                                                                      )
+                                                                                    )
+                                                                                  )
+                                                                                ]
+                                                                              )
+                                                                            ]
+                                                                      ]
+                                                                    : _vm._e(),
+                                                                  _vm._v(" "),
+                                                                  _vm
+                                                                    .finished_order
+                                                                    .order
+                                                                    .markup
+                                                                    ? [
+                                                                        _c(
+                                                                          "td",
+                                                                          [
+                                                                            _vm._v(
+                                                                              _vm._s(
+                                                                                finished_service.price *
+                                                                                  (1 +
+                                                                                    parseInt(
+                                                                                      _vm
+                                                                                        .finished_order
+                                                                                        .order
+                                                                                        .markup
+                                                                                    ) /
+                                                                                      100)
+                                                                              ) +
+                                                                                " Р"
+                                                                            )
+                                                                          ]
+                                                                        ),
+                                                                        _vm._v(
+                                                                          " "
+                                                                        ),
+                                                                        _c(
+                                                                          "td",
+                                                                          [
+                                                                            _vm._v(
+                                                                              _vm._s(
+                                                                                _vm.priceCount(
+                                                                                  finished_service
+                                                                                    .pivot
+                                                                                    .quantity,
+                                                                                  finished_service.price *
+                                                                                    (1 +
+                                                                                      parseInt(
+                                                                                        _vm
+                                                                                          .finished_order
+                                                                                          .order
+                                                                                          .markup
+                                                                                      ) /
+                                                                                        100)
+                                                                                )
+                                                                              ) +
+                                                                                " Р"
+                                                                            )
+                                                                          ]
+                                                                        )
+                                                                      ]
+                                                                    : _vm._e(),
+                                                                  _vm._v(" "),
+                                                                  _vm
+                                                                    .finished_order
+                                                                    .order
+                                                                    .discount ===
+                                                                    null &&
+                                                                  _vm
+                                                                    .finished_order
+                                                                    .order
+                                                                    .markup ===
+                                                                    null
+                                                                    ? [
+                                                                        _c(
+                                                                          "td",
+                                                                          [
+                                                                            _vm._v(
+                                                                              _vm._s(
+                                                                                finished_service.price
+                                                                              ) +
+                                                                                " Р"
+                                                                            )
+                                                                          ]
+                                                                        ),
+                                                                        _vm._v(
+                                                                          " "
+                                                                        ),
+                                                                        _c(
+                                                                          "td",
+                                                                          [
+                                                                            _vm._v(
+                                                                              _vm._s(
+                                                                                _vm.priceCount(
+                                                                                  finished_service
+                                                                                    .pivot
+                                                                                    .quantity,
+                                                                                  finished_service.price
+                                                                                )
+                                                                              )
+                                                                            )
+                                                                          ]
+                                                                        )
+                                                                      ]
+                                                                    : _vm._e()
+                                                                ],
+                                                                2
+                                                              )
+                                                            }
+                                                          )
+                                                        )
+                                                      ]
+                                                    )
+                                                  ]
+                                                )
+                                              ]
                                             )
                                           ]
-                                        ),
-                                        _vm._v(" "),
-                                        _c(
-                                          "div",
-                                          {
-                                            staticClass: "projects__desc-item"
-                                          },
-                                          [
-                                            _vm._v(
-                                              "Площадь стен: " +
-                                                _vm._s(
-                                                  finished_room.room.wall_area
-                                                ) +
-                                                " м"
-                                            ),
-                                            _c("sup", [_vm._v("2")])
-                                          ]
-                                        ),
-                                        _vm._v(" "),
-                                        _c(
-                                          "div",
-                                          {
-                                            staticClass: "projects__desc-item"
-                                          },
-                                          [
-                                            _vm._v(
-                                              "Периметр: " +
-                                                _vm._s(
-                                                  finished_room.room.perimeter
-                                                )
-                                            )
-                                          ]
                                         )
                                       ]
-                                    : _vm._e()
-                                ],
-                                2
-                              )
-                            ],
-                            2
-                          ),
-                          _vm._v(" "),
-                          _c(
-                            "div",
-                            { staticClass: "projects__information " },
-                            [
-                              finished_room.room.room_type_id === 1
-                                ? [
-                                    _c("div", { staticClass: "row bg px-3" }, [
-                                      _c(
-                                        "div",
-                                        {
-                                          staticClass:
-                                            "main-subtitle main-subtitle--fz col-12 pt-4 pl-3"
-                                        },
-                                        [
-                                          _vm._v(
-                                            "\n                            Пол\n                          "
-                                          )
-                                        ]
-                                      ),
-                                      _vm._v(" "),
-                                      _c(
-                                        "div",
-                                        { staticClass: "col-12 px-0" },
-                                        [
-                                          _c(
-                                            "table",
-                                            {
-                                              staticClass: "table table-hover"
-                                            },
-                                            [
-                                              _c(
-                                                "tbody",
-                                                _vm._l(
-                                                  _vm.filterServices(
-                                                    finished_room.finished_services,
-                                                    1
-                                                  ),
-                                                  function(finished_service) {
-                                                    return _c(
-                                                      "tr",
-                                                      [
-                                                        _c(
-                                                          "th",
-                                                          {
-                                                            staticClass: "w-50",
-                                                            attrs: {
-                                                              scope: "row"
-                                                            }
-                                                          },
-                                                          [
-                                                            _vm._v(
-                                                              "\n                                      " +
-                                                                _vm._s(
-                                                                  finished_service.name
-                                                                ) +
-                                                                "\n                                  "
-                                                            )
-                                                          ]
-                                                        ),
-                                                        _vm._v(" "),
-                                                        _c("td", [
-                                                          _vm._v(
-                                                            _vm._s(
-                                                              finished_service
-                                                                .pivot.quantity
-                                                            ) + "м"
-                                                          ),
-                                                          _c("sup", [
-                                                            _vm._v("2")
-                                                          ])
-                                                        ]),
-                                                        _vm._v(" "),
-                                                        _vm.finished_order.order
-                                                          .discount
-                                                          ? [
-                                                              finished_service.can_be_discounted
-                                                                ? [
-                                                                    _c("td", [
-                                                                      _vm._v(
-                                                                        _vm._s(
-                                                                          finished_service.price *
-                                                                            (1 -
-                                                                              parseInt(
-                                                                                _vm
-                                                                                  .finished_order
-                                                                                  .order
-                                                                                  .discount
-                                                                              ) /
-                                                                                100)
-                                                                        ) +
-                                                                          " Р/М"
-                                                                      ),
-                                                                      _c(
-                                                                        "sup",
-                                                                        [
-                                                                          _vm._v(
-                                                                            "2"
-                                                                          )
-                                                                        ]
-                                                                      )
-                                                                    ]),
-                                                                    _vm._v(" "),
-                                                                    _c("td", [
-                                                                      _vm._v(
-                                                                        _vm._s(
-                                                                          _vm.calculateServicePrice(
-                                                                            finished_service
-                                                                              .pivot
-                                                                              .quantity,
-                                                                            finished_service.price
-                                                                          ) *
-                                                                            (1 -
-                                                                              parseInt(
-                                                                                _vm
-                                                                                  .finished_order
-                                                                                  .order
-                                                                                  .discount
-                                                                              ) /
-                                                                                100)
-                                                                        ) + " Р"
-                                                                      )
-                                                                    ])
-                                                                  ]
-                                                                : _vm._e(),
-                                                              _vm._v(" "),
-                                                              !finished_service.can_be_discounted
-                                                                ? [
-                                                                    _c("td", [
-                                                                      _vm._v(
-                                                                        _vm._s(
-                                                                          finished_service.price
-                                                                        )
-                                                                      )
-                                                                    ]),
-                                                                    _vm._v(" "),
-                                                                    _c("td", [
-                                                                      _vm._v(
-                                                                        _vm._s(
-                                                                          _vm.calculateServicePrice(
-                                                                            finished_service
-                                                                              .pivot
-                                                                              .quantity,
-                                                                            finished_service.price
-                                                                          )
-                                                                        )
-                                                                      )
-                                                                    ])
-                                                                  ]
-                                                                : _vm._e()
-                                                            ]
-                                                          : _vm._e(),
-                                                        _vm._v(" "),
-                                                        _vm.finished_order.order
-                                                          .markup
-                                                          ? [
-                                                              _c("td", [
-                                                                _vm._v(
-                                                                  _vm._s(
-                                                                    finished_service.price *
-                                                                      (1 +
-                                                                        parseInt(
-                                                                          _vm
-                                                                            .finished_order
-                                                                            .order
-                                                                            .markup
-                                                                        ) /
-                                                                          100)
-                                                                  ) + " Р/М"
-                                                                ),
-                                                                _c("sup", [
-                                                                  _vm._v("2")
-                                                                ])
-                                                              ]),
-                                                              _vm._v(" "),
-                                                              _c("td", [
-                                                                _vm._v(
-                                                                  _vm._s(
-                                                                    _vm.calculateServicePrice(
-                                                                      finished_service
-                                                                        .pivot
-                                                                        .quantity,
-                                                                      finished_service.price
-                                                                    ) *
-                                                                      (1 +
-                                                                        parseInt(
-                                                                          _vm
-                                                                            .finished_order
-                                                                            .order
-                                                                            .markup
-                                                                        ) /
-                                                                          100)
-                                                                  ) + " Р"
-                                                                )
-                                                              ])
-                                                            ]
-                                                          : _vm._e(),
-                                                        _vm._v(" "),
-                                                        _vm.finished_order.order
-                                                          .discount === null &&
-                                                        _vm.finished_order.order
-                                                          .markup === null
-                                                          ? [
-                                                              _c("td", [
-                                                                _vm._v(
-                                                                  _vm._s(
-                                                                    finished_service.price
-                                                                  ) + " Р/М"
-                                                                ),
-                                                                _c("sup", [
-                                                                  _vm._v("2")
-                                                                ])
-                                                              ]),
-                                                              _vm._v(" "),
-                                                              _c("td", [
-                                                                _vm._v(
-                                                                  _vm._s(
-                                                                    _vm.calculateServicePrice(
-                                                                      finished_service
-                                                                        .pivot
-                                                                        .quantity,
-                                                                      finished_service.price
-                                                                    )
-                                                                  ) + " Р"
-                                                                )
-                                                              ])
-                                                            ]
-                                                          : _vm._e()
-                                                      ],
-                                                      2
-                                                    )
-                                                  }
-                                                )
-                                              )
-                                            ]
-                                          )
-                                        ]
-                                      )
-                                    ]),
-                                    _vm._v(" "),
-                                    _c("div", { staticClass: "row bg px-3" }, [
-                                      _c(
-                                        "div",
-                                        {
-                                          staticClass:
-                                            "main-subtitle main-subtitle--fz col-12 pl-3"
-                                        },
-                                        [
-                                          _vm._v(
-                                            "\n                            Стены\n                          "
-                                          )
-                                        ]
-                                      ),
-                                      _vm._v(" "),
-                                      _c(
-                                        "div",
-                                        { staticClass: "col-12  px-0" },
-                                        [
-                                          _c(
-                                            "table",
-                                            {
-                                              staticClass: "table table-hover"
-                                            },
-                                            [
-                                              _c(
-                                                "tbody",
-                                                _vm._l(
-                                                  _vm.filterServices(
-                                                    finished_room.finished_services,
-                                                    2
-                                                  ),
-                                                  function(finished_service) {
-                                                    return _c(
-                                                      "tr",
-                                                      [
-                                                        _c(
-                                                          "th",
-                                                          {
-                                                            staticClass: "w-50",
-                                                            attrs: {
-                                                              scope: "row"
-                                                            }
-                                                          },
-                                                          [
-                                                            _vm._v(
-                                                              "\n                                        " +
-                                                                _vm._s(
-                                                                  finished_service.name
-                                                                ) +
-                                                                "\n                                    "
-                                                            )
-                                                          ]
-                                                        ),
-                                                        _vm._v(" "),
-                                                        _c("td", [
-                                                          _vm._v(
-                                                            _vm._s(
-                                                              finished_service
-                                                                .pivot.quantity
-                                                            ) + "м"
-                                                          ),
-                                                          _c("sup", [
-                                                            _vm._v("2")
-                                                          ])
-                                                        ]),
-                                                        _vm._v(" "),
-                                                        _vm.finished_order.order
-                                                          .discount
-                                                          ? [
-                                                              finished_service.can_be_discounted
-                                                                ? [
-                                                                    _c("td", [
-                                                                      _vm._v(
-                                                                        _vm._s(
-                                                                          finished_service.price *
-                                                                            (1 -
-                                                                              parseInt(
-                                                                                _vm
-                                                                                  .finished_order
-                                                                                  .order
-                                                                                  .discount
-                                                                              ) /
-                                                                                100)
-                                                                        ) +
-                                                                          " Р/М"
-                                                                      ),
-                                                                      _c(
-                                                                        "sup",
-                                                                        [
-                                                                          _vm._v(
-                                                                            "2"
-                                                                          )
-                                                                        ]
-                                                                      )
-                                                                    ]),
-                                                                    _vm._v(" "),
-                                                                    _c("td", [
-                                                                      _vm._v(
-                                                                        _vm._s(
-                                                                          _vm.calculateServicePrice(
-                                                                            finished_service
-                                                                              .pivot
-                                                                              .quantity,
-                                                                            finished_service.price
-                                                                          ) *
-                                                                            (1 -
-                                                                              parseInt(
-                                                                                _vm
-                                                                                  .finished_order
-                                                                                  .order
-                                                                                  .discount
-                                                                              ) /
-                                                                                100)
-                                                                        ) + " Р"
-                                                                      )
-                                                                    ])
-                                                                  ]
-                                                                : _vm._e(),
-                                                              _vm._v(" "),
-                                                              !finished_service.can_be_discounted
-                                                                ? [
-                                                                    _c("td", [
-                                                                      _vm._v(
-                                                                        _vm._s(
-                                                                          finished_service.price
-                                                                        )
-                                                                      )
-                                                                    ]),
-                                                                    _vm._v(" "),
-                                                                    _c("td", [
-                                                                      _vm._v(
-                                                                        _vm._s(
-                                                                          _vm.calculateServicePrice(
-                                                                            finished_service
-                                                                              .pivot
-                                                                              .quantity,
-                                                                            finished_service.price
-                                                                          )
-                                                                        )
-                                                                      )
-                                                                    ])
-                                                                  ]
-                                                                : _vm._e()
-                                                            ]
-                                                          : _vm._e(),
-                                                        _vm._v(" "),
-                                                        _vm.finished_order.order
-                                                          .markup
-                                                          ? [
-                                                              _c("td", [
-                                                                _vm._v(
-                                                                  _vm._s(
-                                                                    finished_service.price *
-                                                                      (1 +
-                                                                        parseInt(
-                                                                          _vm
-                                                                            .finished_order
-                                                                            .order
-                                                                            .markup
-                                                                        ) /
-                                                                          100)
-                                                                  ) + " Р/М"
-                                                                ),
-                                                                _c("sup", [
-                                                                  _vm._v("2")
-                                                                ])
-                                                              ]),
-                                                              _vm._v(" "),
-                                                              _c("td", [
-                                                                _vm._v(
-                                                                  _vm._s(
-                                                                    _vm.calculateServicePrice(
-                                                                      finished_service
-                                                                        .pivot
-                                                                        .quantity,
-                                                                      finished_service.price
-                                                                    ) *
-                                                                      (1 +
-                                                                        parseInt(
-                                                                          _vm
-                                                                            .finished_order
-                                                                            .order
-                                                                            .markup
-                                                                        ) /
-                                                                          100)
-                                                                  ) + " Р"
-                                                                )
-                                                              ])
-                                                            ]
-                                                          : _vm._e(),
-                                                        _vm._v(" "),
-                                                        _vm.finished_order.order
-                                                          .discount === null &&
-                                                        _vm.finished_order.order
-                                                          .markup === null
-                                                          ? [
-                                                              _c("td", [
-                                                                _vm._v(
-                                                                  _vm._s(
-                                                                    finished_service.price
-                                                                  ) + " Р/М"
-                                                                ),
-                                                                _c("sup", [
-                                                                  _vm._v("2")
-                                                                ])
-                                                              ]),
-                                                              _vm._v(" "),
-                                                              _c("td", [
-                                                                _vm._v(
-                                                                  _vm._s(
-                                                                    _vm.calculateServicePrice(
-                                                                      finished_service
-                                                                        .pivot
-                                                                        .quantity,
-                                                                      finished_service.price
-                                                                    )
-                                                                  ) + " Р"
-                                                                )
-                                                              ])
-                                                            ]
-                                                          : _vm._e()
-                                                      ],
-                                                      2
-                                                    )
-                                                  }
-                                                )
-                                              )
-                                            ]
-                                          )
-                                        ]
-                                      )
-                                    ]),
-                                    _vm._v(" "),
-                                    _c("div", { staticClass: "row bg px-3" }, [
-                                      _c(
-                                        "div",
-                                        {
-                                          staticClass:
-                                            "main-subtitle main-subtitle--fz col-12 pl-3"
-                                        },
-                                        [
-                                          _vm._v(
-                                            "\n                            Потолок\n                          "
-                                          )
-                                        ]
-                                      ),
-                                      _vm._v(" "),
-                                      _c(
-                                        "div",
-                                        { staticClass: "col-12  px-0" },
-                                        [
-                                          _c(
-                                            "table",
-                                            {
-                                              staticClass: "table table-hover"
-                                            },
-                                            [
-                                              _c(
-                                                "tbody",
-                                                _vm._l(
-                                                  _vm.filterServices(
-                                                    finished_room.finished_services,
-                                                    3
-                                                  ),
-                                                  function(finished_service) {
-                                                    return _c(
-                                                      "tr",
-                                                      [
-                                                        _c(
-                                                          "th",
-                                                          {
-                                                            staticClass: "w-50",
-                                                            attrs: {
-                                                              scope: "row"
-                                                            }
-                                                          },
-                                                          [
-                                                            _vm._v(
-                                                              "\n                                        " +
-                                                                _vm._s(
-                                                                  finished_service.name
-                                                                ) +
-                                                                "\n                                    "
-                                                            )
-                                                          ]
-                                                        ),
-                                                        _vm._v(" "),
-                                                        _c("td", [
-                                                          _vm._v(
-                                                            _vm._s(
-                                                              finished_service
-                                                                .pivot.quantity
-                                                            ) + "м"
-                                                          ),
-                                                          _c("sup", [
-                                                            _vm._v("2")
-                                                          ])
-                                                        ]),
-                                                        _vm._v(" "),
-                                                        _vm.finished_order.order
-                                                          .discount
-                                                          ? [
-                                                              finished_service.can_be_discounted
-                                                                ? [
-                                                                    _c("td", [
-                                                                      _vm._v(
-                                                                        _vm._s(
-                                                                          finished_service.price *
-                                                                            (1 -
-                                                                              parseInt(
-                                                                                _vm
-                                                                                  .finished_order
-                                                                                  .order
-                                                                                  .discount
-                                                                              ) /
-                                                                                100)
-                                                                        ) +
-                                                                          " Р/М"
-                                                                      ),
-                                                                      _c(
-                                                                        "sup",
-                                                                        [
-                                                                          _vm._v(
-                                                                            "2"
-                                                                          )
-                                                                        ]
-                                                                      )
-                                                                    ]),
-                                                                    _vm._v(" "),
-                                                                    _c("td", [
-                                                                      _vm._v(
-                                                                        _vm._s(
-                                                                          _vm.calculateServicePrice(
-                                                                            finished_service
-                                                                              .pivot
-                                                                              .quantity,
-                                                                            finished_service.price
-                                                                          ) *
-                                                                            (1 -
-                                                                              parseInt(
-                                                                                _vm
-                                                                                  .finished_order
-                                                                                  .order
-                                                                                  .discount
-                                                                              ) /
-                                                                                100)
-                                                                        ) + " Р"
-                                                                      )
-                                                                    ])
-                                                                  ]
-                                                                : _vm._e(),
-                                                              _vm._v(" "),
-                                                              !finished_service.can_be_discounted
-                                                                ? [
-                                                                    _c("td", [
-                                                                      _vm._v(
-                                                                        _vm._s(
-                                                                          finished_service.price
-                                                                        )
-                                                                      )
-                                                                    ]),
-                                                                    _vm._v(" "),
-                                                                    _c("td", [
-                                                                      _vm._v(
-                                                                        _vm._s(
-                                                                          _vm.calculateServicePrice(
-                                                                            finished_service
-                                                                              .pivot
-                                                                              .quantity,
-                                                                            finished_service.price
-                                                                          )
-                                                                        )
-                                                                      )
-                                                                    ])
-                                                                  ]
-                                                                : _vm._e()
-                                                            ]
-                                                          : _vm._e(),
-                                                        _vm._v(" "),
-                                                        _vm.finished_order.order
-                                                          .markup
-                                                          ? [
-                                                              _c("td", [
-                                                                _vm._v(
-                                                                  _vm._s(
-                                                                    finished_service.price *
-                                                                      (1 +
-                                                                        parseInt(
-                                                                          _vm
-                                                                            .finished_order
-                                                                            .order
-                                                                            .markup
-                                                                        ) /
-                                                                          100)
-                                                                  ) + " Р/М"
-                                                                ),
-                                                                _c("sup", [
-                                                                  _vm._v("2")
-                                                                ])
-                                                              ]),
-                                                              _vm._v(" "),
-                                                              _c("td", [
-                                                                _vm._v(
-                                                                  _vm._s(
-                                                                    _vm.calculateServicePrice(
-                                                                      finished_service
-                                                                        .pivot
-                                                                        .quantity,
-                                                                      finished_service.price
-                                                                    ) *
-                                                                      (1 +
-                                                                        parseInt(
-                                                                          _vm
-                                                                            .finished_order
-                                                                            .order
-                                                                            .markup
-                                                                        ) /
-                                                                          100)
-                                                                  ) + " Р"
-                                                                )
-                                                              ])
-                                                            ]
-                                                          : _vm._e(),
-                                                        _vm._v(" "),
-                                                        _vm.finished_order.order
-                                                          .discount === null &&
-                                                        _vm.finished_order.order
-                                                          .markup === null
-                                                          ? [
-                                                              _c("td", [
-                                                                _vm._v(
-                                                                  _vm._s(
-                                                                    finished_service.price
-                                                                  ) + " Р/М"
-                                                                ),
-                                                                _c("sup", [
-                                                                  _vm._v("2")
-                                                                ])
-                                                              ]),
-                                                              _vm._v(" "),
-                                                              _c("td", [
-                                                                _vm._v(
-                                                                  _vm._s(
-                                                                    _vm.calculateServicePrice(
-                                                                      finished_service
-                                                                        .pivot
-                                                                        .quantity,
-                                                                      finished_service.price
-                                                                    )
-                                                                  ) + " Р"
-                                                                )
-                                                              ])
-                                                            ]
-                                                          : _vm._e()
-                                                      ],
-                                                      2
-                                                    )
-                                                  }
-                                                )
-                                              )
-                                            ]
-                                          )
-                                        ]
-                                      )
-                                    ])
-                                  ]
-                                : _vm._e(),
-                              _vm._v(" "),
-                              finished_room.room.room_type_id === 2
-                                ? [
-                                    _c("div", { staticClass: "row bg px-3" }, [
-                                      _c(
-                                        "div",
-                                        {
-                                          staticClass:
-                                            "main-subtitle main-subtitle--fz col-12 pt-4 pl-3"
-                                        },
-                                        [
-                                          _vm._v(
-                                            "\n                            Электричество\n                          "
-                                          )
-                                        ]
-                                      ),
-                                      _vm._v(" "),
-                                      _c(
-                                        "div",
-                                        { staticClass: "col-12 px-0" },
-                                        [
-                                          _c(
-                                            "table",
-                                            {
-                                              staticClass: "table table-hover"
-                                            },
-                                            [
-                                              _c(
-                                                "tbody",
-                                                _vm._l(
-                                                  _vm.filterServices(
-                                                    finished_room.finished_services,
-                                                    5
-                                                  ),
-                                                  function(finished_service) {
-                                                    return _c(
-                                                      "tr",
-                                                      [
-                                                        _c(
-                                                          "th",
-                                                          {
-                                                            staticClass: "w-50",
-                                                            attrs: {
-                                                              scope: "row"
-                                                            }
-                                                          },
-                                                          [
-                                                            _vm._v(
-                                                              "\n                                      " +
-                                                                _vm._s(
-                                                                  finished_service.name
-                                                                ) +
-                                                                "\n                                  "
-                                                            )
-                                                          ]
-                                                        ),
-                                                        _vm._v(" "),
-                                                        _c("td", [
-                                                          _vm._v(
-                                                            _vm._s(
-                                                              finished_service
-                                                                .pivot.quantity
-                                                            ) + "м"
-                                                          ),
-                                                          _c("sup", [
-                                                            _vm._v("2")
-                                                          ])
-                                                        ]),
-                                                        _vm._v(" "),
-                                                        _vm.finished_order.order
-                                                          .discount
-                                                          ? [
-                                                              finished_service.can_be_discounted
-                                                                ? [
-                                                                    _c("td", [
-                                                                      _vm._v(
-                                                                        _vm._s(
-                                                                          finished_service.price *
-                                                                            (1 -
-                                                                              parseInt(
-                                                                                _vm
-                                                                                  .finished_order
-                                                                                  .order
-                                                                                  .discount
-                                                                              ) /
-                                                                                100)
-                                                                        ) +
-                                                                          " Р/М"
-                                                                      ),
-                                                                      _c(
-                                                                        "sup",
-                                                                        [
-                                                                          _vm._v(
-                                                                            "2"
-                                                                          )
-                                                                        ]
-                                                                      )
-                                                                    ]),
-                                                                    _vm._v(" "),
-                                                                    _c("td", [
-                                                                      _vm._v(
-                                                                        _vm._s(
-                                                                          _vm.calculateServicePrice(
-                                                                            finished_service
-                                                                              .pivot
-                                                                              .quantity,
-                                                                            finished_service.price
-                                                                          ) *
-                                                                            (1 -
-                                                                              parseInt(
-                                                                                _vm
-                                                                                  .finished_order
-                                                                                  .order
-                                                                                  .discount
-                                                                              ) /
-                                                                                100)
-                                                                        ) + " Р"
-                                                                      )
-                                                                    ])
-                                                                  ]
-                                                                : _vm._e(),
-                                                              _vm._v(" "),
-                                                              !finished_service.can_be_discounted
-                                                                ? [
-                                                                    _c("td", [
-                                                                      _vm._v(
-                                                                        _vm._s(
-                                                                          finished_service.price
-                                                                        )
-                                                                      )
-                                                                    ]),
-                                                                    _vm._v(" "),
-                                                                    _c("td", [
-                                                                      _vm._v(
-                                                                        _vm._s(
-                                                                          _vm.calculateServicePrice(
-                                                                            finished_service
-                                                                              .pivot
-                                                                              .quantity,
-                                                                            finished_service.price
-                                                                          )
-                                                                        )
-                                                                      )
-                                                                    ])
-                                                                  ]
-                                                                : _vm._e()
-                                                            ]
-                                                          : _vm._e(),
-                                                        _vm._v(" "),
-                                                        _vm.finished_order.order
-                                                          .markup
-                                                          ? [
-                                                              _c("td", [
-                                                                _vm._v(
-                                                                  _vm._s(
-                                                                    finished_service.price *
-                                                                      (1 +
-                                                                        parseInt(
-                                                                          _vm
-                                                                            .finished_order
-                                                                            .order
-                                                                            .markup
-                                                                        ) /
-                                                                          100)
-                                                                  ) + " Р/М"
-                                                                ),
-                                                                _c("sup", [
-                                                                  _vm._v("2")
-                                                                ])
-                                                              ]),
-                                                              _vm._v(" "),
-                                                              _c("td", [
-                                                                _vm._v(
-                                                                  _vm._s(
-                                                                    _vm.calculateServicePrice(
-                                                                      finished_service
-                                                                        .pivot
-                                                                        .quantity,
-                                                                      finished_service.price
-                                                                    ) *
-                                                                      (1 +
-                                                                        parseInt(
-                                                                          _vm
-                                                                            .finished_order
-                                                                            .order
-                                                                            .markup
-                                                                        ) /
-                                                                          100)
-                                                                  ) + " Р"
-                                                                )
-                                                              ])
-                                                            ]
-                                                          : _vm._e(),
-                                                        _vm._v(" "),
-                                                        _vm.finished_order.order
-                                                          .discount === null &&
-                                                        _vm.finished_order.order
-                                                          .markup === null
-                                                          ? [
-                                                              _c("td", [
-                                                                _vm._v(
-                                                                  _vm._s(
-                                                                    finished_service.price
-                                                                  ) + " Р/М"
-                                                                ),
-                                                                _c("sup", [
-                                                                  _vm._v("2")
-                                                                ])
-                                                              ]),
-                                                              _vm._v(" "),
-                                                              _c("td", [
-                                                                _vm._v(
-                                                                  _vm._s(
-                                                                    _vm.calculateServicePrice(
-                                                                      finished_service
-                                                                        .pivot
-                                                                        .quantity,
-                                                                      finished_service.price
-                                                                    )
-                                                                  ) + " Р"
-                                                                )
-                                                              ])
-                                                            ]
-                                                          : _vm._e()
-                                                      ],
-                                                      2
-                                                    )
-                                                  }
-                                                )
-                                              )
-                                            ]
-                                          )
-                                        ]
-                                      )
-                                    ])
-                                  ]
-                                : _vm._e(),
-                              _vm._v(" "),
-                              finished_room.room.room_type_id === 3
-                                ? [
-                                    _c("div", { staticClass: "row bg px-3" }, [
-                                      _c(
-                                        "div",
-                                        {
-                                          staticClass:
-                                            "main-subtitle main-subtitle--fz col-12 pt-4 pl-3"
-                                        },
-                                        [
-                                          _vm._v(
-                                            "\n                            Электричество\n                          "
-                                          )
-                                        ]
-                                      ),
-                                      _vm._v(" "),
-                                      _c(
-                                        "div",
-                                        { staticClass: "col-12 px-0" },
-                                        [
-                                          _c(
-                                            "table",
-                                            {
-                                              staticClass: "table table-hover"
-                                            },
-                                            [
-                                              _c(
-                                                "tbody",
-                                                _vm._l(
-                                                  _vm.filterServices(
-                                                    finished_room.finished_services,
-                                                    4
-                                                  ),
-                                                  function(finished_service) {
-                                                    return _c(
-                                                      "tr",
-                                                      [
-                                                        _c(
-                                                          "th",
-                                                          {
-                                                            staticClass: "w-50",
-                                                            attrs: {
-                                                              scope: "row"
-                                                            }
-                                                          },
-                                                          [
-                                                            _vm._v(
-                                                              "\n                                      " +
-                                                                _vm._s(
-                                                                  finished_service.name
-                                                                ) +
-                                                                "\n                                  "
-                                                            )
-                                                          ]
-                                                        ),
-                                                        _vm._v(" "),
-                                                        _c("td", [
-                                                          _vm._v(
-                                                            _vm._s(
-                                                              finished_service
-                                                                .pivot.quantity
-                                                            ) + "м"
-                                                          ),
-                                                          _c("sup", [
-                                                            _vm._v("2")
-                                                          ])
-                                                        ]),
-                                                        _vm._v(" "),
-                                                        _vm.finished_order.order
-                                                          .discount
-                                                          ? [
-                                                              finished_service.can_be_discounted
-                                                                ? [
-                                                                    _c("td", [
-                                                                      _vm._v(
-                                                                        _vm._s(
-                                                                          finished_service.price *
-                                                                            (1 -
-                                                                              parseInt(
-                                                                                _vm
-                                                                                  .finished_order
-                                                                                  .order
-                                                                                  .discount
-                                                                              ) /
-                                                                                100)
-                                                                        ) +
-                                                                          " Р/М"
-                                                                      ),
-                                                                      _c(
-                                                                        "sup",
-                                                                        [
-                                                                          _vm._v(
-                                                                            "2"
-                                                                          )
-                                                                        ]
-                                                                      )
-                                                                    ]),
-                                                                    _vm._v(" "),
-                                                                    _c("td", [
-                                                                      _vm._v(
-                                                                        _vm._s(
-                                                                          _vm.calculateServicePrice(
-                                                                            finished_service
-                                                                              .pivot
-                                                                              .quantity,
-                                                                            finished_service.price
-                                                                          ) *
-                                                                            (1 -
-                                                                              parseInt(
-                                                                                _vm
-                                                                                  .finished_order
-                                                                                  .order
-                                                                                  .discount
-                                                                              ) /
-                                                                                100)
-                                                                        ) + " Р"
-                                                                      )
-                                                                    ])
-                                                                  ]
-                                                                : _vm._e(),
-                                                              _vm._v(" "),
-                                                              !finished_service.can_be_discounted
-                                                                ? [
-                                                                    _c("td", [
-                                                                      _vm._v(
-                                                                        _vm._s(
-                                                                          finished_service.price
-                                                                        )
-                                                                      )
-                                                                    ]),
-                                                                    _vm._v(" "),
-                                                                    _c("td", [
-                                                                      _vm._v(
-                                                                        _vm._s(
-                                                                          _vm.calculateServicePrice(
-                                                                            finished_service
-                                                                              .pivot
-                                                                              .quantity,
-                                                                            finished_service.price
-                                                                          )
-                                                                        )
-                                                                      )
-                                                                    ])
-                                                                  ]
-                                                                : _vm._e()
-                                                            ]
-                                                          : _vm._e(),
-                                                        _vm._v(" "),
-                                                        _vm.finished_order.order
-                                                          .markup
-                                                          ? [
-                                                              _c("td", [
-                                                                _vm._v(
-                                                                  _vm._s(
-                                                                    finished_service.price *
-                                                                      (1 +
-                                                                        parseInt(
-                                                                          _vm
-                                                                            .finished_order
-                                                                            .order
-                                                                            .markup
-                                                                        ) /
-                                                                          100)
-                                                                  ) + " Р/М"
-                                                                ),
-                                                                _c("sup", [
-                                                                  _vm._v("2")
-                                                                ])
-                                                              ]),
-                                                              _vm._v(" "),
-                                                              _c("td", [
-                                                                _vm._v(
-                                                                  _vm._s(
-                                                                    _vm.calculateServicePrice(
-                                                                      finished_service
-                                                                        .pivot
-                                                                        .quantity,
-                                                                      finished_service.price
-                                                                    ) *
-                                                                      (1 +
-                                                                        parseInt(
-                                                                          _vm
-                                                                            .finished_order
-                                                                            .order
-                                                                            .markup
-                                                                        ) /
-                                                                          100)
-                                                                  ) + " Р"
-                                                                )
-                                                              ])
-                                                            ]
-                                                          : _vm._e(),
-                                                        _vm._v(" "),
-                                                        _vm.finished_order.order
-                                                          .discount === null &&
-                                                        _vm.finished_order.order
-                                                          .markup === null
-                                                          ? [
-                                                              _c("td", [
-                                                                _vm._v(
-                                                                  _vm._s(
-                                                                    finished_service.price
-                                                                  ) + " Р/М"
-                                                                ),
-                                                                _c("sup", [
-                                                                  _vm._v("2")
-                                                                ])
-                                                              ]),
-                                                              _vm._v(" "),
-                                                              _c("td", [
-                                                                _vm._v(
-                                                                  _vm._s(
-                                                                    _vm.calculateServicePrice(
-                                                                      finished_service
-                                                                        .pivot
-                                                                        .quantity,
-                                                                      finished_service.price
-                                                                    )
-                                                                  ) + " Р"
-                                                                )
-                                                              ])
-                                                            ]
-                                                          : _vm._e()
-                                                      ],
-                                                      2
-                                                    )
-                                                  }
-                                                )
-                                              )
-                                            ]
-                                          )
-                                        ]
-                                      )
-                                    ])
-                                  ]
-                                : _vm._e()
-                            ],
-                            2
-                          )
-                        ])
+                                    }
+                                  )
+                                ]
+                              : _vm._e()
+                          ],
+                          2
+                        )
                       })
                     : _vm._e()
                 ],
