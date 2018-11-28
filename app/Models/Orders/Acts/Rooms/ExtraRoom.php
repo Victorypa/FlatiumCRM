@@ -7,9 +7,12 @@ use Illuminate\Database\Eloquent\Model;
 use App\Models\Orders\Acts\ExtraOrderAct;
 use App\Models\Orders\Acts\Rooms\Windows\ExtraRoomWindow;
 use App\Models\Orders\Acts\Rooms\Services\ExtraRoomService;
+use App\Models\Traits\ExtraRooms\ExtraRoomServiceTrait;
 
 class ExtraRoom extends Model
 {
+    use ExtraRoomServiceTrait;
+    
     protected $guarded = [];
 
     public function ExtraOrderAct()

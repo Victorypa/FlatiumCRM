@@ -228,7 +228,7 @@
         mounted () {
             this.getServiceTypes()
             this.getServiceUnits()
-            this.getExtraRoomServices()
+            // this.getExtraRoomServices()
             this.getServices()
         },
 
@@ -324,8 +324,8 @@
             linkExtraServicesToExtraRoom () {
                 axios.post(`/api/orders/${this.$route.params.id}/extra_order_act/${this.$route.params.extra_order_act_id}/extra_rooms/${this.$route.params.extra_room_id}/extra_services/store`, {
                     'room_service_ids': this.extra_room_service_ids,
-                    'service_quantities': this.service_quantities,
-                    'service_prices': this.service_prices
+                    'service_quantities': this.removeEmptyElem(this.service_quantities),
+                    'service_prices': this.removeEmptyElem(this.service_prices)
                 }).then(response => {
                     this.extra_order_act_price = null
                     this.extra_room_price = response.data.extra_room.price
@@ -410,6 +410,15 @@
                 return parseFloat(Math.ceil(rate/quantity) * price).toFixed(2)
             },
 
+            removeEmptyElem (obj) {
+                let newObj = {}
+
+                Object.keys(obj).forEach((prop) => {
+                  if (obj[prop]) { newObj[prop] = obj[prop] }
+                })
+
+                return newObj
+           },
         },
 
         computed: {

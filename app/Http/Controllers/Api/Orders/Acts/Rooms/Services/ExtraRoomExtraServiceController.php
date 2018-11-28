@@ -11,13 +11,13 @@ use App\Models\Orders\Acts\Rooms\ExtraRoom;
 
 class ExtraRoomExtraServiceController extends Controller
 {
-    public function index(Order $order, ExtraOrderAct $extra_order_act, ExtraRoom $extra_room)
-    {
-        return response()->json([
-            'room_services' => $extra_room->extra_services()->with(['actual_materials', 'unit', 'actual_materials.material_unit'])->get(),
-            'extra_room' => $extra_room
-        ]);
-    }
+    // public function index(Order $order, ExtraOrderAct $extra_order_act, ExtraRoom $extra_room)
+    // {
+    //     return response()->json([
+    //         'room_services' => $extra_room->extra_services()->with(['actual_materials', 'unit', 'actual_materials.material_unit'])->get(),
+    //         'extra_room' => $extra_room
+    //     ]);
+    // }
 
     public function store(Order $order, ExtraOrderAct $extra_order_act, ExtraRoom $extra_room, Request $request)
     {

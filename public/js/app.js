@@ -55437,7 +55437,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     mounted: function mounted() {
         this.getServiceTypes();
         this.getServiceUnits();
-        this.getExtraRoomServices();
+        // this.getExtraRoomServices()
         this.getServices();
     },
 
@@ -55535,8 +55535,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
             axios.post('/api/orders/' + this.$route.params.id + '/extra_order_act/' + this.$route.params.extra_order_act_id + '/extra_rooms/' + this.$route.params.extra_room_id + '/extra_services/store', {
                 'room_service_ids': this.extra_room_service_ids,
-                'service_quantities': this.service_quantities,
-                'service_prices': this.service_prices
+                'service_quantities': this.removeEmptyElem(this.service_quantities),
+                'service_prices': this.removeEmptyElem(this.service_prices)
             }).then(function (response) {
                 _this4.extra_order_act_price = null;
                 _this4.extra_room_price = response.data.extra_room.price;
@@ -55613,6 +55613,17 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         },
         getMaterialSummary: function getMaterialSummary(rate, quantity, price) {
             return parseFloat(Math.ceil(rate / quantity) * price).toFixed(2);
+        },
+        removeEmptyElem: function removeEmptyElem(obj) {
+            var newObj = {};
+
+            Object.keys(obj).forEach(function (prop) {
+                if (obj[prop]) {
+                    newObj[prop] = obj[prop];
+                }
+            });
+
+            return newObj;
         }
     },
 

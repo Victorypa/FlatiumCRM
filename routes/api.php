@@ -103,16 +103,16 @@ use Illuminate\Http\Request;
                  * Extra Rooms - Extra Services
                 */
                 Route::group(['namespace' => 'Services'], function () {
-                    Route::get('/{order}/extra_order_act/{extra_order_act}/extra_rooms/{extra_room}/extra_services', 'ExtraRoomExtraServiceController@index');
-                    Route::post('/{order}/extra_order_act/{extra_order_act}/extra_rooms/{extra_room}/extra_services/store', 'ExtraRoomExtraServiceController@store');
+                    Route::get('/{order}/extra_order_act/{extra_order_act}/extra_rooms/{extra_room}/extra_services', 'ExtraRoomServiceController@index');
+                    Route::post('/{order}/extra_order_act/{extra_order_act}/extra_rooms/{extra_room}/extra_services/store', 'ExtraRoomServiceController@store');
 
-                    /**
-                     * Extra Rooms - Extra Materials
-                    */
-                    Route::group(['namespace' => 'Materials'], function () {
-                        Route::get('/{order}/extra_order_act/{extra_order_act}/extra_rooms/{extra_room}/materials', 'ExtraRoomMaterialController@index');
-                        Route::post('/{order}/extra_order_act/{extra_order_act}/extra_rooms/{extra_room}/materials/store', 'ExtraRoomMaterialController@store');
-                    });
+                    // /**
+                    //  * Extra Rooms - Extra Materials
+                    // */
+                    // Route::group(['namespace' => 'Materials'], function () {
+                    //     Route::get('/{order}/extra_order_act/{extra_order_act}/extra_rooms/{extra_room}/materials', 'ExtraRoomMaterialController@index');
+                    //     Route::post('/{order}/extra_order_act/{extra_order_act}/extra_rooms/{extra_room}/materials/store', 'ExtraRoomMaterialController@store');
+                    // });
 
                 });
             });
