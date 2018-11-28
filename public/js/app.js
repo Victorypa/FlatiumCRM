@@ -67351,6 +67351,7 @@ exports.push([module.i, "\n.create__features[data-v-861bc876] {\n  display: -web
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__Partials_Service__ = __webpack_require__(257);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__Partials_Service___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__Partials_Service__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__mixins_OrderExportCollection__ = __webpack_require__(297);
 //
 //
 //
@@ -67630,574 +67631,13 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
+
 
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
+    mixins: [__WEBPACK_IMPORTED_MODULE_1__mixins_OrderExportCollection__["a" /* default */]],
+
     data: function data() {
         return {
             order: [],
@@ -68206,9 +67646,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             client_name: null,
             description: '',
             percentage: null,
-            managers: [],
-            manager_phones: [],
-            manager_id: 1,
 
             withMaterials: false,
             service_types: [],
@@ -68218,7 +67655,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
             selected_id: null,
 
-            room_services: []
+            room_services: [],
+            room_service_ids: [],
+            rooms: []
 
         };
     },
@@ -68230,7 +67669,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
     mounted: function mounted() {
         this.getOrder();
-        this.getManagers();
     },
 
 
@@ -68240,6 +67678,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
             return axios.get('/api/orders/' + this.$route.params.id).then(function (response) {
                 _this.order = response.data;
+                _this.rooms = response.data.rooms;
                 _this.contract = _this.order.contract;
                 _this.manager_id = _this.order.manager_id;
                 _this.client_name = _this.order.client_name;
@@ -68257,18 +67696,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 _this.square = 0;
                 _this.order.rooms.forEach(function (room) {
                     _this.square += parseInt(room.area);
-                    _this.room_services[room.id] = _.groupBy(room.room_services, 'service_type_id');
-                });
-                console.log(_this.room_services);
-            });
-        },
-        getManagers: function getManagers() {
-            var _this2 = this;
-
-            return axios.get('/api/managers').then(function (response) {
-                _this2.managers = response.data;
-                response.data.forEach(function (item) {
-                    _this2.manager_phones[item.id] = item.phone;
+                    var data = _.groupBy(room.room_services, 'room_id');
+                    _this.room_service_ids.push(Object.entries(data)[0]);
                 });
             });
         },
@@ -68282,14 +67711,14 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             });
         },
         updateOrderDiscountOrMarkup: function updateOrderDiscountOrMarkup() {
-            var _this3 = this;
+            var _this2 = this;
 
             if (this.selected_id === "1") {
                 axios.patch('/api/orders/' + this.order.id + '/discount_or_markup/update', {
                     'discount': this.percentage,
                     'markup': null
                 }).then(function (response) {
-                    _this3.getOrder();
+                    _this2.getOrder();
                 });
             }
 
@@ -68298,12 +67727,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                     'discount': null,
                     'markup': this.percentage
                 }).then(function (response) {
-                    _this3.getOrder();
+                    _this2.getOrder();
                 });
             }
-        },
-        priceCount: function priceCount(quantity, price) {
-            return new Intl.NumberFormat().format(quantity * price);
         },
         changeRoomName: function changeRoomName(id) {
             this.show = !this.show;
@@ -68595,7 +68021,7 @@ var render = function() {
                               _vm._v(
                                 " " +
                                   _vm._s(
-                                    new Intl.NumberFormat().format(
+                                    new Intl.NumberFormat("ru-Ru").format(
                                       _vm.order.price
                                     )
                                   ) +
@@ -68619,7 +68045,7 @@ var render = function() {
                                 _vm._v(
                                   " " +
                                     _vm._s(
-                                      new Intl.NumberFormat().format(
+                                      new Intl.NumberFormat("ru-Ru").format(
                                         _vm.order.price
                                       )
                                     ) +
@@ -68644,7 +68070,7 @@ var render = function() {
                                 _vm._v(
                                   " " +
                                     _vm._s(
-                                      new Intl.NumberFormat().format(
+                                      new Intl.NumberFormat("ru-Ru").format(
                                         _vm.order.price
                                       )
                                     ) +
@@ -68900,1707 +68326,338 @@ var render = function() {
                     ])
                   ]),
                   _vm._v(" "),
-                  _vm.order.discount
+                  _vm.room_services
                     ? [
-                        _vm.order.rooms
-                          ? [
-                              _vm._l(_vm.order.rooms, function(room, index) {
-                                return [
-                                  _c(
-                                    "div",
-                                    { staticClass: "projects__information" },
-                                    [
-                                      _c(
-                                        "div",
-                                        { staticClass: "px-15 pb-3" },
-                                        [
-                                          room.description
-                                            ? [
-                                                !_vm.show
-                                                  ? [
-                                                      _c(
-                                                        "h2",
-                                                        {
-                                                          staticClass:
-                                                            "main-subtitle main-subtitle--room",
-                                                          on: {
-                                                            click: function(
-                                                              $event
-                                                            ) {
-                                                              _vm.changeRoomName()
-                                                            }
-                                                          }
-                                                        },
-                                                        [
-                                                          _vm._v(
-                                                            "\n                                                        " +
-                                                              _vm._s(
-                                                                room.description
-                                                              ) +
-                                                              "\n                                                    "
-                                                          )
-                                                        ]
-                                                      )
-                                                    ]
-                                                  : [
-                                                      _c(
-                                                        "div",
-                                                        {
-                                                          staticClass: "row",
-                                                          staticStyle: {
-                                                            "padding-top":
-                                                              "30px"
-                                                          }
-                                                        },
-                                                        [
-                                                          _c(
-                                                            "div",
-                                                            {
-                                                              staticClass:
-                                                                "col-md-6"
-                                                            },
-                                                            [
-                                                              _c(
-                                                                "div",
-                                                                {
-                                                                  staticClass:
-                                                                    "form-group"
-                                                                },
-                                                                [
-                                                                  _c("input", {
-                                                                    directives: [
-                                                                      {
-                                                                        name:
-                                                                          "model",
-                                                                        rawName:
-                                                                          "v-model",
-                                                                        value:
-                                                                          _vm
-                                                                            .descriptions[
-                                                                            room
-                                                                              .id
-                                                                          ],
-                                                                        expression:
-                                                                          "descriptions[room.id]"
-                                                                      }
-                                                                    ],
-                                                                    staticClass:
-                                                                      "form-control",
-                                                                    attrs: {
-                                                                      type:
-                                                                        "text",
-                                                                      placeholder:
-                                                                        room.description
-                                                                    },
-                                                                    domProps: {
-                                                                      value:
-                                                                        _vm
-                                                                          .descriptions[
-                                                                          room
-                                                                            .id
-                                                                        ]
-                                                                    },
-                                                                    on: {
-                                                                      change: function(
-                                                                        $event
-                                                                      ) {
-                                                                        _vm.updateDescription(
-                                                                          room.id
-                                                                        )
-                                                                      },
-                                                                      input: function(
-                                                                        $event
-                                                                      ) {
-                                                                        if (
-                                                                          $event
-                                                                            .target
-                                                                            .composing
-                                                                        ) {
-                                                                          return
-                                                                        }
-                                                                        _vm.$set(
-                                                                          _vm.descriptions,
-                                                                          room.id,
-                                                                          $event
-                                                                            .target
-                                                                            .value
-                                                                        )
-                                                                      }
-                                                                    }
-                                                                  })
-                                                                ]
-                                                              )
-                                                            ]
-                                                          )
-                                                        ]
-                                                      )
-                                                    ]
-                                              ]
-                                            : [
-                                                !_vm.show
-                                                  ? [
-                                                      _c(
-                                                        "h2",
-                                                        {
-                                                          staticClass:
-                                                            "main-subtitle main-subtitle--room",
-                                                          on: {
-                                                            click: function(
-                                                              $event
-                                                            ) {
-                                                              _vm.changeRoomName()
-                                                            }
-                                                          }
-                                                        },
-                                                        [
-                                                          _vm._v(
-                                                            "\n                                                        " +
-                                                              _vm._s(
-                                                                room.room_type
-                                                                  .type
-                                                              ) +
-                                                              "\n                                                    "
-                                                          )
-                                                        ]
-                                                      )
-                                                    ]
-                                                  : [
-                                                      _c(
-                                                        "div",
-                                                        {
-                                                          staticClass: "row",
-                                                          staticStyle: {
-                                                            "padding-top":
-                                                              "30px"
-                                                          }
-                                                        },
-                                                        [
-                                                          _c(
-                                                            "div",
-                                                            {
-                                                              staticClass:
-                                                                "col-md-6"
-                                                            },
-                                                            [
-                                                              _c(
-                                                                "div",
-                                                                {
-                                                                  staticClass:
-                                                                    "form-group"
-                                                                },
-                                                                [
-                                                                  _c("input", {
-                                                                    directives: [
-                                                                      {
-                                                                        name:
-                                                                          "model",
-                                                                        rawName:
-                                                                          "v-model",
-                                                                        value:
-                                                                          _vm
-                                                                            .descriptions[
-                                                                            room
-                                                                              .id
-                                                                          ],
-                                                                        expression:
-                                                                          "descriptions[room.id]"
-                                                                      }
-                                                                    ],
-                                                                    staticClass:
-                                                                      "form-control",
-                                                                    attrs: {
-                                                                      type:
-                                                                        "text",
-                                                                      placeholder:
-                                                                        room
-                                                                          .room_type
-                                                                          .type
-                                                                    },
-                                                                    domProps: {
-                                                                      value:
-                                                                        _vm
-                                                                          .descriptions[
-                                                                          room
-                                                                            .id
-                                                                        ]
-                                                                    },
-                                                                    on: {
-                                                                      change: function(
-                                                                        $event
-                                                                      ) {
-                                                                        _vm.updateDescription(
-                                                                          room.id
-                                                                        )
-                                                                      },
-                                                                      input: function(
-                                                                        $event
-                                                                      ) {
-                                                                        if (
-                                                                          $event
-                                                                            .target
-                                                                            .composing
-                                                                        ) {
-                                                                          return
-                                                                        }
-                                                                        _vm.$set(
-                                                                          _vm.descriptions,
-                                                                          room.id,
-                                                                          $event
-                                                                            .target
-                                                                            .value
-                                                                        )
-                                                                      }
-                                                                    }
-                                                                  })
-                                                                ]
-                                                              )
-                                                            ]
-                                                          )
-                                                        ]
-                                                      )
-                                                    ]
-                                              ]
-                                        ],
-                                        2
-                                      ),
-                                      _vm._v(" "),
-                                      room.room_type_id === 1
-                                        ? [
-                                            _c(
-                                              "div",
-                                              {
-                                                staticClass:
-                                                  "projects__desc col-8 d-flex justify-content-between align-items-center pt-3"
-                                              },
-                                              [
-                                                _c(
-                                                  "div",
-                                                  {
-                                                    staticClass:
-                                                      "projects__desc-item"
-                                                  },
-                                                  [
-                                                    _vm._v(
-                                                      "Общая площадь: " +
-                                                        _vm._s(room.area) +
-                                                        " м"
-                                                    ),
-                                                    _c("sup", [_vm._v("2")])
-                                                  ]
-                                                ),
-                                                _vm._v(" "),
-                                                _c(
-                                                  "div",
-                                                  {
-                                                    staticClass:
-                                                      "projects__desc-item"
-                                                  },
-                                                  [
-                                                    _vm._v(
-                                                      "Высота потолка: " +
-                                                        _vm._s(room.height) +
-                                                        " м"
-                                                    )
-                                                  ]
-                                                ),
-                                                _vm._v(" "),
-                                                _c(
-                                                  "div",
-                                                  {
-                                                    staticClass:
-                                                      "projects__desc-item"
-                                                  },
-                                                  [
-                                                    _vm._v(
-                                                      "Площадь стен: " +
-                                                        _vm._s(room.wall_area) +
-                                                        " м"
-                                                    ),
-                                                    _c("sup", [_vm._v("2")])
-                                                  ]
-                                                ),
-                                                _vm._v(" "),
-                                                _c(
-                                                  "div",
-                                                  {
-                                                    staticClass:
-                                                      "projects__desc-item"
-                                                  },
-                                                  [
-                                                    _vm._v(
-                                                      "Периметр: " +
-                                                        _vm._s(room.perimeter)
-                                                    )
-                                                  ]
-                                                )
-                                              ]
-                                            ),
-                                            _vm._v(" "),
-                                            _vm._l(
-                                              _vm.service_types.slice(0, 3),
-                                              function(service_type) {
-                                                return [
-                                                  _c(
-                                                    "div",
-                                                    {
-                                                      staticClass:
-                                                        "row bg px-15"
-                                                    },
-                                                    [
-                                                      _c(
-                                                        "div",
-                                                        {
-                                                          staticClass:
-                                                            "main-subtitle main-subtitle--fz col-12 pt-4"
-                                                        },
-                                                        [
-                                                          _vm._v(
-                                                            "\n                                                        " +
-                                                              _vm._s(
-                                                                service_type.name
-                                                              ) +
-                                                              "\n                                                    "
-                                                          )
-                                                        ]
-                                                      ),
-                                                      _vm._v(" "),
-                                                      _c(
-                                                        "div",
-                                                        {
-                                                          staticClass:
-                                                            "col-12 px-0"
-                                                        },
-                                                        [
-                                                          _c(
-                                                            "table",
-                                                            {
-                                                              staticClass:
-                                                                "table table-hover"
-                                                            },
-                                                            [
-                                                              _c(
-                                                                "tbody",
-                                                                _vm._l(
-                                                                  _vm.getServicesByServiceType(
-                                                                    room.room_services,
-                                                                    service_type.id
-                                                                  ),
-                                                                  function(
-                                                                    room_service
-                                                                  ) {
-                                                                    return _c(
-                                                                      "tr",
-                                                                      [
-                                                                        _c(
-                                                                          "th",
-                                                                          {
-                                                                            staticClass:
-                                                                              "w-50",
-                                                                            attrs: {
-                                                                              scope:
-                                                                                "row"
-                                                                            }
-                                                                          },
-                                                                          [
-                                                                            _vm._v(
-                                                                              "\n                                                                        " +
-                                                                                _vm._s(
-                                                                                  room_service
-                                                                                ) +
-                                                                                "\n                                                                    "
-                                                                            )
-                                                                          ]
-                                                                        )
-                                                                      ]
-                                                                    )
-                                                                  }
-                                                                )
-                                                              )
-                                                            ]
-                                                          )
-                                                        ]
-                                                      )
-                                                    ]
-                                                  )
-                                                ]
-                                              }
-                                            )
-                                          ]
-                                        : _vm._e(),
-                                      _vm._v(" "),
-                                      room.room_type_id === 2
-                                        ? [
-                                            _vm._l(
-                                              _vm.service_types.slice(3, 4),
-                                              function(service_type) {
-                                                return [
-                                                  _c(
-                                                    "div",
-                                                    {
-                                                      staticClass:
-                                                        "row bg px-15"
-                                                    },
-                                                    [
-                                                      _c(
-                                                        "div",
-                                                        {
-                                                          staticClass:
-                                                            "main-subtitle main-subtitle--fz col-12 pt-4"
-                                                        },
-                                                        [
-                                                          _vm._v(
-                                                            "\n                                                        " +
-                                                              _vm._s(
-                                                                service_type.name
-                                                              ) +
-                                                              "\n                                                    "
-                                                          )
-                                                        ]
-                                                      ),
-                                                      _vm._v(" "),
-                                                      _c(
-                                                        "div",
-                                                        {
-                                                          staticClass:
-                                                            "col-12 px-0"
-                                                        },
-                                                        [
-                                                          _c(
-                                                            "table",
-                                                            {
-                                                              staticClass:
-                                                                "table table-hover"
-                                                            },
-                                                            [
-                                                              _c(
-                                                                "tbody",
-                                                                _vm._l(
-                                                                  room.services,
-                                                                  function(
-                                                                    room_service
-                                                                  ) {
-                                                                    return _c(
-                                                                      "tr",
-                                                                      [
-                                                                        _c(
-                                                                          "th",
-                                                                          {
-                                                                            staticClass:
-                                                                              "w-50",
-                                                                            attrs: {
-                                                                              scope:
-                                                                                "row"
-                                                                            }
-                                                                          },
-                                                                          [
-                                                                            _vm._v(
-                                                                              "\n                                                                        " +
-                                                                                _vm._s(
-                                                                                  room_service.name
-                                                                                ) +
-                                                                                "\n                                                                    "
-                                                                            )
-                                                                          ]
-                                                                        ),
-                                                                        _vm._v(
-                                                                          " "
-                                                                        ),
-                                                                        _c(
-                                                                          "td",
-                                                                          [
-                                                                            _vm._v(
-                                                                              _vm._s(
-                                                                                room_service
-                                                                                  .pivot
-                                                                                  .quantity
-                                                                              ) +
-                                                                                " м"
-                                                                            ),
-                                                                            _c(
-                                                                              "sup",
-                                                                              [
-                                                                                _vm._v(
-                                                                                  "2"
-                                                                                )
-                                                                              ]
-                                                                            )
-                                                                          ]
-                                                                        ),
-                                                                        _vm._v(
-                                                                          " "
-                                                                        ),
-                                                                        room_service.can_be_discounted
-                                                                          ? [
-                                                                              _c(
-                                                                                "td",
-                                                                                [
-                                                                                  _vm._v(
-                                                                                    _vm._s(
-                                                                                      parseInt(
-                                                                                        room_service.price
-                                                                                      ) *
-                                                                                        (1 -
-                                                                                          parseInt(
-                                                                                            _vm
-                                                                                              .order
-                                                                                              .discount
-                                                                                          ) /
-                                                                                            100)
-                                                                                    ) +
-                                                                                      " Р/м"
-                                                                                  ),
-                                                                                  _c(
-                                                                                    "sup",
-                                                                                    [
-                                                                                      _vm._v(
-                                                                                        "2"
-                                                                                      )
-                                                                                    ]
-                                                                                  )
-                                                                                ]
-                                                                              ),
-                                                                              _vm._v(
-                                                                                " "
-                                                                              ),
-                                                                              _c(
-                                                                                "td",
-                                                                                [
-                                                                                  _vm._v(
-                                                                                    _vm._s(
-                                                                                      _vm.priceCount(
-                                                                                        room_service
-                                                                                          .pivot
-                                                                                          .quantity,
-                                                                                        room_service.price
-                                                                                      ) *
-                                                                                        (1 -
-                                                                                          parseFloat(
-                                                                                            _vm
-                                                                                              .order
-                                                                                              .discount
-                                                                                          ) /
-                                                                                            100)
-                                                                                    ) +
-                                                                                      " Р"
-                                                                                  )
-                                                                                ]
-                                                                              )
-                                                                            ]
-                                                                          : _vm._e(),
-                                                                        _vm._v(
-                                                                          " "
-                                                                        ),
-                                                                        !room_service.can_be_discounted
-                                                                          ? [
-                                                                              _c(
-                                                                                "td",
-                                                                                [
-                                                                                  _vm._v(
-                                                                                    _vm._s(
-                                                                                      parseInt(
-                                                                                        room_service.price
-                                                                                      )
-                                                                                    ) +
-                                                                                      " Р/м"
-                                                                                  ),
-                                                                                  _c(
-                                                                                    "sup",
-                                                                                    [
-                                                                                      _vm._v(
-                                                                                        "2"
-                                                                                      )
-                                                                                    ]
-                                                                                  )
-                                                                                ]
-                                                                              ),
-                                                                              _vm._v(
-                                                                                " "
-                                                                              ),
-                                                                              _c(
-                                                                                "td",
-                                                                                [
-                                                                                  _vm._v(
-                                                                                    _vm._s(
-                                                                                      _vm.priceCount(
-                                                                                        room_service
-                                                                                          .pivot
-                                                                                          .quantity,
-                                                                                        room_service.price
-                                                                                      )
-                                                                                    ) +
-                                                                                      " Р"
-                                                                                  )
-                                                                                ]
-                                                                              )
-                                                                            ]
-                                                                          : _vm._e()
-                                                                      ],
-                                                                      2
-                                                                    )
-                                                                  }
-                                                                )
-                                                              )
-                                                            ]
-                                                          )
-                                                        ]
-                                                      )
-                                                    ]
-                                                  )
-                                                ]
-                                              }
-                                            )
-                                          ]
-                                        : _vm._e(),
-                                      _vm._v(" "),
-                                      room.room_type_id === 3
-                                        ? [
-                                            _vm._l(
-                                              _vm.service_types.slice(4, 5),
-                                              function(service_type) {
-                                                return [
-                                                  _c(
-                                                    "div",
-                                                    {
-                                                      staticClass:
-                                                        "row bg px-15"
-                                                    },
-                                                    [
-                                                      _c(
-                                                        "div",
-                                                        {
-                                                          staticClass:
-                                                            "main-subtitle main-subtitle--fz col-12 pt-4"
-                                                        },
-                                                        [
-                                                          _vm._v(
-                                                            "\n                                                        " +
-                                                              _vm._s(
-                                                                service_type.name
-                                                              ) +
-                                                              "\n                                                    "
-                                                          )
-                                                        ]
-                                                      ),
-                                                      _vm._v(" "),
-                                                      _c(
-                                                        "div",
-                                                        {
-                                                          staticClass:
-                                                            "col-12 px-0"
-                                                        },
-                                                        [
-                                                          _c(
-                                                            "table",
-                                                            {
-                                                              staticClass:
-                                                                "table table-hover"
-                                                            },
-                                                            [
-                                                              _c(
-                                                                "tbody",
-                                                                _vm._l(
-                                                                  room.services,
-                                                                  function(
-                                                                    room_service
-                                                                  ) {
-                                                                    return _c(
-                                                                      "tr",
-                                                                      [
-                                                                        _c(
-                                                                          "th",
-                                                                          {
-                                                                            staticClass:
-                                                                              "w-50",
-                                                                            attrs: {
-                                                                              scope:
-                                                                                "row"
-                                                                            }
-                                                                          },
-                                                                          [
-                                                                            _vm._v(
-                                                                              "\n                                                                        " +
-                                                                                _vm._s(
-                                                                                  room_service.name
-                                                                                ) +
-                                                                                "\n                                                                    "
-                                                                            )
-                                                                          ]
-                                                                        ),
-                                                                        _vm._v(
-                                                                          " "
-                                                                        ),
-                                                                        _c(
-                                                                          "td",
-                                                                          [
-                                                                            _vm._v(
-                                                                              _vm._s(
-                                                                                room_service
-                                                                                  .pivot
-                                                                                  .quantity
-                                                                              ) +
-                                                                                " м"
-                                                                            ),
-                                                                            _c(
-                                                                              "sup",
-                                                                              [
-                                                                                _vm._v(
-                                                                                  "2"
-                                                                                )
-                                                                              ]
-                                                                            )
-                                                                          ]
-                                                                        ),
-                                                                        _vm._v(
-                                                                          " "
-                                                                        ),
-                                                                        room_service.can_be_discounted
-                                                                          ? [
-                                                                              _c(
-                                                                                "td",
-                                                                                [
-                                                                                  _vm._v(
-                                                                                    _vm._s(
-                                                                                      parseInt(
-                                                                                        room_service.price
-                                                                                      ) *
-                                                                                        (1 -
-                                                                                          parseInt(
-                                                                                            _vm
-                                                                                              .order
-                                                                                              .discount
-                                                                                          ) /
-                                                                                            100)
-                                                                                    ) +
-                                                                                      " Р/м"
-                                                                                  ),
-                                                                                  _c(
-                                                                                    "sup",
-                                                                                    [
-                                                                                      _vm._v(
-                                                                                        "2"
-                                                                                      )
-                                                                                    ]
-                                                                                  )
-                                                                                ]
-                                                                              ),
-                                                                              _vm._v(
-                                                                                " "
-                                                                              ),
-                                                                              _c(
-                                                                                "td",
-                                                                                [
-                                                                                  _vm._v(
-                                                                                    _vm._s(
-                                                                                      _vm.priceCount(
-                                                                                        room_service
-                                                                                          .pivot
-                                                                                          .quantity,
-                                                                                        room_service.price
-                                                                                      ) *
-                                                                                        (1 -
-                                                                                          parseFloat(
-                                                                                            _vm
-                                                                                              .order
-                                                                                              .discount
-                                                                                          ) /
-                                                                                            100)
-                                                                                    ) +
-                                                                                      " Р"
-                                                                                  )
-                                                                                ]
-                                                                              )
-                                                                            ]
-                                                                          : _vm._e(),
-                                                                        _vm._v(
-                                                                          " "
-                                                                        ),
-                                                                        !room_service.can_be_discounted
-                                                                          ? [
-                                                                              _c(
-                                                                                "td",
-                                                                                [
-                                                                                  _vm._v(
-                                                                                    _vm._s(
-                                                                                      parseInt(
-                                                                                        room_service.price
-                                                                                      )
-                                                                                    ) +
-                                                                                      " Р/м"
-                                                                                  ),
-                                                                                  _c(
-                                                                                    "sup",
-                                                                                    [
-                                                                                      _vm._v(
-                                                                                        "2"
-                                                                                      )
-                                                                                    ]
-                                                                                  )
-                                                                                ]
-                                                                              ),
-                                                                              _vm._v(
-                                                                                " "
-                                                                              ),
-                                                                              _c(
-                                                                                "td",
-                                                                                [
-                                                                                  _vm._v(
-                                                                                    _vm._s(
-                                                                                      _vm.priceCount(
-                                                                                        room_service
-                                                                                          .pivot
-                                                                                          .quantity,
-                                                                                        room_service.price
-                                                                                      )
-                                                                                    ) +
-                                                                                      " Р"
-                                                                                  )
-                                                                                ]
-                                                                              )
-                                                                            ]
-                                                                          : _vm._e()
-                                                                      ],
-                                                                      2
-                                                                    )
-                                                                  }
-                                                                )
-                                                              )
-                                                            ]
-                                                          )
-                                                        ]
-                                                      )
-                                                    ]
-                                                  )
-                                                ]
-                                              }
-                                            )
-                                          ]
-                                        : _vm._e(),
-                                      _vm._v(" "),
-                                      room.room_type_id === 4
-                                        ? [
-                                            _vm._l(_vm.service_types, function(
-                                              service_type
-                                            ) {
-                                              return [
-                                                _c(
-                                                  "div",
-                                                  {
-                                                    staticClass: "row bg px-15"
-                                                  },
-                                                  [
-                                                    _c(
-                                                      "div",
-                                                      {
-                                                        staticClass:
-                                                          "main-subtitle main-subtitle--fz col-12 pt-4"
-                                                      },
-                                                      [
-                                                        _vm._v(
-                                                          "\n                                                        " +
-                                                            _vm._s(
-                                                              service_type.name
-                                                            ) +
-                                                            "\n                                                    "
-                                                        )
-                                                      ]
-                                                    ),
-                                                    _vm._v(" "),
-                                                    _c(
-                                                      "div",
-                                                      {
-                                                        staticClass:
-                                                          "col-12 px-0"
-                                                      },
-                                                      [
-                                                        _c(
-                                                          "table",
-                                                          {
-                                                            staticClass:
-                                                              "table table-hover"
-                                                          },
-                                                          [
-                                                            _c(
-                                                              "tbody",
-                                                              _vm._l(
-                                                                _vm.getServicesByServiceType(
-                                                                  room.services,
-                                                                  service_type.id
-                                                                ),
-                                                                function(
-                                                                  room_service
-                                                                ) {
-                                                                  return _c(
-                                                                    "tr",
-                                                                    [
-                                                                      _c(
-                                                                        "th",
-                                                                        {
-                                                                          staticClass:
-                                                                            "w-50",
-                                                                          attrs: {
-                                                                            scope:
-                                                                              "row"
-                                                                          }
-                                                                        },
-                                                                        [
-                                                                          _vm._v(
-                                                                            "\n                                                                        " +
-                                                                              _vm._s(
-                                                                                room_service.name
-                                                                              ) +
-                                                                              "\n                                                                    "
-                                                                          )
-                                                                        ]
-                                                                      ),
-                                                                      _vm._v(
-                                                                        " "
-                                                                      ),
-                                                                      _c("td", [
-                                                                        _vm._v(
-                                                                          _vm._s(
-                                                                            room_service
-                                                                              .pivot
-                                                                              .quantity
-                                                                          ) +
-                                                                            " м"
-                                                                        ),
-                                                                        _c(
-                                                                          "sup",
-                                                                          [
-                                                                            _vm._v(
-                                                                              "2"
-                                                                            )
-                                                                          ]
-                                                                        )
-                                                                      ]),
-                                                                      _vm._v(
-                                                                        " "
-                                                                      ),
-                                                                      room_service.can_be_discounted
-                                                                        ? [
-                                                                            _c(
-                                                                              "td",
-                                                                              [
-                                                                                _vm._v(
-                                                                                  _vm._s(
-                                                                                    parseInt(
-                                                                                      room_service.price
-                                                                                    ) *
-                                                                                      (1 -
-                                                                                        parseInt(
-                                                                                          _vm
-                                                                                            .order
-                                                                                            .discount
-                                                                                        ) /
-                                                                                          100)
-                                                                                  ) +
-                                                                                    " Р/м"
-                                                                                ),
-                                                                                _c(
-                                                                                  "sup",
-                                                                                  [
-                                                                                    _vm._v(
-                                                                                      "2"
-                                                                                    )
-                                                                                  ]
-                                                                                )
-                                                                              ]
-                                                                            ),
-                                                                            _vm._v(
-                                                                              " "
-                                                                            ),
-                                                                            _c(
-                                                                              "td",
-                                                                              [
-                                                                                _vm._v(
-                                                                                  _vm._s(
-                                                                                    _vm.priceCount(
-                                                                                      room_service
-                                                                                        .pivot
-                                                                                        .quantity,
-                                                                                      room_service.price
-                                                                                    ) *
-                                                                                      (1 -
-                                                                                        parseFloat(
-                                                                                          _vm
-                                                                                            .order
-                                                                                            .discount
-                                                                                        ) /
-                                                                                          100)
-                                                                                  ) +
-                                                                                    " Р"
-                                                                                )
-                                                                              ]
-                                                                            )
-                                                                          ]
-                                                                        : _vm._e(),
-                                                                      _vm._v(
-                                                                        " "
-                                                                      ),
-                                                                      !room_service.can_be_discounted
-                                                                        ? [
-                                                                            _c(
-                                                                              "td",
-                                                                              [
-                                                                                _vm._v(
-                                                                                  _vm._s(
-                                                                                    parseInt(
-                                                                                      room_service.price
-                                                                                    )
-                                                                                  ) +
-                                                                                    " Р/м"
-                                                                                ),
-                                                                                _c(
-                                                                                  "sup",
-                                                                                  [
-                                                                                    _vm._v(
-                                                                                      "2"
-                                                                                    )
-                                                                                  ]
-                                                                                )
-                                                                              ]
-                                                                            ),
-                                                                            _vm._v(
-                                                                              " "
-                                                                            ),
-                                                                            _c(
-                                                                              "td",
-                                                                              [
-                                                                                _vm._v(
-                                                                                  _vm._s(
-                                                                                    _vm.priceCount(
-                                                                                      room_service
-                                                                                        .pivot
-                                                                                        .quantity,
-                                                                                      room_service.price
-                                                                                    )
-                                                                                  ) +
-                                                                                    " Р"
-                                                                                )
-                                                                              ]
-                                                                            )
-                                                                          ]
-                                                                        : _vm._e()
-                                                                    ],
-                                                                    2
-                                                                  )
-                                                                }
-                                                              )
-                                                            )
-                                                          ]
-                                                        )
-                                                      ]
-                                                    )
-                                                  ]
-                                                )
-                                              ]
-                                            })
-                                          ]
-                                        : _vm._e()
-                                    ],
-                                    2
-                                  )
-                                ]
-                              }),
-                              _vm._v(" "),
-                              _c("div", { staticClass: "row bg py-4" }, [
+                        _vm._l(_vm.room_service_ids, function(
+                          room_service,
+                          index
+                        ) {
+                          return [
+                            _c(
+                              "div",
+                              { staticClass: "projects__information" },
+                              [
                                 _c(
                                   "div",
-                                  {
-                                    staticClass:
-                                      "col-12 d-flex align-items-center justify-content-end"
-                                  },
+                                  { staticClass: "px-15 pb-3" },
                                   [
-                                    _c("div", { staticClass: "col-2" }, [
-                                      _c(
-                                        "select",
-                                        {
-                                          directives: [
+                                    !_vm.show
+                                      ? [
+                                          _c(
+                                            "h2",
                                             {
-                                              name: "model",
-                                              rawName: "v-model",
-                                              value: _vm.selected_id,
-                                              expression: "selected_id"
-                                            }
-                                          ],
-                                          staticClass: "form-control",
-                                          on: {
-                                            change: [
-                                              function($event) {
-                                                var $$selectedVal = Array.prototype.filter
-                                                  .call(
-                                                    $event.target.options,
-                                                    function(o) {
-                                                      return o.selected
-                                                    }
-                                                  )
-                                                  .map(function(o) {
-                                                    var val =
-                                                      "_value" in o
-                                                        ? o._value
-                                                        : o.value
-                                                    return val
-                                                  })
-                                                _vm.selected_id = $event.target
-                                                  .multiple
-                                                  ? $$selectedVal
-                                                  : $$selectedVal[0]
-                                              },
-                                              function($event) {
-                                                _vm.percentage = null
-                                              }
+                                              staticClass:
+                                                "main-subtitle main-subtitle--room",
+                                              on: { click: _vm.changeRoomName }
+                                            },
+                                            [
+                                              _vm._v(
+                                                "\n                                                    " +
+                                                  _vm._s(
+                                                    _vm.getRoomDetails(
+                                                      room_service[0],
+                                                      "description"
+                                                    )
+                                                      ? _vm.getRoomDetails(
+                                                          room_service[0],
+                                                          "description"
+                                                        )
+                                                      : _vm.getRoomDetails(
+                                                          room_service[0],
+                                                          "room_type"
+                                                        )
+                                                  ) +
+                                                  "\n\n                                                "
+                                              )
                                             ]
-                                          }
+                                          )
+                                        ]
+                                      : [
+                                          _c(
+                                            "div",
+                                            {
+                                              staticClass: "row",
+                                              staticStyle: {
+                                                "padding-top": "30px"
+                                              },
+                                              on: {
+                                                mouseleave: function($event) {
+                                                  _vm.show = false
+                                                }
+                                              }
+                                            },
+                                            [
+                                              _c(
+                                                "div",
+                                                { staticClass: "col-md-6" },
+                                                [
+                                                  _c(
+                                                    "div",
+                                                    {
+                                                      staticClass: "form-group"
+                                                    },
+                                                    [
+                                                      _c("input", {
+                                                        directives: [
+                                                          {
+                                                            name: "model",
+                                                            rawName: "v-model",
+                                                            value:
+                                                              _vm.descriptions[
+                                                                room_service[0]
+                                                              ],
+                                                            expression:
+                                                              "descriptions[room_service[0]]"
+                                                          }
+                                                        ],
+                                                        staticClass:
+                                                          "form-control",
+                                                        attrs: {
+                                                          type: "text",
+                                                          placeholder: _vm.getRoomDetails(
+                                                            room_service[0],
+                                                            "room_type"
+                                                          )
+                                                        },
+                                                        domProps: {
+                                                          value:
+                                                            _vm.descriptions[
+                                                              room_service[0]
+                                                            ]
+                                                        },
+                                                        on: {
+                                                          change: function(
+                                                            $event
+                                                          ) {
+                                                            _vm.updateDescription(
+                                                              room_service[0]
+                                                            )
+                                                          },
+                                                          input: function(
+                                                            $event
+                                                          ) {
+                                                            if (
+                                                              $event.target
+                                                                .composing
+                                                            ) {
+                                                              return
+                                                            }
+                                                            _vm.$set(
+                                                              _vm.descriptions,
+                                                              room_service[0],
+                                                              $event.target
+                                                                .value
+                                                            )
+                                                          }
+                                                        }
+                                                      })
+                                                    ]
+                                                  )
+                                                ]
+                                              )
+                                            ]
+                                          )
+                                        ]
+                                  ],
+                                  2
+                                ),
+                                _vm._v(" "),
+                                _vm.getRoomDetails(
+                                  room_service[0],
+                                  "room_type_id"
+                                ) === 1
+                                  ? [
+                                      _c(
+                                        "div",
+                                        {
+                                          staticClass:
+                                            "projects__desc col-8 d-flex justify-content-between align-items-center pt-3"
                                         },
                                         [
                                           _c(
-                                            "option",
-                                            { attrs: { value: "null" } },
-                                            [_vm._v("Выберите")]
+                                            "div",
+                                            {
+                                              staticClass: "projects__desc-item"
+                                            },
+                                            [
+                                              _vm._v(
+                                                "Общая площадь: " +
+                                                  _vm._s(
+                                                    _vm.getRoomDetails(
+                                                      room_service[0],
+                                                      "area"
+                                                    )
+                                                  ) +
+                                                  " м"
+                                              ),
+                                              _c("sup", [_vm._v("2")])
+                                            ]
                                           ),
                                           _vm._v(" "),
                                           _c(
-                                            "option",
-                                            { attrs: { value: "1" } },
-                                            [_vm._v("Скидка")]
+                                            "div",
+                                            {
+                                              staticClass: "projects__desc-item"
+                                            },
+                                            [
+                                              _vm._v(
+                                                "Высота потолка: " +
+                                                  _vm._s(
+                                                    _vm.getRoomDetails(
+                                                      room_service[0],
+                                                      "height"
+                                                    )
+                                                  ) +
+                                                  " м"
+                                              )
+                                            ]
                                           ),
                                           _vm._v(" "),
                                           _c(
-                                            "option",
-                                            { attrs: { value: "2" } },
-                                            [_vm._v("Наценка")]
+                                            "div",
+                                            {
+                                              staticClass: "projects__desc-item"
+                                            },
+                                            [
+                                              _vm._v(
+                                                "Площадь стен: " +
+                                                  _vm._s(
+                                                    _vm.getRoomDetails(
+                                                      room_service[0],
+                                                      "wall_area"
+                                                    )
+                                                  ) +
+                                                  " м"
+                                              ),
+                                              _c("sup", [_vm._v("2")])
+                                            ]
+                                          ),
+                                          _vm._v(" "),
+                                          _c(
+                                            "div",
+                                            {
+                                              staticClass: "projects__desc-item"
+                                            },
+                                            [
+                                              _vm._v(
+                                                "Периметр: " +
+                                                  _vm._s(
+                                                    _vm.getRoomDetails(
+                                                      room_service[0],
+                                                      "perimeter"
+                                                    )
+                                                  )
+                                              )
+                                            ]
                                           )
                                         ]
                                       )
-                                    ]),
-                                    _vm._v(" "),
-                                    _c("div", { staticClass: "col-1" }, [
-                                      _c("input", {
-                                        directives: [
-                                          {
-                                            name: "model",
-                                            rawName: "v-model",
-                                            value: _vm.percentage,
-                                            expression: "percentage"
-                                          }
-                                        ],
-                                        staticClass: "form-control",
-                                        attrs: {
-                                          type: "number",
-                                          placeholder: "%",
-                                          min: "0"
-                                        },
-                                        domProps: { value: _vm.percentage },
-                                        on: {
-                                          change: function($event) {
-                                            _vm.updateOrderDiscountOrMarkup()
-                                          },
-                                          input: function($event) {
-                                            if ($event.target.composing) {
-                                              return
-                                            }
-                                            _vm.percentage = $event.target.value
-                                          }
-                                        }
-                                      })
-                                    ]),
-                                    _vm._v(" "),
-                                    _c(
-                                      "h2",
-                                      { staticClass: "main-subtitle px-15" },
-                                      [
-                                        _vm._v(
-                                          "\n                                            Итого: " +
-                                            _vm._s(_vm.order.price) +
-                                            " Р\n                                        "
-                                        )
-                                      ]
-                                    )
-                                  ]
-                                )
-                              ]),
-                              _vm._v(" "),
-                              _c("div", { staticClass: "row ml-3 my-4" }, [
-                                _c("textarea", {
-                                  directives: [
-                                    {
-                                      name: "model",
-                                      rawName: "v-model",
-                                      value: _vm.description,
-                                      expression: "description"
-                                    }
-                                  ],
-                                  staticClass: "col-6",
-                                  attrs: {
-                                    placeholder: "Добавить комментарий к смете"
-                                  },
-                                  domProps: { value: _vm.description },
-                                  on: {
-                                    change: function($event) {
-                                      _vm.orderUpdate()
-                                    },
-                                    input: function($event) {
-                                      if ($event.target.composing) {
-                                        return
-                                      }
-                                      _vm.description = $event.target.value
-                                    }
-                                  }
-                                })
-                              ])
-                            ]
-                          : _vm._e()
-                      ]
-                    : _vm._e(),
-                  _vm._v(" "),
-                  _vm.order.markup
-                    ? [
-                        _vm.order.rooms
-                          ? [
-                              _vm._l(_vm.order.rooms, function(room, index) {
-                                return [
-                                  _c(
-                                    "div",
-                                    { staticClass: "projects__information" },
-                                    [
+                                    ]
+                                  : _vm._e(),
+                                _vm._v(" "),
+                                _vm._l(
+                                  _vm.groupByServiceType(room_service[1]),
+                                  function(services, service_type_id) {
+                                    return [
                                       _c(
                                         "div",
-                                        { staticClass: "px-15 pb-3" },
+                                        { staticClass: "row bg px-15" },
                                         [
-                                          room.description
-                                            ? [
-                                                !_vm.show
-                                                  ? [
-                                                      _c(
-                                                        "h2",
-                                                        {
-                                                          staticClass:
-                                                            "main-subtitle main-subtitle--room",
-                                                          on: {
-                                                            click: function(
-                                                              $event
-                                                            ) {
-                                                              _vm.changeRoomName()
-                                                            }
-                                                          }
-                                                        },
-                                                        [
-                                                          _vm._v(
-                                                            "\n                                                        " +
-                                                              _vm._s(
-                                                                room.description
-                                                              ) +
-                                                              "\n                                                    "
-                                                          )
-                                                        ]
-                                                      )
-                                                    ]
-                                                  : [
-                                                      _c(
-                                                        "div",
-                                                        {
-                                                          staticClass: "row",
-                                                          staticStyle: {
-                                                            "padding-top":
-                                                              "30px"
-                                                          }
-                                                        },
-                                                        [
-                                                          _c(
-                                                            "div",
-                                                            {
-                                                              staticClass:
-                                                                "col-md-6"
-                                                            },
-                                                            [
-                                                              _c(
-                                                                "div",
-                                                                {
-                                                                  staticClass:
-                                                                    "form-group"
-                                                                },
-                                                                [
-                                                                  _c("input", {
-                                                                    directives: [
-                                                                      {
-                                                                        name:
-                                                                          "model",
-                                                                        rawName:
-                                                                          "v-model",
-                                                                        value:
-                                                                          _vm
-                                                                            .descriptions[
-                                                                            room
-                                                                              .id
-                                                                          ],
-                                                                        expression:
-                                                                          "descriptions[room.id]"
-                                                                      }
-                                                                    ],
-                                                                    staticClass:
-                                                                      "form-control",
-                                                                    attrs: {
-                                                                      type:
-                                                                        "text",
-                                                                      placeholder:
-                                                                        room.description
-                                                                    },
-                                                                    domProps: {
-                                                                      value:
-                                                                        _vm
-                                                                          .descriptions[
-                                                                          room
-                                                                            .id
-                                                                        ]
-                                                                    },
-                                                                    on: {
-                                                                      change: function(
-                                                                        $event
-                                                                      ) {
-                                                                        _vm.updateDescription(
-                                                                          room.id
-                                                                        )
-                                                                      },
-                                                                      input: function(
-                                                                        $event
-                                                                      ) {
-                                                                        if (
-                                                                          $event
-                                                                            .target
-                                                                            .composing
-                                                                        ) {
-                                                                          return
-                                                                        }
-                                                                        _vm.$set(
-                                                                          _vm.descriptions,
-                                                                          room.id,
-                                                                          $event
-                                                                            .target
-                                                                            .value
-                                                                        )
-                                                                      }
-                                                                    }
-                                                                  })
-                                                                ]
-                                                              )
-                                                            ]
-                                                          )
-                                                        ]
-                                                      )
-                                                    ]
-                                              ]
-                                            : [
-                                                !_vm.show
-                                                  ? [
-                                                      _c(
-                                                        "h2",
-                                                        {
-                                                          staticClass:
-                                                            "main-subtitle main-subtitle--room",
-                                                          on: {
-                                                            click: function(
-                                                              $event
-                                                            ) {
-                                                              _vm.changeRoomName()
-                                                            }
-                                                          }
-                                                        },
-                                                        [
-                                                          _vm._v(
-                                                            "\n                                                        " +
-                                                              _vm._s(
-                                                                room.room_type
-                                                                  .type
-                                                              ) +
-                                                              "\n                                                    "
-                                                          )
-                                                        ]
-                                                      )
-                                                    ]
-                                                  : [
-                                                      _c(
-                                                        "div",
-                                                        {
-                                                          staticClass: "row",
-                                                          staticStyle: {
-                                                            "padding-top":
-                                                              "30px"
-                                                          }
-                                                        },
-                                                        [
-                                                          _c(
-                                                            "div",
-                                                            {
-                                                              staticClass:
-                                                                "col-md-6"
-                                                            },
-                                                            [
-                                                              _c(
-                                                                "div",
-                                                                {
-                                                                  staticClass:
-                                                                    "form-group"
-                                                                },
-                                                                [
-                                                                  _c("input", {
-                                                                    directives: [
-                                                                      {
-                                                                        name:
-                                                                          "model",
-                                                                        rawName:
-                                                                          "v-model",
-                                                                        value:
-                                                                          _vm
-                                                                            .descriptions[
-                                                                            room
-                                                                              .id
-                                                                          ],
-                                                                        expression:
-                                                                          "descriptions[room.id]"
-                                                                      }
-                                                                    ],
-                                                                    staticClass:
-                                                                      "form-control",
-                                                                    attrs: {
-                                                                      type:
-                                                                        "text",
-                                                                      placeholder:
-                                                                        room
-                                                                          .room_type
-                                                                          .type
-                                                                    },
-                                                                    domProps: {
-                                                                      value:
-                                                                        _vm
-                                                                          .descriptions[
-                                                                          room
-                                                                            .id
-                                                                        ]
-                                                                    },
-                                                                    on: {
-                                                                      change: function(
-                                                                        $event
-                                                                      ) {
-                                                                        _vm.updateDescription(
-                                                                          room.id
-                                                                        )
-                                                                      },
-                                                                      input: function(
-                                                                        $event
-                                                                      ) {
-                                                                        if (
-                                                                          $event
-                                                                            .target
-                                                                            .composing
-                                                                        ) {
-                                                                          return
-                                                                        }
-                                                                        _vm.$set(
-                                                                          _vm.descriptions,
-                                                                          room.id,
-                                                                          $event
-                                                                            .target
-                                                                            .value
-                                                                        )
-                                                                      }
-                                                                    }
-                                                                  })
-                                                                ]
-                                                              )
-                                                            ]
-                                                          )
-                                                        ]
-                                                      )
-                                                    ]
-                                              ]
-                                        ],
-                                        2
-                                      ),
-                                      _vm._v(" "),
-                                      room.room_type_id === 1
-                                        ? [
-                                            _c(
-                                              "div",
-                                              {
-                                                staticClass:
-                                                  "projects__desc col-8 d-flex justify-content-between px-0 align-items-center pt-3"
-                                              },
-                                              [
-                                                _c(
-                                                  "div",
-                                                  {
-                                                    staticClass:
-                                                      "projects__desc-item"
-                                                  },
-                                                  [
-                                                    _vm._v(
-                                                      "Общая площадь: " +
-                                                        _vm._s(room.area) +
-                                                        " м"
-                                                    ),
-                                                    _c("sup", [_vm._v("2")])
-                                                  ]
-                                                ),
-                                                _vm._v(" "),
-                                                _c(
-                                                  "div",
-                                                  {
-                                                    staticClass:
-                                                      "projects__desc-item"
-                                                  },
-                                                  [
-                                                    _vm._v(
-                                                      "Высота потолка: " +
-                                                        _vm._s(room.height) +
-                                                        " м"
+                                          _c(
+                                            "div",
+                                            {
+                                              staticClass:
+                                                "main-subtitle main-subtitle--fz col-12 pt-4"
+                                            },
+                                            [
+                                              _vm._v(
+                                                "\n                                                        " +
+                                                  _vm._s(
+                                                    _vm.getServiceTypeName(
+                                                      service_type_id
                                                     )
-                                                  ]
-                                                ),
-                                                _vm._v(" "),
-                                                _c(
-                                                  "div",
-                                                  {
-                                                    staticClass:
-                                                      "projects__desc-item"
-                                                  },
-                                                  [
-                                                    _vm._v(
-                                                      "Площадь стен: " +
-                                                        _vm._s(room.wall_area) +
-                                                        " м"
-                                                    ),
-                                                    _c("sup", [_vm._v("2")])
-                                                  ]
-                                                ),
-                                                _vm._v(" "),
-                                                _c(
-                                                  "div",
-                                                  {
-                                                    staticClass:
-                                                      "projects__desc-item"
-                                                  },
-                                                  [
-                                                    _vm._v(
-                                                      "Периметр: " +
-                                                        _vm._s(room.perimeter)
-                                                    )
-                                                  ]
-                                                )
-                                              ]
-                                            ),
-                                            _vm._v(" "),
-                                            _vm._l(
-                                              _vm.service_types.slice(0, 3),
-                                              function(service_type) {
-                                                return [
+                                                  ) +
+                                                  "\n                                                    "
+                                              )
+                                            ]
+                                          ),
+                                          _vm._v(" "),
+                                          _c(
+                                            "div",
+                                            { staticClass: "col-12 px-0" },
+                                            [
+                                              _c(
+                                                "table",
+                                                {
+                                                  staticClass:
+                                                    "table table-hover"
+                                                },
+                                                [
                                                   _c(
-                                                    "div",
-                                                    {
-                                                      staticClass:
-                                                        "row bg px-15"
-                                                    },
-                                                    [
-                                                      _c(
-                                                        "div",
-                                                        {
-                                                          staticClass:
-                                                            "main-subtitle main-subtitle--fz col-12 pt-4"
-                                                        },
-                                                        [
-                                                          _vm._v(
-                                                            "\n                                                        " +
-                                                              _vm._s(
-                                                                service_type.name
-                                                              ) +
-                                                              "\n                                                    "
-                                                          )
-                                                        ]
+                                                    "tbody",
+                                                    _vm._l(
+                                                      _vm.sortServicesByCreatedAt(
+                                                        services
                                                       ),
-                                                      _vm._v(" "),
-                                                      _c(
-                                                        "div",
-                                                        {
-                                                          staticClass:
-                                                            "col-12 px-0"
-                                                        },
-                                                        [
-                                                          _c(
-                                                            "table",
-                                                            {
-                                                              staticClass:
-                                                                "table table-hover"
-                                                            },
-                                                            [
-                                                              _c(
-                                                                "tbody",
-                                                                _vm._l(
-                                                                  room.room_services,
-                                                                  function(
-                                                                    room_service
-                                                                  ) {
-                                                                    return _c(
-                                                                      "tr",
-                                                                      [
-                                                                        _c(
-                                                                          "th",
-                                                                          {
-                                                                            staticClass:
-                                                                              "w-50",
-                                                                            attrs: {
-                                                                              scope:
-                                                                                "row"
-                                                                            }
-                                                                          },
-                                                                          [
-                                                                            _vm._v(
-                                                                              "\n                                                                        " +
-                                                                                _vm._s(
-                                                                                  room_service.name
-                                                                                ) +
-                                                                                "\n                                                                    "
-                                                                            )
-                                                                          ]
-                                                                        ),
-                                                                        _vm._v(
-                                                                          " "
-                                                                        ),
+                                                      function(room_service) {
+                                                        return _c(
+                                                          "tr",
+                                                          [
+                                                            _c(
+                                                              "th",
+                                                              {
+                                                                staticClass:
+                                                                  "w-50",
+                                                                attrs: {
+                                                                  scope: "row"
+                                                                }
+                                                              },
+                                                              [
+                                                                _vm._v(
+                                                                  "\n                                                                        " +
+                                                                    _vm._s(
+                                                                      _vm.getServiceDetails(
+                                                                        room_service.service_id,
+                                                                        "name"
+                                                                      )
+                                                                    ) +
+                                                                    "\n                                                                    "
+                                                                )
+                                                              ]
+                                                            ),
+                                                            _vm._v(" "),
+                                                            _c("td", [
+                                                              _vm._v(
+                                                                _vm._s(
+                                                                  room_service.quantity
+                                                                ) + " м"
+                                                              ),
+                                                              _c("sup", [
+                                                                _vm._v("2")
+                                                              ])
+                                                            ]),
+                                                            _vm._v(" "),
+                                                            _vm.order.discount
+                                                              ? [
+                                                                  _vm.getServiceDetails(
+                                                                    room_service.service_id,
+                                                                    "can_be_discounted"
+                                                                  )
+                                                                    ? [
                                                                         _c(
                                                                           "td",
                                                                           [
                                                                             _vm._v(
                                                                               _vm._s(
-                                                                                room_service
-                                                                                  .pivot
-                                                                                  .quantity
-                                                                              ) +
-                                                                                " м"
-                                                                            ),
-                                                                            _c(
-                                                                              "sup",
-                                                                              [
-                                                                                _vm._v(
-                                                                                  "2"
-                                                                                )
-                                                                              ]
-                                                                            )
-                                                                          ]
-                                                                        ),
-                                                                        _vm._v(
-                                                                          " "
-                                                                        ),
-                                                                        _c(
-                                                                          "td",
-                                                                          [
-                                                                            _vm._v(
-                                                                              _vm._s(
-                                                                                parseInt(
-                                                                                  room_service.price
+                                                                                _vm.getServiceDetails(
+                                                                                  room_service.service_id,
+                                                                                  "price"
                                                                                 ) *
-                                                                                  (1 +
+                                                                                  (1 -
                                                                                     parseInt(
                                                                                       _vm
                                                                                         .order
-                                                                                        .markup
+                                                                                        .discount
                                                                                     ) /
                                                                                       100)
                                                                               ) +
@@ -70625,46 +68682,313 @@ var render = function() {
                                                                             _vm._v(
                                                                               _vm._s(
                                                                                 _vm.priceCount(
-                                                                                  room_service
-                                                                                    .pivot
-                                                                                    .quantity,
-                                                                                  room_service.price
-                                                                                ) *
-                                                                                  (1 +
-                                                                                    parseFloat(
-                                                                                      _vm
-                                                                                        .order
-                                                                                        .markup
-                                                                                    ) /
-                                                                                      100)
+                                                                                  room_service.quantity,
+                                                                                  _vm.getServiceDetails(
+                                                                                    room_service.service_id,
+                                                                                    "price"
+                                                                                  ) *
+                                                                                    (1 -
+                                                                                      parseFloat(
+                                                                                        _vm
+                                                                                          .order
+                                                                                          .discount
+                                                                                      ) /
+                                                                                        100)
+                                                                                )
                                                                               ) +
                                                                                 " Р"
                                                                             )
                                                                           ]
                                                                         )
                                                                       ]
+                                                                    : [
+                                                                        _c(
+                                                                          "td",
+                                                                          [
+                                                                            _vm._v(
+                                                                              _vm._s(
+                                                                                _vm.getServiceDetails(
+                                                                                  room_service.service_id,
+                                                                                  "price"
+                                                                                )
+                                                                              ) +
+                                                                                " Р/м"
+                                                                            ),
+                                                                            _c(
+                                                                              "sup",
+                                                                              [
+                                                                                _vm._v(
+                                                                                  "2"
+                                                                                )
+                                                                              ]
+                                                                            )
+                                                                          ]
+                                                                        ),
+                                                                        _vm._v(
+                                                                          " "
+                                                                        ),
+                                                                        _c(
+                                                                          "td",
+                                                                          [
+                                                                            _vm._v(
+                                                                              _vm._s(
+                                                                                _vm.priceCount(
+                                                                                  room_service.quantity,
+                                                                                  _vm.getServiceDetails(
+                                                                                    room_service.service_id,
+                                                                                    "price"
+                                                                                  )
+                                                                                )
+                                                                              ) +
+                                                                                " Р"
+                                                                            )
+                                                                          ]
+                                                                        )
+                                                                      ]
+                                                                ]
+                                                              : _vm._e(),
+                                                            _vm._v(" "),
+                                                            _vm.order.markup
+                                                              ? [
+                                                                  _c("td", [
+                                                                    _vm._v(
+                                                                      _vm._s(
+                                                                        _vm.getServiceDetails(
+                                                                          room_service.service_id,
+                                                                          "price"
+                                                                        ) *
+                                                                          (1 +
+                                                                            parseInt(
+                                                                              _vm
+                                                                                .order
+                                                                                .markup
+                                                                            ) /
+                                                                              100)
+                                                                      ) + " Р/м"
+                                                                    ),
+                                                                    _c("sup", [
+                                                                      _vm._v(
+                                                                        "2"
+                                                                      )
+                                                                    ])
+                                                                  ]),
+                                                                  _vm._v(" "),
+                                                                  _c("td", [
+                                                                    _vm._v(
+                                                                      _vm._s(
+                                                                        _vm.priceCount(
+                                                                          room_service.quantity,
+                                                                          _vm.getServiceDetails(
+                                                                            room_service.service_id,
+                                                                            "price"
+                                                                          ) *
+                                                                            (1 +
+                                                                              parseFloat(
+                                                                                _vm
+                                                                                  .order
+                                                                                  .markup
+                                                                              ) /
+                                                                                100)
+                                                                        )
+                                                                      ) + " Р"
                                                                     )
-                                                                  }
-                                                                )
-                                                              )
-                                                            ]
-                                                          )
-                                                        ]
-                                                      )
-                                                    ]
+                                                                  ])
+                                                                ]
+                                                              : _vm._e(),
+                                                            _vm._v(" "),
+                                                            _vm.order
+                                                              .discount ===
+                                                              null &&
+                                                            _vm.order.markup ===
+                                                              null
+                                                              ? [
+                                                                  _c("td", [
+                                                                    _vm._v(
+                                                                      _vm._s(
+                                                                        _vm.getServiceDetails(
+                                                                          room_service.service_id,
+                                                                          "price"
+                                                                        )
+                                                                      ) + " Р/м"
+                                                                    ),
+                                                                    _c("sup", [
+                                                                      _vm._v(
+                                                                        "2"
+                                                                      )
+                                                                    ])
+                                                                  ]),
+                                                                  _vm._v(" "),
+                                                                  _c("td", [
+                                                                    _vm._v(
+                                                                      _vm._s(
+                                                                        _vm.priceCount(
+                                                                          room_service.quantity,
+                                                                          _vm.getServiceDetails(
+                                                                            room_service.service_id,
+                                                                            "price"
+                                                                          )
+                                                                        )
+                                                                      ) + " Р"
+                                                                    )
+                                                                  ])
+                                                                ]
+                                                              : _vm._e()
+                                                          ],
+                                                          2
+                                                        )
+                                                      }
+                                                    )
                                                   )
                                                 ]
+                                              )
+                                            ]
+                                          )
+                                        ]
+                                      )
+                                    ]
+                                  }
+                                )
+                              ],
+                              2
+                            )
+                          ]
+                        }),
+                        _vm._v(" "),
+                        _c("div", { staticClass: "row bg py-4" }, [
+                          _c(
+                            "div",
+                            {
+                              staticClass:
+                                "col-12 d-flex align-items-center justify-content-end"
+                            },
+                            [
+                              _c("div", { staticClass: "col-2" }, [
+                                _c(
+                                  "select",
+                                  {
+                                    directives: [
+                                      {
+                                        name: "model",
+                                        rawName: "v-model",
+                                        value: _vm.selected_id,
+                                        expression: "selected_id"
+                                      }
+                                    ],
+                                    staticClass: "form-control",
+                                    on: {
+                                      change: [
+                                        function($event) {
+                                          var $$selectedVal = Array.prototype.filter
+                                            .call(
+                                              $event.target.options,
+                                              function(o) {
+                                                return o.selected
                                               }
                                             )
-                                          ]
-                                        : _vm._e()
-                                    ],
-                                    2
-                                  )
-                                ]
-                              })
+                                            .map(function(o) {
+                                              var val =
+                                                "_value" in o
+                                                  ? o._value
+                                                  : o.value
+                                              return val
+                                            })
+                                          _vm.selected_id = $event.target
+                                            .multiple
+                                            ? $$selectedVal
+                                            : $$selectedVal[0]
+                                        },
+                                        function($event) {
+                                          _vm.percentage = null
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  [
+                                    _c("option", { attrs: { value: "null" } }, [
+                                      _vm._v("Выберите")
+                                    ]),
+                                    _vm._v(" "),
+                                    _c("option", { attrs: { value: "1" } }, [
+                                      _vm._v("Скидка")
+                                    ]),
+                                    _vm._v(" "),
+                                    _c("option", { attrs: { value: "2" } }, [
+                                      _vm._v("Наценка")
+                                    ])
+                                  ]
+                                )
+                              ]),
+                              _vm._v(" "),
+                              _c("div", { staticClass: "col-1" }, [
+                                _c("input", {
+                                  directives: [
+                                    {
+                                      name: "model",
+                                      rawName: "v-model",
+                                      value: _vm.percentage,
+                                      expression: "percentage"
+                                    }
+                                  ],
+                                  staticClass: "form-control",
+                                  attrs: {
+                                    type: "number",
+                                    placeholder: "%",
+                                    min: "0"
+                                  },
+                                  domProps: { value: _vm.percentage },
+                                  on: {
+                                    change: function($event) {
+                                      _vm.updateOrderDiscountOrMarkup()
+                                    },
+                                    input: function($event) {
+                                      if ($event.target.composing) {
+                                        return
+                                      }
+                                      _vm.percentage = $event.target.value
+                                    }
+                                  }
+                                })
+                              ]),
+                              _vm._v(" "),
+                              _c("h2", { staticClass: "main-subtitle px-15" }, [
+                                _vm._v(
+                                  "\n                                            Итого: " +
+                                    _vm._s(_vm.order.price) +
+                                    " Р\n                                        "
+                                )
+                              ])
                             ]
-                          : _vm._e()
+                          )
+                        ]),
+                        _vm._v(" "),
+                        _c("div", { staticClass: "row ml-3 my-4" }, [
+                          _c("textarea", {
+                            directives: [
+                              {
+                                name: "model",
+                                rawName: "v-model",
+                                value: _vm.description,
+                                expression: "description"
+                              }
+                            ],
+                            staticClass: "col-6",
+                            attrs: {
+                              placeholder: "Добавить комментарий к смете"
+                            },
+                            domProps: { value: _vm.description },
+                            on: {
+                              change: function($event) {
+                                _vm.orderUpdate()
+                              },
+                              input: function($event) {
+                                if ($event.target.composing) {
+                                  return
+                                }
+                                _vm.description = $event.target.value
+                              }
+                            }
+                          })
+                        ])
                       ]
                     : _vm._e()
                 ],
@@ -72522,9 +70846,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony default export */ __webpack_exports__["default"] = ({
     data: function data() {
         return {
-            flat_types: [],
-            flat_type_id: 1,
-
             units: [],
 
             newServices: [],
@@ -72537,7 +70858,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         };
     },
     mounted: function mounted() {
-        this.getFlatTypes();
         this.getServiceTypes();
         this.getServiceUnits();
         this.getServices();
@@ -72545,55 +70865,43 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 
     methods: {
-        getFlatTypes: function getFlatTypes() {
-            var _this = this;
-
-            if (localStorage.getItem('flat_types')) {
-                this.flat_types = JSON.parse(localStorage.getItem('flat_types'));
-            } else {
-                return axios.get('/api/flat_types').then(function (response) {
-                    _this.flat_types = response.data;
-                    localStorage.setItem('flat_types', JSON.stringify(_this.flat_types));
-                });
-            }
-        },
         getServiceTypes: function getServiceTypes() {
-            var _this2 = this;
+            var _this = this;
 
             if (localStorage.getItem('service_types')) {
                 this.service_types = JSON.parse(localStorage.getItem('service_types'));
             } else {
                 return axios.get('/api/service_types').then(function (response) {
-                    _this2.service_types = response.data;
-                    localStorage.setItem('service_types', JSON.stringify(_this2.service_types));
+                    _this.service_types = response.data;
+                    localStorage.setItem('service_types', JSON.stringify(_this.service_types));
                 });
             }
         },
         getServiceUnits: function getServiceUnits() {
-            var _this3 = this;
+            var _this2 = this;
 
             if (localStorage.getItem('units')) {
                 this.units = JSON.parse(localStorage.getItem('units'));
             } else {
                 return axios.get('/api/units').then(function (response) {
-                    _this3.units = response.data;
-                    localStorage.setItem('units', JSON.stringify(_this3.units));
+                    _this2.units = response.data;
+                    localStorage.setItem('units', JSON.stringify(_this2.units));
                 });
             }
         },
         getServices: function getServices() {
-            var _this4 = this;
+            var _this3 = this;
 
             return axios.get('/api/services').then(function (response) {
-                _this4.services = response.data;
+                _this3.services = response.data;
             });
         },
         saveNewService: function saveNewService() {
-            var _this5 = this;
+            var _this4 = this;
 
             this.newServices.forEach(function (item) {
                 axios.post('/api/services/store', {
-                    'service_type_id': _this5.service_type_id,
+                    'service_type_id': _this4.service_type_id,
                     'name': item.name,
                     'unit_id': item.unit_id,
                     'price': item.price
@@ -72619,17 +70927,17 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
     computed: {
         filteredServices: function filteredServices() {
-            var _this6 = this;
+            var _this5 = this;
 
             var data = this.services;
 
             data = data.filter(function (row) {
-                return row.service_type_id === _this6.service_type_id;
+                return row.service_type_id === _this5.service_type_id;
             });
 
             data = data.filter(function (row) {
                 return Object.keys(row).some(function (key) {
-                    return String(row[key]).toLowerCase().indexOf(_this6.quickSearchQuery.toLowerCase()) > -1;
+                    return String(row[key]).toLowerCase().indexOf(_this5.quickSearchQuery.toLowerCase()) > -1;
                 });
             });
 
@@ -94738,6 +93046,151 @@ $(window).scroll(function () {
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
+
+/***/ }),
+/* 289 */,
+/* 290 */,
+/* 291 */,
+/* 292 */,
+/* 293 */,
+/* 294 */,
+/* 295 */,
+/* 296 */,
+/* 297 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony default export */ __webpack_exports__["a"] = ({
+    data: function data() {
+        return {
+            services: [],
+            service_types: [],
+
+            managers: [],
+            manager_phones: [],
+            manager_id: 1
+        };
+    },
+    mounted: function mounted() {
+        this.getServices();
+        this.getServiceTypes();
+        this.getManagers();
+    },
+
+
+    methods: {
+        getManagers: function getManagers() {
+            var _this = this;
+
+            return axios.get('/api/managers').then(function (response) {
+                _this.managers = response.data;
+                response.data.forEach(function (item) {
+                    _this.manager_phones[item.id] = item.phone;
+                });
+            });
+        },
+        sortServicesByCreatedAt: function sortServicesByCreatedAt(services) {
+            if (services.length) {
+                var data = _.orderBy(services, ['created_at'], ['asc']);
+
+                return data;
+            }
+        },
+        groupByServiceType: function groupByServiceType(services) {
+            if (services.length) {
+                return _.groupBy(services, 'service_type_id');
+            }
+        },
+        priceCount: function priceCount(quantity, price) {
+            return new Intl.NumberFormat('ru-Ru').format(parseInt(quantity) * price);
+        },
+        getServices: function getServices() {
+            var _this2 = this;
+
+            return axios.get('/api/services').then(function (response) {
+                _this2.services = response.data;
+            });
+        },
+        getServiceTypes: function getServiceTypes() {
+            var _this3 = this;
+
+            if (localStorage.getItem('service_types')) {
+                this.service_types = JSON.parse(localStorage.getItem('service_types'));
+            } else {
+                return axios.get('/api/service_types').then(function (response) {
+                    _this3.service_types = response.data;
+                    localStorage.setItem('service_types', JSON.stringify(_this3.service_types));
+                });
+            }
+        },
+        getServiceDetails: function getServiceDetails(service_id, type) {
+            if (this.services.length && service_id != null) {
+                var data = this.services.filter(function (row) {
+                    return row.id === parseInt(service_id);
+                });
+
+                switch (type) {
+                    case 'name':
+                        return data[0].name;
+                        break;
+                    case 'unit':
+                        return data[0].unit.name;
+                    case 'price':
+                        return parseInt(data[0].price);
+                    case 'can_be_discounted':
+                        return data[0].can_be_discounted;
+                    default:
+                        return null;
+                }
+            }
+        },
+        getServiceTypeName: function getServiceTypeName(service_type_id) {
+            if (this.service_types.length) {
+                return this.service_types.filter(function (row) {
+                    return row.id === parseInt(service_type_id);
+                })[0].name;
+            }
+        },
+        getRoomDetails: function getRoomDetails(room_id, type) {
+            var data = this.rooms.filter(function (row) {
+                return row.id === parseInt(room_id);
+            });
+
+            switch (type) {
+                case 'description':
+                    return data[0].description;
+                    break;
+
+                case 'room_type':
+                    return data[0].room_type.type;
+                    break;
+
+                case 'room_type_id':
+                    return data[0].room_type_id;
+                    break;
+
+                case 'area':
+                    return data[0].area;
+                    break;
+
+                case 'height':
+                    return data[0].height;
+                    break;
+
+                case 'wall_area':
+                    return data[0].wall_area;
+                    break;
+
+                case 'perimeter':
+                    return data[0].perimeter;
+                    break;
+
+                default:
+                    return null;
+            }
+        }
+    }
+});
 
 /***/ })
 /******/ ]);

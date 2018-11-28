@@ -18,6 +18,7 @@ class CreateRoomServicesTable extends Migration
             $table->integer('room_id')->unsigned();
             $table->integer('service_id')->unsigned();
             $table->integer('service_type_id')->unsigned()->nullable();
+            $table->integer('service_unit_id')->unsigned()->nullable();
             $table->float('quantity')->nullable();
             $table->float('price')->nullable();
             $table->timestamps();
@@ -25,6 +26,7 @@ class CreateRoomServicesTable extends Migration
             $table->foreign('room_id')->references('id')->on('rooms')->onDelete('cascade');
             $table->foreign('service_id')->references('id')->on('services')->onDelete('cascade');
             $table->foreign('service_type_id')->references('id')->on('service_types')->onDelete('cascade');
+            $table->foreign('service_unit_id')->references('id')->on('units')->onDelete('cascade');
 
         });
     }

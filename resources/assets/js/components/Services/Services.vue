@@ -153,9 +153,6 @@
     export default {
         data () {
             return {
-                flat_types: [],
-                flat_type_id: 1,
-
                 units: [],
 
                 newServices: [],
@@ -169,24 +166,12 @@
         },
 
         mounted () {
-            this.getFlatTypes()
             this.getServiceTypes()
             this.getServiceUnits()
             this.getServices()
         },
 
         methods: {
-            getFlatTypes () {
-                if (localStorage.getItem('flat_types')) {
-                    this.flat_types = JSON.parse(localStorage.getItem('flat_types'))
-                } else {
-                    return axios.get(`/api/flat_types`).then(response => {
-                        this.flat_types = response.data
-                        localStorage.setItem('flat_types', JSON.stringify(this.flat_types))
-                    })
-                }
-            },
-
             getServiceTypes () {
                 if (localStorage.getItem('service_types')) {
                     this.service_types = JSON.parse(localStorage.getItem('service_types'))

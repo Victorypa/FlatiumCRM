@@ -48,12 +48,14 @@ class RoomServiceController extends Controller
                     if ($currentService->can_be_discounted) {
                         $room->room_services()->where('service_id', $service_id)->update([
                             'service_type_id' => $currentService->service_type_id,
+                            'service_unit_id' => $currentService->unit_id,
                             'quantity' => $quantity,
                             'price' => $quantity * $currentService->price * (1 - (float)$order->discount/100)
                         ]);
                     } else {
                         $room->room_services()->where('service_id', $service_id)->update([
                             'service_type_id' => $currentService->service_type_id,
+                            'service_unit_id' => $currentService->unit_id,
                             'quantity' => $quantity,
                             'price' => $quantity * $currentService->price
                         ]);
@@ -63,6 +65,7 @@ class RoomServiceController extends Controller
                 if ($order->markup) {
                     $room->room_services()->where('service_id', $service_id)->update([
                         'service_type_id' => $currentService->service_type_id,
+                        'service_unit_id' => $currentService->unit_id,
                         'quantity' => $quantity,
                         'price' => $quantity * $currentService->price * (1 + (float)$order->markup/100)
                     ]);
@@ -71,6 +74,7 @@ class RoomServiceController extends Controller
                 if ($order->discount === null && $order->markup === null) {
                     $room->room_services()->where('service_id', $service_id)->update([
                         'service_type_id' => $currentService->service_type_id,
+                        'service_unit_id' => $currentService->unit_id,
                         'quantity' => $quantity,
                         'price' => $quantity * $currentService->price
                     ]);
@@ -93,12 +97,14 @@ class RoomServiceController extends Controller
                     if ($currentService->can_be_discounted) {
                         $room->room_services()->where('service_id', $service_id)->update([
                             'service_type_id' => $currentService->service_type_id,
+                            'service_unit_id' => $currentService->unit_id,
                             'quantity' => $quantity,
                             'price' => $quantity * $currentService->price * (1 - (float)$order->discount/100)
                         ]);
                     } else {
                         $room->room_services()->where('service_id', $service_id)->update([
                             'service_type_id' => $currentService->service_type_id,
+                            'service_unit_id' => $currentService->unit_id,
                             'quantity' => $quantity,
                             'price' => $quantity * $currentService->price
                         ]);
@@ -108,6 +114,7 @@ class RoomServiceController extends Controller
                 if ($order->markup) {
                     $room->room_services()->where('service_id', $service_id)->update([
                         'service_type_id' => $currentService->service_type_id,
+                        'service_unit_id' => $currentService->unit_id,
                         'quantity' => $quantity,
                         'price' => $quantity * $currentService->price * (1 + (float)$order->markup/100)
                     ]);
@@ -116,6 +123,7 @@ class RoomServiceController extends Controller
                 if ($order->discount === null && $order->markup === null) {
                     $room->room_services()->where('service_id', $service_id)->update([
                         'service_type_id' => $currentService->service_type_id,
+                        'service_unit_id' => $currentService->unit_id,
                         'quantity' => $quantity,
                         'price' => $quantity * $currentService->price
                     ]);

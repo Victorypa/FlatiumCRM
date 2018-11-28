@@ -10,7 +10,7 @@ class ServiceController extends Controller
 {
     public function index()
     {
-        $services = Service::orderBy('name', 'asc')->with(['unit', 'materials', 'actual_materials', 'service_type'])->get();
+        $services = Service::orderBy('name', 'asc')->with(['unit', 'materials', 'service_type'])->get();
 
         return response()->json($services);
     }
