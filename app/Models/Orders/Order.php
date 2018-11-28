@@ -11,10 +11,12 @@ use App\Models\Orders\Financial\Finance;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use App\Models\Orders\Acts\ExtraOrderAct;
 use App\Models\Orders\Acts\FinishedOrderAct;
+use App\Models\Traits\Orders\OrderCalculationTrait;
 
 class Order extends Model
 {
     use SoftDeletes;
+    use OrderCalculationTrait;
 
     protected $guarded = [];
 

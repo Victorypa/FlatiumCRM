@@ -63,8 +63,7 @@ class OrderController extends Controller
     {
         $filteredOrder = Order::where('id', $order->id)
                          ->with([
-                             'rooms', 'rooms.roomType',
-
+                             'rooms', 'rooms.roomType', 'rooms.room_services',
                              'manager'
                          ])->first();
 
