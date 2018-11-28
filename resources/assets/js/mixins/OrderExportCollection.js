@@ -1,9 +1,6 @@
 export default {
     data () {
         return {
-            services: [],
-            service_types: [],
-
             managers: [],
             manager_phones: [],
             manager_id: 1,
@@ -11,8 +8,6 @@ export default {
     },
 
     mounted () {
-        this.getServices()
-        this.getServiceTypes()
         this.getManagers()
     },
 
@@ -44,23 +39,6 @@ export default {
 
         priceCount (quantity, price) {
             return new Intl.NumberFormat('ru-Ru').format(parseInt(quantity) * price)
-        },
-
-        getServices () {
-            return axios.get('/api/services').then(response => {
-                this.services = response.data
-            })
-        },
-
-        getServiceTypes () {
-            if (localStorage.getItem('service_types')) {
-                this.service_types = JSON.parse(localStorage.getItem('service_types'))
-            } else {
-                return axios.get(`/api/service_types`).then(response => {
-                    this.service_types = response.data
-                    localStorage.setItem('service_types', JSON.stringify(this.service_types))
-                })
-            }
         },
 
         getServiceDetails (service_id, type) {

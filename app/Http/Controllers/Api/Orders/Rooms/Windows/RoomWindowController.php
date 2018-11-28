@@ -42,8 +42,6 @@ class RoomWindowController extends Controller
             ]);
         }
 
-        $this->RoomServicesPricesCalculation($room);
-
     }
 
     public function update(Order $order, Room $room, Window $window, Request $request)
@@ -56,10 +54,22 @@ class RoomWindowController extends Controller
                 'quantity' => $request->quantity
             ]);
 
+            if ($this->windowArea($room) != 0) {
+                $room->update([
+                    'area' => $room->width * $room->length,
+                    'perimeter' => $perimeter = 2 * ($room->length + $room->width),
+                    'wall_area' => $perimeter * $room->height - $this->windowArea($room)
+                ]);
+            } else {
+                $room->update([
+                    'area' => $room->width * $room->length,
+                    'perimeter' => $perimeter = 2 * ($room->length + $room->width),
+                    'wall_area' => $perimeter * $room->height
+                ]);
+            }
+
             return response()->json(['successfully updated']);
         }
-
-        $this->RoomServicesPricesCalculation($room);
     }
 
     public function destroy(Order $order, Room $room, Window $window)
@@ -79,56 +89,8 @@ class RoomWindowController extends Controller
                 'wall_area' => $perimeter * $room->height
             ]);
         }
-
-        $this->RoomServicesPricesCalculation($room);
     }
 
-    protected function RoomServicesPricesCalculation(Room $room)
-    {
-        $total_room_price = 0;
-        $total_price = 0;
-
-        foreach ($room->services()->get() as $service) {
-            if ($service->unit_id === 1) {
-                if ($service->service_type_id === 1) {
-                    $room->services()->updateExistingPivot($service->id, [
-                        'quantity' => $quantity = $room->area,
-                        'price' => $quantity * Service::where('id', $service->pivot->service_id)->first()->price
-                    ]);
-                }
-
-
-                if ($service->service_type_id === 2) {
-                    $room->services()->updateExistingPivot($service->id, [
-                        'quantity' => $quantity = $room->wall_area,
-                        'price' => $quantity * Service::where('id', $service->pivot->service_id)->first()->price
-                    ]);
-                }
-            }
-            if ($service->unit_id === 2) {
-                $room->services()->updateExistingPivot($service->id, [
-                    'quantity' => $quantity = $room->perimeter,
-                    'price' => $quantity * Service::where('id', $service->pivot->service_id)->first()->price
-                ]);
-            }
-        }
-
-        foreach ($room->services()->get() as $service) {
-            $total_room_price += $service->pivot->price;
-        }
-
-        $room->update([
-            'price' => $total_room_price
-        ]);
-
-        foreach ($room->order->rooms->where('room_type_id', '!=', 4) as $new_room) {
-            $total_price += (int) $new_room->price;
-        }
-
-        $room->order->update([
-            'price' => $total_price
-        ]);
-    }
 
     protected function windowArea(Room $room)
     {

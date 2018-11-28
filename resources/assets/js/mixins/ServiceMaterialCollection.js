@@ -4,7 +4,10 @@ export default {
 
         }
     },
+    mounted () {
 
+    },
+    
     methods: {
 
     }

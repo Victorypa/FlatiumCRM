@@ -275,9 +275,10 @@
 <script>
     import Service from './Partials/Service'
     import OrderExportCollection from '../../../mixins/OrderExportCollection'
+    import ServiceCollection from '../../../mixins/ServiceCollection'
 
     export default {
-        mixins: [OrderExportCollection],
+        mixins: [OrderExportCollection, ServiceCollection],
 
         data () {
             return {
@@ -288,9 +289,7 @@
                 description: '',
                 percentage: null,
 
-
                 withMaterials: false,
-                service_types: [],
 
                 show: false,
                 descriptions: [],
