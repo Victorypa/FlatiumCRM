@@ -19,454 +19,102 @@
         </div>
       </div>
 
-      <template v-if="room.services.length">
-          <div class="projects__information ">
 
-              <template v-if="room.room_type_id === 1">
-                  <div class="row bg px-3">
-                    <div class="main-subtitle main-subtitle--fz col-12 pt-4">
-                      Пол
-                    </div>
+      <template v-for="(room_services, service_type_id) in room_service_ids">
+            <div class="projects__information ">
+              <div class="row bg px-3">
+                <div class="main-subtitle main-subtitle--fz col-12 pt-4">
+                  {{ getServiceTypeName(service_type_id) }}
+                </div>
 
-                    <div class="col-12 px-0">
-                        <table class="table table-hover">
-                          <tbody>
-                            <tr v-for="service in getServices(1)">
-                              <th scope="row" class="w-50 pl-1">
-                                <div class="form-check custom-control checkbox">
-                                  <input class="form-check-input check"
-                                         :id="'room-' + room.id + 'service-' + service.id"
-                                         type="checkbox"
-                                         :checked="finished_room_service_ids.includes(service.id)"
-                                         @click="addToSelectedServiceId(service.id)"
+                <div class="col-12 px-0">
+                    <table class="table table-hover">
+                      <tbody>
+                        <tr v-for="room_service in room_services">
+                          <th scope="row" class="w-50 pl-1">
+                            <div class="form-check custom-control checkbox">
+                              <input class="form-check-input check"
+                                     :id="'service-' + room_service.service_id"
+                                     type="checkbox"
+                                     :checked="finished_room_service_ids.includes(room_service.service_id)"
+                                     @click="addToSelectedServiceId(room_service.service_id)"
+                                     >
+                              <label class="form-check-label d-block" :for="'service-' + room_service.service_id">
+                                  {{ getServiceDetails(room_service.service_id, 'name') }}
+                              </label>
+                            </div>
+                          </th>
+                          <td class="py-1 pl-1">
+                              <div class="d-flex align-items-center">
+                                  <input type="number"
+                                         class="form-control w-85"
+                                         :id="'service-' + room_service.service_id"
+                                         min="0"
+                                         v-model="selected_service_quantities[room_service.service_id]"
+                                         @change="linkSelectedServicesToFinishedRoom()"
                                          >
-                                  <label class="form-check-label d-block" :for="'room-' + room.id + 'service-' + service.id">
-                                      {{ service.name }}
-                                  </label>
-                                </div>
-                              </th>
-                              <td class="py-1 pl-1">
-                                  <div class="d-flex align-items-center">
-                                      <input type="number"
-                                             class="form-control w-85"
-                                             :id="'room-' + room.id + 'service-' + service.id"
-                                             min="0"
-                                             v-model="selected_service_quantities[service.id]"
-                                             @change="linkSelectedServicesToFinishedRoom()"
-                                             >
-                                      <div class="col-auto pl-2">
-                                          {{ service.unit.name }}
-                                      </div>
+                                  <div class="col-auto pl-2">
+                                      {{ getServiceDetails(room_service.service_id, 'unit') }}
                                   </div>
-                              </td>
+                              </div>
+                          </td>
 
-                              <template v-if="order.discount">
-                                  <template v-if="service.can_be_discounted">
-                                      <td>
-                                          {{ service.price * (1 - parseInt(order.discount)/100) }} Р/{{ service.unit.name }}
-                                      </td>
-                                      <td>
-                                          {{ calculateServiceAmount(service.price, service.pivot.quantity) * (1 - parseInt(order.discount)/100) }} Р
-                                      </td>
-                                  </template>
-                                  <template v-if="!service.can_be_discounted">
-                                      <td>
-                                          {{ service.price }} Р/{{ service.unit.name }}
-                                      </td>
+                          <td>
+                              {{ getServiceDetails(room_service.service_id, 'price') }} Р/{{ getServiceDetails(room_service.service_id, 'unit') }}
+                          </td>
 
-                                      <td>
-                                          {{ calculateServiceAmount(service.price, service.pivot.quantity) }} Р
-                                      </td>
-                                  </template>
-                              </template>
+                          <td>
+                              {{ calculateServiceAmount(getServiceDetails(room_service.service_id, 'price'), selected_service_quantities[room_service.service_id]) }} Р
+                          </td>
 
-                              <template v-if="order.markup">
-                                  <td>
-                                      {{ service.price * (1 + parseInt(order.markup)/100) }} Р/{{ service.unit.name }}
-                                  </td>
+                        </tr>
+                      </tbody>
+                    </table>
+                </div>
+              </div>
 
-                                  <td>
-                                      {{ calculateServiceAmount(service.price, service.pivot.quantity) * (1 + parseInt(order.markup)/100) }} Р
-                                  </td>
-                              </template>
 
-                              <template v-if="order.markup === null && order.discount === null">
-                                  <td>
-                                      {{ service.price }} Р/{{ service.unit.name }}
-                                  </td>
-
-                                  <td>
-                                      {{ calculateServiceAmount(service.price, service.pivot.quantity) }} Р
-                                  </td>
-                              </template>
-
-                            </tr>
-                          </tbody>
-                        </table>
-                    </div>
-                  </div>
-
-                  <div class="row bg px-3">
-                    <div class="main-subtitle main-subtitle--fz col-12 pt-4">
-                      Стены
-                    </div>
-
-                    <div class="col-12 px-0">
-                        <table class="table table-hover">
-                          <tbody>
-                            <tr v-for="service in getServices(2)">
-                              <th scope="row" class="w-50 pl-1">
-                                <div class="form-check custom-control checkbox">
-                                  <input class="form-check-input check"
-                                         :id="'room-' + room.id + 'service-' + service.id"
-                                         type="checkbox"
-                                         :checked="finished_room_service_ids.includes(service.id)"
-                                         @click="addToSelectedServiceId(service.id)"
-                                         >
-                                  <label class="form-check-label d-block" :for="'room-' + room.id + 'service-' + service.id">
-                                      {{ service.name }}
-                                  </label>
-                                </div>
-                              </th>
-                              <td class="py-1 pl-1">
-                                  <div class="d-flex align-items-center">
-                                      <input type="number"
-                                             class="form-control w-85"
-                                             :id="'room-' + room.id + 'service-' + service.id"
-                                             v-model="selected_service_quantities[service.id]"
-                                             @change="linkSelectedServicesToFinishedRoom()"
-                                             >
-                                      <div class="col-auto pl-2">
-                                          {{ service.unit.name }}
-                                      </div>
-                                  </div>
-                              </td>
-                              <template v-if="order.discount">
-                                  <template v-if="service.can_be_discounted">
-                                      <td>
-                                          {{ service.price * (1 - parseInt(order.discount)/100) }} Р/{{ service.unit.name }}
-                                      </td>
-
-                                      <td>
-                                          {{ calculateServiceAmount(service.price, service.pivot.quantity) * (1 - parseInt(order.discount)/100) }} Р
-                                      </td>
-                                  </template>
-                                  <template v-if="!service.can_be_discounted">
-                                      <td>
-                                          {{ service.price }} Р/{{ service.unit.name }}
-                                      </td>
-
-                                      <td>
-                                          {{ calculateServiceAmount(service.price, service.pivot.quantity) }} Р
-                                      </td>
-                                  </template>
-                              </template>
-
-                              <template v-if="order.markup">
-                                  <td>
-                                      {{ service.price * (1 + parseInt(order.markup)/100) }} Р/{{ service.unit.name }}
-                                  </td>
-
-                                  <td>
-                                      {{ calculateServiceAmount(service.price, service.pivot.quantity) * (1 + parseInt(order.markup)/100) }} Р
-                                  </td>
-                              </template>
-
-                              <template v-if="order.markup === null && order.discount === null">
-                                  <td>
-                                      {{ service.price }} Р/{{ service.unit.name }}
-                                  </td>
-
-                                  <td>
-                                      {{ calculateServiceAmount(service.price, service.pivot.quantity) }} Р
-                                  </td>
-                              </template>
-                            </tr>
-                          </tbody>
-                        </table>
-                    </div>
-                  </div>
-
-                  <div class="row bg px-3">
-                    <div class="main-subtitle main-subtitle--fz col-12 pt-4">
-                      Потолок
-                    </div>
-
-                    <div class="col-12 px-0">
-                        <table class="table table-hover">
-                          <tbody>
-                            <tr v-for="service in getServices(3)">
-                              <th scope="row" class="w-50 pl-1">
-                                <div class="form-check custom-control checkbox">
-                                  <input class="form-check-input check"
-                                         :id="'room-' + room.id + 'service-' + service.id"
-                                         type="checkbox"
-                                         :checked="finished_room_service_ids.includes(service.id)"
-                                         @click="addToSelectedServiceId(service.id)"
-                                         >
-                                  <label class="form-check-label d-block" :for="'room-' + room.id + 'service-' + service.id">
-                                      {{ service.name }}
-                                  </label>
-                                </div>
-                              </th>
-                              <td class="py-1 pl-1">
-                                  <div class="d-flex align-items-center">
-                                      <input type="number"
-                                             class="form-control w-85"
-                                             :id="'room-' + room.id + 'service-' + service.id"
-                                             v-model="selected_service_quantities[service.id]"
-                                             @change="linkSelectedServicesToFinishedRoom()"
-                                             >
-                                      <div class="col-auto pl-2">
-                                          {{ service.unit.name }}
-                                      </div>
-                                  </div>
-                              </td>
-                              <template v-if="order.discount">
-                                  <template v-if="service.can_be_discounted">
-                                      <td>
-                                          {{ service.price * (1 - parseInt(order.discount)/100) }} Р/{{ service.unit.name }}
-                                      </td>
-
-                                      <td>
-                                          {{ calculateServiceAmount(service.price, service.pivot.quantity) * (1 - parseInt(order.discount)/100) }} Р
-                                      </td>
-                                  </template>
-                                  <template v-if="!service.can_be_discounted">
-                                      <td>
-                                          {{ service.price }} Р/{{ service.unit.name }}
-                                      </td>
-
-                                      <td>
-                                          {{ calculateServiceAmount(service.price, service.pivot.quantity) }} Р
-                                      </td>
-                                  </template>
-                              </template>
-
-                              <template v-if="order.markup">
-                                  <td>
-                                      {{ service.price * (1 + parseInt(order.markup)/100) }} Р/{{ service.unit.name }}
-                                  </td>
-
-                                  <td>
-                                      {{ calculateServiceAmount(service.price, service.pivot.quantity) * (1 + parseInt(order.markup)/100) }} Р
-                                  </td>
-                              </template>
-
-                              <template v-if="order.markup === null && order.discount === null">
-                                  <td>
-                                      {{ service.price }} Р/{{ service.unit.name }}
-                                  </td>
-
-                                  <td>
-                                      {{ calculateServiceAmount(service.price, service.pivot.quantity) }} Р
-                                  </td>
-                              </template>
-                            </tr>
-                          </tbody>
-                        </table>
-                    </div>
-                  </div>
-              </template>
-
-              <template v-if="room.room_type_id === 2">
-                  <div class="row bg px-3">
-                    <div class="main-subtitle main-subtitle--fz col-12 pt-4 pl-2">
-                      Электричество
-                    </div>
-
-                    <div class="col-12 px-0">
-                        <table class="table table-hover">
-                          <tbody>
-                            <tr v-for="service in getServices(5)">
-                              <th scope="row" class="w-50 pl-1">
-                                <div class="form-check custom-control checkbox">
-                                  <input class="form-check-input check"
-                                         :id="'room-' + room.id + 'service-' + service.id"
-                                         type="checkbox"
-                                         :checked="finished_room_service_ids.includes(service.id)"
-                                         @click="addToSelectedServiceId(service.id)"
-                                         >
-                                  <label class="form-check-label d-block" :for="'room-' + room.id + 'service-' + service.id">
-                                      {{ service.name }}
-                                  </label>
-                                </div>
-                              </th>
-                              <td class="py-1 pl-1">
-                                  <div class="d-flex align-items-center">
-                                      <input type="number"
-                                             class="form-control w-85"
-                                             :id="'room-' + room.id + 'service-' + service.id"
-                                             v-model="selected_service_quantities[service.id]"
-                                             @change="linkSelectedServicesToFinishedRoom()"
-                                             >
-                                      <div class="col-auto pl-2">
-                                          {{ service.unit.name }}
-                                      </div>
-                                  </div>
-                              </td>
-                              <template v-if="order.discount">
-                                  <template v-if="service.can_be_discounted">
-                                      <td>
-                                          {{ service.price * (1 - parseInt(order.discount)/100) }} Р/{{ service.unit.name }}
-                                      </td>
-
-                                      <td>
-                                          {{ calculateServiceAmount(service.price, service.pivot.quantity) * (1 - parseInt(order.discount)/100) }} Р
-                                      </td>
-                                  </template>
-                                  <template v-if="!service.can_be_discounted">
-                                      <td>
-                                          {{ service.price }} Р/{{ service.unit.name }}
-                                      </td>
-
-                                      <td>
-                                          {{ calculateServiceAmount(service.price, service.pivot.quantity) }} Р
-                                      </td>
-                                  </template>
-                              </template>
-
-                              <template v-if="order.markup">
-                                  <td>
-                                      {{ service.price * (1 + parseInt(order.markup)/100) }} Р/{{ service.unit.name }}
-                                  </td>
-
-                                  <td>
-                                      {{ calculateServiceAmount(service.price, service.pivot.quantity) * (1 + parseInt(order.markup)/100) }} Р
-                                  </td>
-                              </template>
-
-                              <template v-if="order.markup === null && order.discount === null">
-                                  <td>
-                                      {{ service.price }} Р/{{ service.unit.name }}
-                                  </td>
-
-                                  <td>
-                                      {{ calculateServiceAmount(service.price, service.pivot.quantity) }} Р
-                                  </td>
-                              </template>
-                            </tr>
-                          </tbody>
-                        </table>
-                    </div>
-                  </div>
-              </template>
-
-              <template v-if="room.room_type_id === 3">
-                  <div class="row bg px-3">
-                    <div class="main-subtitle main-subtitle--fz col-12 pt-4 pl-2">
-                      Сантехники
-                    </div>
-
-                    <div class="col-12 px-0">
-                        <table class="table table-hover">
-                          <tbody>
-                            <tr v-for="service in getServices(4)">
-                              <th scope="row" class="w-50 pl-1">
-                                <div class="form-check custom-control checkbox">
-                                  <input class="form-check-input check"
-                                         :id="'room-' + room.id + 'service-' + service.id"
-                                         type="checkbox"
-                                         :checked="finished_room_service_ids.includes(service.id)"
-                                         @click="addToSelectedServiceId(service.id)"
-                                         >
-                                  <label class="form-check-label d-block" :for="'room-' + room.id + 'service-' + service.id">
-                                      {{ service.name }}
-                                  </label>
-                                </div>
-                              </th>
-                              <td class="py-1 pl-1">
-                                  <div class="d-flex align-items-center">
-                                      <input type="number"
-                                             class="form-control w-85"
-                                             :id="'room-' + room.id + 'service-' + service.id"
-                                             v-model="selected_service_quantities[service.id]"
-                                             @change="linkSelectedServicesToFinishedRoom()"
-                                             >
-                                      <div class="col-auto pl-2">
-                                          {{ service.unit.name }}
-                                      </div>
-                                  </div>
-                              </td>
-                              <template v-if="order.discount">
-                                  <template v-if="service.can_be_discounted">
-                                      <td>
-                                          {{ service.price * (1 - parseInt(order.discount)/100) }} Р/{{ service.unit.name }}
-                                      </td>
-
-                                      <td>
-                                          {{ calculateServiceAmount(service.price, service.pivot.quantity) * (1 - parseInt(order.discount)/100) }} Р
-                                      </td>
-                                  </template>
-                                  <template v-if="!service.can_be_discounted">
-                                      <td>
-                                          {{ service.price }} Р/{{ service.unit.name }}
-                                      </td>
-
-                                      <td>
-                                          {{ calculateServiceAmount(service.price, service.pivot.quantity) }} Р
-                                      </td>
-                                  </template>
-                              </template>
-
-                              <template v-if="order.markup">
-                                  <td>
-                                      {{ service.price * (1 + parseInt(order.markup)/100) }} Р/{{ service.unit.name }}
-                                  </td>
-
-                                  <td>
-                                      {{ calculateServiceAmount(service.price, service.pivot.quantity) * (1 + parseInt(order.markup)/100) }} Р
-                                  </td>
-                              </template>
-
-                              <template v-if="order.markup === null && order.discount === null">
-                                  <td>
-                                      {{ service.price }} Р/{{ service.unit.name }}
-                                  </td>
-
-                                  <td>
-                                      {{ calculateServiceAmount(service.price, service.pivot.quantity) }} Р
-                                  </td>
-                              </template>
-                            </tr>
-                          </tbody>
-                        </table>
-                    </div>
-                  </div>
-              </template>
-          </div>
+        </div>
       </template>
     </div>
 </template>
 
 <script>
+    import OrderExportCollection from '../../../../mixins/OrderExportCollection'
     export default {
         props: ['room', 'order'],
+
+        mixins: [OrderExportCollection],
 
         data () {
             return {
                 finished_room_service_ids: [],
 
                 selected_service_ids: [],
-                selected_service_quantities: []
+                selected_service_quantities: [],
+
+                room_service_ids: []
             }
         },
 
         beforeMount() {
           this.getServicesQuantities()
-          this.getSelectedServices()
+          // this.getSelectedServices()
+        },
+
+        mounted () {
+            this.RoomServicesInit()
         },
 
         methods: {
-            getServices (service_type_id) {
-                return this.room.services.filter(row => {
-                    return row.service_type_id === service_type_id
-                })
+            RoomServicesInit() {
+                this.room_service_ids = _.groupBy(this.room.room_services, 'service_type_id')
             },
 
+
             getServicesQuantities() {
-                this.room.services.forEach(item => {
-                    this.selected_service_quantities[item.id] = parseFloat(item.pivot.quantity).toFixed(1)
+                this.room.room_services.forEach(room_service => {
+                    this.selected_service_quantities[room_service.service_id] = parseFloat(room_service.quantity).toFixed(1)
                 })
             },
 

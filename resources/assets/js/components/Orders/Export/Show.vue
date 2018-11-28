@@ -140,130 +140,130 @@
                             </div>
 
 
-                                <template v-if="room_services">
-                                    <template v-for="(room_service, index) in room_service_ids">
-                                        <div class="projects__information" >
-                                            <div class="px-15 pb-3">
-                                                <template v-if="!show">
-                                                    <h2 class="main-subtitle main-subtitle--room" @click="changeRoomName">
-                                                        {{ getRoomDetails(room_service[0], 'description') ? getRoomDetails(room_service[0], 'description') : getRoomDetails(room_service[0], 'room_type') }}
 
-                                                    </h2>
-                                                </template>
-                                                <template v-else>
-                                                    <div class="row" style="padding-top: 30px;" @mouseleave="show = false">
-                                                        <div class="col-md-6">
-                                                            <div class="form-group">
-                                                                <input type="text"
-                                                                       class="form-control"
-                                                                       :placeholder="getRoomDetails(room_service[0], 'room_type')"
-                                                                       v-model="descriptions[room_service[0]]"
-                                                                       @change="updateDescription(room_service[0])"
-                                                                       >
-                                                            </div>
-                                                        </div>
+                            <template v-for="(room_service, index) in room_service_ids">
+                                <div class="projects__information" >
+                                    <div class="px-15 pb-3">
+                                        <template v-if="!show">
+                                            <h2 class="main-subtitle main-subtitle--room" @click="changeRoomName">
+                                                {{ getRoomDetails(room_service[0], 'description') ? getRoomDetails(room_service[0], 'description') : getRoomDetails(room_service[0], 'room_type') }}
+
+                                            </h2>
+                                        </template>
+                                        <template v-else>
+                                            <div class="row" style="padding-top: 30px;" @mouseleave="show = false">
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <input type="text"
+                                                               class="form-control"
+                                                               :placeholder="getRoomDetails(room_service[0], 'room_type')"
+                                                               v-model="descriptions[room_service[0]]"
+                                                               @change="updateDescription(room_service[0])"
+                                                               >
                                                     </div>
-                                                </template>
-
-                                            </div>
-
-                                            <template v-if="getRoomDetails(room_service[0], 'room_type_id') === 1">
-                                                <div class="projects__desc col-8 d-flex justify-content-between align-items-center pt-3">
-                                                    <div class="projects__desc-item">Общая площадь: {{ getRoomDetails(room_service[0], 'area') }} м<sup>2</sup></div>
-                                                    <div class="projects__desc-item">Высота потолка: {{ getRoomDetails(room_service[0], 'height') }} м</div>
-                                                    <div class="projects__desc-item">Площадь стен: {{ getRoomDetails(room_service[0], 'wall_area') }} м<sup>2</sup></div>
-                                                    <div class="projects__desc-item">Периметр: {{ getRoomDetails(room_service[0], 'perimeter') }}</div>
                                                 </div>
-                                            </template>
+                                            </div>
+                                        </template>
 
-                                                <template v-for="(services, service_type_id) in groupByServiceType(room_service[1])">
-                                                    <div class="row bg px-15">
+                                    </div>
 
-                                                        <div class="main-subtitle main-subtitle--fz col-12 pt-4">
-                                                            {{ getServiceTypeName(service_type_id) }}
-                                                        </div>
-
-                                                        <div class="col-12 px-0">
-
-                                                            <table class="table table-hover">
-
-                                                                <tbody>
-                                                                    <tr v-for="room_service in sortServicesByCreatedAt(services)">
-                                                                        <th scope="row" class="w-50">
-                                                                            {{ getServiceDetails(room_service.service_id, 'name') }}
-                                                                        </th>
-                                                                        <td>{{ room_service.quantity }} м<sup>2</sup></td>
-
-                                                                        <template v-if="order.discount">
-                                                                            <template v-if="getServiceDetails(room_service.service_id, 'can_be_discounted')">
-                                                                                <td>{{ getServiceDetails(room_service.service_id, 'price') * (1 - parseInt(order.discount)/100) }} Р/м<sup>2</sup></td>
-                                                                                <td>{{ priceCount(room_service.quantity, getServiceDetails(room_service.service_id, 'price') * (1 - parseFloat(order.discount)/100)) }} Р</td>
-                                                                            </template>
-                                                                            <template v-else>
-                                                                                <td>{{ getServiceDetails(room_service.service_id, 'price') }} Р/м<sup>2</sup></td>
-                                                                                <td>{{ priceCount(room_service.quantity, getServiceDetails(room_service.service_id, 'price')) }} Р</td>
-                                                                            </template>
-                                                                        </template>
-                                                                        <template v-if="order.markup">
-                                                                            <td>{{ getServiceDetails(room_service.service_id, 'price') * (1 + parseInt(order.markup)/100) }} Р/м<sup>2</sup></td>
-                                                                            <td>{{ priceCount(room_service.quantity, getServiceDetails(room_service.service_id, 'price') * (1 + parseFloat(order.markup)/100)) }} Р</td>
-                                                                        </template>
-                                                                        <template v-if="order.discount === null && order.markup === null">
-                                                                            <td>{{ getServiceDetails(room_service.service_id, 'price') }} Р/м<sup>2</sup></td>
-                                                                            <td>{{ priceCount(room_service.quantity, getServiceDetails(room_service.service_id, 'price')) }} Р</td>
-                                                                        </template>
-                                                                    </tr>
-                                                                </tbody>
-                                                            </table>
-
-                                                        </div>
-                                                    </div>
-                                                </template>
-
-
-
-
+                                    <template v-if="getRoomDetails(room_service[0], 'room_type_id') === 1">
+                                        <div class="projects__desc col-8 d-flex justify-content-between align-items-center pt-3">
+                                            <div class="projects__desc-item">Общая площадь: {{ getRoomDetails(room_service[0], 'area') }} м<sup>2</sup></div>
+                                            <div class="projects__desc-item">Высота потолка: {{ getRoomDetails(room_service[0], 'height') }} м</div>
+                                            <div class="projects__desc-item">Площадь стен: {{ getRoomDetails(room_service[0], 'wall_area') }} м<sup>2</sup></div>
+                                            <div class="projects__desc-item">Периметр: {{ getRoomDetails(room_service[0], 'perimeter') }}</div>
                                         </div>
                                     </template>
 
-                                    <div class="row bg py-4">
-                                        <div class="col-12 d-flex align-items-center justify-content-end">
-                                             <div class="col-2">
-                                                <select class="form-control"
-                                                        v-model="selected_id"
-                                                        @change="percentage = null"
-                                                        >
-                                                        <option value=null>Выберите</option>
-                                                        <option value=1>Скидка</option>
-                                                        <option value=2>Наценка</option>
-                                                </select>
-                                            </div>
-                                            <div class="col-1">
-                                                <input type="number"
-                                                       class="form-control"
-                                                       placeholder="%"
-                                                       min="0"
-                                                       v-model="percentage"
-                                                       @change="updateOrderDiscountOrMarkup()"
-                                                       >
-                                            </div>
+                                        <template v-for="(services, service_type_id) in groupByServiceType(room_service[1])">
+                                            <div class="row bg px-15">
 
-                                            <h2 class="main-subtitle px-15">
-                                                Итого: {{ order.price }} Р
-                                            </h2>
+                                                <div class="main-subtitle main-subtitle--fz col-12 pt-4">
+                                                    {{ getServiceTypeName(service_type_id) }}
+                                                </div>
 
-                                        </div>
+                                                <div class="col-12 px-0">
+
+                                                    <table class="table table-hover">
+
+                                                        <tbody>
+                                                            <tr v-for="room_service in sortServicesByCreatedAt(services)">
+                                                                <th scope="row" class="w-50">
+                                                                    {{ getServiceDetails(room_service.service_id, 'name') }}
+                                                                </th>
+                                                                <td>{{ room_service.quantity }} м<sup>2</sup></td>
+
+                                                                <template v-if="order.discount">
+                                                                    <template v-if="getServiceDetails(room_service.service_id, 'can_be_discounted')">
+                                                                        <td>{{ getServiceDetails(room_service.service_id, 'price') * (1 - parseInt(order.discount)/100) }} Р/м<sup>2</sup></td>
+                                                                        <td>{{ priceCount(room_service.quantity, getServiceDetails(room_service.service_id, 'price') * (1 - parseFloat(order.discount)/100)) }} Р</td>
+                                                                    </template>
+                                                                    <template v-else>
+                                                                        <td>{{ getServiceDetails(room_service.service_id, 'price') }} Р/м<sup>2</sup></td>
+                                                                        <td>{{ priceCount(room_service.quantity, getServiceDetails(room_service.service_id, 'price')) }} Р</td>
+                                                                    </template>
+                                                                </template>
+                                                                <template v-if="order.markup">
+                                                                    <td>{{ getServiceDetails(room_service.service_id, 'price') * (1 + parseInt(order.markup)/100) }} Р/м<sup>2</sup></td>
+                                                                    <td>{{ priceCount(room_service.quantity, getServiceDetails(room_service.service_id, 'price') * (1 + parseFloat(order.markup)/100)) }} Р</td>
+                                                                </template>
+                                                                <template v-if="order.discount === null && order.markup === null">
+                                                                    <td>{{ getServiceDetails(room_service.service_id, 'price') }} Р/м<sup>2</sup></td>
+                                                                    <td>{{ priceCount(room_service.quantity, getServiceDetails(room_service.service_id, 'price')) }} Р</td>
+                                                                </template>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+
+                                                </div>
+                                            </div>
+                                        </template>
+
+
+
+
+                                </div>
+                            </template>
+
+                            <div class="row bg py-4">
+                                <div class="col-12 d-flex align-items-center justify-content-end">
+                                     <div class="col-2">
+                                        <select class="form-control"
+                                                v-model="selected_id"
+                                                @change="percentage = null"
+                                                >
+                                                <option value=null>Выберите</option>
+                                                <option value=1>Скидка</option>
+                                                <option value=2>Наценка</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-1">
+                                        <input type="number"
+                                               class="form-control"
+                                               placeholder="%"
+                                               min="0"
+                                               v-model="percentage"
+                                               @change="updateOrderDiscountOrMarkup()"
+                                               >
                                     </div>
 
-                                    <div class="row ml-3 my-4">
-                                        <textarea class="col-6"
-                                                  placeholder="Добавить комментарий к смете"
-                                                  v-model="description"
-                                                  @change="orderUpdate()"
-                                                  >
-                                        </textarea>
-                                    </div>
-                                </template>
+                                    <h2 class="main-subtitle px-15">
+                                        Итого: {{ order.price }} Р
+                                    </h2>
+
+                                </div>
+                            </div>
+
+                            <div class="row ml-3 my-4">
+                                <textarea class="col-6"
+                                          placeholder="Добавить комментарий к смете"
+                                          v-model="description"
+                                          @change="orderUpdate()"
+                                          >
+                                </textarea>
+                            </div>
+
                         </div>
 
                 </div>
@@ -297,7 +297,6 @@
 
                 selected_id: null,
 
-                room_services: [],
                 room_service_ids: [],
                 rooms: [],
 

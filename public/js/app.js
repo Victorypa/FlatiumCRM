@@ -52498,366 +52498,7 @@ exports.push([module.i, "\n.w-85[data-v-70b92cbc] {\n  width: 85px;\n}\n.main-su
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__mixins_OrderExportCollection__ = __webpack_require__(297);
 //
 //
 //
@@ -52940,34 +52581,40 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 
+
 /* harmony default export */ __webpack_exports__["default"] = ({
     props: ['room', 'order'],
+
+    mixins: [__WEBPACK_IMPORTED_MODULE_0__mixins_OrderExportCollection__["a" /* default */]],
 
     data: function data() {
         return {
             finished_room_service_ids: [],
 
             selected_service_ids: [],
-            selected_service_quantities: []
+            selected_service_quantities: [],
+
+            room_service_ids: []
         };
     },
     beforeMount: function beforeMount() {
         this.getServicesQuantities();
-        this.getSelectedServices();
+        // this.getSelectedServices()
+    },
+    mounted: function mounted() {
+        this.RoomServicesInit();
     },
 
 
     methods: {
-        getServices: function getServices(service_type_id) {
-            return this.room.services.filter(function (row) {
-                return row.service_type_id === service_type_id;
-            });
+        RoomServicesInit: function RoomServicesInit() {
+            this.room_service_ids = _.groupBy(this.room.room_services, 'service_type_id');
         },
         getServicesQuantities: function getServicesQuantities() {
             var _this = this;
 
-            this.room.services.forEach(function (item) {
-                _this.selected_service_quantities[item.id] = parseFloat(item.pivot.quantity).toFixed(1);
+            this.room.room_services.forEach(function (room_service) {
+                _this.selected_service_quantities[room_service.service_id] = parseFloat(room_service.quantity).toFixed(1);
             });
         },
         getSelectedServices: function getSelectedServices() {
@@ -53092,1550 +52739,194 @@ var render = function() {
         )
       ]),
       _vm._v(" "),
-      _vm.room.services.length
-        ? [
-            _c(
-              "div",
-              { staticClass: "projects__information " },
-              [
-                _vm.room.room_type_id === 1
-                  ? [
-                      _c("div", { staticClass: "row bg px-3" }, [
+      _vm._l(_vm.room_service_ids, function(room_services, service_type_id) {
+        return [
+          _c("div", { staticClass: "projects__information " }, [
+            _c("div", { staticClass: "row bg px-3" }, [
+              _c(
+                "div",
+                { staticClass: "main-subtitle main-subtitle--fz col-12 pt-4" },
+                [
+                  _vm._v(
+                    "\n              " +
+                      _vm._s(_vm.getServiceTypeName(service_type_id)) +
+                      "\n            "
+                  )
+                ]
+              ),
+              _vm._v(" "),
+              _c("div", { staticClass: "col-12 px-0" }, [
+                _c("table", { staticClass: "table table-hover" }, [
+                  _c(
+                    "tbody",
+                    _vm._l(room_services, function(room_service) {
+                      return _c("tr", [
                         _c(
-                          "div",
-                          {
-                            staticClass:
-                              "main-subtitle main-subtitle--fz col-12 pt-4"
-                          },
-                          [_vm._v("\n                  Пол\n                ")]
-                        ),
-                        _vm._v(" "),
-                        _c("div", { staticClass: "col-12 px-0" }, [
-                          _c("table", { staticClass: "table table-hover" }, [
-                            _c(
-                              "tbody",
-                              _vm._l(_vm.getServices(1), function(service) {
-                                return _c(
-                                  "tr",
-                                  [
-                                    _c(
-                                      "th",
-                                      {
-                                        staticClass: "w-50 pl-1",
-                                        attrs: { scope: "row" }
-                                      },
-                                      [
-                                        _c(
-                                          "div",
-                                          {
-                                            staticClass:
-                                              "form-check custom-control checkbox"
-                                          },
-                                          [
-                                            _c("input", {
-                                              staticClass:
-                                                "form-check-input check",
-                                              attrs: {
-                                                id:
-                                                  "room-" +
-                                                  _vm.room.id +
-                                                  "service-" +
-                                                  service.id,
-                                                type: "checkbox"
-                                              },
-                                              domProps: {
-                                                checked: _vm.finished_room_service_ids.includes(
-                                                  service.id
-                                                )
-                                              },
-                                              on: {
-                                                click: function($event) {
-                                                  _vm.addToSelectedServiceId(
-                                                    service.id
-                                                  )
-                                                }
-                                              }
-                                            }),
-                                            _vm._v(" "),
-                                            _c(
-                                              "label",
-                                              {
-                                                staticClass:
-                                                  "form-check-label d-block",
-                                                attrs: {
-                                                  for:
-                                                    "room-" +
-                                                    _vm.room.id +
-                                                    "service-" +
-                                                    service.id
-                                                }
-                                              },
-                                              [
-                                                _vm._v(
-                                                  "\n                                  " +
-                                                    _vm._s(service.name) +
-                                                    "\n                              "
-                                                )
-                                              ]
-                                            )
-                                          ]
-                                        )
-                                      ]
-                                    ),
-                                    _vm._v(" "),
-                                    _c("td", { staticClass: "py-1 pl-1" }, [
-                                      _c(
-                                        "div",
-                                        {
-                                          staticClass:
-                                            "d-flex align-items-center"
-                                        },
-                                        [
-                                          _c("input", {
-                                            directives: [
-                                              {
-                                                name: "model",
-                                                rawName: "v-model",
-                                                value:
-                                                  _vm
-                                                    .selected_service_quantities[
-                                                    service.id
-                                                  ],
-                                                expression:
-                                                  "selected_service_quantities[service.id]"
-                                              }
-                                            ],
-                                            staticClass: "form-control w-85",
-                                            attrs: {
-                                              type: "number",
-                                              id:
-                                                "room-" +
-                                                _vm.room.id +
-                                                "service-" +
-                                                service.id,
-                                              min: "0"
-                                            },
-                                            domProps: {
-                                              value:
-                                                _vm.selected_service_quantities[
-                                                  service.id
-                                                ]
-                                            },
-                                            on: {
-                                              change: function($event) {
-                                                _vm.linkSelectedServicesToFinishedRoom()
-                                              },
-                                              input: function($event) {
-                                                if ($event.target.composing) {
-                                                  return
-                                                }
-                                                _vm.$set(
-                                                  _vm.selected_service_quantities,
-                                                  service.id,
-                                                  $event.target.value
-                                                )
-                                              }
-                                            }
-                                          }),
-                                          _vm._v(" "),
-                                          _c(
-                                            "div",
-                                            { staticClass: "col-auto pl-2" },
-                                            [
-                                              _vm._v(
-                                                "\n                                      " +
-                                                  _vm._s(service.unit.name) +
-                                                  "\n                                  "
-                                              )
-                                            ]
-                                          )
-                                        ]
-                                      )
-                                    ]),
-                                    _vm._v(" "),
-                                    _vm.order.discount
-                                      ? [
-                                          service.can_be_discounted
-                                            ? [
-                                                _c("td", [
-                                                  _vm._v(
-                                                    "\n                                      " +
-                                                      _vm._s(
-                                                        service.price *
-                                                          (1 -
-                                                            parseInt(
-                                                              _vm.order.discount
-                                                            ) /
-                                                              100)
-                                                      ) +
-                                                      " Р/" +
-                                                      _vm._s(
-                                                        service.unit.name
-                                                      ) +
-                                                      "\n                                  "
-                                                  )
-                                                ]),
-                                                _vm._v(" "),
-                                                _c("td", [
-                                                  _vm._v(
-                                                    "\n                                      " +
-                                                      _vm._s(
-                                                        _vm.calculateServiceAmount(
-                                                          service.price,
-                                                          service.pivot.quantity
-                                                        ) *
-                                                          (1 -
-                                                            parseInt(
-                                                              _vm.order.discount
-                                                            ) /
-                                                              100)
-                                                      ) +
-                                                      " Р\n                                  "
-                                                  )
-                                                ])
-                                              ]
-                                            : _vm._e(),
-                                          _vm._v(" "),
-                                          !service.can_be_discounted
-                                            ? [
-                                                _c("td", [
-                                                  _vm._v(
-                                                    "\n                                      " +
-                                                      _vm._s(service.price) +
-                                                      " Р/" +
-                                                      _vm._s(
-                                                        service.unit.name
-                                                      ) +
-                                                      "\n                                  "
-                                                  )
-                                                ]),
-                                                _vm._v(" "),
-                                                _c("td", [
-                                                  _vm._v(
-                                                    "\n                                      " +
-                                                      _vm._s(
-                                                        _vm.calculateServiceAmount(
-                                                          service.price,
-                                                          service.pivot.quantity
-                                                        )
-                                                      ) +
-                                                      " Р\n                                  "
-                                                  )
-                                                ])
-                                              ]
-                                            : _vm._e()
-                                        ]
-                                      : _vm._e(),
-                                    _vm._v(" "),
-                                    _vm.order.markup
-                                      ? [
-                                          _c("td", [
-                                            _vm._v(
-                                              "\n                                  " +
-                                                _vm._s(
-                                                  service.price *
-                                                    (1 +
-                                                      parseInt(
-                                                        _vm.order.markup
-                                                      ) /
-                                                        100)
-                                                ) +
-                                                " Р/" +
-                                                _vm._s(service.unit.name) +
-                                                "\n                              "
-                                            )
-                                          ]),
-                                          _vm._v(" "),
-                                          _c("td", [
-                                            _vm._v(
-                                              "\n                                  " +
-                                                _vm._s(
-                                                  _vm.calculateServiceAmount(
-                                                    service.price,
-                                                    service.pivot.quantity
-                                                  ) *
-                                                    (1 +
-                                                      parseInt(
-                                                        _vm.order.markup
-                                                      ) /
-                                                        100)
-                                                ) +
-                                                " Р\n                              "
-                                            )
-                                          ])
-                                        ]
-                                      : _vm._e(),
-                                    _vm._v(" "),
-                                    _vm.order.markup === null &&
-                                    _vm.order.discount === null
-                                      ? [
-                                          _c("td", [
-                                            _vm._v(
-                                              "\n                                  " +
-                                                _vm._s(service.price) +
-                                                " Р/" +
-                                                _vm._s(service.unit.name) +
-                                                "\n                              "
-                                            )
-                                          ]),
-                                          _vm._v(" "),
-                                          _c("td", [
-                                            _vm._v(
-                                              "\n                                  " +
-                                                _vm._s(
-                                                  _vm.calculateServiceAmount(
-                                                    service.price,
-                                                    service.pivot.quantity
-                                                  )
-                                                ) +
-                                                " Р\n                              "
-                                            )
-                                          ])
-                                        ]
-                                      : _vm._e()
-                                  ],
-                                  2
-                                )
-                              })
-                            )
-                          ])
-                        ])
-                      ]),
-                      _vm._v(" "),
-                      _c("div", { staticClass: "row bg px-3" }, [
-                        _c(
-                          "div",
-                          {
-                            staticClass:
-                              "main-subtitle main-subtitle--fz col-12 pt-4"
-                          },
+                          "th",
+                          { staticClass: "w-50 pl-1", attrs: { scope: "row" } },
                           [
-                            _vm._v(
-                              "\n                  Стены\n                "
+                            _c(
+                              "div",
+                              {
+                                staticClass:
+                                  "form-check custom-control checkbox"
+                              },
+                              [
+                                _c("input", {
+                                  staticClass: "form-check-input check",
+                                  attrs: {
+                                    id: "service-" + room_service.service_id,
+                                    type: "checkbox"
+                                  },
+                                  domProps: {
+                                    checked: _vm.finished_room_service_ids.includes(
+                                      room_service.service_id
+                                    )
+                                  },
+                                  on: {
+                                    click: function($event) {
+                                      _vm.addToSelectedServiceId(
+                                        room_service.service_id
+                                      )
+                                    }
+                                  }
+                                }),
+                                _vm._v(" "),
+                                _c(
+                                  "label",
+                                  {
+                                    staticClass: "form-check-label d-block",
+                                    attrs: {
+                                      for: "service-" + room_service.service_id
+                                    }
+                                  },
+                                  [
+                                    _vm._v(
+                                      "\n                              " +
+                                        _vm._s(
+                                          _vm.getServiceDetails(
+                                            room_service.service_id,
+                                            "name"
+                                          )
+                                        ) +
+                                        "\n                          "
+                                    )
+                                  ]
+                                )
+                              ]
                             )
                           ]
                         ),
                         _vm._v(" "),
-                        _c("div", { staticClass: "col-12 px-0" }, [
-                          _c("table", { staticClass: "table table-hover" }, [
-                            _c(
-                              "tbody",
-                              _vm._l(_vm.getServices(2), function(service) {
-                                return _c(
-                                  "tr",
-                                  [
-                                    _c(
-                                      "th",
-                                      {
-                                        staticClass: "w-50 pl-1",
-                                        attrs: { scope: "row" }
-                                      },
-                                      [
-                                        _c(
-                                          "div",
-                                          {
-                                            staticClass:
-                                              "form-check custom-control checkbox"
-                                          },
-                                          [
-                                            _c("input", {
-                                              staticClass:
-                                                "form-check-input check",
-                                              attrs: {
-                                                id:
-                                                  "room-" +
-                                                  _vm.room.id +
-                                                  "service-" +
-                                                  service.id,
-                                                type: "checkbox"
-                                              },
-                                              domProps: {
-                                                checked: _vm.finished_room_service_ids.includes(
-                                                  service.id
-                                                )
-                                              },
-                                              on: {
-                                                click: function($event) {
-                                                  _vm.addToSelectedServiceId(
-                                                    service.id
-                                                  )
-                                                }
-                                              }
-                                            }),
-                                            _vm._v(" "),
-                                            _c(
-                                              "label",
-                                              {
-                                                staticClass:
-                                                  "form-check-label d-block",
-                                                attrs: {
-                                                  for:
-                                                    "room-" +
-                                                    _vm.room.id +
-                                                    "service-" +
-                                                    service.id
-                                                }
-                                              },
-                                              [
-                                                _vm._v(
-                                                  "\n                                  " +
-                                                    _vm._s(service.name) +
-                                                    "\n                              "
-                                                )
-                                              ]
-                                            )
-                                          ]
-                                        )
-                                      ]
-                                    ),
-                                    _vm._v(" "),
-                                    _c("td", { staticClass: "py-1 pl-1" }, [
-                                      _c(
-                                        "div",
-                                        {
-                                          staticClass:
-                                            "d-flex align-items-center"
-                                        },
-                                        [
-                                          _c("input", {
-                                            directives: [
-                                              {
-                                                name: "model",
-                                                rawName: "v-model",
-                                                value:
-                                                  _vm
-                                                    .selected_service_quantities[
-                                                    service.id
-                                                  ],
-                                                expression:
-                                                  "selected_service_quantities[service.id]"
-                                              }
-                                            ],
-                                            staticClass: "form-control w-85",
-                                            attrs: {
-                                              type: "number",
-                                              id:
-                                                "room-" +
-                                                _vm.room.id +
-                                                "service-" +
-                                                service.id
-                                            },
-                                            domProps: {
-                                              value:
-                                                _vm.selected_service_quantities[
-                                                  service.id
-                                                ]
-                                            },
-                                            on: {
-                                              change: function($event) {
-                                                _vm.linkSelectedServicesToFinishedRoom()
-                                              },
-                                              input: function($event) {
-                                                if ($event.target.composing) {
-                                                  return
-                                                }
-                                                _vm.$set(
-                                                  _vm.selected_service_quantities,
-                                                  service.id,
-                                                  $event.target.value
-                                                )
-                                              }
-                                            }
-                                          }),
-                                          _vm._v(" "),
-                                          _c(
-                                            "div",
-                                            { staticClass: "col-auto pl-2" },
-                                            [
-                                              _vm._v(
-                                                "\n                                      " +
-                                                  _vm._s(service.unit.name) +
-                                                  "\n                                  "
-                                              )
-                                            ]
-                                          )
-                                        ]
+                        _c("td", { staticClass: "py-1 pl-1" }, [
+                          _c(
+                            "div",
+                            { staticClass: "d-flex align-items-center" },
+                            [
+                              _c("input", {
+                                directives: [
+                                  {
+                                    name: "model",
+                                    rawName: "v-model",
+                                    value:
+                                      _vm.selected_service_quantities[
+                                        room_service.service_id
+                                      ],
+                                    expression:
+                                      "selected_service_quantities[room_service.service_id]"
+                                  }
+                                ],
+                                staticClass: "form-control w-85",
+                                attrs: {
+                                  type: "number",
+                                  id: "service-" + room_service.service_id,
+                                  min: "0"
+                                },
+                                domProps: {
+                                  value:
+                                    _vm.selected_service_quantities[
+                                      room_service.service_id
+                                    ]
+                                },
+                                on: {
+                                  change: function($event) {
+                                    _vm.linkSelectedServicesToFinishedRoom()
+                                  },
+                                  input: function($event) {
+                                    if ($event.target.composing) {
+                                      return
+                                    }
+                                    _vm.$set(
+                                      _vm.selected_service_quantities,
+                                      room_service.service_id,
+                                      $event.target.value
+                                    )
+                                  }
+                                }
+                              }),
+                              _vm._v(" "),
+                              _c("div", { staticClass: "col-auto pl-2" }, [
+                                _vm._v(
+                                  "\n                                  " +
+                                    _vm._s(
+                                      _vm.getServiceDetails(
+                                        room_service.service_id,
+                                        "unit"
                                       )
-                                    ]),
-                                    _vm._v(" "),
-                                    _vm.order.discount
-                                      ? [
-                                          service.can_be_discounted
-                                            ? [
-                                                _c("td", [
-                                                  _vm._v(
-                                                    "\n                                      " +
-                                                      _vm._s(
-                                                        service.price *
-                                                          (1 -
-                                                            parseInt(
-                                                              _vm.order.discount
-                                                            ) /
-                                                              100)
-                                                      ) +
-                                                      " Р/" +
-                                                      _vm._s(
-                                                        service.unit.name
-                                                      ) +
-                                                      "\n                                  "
-                                                  )
-                                                ]),
-                                                _vm._v(" "),
-                                                _c("td", [
-                                                  _vm._v(
-                                                    "\n                                      " +
-                                                      _vm._s(
-                                                        _vm.calculateServiceAmount(
-                                                          service.price,
-                                                          service.pivot.quantity
-                                                        ) *
-                                                          (1 -
-                                                            parseInt(
-                                                              _vm.order.discount
-                                                            ) /
-                                                              100)
-                                                      ) +
-                                                      " Р\n                                  "
-                                                  )
-                                                ])
-                                              ]
-                                            : _vm._e(),
-                                          _vm._v(" "),
-                                          !service.can_be_discounted
-                                            ? [
-                                                _c("td", [
-                                                  _vm._v(
-                                                    "\n                                      " +
-                                                      _vm._s(service.price) +
-                                                      " Р/" +
-                                                      _vm._s(
-                                                        service.unit.name
-                                                      ) +
-                                                      "\n                                  "
-                                                  )
-                                                ]),
-                                                _vm._v(" "),
-                                                _c("td", [
-                                                  _vm._v(
-                                                    "\n                                      " +
-                                                      _vm._s(
-                                                        _vm.calculateServiceAmount(
-                                                          service.price,
-                                                          service.pivot.quantity
-                                                        )
-                                                      ) +
-                                                      " Р\n                                  "
-                                                  )
-                                                ])
-                                              ]
-                                            : _vm._e()
-                                        ]
-                                      : _vm._e(),
-                                    _vm._v(" "),
-                                    _vm.order.markup
-                                      ? [
-                                          _c("td", [
-                                            _vm._v(
-                                              "\n                                  " +
-                                                _vm._s(
-                                                  service.price *
-                                                    (1 +
-                                                      parseInt(
-                                                        _vm.order.markup
-                                                      ) /
-                                                        100)
-                                                ) +
-                                                " Р/" +
-                                                _vm._s(service.unit.name) +
-                                                "\n                              "
-                                            )
-                                          ]),
-                                          _vm._v(" "),
-                                          _c("td", [
-                                            _vm._v(
-                                              "\n                                  " +
-                                                _vm._s(
-                                                  _vm.calculateServiceAmount(
-                                                    service.price,
-                                                    service.pivot.quantity
-                                                  ) *
-                                                    (1 +
-                                                      parseInt(
-                                                        _vm.order.markup
-                                                      ) /
-                                                        100)
-                                                ) +
-                                                " Р\n                              "
-                                            )
-                                          ])
-                                        ]
-                                      : _vm._e(),
-                                    _vm._v(" "),
-                                    _vm.order.markup === null &&
-                                    _vm.order.discount === null
-                                      ? [
-                                          _c("td", [
-                                            _vm._v(
-                                              "\n                                  " +
-                                                _vm._s(service.price) +
-                                                " Р/" +
-                                                _vm._s(service.unit.name) +
-                                                "\n                              "
-                                            )
-                                          ]),
-                                          _vm._v(" "),
-                                          _c("td", [
-                                            _vm._v(
-                                              "\n                                  " +
-                                                _vm._s(
-                                                  _vm.calculateServiceAmount(
-                                                    service.price,
-                                                    service.pivot.quantity
-                                                  )
-                                                ) +
-                                                " Р\n                              "
-                                            )
-                                          ])
-                                        ]
-                                      : _vm._e()
-                                  ],
-                                  2
+                                    ) +
+                                    "\n                              "
                                 )
-                              })
-                            )
-                          ])
-                        ])
-                      ]),
-                      _vm._v(" "),
-                      _c("div", { staticClass: "row bg px-3" }, [
-                        _c(
-                          "div",
-                          {
-                            staticClass:
-                              "main-subtitle main-subtitle--fz col-12 pt-4"
-                          },
-                          [
-                            _vm._v(
-                              "\n                  Потолок\n                "
-                            )
-                          ]
-                        ),
+                              ])
+                            ]
+                          )
+                        ]),
                         _vm._v(" "),
-                        _c("div", { staticClass: "col-12 px-0" }, [
-                          _c("table", { staticClass: "table table-hover" }, [
-                            _c(
-                              "tbody",
-                              _vm._l(_vm.getServices(3), function(service) {
-                                return _c(
-                                  "tr",
-                                  [
-                                    _c(
-                                      "th",
-                                      {
-                                        staticClass: "w-50 pl-1",
-                                        attrs: { scope: "row" }
-                                      },
-                                      [
-                                        _c(
-                                          "div",
-                                          {
-                                            staticClass:
-                                              "form-check custom-control checkbox"
-                                          },
-                                          [
-                                            _c("input", {
-                                              staticClass:
-                                                "form-check-input check",
-                                              attrs: {
-                                                id:
-                                                  "room-" +
-                                                  _vm.room.id +
-                                                  "service-" +
-                                                  service.id,
-                                                type: "checkbox"
-                                              },
-                                              domProps: {
-                                                checked: _vm.finished_room_service_ids.includes(
-                                                  service.id
-                                                )
-                                              },
-                                              on: {
-                                                click: function($event) {
-                                                  _vm.addToSelectedServiceId(
-                                                    service.id
-                                                  )
-                                                }
-                                              }
-                                            }),
-                                            _vm._v(" "),
-                                            _c(
-                                              "label",
-                                              {
-                                                staticClass:
-                                                  "form-check-label d-block",
-                                                attrs: {
-                                                  for:
-                                                    "room-" +
-                                                    _vm.room.id +
-                                                    "service-" +
-                                                    service.id
-                                                }
-                                              },
-                                              [
-                                                _vm._v(
-                                                  "\n                                  " +
-                                                    _vm._s(service.name) +
-                                                    "\n                              "
-                                                )
-                                              ]
-                                            )
-                                          ]
-                                        )
-                                      ]
-                                    ),
-                                    _vm._v(" "),
-                                    _c("td", { staticClass: "py-1 pl-1" }, [
-                                      _c(
-                                        "div",
-                                        {
-                                          staticClass:
-                                            "d-flex align-items-center"
-                                        },
-                                        [
-                                          _c("input", {
-                                            directives: [
-                                              {
-                                                name: "model",
-                                                rawName: "v-model",
-                                                value:
-                                                  _vm
-                                                    .selected_service_quantities[
-                                                    service.id
-                                                  ],
-                                                expression:
-                                                  "selected_service_quantities[service.id]"
-                                              }
-                                            ],
-                                            staticClass: "form-control w-85",
-                                            attrs: {
-                                              type: "number",
-                                              id:
-                                                "room-" +
-                                                _vm.room.id +
-                                                "service-" +
-                                                service.id
-                                            },
-                                            domProps: {
-                                              value:
-                                                _vm.selected_service_quantities[
-                                                  service.id
-                                                ]
-                                            },
-                                            on: {
-                                              change: function($event) {
-                                                _vm.linkSelectedServicesToFinishedRoom()
-                                              },
-                                              input: function($event) {
-                                                if ($event.target.composing) {
-                                                  return
-                                                }
-                                                _vm.$set(
-                                                  _vm.selected_service_quantities,
-                                                  service.id,
-                                                  $event.target.value
-                                                )
-                                              }
-                                            }
-                                          }),
-                                          _vm._v(" "),
-                                          _c(
-                                            "div",
-                                            { staticClass: "col-auto pl-2" },
-                                            [
-                                              _vm._v(
-                                                "\n                                      " +
-                                                  _vm._s(service.unit.name) +
-                                                  "\n                                  "
-                                              )
-                                            ]
-                                          )
-                                        ]
-                                      )
-                                    ]),
-                                    _vm._v(" "),
-                                    _vm.order.discount
-                                      ? [
-                                          service.can_be_discounted
-                                            ? [
-                                                _c("td", [
-                                                  _vm._v(
-                                                    "\n                                      " +
-                                                      _vm._s(
-                                                        service.price *
-                                                          (1 -
-                                                            parseInt(
-                                                              _vm.order.discount
-                                                            ) /
-                                                              100)
-                                                      ) +
-                                                      " Р/" +
-                                                      _vm._s(
-                                                        service.unit.name
-                                                      ) +
-                                                      "\n                                  "
-                                                  )
-                                                ]),
-                                                _vm._v(" "),
-                                                _c("td", [
-                                                  _vm._v(
-                                                    "\n                                      " +
-                                                      _vm._s(
-                                                        _vm.calculateServiceAmount(
-                                                          service.price,
-                                                          service.pivot.quantity
-                                                        ) *
-                                                          (1 -
-                                                            parseInt(
-                                                              _vm.order.discount
-                                                            ) /
-                                                              100)
-                                                      ) +
-                                                      " Р\n                                  "
-                                                  )
-                                                ])
-                                              ]
-                                            : _vm._e(),
-                                          _vm._v(" "),
-                                          !service.can_be_discounted
-                                            ? [
-                                                _c("td", [
-                                                  _vm._v(
-                                                    "\n                                      " +
-                                                      _vm._s(service.price) +
-                                                      " Р/" +
-                                                      _vm._s(
-                                                        service.unit.name
-                                                      ) +
-                                                      "\n                                  "
-                                                  )
-                                                ]),
-                                                _vm._v(" "),
-                                                _c("td", [
-                                                  _vm._v(
-                                                    "\n                                      " +
-                                                      _vm._s(
-                                                        _vm.calculateServiceAmount(
-                                                          service.price,
-                                                          service.pivot.quantity
-                                                        )
-                                                      ) +
-                                                      " Р\n                                  "
-                                                  )
-                                                ])
-                                              ]
-                                            : _vm._e()
-                                        ]
-                                      : _vm._e(),
-                                    _vm._v(" "),
-                                    _vm.order.markup
-                                      ? [
-                                          _c("td", [
-                                            _vm._v(
-                                              "\n                                  " +
-                                                _vm._s(
-                                                  service.price *
-                                                    (1 +
-                                                      parseInt(
-                                                        _vm.order.markup
-                                                      ) /
-                                                        100)
-                                                ) +
-                                                " Р/" +
-                                                _vm._s(service.unit.name) +
-                                                "\n                              "
-                                            )
-                                          ]),
-                                          _vm._v(" "),
-                                          _c("td", [
-                                            _vm._v(
-                                              "\n                                  " +
-                                                _vm._s(
-                                                  _vm.calculateServiceAmount(
-                                                    service.price,
-                                                    service.pivot.quantity
-                                                  ) *
-                                                    (1 +
-                                                      parseInt(
-                                                        _vm.order.markup
-                                                      ) /
-                                                        100)
-                                                ) +
-                                                " Р\n                              "
-                                            )
-                                          ])
-                                        ]
-                                      : _vm._e(),
-                                    _vm._v(" "),
-                                    _vm.order.markup === null &&
-                                    _vm.order.discount === null
-                                      ? [
-                                          _c("td", [
-                                            _vm._v(
-                                              "\n                                  " +
-                                                _vm._s(service.price) +
-                                                " Р/" +
-                                                _vm._s(service.unit.name) +
-                                                "\n                              "
-                                            )
-                                          ]),
-                                          _vm._v(" "),
-                                          _c("td", [
-                                            _vm._v(
-                                              "\n                                  " +
-                                                _vm._s(
-                                                  _vm.calculateServiceAmount(
-                                                    service.price,
-                                                    service.pivot.quantity
-                                                  )
-                                                ) +
-                                                " Р\n                              "
-                                            )
-                                          ])
-                                        ]
-                                      : _vm._e()
-                                  ],
-                                  2
+                        _c("td", [
+                          _vm._v(
+                            "\n                          " +
+                              _vm._s(
+                                _vm.getServiceDetails(
+                                  room_service.service_id,
+                                  "price"
                                 )
-                              })
-                            )
-                          ])
+                              ) +
+                              " Р/" +
+                              _vm._s(
+                                _vm.getServiceDetails(
+                                  room_service.service_id,
+                                  "unit"
+                                )
+                              ) +
+                              "\n                      "
+                          )
+                        ]),
+                        _vm._v(" "),
+                        _c("td", [
+                          _vm._v(
+                            "\n                          " +
+                              _vm._s(
+                                _vm.calculateServiceAmount(
+                                  _vm.getServiceDetails(
+                                    room_service.service_id,
+                                    "price"
+                                  ),
+                                  _vm.selected_service_quantities[
+                                    room_service.service_id
+                                  ]
+                                )
+                              ) +
+                              " Р\n                      "
+                          )
                         ])
                       ])
-                    ]
-                  : _vm._e(),
-                _vm._v(" "),
-                _vm.room.room_type_id === 2
-                  ? [
-                      _c("div", { staticClass: "row bg px-3" }, [
-                        _c(
-                          "div",
-                          {
-                            staticClass:
-                              "main-subtitle main-subtitle--fz col-12 pt-4 pl-2"
-                          },
-                          [
-                            _vm._v(
-                              "\n                  Электричество\n                "
-                            )
-                          ]
-                        ),
-                        _vm._v(" "),
-                        _c("div", { staticClass: "col-12 px-0" }, [
-                          _c("table", { staticClass: "table table-hover" }, [
-                            _c(
-                              "tbody",
-                              _vm._l(_vm.getServices(5), function(service) {
-                                return _c(
-                                  "tr",
-                                  [
-                                    _c(
-                                      "th",
-                                      {
-                                        staticClass: "w-50 pl-1",
-                                        attrs: { scope: "row" }
-                                      },
-                                      [
-                                        _c(
-                                          "div",
-                                          {
-                                            staticClass:
-                                              "form-check custom-control checkbox"
-                                          },
-                                          [
-                                            _c("input", {
-                                              staticClass:
-                                                "form-check-input check",
-                                              attrs: {
-                                                id:
-                                                  "room-" +
-                                                  _vm.room.id +
-                                                  "service-" +
-                                                  service.id,
-                                                type: "checkbox"
-                                              },
-                                              domProps: {
-                                                checked: _vm.finished_room_service_ids.includes(
-                                                  service.id
-                                                )
-                                              },
-                                              on: {
-                                                click: function($event) {
-                                                  _vm.addToSelectedServiceId(
-                                                    service.id
-                                                  )
-                                                }
-                                              }
-                                            }),
-                                            _vm._v(" "),
-                                            _c(
-                                              "label",
-                                              {
-                                                staticClass:
-                                                  "form-check-label d-block",
-                                                attrs: {
-                                                  for:
-                                                    "room-" +
-                                                    _vm.room.id +
-                                                    "service-" +
-                                                    service.id
-                                                }
-                                              },
-                                              [
-                                                _vm._v(
-                                                  "\n                                  " +
-                                                    _vm._s(service.name) +
-                                                    "\n                              "
-                                                )
-                                              ]
-                                            )
-                                          ]
-                                        )
-                                      ]
-                                    ),
-                                    _vm._v(" "),
-                                    _c("td", { staticClass: "py-1 pl-1" }, [
-                                      _c(
-                                        "div",
-                                        {
-                                          staticClass:
-                                            "d-flex align-items-center"
-                                        },
-                                        [
-                                          _c("input", {
-                                            directives: [
-                                              {
-                                                name: "model",
-                                                rawName: "v-model",
-                                                value:
-                                                  _vm
-                                                    .selected_service_quantities[
-                                                    service.id
-                                                  ],
-                                                expression:
-                                                  "selected_service_quantities[service.id]"
-                                              }
-                                            ],
-                                            staticClass: "form-control w-85",
-                                            attrs: {
-                                              type: "number",
-                                              id:
-                                                "room-" +
-                                                _vm.room.id +
-                                                "service-" +
-                                                service.id
-                                            },
-                                            domProps: {
-                                              value:
-                                                _vm.selected_service_quantities[
-                                                  service.id
-                                                ]
-                                            },
-                                            on: {
-                                              change: function($event) {
-                                                _vm.linkSelectedServicesToFinishedRoom()
-                                              },
-                                              input: function($event) {
-                                                if ($event.target.composing) {
-                                                  return
-                                                }
-                                                _vm.$set(
-                                                  _vm.selected_service_quantities,
-                                                  service.id,
-                                                  $event.target.value
-                                                )
-                                              }
-                                            }
-                                          }),
-                                          _vm._v(" "),
-                                          _c(
-                                            "div",
-                                            { staticClass: "col-auto pl-2" },
-                                            [
-                                              _vm._v(
-                                                "\n                                      " +
-                                                  _vm._s(service.unit.name) +
-                                                  "\n                                  "
-                                              )
-                                            ]
-                                          )
-                                        ]
-                                      )
-                                    ]),
-                                    _vm._v(" "),
-                                    _vm.order.discount
-                                      ? [
-                                          service.can_be_discounted
-                                            ? [
-                                                _c("td", [
-                                                  _vm._v(
-                                                    "\n                                      " +
-                                                      _vm._s(
-                                                        service.price *
-                                                          (1 -
-                                                            parseInt(
-                                                              _vm.order.discount
-                                                            ) /
-                                                              100)
-                                                      ) +
-                                                      " Р/" +
-                                                      _vm._s(
-                                                        service.unit.name
-                                                      ) +
-                                                      "\n                                  "
-                                                  )
-                                                ]),
-                                                _vm._v(" "),
-                                                _c("td", [
-                                                  _vm._v(
-                                                    "\n                                      " +
-                                                      _vm._s(
-                                                        _vm.calculateServiceAmount(
-                                                          service.price,
-                                                          service.pivot.quantity
-                                                        ) *
-                                                          (1 -
-                                                            parseInt(
-                                                              _vm.order.discount
-                                                            ) /
-                                                              100)
-                                                      ) +
-                                                      " Р\n                                  "
-                                                  )
-                                                ])
-                                              ]
-                                            : _vm._e(),
-                                          _vm._v(" "),
-                                          !service.can_be_discounted
-                                            ? [
-                                                _c("td", [
-                                                  _vm._v(
-                                                    "\n                                      " +
-                                                      _vm._s(service.price) +
-                                                      " Р/" +
-                                                      _vm._s(
-                                                        service.unit.name
-                                                      ) +
-                                                      "\n                                  "
-                                                  )
-                                                ]),
-                                                _vm._v(" "),
-                                                _c("td", [
-                                                  _vm._v(
-                                                    "\n                                      " +
-                                                      _vm._s(
-                                                        _vm.calculateServiceAmount(
-                                                          service.price,
-                                                          service.pivot.quantity
-                                                        )
-                                                      ) +
-                                                      " Р\n                                  "
-                                                  )
-                                                ])
-                                              ]
-                                            : _vm._e()
-                                        ]
-                                      : _vm._e(),
-                                    _vm._v(" "),
-                                    _vm.order.markup
-                                      ? [
-                                          _c("td", [
-                                            _vm._v(
-                                              "\n                                  " +
-                                                _vm._s(
-                                                  service.price *
-                                                    (1 +
-                                                      parseInt(
-                                                        _vm.order.markup
-                                                      ) /
-                                                        100)
-                                                ) +
-                                                " Р/" +
-                                                _vm._s(service.unit.name) +
-                                                "\n                              "
-                                            )
-                                          ]),
-                                          _vm._v(" "),
-                                          _c("td", [
-                                            _vm._v(
-                                              "\n                                  " +
-                                                _vm._s(
-                                                  _vm.calculateServiceAmount(
-                                                    service.price,
-                                                    service.pivot.quantity
-                                                  ) *
-                                                    (1 +
-                                                      parseInt(
-                                                        _vm.order.markup
-                                                      ) /
-                                                        100)
-                                                ) +
-                                                " Р\n                              "
-                                            )
-                                          ])
-                                        ]
-                                      : _vm._e(),
-                                    _vm._v(" "),
-                                    _vm.order.markup === null &&
-                                    _vm.order.discount === null
-                                      ? [
-                                          _c("td", [
-                                            _vm._v(
-                                              "\n                                  " +
-                                                _vm._s(service.price) +
-                                                " Р/" +
-                                                _vm._s(service.unit.name) +
-                                                "\n                              "
-                                            )
-                                          ]),
-                                          _vm._v(" "),
-                                          _c("td", [
-                                            _vm._v(
-                                              "\n                                  " +
-                                                _vm._s(
-                                                  _vm.calculateServiceAmount(
-                                                    service.price,
-                                                    service.pivot.quantity
-                                                  )
-                                                ) +
-                                                " Р\n                              "
-                                            )
-                                          ])
-                                        ]
-                                      : _vm._e()
-                                  ],
-                                  2
-                                )
-                              })
-                            )
-                          ])
-                        ])
-                      ])
-                    ]
-                  : _vm._e(),
-                _vm._v(" "),
-                _vm.room.room_type_id === 3
-                  ? [
-                      _c("div", { staticClass: "row bg px-3" }, [
-                        _c(
-                          "div",
-                          {
-                            staticClass:
-                              "main-subtitle main-subtitle--fz col-12 pt-4 pl-2"
-                          },
-                          [
-                            _vm._v(
-                              "\n                  Сантехники\n                "
-                            )
-                          ]
-                        ),
-                        _vm._v(" "),
-                        _c("div", { staticClass: "col-12 px-0" }, [
-                          _c("table", { staticClass: "table table-hover" }, [
-                            _c(
-                              "tbody",
-                              _vm._l(_vm.getServices(4), function(service) {
-                                return _c(
-                                  "tr",
-                                  [
-                                    _c(
-                                      "th",
-                                      {
-                                        staticClass: "w-50 pl-1",
-                                        attrs: { scope: "row" }
-                                      },
-                                      [
-                                        _c(
-                                          "div",
-                                          {
-                                            staticClass:
-                                              "form-check custom-control checkbox"
-                                          },
-                                          [
-                                            _c("input", {
-                                              staticClass:
-                                                "form-check-input check",
-                                              attrs: {
-                                                id:
-                                                  "room-" +
-                                                  _vm.room.id +
-                                                  "service-" +
-                                                  service.id,
-                                                type: "checkbox"
-                                              },
-                                              domProps: {
-                                                checked: _vm.finished_room_service_ids.includes(
-                                                  service.id
-                                                )
-                                              },
-                                              on: {
-                                                click: function($event) {
-                                                  _vm.addToSelectedServiceId(
-                                                    service.id
-                                                  )
-                                                }
-                                              }
-                                            }),
-                                            _vm._v(" "),
-                                            _c(
-                                              "label",
-                                              {
-                                                staticClass:
-                                                  "form-check-label d-block",
-                                                attrs: {
-                                                  for:
-                                                    "room-" +
-                                                    _vm.room.id +
-                                                    "service-" +
-                                                    service.id
-                                                }
-                                              },
-                                              [
-                                                _vm._v(
-                                                  "\n                                  " +
-                                                    _vm._s(service.name) +
-                                                    "\n                              "
-                                                )
-                                              ]
-                                            )
-                                          ]
-                                        )
-                                      ]
-                                    ),
-                                    _vm._v(" "),
-                                    _c("td", { staticClass: "py-1 pl-1" }, [
-                                      _c(
-                                        "div",
-                                        {
-                                          staticClass:
-                                            "d-flex align-items-center"
-                                        },
-                                        [
-                                          _c("input", {
-                                            directives: [
-                                              {
-                                                name: "model",
-                                                rawName: "v-model",
-                                                value:
-                                                  _vm
-                                                    .selected_service_quantities[
-                                                    service.id
-                                                  ],
-                                                expression:
-                                                  "selected_service_quantities[service.id]"
-                                              }
-                                            ],
-                                            staticClass: "form-control w-85",
-                                            attrs: {
-                                              type: "number",
-                                              id:
-                                                "room-" +
-                                                _vm.room.id +
-                                                "service-" +
-                                                service.id
-                                            },
-                                            domProps: {
-                                              value:
-                                                _vm.selected_service_quantities[
-                                                  service.id
-                                                ]
-                                            },
-                                            on: {
-                                              change: function($event) {
-                                                _vm.linkSelectedServicesToFinishedRoom()
-                                              },
-                                              input: function($event) {
-                                                if ($event.target.composing) {
-                                                  return
-                                                }
-                                                _vm.$set(
-                                                  _vm.selected_service_quantities,
-                                                  service.id,
-                                                  $event.target.value
-                                                )
-                                              }
-                                            }
-                                          }),
-                                          _vm._v(" "),
-                                          _c(
-                                            "div",
-                                            { staticClass: "col-auto pl-2" },
-                                            [
-                                              _vm._v(
-                                                "\n                                      " +
-                                                  _vm._s(service.unit.name) +
-                                                  "\n                                  "
-                                              )
-                                            ]
-                                          )
-                                        ]
-                                      )
-                                    ]),
-                                    _vm._v(" "),
-                                    _vm.order.discount
-                                      ? [
-                                          service.can_be_discounted
-                                            ? [
-                                                _c("td", [
-                                                  _vm._v(
-                                                    "\n                                      " +
-                                                      _vm._s(
-                                                        service.price *
-                                                          (1 -
-                                                            parseInt(
-                                                              _vm.order.discount
-                                                            ) /
-                                                              100)
-                                                      ) +
-                                                      " Р/" +
-                                                      _vm._s(
-                                                        service.unit.name
-                                                      ) +
-                                                      "\n                                  "
-                                                  )
-                                                ]),
-                                                _vm._v(" "),
-                                                _c("td", [
-                                                  _vm._v(
-                                                    "\n                                      " +
-                                                      _vm._s(
-                                                        _vm.calculateServiceAmount(
-                                                          service.price,
-                                                          service.pivot.quantity
-                                                        ) *
-                                                          (1 -
-                                                            parseInt(
-                                                              _vm.order.discount
-                                                            ) /
-                                                              100)
-                                                      ) +
-                                                      " Р\n                                  "
-                                                  )
-                                                ])
-                                              ]
-                                            : _vm._e(),
-                                          _vm._v(" "),
-                                          !service.can_be_discounted
-                                            ? [
-                                                _c("td", [
-                                                  _vm._v(
-                                                    "\n                                      " +
-                                                      _vm._s(service.price) +
-                                                      " Р/" +
-                                                      _vm._s(
-                                                        service.unit.name
-                                                      ) +
-                                                      "\n                                  "
-                                                  )
-                                                ]),
-                                                _vm._v(" "),
-                                                _c("td", [
-                                                  _vm._v(
-                                                    "\n                                      " +
-                                                      _vm._s(
-                                                        _vm.calculateServiceAmount(
-                                                          service.price,
-                                                          service.pivot.quantity
-                                                        )
-                                                      ) +
-                                                      " Р\n                                  "
-                                                  )
-                                                ])
-                                              ]
-                                            : _vm._e()
-                                        ]
-                                      : _vm._e(),
-                                    _vm._v(" "),
-                                    _vm.order.markup
-                                      ? [
-                                          _c("td", [
-                                            _vm._v(
-                                              "\n                                  " +
-                                                _vm._s(
-                                                  service.price *
-                                                    (1 +
-                                                      parseInt(
-                                                        _vm.order.markup
-                                                      ) /
-                                                        100)
-                                                ) +
-                                                " Р/" +
-                                                _vm._s(service.unit.name) +
-                                                "\n                              "
-                                            )
-                                          ]),
-                                          _vm._v(" "),
-                                          _c("td", [
-                                            _vm._v(
-                                              "\n                                  " +
-                                                _vm._s(
-                                                  _vm.calculateServiceAmount(
-                                                    service.price,
-                                                    service.pivot.quantity
-                                                  ) *
-                                                    (1 +
-                                                      parseInt(
-                                                        _vm.order.markup
-                                                      ) /
-                                                        100)
-                                                ) +
-                                                " Р\n                              "
-                                            )
-                                          ])
-                                        ]
-                                      : _vm._e(),
-                                    _vm._v(" "),
-                                    _vm.order.markup === null &&
-                                    _vm.order.discount === null
-                                      ? [
-                                          _c("td", [
-                                            _vm._v(
-                                              "\n                                  " +
-                                                _vm._s(service.price) +
-                                                " Р/" +
-                                                _vm._s(service.unit.name) +
-                                                "\n                              "
-                                            )
-                                          ]),
-                                          _vm._v(" "),
-                                          _c("td", [
-                                            _vm._v(
-                                              "\n                                  " +
-                                                _vm._s(
-                                                  _vm.calculateServiceAmount(
-                                                    service.price,
-                                                    service.pivot.quantity
-                                                  )
-                                                ) +
-                                                " Р\n                              "
-                                            )
-                                          ])
-                                        ]
-                                      : _vm._e()
-                                  ],
-                                  2
-                                )
-                              })
-                            )
-                          ])
-                        ])
-                      ])
-                    ]
-                  : _vm._e()
-              ],
-              2
-            )
-          ]
-        : _vm._e()
+                    })
+                  )
+                ])
+              ])
+            ])
+          ])
+        ]
+      })
     ],
     2
   )
@@ -67650,7 +65941,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
             selected_id: null,
 
-            room_services: [],
             room_service_ids: [],
             rooms: []
 
@@ -68321,671 +66611,578 @@ var render = function() {
                     ])
                   ]),
                   _vm._v(" "),
-                  _vm.room_services
-                    ? [
-                        _vm._l(_vm.room_service_ids, function(
-                          room_service,
-                          index
-                        ) {
-                          return [
-                            _c(
-                              "div",
-                              { staticClass: "projects__information" },
-                              [
-                                _c(
-                                  "div",
-                                  { staticClass: "px-15 pb-3" },
-                                  [
-                                    !_vm.show
-                                      ? [
-                                          _c(
-                                            "h2",
-                                            {
-                                              staticClass:
-                                                "main-subtitle main-subtitle--room",
-                                              on: { click: _vm.changeRoomName }
-                                            },
-                                            [
-                                              _vm._v(
-                                                "\n                                                    " +
-                                                  _vm._s(
-                                                    _vm.getRoomDetails(
-                                                      room_service[0],
-                                                      "description"
-                                                    )
-                                                      ? _vm.getRoomDetails(
-                                                          room_service[0],
-                                                          "description"
-                                                        )
-                                                      : _vm.getRoomDetails(
-                                                          room_service[0],
-                                                          "room_type"
-                                                        )
-                                                  ) +
-                                                  "\n\n                                                "
-                                              )
-                                            ]
-                                          )
-                                        ]
-                                      : [
-                                          _c(
-                                            "div",
-                                            {
-                                              staticClass: "row",
-                                              staticStyle: {
-                                                "padding-top": "30px"
-                                              },
-                                              on: {
-                                                mouseleave: function($event) {
-                                                  _vm.show = false
-                                                }
-                                              }
-                                            },
-                                            [
-                                              _c(
-                                                "div",
-                                                { staticClass: "col-md-6" },
-                                                [
-                                                  _c(
-                                                    "div",
-                                                    {
-                                                      staticClass: "form-group"
-                                                    },
-                                                    [
-                                                      _c("input", {
-                                                        directives: [
-                                                          {
-                                                            name: "model",
-                                                            rawName: "v-model",
-                                                            value:
-                                                              _vm.descriptions[
-                                                                room_service[0]
-                                                              ],
-                                                            expression:
-                                                              "descriptions[room_service[0]]"
-                                                          }
-                                                        ],
-                                                        staticClass:
-                                                          "form-control",
-                                                        attrs: {
-                                                          type: "text",
-                                                          placeholder: _vm.getRoomDetails(
-                                                            room_service[0],
-                                                            "room_type"
-                                                          )
-                                                        },
-                                                        domProps: {
-                                                          value:
-                                                            _vm.descriptions[
-                                                              room_service[0]
-                                                            ]
-                                                        },
-                                                        on: {
-                                                          change: function(
-                                                            $event
-                                                          ) {
-                                                            _vm.updateDescription(
-                                                              room_service[0]
-                                                            )
-                                                          },
-                                                          input: function(
-                                                            $event
-                                                          ) {
-                                                            if (
-                                                              $event.target
-                                                                .composing
-                                                            ) {
-                                                              return
-                                                            }
-                                                            _vm.$set(
-                                                              _vm.descriptions,
-                                                              room_service[0],
-                                                              $event.target
-                                                                .value
-                                                            )
-                                                          }
-                                                        }
-                                                      })
-                                                    ]
-                                                  )
-                                                ]
-                                              )
-                                            ]
-                                          )
-                                        ]
-                                  ],
-                                  2
-                                ),
-                                _vm._v(" "),
-                                _vm.getRoomDetails(
-                                  room_service[0],
-                                  "room_type_id"
-                                ) === 1
-                                  ? [
-                                      _c(
-                                        "div",
-                                        {
-                                          staticClass:
-                                            "projects__desc col-8 d-flex justify-content-between align-items-center pt-3"
-                                        },
-                                        [
-                                          _c(
-                                            "div",
-                                            {
-                                              staticClass: "projects__desc-item"
-                                            },
-                                            [
-                                              _vm._v(
-                                                "Общая площадь: " +
-                                                  _vm._s(
-                                                    _vm.getRoomDetails(
-                                                      room_service[0],
-                                                      "area"
-                                                    )
-                                                  ) +
-                                                  " м"
-                                              ),
-                                              _c("sup", [_vm._v("2")])
-                                            ]
-                                          ),
-                                          _vm._v(" "),
-                                          _c(
-                                            "div",
-                                            {
-                                              staticClass: "projects__desc-item"
-                                            },
-                                            [
-                                              _vm._v(
-                                                "Высота потолка: " +
-                                                  _vm._s(
-                                                    _vm.getRoomDetails(
-                                                      room_service[0],
-                                                      "height"
-                                                    )
-                                                  ) +
-                                                  " м"
-                                              )
-                                            ]
-                                          ),
-                                          _vm._v(" "),
-                                          _c(
-                                            "div",
-                                            {
-                                              staticClass: "projects__desc-item"
-                                            },
-                                            [
-                                              _vm._v(
-                                                "Площадь стен: " +
-                                                  _vm._s(
-                                                    _vm.getRoomDetails(
-                                                      room_service[0],
-                                                      "wall_area"
-                                                    )
-                                                  ) +
-                                                  " м"
-                                              ),
-                                              _c("sup", [_vm._v("2")])
-                                            ]
-                                          ),
-                                          _vm._v(" "),
-                                          _c(
-                                            "div",
-                                            {
-                                              staticClass: "projects__desc-item"
-                                            },
-                                            [
-                                              _vm._v(
-                                                "Периметр: " +
-                                                  _vm._s(
-                                                    _vm.getRoomDetails(
-                                                      room_service[0],
-                                                      "perimeter"
-                                                    )
-                                                  )
-                                              )
-                                            ]
-                                          )
-                                        ]
-                                      )
-                                    ]
-                                  : _vm._e(),
-                                _vm._v(" "),
-                                _vm._l(
-                                  _vm.groupByServiceType(room_service[1]),
-                                  function(services, service_type_id) {
-                                    return [
-                                      _c(
-                                        "div",
-                                        { staticClass: "row bg px-15" },
-                                        [
-                                          _c(
-                                            "div",
-                                            {
-                                              staticClass:
-                                                "main-subtitle main-subtitle--fz col-12 pt-4"
-                                            },
-                                            [
-                                              _vm._v(
-                                                "\n                                                        " +
-                                                  _vm._s(
-                                                    _vm.getServiceTypeName(
-                                                      service_type_id
-                                                    )
-                                                  ) +
-                                                  "\n                                                    "
-                                              )
-                                            ]
-                                          ),
-                                          _vm._v(" "),
-                                          _c(
-                                            "div",
-                                            { staticClass: "col-12 px-0" },
-                                            [
-                                              _c(
-                                                "table",
-                                                {
-                                                  staticClass:
-                                                    "table table-hover"
-                                                },
-                                                [
-                                                  _c(
-                                                    "tbody",
-                                                    _vm._l(
-                                                      _vm.sortServicesByCreatedAt(
-                                                        services
-                                                      ),
-                                                      function(room_service) {
-                                                        return _c(
-                                                          "tr",
-                                                          [
-                                                            _c(
-                                                              "th",
-                                                              {
-                                                                staticClass:
-                                                                  "w-50",
-                                                                attrs: {
-                                                                  scope: "row"
-                                                                }
-                                                              },
-                                                              [
-                                                                _vm._v(
-                                                                  "\n                                                                        " +
-                                                                    _vm._s(
-                                                                      _vm.getServiceDetails(
-                                                                        room_service.service_id,
-                                                                        "name"
-                                                                      )
-                                                                    ) +
-                                                                    "\n                                                                    "
-                                                                )
-                                                              ]
-                                                            ),
-                                                            _vm._v(" "),
-                                                            _c("td", [
-                                                              _vm._v(
-                                                                _vm._s(
-                                                                  room_service.quantity
-                                                                ) + " м"
-                                                              ),
-                                                              _c("sup", [
-                                                                _vm._v("2")
-                                                              ])
-                                                            ]),
-                                                            _vm._v(" "),
-                                                            _vm.order.discount
-                                                              ? [
-                                                                  _vm.getServiceDetails(
-                                                                    room_service.service_id,
-                                                                    "can_be_discounted"
-                                                                  )
-                                                                    ? [
-                                                                        _c(
-                                                                          "td",
-                                                                          [
-                                                                            _vm._v(
-                                                                              _vm._s(
-                                                                                _vm.getServiceDetails(
-                                                                                  room_service.service_id,
-                                                                                  "price"
-                                                                                ) *
-                                                                                  (1 -
-                                                                                    parseInt(
-                                                                                      _vm
-                                                                                        .order
-                                                                                        .discount
-                                                                                    ) /
-                                                                                      100)
-                                                                              ) +
-                                                                                " Р/м"
-                                                                            ),
-                                                                            _c(
-                                                                              "sup",
-                                                                              [
-                                                                                _vm._v(
-                                                                                  "2"
-                                                                                )
-                                                                              ]
-                                                                            )
-                                                                          ]
-                                                                        ),
-                                                                        _vm._v(
-                                                                          " "
-                                                                        ),
-                                                                        _c(
-                                                                          "td",
-                                                                          [
-                                                                            _vm._v(
-                                                                              _vm._s(
-                                                                                _vm.priceCount(
-                                                                                  room_service.quantity,
-                                                                                  _vm.getServiceDetails(
-                                                                                    room_service.service_id,
-                                                                                    "price"
-                                                                                  ) *
-                                                                                    (1 -
-                                                                                      parseFloat(
-                                                                                        _vm
-                                                                                          .order
-                                                                                          .discount
-                                                                                      ) /
-                                                                                        100)
-                                                                                )
-                                                                              ) +
-                                                                                " Р"
-                                                                            )
-                                                                          ]
-                                                                        )
-                                                                      ]
-                                                                    : [
-                                                                        _c(
-                                                                          "td",
-                                                                          [
-                                                                            _vm._v(
-                                                                              _vm._s(
-                                                                                _vm.getServiceDetails(
-                                                                                  room_service.service_id,
-                                                                                  "price"
-                                                                                )
-                                                                              ) +
-                                                                                " Р/м"
-                                                                            ),
-                                                                            _c(
-                                                                              "sup",
-                                                                              [
-                                                                                _vm._v(
-                                                                                  "2"
-                                                                                )
-                                                                              ]
-                                                                            )
-                                                                          ]
-                                                                        ),
-                                                                        _vm._v(
-                                                                          " "
-                                                                        ),
-                                                                        _c(
-                                                                          "td",
-                                                                          [
-                                                                            _vm._v(
-                                                                              _vm._s(
-                                                                                _vm.priceCount(
-                                                                                  room_service.quantity,
-                                                                                  _vm.getServiceDetails(
-                                                                                    room_service.service_id,
-                                                                                    "price"
-                                                                                  )
-                                                                                )
-                                                                              ) +
-                                                                                " Р"
-                                                                            )
-                                                                          ]
-                                                                        )
-                                                                      ]
-                                                                ]
-                                                              : _vm._e(),
-                                                            _vm._v(" "),
-                                                            _vm.order.markup
-                                                              ? [
-                                                                  _c("td", [
-                                                                    _vm._v(
-                                                                      _vm._s(
-                                                                        _vm.getServiceDetails(
-                                                                          room_service.service_id,
-                                                                          "price"
-                                                                        ) *
-                                                                          (1 +
-                                                                            parseInt(
-                                                                              _vm
-                                                                                .order
-                                                                                .markup
-                                                                            ) /
-                                                                              100)
-                                                                      ) + " Р/м"
-                                                                    ),
-                                                                    _c("sup", [
-                                                                      _vm._v(
-                                                                        "2"
-                                                                      )
-                                                                    ])
-                                                                  ]),
-                                                                  _vm._v(" "),
-                                                                  _c("td", [
-                                                                    _vm._v(
-                                                                      _vm._s(
-                                                                        _vm.priceCount(
-                                                                          room_service.quantity,
-                                                                          _vm.getServiceDetails(
-                                                                            room_service.service_id,
-                                                                            "price"
-                                                                          ) *
-                                                                            (1 +
-                                                                              parseFloat(
-                                                                                _vm
-                                                                                  .order
-                                                                                  .markup
-                                                                              ) /
-                                                                                100)
-                                                                        )
-                                                                      ) + " Р"
-                                                                    )
-                                                                  ])
-                                                                ]
-                                                              : _vm._e(),
-                                                            _vm._v(" "),
-                                                            _vm.order
-                                                              .discount ===
-                                                              null &&
-                                                            _vm.order.markup ===
-                                                              null
-                                                              ? [
-                                                                  _c("td", [
-                                                                    _vm._v(
-                                                                      _vm._s(
-                                                                        _vm.getServiceDetails(
-                                                                          room_service.service_id,
-                                                                          "price"
-                                                                        )
-                                                                      ) + " Р/м"
-                                                                    ),
-                                                                    _c("sup", [
-                                                                      _vm._v(
-                                                                        "2"
-                                                                      )
-                                                                    ])
-                                                                  ]),
-                                                                  _vm._v(" "),
-                                                                  _c("td", [
-                                                                    _vm._v(
-                                                                      _vm._s(
-                                                                        _vm.priceCount(
-                                                                          room_service.quantity,
-                                                                          _vm.getServiceDetails(
-                                                                            room_service.service_id,
-                                                                            "price"
-                                                                          )
-                                                                        )
-                                                                      ) + " Р"
-                                                                    )
-                                                                  ])
-                                                                ]
-                                                              : _vm._e()
-                                                          ],
-                                                          2
-                                                        )
-                                                      }
-                                                    )
-                                                  )
-                                                ]
-                                              )
-                                            ]
-                                          )
-                                        ]
-                                      )
-                                    ]
-                                  }
-                                )
-                              ],
-                              2
-                            )
-                          ]
-                        }),
-                        _vm._v(" "),
-                        _c("div", { staticClass: "row bg py-4" }, [
+                  _vm._l(_vm.room_service_ids, function(room_service, index) {
+                    return [
+                      _c(
+                        "div",
+                        { staticClass: "projects__information" },
+                        [
                           _c(
                             "div",
-                            {
-                              staticClass:
-                                "col-12 d-flex align-items-center justify-content-end"
-                            },
+                            { staticClass: "px-15 pb-3" },
                             [
-                              _c("div", { staticClass: "col-2" }, [
-                                _c(
-                                  "select",
-                                  {
-                                    directives: [
+                              !_vm.show
+                                ? [
+                                    _c(
+                                      "h2",
                                       {
-                                        name: "model",
-                                        rawName: "v-model",
-                                        value: _vm.selected_id,
-                                        expression: "selected_id"
-                                      }
-                                    ],
-                                    staticClass: "form-control",
-                                    on: {
-                                      change: [
-                                        function($event) {
-                                          var $$selectedVal = Array.prototype.filter
-                                            .call(
-                                              $event.target.options,
-                                              function(o) {
-                                                return o.selected
-                                              }
-                                            )
-                                            .map(function(o) {
-                                              var val =
-                                                "_value" in o
-                                                  ? o._value
-                                                  : o.value
-                                              return val
-                                            })
-                                          _vm.selected_id = $event.target
-                                            .multiple
-                                            ? $$selectedVal
-                                            : $$selectedVal[0]
-                                        },
-                                        function($event) {
-                                          _vm.percentage = null
-                                        }
+                                        staticClass:
+                                          "main-subtitle main-subtitle--room",
+                                        on: { click: _vm.changeRoomName }
+                                      },
+                                      [
+                                        _vm._v(
+                                          "\n                                            " +
+                                            _vm._s(
+                                              _vm.getRoomDetails(
+                                                room_service[0],
+                                                "description"
+                                              )
+                                                ? _vm.getRoomDetails(
+                                                    room_service[0],
+                                                    "description"
+                                                  )
+                                                : _vm.getRoomDetails(
+                                                    room_service[0],
+                                                    "room_type"
+                                                  )
+                                            ) +
+                                            "\n\n                                        "
+                                        )
                                       ]
-                                    }
+                                    )
+                                  ]
+                                : [
+                                    _c(
+                                      "div",
+                                      {
+                                        staticClass: "row",
+                                        staticStyle: { "padding-top": "30px" },
+                                        on: {
+                                          mouseleave: function($event) {
+                                            _vm.show = false
+                                          }
+                                        }
+                                      },
+                                      [
+                                        _c("div", { staticClass: "col-md-6" }, [
+                                          _c(
+                                            "div",
+                                            { staticClass: "form-group" },
+                                            [
+                                              _c("input", {
+                                                directives: [
+                                                  {
+                                                    name: "model",
+                                                    rawName: "v-model",
+                                                    value:
+                                                      _vm.descriptions[
+                                                        room_service[0]
+                                                      ],
+                                                    expression:
+                                                      "descriptions[room_service[0]]"
+                                                  }
+                                                ],
+                                                staticClass: "form-control",
+                                                attrs: {
+                                                  type: "text",
+                                                  placeholder: _vm.getRoomDetails(
+                                                    room_service[0],
+                                                    "room_type"
+                                                  )
+                                                },
+                                                domProps: {
+                                                  value:
+                                                    _vm.descriptions[
+                                                      room_service[0]
+                                                    ]
+                                                },
+                                                on: {
+                                                  change: function($event) {
+                                                    _vm.updateDescription(
+                                                      room_service[0]
+                                                    )
+                                                  },
+                                                  input: function($event) {
+                                                    if (
+                                                      $event.target.composing
+                                                    ) {
+                                                      return
+                                                    }
+                                                    _vm.$set(
+                                                      _vm.descriptions,
+                                                      room_service[0],
+                                                      $event.target.value
+                                                    )
+                                                  }
+                                                }
+                                              })
+                                            ]
+                                          )
+                                        ])
+                                      ]
+                                    )
+                                  ]
+                            ],
+                            2
+                          ),
+                          _vm._v(" "),
+                          _vm.getRoomDetails(
+                            room_service[0],
+                            "room_type_id"
+                          ) === 1
+                            ? [
+                                _c(
+                                  "div",
+                                  {
+                                    staticClass:
+                                      "projects__desc col-8 d-flex justify-content-between align-items-center pt-3"
                                   },
                                   [
-                                    _c("option", { attrs: { value: "null" } }, [
-                                      _vm._v("Выберите")
-                                    ]),
+                                    _c(
+                                      "div",
+                                      { staticClass: "projects__desc-item" },
+                                      [
+                                        _vm._v(
+                                          "Общая площадь: " +
+                                            _vm._s(
+                                              _vm.getRoomDetails(
+                                                room_service[0],
+                                                "area"
+                                              )
+                                            ) +
+                                            " м"
+                                        ),
+                                        _c("sup", [_vm._v("2")])
+                                      ]
+                                    ),
                                     _vm._v(" "),
-                                    _c("option", { attrs: { value: "1" } }, [
-                                      _vm._v("Скидка")
-                                    ]),
+                                    _c(
+                                      "div",
+                                      { staticClass: "projects__desc-item" },
+                                      [
+                                        _vm._v(
+                                          "Высота потолка: " +
+                                            _vm._s(
+                                              _vm.getRoomDetails(
+                                                room_service[0],
+                                                "height"
+                                              )
+                                            ) +
+                                            " м"
+                                        )
+                                      ]
+                                    ),
                                     _vm._v(" "),
-                                    _c("option", { attrs: { value: "2" } }, [
-                                      _vm._v("Наценка")
-                                    ])
+                                    _c(
+                                      "div",
+                                      { staticClass: "projects__desc-item" },
+                                      [
+                                        _vm._v(
+                                          "Площадь стен: " +
+                                            _vm._s(
+                                              _vm.getRoomDetails(
+                                                room_service[0],
+                                                "wall_area"
+                                              )
+                                            ) +
+                                            " м"
+                                        ),
+                                        _c("sup", [_vm._v("2")])
+                                      ]
+                                    ),
+                                    _vm._v(" "),
+                                    _c(
+                                      "div",
+                                      { staticClass: "projects__desc-item" },
+                                      [
+                                        _vm._v(
+                                          "Периметр: " +
+                                            _vm._s(
+                                              _vm.getRoomDetails(
+                                                room_service[0],
+                                                "perimeter"
+                                              )
+                                            )
+                                        )
+                                      ]
+                                    )
                                   ]
                                 )
-                              ]),
-                              _vm._v(" "),
-                              _c("div", { staticClass: "col-1" }, [
-                                _c("input", {
-                                  directives: [
+                              ]
+                            : _vm._e(),
+                          _vm._v(" "),
+                          _vm._l(
+                            _vm.groupByServiceType(room_service[1]),
+                            function(services, service_type_id) {
+                              return [
+                                _c("div", { staticClass: "row bg px-15" }, [
+                                  _c(
+                                    "div",
                                     {
-                                      name: "model",
-                                      rawName: "v-model",
-                                      value: _vm.percentage,
-                                      expression: "percentage"
-                                    }
-                                  ],
-                                  staticClass: "form-control",
-                                  attrs: {
-                                    type: "number",
-                                    placeholder: "%",
-                                    min: "0"
-                                  },
-                                  domProps: { value: _vm.percentage },
-                                  on: {
-                                    change: function($event) {
-                                      _vm.updateOrderDiscountOrMarkup()
+                                      staticClass:
+                                        "main-subtitle main-subtitle--fz col-12 pt-4"
                                     },
-                                    input: function($event) {
-                                      if ($event.target.composing) {
-                                        return
-                                      }
-                                      _vm.percentage = $event.target.value
-                                    }
+                                    [
+                                      _vm._v(
+                                        "\n                                                " +
+                                          _vm._s(
+                                            _vm.getServiceTypeName(
+                                              service_type_id
+                                            )
+                                          ) +
+                                          "\n                                            "
+                                      )
+                                    ]
+                                  ),
+                                  _vm._v(" "),
+                                  _c("div", { staticClass: "col-12 px-0" }, [
+                                    _c(
+                                      "table",
+                                      { staticClass: "table table-hover" },
+                                      [
+                                        _c(
+                                          "tbody",
+                                          _vm._l(
+                                            _vm.sortServicesByCreatedAt(
+                                              services
+                                            ),
+                                            function(room_service) {
+                                              return _c(
+                                                "tr",
+                                                [
+                                                  _c(
+                                                    "th",
+                                                    {
+                                                      staticClass: "w-50",
+                                                      attrs: { scope: "row" }
+                                                    },
+                                                    [
+                                                      _vm._v(
+                                                        "\n                                                                " +
+                                                          _vm._s(
+                                                            _vm.getServiceDetails(
+                                                              room_service.service_id,
+                                                              "name"
+                                                            )
+                                                          ) +
+                                                          "\n                                                            "
+                                                      )
+                                                    ]
+                                                  ),
+                                                  _vm._v(" "),
+                                                  _c("td", [
+                                                    _vm._v(
+                                                      _vm._s(
+                                                        room_service.quantity
+                                                      ) + " м"
+                                                    ),
+                                                    _c("sup", [_vm._v("2")])
+                                                  ]),
+                                                  _vm._v(" "),
+                                                  _vm.order.discount
+                                                    ? [
+                                                        _vm.getServiceDetails(
+                                                          room_service.service_id,
+                                                          "can_be_discounted"
+                                                        )
+                                                          ? [
+                                                              _c("td", [
+                                                                _vm._v(
+                                                                  _vm._s(
+                                                                    _vm.getServiceDetails(
+                                                                      room_service.service_id,
+                                                                      "price"
+                                                                    ) *
+                                                                      (1 -
+                                                                        parseInt(
+                                                                          _vm
+                                                                            .order
+                                                                            .discount
+                                                                        ) /
+                                                                          100)
+                                                                  ) + " Р/м"
+                                                                ),
+                                                                _c("sup", [
+                                                                  _vm._v("2")
+                                                                ])
+                                                              ]),
+                                                              _vm._v(" "),
+                                                              _c("td", [
+                                                                _vm._v(
+                                                                  _vm._s(
+                                                                    _vm.priceCount(
+                                                                      room_service.quantity,
+                                                                      _vm.getServiceDetails(
+                                                                        room_service.service_id,
+                                                                        "price"
+                                                                      ) *
+                                                                        (1 -
+                                                                          parseFloat(
+                                                                            _vm
+                                                                              .order
+                                                                              .discount
+                                                                          ) /
+                                                                            100)
+                                                                    )
+                                                                  ) + " Р"
+                                                                )
+                                                              ])
+                                                            ]
+                                                          : [
+                                                              _c("td", [
+                                                                _vm._v(
+                                                                  _vm._s(
+                                                                    _vm.getServiceDetails(
+                                                                      room_service.service_id,
+                                                                      "price"
+                                                                    )
+                                                                  ) + " Р/м"
+                                                                ),
+                                                                _c("sup", [
+                                                                  _vm._v("2")
+                                                                ])
+                                                              ]),
+                                                              _vm._v(" "),
+                                                              _c("td", [
+                                                                _vm._v(
+                                                                  _vm._s(
+                                                                    _vm.priceCount(
+                                                                      room_service.quantity,
+                                                                      _vm.getServiceDetails(
+                                                                        room_service.service_id,
+                                                                        "price"
+                                                                      )
+                                                                    )
+                                                                  ) + " Р"
+                                                                )
+                                                              ])
+                                                            ]
+                                                      ]
+                                                    : _vm._e(),
+                                                  _vm._v(" "),
+                                                  _vm.order.markup
+                                                    ? [
+                                                        _c("td", [
+                                                          _vm._v(
+                                                            _vm._s(
+                                                              _vm.getServiceDetails(
+                                                                room_service.service_id,
+                                                                "price"
+                                                              ) *
+                                                                (1 +
+                                                                  parseInt(
+                                                                    _vm.order
+                                                                      .markup
+                                                                  ) /
+                                                                    100)
+                                                            ) + " Р/м"
+                                                          ),
+                                                          _c("sup", [
+                                                            _vm._v("2")
+                                                          ])
+                                                        ]),
+                                                        _vm._v(" "),
+                                                        _c("td", [
+                                                          _vm._v(
+                                                            _vm._s(
+                                                              _vm.priceCount(
+                                                                room_service.quantity,
+                                                                _vm.getServiceDetails(
+                                                                  room_service.service_id,
+                                                                  "price"
+                                                                ) *
+                                                                  (1 +
+                                                                    parseFloat(
+                                                                      _vm.order
+                                                                        .markup
+                                                                    ) /
+                                                                      100)
+                                                              )
+                                                            ) + " Р"
+                                                          )
+                                                        ])
+                                                      ]
+                                                    : _vm._e(),
+                                                  _vm._v(" "),
+                                                  _vm.order.discount === null &&
+                                                  _vm.order.markup === null
+                                                    ? [
+                                                        _c("td", [
+                                                          _vm._v(
+                                                            _vm._s(
+                                                              _vm.getServiceDetails(
+                                                                room_service.service_id,
+                                                                "price"
+                                                              )
+                                                            ) + " Р/м"
+                                                          ),
+                                                          _c("sup", [
+                                                            _vm._v("2")
+                                                          ])
+                                                        ]),
+                                                        _vm._v(" "),
+                                                        _c("td", [
+                                                          _vm._v(
+                                                            _vm._s(
+                                                              _vm.priceCount(
+                                                                room_service.quantity,
+                                                                _vm.getServiceDetails(
+                                                                  room_service.service_id,
+                                                                  "price"
+                                                                )
+                                                              )
+                                                            ) + " Р"
+                                                          )
+                                                        ])
+                                                      ]
+                                                    : _vm._e()
+                                                ],
+                                                2
+                                              )
+                                            }
+                                          )
+                                        )
+                                      ]
+                                    )
+                                  ])
+                                ])
+                              ]
+                            }
+                          )
+                        ],
+                        2
+                      )
+                    ]
+                  }),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "row bg py-4" }, [
+                    _c(
+                      "div",
+                      {
+                        staticClass:
+                          "col-12 d-flex align-items-center justify-content-end"
+                      },
+                      [
+                        _c("div", { staticClass: "col-2" }, [
+                          _c(
+                            "select",
+                            {
+                              directives: [
+                                {
+                                  name: "model",
+                                  rawName: "v-model",
+                                  value: _vm.selected_id,
+                                  expression: "selected_id"
+                                }
+                              ],
+                              staticClass: "form-control",
+                              on: {
+                                change: [
+                                  function($event) {
+                                    var $$selectedVal = Array.prototype.filter
+                                      .call($event.target.options, function(o) {
+                                        return o.selected
+                                      })
+                                      .map(function(o) {
+                                        var val =
+                                          "_value" in o ? o._value : o.value
+                                        return val
+                                      })
+                                    _vm.selected_id = $event.target.multiple
+                                      ? $$selectedVal
+                                      : $$selectedVal[0]
+                                  },
+                                  function($event) {
+                                    _vm.percentage = null
                                   }
-                                })
+                                ]
+                              }
+                            },
+                            [
+                              _c("option", { attrs: { value: "null" } }, [
+                                _vm._v("Выберите")
                               ]),
                               _vm._v(" "),
-                              _c("h2", { staticClass: "main-subtitle px-15" }, [
-                                _vm._v(
-                                  "\n                                            Итого: " +
-                                    _vm._s(_vm.order.price) +
-                                    " Р\n                                        "
-                                )
+                              _c("option", { attrs: { value: "1" } }, [
+                                _vm._v("Скидка")
+                              ]),
+                              _vm._v(" "),
+                              _c("option", { attrs: { value: "2" } }, [
+                                _vm._v("Наценка")
                               ])
                             ]
                           )
                         ]),
                         _vm._v(" "),
-                        _c("div", { staticClass: "row ml-3 my-4" }, [
-                          _c("textarea", {
+                        _c("div", { staticClass: "col-1" }, [
+                          _c("input", {
                             directives: [
                               {
                                 name: "model",
                                 rawName: "v-model",
-                                value: _vm.description,
-                                expression: "description"
+                                value: _vm.percentage,
+                                expression: "percentage"
                               }
                             ],
-                            staticClass: "col-6",
+                            staticClass: "form-control",
                             attrs: {
-                              placeholder: "Добавить комментарий к смете"
+                              type: "number",
+                              placeholder: "%",
+                              min: "0"
                             },
-                            domProps: { value: _vm.description },
+                            domProps: { value: _vm.percentage },
                             on: {
                               change: function($event) {
-                                _vm.orderUpdate()
+                                _vm.updateOrderDiscountOrMarkup()
                               },
                               input: function($event) {
                                 if ($event.target.composing) {
                                   return
                                 }
-                                _vm.description = $event.target.value
+                                _vm.percentage = $event.target.value
                               }
                             }
                           })
+                        ]),
+                        _vm._v(" "),
+                        _c("h2", { staticClass: "main-subtitle px-15" }, [
+                          _vm._v(
+                            "\n                                    Итого: " +
+                              _vm._s(_vm.order.price) +
+                              " Р\n                                "
+                          )
                         ])
                       ]
-                    : _vm._e()
+                    )
+                  ]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "row ml-3 my-4" }, [
+                    _c("textarea", {
+                      directives: [
+                        {
+                          name: "model",
+                          rawName: "v-model",
+                          value: _vm.description,
+                          expression: "description"
+                        }
+                      ],
+                      staticClass: "col-6",
+                      attrs: { placeholder: "Добавить комментарий к смете" },
+                      domProps: { value: _vm.description },
+                      on: {
+                        change: function($event) {
+                          _vm.orderUpdate()
+                        },
+                        input: function($event) {
+                          if ($event.target.composing) {
+                            return
+                          }
+                          _vm.description = $event.target.value
+                        }
+                      }
+                    })
+                  ])
                 ],
                 2
               )
