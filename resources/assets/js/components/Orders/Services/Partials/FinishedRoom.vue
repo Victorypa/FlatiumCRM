@@ -9,14 +9,15 @@
                 {{ room.room_type.type }}
             </template>
         </h2>
-        <div class="projects__desc col-10 d-flex justify-content-between align-items-center py-3">
 
-          <div class="projects__desc-item">Общая площадь: {{ room.area }} м<sup>2</sup></div>
-          <div class="projects__desc-item">Высота потолка: {{ room.height }} м</div>
-          <div class="projects__desc-item">Площадь стен: {{ room.wall_area }} м<sup>2</sup></div>
-          <div class="projects__desc-item">Периметр: {{ room.perimeter }}</div>
-
-        </div>
+        <template v-if="room.room_type_id === 1">
+            <div class="projects__desc col-10 d-flex justify-content-between align-items-center py-3">
+              <div class="projects__desc-item">Общая площадь: {{ room.area }} м<sup>2</sup></div>
+              <div class="projects__desc-item">Высота потолка: {{ room.height }} м</div>
+              <div class="projects__desc-item">Площадь стен: {{ room.wall_area }} м<sup>2</sup></div>
+              <div class="projects__desc-item">Периметр: {{ room.perimeter }}</div>
+            </div>
+        </template>
       </div>
 
 
@@ -59,14 +60,26 @@
                               </div>
                           </td>
 
-                          <td>
-                              {{ getServiceDetails(room_service.service_id, 'price') }} Р/{{ getServiceDetails(room_service.service_id, 'unit') }}
-                          </td>
+                          <template v-if="order.discount">
+                              <template v-if="getServiceDetails(room_service.service_id, 'can_be_discounted')">
+                                  <td>{{ getServiceDetails(room_service.service_id, 'price') * (1 - parseInt(order.discount)/100) }} Р/{{ getServiceDetails(room_service.service_id, 'unit') }}</td>
+                                  <td>{{ priceCount(selected_service_quantities[room_service.service_id], getServiceDetails(room_service.service_id, 'price') * (1 - parseInt(order.discount)/100)) }} Р</td>
+                              </template>
+                              <template v-else>
+                                  <td>{{ getServiceDetails(room_service.service_id, 'price') }} Р/{{ getServiceDetails(room_service.service_id, 'unit') }}</td>
+                                  <td>{{ priceCount(selected_service_quantities[room_service.service_id], getServiceDetails(room_service.service_id, 'price')) }} Р</td>
+                              </template>
+                          </template>
 
-                          <td>
-                              {{ calculateServiceAmount(getServiceDetails(room_service.service_id, 'price'), selected_service_quantities[room_service.service_id]) }} Р
-                          </td>
+                          <template v-if="order.markup">
+                              <td>{{ getServiceDetails(room_service.service_id, 'price') * (1 + parseInt(order.markup)/100) }} Р/{{ getServiceDetails(room_service.service_id, 'unit') }}</td>
+                              <td>{{ priceCount(selected_service_quantities[room_service.service_id], getServiceDetails(room_service.service_id, 'price') * (1 + parseInt(order.markup)/100)) }} Р</td>
+                          </template>
 
+                          <template v-if="order.markup === null && order.discount === null">
+                              <td>{{ getServiceDetails(room_service.service_id, 'price') }} Р/{{ getServiceDetails(room_service.service_id, 'unit') }}</td>
+                              <td>{{ priceCount(selected_service_quantities[room_service.service_id], getServiceDetails(room_service.service_id, 'price')) }} Р</td>
+                          </template>
                         </tr>
                       </tbody>
                     </table>
@@ -99,7 +112,7 @@
 
         beforeMount() {
           this.getServicesQuantities()
-          // this.getSelectedServices()
+          this.getSelectedServices()
         },
 
         mounted () {
@@ -157,20 +170,6 @@
                     this.$emit('price', parseFloat(response.data).toFixed(2))
                 })
             },
-
-            calculateServiceAmount(price, quantity) {
-                return parseFloat(price * quantity).toFixed(2)
-            },
-
-            removeEmptyElem(obj) {
-                let newObj = {}
-
-                Object.keys(obj).forEach((prop) => {
-                  if (obj[prop]) { newObj[prop] = obj[prop] }
-                })
-
-                return newObj
-           },
         }
     }
 </script>
