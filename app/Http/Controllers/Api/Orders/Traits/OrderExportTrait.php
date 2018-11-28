@@ -107,8 +107,9 @@ trait OrderExportTrait
         $material_prices = [];
 
         foreach ($filteredOrder->rooms as $room) {
-            foreach ($room->services()->get() as $service) {
-                foreach ($service->actual_materials as $material) {
+            foreach ($room->room_services()->get() as $room_service) {
+
+                foreach ($room_service->materials as $material) {
                     array_push($material_ids, $material->id);
                     $material_names[$material->id] = $material->name;
                     $material_prices[$material->id] = (float) $material->price;
@@ -130,6 +131,7 @@ trait OrderExportTrait
                         $material_rates[$material->id] = 0;
                     }
                 }
+
             }
 
         }
