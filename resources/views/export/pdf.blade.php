@@ -344,16 +344,18 @@
                                 @endif
 
                             </div>
-                            <div class="room-features inline-block">
-                                <div class="info-item">S: {{ (float) $room->area }} м<sup>2</sup></div>
-                                <div class="info-item">H: {{ (float) $room->height }} м</div>
-                                <div class="info-item">S стен: {{ (float) $room->wall_area }} м<sup>2</sup></div>
-                                <div class="info-item">P: {{ (float) $room->perimeter }} м.п.</div>
-                            </div>
+                            @if ($room->room_type_id === 1)
+                                <div class="room-features inline-block">
+                                    <div class="info-item">S: {{ (float) $room->area }} м<sup>2</sup></div>
+                                    <div class="info-item">H: {{ (float) $room->height }} м</div>
+                                    <div class="info-item">S стен: {{ (float) $room->wall_area }} м<sup>2</sup></div>
+                                    <div class="info-item">P: {{ (float) $room->perimeter }} м.п.</div>
+                                </div>
+                            @endif
                         </div>
 
-                        @if ($room->room_type_id === 1)
-                            @if ($room->services->where('service_type_id', 1)->count())
+                        @if ($room->room_services->count())
+                            @foreach ( $room->room_services()->get()->groupBy(function($room_service) { return $room_service->service_type_id; }) as $service_type_id => $room_services)
                                 <table class="floor">
                                     <tr>
                                         <th class="table-subtitle">Наименование
@@ -364,227 +366,39 @@
                                     </tr>
 
                                     <tr class="borders">
-                                        <th class="table-caption">Пол
-                                        </th>
+                                        <th class="table-caption">{{ \App\Models\Services\ServiceType::where('id', $service_type_id)->first()->name }} </th>
                                         <td class="table-caption"></td>
                                         <td class="table-caption"></td>
                                         <td class="table-caption"></td>
                                     </tr>
-                                    @foreach ($room->services->where('service_type_id', 1) as $service)
-                                        @if ($order->discount)
-                                            <tr>
-                                                <th>{{ $service->name }}</th>
-                                                <td>{{ $service->pivot->quantity }} м<sup>2</sup></td>
-                                                @if ($service->can_be_discounted)
-                                                    <td>{{ $service->price * (1 - $order->discount/100) }} Р/м<sup>2</sup></td>
-                                                    <td>{{ number_format($service->pivot->quantity * $service->price * (1 - $order->discount/100), 2, ',', ' ') }} Р</td>
-                                                @else
-                                                    <td>{{ $service->price }} Р/м<sup>2</sup></td>
-                                                    <td>{{ number_format($service->pivot->quantity * $service->price, 2, ',', ' ') }} Р</td>
-                                                @endif
-                                            </tr>
-                                        @endif
-                                        @if ($order->markup)
-                                            <tr>
-                                                <th>{{ $service->name }}</th>
-                                                <td>{{ $service->pivot->quantity }} м<sup>2</sup></td>
-                                                <td>{{ $service->price * (1 + $order->markup/100) }} Р/м<sup>2</sup></td>
-                                                <td>{{ number_format($service->pivot->quantity * $service->price * (1 + $order->markup/100), 2, ',', ' ') }} Р</td>
-                                            </tr>
-                                        @endif
-                                        @if ($order->markup === null && $order->discount === null)
-                                            <tr>
-                                                <th>{{ $service->name }}</th>
-                                                <td>{{ $service->pivot->quantity }} м<sup>2</sup></td>
-                                                <td>{{ $service->price }} Р/м<sup>2</sup></td>
-                                                <td>{{ number_format($service->pivot->quantity * $service->price, 2, ',', ' ') }} Р</td>
-                                            </tr>
-                                        @endif
-                                    @endforeach
 
+                                    @foreach ($room_services as $room_service)
+                                        <tr>
+                                            <th>{{ \App\Models\Services\Service::where('id', $room_service->service_id)->first()->name }}</th>
+                                            <td>{{ $room_service->quantity }} м<sup>2</sup></td>
+                                            @if ($order->discount)
+                                                @if (\App\Models\Services\Service::where('id', $room_service->service_id)->first()->can_be_discounted)
+                                                    <td>{{ \App\Models\Services\Service::where('id', $room_service->service_id)->first()->price * (1 - $order->discount/100) }} Р/м<sup>2</sup></td>
+                                                    <td>{{ number_format($room_service->quantity * \App\Models\Services\Service::where('id', $room_service->service_id)->first()->price * (1 - $order->discount/100), 2, ',', ' ') }} Р</td>
+                                                @else
+                                                    <td>{{ \App\Models\Services\Service::where('id', $room_service->service_id)->first()->price }} Р/м<sup>2</sup></td>
+                                                    <td>{{ number_format($room_service->quantity * \App\Models\Services\Service::where('id', $room_service->service_id)->first()->price, 2, ',', ' ') }} Р</td>
+                                                @endif
+                                            @endif
+                                            @if ($order->markup)
+                                                <td>{{ \App\Models\Services\Service::where('id', $room_service->service_id)->first()->price * (1 + $order->markup/100) }} Р/м<sup>2</sup></td>
+                                                <td>{{ number_format($room_service->quantity * \App\Models\Services\Service::where('id', $room_service->service_id)->first()->price * (1 + $order->markup/100), 2, ',', ' ') }} Р</td>
+                                            @endif
+                                            @if ($order->discount === null && $order->markup === null)
+                                                <td>{{ \App\Models\Services\Service::where('id', $room_service->service_id)->first()->price }} Р/м<sup>2</sup></td>
+                                                <td>{{ number_format($room_service->quantity * \App\Models\Services\Service::where('id', $room_service->service_id)->first()->price, 2, ',', ' ') }} Р</td>
+                                            @endif
+                                        </tr>
+                                    @endforeach
 
                                 </table>
-                            @endif
-
-                            @if ($room->services->where('service_type_id', 2)->count())
-                                <table class="wall pt-25">
-                                <tr class="borders">
-                                    <th class="table-caption">Стены
-                                    </th>
-                                    <td class="table-caption"></td>
-                                    <td class="table-caption"></td>
-                                    <td class="table-caption"></td>
-                                </tr>
-
-                                    @foreach ($room->services->where('service_type_id', 2) as $service)
-                                        @if ($order->discount)
-                                            <tr>
-                                                <th>{{ $service->name }}</th>
-                                                <td>{{ $service->pivot->quantity }} м<sup>2</sup></td>
-                                                @if ($service->can_be_discounted)
-                                                    <td>{{ $service->price * (1 - $order->discount/100) }} Р/м<sup>2</sup></td>
-                                                    <td>{{ number_format($service->pivot->quantity * $service->price * (1 - $order->discount/100), 2, ',', ' ') }} Р</td>
-                                                @else
-                                                    <td>{{ $service->price }} Р/м<sup>2</sup></td>
-                                                    <td>{{ number_format($service->pivot->quantity * $service->price, 2, ',', ' ') }} Р</td>
-                                                @endif
-                                            </tr>
-                                        @endif
-                                        @if ($order->markup)
-                                            <tr>
-                                                <th>{{ $service->name }}</th>
-                                                <td>{{ $service->pivot->quantity }} м<sup>2</sup></td>
-                                                <td>{{ $service->price * (1 + $order->markup/100) }} Р/м<sup>2</sup></td>
-                                                <td>{{ number_format($service->pivot->quantity * $service->price * (1 + $order->markup/100), 2, ',', ' ') }} Р</td>
-                                            </tr>
-                                        @endif
-                                        @if ($order->markup === null && $order->discount === null)
-                                            <tr>
-                                                <th>{{ $service->name }}</th>
-                                                <td>{{ $service->pivot->quantity }} м<sup>2</sup></td>
-                                                <td>{{ $service->price }} Р/м<sup>2</sup></td>
-                                                <td>{{ number_format($service->pivot->quantity * $service->price, 2, ',', ' ') }} Р</td>
-                                            </tr>
-                                        @endif
-                                    @endforeach
-
-                            </table>
-                            @endif
-
-                            @if ($room->services->where('service_type_id', 3)->count())
-                                <table class="wall pt-25">
-                                    <tr class="borders">
-                                        <th class="table-caption">Потолок
-                                        </th>
-                                        <td class="table-caption"></td>
-                                        <td class="table-caption"></td>
-                                        <td class="table-caption"></td>
-                                    </tr>
-                                    @foreach ($room->services->where('service_type_id', 3) as $service)
-                                        @if ($order->discount)
-                                            <tr>
-                                                <th>{{ $service->name }}</th>
-                                                <td>{{ $service->pivot->quantity }} м<sup>2</sup></td>
-                                                @if ($service->can_be_discounted)
-                                                    <td>{{ $service->price * (1 - $order->discount/100) }} Р/м<sup>2</sup></td>
-                                                    <td>{{ number_format($service->pivot->quantity * $service->price * (1 - $order->discount/100), 2, ',', ' ') }} Р</td>
-                                                @else
-                                                    <td>{{ $service->price }} Р/м<sup>2</sup></td>
-                                                    <td>{{ number_format($service->pivot->quantity * $service->price, 2, ',', ' ') }} Р</td>
-                                                @endif
-                                            </tr>
-                                        @endif
-                                        @if ($order->markup)
-                                            <tr>
-                                                <th>{{ $service->name }}</th>
-                                                <td>{{ $service->pivot->quantity }} м<sup>2</sup></td>
-                                                <td>{{ $service->price * (1 + $order->markup/100) }} Р/м<sup>2</sup></td>
-                                                <td>{{ number_format($service->pivot->quantity * $service->price * (1 + $order->markup/100), 2, ',', ' ') }} Р</td>
-                                            </tr>
-                                        @endif
-                                        @if ($order->markup === null && $order->discount === null)
-                                            <tr>
-                                                <th>{{ $service->name }}</th>
-                                                <td>{{ $service->pivot->quantity }} м<sup>2</sup></td>
-                                                <td>{{ $service->price }} Р/м<sup>2</sup></td>
-                                                <td>{{ number_format($service->pivot->quantity * $service->price, 2, ',', ' ') }} Р</td>
-                                            </tr>
-                                        @endif
-                                    @endforeach
-
-                            </table>
-                            @endif
+                            @endforeach
                         @endif
-
-                        @if ($room->services->where('service_type_id', 4)->count())
-                            <table class="wall">
-                                <tr>
-                                    <th class="table-subtitle">Наименование
-                                    </th>
-                                    <td class="table-subtitle">Кол-во</td>
-                                    <td class="table-subtitle">Цена</td>
-                                    <td class="table-subtitle">Стоимость</td>
-                                </tr>
-                                @foreach ($room->services->where('service_type_id', 4) as $service)
-                                    @if ($order->discount)
-                                        <tr>
-                                            <th>{{ $service->name }}</th>
-                                            <td>{{ $service->pivot->quantity }} м<sup>2</sup></td>
-                                            @if ($service->can_be_discounted)
-                                                <td>{{ $service->price * (1 - $order->discount/100) }} Р/м<sup>2</sup></td>
-                                                <td>{{ number_format($service->pivot->quantity * $service->price * (1 - $order->discount/100), 2, ',', ' ') }} Р</td>
-                                            @else
-                                                <td>{{ $service->price }} Р/м<sup>2</sup></td>
-                                                <td>{{ number_format($service->pivot->quantity * $service->price, 2, ',', ' ') }} Р</td>
-                                            @endif
-                                        </tr>
-                                    @endif
-                                    @if ($order->markup)
-                                        <tr>
-                                            <th>{{ $service->name }}</th>
-                                            <td>{{ $service->pivot->quantity }} м<sup>2</sup></td>
-                                            <td>{{ $service->price * (1 + $order->markup/100) }} Р/м<sup>2</sup></td>
-                                            <td>{{ number_format($service->pivot->quantity * $service->price * (1 + $order->markup/100), 2, ',', ' ') }} Р</td>
-                                        </tr>
-                                    @endif
-                                    @if ($order->markup === null && $order->discount === null)
-                                        <tr>
-                                            <th>{{ $service->name }}</th>
-                                            <td>{{ $service->pivot->quantity }} м<sup>2</sup></td>
-                                            <td>{{ $service->price }} Р/м<sup>2</sup></td>
-                                            <td>{{ number_format($service->pivot->quantity * $service->price, 2, ',', ' ') }} Р</td>
-                                        </tr>
-                                    @endif
-                                @endforeach
-
-                        </table>
-                        @endif
-
-
-                        @if ($room->services->where('service_type_id', 5)->count())
-                            <table class="wall">
-                                <tr>
-                                    <th class="table-subtitle">Наименование
-                                    </th>
-                                    <td class="table-subtitle">Кол-во</td>
-                                    <td class="table-subtitle">Цена</td>
-                                    <td class="table-subtitle">Стоимость</td>
-                                </tr>
-                                @foreach ($room->services->where('service_type_id', 5) as $service)
-                                    @if ($order->discount)
-                                        <tr>
-                                            <th>{{ $service->name }}</th>
-                                            <td>{{ $service->pivot->quantity }} м<sup>2</sup></td>
-                                            @if ($service->can_be_discounted)
-                                                <td>{{ $service->price * (1 - $order->discount/100) }} Р/м<sup>2</sup></td>
-                                                <td>{{ number_format($service->pivot->quantity * $service->price * (1 - $order->discount/100), 2, ',', ' ') }} Р</td>
-                                            @else
-                                                <td>{{ $service->price }} Р/м<sup>2</sup></td>
-                                                <td>{{ number_format($service->pivot->quantity * $service->price, 2, ',', ' ') }} Р</td>
-                                            @endif
-                                        </tr>
-                                    @endif
-                                    @if ($order->markup)
-                                        <tr>
-                                            <th>{{ $service->name }}</th>
-                                            <td>{{ $service->pivot->quantity }} м<sup>2</sup></td>
-                                            <td>{{ $service->price * (1 + $order->markup/100) }} Р/м<sup>2</sup></td>
-                                            <td>{{ number_format($service->pivot->quantity * $service->price * (1 + $order->markup/100), 2, ',', ' ') }} Р</td>
-                                        </tr>
-                                    @endif
-                                    @if ($order->markup === null && $order->discount === null)
-                                        <tr>
-                                            <th>{{ $service->name }}</th>
-                                            <td>{{ $service->pivot->quantity }} м<sup>2</sup></td>
-                                            <td>{{ $service->price }} Р/м<sup>2</sup></td>
-                                            <td>{{ number_format($service->pivot->quantity * $service->price, 2, ',', ' ') }} Р</td>
-                                        </tr>
-                                    @endif
-                                @endforeach
-
-                        </table>
-                        @endif
-
                     </div>
                 @endforeach
             @endif

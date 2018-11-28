@@ -11,6 +11,7 @@ trait OrderExportTrait
     protected function export($filteredOrder, $path)
     {
         $total_area = 0;
+
         foreach ($filteredOrder->rooms as $room) {
             $total_area += (float)$room->area;
         }
@@ -18,8 +19,10 @@ trait OrderExportTrait
         $name = str_random(12);
 
         $pdf = PDF::setOptions([['defaultFont' => 'DejaVu Sans, Arial']])
-                  ->loadView($path, array('order' => $filteredOrder, 'total_area' => $total_area))
-                  ->setPaper('a4', 'portrait');
+                  ->loadView($path, [
+                      'order' => $filteredOrder,
+                      'total_area' => $total_area
+                  ])->setPaper('a4', 'portrait');
 
 
         $pdf = $pdf->save($path = storage_path("app/public/$name.pdf"));

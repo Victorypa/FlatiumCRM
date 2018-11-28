@@ -147,7 +147,7 @@ class OrderController extends Controller
 
         if ($order->markup !== null && $order->discount === null) {
             foreach ($order->rooms()->get() as $room) {
-                foreach ($room->room_services()->get() as $service) {
+                foreach ($room->room_services()->get() as $room_service) {
                     $room_service_price += $this->getServiceDetails($room_service->service_id, 'price') * (1 + (float) $order->markup / 100) * (float) $room_service->quantity;
                 }
                 $result = $room->update([
