@@ -79,7 +79,7 @@ class ExtraRoomServiceController extends Controller
                 $extra_room->extra_room_services()->where('service_id', $service_id)->delete();
             }
         }
-        // TODO
+
         if (count($diffIds_delete) === 0 && count($diffIds_add) === 0) {
 
             foreach ($request->service_quantities as $service_id => $quantity) {
@@ -87,14 +87,14 @@ class ExtraRoomServiceController extends Controller
 
                 if ($order->discount) {
                     if ($currentService->can_be_discounted) {
-                        $room->room_services()->where('service_id', $service_id)->update([
+                        $extra_room->extra_room_services()->where('service_id', $service_id)->update([
                             'service_type_id' => $currentService->service_type_id,
                             'service_unit_id' => $currentService->unit_id,
                             'quantity' => $quantity,
                             'price' => $quantity * $currentService->price * (1 - (float)$order->discount/100)
                         ]);
                     } else {
-                        $room->room_services()->where('service_id', $service_id)->update([
+                        $extra_room->extra_room_services()->where('service_id', $service_id)->update([
                             'service_type_id' => $currentService->service_type_id,
                             'service_unit_id' => $currentService->unit_id,
                             'quantity' => $quantity,
@@ -104,7 +104,7 @@ class ExtraRoomServiceController extends Controller
                 }
 
                 if ($order->markup) {
-                    $room->room_services()->where('service_id', $service_id)->update([
+                    $extra_room->extra_room_services()->where('service_id', $service_id)->update([
                         'service_type_id' => $currentService->service_type_id,
                         'service_unit_id' => $currentService->unit_id,
                         'quantity' => $quantity,
@@ -113,7 +113,7 @@ class ExtraRoomServiceController extends Controller
                 }
 
                 if ($order->discount === null && $order->markup === null) {
-                    $room->room_services()->where('service_id', $service_id)->update([
+                    $extra_room->extra_room_services()->where('service_id', $service_id)->update([
                         'service_type_id' => $currentService->service_type_id,
                         'service_unit_id' => $currentService->unit_id,
                         'quantity' => $quantity,
