@@ -6,7 +6,7 @@
                 <navigation></navigation>
                 <template v-if="extra_room.room">
 
-                        <div class="col-md-10 estimates__content px-0">
+                <div class="col-md-10 estimates__content px-0">
 
                     <div class="container-fluid px-0">
 
@@ -109,25 +109,25 @@
                                     <div class="col-6 d-flex align-items-center justify-content-between px-0">
 
                                         <div class="placeholder-text ml-2" placeholder="Шир">
-                                            <input type="number" disabled :value="extra_room.width" />
+                                            <input type="number" disabled v-model="width" />
                                         </div>
                                         <div class="placeholder-text ml-2" placeholder="Дли">
-                                            <input type="number" disabled :value="extra_room.length" />
+                                            <input type="number" disabled v-model="length" />
                                         </div>
                                         <div class="placeholder-text ml-2" placeholder="Выс">
-                                            <input type="number" disabled :value="extra_room.height" />
+                                            <input type="number" disabled v-model="height" />
                                         </div>
 
                                         <div class="placeholder-text ml-2" placeholder="S">
-                                            <input type="number" disabled :value="extra_room.area" />
+                                            <input type="number" disabled v-model="area" />
                                         </div>
 
                                         <div class="placeholder-text ml-2" placeholder="Сте">
-                                            <input type="number" disabled :value="extra_room.room.wall_area - windowArea" />
+                                            <input type="number" disabled v-model="wall_area" />
                                         </div>
 
                                         <div class="placeholder-text ml-2" placeholder="Пер">
-                                            <input type="number" disabled :value="extra_room.room.perimeter" />
+                                            <input type="number" disabled v-model="perimeter" />
                                         </div>
                                     </div>
 
@@ -162,91 +162,89 @@
 
                             <div class="row">
                                 <div class="col-md-12 pt-4 pr-0">
-                                        <template v-if="extra_room.extra_windows.length">
-                                            <div class="row col-12 justify-content-between add-space-block align-items-center" v-for="(window, index) in extra_room.extra_windows" :key="window.id">
+                                    <div class="row col-12 justify-content-between add-space-block align-items-center" v-for="(window, index) in extra_room.extra_windows" :key="window.id">
 
-                                              <div class="col-3 px-0">
-                                                  <button class="add-space-button pl-4 active">{{ index + parseInt(1) }}</button>
+                                      <div class="col-3 px-0">
+                                          <button class="add-space-button pl-4 active">Проем {{ index + parseInt(1) }}</button>
+                                      </div>
+
+                                        <div class="col-md-9">
+                                            <div class="row col-12 form-group--margin d-flex align-items-center create-spaces">
+
+                                            <div class="form-group col-md-3">
+                                                <select class="form-control"
+                                                        name="type"
+                                                        >
+                                                        <option name="type" :value="window.type">
+                                                            <template v-if="window.type === 'window'">
+                                                                Окно
+                                                            </template>
+
+                                                            <template v-else>
+                                                                Дверь
+                                                            </template>
+                                                        </option>
+                                                </select>
+                                            </div>
+
+
+                                          <div class="form-group col-md-2">
+                                              <input type="number"
+                                                     min="0"
+                                                     class="form-control"
+                                                     v-model="window.length"
+                                                     @change="updateExtraWindow(window)"
+                                                     required
+                                                     >
+                                          </div>
+
+                                          <div class="form-group col-md-2">
+                                              <input type="number"
+                                                     min="0"
+                                                     class="form-control"
+                                                     v-model="window.width"
+                                                     @change="updateExtraWindow(window)"
+                                                     required
+                                                     >
+                                          </div>
+
+
+                                          <span>x</span>
+
+                                          <div class="form-group col-md-2">
+                                              <input type="number"
+                                                     min="0"
+                                                     class="form-control"
+                                                     v-model="window.quantity"
+                                                     @change="updateExtraWindow(window)"
+                                                     required
+                                                     >
+                                          </div>
+
+                                          <div class="form-group col-md-2">
+                                              <div class="form-group__calc form-group__parametres">
+                                                  {{ parseFloat(window.length * window.width * window.quantity).toFixed(2) }} M<sup>2</sup>
                                               </div>
+                                          </div>
 
-                                              <div class="col-md-9">
-                                                <div class="row col-12 form-group--margin d-flex align-items-center create-spaces">
+                                          <button @click="deleteExtraWindow(window)" class="add-button add-button--remove d-flex align-items-center ml-auto">
+                                              <img src="/img/del.svg" alt="add-button">
+                                          </button>
 
-                                                    <div class="form-group col-md-3">
-                                                        <select class="form-control"
-                                                                name="type"
-                                                                >
-                                                                <option name="type" :value="window.type">
-                                                                    <template v-if="window.type === 'window'">
-                                                                        Окно
-                                                                    </template>
-
-                                                                    <template v-else>
-                                                                        Дверь
-                                                                    </template>
-                                                                </option>
-                                                        </select>
-                                                    </div>
-
-
-                                                  <div class="form-group col-md-2">
-                                                      <input type="number"
-                                                             min="0"
-                                                             class="form-control"
-                                                             v-model="window.length"
-                                                             @change="updateExtraWindow(window)"
-                                                             required
-                                                             >
-                                                  </div>
-
-                                                  <div class="form-group col-md-2">
-                                                      <input type="number"
-                                                             min="0"
-                                                             class="form-control"
-                                                             v-model="window.width"
-                                                             @change="updateExtraWindow(window)"
-                                                             required
-                                                             >
-                                                  </div>
-
-
-                                                  <span>x</span>
-
-                                                  <div class="form-group col-md-2">
-                                                      <input type="number"
-                                                             min="0"
-                                                             class="form-control"
-                                                             v-model="window.quantity"
-                                                             @change="updateExtraWindow(window)"
-                                                             required
-                                                             >
-                                                  </div>
-
-                                                  <div class="form-group col-md-2">
-                                                      <div class="form-group__calc form-group__parametres">
-                                                          {{ parseFloat(window.length * window.width * window.quantity).toFixed(2) }} M<sup>2</sup>
-                                                      </div>
-                                                  </div>
-
-                                                  <button @click="deleteExtraWindow(window)" class="add-button add-button--remove d-flex align-items-center ml-auto">
-                                                      <img src="/img/del.svg" alt="add-button">
-                                                  </button>
-
-                                                </div>
-                                            </div>
-                                            </div>
-                                        </template>
+                                        </div>
+                                        </div>
+                                    </div>
 
 
                                         <form @submit.prevent="save()">
-                                            <div class="row col-12 justify-content-between add-space-block align-items-center" v-for="(window, index) in newExtraWindows">
+                                            <div class="row col-12 justify-content-between add-space-block align-items-center" v-for="(window, index) in newExtraWindows" :key="window.id">
 
-                                              <div class="col-4 px-0">
-                                                <button class="add-space-button pl-4 active">Проем {{ index + parseInt(1) }}</button>
+                                              <div class="col-3 px-0">
+                                                <button class="add-space-button pl-4 active">Новый проем {{ index + parseInt(1) }}</button>
                                               </div>
 
-                                              <div class="col-md-8 px-0">
-                                                <div class="row col-12 px-0 form-group--margin d-flex align-items-center create-spaces">
+                                              <div class="col-md-9">
+                                                  <div class="row col-12 form-group--margin d-flex align-items-center create-spaces">
 
                                                     <div class="form-group col-md-3">
                                                         <select class="form-control"
@@ -265,7 +263,7 @@
                                                     </div>
 
 
-                                                    <div class="form-group w-85 pr-3">
+                                                    <div class="form-group col-md-2">
                                                         <input type="text"
                                                                class="form-control"
                                                                placeholder="Ширина"
@@ -274,7 +272,7 @@
                                                                >
                                                     </div>
 
-                                                    <div class="form-group w-85 pr-3">
+                                                    <div class="form-group col-md-2">
                                                         <input type="text"
                                                                class="form-control"
                                                                placeholder="Длина"
@@ -285,7 +283,7 @@
 
                                                  <span class="">x</span>
 
-                                                  <div class="form-group w-85 pl-3">
+                                                  <div class="form-group col-md-2">
                                                       <input type="text"
                                                              class="form-control"
                                                              placeholder="Кол-во"
@@ -300,6 +298,9 @@
                                                       </div>
                                                   </div>
 
+                                                  <button @click="deleteNewExtraWindow(window)" class="add-button add-button--remove d-flex align-items-center ml-auto">
+                                                      <img src="/img/del.svg" alt="add-button">
+                                                  </button>
                                                 </div>
                                               </div>
                                             </div>
@@ -307,9 +308,10 @@
                                         </form>
 
                                         <div class="row col-12">
-                                          <button class="add-space-button py-2" @click="addExtraWindow">+ Добавить проем </button>
+                                            <button class="add-space-button py-2" @click="addExtraWindow">+ Добавить проем </button>
                                         </div>
-                                        <hr>
+
+
                                 </div>
                             </div>
                         </div>
@@ -348,6 +350,13 @@
               extra_order_act_price: null,
               description: null,
 
+              width: null,
+              length: null,
+              height: null,
+              area: null,
+              wall_area: null,
+              perimeter: null,
+
               newExtraWindows: [],
 
               show: false,
@@ -368,6 +377,13 @@
                               this.extra_room = response.data
                               this.extra_order_act = response.data.extra_order_act
                               this.description = this.extra_order_act.description
+
+                              this.width = this.extra_room.width
+                              this.length = this.extra_room.length
+                              this.height = this.extra_room.height
+                              this.area = this.extra_room.area
+                              this.wall_area = this.extra_room.wall_area
+                              this.perimeter = this.extra_room.perimeter
 
                               this.order = response.data.extra_order_act.order
 
@@ -393,6 +409,14 @@
               })
           },
 
+          updateExtraOrderAct () {
+              axios.patch(`/api/orders/${this.$route.params.id}/extra_order_act/${this.$route.params.extra_order_act_id}/update`, {
+                  'description': this.description
+              }).then(response => {
+                  this.show = false
+              })
+          },
+
           addExtraWindow () {
               this.newExtraWindows.push({
                   type: 'window',
@@ -400,6 +424,11 @@
                   width: null,
                   quantity: null
               })
+              console.log(this.newExtraWindows);
+          },
+
+          deleteNewExtraWindow(window) {
+              this.newExtraWindows.splice(window, 1)
           },
 
           updateExtraWindow (currentWindow) {
@@ -408,7 +437,7 @@
                   'length': currentWindow.length,
                   'width': currentWindow.width
               }).then(response => {
-
+                  window.location.reload(true)
               })
           },
 
@@ -418,17 +447,7 @@
                            .then(response => {
                                window.location.reload(true)
                            })
-                  } else {
-                      window.location.reload(true)
                   }
-          },
-
-          updateExtraOrderAct () {
-              axios.patch(`/api/orders/${this.$route.params.id}/extra_order_act/${this.$route.params.extra_order_act_id}/update`, {
-                  'description': this.description
-              }).then(response => {
-                  this.show = false
-              })
           },
 
           getMaterialSummary (rate, quantity, price) {
@@ -443,16 +462,6 @@
       },
 
       computed: {
-          windowArea () {
-              let window_area = 0
-
-              this.extra_room.extra_windows.forEach(window => {
-                  window_area += parseFloat(window.length) * parseFloat(window.width) * window.quantity
-              })
-
-              return parseFloat(window_area).toFixed(2)
-          },
-
           filteredServices () {
               let data = this.services
 

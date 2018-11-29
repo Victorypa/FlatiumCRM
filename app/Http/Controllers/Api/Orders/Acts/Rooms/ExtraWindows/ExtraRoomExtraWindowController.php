@@ -29,15 +29,15 @@ class ExtraRoomExtraWindowController extends Controller
                 ]);
             }
 
-            if ($request->type = 'window') {
+            if ($request->type === 'window') {
                 $window_area = $extra_window->length * $extra_window->width * $extra_window->quantity;
 
                 $extra_room->update([
                     'wall_area' => $extra_room->wall_area - $window_area
                 ]);
-            } else {
+            }
+            if ($request->type === 'door') {
                 $door_area = $extra_window->length * $extra_window->width * $extra_window->quantity;
-
                 $door_width = $request->width;
 
                 $extra_room->update([

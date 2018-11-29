@@ -54973,6 +54973,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
 
 
 
@@ -54990,6 +54992,13 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             extra_room_price: null,
             extra_order_act_price: null,
             description: null,
+
+            width: null,
+            length: null,
+            height: null,
+            area: null,
+            wall_area: null,
+            perimeter: null,
 
             newExtraWindows: [],
 
@@ -55011,6 +55020,13 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 _this.extra_room = response.data;
                 _this.extra_order_act = response.data.extra_order_act;
                 _this.description = _this.extra_order_act.description;
+
+                _this.width = _this.extra_room.width;
+                _this.length = _this.extra_room.length;
+                _this.height = _this.extra_room.height;
+                _this.area = _this.extra_room.area;
+                _this.wall_area = _this.extra_room.wall_area;
+                _this.perimeter = _this.extra_room.perimeter;
 
                 _this.order = response.data.extra_order_act.order;
 
@@ -55034,30 +55050,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 });
             });
         },
-        addExtraWindow: function addExtraWindow() {
-            this.newExtraWindows.push({
-                type: 'window',
-                length: null,
-                width: null,
-                quantity: null
-            });
-        },
-        updateExtraWindow: function updateExtraWindow(currentWindow) {
-            axios.patch('/api/orders/' + this.$route.params.id + '/extra_order_act/' + this.$route.params.extra_order_act_id + '/extra_rooms/' + this.$route.params.extra_room_id + '/extra_windows/' + currentWindow.id + '/update', {
-                'quantity': currentWindow.quantity,
-                'length': currentWindow.length,
-                'width': currentWindow.width
-            }).then(function (response) {});
-        },
-        deleteExtraWindow: function deleteExtraWindow(currentWindow) {
-            if (confirm('Удалить ?')) {
-                axios.delete('/api/orders/' + this.$route.params.id + '/extra_order_act/' + this.$route.params.extra_order_act_id + '/extra_rooms/' + this.$route.params.extra_room_id + '/extra_windows/' + currentWindow.id + '/delete').then(function (response) {
-                    window.location.reload(true);
-                });
-            } else {
-                window.location.reload(true);
-            }
-        },
         updateExtraOrderAct: function updateExtraOrderAct() {
             var _this3 = this;
 
@@ -55066,6 +55058,34 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             }).then(function (response) {
                 _this3.show = false;
             });
+        },
+        addExtraWindow: function addExtraWindow() {
+            this.newExtraWindows.push({
+                type: 'window',
+                length: null,
+                width: null,
+                quantity: null
+            });
+            console.log(this.newExtraWindows);
+        },
+        deleteNewExtraWindow: function deleteNewExtraWindow(window) {
+            this.newExtraWindows.splice(window, 1);
+        },
+        updateExtraWindow: function updateExtraWindow(currentWindow) {
+            axios.patch('/api/orders/' + this.$route.params.id + '/extra_order_act/' + this.$route.params.extra_order_act_id + '/extra_rooms/' + this.$route.params.extra_room_id + '/extra_windows/' + currentWindow.id + '/update', {
+                'quantity': currentWindow.quantity,
+                'length': currentWindow.length,
+                'width': currentWindow.width
+            }).then(function (response) {
+                window.location.reload(true);
+            });
+        },
+        deleteExtraWindow: function deleteExtraWindow(currentWindow) {
+            if (confirm('Удалить ?')) {
+                axios.delete('/api/orders/' + this.$route.params.id + '/extra_order_act/' + this.$route.params.extra_order_act_id + '/extra_rooms/' + this.$route.params.extra_room_id + '/extra_windows/' + currentWindow.id + '/delete').then(function (response) {
+                    window.location.reload(true);
+                });
+            }
         },
         getMaterialSummary: function getMaterialSummary(rate, quantity, price) {
             return parseFloat(Math.ceil(rate / quantity) * price).toFixed(2);
@@ -55078,15 +55098,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     },
 
     computed: {
-        windowArea: function windowArea() {
-            var window_area = 0;
-
-            this.extra_room.extra_windows.forEach(function (window) {
-                window_area += parseFloat(window.length) * parseFloat(window.width) * window.quantity;
-            });
-
-            return parseFloat(window_area).toFixed(2);
-        },
         filteredServices: function filteredServices() {
             var _this4 = this;
 
@@ -56791,13 +56802,32 @@ var render = function() {
                                                 },
                                                 [
                                                   _c("input", {
+                                                    directives: [
+                                                      {
+                                                        name: "model",
+                                                        rawName: "v-model",
+                                                        value: _vm.width,
+                                                        expression: "width"
+                                                      }
+                                                    ],
                                                     attrs: {
                                                       type: "number",
                                                       disabled: ""
                                                     },
                                                     domProps: {
-                                                      value:
-                                                        _vm.extra_room.width
+                                                      value: _vm.width
+                                                    },
+                                                    on: {
+                                                      input: function($event) {
+                                                        if (
+                                                          $event.target
+                                                            .composing
+                                                        ) {
+                                                          return
+                                                        }
+                                                        _vm.width =
+                                                          $event.target.value
+                                                      }
                                                     }
                                                   })
                                                 ]
@@ -56812,13 +56842,32 @@ var render = function() {
                                                 },
                                                 [
                                                   _c("input", {
+                                                    directives: [
+                                                      {
+                                                        name: "model",
+                                                        rawName: "v-model",
+                                                        value: _vm.length,
+                                                        expression: "length"
+                                                      }
+                                                    ],
                                                     attrs: {
                                                       type: "number",
                                                       disabled: ""
                                                     },
                                                     domProps: {
-                                                      value:
-                                                        _vm.extra_room.length
+                                                      value: _vm.length
+                                                    },
+                                                    on: {
+                                                      input: function($event) {
+                                                        if (
+                                                          $event.target
+                                                            .composing
+                                                        ) {
+                                                          return
+                                                        }
+                                                        _vm.length =
+                                                          $event.target.value
+                                                      }
                                                     }
                                                   })
                                                 ]
@@ -56833,13 +56882,32 @@ var render = function() {
                                                 },
                                                 [
                                                   _c("input", {
+                                                    directives: [
+                                                      {
+                                                        name: "model",
+                                                        rawName: "v-model",
+                                                        value: _vm.height,
+                                                        expression: "height"
+                                                      }
+                                                    ],
                                                     attrs: {
                                                       type: "number",
                                                       disabled: ""
                                                     },
                                                     domProps: {
-                                                      value:
-                                                        _vm.extra_room.height
+                                                      value: _vm.height
+                                                    },
+                                                    on: {
+                                                      input: function($event) {
+                                                        if (
+                                                          $event.target
+                                                            .composing
+                                                        ) {
+                                                          return
+                                                        }
+                                                        _vm.height =
+                                                          $event.target.value
+                                                      }
                                                     }
                                                   })
                                                 ]
@@ -56854,12 +56922,32 @@ var render = function() {
                                                 },
                                                 [
                                                   _c("input", {
+                                                    directives: [
+                                                      {
+                                                        name: "model",
+                                                        rawName: "v-model",
+                                                        value: _vm.area,
+                                                        expression: "area"
+                                                      }
+                                                    ],
                                                     attrs: {
                                                       type: "number",
                                                       disabled: ""
                                                     },
                                                     domProps: {
-                                                      value: _vm.extra_room.area
+                                                      value: _vm.area
+                                                    },
+                                                    on: {
+                                                      input: function($event) {
+                                                        if (
+                                                          $event.target
+                                                            .composing
+                                                        ) {
+                                                          return
+                                                        }
+                                                        _vm.area =
+                                                          $event.target.value
+                                                      }
                                                     }
                                                   })
                                                 ]
@@ -56874,15 +56962,32 @@ var render = function() {
                                                 },
                                                 [
                                                   _c("input", {
+                                                    directives: [
+                                                      {
+                                                        name: "model",
+                                                        rawName: "v-model",
+                                                        value: _vm.wall_area,
+                                                        expression: "wall_area"
+                                                      }
+                                                    ],
                                                     attrs: {
                                                       type: "number",
                                                       disabled: ""
                                                     },
                                                     domProps: {
-                                                      value:
-                                                        _vm.extra_room.room
-                                                          .wall_area -
-                                                        _vm.windowArea
+                                                      value: _vm.wall_area
+                                                    },
+                                                    on: {
+                                                      input: function($event) {
+                                                        if (
+                                                          $event.target
+                                                            .composing
+                                                        ) {
+                                                          return
+                                                        }
+                                                        _vm.wall_area =
+                                                          $event.target.value
+                                                      }
                                                     }
                                                   })
                                                 ]
@@ -56897,14 +57002,32 @@ var render = function() {
                                                 },
                                                 [
                                                   _c("input", {
+                                                    directives: [
+                                                      {
+                                                        name: "model",
+                                                        rawName: "v-model",
+                                                        value: _vm.perimeter,
+                                                        expression: "perimeter"
+                                                      }
+                                                    ],
                                                     attrs: {
                                                       type: "number",
                                                       disabled: ""
                                                     },
                                                     domProps: {
-                                                      value:
-                                                        _vm.extra_room.room
-                                                          .perimeter
+                                                      value: _vm.perimeter
+                                                    },
+                                                    on: {
+                                                      input: function($event) {
+                                                        if (
+                                                          $event.target
+                                                            .composing
+                                                        ) {
+                                                          return
+                                                        }
+                                                        _vm.perimeter =
+                                                          $event.target.value
+                                                      }
                                                     }
                                                   })
                                                 ]
@@ -56995,382 +57118,20 @@ var render = function() {
                                   "div",
                                   { staticClass: "col-md-12 pt-4 pr-0" },
                                   [
-                                    _vm.extra_room.extra_windows.length
-                                      ? _vm._l(
-                                          _vm.extra_room.extra_windows,
-                                          function(window, index) {
-                                            return _c(
-                                              "div",
-                                              {
-                                                key: window.id,
-                                                staticClass:
-                                                  "row col-12 justify-content-between add-space-block align-items-center"
-                                              },
-                                              [
-                                                _c(
-                                                  "div",
-                                                  { staticClass: "col-3 px-0" },
-                                                  [
-                                                    _c(
-                                                      "button",
-                                                      {
-                                                        staticClass:
-                                                          "add-space-button pl-4 active"
-                                                      },
-                                                      [
-                                                        _vm._v(
-                                                          _vm._s(
-                                                            index + parseInt(1)
-                                                          )
-                                                        )
-                                                      ]
-                                                    )
-                                                  ]
-                                                ),
-                                                _vm._v(" "),
-                                                _c(
-                                                  "div",
-                                                  { staticClass: "col-md-9" },
-                                                  [
-                                                    _c(
-                                                      "div",
-                                                      {
-                                                        staticClass:
-                                                          "row col-12 form-group--margin d-flex align-items-center create-spaces"
-                                                      },
-                                                      [
-                                                        _c(
-                                                          "div",
-                                                          {
-                                                            staticClass:
-                                                              "form-group col-md-3"
-                                                          },
-                                                          [
-                                                            _c(
-                                                              "select",
-                                                              {
-                                                                staticClass:
-                                                                  "form-control",
-                                                                attrs: {
-                                                                  name: "type"
-                                                                }
-                                                              },
-                                                              [
-                                                                _c(
-                                                                  "option",
-                                                                  {
-                                                                    attrs: {
-                                                                      name:
-                                                                        "type"
-                                                                    },
-                                                                    domProps: {
-                                                                      value:
-                                                                        window.type
-                                                                    }
-                                                                  },
-                                                                  [
-                                                                    window.type ===
-                                                                    "window"
-                                                                      ? [
-                                                                          _vm._v(
-                                                                            "\n                                                                    Окно\n                                                                "
-                                                                          )
-                                                                        ]
-                                                                      : [
-                                                                          _vm._v(
-                                                                            "\n                                                                    Дверь\n                                                                "
-                                                                          )
-                                                                        ]
-                                                                  ],
-                                                                  2
-                                                                )
-                                                              ]
-                                                            )
-                                                          ]
-                                                        ),
-                                                        _vm._v(" "),
-                                                        _c(
-                                                          "div",
-                                                          {
-                                                            staticClass:
-                                                              "form-group col-md-2"
-                                                          },
-                                                          [
-                                                            _c("input", {
-                                                              directives: [
-                                                                {
-                                                                  name: "model",
-                                                                  rawName:
-                                                                    "v-model",
-                                                                  value:
-                                                                    window.length,
-                                                                  expression:
-                                                                    "window.length"
-                                                                }
-                                                              ],
-                                                              staticClass:
-                                                                "form-control",
-                                                              attrs: {
-                                                                type: "number",
-                                                                min: "0",
-                                                                required: ""
-                                                              },
-                                                              domProps: {
-                                                                value:
-                                                                  window.length
-                                                              },
-                                                              on: {
-                                                                change: function(
-                                                                  $event
-                                                                ) {
-                                                                  _vm.updateExtraWindow(
-                                                                    window
-                                                                  )
-                                                                },
-                                                                input: function(
-                                                                  $event
-                                                                ) {
-                                                                  if (
-                                                                    $event
-                                                                      .target
-                                                                      .composing
-                                                                  ) {
-                                                                    return
-                                                                  }
-                                                                  _vm.$set(
-                                                                    window,
-                                                                    "length",
-                                                                    $event
-                                                                      .target
-                                                                      .value
-                                                                  )
-                                                                }
-                                                              }
-                                                            })
-                                                          ]
-                                                        ),
-                                                        _vm._v(" "),
-                                                        _c(
-                                                          "div",
-                                                          {
-                                                            staticClass:
-                                                              "form-group col-md-2"
-                                                          },
-                                                          [
-                                                            _c("input", {
-                                                              directives: [
-                                                                {
-                                                                  name: "model",
-                                                                  rawName:
-                                                                    "v-model",
-                                                                  value:
-                                                                    window.width,
-                                                                  expression:
-                                                                    "window.width"
-                                                                }
-                                                              ],
-                                                              staticClass:
-                                                                "form-control",
-                                                              attrs: {
-                                                                type: "number",
-                                                                min: "0",
-                                                                required: ""
-                                                              },
-                                                              domProps: {
-                                                                value:
-                                                                  window.width
-                                                              },
-                                                              on: {
-                                                                change: function(
-                                                                  $event
-                                                                ) {
-                                                                  _vm.updateExtraWindow(
-                                                                    window
-                                                                  )
-                                                                },
-                                                                input: function(
-                                                                  $event
-                                                                ) {
-                                                                  if (
-                                                                    $event
-                                                                      .target
-                                                                      .composing
-                                                                  ) {
-                                                                    return
-                                                                  }
-                                                                  _vm.$set(
-                                                                    window,
-                                                                    "width",
-                                                                    $event
-                                                                      .target
-                                                                      .value
-                                                                  )
-                                                                }
-                                                              }
-                                                            })
-                                                          ]
-                                                        ),
-                                                        _vm._v(" "),
-                                                        _c("span", [
-                                                          _vm._v("x")
-                                                        ]),
-                                                        _vm._v(" "),
-                                                        _c(
-                                                          "div",
-                                                          {
-                                                            staticClass:
-                                                              "form-group col-md-2"
-                                                          },
-                                                          [
-                                                            _c("input", {
-                                                              directives: [
-                                                                {
-                                                                  name: "model",
-                                                                  rawName:
-                                                                    "v-model",
-                                                                  value:
-                                                                    window.quantity,
-                                                                  expression:
-                                                                    "window.quantity"
-                                                                }
-                                                              ],
-                                                              staticClass:
-                                                                "form-control",
-                                                              attrs: {
-                                                                type: "number",
-                                                                min: "0",
-                                                                required: ""
-                                                              },
-                                                              domProps: {
-                                                                value:
-                                                                  window.quantity
-                                                              },
-                                                              on: {
-                                                                change: function(
-                                                                  $event
-                                                                ) {
-                                                                  _vm.updateExtraWindow(
-                                                                    window
-                                                                  )
-                                                                },
-                                                                input: function(
-                                                                  $event
-                                                                ) {
-                                                                  if (
-                                                                    $event
-                                                                      .target
-                                                                      .composing
-                                                                  ) {
-                                                                    return
-                                                                  }
-                                                                  _vm.$set(
-                                                                    window,
-                                                                    "quantity",
-                                                                    $event
-                                                                      .target
-                                                                      .value
-                                                                  )
-                                                                }
-                                                              }
-                                                            })
-                                                          ]
-                                                        ),
-                                                        _vm._v(" "),
-                                                        _c(
-                                                          "div",
-                                                          {
-                                                            staticClass:
-                                                              "form-group col-md-2"
-                                                          },
-                                                          [
-                                                            _c(
-                                                              "div",
-                                                              {
-                                                                staticClass:
-                                                                  "form-group__calc form-group__parametres"
-                                                              },
-                                                              [
-                                                                _vm._v(
-                                                                  "\n                                                      " +
-                                                                    _vm._s(
-                                                                      parseFloat(
-                                                                        window.length *
-                                                                          window.width *
-                                                                          window.quantity
-                                                                      ).toFixed(
-                                                                        2
-                                                                      )
-                                                                    ) +
-                                                                    " M"
-                                                                ),
-                                                                _c("sup", [
-                                                                  _vm._v("2")
-                                                                ])
-                                                              ]
-                                                            )
-                                                          ]
-                                                        ),
-                                                        _vm._v(" "),
-                                                        _c(
-                                                          "button",
-                                                          {
-                                                            staticClass:
-                                                              "add-button add-button--remove d-flex align-items-center ml-auto",
-                                                            on: {
-                                                              click: function(
-                                                                $event
-                                                              ) {
-                                                                _vm.deleteExtraWindow(
-                                                                  window
-                                                                )
-                                                              }
-                                                            }
-                                                          },
-                                                          [
-                                                            _c("img", {
-                                                              attrs: {
-                                                                src:
-                                                                  "/img/del.svg",
-                                                                alt:
-                                                                  "add-button"
-                                                              }
-                                                            })
-                                                          ]
-                                                        )
-                                                      ]
-                                                    )
-                                                  ]
-                                                )
-                                              ]
-                                            )
-                                          }
-                                        )
-                                      : _vm._e(),
-                                    _vm._v(" "),
-                                    _c(
-                                      "form",
-                                      {
-                                        on: {
-                                          submit: function($event) {
-                                            $event.preventDefault()
-                                            _vm.save()
-                                          }
-                                        }
-                                      },
-                                      _vm._l(_vm.newExtraWindows, function(
-                                        window,
-                                        index
-                                      ) {
+                                    _vm._l(
+                                      _vm.extra_room.extra_windows,
+                                      function(window, index) {
                                         return _c(
                                           "div",
                                           {
+                                            key: window.id,
                                             staticClass:
                                               "row col-12 justify-content-between add-space-block align-items-center"
                                           },
                                           [
                                             _c(
                                               "div",
-                                              { staticClass: "col-4 px-0" },
+                                              { staticClass: "col-3 px-0" },
                                               [
                                                 _c(
                                                   "button",
@@ -57392,13 +57153,360 @@ var render = function() {
                                             _vm._v(" "),
                                             _c(
                                               "div",
-                                              { staticClass: "col-md-8 px-0" },
+                                              { staticClass: "col-md-9" },
                                               [
                                                 _c(
                                                   "div",
                                                   {
                                                     staticClass:
-                                                      "row col-12 px-0 form-group--margin d-flex align-items-center create-spaces"
+                                                      "row col-12 form-group--margin d-flex align-items-center create-spaces"
+                                                  },
+                                                  [
+                                                    _c(
+                                                      "div",
+                                                      {
+                                                        staticClass:
+                                                          "form-group col-md-3"
+                                                      },
+                                                      [
+                                                        _c(
+                                                          "select",
+                                                          {
+                                                            staticClass:
+                                                              "form-control",
+                                                            attrs: {
+                                                              name: "type"
+                                                            }
+                                                          },
+                                                          [
+                                                            _c(
+                                                              "option",
+                                                              {
+                                                                attrs: {
+                                                                  name: "type"
+                                                                },
+                                                                domProps: {
+                                                                  value:
+                                                                    window.type
+                                                                }
+                                                              },
+                                                              [
+                                                                window.type ===
+                                                                "window"
+                                                                  ? [
+                                                                      _vm._v(
+                                                                        "\n                                                            Окно\n                                                        "
+                                                                      )
+                                                                    ]
+                                                                  : [
+                                                                      _vm._v(
+                                                                        "\n                                                            Дверь\n                                                        "
+                                                                      )
+                                                                    ]
+                                                              ],
+                                                              2
+                                                            )
+                                                          ]
+                                                        )
+                                                      ]
+                                                    ),
+                                                    _vm._v(" "),
+                                                    _c(
+                                                      "div",
+                                                      {
+                                                        staticClass:
+                                                          "form-group col-md-2"
+                                                      },
+                                                      [
+                                                        _c("input", {
+                                                          directives: [
+                                                            {
+                                                              name: "model",
+                                                              rawName:
+                                                                "v-model",
+                                                              value:
+                                                                window.length,
+                                                              expression:
+                                                                "window.length"
+                                                            }
+                                                          ],
+                                                          staticClass:
+                                                            "form-control",
+                                                          attrs: {
+                                                            type: "number",
+                                                            min: "0",
+                                                            required: ""
+                                                          },
+                                                          domProps: {
+                                                            value: window.length
+                                                          },
+                                                          on: {
+                                                            change: function(
+                                                              $event
+                                                            ) {
+                                                              _vm.updateExtraWindow(
+                                                                window
+                                                              )
+                                                            },
+                                                            input: function(
+                                                              $event
+                                                            ) {
+                                                              if (
+                                                                $event.target
+                                                                  .composing
+                                                              ) {
+                                                                return
+                                                              }
+                                                              _vm.$set(
+                                                                window,
+                                                                "length",
+                                                                $event.target
+                                                                  .value
+                                                              )
+                                                            }
+                                                          }
+                                                        })
+                                                      ]
+                                                    ),
+                                                    _vm._v(" "),
+                                                    _c(
+                                                      "div",
+                                                      {
+                                                        staticClass:
+                                                          "form-group col-md-2"
+                                                      },
+                                                      [
+                                                        _c("input", {
+                                                          directives: [
+                                                            {
+                                                              name: "model",
+                                                              rawName:
+                                                                "v-model",
+                                                              value:
+                                                                window.width,
+                                                              expression:
+                                                                "window.width"
+                                                            }
+                                                          ],
+                                                          staticClass:
+                                                            "form-control",
+                                                          attrs: {
+                                                            type: "number",
+                                                            min: "0",
+                                                            required: ""
+                                                          },
+                                                          domProps: {
+                                                            value: window.width
+                                                          },
+                                                          on: {
+                                                            change: function(
+                                                              $event
+                                                            ) {
+                                                              _vm.updateExtraWindow(
+                                                                window
+                                                              )
+                                                            },
+                                                            input: function(
+                                                              $event
+                                                            ) {
+                                                              if (
+                                                                $event.target
+                                                                  .composing
+                                                              ) {
+                                                                return
+                                                              }
+                                                              _vm.$set(
+                                                                window,
+                                                                "width",
+                                                                $event.target
+                                                                  .value
+                                                              )
+                                                            }
+                                                          }
+                                                        })
+                                                      ]
+                                                    ),
+                                                    _vm._v(" "),
+                                                    _c("span", [_vm._v("x")]),
+                                                    _vm._v(" "),
+                                                    _c(
+                                                      "div",
+                                                      {
+                                                        staticClass:
+                                                          "form-group col-md-2"
+                                                      },
+                                                      [
+                                                        _c("input", {
+                                                          directives: [
+                                                            {
+                                                              name: "model",
+                                                              rawName:
+                                                                "v-model",
+                                                              value:
+                                                                window.quantity,
+                                                              expression:
+                                                                "window.quantity"
+                                                            }
+                                                          ],
+                                                          staticClass:
+                                                            "form-control",
+                                                          attrs: {
+                                                            type: "number",
+                                                            min: "0",
+                                                            required: ""
+                                                          },
+                                                          domProps: {
+                                                            value:
+                                                              window.quantity
+                                                          },
+                                                          on: {
+                                                            change: function(
+                                                              $event
+                                                            ) {
+                                                              _vm.updateExtraWindow(
+                                                                window
+                                                              )
+                                                            },
+                                                            input: function(
+                                                              $event
+                                                            ) {
+                                                              if (
+                                                                $event.target
+                                                                  .composing
+                                                              ) {
+                                                                return
+                                                              }
+                                                              _vm.$set(
+                                                                window,
+                                                                "quantity",
+                                                                $event.target
+                                                                  .value
+                                                              )
+                                                            }
+                                                          }
+                                                        })
+                                                      ]
+                                                    ),
+                                                    _vm._v(" "),
+                                                    _c(
+                                                      "div",
+                                                      {
+                                                        staticClass:
+                                                          "form-group col-md-2"
+                                                      },
+                                                      [
+                                                        _c(
+                                                          "div",
+                                                          {
+                                                            staticClass:
+                                                              "form-group__calc form-group__parametres"
+                                                          },
+                                                          [
+                                                            _vm._v(
+                                                              "\n                                              " +
+                                                                _vm._s(
+                                                                  parseFloat(
+                                                                    window.length *
+                                                                      window.width *
+                                                                      window.quantity
+                                                                  ).toFixed(2)
+                                                                ) +
+                                                                " M"
+                                                            ),
+                                                            _c("sup", [
+                                                              _vm._v("2")
+                                                            ])
+                                                          ]
+                                                        )
+                                                      ]
+                                                    ),
+                                                    _vm._v(" "),
+                                                    _c(
+                                                      "button",
+                                                      {
+                                                        staticClass:
+                                                          "add-button add-button--remove d-flex align-items-center ml-auto",
+                                                        on: {
+                                                          click: function(
+                                                            $event
+                                                          ) {
+                                                            _vm.deleteExtraWindow(
+                                                              window
+                                                            )
+                                                          }
+                                                        }
+                                                      },
+                                                      [
+                                                        _c("img", {
+                                                          attrs: {
+                                                            src: "/img/del.svg",
+                                                            alt: "add-button"
+                                                          }
+                                                        })
+                                                      ]
+                                                    )
+                                                  ]
+                                                )
+                                              ]
+                                            )
+                                          ]
+                                        )
+                                      }
+                                    ),
+                                    _vm._v(" "),
+                                    _c(
+                                      "form",
+                                      {
+                                        on: {
+                                          submit: function($event) {
+                                            $event.preventDefault()
+                                            _vm.save()
+                                          }
+                                        }
+                                      },
+                                      _vm._l(_vm.newExtraWindows, function(
+                                        window,
+                                        index
+                                      ) {
+                                        return _c(
+                                          "div",
+                                          {
+                                            key: window.id,
+                                            staticClass:
+                                              "row col-12 justify-content-between add-space-block align-items-center"
+                                          },
+                                          [
+                                            _c(
+                                              "div",
+                                              { staticClass: "col-3 px-0" },
+                                              [
+                                                _c(
+                                                  "button",
+                                                  {
+                                                    staticClass:
+                                                      "add-space-button pl-4 active"
+                                                  },
+                                                  [
+                                                    _vm._v(
+                                                      "Новый проем " +
+                                                        _vm._s(
+                                                          index + parseInt(1)
+                                                        )
+                                                    )
+                                                  ]
+                                                )
+                                              ]
+                                            ),
+                                            _vm._v(" "),
+                                            _c(
+                                              "div",
+                                              { staticClass: "col-md-9" },
+                                              [
+                                                _c(
+                                                  "div",
+                                                  {
+                                                    staticClass:
+                                                      "row col-12 form-group--margin d-flex align-items-center create-spaces"
                                                   },
                                                   [
                                                     _c(
@@ -57504,7 +57612,7 @@ var render = function() {
                                                       "div",
                                                       {
                                                         staticClass:
-                                                          "form-group w-85 pr-3"
+                                                          "form-group col-md-2"
                                                       },
                                                       [
                                                         _c("input", {
@@ -57556,7 +57664,7 @@ var render = function() {
                                                       "div",
                                                       {
                                                         staticClass:
-                                                          "form-group w-85 pr-3"
+                                                          "form-group col-md-2"
                                                       },
                                                       [
                                                         _c("input", {
@@ -57612,7 +57720,7 @@ var render = function() {
                                                       "div",
                                                       {
                                                         staticClass:
-                                                          "form-group w-85 pl-3"
+                                                          "form-group col-md-2"
                                                       },
                                                       [
                                                         _c("input", {
@@ -57690,6 +57798,31 @@ var render = function() {
                                                           ]
                                                         )
                                                       ]
+                                                    ),
+                                                    _vm._v(" "),
+                                                    _c(
+                                                      "button",
+                                                      {
+                                                        staticClass:
+                                                          "add-button add-button--remove d-flex align-items-center ml-auto",
+                                                        on: {
+                                                          click: function(
+                                                            $event
+                                                          ) {
+                                                            _vm.deleteNewExtraWindow(
+                                                              window
+                                                            )
+                                                          }
+                                                        }
+                                                      },
+                                                      [
+                                                        _c("img", {
+                                                          attrs: {
+                                                            src: "/img/del.svg",
+                                                            alt: "add-button"
+                                                          }
+                                                        })
+                                                      ]
                                                     )
                                                   ]
                                                 )
@@ -57709,9 +57842,7 @@ var render = function() {
                                         },
                                         [_vm._v("+ Добавить проем ")]
                                       )
-                                    ]),
-                                    _vm._v(" "),
-                                    _c("hr")
+                                    ])
                                   ],
                                   2
                                 )
