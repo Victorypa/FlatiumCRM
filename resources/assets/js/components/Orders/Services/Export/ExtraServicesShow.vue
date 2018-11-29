@@ -3,7 +3,7 @@
 
         <basic-header></basic-header>
 
-        <template v-if="extra_order">
+        <template>
             <div class="container-fluid ">
                 <div class="row">
                     <navigation></navigation>
@@ -41,20 +41,19 @@
 
 
                                         <template v-if="extra_order.order.discount">
-
-                                            <span>Итого:</span> {{ new Intl.NumberFormat().format(extra_order.order.price) }} Р
-                                            <span class="small-case">{{ new Intl.NumberFormat().format(extra_order.order.original_price) }} Р</span>
+                                            <span>Итого:</span> {{ new Intl.NumberFormat('ru-Ru').format(extra_order.order.price) }} Р
+                                            <span class="small-case">{{ new Intl.NumberFormat('ru-Ru').format(extra_order.order.original_price) }} Р</span>
                                             <span class="small-case">(скидка: -{{ extra_order.order.discount }}%)</span>
                                         </template>
 
                                         <template v-else-if="extra_order.order.markup">
-                                            <span>Итого:</span> {{ new Intl.NumberFormat().format(extra_order.order.price) }} Р
-                                            <span class="small-case">{{ new Intl.NumberFormat().format(extra_order.order.original_price) }} Р</span>
+                                            <span>Итого:</span> {{ new Intl.NumberFormat('ru-Ru').format(extra_order.order.price) }} Р
+                                            <span class="small-case">{{ new Intl.NumberFormat('ru-Ru').format(extra_order.order.original_price) }} Р</span>
                                             <span class="small-case">(наценка: +{{ extra_order.order.markup }}%)</span>
                                         </template>
 
                                         <template v-else>
-                                            <span>Итого:</span> {{ new Intl.NumberFormat().format(extra_order.order.price) }} Р
+                                            <span>Итого:</span> {{ new Intl.NumberFormat('ru-Ru').format(extra_order.order.price) }} Р
                                         </template>
                                     </h2>
                                 </div>
@@ -161,7 +160,7 @@
 
                                             </div>
 
-                                            <template v-if="extra_room.room.room_type_id === 1">
+                                            <!-- <template v-if="extra_room.room.room_type_id === 1">
                                                 <template v-for="service_type in service_types.slice(0, 3)">
                                                     <div class="row bg px-15">
 
@@ -185,91 +184,7 @@
                                                         </div>
                                                     </div>
                                                 </template>
-                                            </template>
-
-
-                                            <template v-if="extra_room.room.room_type_id === 2">
-                                                <template v-for="service_type in service_types.slice(4, 5)">
-                                                    <div class="row bg px-15">
-
-                                                        <div class="main-subtitle main-subtitle--fz col-12 pt-4">
-                                                            {{ service_type.name }}
-                                                        </div>
-
-                                                        <div class="col-12 px-0">
-                                                            <table class="table table-hover">
-                                                                <tbody>
-                                                                    <tr v-for="extra_room_extra_service in getServicesByServiceType(extra_room.extra_services, service_type.id)">
-                                                                        <th scope="row" class="w-50">
-                                                                            {{ extra_room_extra_service.name }}
-                                                                        </th>
-                                                                        <td>{{ extra_room_extra_service.pivot.quantity }} м<sup>2</sup></td>
-                                                                        <td>{{ extra_room_extra_service.price }} Р/м<sup>2</sup></td>
-                                                                        <td>{{ priceCount(extra_room_extra_service.pivot.quantity, extra_room_extra_service.price) }} Р</td>
-                                                                    </tr>
-                                                                </tbody>
-                                                            </table>
-                                                        </div>
-                                                    </div>
-                                                </template>
-                                            </template>
-
-
-                                            <template v-if="extra_room.room.room_type_id === 3">
-                                                <template v-for="service_type in service_types.slice(3, 4)">
-                                                    <div class="row bg px-15">
-
-                                                        <div class="main-subtitle main-subtitle--fz col-12 pt-4">
-                                                            {{ service_type.name }}
-                                                        </div>
-
-                                                        <div class="col-12 px-0">
-
-                                                            <table class="table table-hover">
-                                                                <tbody>
-                                                                    <tr v-for="extra_room_extra_service in getServicesByServiceType(extra_room.extra_services, service_type.id)">
-                                                                        <th scope="row" class="w-50">
-                                                                            {{ extra_room_extra_service.name }}
-                                                                        </th>
-                                                                        <td>{{ extra_room_extra_service.pivot.quantity }} м<sup>2</sup></td>
-                                                                        <td>{{ extra_room_extra_service.price }} Р/м<sup>2</sup></td>
-                                                                        <td>{{ priceCount(extra_room_extra_service.pivot.quantity, extra_room_extra_service.price) }} Р</td>
-                                                                    </tr>
-                                                                </tbody>
-                                                            </table>
-
-                                                        </div>
-                                                    </div>
-                                                </template>
-                                            </template>
-
-                                            <template v-if="extra_room.room.room_type_id === 4">
-                                                <template v-for="service_type in service_types">
-                                                    <div class="row bg px-15">
-
-                                                        <div class="main-subtitle main-subtitle--fz col-12 pt-4">
-                                                            {{ service_type.name }}
-                                                        </div>
-
-                                                        <div class="col-12 px-0">
-
-                                                            <table class="table table-hover">
-                                                                <tbody>
-                                                                    <tr v-for="extra_room_extra_service in getServicesByServiceType(extra_room.extra_services, service_type.id)">
-                                                                        <th scope="row" class="w-50">
-                                                                            {{ extra_room_extra_service.name }}
-                                                                        </th>
-                                                                        <td>{{ extra_room_extra_service.pivot.quantity }} м<sup>2</sup></td>
-                                                                        <td>{{ extra_room_extra_service.price }} Р/м<sup>2</sup></td>
-                                                                        <td>{{ priceCount(extra_room_extra_service.pivot.quantity, extra_room_extra_service.price) }} Р</td>
-                                                                    </tr>
-                                                                </tbody>
-                                                            </table>
-
-                                                        </div>
-                                                    </div>
-                                                </template>
-                                            </template>
+                                            </template> -->
 
                                         </div>
                                     </template>

@@ -58217,91 +58217,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -58417,214 +58332,76 @@ var render = function() {
     [
       _c("basic-header"),
       _vm._v(" "),
-      _vm.extra_order
-        ? [
-            _c("div", { staticClass: "container-fluid " }, [
-              _c(
-                "div",
-                { staticClass: "row" },
-                [
-                  _c("navigation"),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "col-md-10" }, [
+      [
+        _c("div", { staticClass: "container-fluid " }, [
+          _c(
+            "div",
+            { staticClass: "row" },
+            [
+              _c("navigation"),
+              _vm._v(" "),
+              _c("div", { staticClass: "col-md-10" }, [
+                _c(
+                  "div",
+                  {
+                    staticClass:
+                      " row col-10 main-caption-wrapper shadow-light px-15 align-items-center"
+                  },
+                  [
+                    _c("div", { staticClass: "col-md-8" }, [
+                      _c(
+                        "h1",
+                        { staticClass: "main-caption" },
+                        [
+                          _vm.extra_order.order
+                            ? [
+                                _vm._v(
+                                  "\n                                    " +
+                                    _vm._s(_vm.extra_order.name) +
+                                    "\n                                "
+                                )
+                              ]
+                            : _vm._e()
+                        ],
+                        2
+                      )
+                    ]),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "col-md-2" }),
+                    _vm._v(" "),
                     _c(
                       "div",
-                      {
-                        staticClass:
-                          " row col-10 main-caption-wrapper shadow-light px-15 align-items-center"
-                      },
+                      { staticClass: "col-md-2" },
                       [
-                        _c("div", { staticClass: "col-md-8" }, [
-                          _c(
-                            "h1",
-                            { staticClass: "main-caption" },
-                            [
-                              _vm.extra_order.order
-                                ? [
-                                    _vm._v(
-                                      "\n                                    " +
-                                        _vm._s(_vm.extra_order.name) +
-                                        "\n                                "
-                                    )
-                                  ]
-                                : _vm._e()
-                            ],
-                            2
-                          )
-                        ]),
-                        _vm._v(" "),
-                        _c("div", { staticClass: "col-md-2" }),
-                        _vm._v(" "),
-                        _c(
-                          "div",
-                          { staticClass: "col-md-2" },
-                          [
-                            _vm.extra_order.extra_rooms
-                              ? [
-                                  _c(
-                                    "router-link",
-                                    {
-                                      attrs: {
-                                        to: {
-                                          name:
-                                            "order-extra-services-rooms-show",
-                                          params: {
-                                            id: _vm.extra_order.order.id,
-                                            extra_order_act_id:
-                                              _vm.extra_order.id,
-                                            extra_room_id:
-                                              _vm.extra_order.extra_rooms[0].id
-                                          }
-                                        }
-                                      }
-                                    },
-                                    [
-                                      _c(
-                                        "button",
-                                        {
-                                          staticClass: "primary-button w-100",
-                                          attrs: { type: "button" }
-                                        },
-                                        [
-                                          _vm._v(
-                                            "\n                                        Редактировать\n                                    "
-                                          )
-                                        ]
-                                      )
-                                    ]
-                                  )
-                                ]
-                              : _vm._e()
-                          ],
-                          2
-                        ),
-                        _vm._v(" "),
-                        _vm.extra_order.order
+                        _vm.extra_order.extra_rooms
                           ? [
                               _c(
-                                "div",
-                                { staticClass: "col-md-12 px-0 pt-4" },
+                                "router-link",
+                                {
+                                  attrs: {
+                                    to: {
+                                      name: "order-extra-services-rooms-show",
+                                      params: {
+                                        id: _vm.extra_order.order.id,
+                                        extra_order_act_id: _vm.extra_order.id,
+                                        extra_room_id:
+                                          _vm.extra_order.extra_rooms[0].id
+                                      }
+                                    }
+                                  }
+                                },
                                 [
                                   _c(
-                                    "h2",
-                                    { staticClass: "main-subtitle px-15" },
+                                    "button",
+                                    {
+                                      staticClass: "primary-button w-100",
+                                      attrs: { type: "button" }
+                                    },
                                     [
-                                      _vm.square
-                                        ? [
-                                            _c("span", [_vm._v("Общая S:")]),
-                                            _vm._v(
-                                              " " +
-                                                _vm._s(
-                                                  parseFloat(
-                                                    _vm.square
-                                                  ).toFixed(2)
-                                                ) +
-                                                " м"
-                                            ),
-                                            _c("sup", [_vm._v("2")])
-                                          ]
-                                        : _vm._e(),
-                                      _vm._v(" "),
-                                      _vm.extra_order.order.discount
-                                        ? [
-                                            _c("span", [_vm._v("Итого:")]),
-                                            _vm._v(
-                                              " " +
-                                                _vm._s(
-                                                  new Intl.NumberFormat().format(
-                                                    _vm.extra_order.order.price
-                                                  )
-                                                ) +
-                                                " Р\n                                        "
-                                            ),
-                                            _c(
-                                              "span",
-                                              { staticClass: "small-case" },
-                                              [
-                                                _vm._v(
-                                                  _vm._s(
-                                                    new Intl.NumberFormat().format(
-                                                      _vm.extra_order.order
-                                                        .original_price
-                                                    )
-                                                  ) + " Р"
-                                                )
-                                              ]
-                                            ),
-                                            _vm._v(" "),
-                                            _c(
-                                              "span",
-                                              { staticClass: "small-case" },
-                                              [
-                                                _vm._v(
-                                                  "(скидка: -" +
-                                                    _vm._s(
-                                                      _vm.extra_order.order
-                                                        .discount
-                                                    ) +
-                                                    "%)"
-                                                )
-                                              ]
-                                            )
-                                          ]
-                                        : _vm.extra_order.order.markup
-                                          ? [
-                                              _c("span", [_vm._v("Итого:")]),
-                                              _vm._v(
-                                                " " +
-                                                  _vm._s(
-                                                    new Intl.NumberFormat().format(
-                                                      _vm.extra_order.order
-                                                        .price
-                                                    )
-                                                  ) +
-                                                  " Р\n                                        "
-                                              ),
-                                              _c(
-                                                "span",
-                                                { staticClass: "small-case" },
-                                                [
-                                                  _vm._v(
-                                                    _vm._s(
-                                                      new Intl.NumberFormat().format(
-                                                        _vm.extra_order.order
-                                                          .original_price
-                                                      )
-                                                    ) + " Р"
-                                                  )
-                                                ]
-                                              ),
-                                              _vm._v(" "),
-                                              _c(
-                                                "span",
-                                                { staticClass: "small-case" },
-                                                [
-                                                  _vm._v(
-                                                    "(наценка: +" +
-                                                      _vm._s(
-                                                        _vm.extra_order.order
-                                                          .markup
-                                                      ) +
-                                                      "%)"
-                                                  )
-                                                ]
-                                              )
-                                            ]
-                                          : [
-                                              _c("span", [_vm._v("Итого:")]),
-                                              _vm._v(
-                                                " " +
-                                                  _vm._s(
-                                                    new Intl.NumberFormat().format(
-                                                      _vm.extra_order.order
-                                                        .price
-                                                    )
-                                                  ) +
-                                                  " Р\n                                    "
-                                              )
-                                            ]
-                                    ],
-                                    2
+                                      _vm._v(
+                                        "\n                                        Редактировать\n                                    "
+                                      )
+                                    ]
                                   )
                                 ]
                               )
@@ -58634,204 +58411,156 @@ var render = function() {
                       2
                     ),
                     _vm._v(" "),
-                    _c(
-                      "div",
-                      { staticClass: "col-12 px-0" },
-                      [
-                        _c("div", { staticClass: "projects__content px-15" }, [
-                          _c(
-                            "div",
-                            { staticClass: "row align-items-center pt-5" },
-                            [
-                              _c("div", { staticClass: "col-10" }, [
-                                _c(
-                                  "div",
-                                  {
-                                    staticClass:
-                                      "form-group d-flex align-items-center"
-                                  },
-                                  [
-                                    _c("input", {
-                                      directives: [
-                                        {
-                                          name: "model",
-                                          rawName: "v-model",
-                                          value: _vm.client_name,
-                                          expression: "client_name"
-                                        }
-                                      ],
-                                      staticClass: "form-control",
-                                      attrs: {
-                                        type: "text",
-                                        placeholder: "Имя клиента"
-                                      },
-                                      domProps: { value: _vm.client_name },
-                                      on: {
-                                        change: function($event) {
-                                          _vm.orderUpdate()
-                                        },
-                                        input: function($event) {
-                                          if ($event.target.composing) {
-                                            return
-                                          }
-                                          _vm.client_name = $event.target.value
-                                        }
-                                      }
-                                    }),
-                                    _vm._v(" "),
-                                    _c("div", { staticClass: "col-3" }, [
+                    _vm.extra_order.order
+                      ? [
+                          _c("div", { staticClass: "col-md-12 px-0 pt-4" }, [
+                            _c(
+                              "h2",
+                              { staticClass: "main-subtitle px-15" },
+                              [
+                                _vm.square
+                                  ? [
+                                      _c("span", [_vm._v("Общая S:")]),
+                                      _vm._v(
+                                        " " +
+                                          _vm._s(
+                                            parseFloat(_vm.square).toFixed(2)
+                                          ) +
+                                          " м"
+                                      ),
+                                      _c("sup", [_vm._v("2")])
+                                    ]
+                                  : _vm._e(),
+                                _vm._v(" "),
+                                _vm.extra_order.order.discount
+                                  ? [
+                                      _c("span", [_vm._v("Итого:")]),
+                                      _vm._v(
+                                        " " +
+                                          _vm._s(
+                                            new Intl.NumberFormat(
+                                              "ru-Ru"
+                                            ).format(
+                                              _vm.extra_order.order.price
+                                            )
+                                          ) +
+                                          " Р\n                                        "
+                                      ),
                                       _c(
-                                        "select",
-                                        {
-                                          directives: [
-                                            {
-                                              name: "model",
-                                              rawName: "v-model",
-                                              value: _vm.manager_id,
-                                              expression: "manager_id"
-                                            }
-                                          ],
-                                          staticClass: "form-control",
-                                          staticStyle: { height: "46px" },
-                                          on: {
-                                            change: [
-                                              function($event) {
-                                                var $$selectedVal = Array.prototype.filter
-                                                  .call(
-                                                    $event.target.options,
-                                                    function(o) {
-                                                      return o.selected
-                                                    }
-                                                  )
-                                                  .map(function(o) {
-                                                    var val =
-                                                      "_value" in o
-                                                        ? o._value
-                                                        : o.value
-                                                    return val
-                                                  })
-                                                _vm.manager_id = $event.target
-                                                  .multiple
-                                                  ? $$selectedVal
-                                                  : $$selectedVal[0]
-                                              },
-                                              function($event) {
-                                                _vm.orderUpdate()
-                                              }
-                                            ]
-                                          }
-                                        },
-                                        _vm._l(_vm.managers, function(manager) {
-                                          return _c(
-                                            "option",
-                                            { domProps: { value: manager.id } },
-                                            [
-                                              _vm._v(
-                                                "\n                                                        " +
-                                                  _vm._s(manager.name) +
-                                                  "\n                                                    "
+                                        "span",
+                                        { staticClass: "small-case" },
+                                        [
+                                          _vm._v(
+                                            _vm._s(
+                                              new Intl.NumberFormat(
+                                                "ru-Ru"
+                                              ).format(
+                                                _vm.extra_order.order
+                                                  .original_price
                                               )
-                                            ]
+                                            ) + " Р"
                                           )
-                                        })
+                                        ]
+                                      ),
+                                      _vm._v(" "),
+                                      _c(
+                                        "span",
+                                        { staticClass: "small-case" },
+                                        [
+                                          _vm._v(
+                                            "(скидка: -" +
+                                              _vm._s(
+                                                _vm.extra_order.order.discount
+                                              ) +
+                                              "%)"
+                                          )
+                                        ]
                                       )
-                                    ]),
-                                    _vm._v(" "),
-                                    _c("input", {
-                                      directives: [
-                                        {
-                                          name: "model",
-                                          rawName: "v-model",
-                                          value:
-                                            _vm.manager_phones[_vm.manager_id],
-                                          expression:
-                                            "manager_phones[manager_id]"
-                                        }
-                                      ],
-                                      staticClass: "form-control",
-                                      attrs: {
-                                        type: "text",
-                                        placeholder: "Телефон менеджера",
-                                        disabled: ""
-                                      },
-                                      domProps: {
-                                        value:
-                                          _vm.manager_phones[_vm.manager_id]
-                                      },
-                                      on: {
-                                        input: function($event) {
-                                          if ($event.target.composing) {
-                                            return
-                                          }
-                                          _vm.$set(
-                                            _vm.manager_phones,
-                                            _vm.manager_id,
-                                            $event.target.value
-                                          )
-                                        }
-                                      }
-                                    }),
-                                    _vm._v(" "),
-                                    _c("input", {
-                                      directives: [
-                                        {
-                                          name: "model",
-                                          rawName: "v-model",
-                                          value: _vm.contract,
-                                          expression: "contract"
-                                        }
-                                      ],
-                                      staticClass: "form-control",
-                                      attrs: {
-                                        type: "text",
-                                        placeholder: "№ Договора"
-                                      },
-                                      domProps: { value: _vm.contract },
-                                      on: {
-                                        change: function($event) {
-                                          _vm.orderUpdate()
-                                        },
-                                        input: function($event) {
-                                          if ($event.target.composing) {
-                                            return
-                                          }
-                                          _vm.contract = $event.target.value
-                                        }
-                                      }
-                                    })
-                                  ]
-                                )
-                              ]),
-                              _vm._v(" "),
-                              _c("div", { staticClass: "col-md-2" }, [
-                                _c(
-                                  "button",
-                                  {
-                                    staticClass: "primary-button w-100",
-                                    attrs: { type: "button" },
-                                    on: {
-                                      click: function($event) {
-                                        $event.preventDefault()
-                                        _vm.exportFile()
-                                      }
-                                    }
-                                  },
-                                  [
-                                    _vm._v(
-                                      "\n                                            Экспорт\n                                        "
-                                    )
-                                  ]
-                                )
-                              ])
-                            ]
-                          ),
-                          _vm._v(" "),
-                          _c("div", { staticClass: "col-12 px-0 pt-3" }, [
+                                    ]
+                                  : _vm.extra_order.order.markup
+                                    ? [
+                                        _c("span", [_vm._v("Итого:")]),
+                                        _vm._v(
+                                          " " +
+                                            _vm._s(
+                                              new Intl.NumberFormat(
+                                                "ru-Ru"
+                                              ).format(
+                                                _vm.extra_order.order.price
+                                              )
+                                            ) +
+                                            " Р\n                                        "
+                                        ),
+                                        _c(
+                                          "span",
+                                          { staticClass: "small-case" },
+                                          [
+                                            _vm._v(
+                                              _vm._s(
+                                                new Intl.NumberFormat(
+                                                  "ru-Ru"
+                                                ).format(
+                                                  _vm.extra_order.order
+                                                    .original_price
+                                                )
+                                              ) + " Р"
+                                            )
+                                          ]
+                                        ),
+                                        _vm._v(" "),
+                                        _c(
+                                          "span",
+                                          { staticClass: "small-case" },
+                                          [
+                                            _vm._v(
+                                              "(наценка: +" +
+                                                _vm._s(
+                                                  _vm.extra_order.order.markup
+                                                ) +
+                                                "%)"
+                                            )
+                                          ]
+                                        )
+                                      ]
+                                    : [
+                                        _c("span", [_vm._v("Итого:")]),
+                                        _vm._v(
+                                          " " +
+                                            _vm._s(
+                                              new Intl.NumberFormat(
+                                                "ru-Ru"
+                                              ).format(
+                                                _vm.extra_order.order.price
+                                              )
+                                            ) +
+                                            " Р\n                                    "
+                                        )
+                                      ]
+                              ],
+                              2
+                            )
+                          ])
+                        ]
+                      : _vm._e()
+                  ],
+                  2
+                ),
+                _vm._v(" "),
+                _c(
+                  "div",
+                  { staticClass: "col-12 px-0" },
+                  [
+                    _c("div", { staticClass: "projects__content px-15" }, [
+                      _c(
+                        "div",
+                        { staticClass: "row align-items-center pt-5" },
+                        [
+                          _c("div", { staticClass: "col-10" }, [
                             _c(
                               "div",
                               {
                                 staticClass:
-                                  "form-check custom-control checkbox"
+                                  "form-group d-flex align-items-center"
                               },
                               [
                                 _c("input", {
@@ -58839,851 +58568,399 @@ var render = function() {
                                     {
                                       name: "model",
                                       rawName: "v-model",
-                                      value: _vm.withMaterials,
-                                      expression: "withMaterials"
+                                      value: _vm.client_name,
+                                      expression: "client_name"
                                     }
                                   ],
-                                  staticClass: "form-check-input check",
+                                  staticClass: "form-control",
                                   attrs: {
-                                    id: "exportmaterials",
-                                    type: "checkbox"
+                                    type: "text",
+                                    placeholder: "Имя клиента"
                                   },
-                                  domProps: {
-                                    checked: Array.isArray(_vm.withMaterials)
-                                      ? _vm._i(_vm.withMaterials, null) > -1
-                                      : _vm.withMaterials
-                                  },
+                                  domProps: { value: _vm.client_name },
                                   on: {
                                     change: function($event) {
-                                      var $$a = _vm.withMaterials,
-                                        $$el = $event.target,
-                                        $$c = $$el.checked ? true : false
-                                      if (Array.isArray($$a)) {
-                                        var $$v = null,
-                                          $$i = _vm._i($$a, $$v)
-                                        if ($$el.checked) {
-                                          $$i < 0 &&
-                                            (_vm.withMaterials = $$a.concat([
-                                              $$v
-                                            ]))
-                                        } else {
-                                          $$i > -1 &&
-                                            (_vm.withMaterials = $$a
-                                              .slice(0, $$i)
-                                              .concat($$a.slice($$i + 1)))
-                                        }
-                                      } else {
-                                        _vm.withMaterials = $$c
+                                      _vm.orderUpdate()
+                                    },
+                                    input: function($event) {
+                                      if ($event.target.composing) {
+                                        return
                                       }
+                                      _vm.client_name = $event.target.value
                                     }
                                   }
                                 }),
                                 _vm._v(" "),
-                                _c(
-                                  "label",
-                                  {
-                                    staticClass: "form-check-label",
-                                    attrs: { for: "exportmaterials" }
+                                _c("div", { staticClass: "col-3" }, [
+                                  _c(
+                                    "select",
+                                    {
+                                      directives: [
+                                        {
+                                          name: "model",
+                                          rawName: "v-model",
+                                          value: _vm.manager_id,
+                                          expression: "manager_id"
+                                        }
+                                      ],
+                                      staticClass: "form-control",
+                                      staticStyle: { height: "46px" },
+                                      on: {
+                                        change: [
+                                          function($event) {
+                                            var $$selectedVal = Array.prototype.filter
+                                              .call(
+                                                $event.target.options,
+                                                function(o) {
+                                                  return o.selected
+                                                }
+                                              )
+                                              .map(function(o) {
+                                                var val =
+                                                  "_value" in o
+                                                    ? o._value
+                                                    : o.value
+                                                return val
+                                              })
+                                            _vm.manager_id = $event.target
+                                              .multiple
+                                              ? $$selectedVal
+                                              : $$selectedVal[0]
+                                          },
+                                          function($event) {
+                                            _vm.orderUpdate()
+                                          }
+                                        ]
+                                      }
+                                    },
+                                    _vm._l(_vm.managers, function(manager) {
+                                      return _c(
+                                        "option",
+                                        { domProps: { value: manager.id } },
+                                        [
+                                          _vm._v(
+                                            "\n                                                        " +
+                                              _vm._s(manager.name) +
+                                              "\n                                                    "
+                                          )
+                                        ]
+                                      )
+                                    })
+                                  )
+                                ]),
+                                _vm._v(" "),
+                                _c("input", {
+                                  directives: [
+                                    {
+                                      name: "model",
+                                      rawName: "v-model",
+                                      value: _vm.manager_phones[_vm.manager_id],
+                                      expression: "manager_phones[manager_id]"
+                                    }
+                                  ],
+                                  staticClass: "form-control",
+                                  attrs: {
+                                    type: "text",
+                                    placeholder: "Телефон менеджера",
+                                    disabled: ""
                                   },
-                                  [
-                                    _vm._v(
-                                      "\n                                      Экспортировать с материалами\n                                    "
-                                    )
-                                  ]
+                                  domProps: {
+                                    value: _vm.manager_phones[_vm.manager_id]
+                                  },
+                                  on: {
+                                    input: function($event) {
+                                      if ($event.target.composing) {
+                                        return
+                                      }
+                                      _vm.$set(
+                                        _vm.manager_phones,
+                                        _vm.manager_id,
+                                        $event.target.value
+                                      )
+                                    }
+                                  }
+                                }),
+                                _vm._v(" "),
+                                _c("input", {
+                                  directives: [
+                                    {
+                                      name: "model",
+                                      rawName: "v-model",
+                                      value: _vm.contract,
+                                      expression: "contract"
+                                    }
+                                  ],
+                                  staticClass: "form-control",
+                                  attrs: {
+                                    type: "text",
+                                    placeholder: "№ Договора"
+                                  },
+                                  domProps: { value: _vm.contract },
+                                  on: {
+                                    change: function($event) {
+                                      _vm.orderUpdate()
+                                    },
+                                    input: function($event) {
+                                      if ($event.target.composing) {
+                                        return
+                                      }
+                                      _vm.contract = $event.target.value
+                                    }
+                                  }
+                                })
+                              ]
+                            )
+                          ]),
+                          _vm._v(" "),
+                          _c("div", { staticClass: "col-md-2" }, [
+                            _c(
+                              "button",
+                              {
+                                staticClass: "primary-button w-100",
+                                attrs: { type: "button" },
+                                on: {
+                                  click: function($event) {
+                                    $event.preventDefault()
+                                    _vm.exportFile()
+                                  }
+                                }
+                              },
+                              [
+                                _vm._v(
+                                  "\n                                            Экспорт\n                                        "
                                 )
                               ]
                             )
                           ])
-                        ]),
-                        _vm._v(" "),
-                        _vm.extra_order.extra_rooms
-                          ? [
-                              _vm._l(_vm.extra_order.extra_rooms, function(
-                                extra_room,
-                                index
-                              ) {
-                                return [
+                        ]
+                      ),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "col-12 px-0 pt-3" }, [
+                        _c(
+                          "div",
+                          { staticClass: "form-check custom-control checkbox" },
+                          [
+                            _c("input", {
+                              directives: [
+                                {
+                                  name: "model",
+                                  rawName: "v-model",
+                                  value: _vm.withMaterials,
+                                  expression: "withMaterials"
+                                }
+                              ],
+                              staticClass: "form-check-input check",
+                              attrs: {
+                                id: "exportmaterials",
+                                type: "checkbox"
+                              },
+                              domProps: {
+                                checked: Array.isArray(_vm.withMaterials)
+                                  ? _vm._i(_vm.withMaterials, null) > -1
+                                  : _vm.withMaterials
+                              },
+                              on: {
+                                change: function($event) {
+                                  var $$a = _vm.withMaterials,
+                                    $$el = $event.target,
+                                    $$c = $$el.checked ? true : false
+                                  if (Array.isArray($$a)) {
+                                    var $$v = null,
+                                      $$i = _vm._i($$a, $$v)
+                                    if ($$el.checked) {
+                                      $$i < 0 &&
+                                        (_vm.withMaterials = $$a.concat([$$v]))
+                                    } else {
+                                      $$i > -1 &&
+                                        (_vm.withMaterials = $$a
+                                          .slice(0, $$i)
+                                          .concat($$a.slice($$i + 1)))
+                                    }
+                                  } else {
+                                    _vm.withMaterials = $$c
+                                  }
+                                }
+                              }
+                            }),
+                            _vm._v(" "),
+                            _c(
+                              "label",
+                              {
+                                staticClass: "form-check-label",
+                                attrs: { for: "exportmaterials" }
+                              },
+                              [
+                                _vm._v(
+                                  "\n                                      Экспортировать с материалами\n                                    "
+                                )
+                              ]
+                            )
+                          ]
+                        )
+                      ])
+                    ]),
+                    _vm._v(" "),
+                    _vm.extra_order.extra_rooms
+                      ? [
+                          _vm._l(_vm.extra_order.extra_rooms, function(
+                            extra_room,
+                            index
+                          ) {
+                            return [
+                              _c(
+                                "div",
+                                { staticClass: "projects__information" },
+                                [
                                   _c(
                                     "div",
-                                    { staticClass: "projects__information" },
+                                    { staticClass: "px-15 pb-3" },
                                     [
-                                      _c(
-                                        "div",
-                                        { staticClass: "px-15 pb-3" },
-                                        [
-                                          extra_room.room.description
-                                            ? [
-                                                _c(
-                                                  "h2",
-                                                  {
-                                                    staticClass:
-                                                      "main-subtitle main-subtitle--room"
-                                                  },
-                                                  [
-                                                    _vm._v(
-                                                      "\n                                                    " +
-                                                        _vm._s(
-                                                          extra_room.room
-                                                            .description
-                                                        ) +
-                                                        "\n                                                "
-                                                    )
-                                                  ]
+                                      extra_room.room.description
+                                        ? [
+                                            _c(
+                                              "h2",
+                                              {
+                                                staticClass:
+                                                  "main-subtitle main-subtitle--room"
+                                              },
+                                              [
+                                                _vm._v(
+                                                  "\n                                                    " +
+                                                    _vm._s(
+                                                      extra_room.room
+                                                        .description
+                                                    ) +
+                                                    "\n                                                "
                                                 )
                                               ]
-                                            : [
-                                                _c(
-                                                  "h2",
-                                                  {
-                                                    staticClass:
-                                                      "main-subtitle main-subtitle--room",
-                                                    on: {
-                                                      click: function($event) {
-                                                        _vm.changeRoomName()
-                                                      }
-                                                    }
-                                                  },
-                                                  [
-                                                    _vm._v(
-                                                      "\n                                                    " +
-                                                        _vm._s(
-                                                          extra_room.room
-                                                            .room_type.type
-                                                        ) +
-                                                        "\n                                                "
-                                                    )
-                                                  ]
-                                                )
-                                              ],
-                                          _vm._v(" "),
-                                          extra_room.room.room_type_id === 1
-                                            ? [
-                                                _c(
-                                                  "div",
-                                                  {
-                                                    staticClass:
-                                                      "projects__desc col-8 d-flex justify-content-between px-0 align-items-center pt-3"
-                                                  },
-                                                  [
-                                                    _c(
-                                                      "div",
-                                                      {
-                                                        staticClass:
-                                                          "projects__desc-item"
-                                                      },
-                                                      [
-                                                        _vm._v(
-                                                          "Общая площадь: " +
-                                                            _vm._s(
-                                                              extra_room.area
-                                                            ) +
-                                                            " м"
-                                                        ),
-                                                        _c("sup", [_vm._v("2")])
-                                                      ]
-                                                    ),
-                                                    _vm._v(" "),
-                                                    _c(
-                                                      "div",
-                                                      {
-                                                        staticClass:
-                                                          "projects__desc-item"
-                                                      },
-                                                      [
-                                                        _vm._v(
-                                                          "Высота потолка: " +
-                                                            _vm._s(
-                                                              extra_room.height
-                                                            ) +
-                                                            " м"
-                                                        )
-                                                      ]
-                                                    ),
-                                                    _vm._v(" "),
-                                                    _c(
-                                                      "div",
-                                                      {
-                                                        staticClass:
-                                                          "projects__desc-item"
-                                                      },
-                                                      [
-                                                        _vm._v(
-                                                          "Площадь стен: " +
-                                                            _vm._s(
-                                                              extra_room.wall_area
-                                                            ) +
-                                                            " м"
-                                                        ),
-                                                        _c("sup", [_vm._v("2")])
-                                                      ]
-                                                    ),
-                                                    _vm._v(" "),
-                                                    _c(
-                                                      "div",
-                                                      {
-                                                        staticClass:
-                                                          "projects__desc-item"
-                                                      },
-                                                      [
-                                                        _vm._v(
-                                                          "Периметр: " +
-                                                            _vm._s(
-                                                              extra_room.perimeter
-                                                            )
-                                                        )
-                                                      ]
-                                                    )
-                                                  ]
+                                            )
+                                          ]
+                                        : [
+                                            _c(
+                                              "h2",
+                                              {
+                                                staticClass:
+                                                  "main-subtitle main-subtitle--room",
+                                                on: {
+                                                  click: function($event) {
+                                                    _vm.changeRoomName()
+                                                  }
+                                                }
+                                              },
+                                              [
+                                                _vm._v(
+                                                  "\n                                                    " +
+                                                    _vm._s(
+                                                      extra_room.room.room_type
+                                                        .type
+                                                    ) +
+                                                    "\n                                                "
                                                 )
                                               ]
-                                            : _vm._e()
-                                        ],
-                                        2
-                                      ),
+                                            )
+                                          ],
                                       _vm._v(" "),
                                       extra_room.room.room_type_id === 1
                                         ? [
-                                            _vm._l(
-                                              _vm.service_types.slice(0, 3),
-                                              function(service_type) {
-                                                return [
-                                                  _c(
-                                                    "div",
-                                                    {
-                                                      staticClass:
-                                                        "row bg px-15"
-                                                    },
-                                                    [
-                                                      _c(
-                                                        "div",
-                                                        {
-                                                          staticClass:
-                                                            "main-subtitle main-subtitle--fz col-12 pt-4"
-                                                        },
-                                                        [
-                                                          _vm._v(
-                                                            "\n                                                        " +
-                                                              _vm._s(
-                                                                service_type.name
-                                                              ) +
-                                                              "\n                                                    "
-                                                          )
-                                                        ]
-                                                      ),
-                                                      _vm._v(" "),
-                                                      _c(
-                                                        "div",
-                                                        {
-                                                          staticClass:
-                                                            "col-12 px-0"
-                                                        },
-                                                        [
-                                                          _c(
-                                                            "table",
-                                                            {
-                                                              staticClass:
-                                                                "table table-hover"
-                                                            },
-                                                            [
-                                                              _c(
-                                                                "tbody",
-                                                                _vm._l(
-                                                                  _vm.getServicesByServiceType(
-                                                                    extra_room.extra_services,
-                                                                    service_type.id
-                                                                  ),
-                                                                  function(
-                                                                    extra_room_extra_service
-                                                                  ) {
-                                                                    return _c(
-                                                                      "tr",
-                                                                      [
-                                                                        _c(
-                                                                          "th",
-                                                                          {
-                                                                            staticClass:
-                                                                              "w-50",
-                                                                            attrs: {
-                                                                              scope:
-                                                                                "row"
-                                                                            }
-                                                                          },
-                                                                          [
-                                                                            _vm._v(
-                                                                              "\n                                                                        " +
-                                                                                _vm._s(
-                                                                                  extra_room_extra_service.name
-                                                                                ) +
-                                                                                "\n                                                                    "
-                                                                            )
-                                                                          ]
-                                                                        ),
-                                                                        _vm._v(
-                                                                          " "
-                                                                        ),
-                                                                        _c(
-                                                                          "td",
-                                                                          [
-                                                                            _vm._v(
-                                                                              _vm._s(
-                                                                                extra_room_extra_service
-                                                                                  .pivot
-                                                                                  .quantity
-                                                                              ) +
-                                                                                " м"
-                                                                            ),
-                                                                            _c(
-                                                                              "sup",
-                                                                              [
-                                                                                _vm._v(
-                                                                                  "2"
-                                                                                )
-                                                                              ]
-                                                                            )
-                                                                          ]
-                                                                        ),
-                                                                        _vm._v(
-                                                                          " "
-                                                                        ),
-                                                                        _c(
-                                                                          "td",
-                                                                          [
-                                                                            _vm._v(
-                                                                              _vm._s(
-                                                                                extra_room_extra_service.price
-                                                                              ) +
-                                                                                " Р/м"
-                                                                            ),
-                                                                            _c(
-                                                                              "sup",
-                                                                              [
-                                                                                _vm._v(
-                                                                                  "2"
-                                                                                )
-                                                                              ]
-                                                                            )
-                                                                          ]
-                                                                        ),
-                                                                        _vm._v(
-                                                                          " "
-                                                                        ),
-                                                                        _c(
-                                                                          "td",
-                                                                          [
-                                                                            _vm._v(
-                                                                              _vm._s(
-                                                                                _vm.priceCount(
-                                                                                  extra_room_extra_service
-                                                                                    .pivot
-                                                                                    .quantity,
-                                                                                  extra_room_extra_service.price
-                                                                                )
-                                                                              ) +
-                                                                                " Р"
-                                                                            )
-                                                                          ]
-                                                                        )
-                                                                      ]
-                                                                    )
-                                                                  }
-                                                                )
-                                                              )
-                                                            ]
-                                                          )
-                                                        ]
-                                                      )
-                                                    ]
-                                                  )
-                                                ]
-                                              }
-                                            )
-                                          ]
-                                        : _vm._e(),
-                                      _vm._v(" "),
-                                      extra_room.room.room_type_id === 2
-                                        ? [
-                                            _vm._l(
-                                              _vm.service_types.slice(4, 5),
-                                              function(service_type) {
-                                                return [
-                                                  _c(
-                                                    "div",
-                                                    {
-                                                      staticClass:
-                                                        "row bg px-15"
-                                                    },
-                                                    [
-                                                      _c(
-                                                        "div",
-                                                        {
-                                                          staticClass:
-                                                            "main-subtitle main-subtitle--fz col-12 pt-4"
-                                                        },
-                                                        [
-                                                          _vm._v(
-                                                            "\n                                                        " +
-                                                              _vm._s(
-                                                                service_type.name
-                                                              ) +
-                                                              "\n                                                    "
-                                                          )
-                                                        ]
-                                                      ),
-                                                      _vm._v(" "),
-                                                      _c(
-                                                        "div",
-                                                        {
-                                                          staticClass:
-                                                            "col-12 px-0"
-                                                        },
-                                                        [
-                                                          _c(
-                                                            "table",
-                                                            {
-                                                              staticClass:
-                                                                "table table-hover"
-                                                            },
-                                                            [
-                                                              _c(
-                                                                "tbody",
-                                                                _vm._l(
-                                                                  _vm.getServicesByServiceType(
-                                                                    extra_room.extra_services,
-                                                                    service_type.id
-                                                                  ),
-                                                                  function(
-                                                                    extra_room_extra_service
-                                                                  ) {
-                                                                    return _c(
-                                                                      "tr",
-                                                                      [
-                                                                        _c(
-                                                                          "th",
-                                                                          {
-                                                                            staticClass:
-                                                                              "w-50",
-                                                                            attrs: {
-                                                                              scope:
-                                                                                "row"
-                                                                            }
-                                                                          },
-                                                                          [
-                                                                            _vm._v(
-                                                                              "\n                                                                        " +
-                                                                                _vm._s(
-                                                                                  extra_room_extra_service.name
-                                                                                ) +
-                                                                                "\n                                                                    "
-                                                                            )
-                                                                          ]
-                                                                        ),
-                                                                        _vm._v(
-                                                                          " "
-                                                                        ),
-                                                                        _c(
-                                                                          "td",
-                                                                          [
-                                                                            _vm._v(
-                                                                              _vm._s(
-                                                                                extra_room_extra_service
-                                                                                  .pivot
-                                                                                  .quantity
-                                                                              ) +
-                                                                                " м"
-                                                                            ),
-                                                                            _c(
-                                                                              "sup",
-                                                                              [
-                                                                                _vm._v(
-                                                                                  "2"
-                                                                                )
-                                                                              ]
-                                                                            )
-                                                                          ]
-                                                                        ),
-                                                                        _vm._v(
-                                                                          " "
-                                                                        ),
-                                                                        _c(
-                                                                          "td",
-                                                                          [
-                                                                            _vm._v(
-                                                                              _vm._s(
-                                                                                extra_room_extra_service.price
-                                                                              ) +
-                                                                                " Р/м"
-                                                                            ),
-                                                                            _c(
-                                                                              "sup",
-                                                                              [
-                                                                                _vm._v(
-                                                                                  "2"
-                                                                                )
-                                                                              ]
-                                                                            )
-                                                                          ]
-                                                                        ),
-                                                                        _vm._v(
-                                                                          " "
-                                                                        ),
-                                                                        _c(
-                                                                          "td",
-                                                                          [
-                                                                            _vm._v(
-                                                                              _vm._s(
-                                                                                _vm.priceCount(
-                                                                                  extra_room_extra_service
-                                                                                    .pivot
-                                                                                    .quantity,
-                                                                                  extra_room_extra_service.price
-                                                                                )
-                                                                              ) +
-                                                                                " Р"
-                                                                            )
-                                                                          ]
-                                                                        )
-                                                                      ]
-                                                                    )
-                                                                  }
-                                                                )
-                                                              )
-                                                            ]
-                                                          )
-                                                        ]
-                                                      )
-                                                    ]
-                                                  )
-                                                ]
-                                              }
-                                            )
-                                          ]
-                                        : _vm._e(),
-                                      _vm._v(" "),
-                                      extra_room.room.room_type_id === 3
-                                        ? [
-                                            _vm._l(
-                                              _vm.service_types.slice(3, 4),
-                                              function(service_type) {
-                                                return [
-                                                  _c(
-                                                    "div",
-                                                    {
-                                                      staticClass:
-                                                        "row bg px-15"
-                                                    },
-                                                    [
-                                                      _c(
-                                                        "div",
-                                                        {
-                                                          staticClass:
-                                                            "main-subtitle main-subtitle--fz col-12 pt-4"
-                                                        },
-                                                        [
-                                                          _vm._v(
-                                                            "\n                                                        " +
-                                                              _vm._s(
-                                                                service_type.name
-                                                              ) +
-                                                              "\n                                                    "
-                                                          )
-                                                        ]
-                                                      ),
-                                                      _vm._v(" "),
-                                                      _c(
-                                                        "div",
-                                                        {
-                                                          staticClass:
-                                                            "col-12 px-0"
-                                                        },
-                                                        [
-                                                          _c(
-                                                            "table",
-                                                            {
-                                                              staticClass:
-                                                                "table table-hover"
-                                                            },
-                                                            [
-                                                              _c(
-                                                                "tbody",
-                                                                _vm._l(
-                                                                  _vm.getServicesByServiceType(
-                                                                    extra_room.extra_services,
-                                                                    service_type.id
-                                                                  ),
-                                                                  function(
-                                                                    extra_room_extra_service
-                                                                  ) {
-                                                                    return _c(
-                                                                      "tr",
-                                                                      [
-                                                                        _c(
-                                                                          "th",
-                                                                          {
-                                                                            staticClass:
-                                                                              "w-50",
-                                                                            attrs: {
-                                                                              scope:
-                                                                                "row"
-                                                                            }
-                                                                          },
-                                                                          [
-                                                                            _vm._v(
-                                                                              "\n                                                                        " +
-                                                                                _vm._s(
-                                                                                  extra_room_extra_service.name
-                                                                                ) +
-                                                                                "\n                                                                    "
-                                                                            )
-                                                                          ]
-                                                                        ),
-                                                                        _vm._v(
-                                                                          " "
-                                                                        ),
-                                                                        _c(
-                                                                          "td",
-                                                                          [
-                                                                            _vm._v(
-                                                                              _vm._s(
-                                                                                extra_room_extra_service
-                                                                                  .pivot
-                                                                                  .quantity
-                                                                              ) +
-                                                                                " м"
-                                                                            ),
-                                                                            _c(
-                                                                              "sup",
-                                                                              [
-                                                                                _vm._v(
-                                                                                  "2"
-                                                                                )
-                                                                              ]
-                                                                            )
-                                                                          ]
-                                                                        ),
-                                                                        _vm._v(
-                                                                          " "
-                                                                        ),
-                                                                        _c(
-                                                                          "td",
-                                                                          [
-                                                                            _vm._v(
-                                                                              _vm._s(
-                                                                                extra_room_extra_service.price
-                                                                              ) +
-                                                                                " Р/м"
-                                                                            ),
-                                                                            _c(
-                                                                              "sup",
-                                                                              [
-                                                                                _vm._v(
-                                                                                  "2"
-                                                                                )
-                                                                              ]
-                                                                            )
-                                                                          ]
-                                                                        ),
-                                                                        _vm._v(
-                                                                          " "
-                                                                        ),
-                                                                        _c(
-                                                                          "td",
-                                                                          [
-                                                                            _vm._v(
-                                                                              _vm._s(
-                                                                                _vm.priceCount(
-                                                                                  extra_room_extra_service
-                                                                                    .pivot
-                                                                                    .quantity,
-                                                                                  extra_room_extra_service.price
-                                                                                )
-                                                                              ) +
-                                                                                " Р"
-                                                                            )
-                                                                          ]
-                                                                        )
-                                                                      ]
-                                                                    )
-                                                                  }
-                                                                )
-                                                              )
-                                                            ]
-                                                          )
-                                                        ]
-                                                      )
-                                                    ]
-                                                  )
-                                                ]
-                                              }
-                                            )
-                                          ]
-                                        : _vm._e(),
-                                      _vm._v(" "),
-                                      extra_room.room.room_type_id === 4
-                                        ? [
-                                            _vm._l(_vm.service_types, function(
-                                              service_type
-                                            ) {
-                                              return [
+                                            _c(
+                                              "div",
+                                              {
+                                                staticClass:
+                                                  "projects__desc col-8 d-flex justify-content-between px-0 align-items-center pt-3"
+                                              },
+                                              [
                                                 _c(
                                                   "div",
                                                   {
-                                                    staticClass: "row bg px-15"
+                                                    staticClass:
+                                                      "projects__desc-item"
                                                   },
                                                   [
-                                                    _c(
-                                                      "div",
-                                                      {
-                                                        staticClass:
-                                                          "main-subtitle main-subtitle--fz col-12 pt-4"
-                                                      },
-                                                      [
-                                                        _vm._v(
-                                                          "\n                                                        " +
-                                                            _vm._s(
-                                                              service_type.name
-                                                            ) +
-                                                            "\n                                                    "
-                                                        )
-                                                      ]
+                                                    _vm._v(
+                                                      "Общая площадь: " +
+                                                        _vm._s(
+                                                          extra_room.area
+                                                        ) +
+                                                        " м"
                                                     ),
-                                                    _vm._v(" "),
-                                                    _c(
-                                                      "div",
-                                                      {
-                                                        staticClass:
-                                                          "col-12 px-0"
-                                                      },
-                                                      [
-                                                        _c(
-                                                          "table",
-                                                          {
-                                                            staticClass:
-                                                              "table table-hover"
-                                                          },
-                                                          [
-                                                            _c(
-                                                              "tbody",
-                                                              _vm._l(
-                                                                _vm.getServicesByServiceType(
-                                                                  extra_room.extra_services,
-                                                                  service_type.id
-                                                                ),
-                                                                function(
-                                                                  extra_room_extra_service
-                                                                ) {
-                                                                  return _c(
-                                                                    "tr",
-                                                                    [
-                                                                      _c(
-                                                                        "th",
-                                                                        {
-                                                                          staticClass:
-                                                                            "w-50",
-                                                                          attrs: {
-                                                                            scope:
-                                                                              "row"
-                                                                          }
-                                                                        },
-                                                                        [
-                                                                          _vm._v(
-                                                                            "\n                                                                        " +
-                                                                              _vm._s(
-                                                                                extra_room_extra_service.name
-                                                                              ) +
-                                                                              "\n                                                                    "
-                                                                          )
-                                                                        ]
-                                                                      ),
-                                                                      _vm._v(
-                                                                        " "
-                                                                      ),
-                                                                      _c("td", [
-                                                                        _vm._v(
-                                                                          _vm._s(
-                                                                            extra_room_extra_service
-                                                                              .pivot
-                                                                              .quantity
-                                                                          ) +
-                                                                            " м"
-                                                                        ),
-                                                                        _c(
-                                                                          "sup",
-                                                                          [
-                                                                            _vm._v(
-                                                                              "2"
-                                                                            )
-                                                                          ]
-                                                                        )
-                                                                      ]),
-                                                                      _vm._v(
-                                                                        " "
-                                                                      ),
-                                                                      _c("td", [
-                                                                        _vm._v(
-                                                                          _vm._s(
-                                                                            extra_room_extra_service.price
-                                                                          ) +
-                                                                            " Р/м"
-                                                                        ),
-                                                                        _c(
-                                                                          "sup",
-                                                                          [
-                                                                            _vm._v(
-                                                                              "2"
-                                                                            )
-                                                                          ]
-                                                                        )
-                                                                      ]),
-                                                                      _vm._v(
-                                                                        " "
-                                                                      ),
-                                                                      _c("td", [
-                                                                        _vm._v(
-                                                                          _vm._s(
-                                                                            _vm.priceCount(
-                                                                              extra_room_extra_service
-                                                                                .pivot
-                                                                                .quantity,
-                                                                              extra_room_extra_service.price
-                                                                            )
-                                                                          ) +
-                                                                            " Р"
-                                                                        )
-                                                                      ])
-                                                                    ]
-                                                                  )
-                                                                }
-                                                              )
-                                                            )
-                                                          ]
+                                                    _c("sup", [_vm._v("2")])
+                                                  ]
+                                                ),
+                                                _vm._v(" "),
+                                                _c(
+                                                  "div",
+                                                  {
+                                                    staticClass:
+                                                      "projects__desc-item"
+                                                  },
+                                                  [
+                                                    _vm._v(
+                                                      "Высота потолка: " +
+                                                        _vm._s(
+                                                          extra_room.height
+                                                        ) +
+                                                        " м"
+                                                    )
+                                                  ]
+                                                ),
+                                                _vm._v(" "),
+                                                _c(
+                                                  "div",
+                                                  {
+                                                    staticClass:
+                                                      "projects__desc-item"
+                                                  },
+                                                  [
+                                                    _vm._v(
+                                                      "Площадь стен: " +
+                                                        _vm._s(
+                                                          extra_room.wall_area
+                                                        ) +
+                                                        " м"
+                                                    ),
+                                                    _c("sup", [_vm._v("2")])
+                                                  ]
+                                                ),
+                                                _vm._v(" "),
+                                                _c(
+                                                  "div",
+                                                  {
+                                                    staticClass:
+                                                      "projects__desc-item"
+                                                  },
+                                                  [
+                                                    _vm._v(
+                                                      "Периметр: " +
+                                                        _vm._s(
+                                                          extra_room.perimeter
                                                         )
-                                                      ]
                                                     )
                                                   ]
                                                 )
                                               ]
-                                            })
+                                            )
                                           ]
                                         : _vm._e()
                                     ],
                                     2
                                   )
                                 ]
-                              })
+                              )
                             ]
-                          : _vm._e(),
-                        _vm._v(" "),
-                        _c("div", { staticStyle: { "padding-bottom": "5em" } })
-                      ],
-                      2
-                    )
-                  ])
-                ],
-                1
-              )
-            ])
-          ]
-        : _vm._e()
+                          })
+                        ]
+                      : _vm._e(),
+                    _vm._v(" "),
+                    _c("div", { staticStyle: { "padding-bottom": "5em" } })
+                  ],
+                  2
+                )
+              ])
+            ],
+            1
+          )
+        ])
+      ]
     ],
     2
   )
