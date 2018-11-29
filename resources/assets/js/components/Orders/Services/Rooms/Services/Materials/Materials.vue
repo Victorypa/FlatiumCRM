@@ -293,7 +293,7 @@
 
         methods: {
             getActualServiceMaterials () {
-                return axios.get(`/api/orders/${this.$route.params.id}/rooms/${this.$route.params.room_id}/services/${this.$route.params.service_id}/materials`)
+                return axios.get(`/api/orders/${this.$route.params.id}/extra_order_act/${this.$route.params.extra_order_act_id}/extra_rooms/${this.$route.params.extra_room_id}/services/${this.$route.params.service_id}/materials`)
                             .then(response => {
                                 this.service_materials = response.data.actual_service_materials
 
@@ -309,12 +309,12 @@
             },
 
             saveServiceMaterial () {
-                axios.post(`/api/orders/${this.$route.params.id}/rooms/${this.$route.params.room_id}/services/${this.$route.params.service_id}/materials/store`, {
+                axios.post(`/api/orders/${this.$route.params.id}/extra_order_act/${this.$route.params.extra_order_act_id}/extra_rooms/${this.$route.params.extra_room_id}/services/${this.$route.params.service_id}/materials/store`, {
                     'service_material_ids': this.service_material_ids,
                     'service_material_rates': this.removeEmptyElem(this.service_material_rates),
                     'service_material_quantities': this.removeEmptyElem(this.service_material_quantities),
                 }).then(response => {
-                    window.location.reload(true)
+                    // window.location.reload(true)
                 }).catch(err => {
                     console.log(err)
                 })

@@ -110,7 +110,7 @@ use Illuminate\Http\Request;
                      * Extra Room Service -  Materials
                     */
                     Route::group(['namespace' => 'Materials'], function () {
-                        Route::get('/{order}/extra_order_act/{extra_order_act}/extra_rooms/{extra_room}/servces/{service}/materials', 'ExtraRoomServiceMaterialController@index');
+                        Route::get('/{order}/extra_order_act/{extra_order_act}/extra_rooms/{extra_room}/services/{service}/materials', 'ExtraRoomServiceMaterialController@index');
                         Route::post('/{order}/extra_order_act/{extra_order_act}/extra_rooms/{extra_room}/services/{service}/materials/store', 'ExtraRoomServiceMaterialController@store');
                     });
 
