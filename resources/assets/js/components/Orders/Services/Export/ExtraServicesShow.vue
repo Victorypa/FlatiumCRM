@@ -160,39 +160,54 @@
 
                                             </div>
 
-                                            <!-- <template v-if="extra_room.room.room_type_id === 1">
-                                                <template v-for="service_type in service_types.slice(0, 3)">
-                                                    <div class="row bg px-15">
+                                            <template v-for="(extra_room_services, service_type_id) in groupByServiceType(extra_room.extra_room_services)">
+                                                <div class="row bg px-15">
 
-                                                        <div class="main-subtitle main-subtitle--fz col-12 pt-4">
-                                                            {{ service_type.name }}
-                                                        </div>
-
-                                                        <div class="col-12 px-0">
-                                                            <table class="table table-hover">
-                                                                <tbody>
-                                                                    <tr v-for="extra_room_extra_service in getServicesByServiceType(extra_room.extra_services, service_type.id)">
-                                                                        <th scope="row" class="w-50">
-                                                                            {{ extra_room_extra_service.name }}
-                                                                        </th>
-                                                                        <td>{{ extra_room_extra_service.pivot.quantity }} м<sup>2</sup></td>
-                                                                        <td>{{ extra_room_extra_service.price }} Р/м<sup>2</sup></td>
-                                                                        <td>{{ priceCount(extra_room_extra_service.pivot.quantity, extra_room_extra_service.price) }} Р</td>
-                                                                    </tr>
-                                                                </tbody>
-                                                            </table>
-                                                        </div>
+                                                    <div class="main-subtitle main-subtitle--fz col-12 pt-4">
+                                                        {{ getServiceTypeName(service_type_id) }}
                                                     </div>
-                                                </template>
-                                            </template> -->
+
+                                                    <div class="col-12 px-0">
+                                                        <table class="table table-hover">
+                                                            <tbody>
+                                                                <tr v-for="extra_room_service in extra_room_services">
+                                                                    <th scope="row" class="w-50">
+                                                                        {{ extra_room_service.service.name }}
+                                                                    </th>
+                                                                    <td>{{ extra_room_service.quantity }} м<sup>2</sup></td>
+
+                                                                    <template v-if="extra_order.order.discount">
+                                                                        <template v-if="extra_room_service.service.can_be_discounted">
+                                                                            <td>{{ extra_room_service.service.price * (1 - parseInt(extra_order.order.discount)/100) }} Р/м<sup>2</sup></td>
+                                                                            <td>{{ priceCount(extra_room_service.quantity, extra_room_service.service.price * (1 - parseInt(extra_order.order.discount)/100)) }} Р</td>
+                                                                        </template>
+                                                                        <template v-else>
+                                                                            <td>{{ extra_room_service.service.price }} Р/м<sup>2</sup></td>
+                                                                            <td>{{ priceCount(extra_room_service.quantity, extra_room_service.service.price) }} Р</td>
+                                                                        </template>
+                                                                    </template>
+
+                                                                    <template v-if="extra_order.order.markup">
+                                                                        <td>{{ extra_room_service.service.price * (1 + parseInt(extra_order.order.markup)/100) }} Р/м<sup>2</sup></td>
+                                                                        <td>{{ priceCount(extra_room_service.quantity, extra_room_service.service.price * (1 + parseInt(extra_order.order.markup)/100)) }} Р</td>
+                                                                    </template>
+
+                                                                    <template v-if="extra_order.order.discount === null && extra_order.order.markup === null">
+                                                                        <td>{{ extra_room_service.service.price }} Р/м<sup>2</sup></td>
+                                                                        <td>{{ priceCount(extra_room_service.quantity, extra_room_service.service.price) }} Р</td>
+                                                                    </template>
+                                                                </tr>
+                                                            </tbody>
+                                                        </table>
+                                                    </div>
+                                                </div>
+                                            </template>
 
                                         </div>
                                     </template>
                                 </template>
 
-                                <div style="padding-bottom: 5em;">
-
-                                </div>
+                                <div style="padding-bottom: 5em;"></div>
                             </div>
 
                     </div>
@@ -204,8 +219,11 @@
 </template>
 
 <script>
+    import OrderExportCollection from '../../../../mixins/OrderExportCollection'
 
     export default {
+        mixins: [OrderExportCollection],
+
         data () {
             return {
                 extra_order: [],
@@ -215,19 +233,20 @@
                 contract: null,
                 client_name: null,
                 percentage: null,
-                managers: [],
-                manager_phones: [],
+
                 manager_id: 1,
                 withMaterials: false,
                 service_types: [],
 
-                selected_id: null
+                selected_id: null,
+
+                extra_room_service_ids: [],
+                extra_rooms: [],
             }
         },
 
         mounted () {
             this.getExtraOrder()
-            this.getManagers()
             this.getServiceTypes()
         },
 
@@ -257,16 +276,6 @@
                         localStorage.setItem('service_types', JSON.stringify(this.service_types))
                     })
                 }
-            },
-
-            getManagers() {
-                return axios.get(`/api/managers`)
-                            .then(response => {
-                                this.managers = response.data
-                                response.data.forEach(item => {
-                                    this.manager_phones[item.id] = item.phone
-                                })
-                            })
             },
 
             getServicesByServiceType(services, service_type_id) {

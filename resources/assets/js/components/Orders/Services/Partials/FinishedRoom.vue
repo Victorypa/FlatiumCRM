@@ -35,12 +35,12 @@
                           <th scope="row" class="w-50 pl-1">
                             <div class="form-check custom-control checkbox">
                               <input class="form-check-input check"
-                                     :id="'service-' + room_service.service_id"
+                                     :id="'room-' + room_service.room_id + 'service-' + room_service.service_id"
                                      type="checkbox"
                                      :checked="finished_room_service_ids.includes(room_service.service_id)"
                                      @click="addToSelectedServiceId(room_service.service_id)"
                                      >
-                              <label class="form-check-label d-block" :for="'service-' + room_service.service_id">
+                              <label class="form-check-label d-block" :for="'room-' + room_service.room_id + 'service-' + room_service.service_id">
                                   {{ getServiceDetails(room_service.service_id, 'name') }}
                               </label>
                             </div>
@@ -49,7 +49,7 @@
                               <div class="d-flex align-items-center">
                                   <input type="number"
                                          class="form-control w-85"
-                                         :id="'service-' + room_service.service_id"
+                                         :id="'room-' + room_service.room_id + 'service-' + room_service.service_id"
                                          min="0"
                                          v-model="selected_service_quantities[room_service.service_id]"
                                          @change="linkSelectedServicesToFinishedRoom()"

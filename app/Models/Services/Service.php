@@ -55,9 +55,4 @@ class Service extends Model
     {
         return $this->belongsToMany(Material::class, 'actual_service_material')->withPivot('rate');
     }
-
-    // public function extra_materials()
-    // {
-    //     return $this->belongsToMany(Material::class, 'extra_service_material')->withPivot('rate');
-    // }
 }

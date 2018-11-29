@@ -44,9 +44,9 @@
               <template v-if="order.price">
                   <template v-if="order.discount">
                       <div class="col-md-6 pt-3 d-flex align-items-center">
-                          <h2 class="main-subtitle">Итого: {{ new Intl.NumberFormat().format(parseInt(order.price)) }} Р</h2>
+                          <h2 class="main-subtitle">Итого: {{ new Intl.NumberFormat('ru-Ru').format(parseInt(order.price)) }} Р</h2>
                           <div class="d-flex pl-3">
-                            <span class="small-case">{{ new Intl.NumberFormat().format(order.original_price) }} Р</span>
+                            <span class="small-case">{{ new Intl.NumberFormat('ru-Ru').format(order.original_price) }} Р</span>
                             <span class="small-case">(скидка: -{{ parseInt(order.discount) }}%)</span>
                           </div>
 
@@ -54,21 +54,21 @@
                   </template>
                   <template v-if="order.markup">
                       <div class="col-md-6 pt-3">
-                        <h2 class="main-subtitle">Итого: {{ new Intl.NumberFormat().format(order.price) }} Р</h2>
-                            <span class="small-case">{{ new Intl.NumberFormat().format(order.original_price) }} Р</span>
+                        <h2 class="main-subtitle">Итого: {{ new Intl.NumberFormat('ru-Ru').format(order.price) }} Р</h2>
+                            <span class="small-case">{{ new Intl.NumberFormat('ru-Ru').format(order.original_price) }} Р</span>
                             <span class="small-case">(наценка: +{{ parseInt(order.markup) }}%)</span>
                       </div>
                   </template>
                   <template v-if="order.discount === null && order.markup === null">
                       <div class="col-md-6 pt-3">
-                        <h2 class="main-subtitle">Итого: {{ new Intl.NumberFormat().format(parseInt(order.price)) }} Р</h2>
+                        <h2 class="main-subtitle">Итого: {{ new Intl.NumberFormat('ru-Ru').format(parseInt(order.price)) }} Р</h2>
                       </div>
                   </template>
 
               </template>
               <template v-else>
                   <div class="col-md-6 pt-3">
-                    <h2 class="main-subtitle"> Итого: {{ new Intl.NumberFormat().format(parseInt(0)) }} Р</h2>
+                    <h2 class="main-subtitle"> Итого: {{ new Intl.NumberFormat('ru-Ru').format(parseInt(0)) }} Р</h2>
                   </div>
               </template>
 
@@ -77,7 +77,7 @@
               <template v-if="price">
                   <div class="col-md-6 pt-3 d-flex justify-content-end px-0">
                     <div class="col-12 text-right">
-                      <h2 class="main-subtitle px-15"> {{ new Intl.NumberFormat().format(parseInt(price)) }} Р</h2>
+                      <h2 class="main-subtitle px-15"> {{ new Intl.NumberFormat('ru-Ru').format(parseInt(price)) }} Р</h2>
                     </div>
 
                   </div>
@@ -85,7 +85,7 @@
               <template v-else>
                   <div class="col-md-6 pt-3 d-flex justify-content-end px-0">
                     <div class="col-12 text-right">
-                      <h2 class="main-subtitle px-15"> {{ new Intl.NumberFormat().format(parseInt(0)) }} Р</h2>
+                      <h2 class="main-subtitle px-15"> {{ new Intl.NumberFormat('ru-Ru').format(parseInt(0)) }} Р</h2>
                     </div>
 
                   </div>

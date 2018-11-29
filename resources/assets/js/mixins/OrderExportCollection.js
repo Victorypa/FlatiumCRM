@@ -4,10 +4,13 @@ export default {
             managers: [],
             manager_phones: [],
             manager_id: 1,
+
+            services: []
         }
     },
 
     mounted () {
+        this.getServices()
         this.getManagers()
     },
 
@@ -23,49 +26,53 @@ export default {
         },
 
         sortServicesByCreatedAt (services) {
-            if (services.length) {
-                let data = _.orderBy(services, ['created_at'], ['asc'])
+            let data = _.orderBy(services, ['created_at'], ['asc'])
 
-                return data
-            }
-
+            return data
         },
 
         groupByServiceType(services) {
-            if (services.length) {
-                return _.groupBy(services, 'service_type_id')
-            }
+            return _.groupBy(services, 'service_type_id')
         },
 
         priceCount (quantity, price) {
             return new Intl.NumberFormat('ru-Ru').format(parseInt(quantity) * price)
         },
 
+        getServices () {
+            return axios.get('/api/services').then(response => {
+                this.services = response.data
+            })
+        },
+
         getServiceDetails (service_id, type) {
-            if (this.services.length && service_id != null) {
+            if (this.services) {
                 let data = this.services.filter(row => {
                     return row.id === parseInt(service_id)
                 })
 
-                switch (type) {
-                    case 'name':
-                        return data[0].name
-                        break;
-                    case 'unit':
-                        return data[0].unit.name
-                    case 'price':
-                        return parseInt(data[0].price)
-                    case 'can_be_discounted':
-                        return data[0].can_be_discounted
-                    default:
-                        return null
+                if (data.length) {
+                    switch (type) {
+                        case 'name':
+                            return data[0].name
+                            break;
+                        case 'unit':
+                            return data[0].unit.name
+                        case 'price':
+                            return parseInt(data[0].price)
+                        case 'can_be_discounted':
+                            return data[0].can_be_discounted
+                        default:
+                            return null
+                    }
                 }
+
             }
 
         },
 
         getServiceTypeName (service_type_id) {
-            if (this.service_types.length) {
+            if (this.service_types && service_type_id) {
                 return this.service_types.filter(row => {
                     return row.id === parseInt(service_type_id)
                 })[0].name
@@ -74,9 +81,11 @@ export default {
         },
 
         getRoomDetails(room_id, type) {
-            let data = this.rooms.filter(row => {
-                return row.id === parseInt(room_id)
-            })
+            if (this.rooms) {
+                let data = this.rooms.filter(row => {
+                    return row.id === parseInt(room_id)
+                })
+            }
 
             switch (type) {
                 case 'description':

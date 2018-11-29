@@ -24,11 +24,12 @@
 
                 <form class="row w-100" @submit.prevent="saveNewServices()">
                     <div class="col-2 py-1">
-                        <select class="form-control" v-model="newService.service_type_id">
+                        &nbsp;
+                        <!-- <select class="form-control" v-model="newService.service_type_id">
                               <option v-for="service_type in service_types" :value="service_type.id">
                                   {{ service_type.name }}
                               </option>
-                        </select>
+                        </select> -->
                     </div>
 
                     <div class="col-5 py-1">
@@ -228,7 +229,6 @@
                 service_quantities: [],
                 service_prices: [],
 
-                units: [],
                 newServices: [],
 
             }
@@ -238,6 +238,7 @@
             this.getServiceTypes()
             this.getServices()
             this.getRoomServices()
+            this.getServiceUnits()
         },
 
         methods: {
