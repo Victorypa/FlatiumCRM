@@ -173,8 +173,8 @@
                 </div>
 
 
-                <!-- <template v-if="extra_room_service_ids.includes(service.id) && service.actual_materials">
-                        <div class="row col-12" v-for="material in service.actual_materials">
+                <template v-if="extra_room_service_ids.includes(service.id) && extra_room.extra_room_services.filter(extra_room_service => extra_room_service.service_id === service.id)[0].materials">
+                        <div class="row col-12" v-for="material in extra_room.extra_room_services.filter(extra_room_service => extra_room_service.service_id === service.id)[0].materials">
                           <div class="col-4 pl-5 mb-3">
                             <div class="subtitle-list">
                               <div class="subtitle-list__item">
@@ -194,7 +194,7 @@
                           </template>
                         </div>
 
-                </template> -->
+                </template>
 
               </div>
               </div>

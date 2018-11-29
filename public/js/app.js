@@ -56035,276 +56035,387 @@ var render = function() {
                     "div",
                     { staticClass: "col-md-12 px-0 all-items" },
                     [
-                      _c("div", { staticClass: "row align-items-center" }, [
-                        _c("label", { staticClass: "col-md-4 mb-0" }, [
-                          _c(
-                            "div",
-                            {
-                              staticClass:
-                                "form-check custom-control d-flex edit-show"
-                            },
-                            [
-                              _c("input", {
-                                staticClass: "form-check-input",
-                                attrs: {
-                                  type: "checkbox",
-                                  id: "service-" + service.id
-                                },
-                                domProps: {
-                                  checked: _vm.extra_room_service_ids.includes(
-                                    service.id
-                                  )
-                                },
-                                on: {
-                                  click: function($event) {
-                                    _vm.addToExtraRoomServiceId(service.id)
-                                  }
-                                }
-                              }),
-                              _vm._v(" "),
-                              _c(
-                                "label",
-                                {
-                                  staticClass: "form-check-label",
-                                  attrs: { for: "service-" + service.id }
-                                },
-                                [
-                                  _vm._v(
-                                    "\n                             " +
-                                      _vm._s(service.name) +
-                                      "\n                      "
-                                  )
-                                ]
-                              ),
-                              _vm._v(" "),
-                              _c(
-                                "router-link",
-                                {
-                                  staticClass: "ml-auto edit",
+                      _c(
+                        "div",
+                        { staticClass: "row align-items-center" },
+                        [
+                          _c("label", { staticClass: "col-md-4 mb-0" }, [
+                            _c(
+                              "div",
+                              {
+                                staticClass:
+                                  "form-check custom-control d-flex edit-show"
+                              },
+                              [
+                                _c("input", {
+                                  staticClass: "form-check-input",
                                   attrs: {
-                                    to: {
-                                      name: "service-material",
-                                      params: { service_id: service.id }
-                                    }
-                                  }
-                                },
-                                [
-                                  _vm._v(
-                                    "\n                              Ред.\n                      "
-                                  )
-                                ]
-                              )
-                            ],
-                            1
-                          )
-                        ]),
-                        _vm._v(" "),
-                        _c("div", { staticClass: "col-md-8 pr-0" }, [
-                          _c(
-                            "div",
-                            {
-                              staticClass:
-                                "form-group form-group--margin d-flex align-items-center"
-                            },
-                            [
-                              _c("input", {
-                                directives: [
-                                  {
-                                    name: "model",
-                                    rawName: "v-model",
-                                    value: _vm.service_quantities[service.id],
-                                    expression: "service_quantities[service.id]"
-                                  }
-                                ],
-                                staticClass: "form-control w-85",
-                                attrs: {
-                                  type: "number",
-                                  placeholder: "Кол-во",
-                                  min: "0"
-                                },
-                                domProps: {
-                                  value: _vm.service_quantities[service.id]
-                                },
-                                on: {
-                                  change: function($event) {
-                                    _vm.linkExtraServicesToExtraRoom()
+                                    type: "checkbox",
+                                    id: "service-" + service.id
                                   },
-                                  input: function($event) {
-                                    if ($event.target.composing) {
-                                      return
-                                    }
-                                    _vm.$set(
-                                      _vm.service_quantities,
-                                      service.id,
-                                      $event.target.value
+                                  domProps: {
+                                    checked: _vm.extra_room_service_ids.includes(
+                                      service.id
                                     )
+                                  },
+                                  on: {
+                                    click: function($event) {
+                                      _vm.addToExtraRoomServiceId(service.id)
+                                    }
                                   }
-                                }
-                              }),
-                              _vm._v(" "),
-                              _c(
-                                "div",
-                                { staticClass: "inputs-caption col-md-2" },
-                                [
-                                  _vm._v(
-                                    "\n                    " +
-                                      _vm._s(service.unit.name) +
-                                      "\n                "
-                                  )
-                                ]
-                              ),
-                              _vm._v(" "),
-                              _c("input", {
-                                staticClass: "form-control w-85",
-                                attrs: { type: "number", disabled: "" },
-                                domProps: {
-                                  value: _vm.service_prices[service.id]
-                                }
-                              }),
-                              _vm._v(" "),
-                              _c(
-                                "div",
-                                { staticClass: "inputs-caption col-md-2" },
-                                [
-                                  _vm._v(
-                                    "\n                    Р/" +
-                                      _vm._s(service.unit.name) +
-                                      "\n                "
-                                  )
-                                ]
-                              ),
-                              _vm._v(" "),
-                              _c(
-                                "div",
-                                { staticClass: "form-group__calc w-85" },
-                                [
-                                  _vm._v(
-                                    "\n                    " +
-                                      _vm._s(
-                                        new Intl.NumberFormat().format(
-                                          _vm.getServiceSummary(service.id)
+                                }),
+                                _vm._v(" "),
+                                _c(
+                                  "label",
+                                  {
+                                    staticClass: "form-check-label",
+                                    attrs: { for: "service-" + service.id }
+                                  },
+                                  [
+                                    _vm._v(
+                                      "\n                             " +
+                                        _vm._s(service.name) +
+                                        "\n                      "
+                                    )
+                                  ]
+                                ),
+                                _vm._v(" "),
+                                _c(
+                                  "router-link",
+                                  {
+                                    staticClass: "ml-auto edit",
+                                    attrs: {
+                                      to: {
+                                        name: "service-material",
+                                        params: { service_id: service.id }
+                                      }
+                                    }
+                                  },
+                                  [
+                                    _vm._v(
+                                      "\n                              Ред.\n                      "
+                                    )
+                                  ]
+                                )
+                              ],
+                              1
+                            )
+                          ]),
+                          _vm._v(" "),
+                          _c("div", { staticClass: "col-md-8 pr-0" }, [
+                            _c(
+                              "div",
+                              {
+                                staticClass:
+                                  "form-group form-group--margin d-flex align-items-center"
+                              },
+                              [
+                                _c("input", {
+                                  directives: [
+                                    {
+                                      name: "model",
+                                      rawName: "v-model",
+                                      value: _vm.service_quantities[service.id],
+                                      expression:
+                                        "service_quantities[service.id]"
+                                    }
+                                  ],
+                                  staticClass: "form-control w-85",
+                                  attrs: {
+                                    type: "number",
+                                    placeholder: "Кол-во",
+                                    min: "0"
+                                  },
+                                  domProps: {
+                                    value: _vm.service_quantities[service.id]
+                                  },
+                                  on: {
+                                    change: function($event) {
+                                      _vm.linkExtraServicesToExtraRoom()
+                                    },
+                                    input: function($event) {
+                                      if ($event.target.composing) {
+                                        return
+                                      }
+                                      _vm.$set(
+                                        _vm.service_quantities,
+                                        service.id,
+                                        $event.target.value
+                                      )
+                                    }
+                                  }
+                                }),
+                                _vm._v(" "),
+                                _c(
+                                  "div",
+                                  { staticClass: "inputs-caption col-md-2" },
+                                  [
+                                    _vm._v(
+                                      "\n                    " +
+                                        _vm._s(service.unit.name) +
+                                        "\n                "
+                                    )
+                                  ]
+                                ),
+                                _vm._v(" "),
+                                _c("input", {
+                                  staticClass: "form-control w-85",
+                                  attrs: { type: "number", disabled: "" },
+                                  domProps: {
+                                    value: _vm.service_prices[service.id]
+                                  }
+                                }),
+                                _vm._v(" "),
+                                _c(
+                                  "div",
+                                  { staticClass: "inputs-caption col-md-2" },
+                                  [
+                                    _vm._v(
+                                      "\n                    Р/" +
+                                        _vm._s(service.unit.name) +
+                                        "\n                "
+                                    )
+                                  ]
+                                ),
+                                _vm._v(" "),
+                                _c(
+                                  "div",
+                                  { staticClass: "form-group__calc w-85" },
+                                  [
+                                    _vm._v(
+                                      "\n                    " +
+                                        _vm._s(
+                                          new Intl.NumberFormat().format(
+                                            _vm.getServiceSummary(service.id)
+                                          )
+                                        ) +
+                                        " P\n                "
+                                    )
+                                  ]
+                                ),
+                                _vm._v(" "),
+                                service.can_be_deleted
+                                  ? [
+                                      _c("div", { staticClass: "col-md-2" }, [
+                                        _c(
+                                          "button",
+                                          {
+                                            staticClass:
+                                              "add-button add-button--remove d-flex align-items-center",
+                                            attrs: {
+                                              title: "Удалить материал"
+                                            },
+                                            on: {
+                                              click: function($event) {
+                                                _vm.deleteService(service.id)
+                                              }
+                                            }
+                                          },
+                                          [
+                                            _c("img", {
+                                              attrs: {
+                                                src: "/img/del.svg",
+                                                alt: "add-button"
+                                              }
+                                            }),
+                                            _vm._v(" "),
+                                            _c(
+                                              "div",
+                                              {
+                                                staticClass:
+                                                  "remove-materials ml-1"
+                                              },
+                                              [
+                                                _vm._v(
+                                                  "\n                              Удалить\n                            "
+                                                )
+                                              ]
+                                            )
+                                          ]
                                         )
-                                      ) +
-                                      " P\n                "
-                                  )
-                                ]
-                              ),
-                              _vm._v(" "),
-                              service.can_be_deleted
-                                ? [
-                                    _c("div", { staticClass: "col-md-2" }, [
+                                      ])
+                                    ]
+                                  : [
+                                      _c("div", { staticClass: "col-md-2" }, [
+                                        _vm._v(
+                                          "\n                         \n                    "
+                                        )
+                                      ])
+                                    ],
+                                _vm._v(" "),
+                                _vm.extra_room_service_ids.includes(service.id)
+                                  ? [
                                       _c(
-                                        "button",
+                                        "router-link",
                                         {
-                                          staticClass:
-                                            "add-button add-button--remove d-flex align-items-center",
-                                          attrs: { title: "Удалить материал" },
-                                          on: {
-                                            click: function($event) {
-                                              _vm.deleteService(service.id)
+                                          attrs: {
+                                            to: {
+                                              name:
+                                                "order-extra-services-materials",
+                                              params: {
+                                                id:
+                                                  _vm.extra_room.extra_order_act
+                                                    .order.id,
+                                                extra_order_act_id:
+                                                  _vm.extra_room.extra_order_act
+                                                    .id,
+                                                extra_room_id:
+                                                  _vm.extra_room.id,
+                                                service_id: service.id
+                                              }
                                             }
                                           }
                                         },
                                         [
-                                          _c("img", {
-                                            attrs: {
-                                              src: "/img/del.svg",
-                                              alt: "add-button"
-                                            }
-                                          }),
-                                          _vm._v(" "),
                                           _c(
                                             "div",
                                             {
                                               staticClass:
-                                                "remove-materials ml-1"
+                                                "col-md-auto px-0 ml-auto"
                                             },
                                             [
-                                              _vm._v(
-                                                "\n                              Удалить\n                            "
+                                              _c(
+                                                "button",
+                                                {
+                                                  staticClass: "add-button ",
+                                                  attrs: {
+                                                    title: "Добавить материалы"
+                                                  }
+                                                },
+                                                [
+                                                  _c("img", {
+                                                    attrs: {
+                                                      src:
+                                                        "/img/plus-circle.svg",
+                                                      alt: "add-button"
+                                                    }
+                                                  })
+                                                ]
                                               )
                                             ]
                                           )
                                         ]
                                       )
-                                    ])
-                                  ]
-                                : [
-                                    _c("div", { staticClass: "col-md-2" }, [
-                                      _vm._v(
-                                        "\n                         \n                    "
+                                    ]
+                                  : [
+                                      _c(
+                                        "div",
+                                        { staticClass: "col-md-auto px-0" },
+                                        [
+                                          _vm._v(
+                                            "\n                         \n                    "
+                                          )
+                                        ]
                                       )
-                                    ])
-                                  ],
-                              _vm._v(" "),
-                              _vm.extra_room_service_ids.includes(service.id)
-                                ? [
-                                    _c(
-                                      "router-link",
-                                      {
-                                        attrs: {
-                                          to: {
-                                            name:
-                                              "order-extra-services-materials",
-                                            params: {
-                                              id:
-                                                _vm.extra_room.extra_order_act
-                                                  .order.id,
-                                              extra_order_act_id:
-                                                _vm.extra_room.extra_order_act
-                                                  .id,
-                                              extra_room_id: _vm.extra_room.id,
-                                              service_id: service.id
-                                            }
-                                          }
-                                        }
-                                      },
-                                      [
-                                        _c(
-                                          "div",
-                                          {
-                                            staticClass:
-                                              "col-md-auto px-0 ml-auto"
-                                          },
-                                          [
+                                    ]
+                              ],
+                              2
+                            )
+                          ]),
+                          _vm._v(" "),
+                          _vm.extra_room_service_ids.includes(service.id) &&
+                          _vm.extra_room.extra_room_services.filter(function(
+                            extra_room_service
+                          ) {
+                            return extra_room_service.service_id === service.id
+                          })[0].materials
+                            ? _vm._l(
+                                _vm.extra_room.extra_room_services.filter(
+                                  function(extra_room_service) {
+                                    return (
+                                      extra_room_service.service_id ===
+                                      service.id
+                                    )
+                                  }
+                                )[0].materials,
+                                function(material) {
+                                  return _c(
+                                    "div",
+                                    { staticClass: "row col-12" },
+                                    [
+                                      _c(
+                                        "div",
+                                        { staticClass: "col-4 pl-5 mb-3" },
+                                        [
+                                          _c(
+                                            "div",
+                                            { staticClass: "subtitle-list" },
+                                            [
+                                              _c(
+                                                "div",
+                                                {
+                                                  staticClass:
+                                                    "subtitle-list__item"
+                                                },
+                                                [
+                                                  _vm._v(
+                                                    "\n                              " +
+                                                      _vm._s(material.name) +
+                                                      "\n                          "
+                                                  )
+                                                ]
+                                              )
+                                            ]
+                                          )
+                                        ]
+                                      ),
+                                      _vm._v(" "),
+                                      material.pivot.rate
+                                        ? [
                                             _c(
-                                              "button",
-                                              {
-                                                staticClass: "add-button ",
-                                                attrs: {
-                                                  title: "Добавить материалы"
-                                                }
-                                              },
+                                              "div",
+                                              { staticClass: "col-8" },
                                               [
-                                                _c("img", {
-                                                  attrs: {
-                                                    src: "/img/plus-circle.svg",
-                                                    alt: "add-button"
-                                                  }
-                                                })
+                                                _c(
+                                                  "div",
+                                                  {
+                                                    staticClass:
+                                                      "d-flex align-items-center"
+                                                  },
+                                                  [
+                                                    _c("div", {
+                                                      staticClass: "col-4",
+                                                      staticStyle: {
+                                                        "margin-left": "163px"
+                                                      }
+                                                    }),
+                                                    _vm._v(" "),
+                                                    _c(
+                                                      "div",
+                                                      {
+                                                        staticClass:
+                                                          "form-group__calc col-md-2"
+                                                      },
+                                                      [
+                                                        _vm._v(
+                                                          "\n                                  " +
+                                                            _vm._s(
+                                                              _vm.getMaterialSummary(
+                                                                material.pivot
+                                                                  .rate,
+                                                                material.quantity,
+                                                                material.price
+                                                              )
+                                                            ) +
+                                                            " Р\n                              "
+                                                        )
+                                                      ]
+                                                    )
+                                                  ]
+                                                )
                                               ]
                                             )
                                           ]
-                                        )
-                                      ]
-                                    )
-                                  ]
-                                : [
-                                    _c(
-                                      "div",
-                                      { staticClass: "col-md-auto px-0" },
-                                      [
-                                        _vm._v(
-                                          "\n                         \n                    "
-                                        )
-                                      ]
-                                    )
-                                  ]
-                            ],
-                            2
-                          )
-                        ])
-                      ])
+                                        : _vm._e()
+                                    ],
+                                    2
+                                  )
+                                }
+                              )
+                            : _vm._e()
+                        ],
+                        2
+                      )
                     ]
                   )
                 })

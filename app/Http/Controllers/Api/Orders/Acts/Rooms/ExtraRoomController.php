@@ -15,6 +15,7 @@ class ExtraRoomController extends Controller
         $filteredExtraRoom = ExtraRoom::where('id', $extra_room->id)
                                       ->with([
                                           'ExtraOrderAct', 'ExtraOrderAct.extra_rooms', 'ExtraOrderAct.order',
+                                          'extra_room_services', 'extra_room_services.materials', 'extra_room_services.materials.material_unit',
                                           'ExtraOrderAct.extra_rooms.room', 'ExtraOrderAct.extra_rooms.room.room_services', 'room',
                                           'ExtraOrderAct.extra_rooms.room.roomType', 'extra_windows', 'extra_room_services', 'room.roomType',
                                       ])
