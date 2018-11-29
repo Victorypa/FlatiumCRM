@@ -256,11 +256,9 @@
                             .then(response => {
                                 this.extra_order = response.data
                                 this.square = 0
-
                                 this.extra_order.extra_rooms.forEach(item => {
                                     this.square += parseFloat(item.area)
                                 })
-
                                 this.contract = this.extra_order.order.contract
                                 this.client_name = this.extra_order.order.client_name
                                 this.manager_id = this.extra_order.order.manager_id

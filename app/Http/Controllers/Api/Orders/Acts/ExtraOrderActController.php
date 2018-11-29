@@ -56,8 +56,8 @@ class ExtraOrderActController extends Controller
     {
         $filteredExtraOrder = ExtraOrderAct::where('id', $extra_order_act->id)
                          ->with([
-                            'order', 'extra_rooms', 'extra_rooms.extra_services',
-                            'extra_rooms.extra_services.service_type', 'extra_rooms.extra_services.unit'
+                            'order', 'extra_rooms', 'extra_rooms.extra_room_services',
+                            'extra_rooms.extra_room_services.service', 'extra_rooms.extra_room_services.unit'
                          ])->first();
 
         return $this->export($filteredExtraOrder, 'export.ExtraOrderActs.pdf');

@@ -58295,11 +58295,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             return axios.get('/api/orders/' + this.$route.params.id + '/extra_order_act/' + this.$route.params.extra_order_act_id).then(function (response) {
                 _this.extra_order = response.data;
                 _this.square = 0;
-
                 _this.extra_order.extra_rooms.forEach(function (item) {
                     _this.square += parseFloat(item.area);
                 });
-
                 _this.contract = _this.extra_order.order.contract;
                 _this.client_name = _this.extra_order.order.client_name;
                 _this.manager_id = _this.extra_order.order.manager_id;
