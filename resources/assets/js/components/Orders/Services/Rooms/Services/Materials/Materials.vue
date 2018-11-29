@@ -270,20 +270,20 @@
 </template>
 
 <script>
-    import ServiceMaterialCollection from '../../../../../mixins/ServiceMaterialCollection'
+    import ServiceMaterialCollection from '../../../../../../mixins/ServiceMaterialCollection'
 
     export default {
         mixins: [ServiceMaterialCollection],
 
         data () {
             return {
-
                 service_materials: [],
                 service_material_ids: [],
                 service_material_prices: [],
                 service_material_rates: [],
 
                 material_ids: [],
+
             }
         },
 

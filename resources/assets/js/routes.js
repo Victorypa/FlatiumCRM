@@ -59,6 +59,14 @@ let routes = [
     },
 
     {
+        name: 'order-extra-services-materials',
+    	path: '/orders/:id?/order_extra_services/:extra_order_act_id?/extra_rooms/:extra_room_id?/services/:service_id?/materials',
+    	component: require('./components/Orders/Services/Rooms/Services/Materials/Materials'),
+        meta: { requiresAuth: true },
+        props: true
+    },
+
+    {
         name: 'order-extra-services-export-show',
     	path: '/orders/:id?/order_extra_services/:extra_order_act_id?/export/show',
     	component: require('./components/Orders/Services/Export/ExtraServicesShow'),

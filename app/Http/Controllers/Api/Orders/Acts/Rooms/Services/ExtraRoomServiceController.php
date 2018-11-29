@@ -123,9 +123,47 @@ class ExtraRoomServiceController extends Controller
             }
         }
 
-        // return response()->json([
-        //     'extra_room' => $extra_room,
-        //     'extra_order_act' => $updated_extra_order_act
-        // ]);
+        $this->calculateExtraRoomPrice($extra_room);
+
+        $updated_extra_order_act = $this->calculateExtraOrderActPrice($extra_room);
+
+        return response()->json([
+            'extra_room' => $extra_room,
+            'extra_order_act' => $updated_extra_order_act
+        ]);
+    }
+
+    protected function calculateExtraOrderActPrice(ExtraRoom $extra_room)
+    {
+        $total_price = 0;
+
+        $extra_rooms = $extra_room->ExtraOrderAct->extra_rooms;
+
+        foreach ($extra_rooms as $new_room) {
+            $total_price += (int) $new_room->price;
+        }
+
+        $extra_room->ExtraOrderAct->update([
+            'price' => $total_price
+        ]);
+
+        return $extra_room->ExtraOrderAct->first();
+    }
+
+    protected function calculateExtraRoomPrice(ExtraRoom $extra_room)
+    {
+        $total_room_price = 0;
+
+        foreach ($extra_room->extra_room_services()->get() as $service) {
+            $total_room_price += $service->price ;
+        }
+
+            $extra_room->update([
+                'price' => $total_room_price
+            ]);
+
+            $total_room_price = 0;
+
+            return $extra_room;
     }
 }

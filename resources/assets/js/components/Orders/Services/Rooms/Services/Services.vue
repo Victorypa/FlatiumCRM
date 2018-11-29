@@ -150,13 +150,13 @@
                         </div>
                     </template>
                     <template v-else>
-                        <div class="col-md-4">
+                        <div class="col-md-2">
                             &nbsp;
                         </div>
                     </template>
 
                     <template v-if="extra_room_service_ids.includes(service.id)">
-                        <router-link :to="{ name: 'actual-material', params: { id: extra_room.extra_order_act.order.id, room_id: extra_room.room_id, service_id: service.id }}">
+                        <router-link :to="{ name: 'order-extra-services-materials', params: { id: extra_room.extra_order_act.order.id, extra_order_act_id: extra_room.extra_order_act.id, extra_room_id: extra_room.id, service_id: service.id }}">
                             <div class="col-md-auto px-0 ml-auto">
                                 <button class="add-button " title="Добавить материалы">
                                     <img src="/img/plus-circle.svg" alt="add-button">
@@ -173,7 +173,7 @@
                 </div>
 
 
-                <template v-if="extra_room_service_ids.includes(service.id) && service.actual_materials">
+                <!-- <template v-if="extra_room_service_ids.includes(service.id) && service.actual_materials">
                         <div class="row col-12" v-for="material in service.actual_materials">
                           <div class="col-4 pl-5 mb-3">
                             <div class="subtitle-list">
@@ -194,7 +194,7 @@
                           </template>
                         </div>
 
-                </template>
+                </template> -->
 
               </div>
               </div>
@@ -228,19 +228,19 @@
         mounted () {
             this.getServiceTypes()
             this.getServiceUnits()
-            // this.getExtraRoomServices()
+            this.getExtraRoomServices()
             this.getServices()
         },
 
         methods: {
             getExtraRoomServices () {
-                this.extra_room.extra_services.forEach(item => {
-                    this.extra_room_service_ids.push(item.id)
+                this.extra_room.extra_room_services.forEach(extra_room_service => {
+                    this.extra_room_service_ids.push(extra_room_service.service_id)
 
-                    if (item.pivot.quantity != null) {
-                        this.service_quantities[item.id] = item.pivot.quantity
+                    if (extra_room_service.quantity != null) {
+                        this.service_quantities[extra_room_service.service_id] = extra_room_service.quantity
                     } else {
-                        this.service_quantities[item.id] = 1
+                        this.service_quantities[extra_room_service.service_id] = 1
                     }
                 })
             },
