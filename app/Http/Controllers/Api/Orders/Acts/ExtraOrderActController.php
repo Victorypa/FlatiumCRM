@@ -67,8 +67,8 @@ class ExtraOrderActController extends Controller
     {
         $filteredExtraOrder = ExtraOrderAct::where('id', $extra_order_act->id)
                          ->with([
-                            'order', 'extra_rooms', 'extra_rooms.extra_services', 'extra_rooms.extra_services.actual_materials',
-                            'extra_rooms.extra_services.service_type', 'extra_rooms.extra_services.unit'
+                             'order', 'extra_rooms', 'extra_rooms.extra_room_services', 'extra_rooms.extra_room_services.unit',
+                             'extra_rooms.extra_room_services.service', 'extra_rooms.extra_room_services.materials', 'extra_rooms.extra_room_services.materials.material_unit'
                          ])->first();
 
         return $this->exportWithMaterials($filteredExtraOrder, 'export.ExtraOrderActs.pdf_materials');
@@ -171,8 +171,8 @@ class ExtraOrderActController extends Controller
         $material_prices = [];
 
         foreach ($extra_order_act->extra_rooms as $extra_room) {
-            foreach ($extra_room->extra_services()->get() as $service) {
-                foreach ($service->actual_materials as $material) {
+            foreach ($extra_room->extra_room_services()->get() as $extra_room_service) {
+                foreach ($extra_room_service->materials as $material) {
 
                     array_push($material_ids, $material->id);
                     $material_names[$material->id] = $material->name;
