@@ -376,7 +376,7 @@ border-bottom: 1px solid #ebebeb;
                             @foreach ($extra_room_services as $extra_room_service)
                                 <tr>
                                     <th>{{ $extra_room_service->service->name }}</th>
-                                    <td>{{ $extra_room_service->quantity }} м<sup>2</sup></td>
+                                    <td>{{ number_format((float) $extra_room_service->quantity, 2, '.', '') }} м<sup>2</sup></td>
 
                                     @if ($filteredExtraOrder->order->discount)
                                         @if ($extra_room_service->service->can_be_discounted)
@@ -469,13 +469,13 @@ border-bottom: 1px solid #ebebeb;
 
                         @if ($filteredExtraOrder->order->discount)
                             <td class="table-caption full-summ full-summ-wrapper" colspan="2">
-                                {{ number_format($filteredExtraOrder->order->original_price, 2, ',', ' ') }} Р
+                                {{ number_format($filteredExtraOrder->order->original_price, 0, '', ' ') }} Р
                                 <br>
-                                <span>{{ number_format($filteredExtraOrder->order->price, 2, ',', ' ') }} Р</span>
+                                <span>{{ number_format($filteredExtraOrder->order->price, 0, '', ' ') }} Р</span>
                             </td>
                         @else
                             <td class="table-caption full-summ full-summ-wrapper" colspan="2">
-                                {{ number_format($filteredExtraOrder->order->price, 2, ',', ' ') }} Р
+                                {{ number_format($filteredExtraOrder->order->price, 0, '', ' ') }} Р
                                 <br>
                                 <span>&nbsp;</span>
                             </td>

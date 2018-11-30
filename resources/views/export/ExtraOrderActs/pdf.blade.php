@@ -314,7 +314,7 @@ border-bottom: 1px solid #ebebeb;
                         <div class="main-info">Менеджер: </div>
                     </div>
                     <div class="main-info-subtitles inline-block">
-                        <div><b>{{ number_format($filteredExtraOrder->price, 2, ',', ' ') }} Р</b> @if ($filteredExtraOrder->order->discount) (с учётом скидки -{{ $filteredExtraOrder->order->discount }}%) @endif </div>
+                        <div><b>{{ number_format((float) $filteredExtraOrder->price, 0, '', ' ') }} Р</b> @if ($filteredExtraOrder->order->discount) (с учётом скидки -{{ $filteredExtraOrder->order->discount }}%) @endif </div>
                         <div>{{ $total_area }} м² </div>
                         <div>{{ $filteredExtraOrder->order->address }}</div>
                         @if ($filteredExtraOrder->order->client_name)
@@ -375,7 +375,7 @@ border-bottom: 1px solid #ebebeb;
                             @foreach ($extra_room_services as $extra_room_service)
                                 <tr>
                                     <th>{{ $extra_room_service->service->name }}</th>
-                                    <td>{{ $extra_room_service->quantity }} м<sup>2</sup></td>
+                                    <td>{{ number_format((float) $extra_room_service->quantity, 2, '.', '') }} м<sup>2</sup></td>
 
                                     @if ($filteredExtraOrder->order->discount)
                                         @if ($extra_room_service->service->can_be_discounted)
@@ -431,13 +431,13 @@ border-bottom: 1px solid #ebebeb;
 
                         @if ($filteredExtraOrder->order->discount)
                             <td class="table-caption full-summ full-summ-wrapper" colspan="2">
-                                {{ number_format($filteredExtraOrder->order->original_price, 2, ',', ' ') }} Р
+                                {{ number_format((int) $filteredExtraOrder->order->original_price, 0, '', ' ') }} Р
                                 <br>
-                                <span>{{ number_format($filteredExtraOrder->order->price, 2, ',', ' ') }} Р</span>
+                                <span>{{ number_format((int) $filteredExtraOrder->order->price, 0, '', ' ') }} Р</span>
                             </td>
                         @else
                             <td class="table-caption full-summ full-summ-wrapper" colspan="2">
-                                {{ number_format($filteredExtraOrder->order->price, 2, ',', ' ') }} Р
+                                {{ number_format((int) $filteredExtraOrder->order->price, 0, '', ' ') }} Р
                                 <br>
                                 <span>&nbsp;</span>
                             </td>
