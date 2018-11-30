@@ -192,7 +192,7 @@
                                                                 <th scope="row" class="w-50">
                                                                     {{ getServiceDetails(room_service.service_id, 'name') }}
                                                                 </th>
-                                                                <td>{{ room_service.quantity }} м<sup>2</sup></td>
+                                                                <td>{{ parseFloat(room_service.quantity).toFixed(2) }} м<sup>2</sup></td>
 
                                                                 <template v-if="order.discount">
                                                                     <template v-if="getServiceDetails(room_service.service_id, 'can_be_discounted')">

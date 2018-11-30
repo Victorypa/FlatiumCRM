@@ -16350,7 +16350,7 @@ module.exports = Vue;
             return _.groupBy(services, 'service_type_id');
         },
         priceCount: function priceCount(quantity, price) {
-            return new Intl.NumberFormat('ru-Ru').format(parseInt(quantity) * price);
+            return new Intl.NumberFormat('ru-Ru').format(parseFloat(quantity * price).toFixed(2));
         },
         getServices: function getServices() {
             var _this2 = this;
@@ -31710,6 +31710,7 @@ module.exports = Component.exports
     mounted: function mounted() {
         this.getServices();
         this.getServiceTypes();
+        this.getServiceUnits();
     },
 
 
@@ -59984,8 +59985,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 'discount': this.discount
             });
         },
-        priceCount: function priceCount(area, price) {
-            return new Intl.NumberFormat().format(area * price);
+        priceCount: function priceCount(quantity, price) {
+            return new Intl.NumberFormat('ru-Ru').format(parseFloat(quantity * price).toFixed(2));
         },
         changeRoomName: function changeRoomName(id) {
             this.show = !this.show;
@@ -60710,7 +60711,9 @@ var render = function() {
                                                               _c("td", [
                                                                 _vm._v(
                                                                   _vm._s(
-                                                                    extra_room_service.quantity
+                                                                    parseFloat(
+                                                                      extra_room_service.quantity
+                                                                    ).toFixed(2)
                                                                   ) + " м"
                                                                 ),
                                                                 _c("sup", [
@@ -67440,7 +67443,9 @@ var render = function() {
                                                   _c("td", [
                                                     _vm._v(
                                                       _vm._s(
-                                                        room_service.quantity
+                                                        parseFloat(
+                                                          room_service.quantity
+                                                        ).toFixed(2)
                                                       ) + " м"
                                                     ),
                                                     _c("sup", [_vm._v("2")])
@@ -69601,6 +69606,20 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -69624,22 +69643,28 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                     'service_type_id': _this.service_type_id,
                     'name': item.name,
                     'unit_id': item.unit_id,
-                    'price': item.price
+                    'price': item.price,
+                    'can_be_discounted': item.can_be_discounted
+                }).then(function (response) {
+                    _this.getServices();
                 });
             });
-            window.location.reload(true);
         },
         addService: function addService() {
             this.newServices.push({
                 unit_id: 1,
+                service_type_id: this.service_type_id,
                 name: null,
-                price: null
+                price: null,
+                can_be_discounted: false
             });
         },
         deleteService: function deleteService(id) {
+            var _this2 = this;
+
             if (confirm('Удалить ?')) {
                 axios.delete('/api/services/' + id + '/destroy').then(function (response) {
-                    window.location.reload(true);
+                    _this2.getServices();
                 });
             }
         }
@@ -69647,17 +69672,17 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
     computed: {
         filteredServices: function filteredServices() {
-            var _this2 = this;
+            var _this3 = this;
 
             var data = this.services;
 
             data = data.filter(function (row) {
-                return row.service_type_id === _this2.service_type_id;
+                return row.service_type_id === _this3.service_type_id;
             });
 
             data = data.filter(function (row) {
                 return Object.keys(row).some(function (key) {
-                    return String(row[key]).toLowerCase().indexOf(_this2.quickSearchQuery.toLowerCase()) > -1;
+                    return String(row[key]).toLowerCase().indexOf(_this3.quickSearchQuery.toLowerCase()) > -1;
                 });
             });
 
@@ -69782,7 +69807,7 @@ var render = function() {
                   [
                     _vm._l(_vm.newServices, function(newService, index) {
                       return _c("div", { staticClass: "row px-3 pt-3 pb-1" }, [
-                        _c("div", { staticClass: "col-md-10" }, [
+                        _c("div", { staticClass: "col-md-8" }, [
                           _c("input", {
                             directives: [
                               {
@@ -69894,6 +69919,89 @@ var render = function() {
                                   }
                                 }
                               })
+                            ]
+                          )
+                        ]),
+                        _vm._v(" "),
+                        _c("div", { staticClass: "col-2 py-2" }, [
+                          _c(
+                            "div",
+                            {
+                              staticClass: "form-check custom-control checkbox"
+                            },
+                            [
+                              _c("input", {
+                                directives: [
+                                  {
+                                    name: "model",
+                                    rawName: "v-model",
+                                    value: newService.can_be_discounted,
+                                    expression: "newService.can_be_discounted"
+                                  }
+                                ],
+                                staticClass: "form-check-input check",
+                                attrs: {
+                                  type: "checkbox",
+                                  id: "service-" + index
+                                },
+                                domProps: {
+                                  checked: Array.isArray(
+                                    newService.can_be_discounted
+                                  )
+                                    ? _vm._i(
+                                        newService.can_be_discounted,
+                                        null
+                                      ) > -1
+                                    : newService.can_be_discounted
+                                },
+                                on: {
+                                  change: function($event) {
+                                    var $$a = newService.can_be_discounted,
+                                      $$el = $event.target,
+                                      $$c = $$el.checked ? true : false
+                                    if (Array.isArray($$a)) {
+                                      var $$v = null,
+                                        $$i = _vm._i($$a, $$v)
+                                      if ($$el.checked) {
+                                        $$i < 0 &&
+                                          _vm.$set(
+                                            newService,
+                                            "can_be_discounted",
+                                            $$a.concat([$$v])
+                                          )
+                                      } else {
+                                        $$i > -1 &&
+                                          _vm.$set(
+                                            newService,
+                                            "can_be_discounted",
+                                            $$a
+                                              .slice(0, $$i)
+                                              .concat($$a.slice($$i + 1))
+                                          )
+                                      }
+                                    } else {
+                                      _vm.$set(
+                                        newService,
+                                        "can_be_discounted",
+                                        $$c
+                                      )
+                                    }
+                                  }
+                                }
+                              }),
+                              _vm._v(" "),
+                              _c(
+                                "label",
+                                {
+                                  staticClass: "form-check-label d-block",
+                                  attrs: { for: "service-" + index }
+                                },
+                                [
+                                  _vm._v(
+                                    "\n                            Скидка возможна\n                        "
+                                  )
+                                ]
+                              )
                             ]
                           )
                         ])
@@ -70058,7 +70166,9 @@ var render = function() {
                                           "\n                        " +
                                             _vm._s(
                                               new Intl.NumberFormat().format(
-                                                parseInt(service.price)
+                                                parseFloat(
+                                                  service.price
+                                                ).toFixed(2)
                                               )
                                             ) +
                                             " Р\n                    "

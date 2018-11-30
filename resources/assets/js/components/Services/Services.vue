@@ -39,7 +39,7 @@
 
                 <form @submit.prevent="saveNewService()">
                     <div class="row px-3 pt-3 pb-1" v-for="(newService, index) in newServices">
-                      <div class="col-md-10">
+                      <div class="col-md-8">
                         <input type="text"
                                placeholder="Название"
                                class="form-control"
@@ -62,6 +62,19 @@
                                      v-model="newService.price"
                                      >
                         </div>
+                      </div>
+
+                      <div class="col-2 py-2">
+                          <div class="form-check custom-control checkbox">
+                              <input type="checkbox"
+                                     class="form-check-input check"
+                                     :id="'service-' + index"
+                                     v-model="newService.can_be_discounted"
+                                     >
+                              <label class="form-check-label d-block" :for="'service-' + index">
+                                  Скидка возможна
+                              </label>
+                          </div>
                       </div>
 
                     </div>
@@ -108,7 +121,7 @@
                     <template v-else>
                         <div class="col-4 d-flex justify-content-end align-items-center">
                           <div class="total-sum col-4">
-                              {{ new Intl.NumberFormat().format(parseInt(service.price)) }} Р
+                              {{ new Intl.NumberFormat().format(parseFloat(service.price).toFixed(2)) }} Р
                           </div>
 
                          <div class="col-3">
@@ -151,6 +164,7 @@
 
 <script>
     import ServiceCollection from '../../mixins/ServiceCollection'
+
     export default {
         mixins: [ServiceCollection],
 
@@ -169,25 +183,29 @@
                         'service_type_id': this.service_type_id,
                         'name': item.name,
                         'unit_id': item.unit_id,
-                        'price': item.price
+                        'price': item.price,
+                        'can_be_discounted': item.can_be_discounted
+                    }).then(response => {
+                        this.getServices()
                     })
                 })
-                window.location.reload(true)
 
             },
 
             addService () {
                 this.newServices.push({
                     unit_id: 1,
+                    service_type_id: this.service_type_id,
                     name: null,
                     price: null,
+                    can_be_discounted: false
                 })
             },
 
            deleteService (id) {
                if (confirm('Удалить ?')) {
                    axios.delete(`/api/services/${id}/destroy`).then(response => {
-                       window.location.reload(true)
+                       this.getServices()
                    })
                }
            }

@@ -174,7 +174,7 @@
                                                                     <th scope="row" class="w-50">
                                                                         {{ extra_room_service.service.name }}
                                                                     </th>
-                                                                    <td>{{ extra_room_service.quantity }} м<sup>2</sup></td>
+                                                                    <td>{{ parseFloat(extra_room_service.quantity).toFixed(2) }} м<sup>2</sup></td>
 
                                                                     <template v-if="extra_order.order.discount">
                                                                         <template v-if="extra_room_service.service.can_be_discounted">
@@ -291,8 +291,8 @@
                })
            },
 
-           priceCount (area, price) {
-               return new Intl.NumberFormat().format(area * price)
+           priceCount (quantity, price) {
+               return new Intl.NumberFormat('ru-Ru').format(parseFloat(quantity * price).toFixed(2))
            },
 
            changeRoomName (id) {

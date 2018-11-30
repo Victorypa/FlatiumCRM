@@ -36,7 +36,7 @@ export default {
         },
 
         priceCount (quantity, price) {
-            return new Intl.NumberFormat('ru-Ru').format(parseInt(quantity) * price)
+            return new Intl.NumberFormat('ru-Ru').format(parseFloat(quantity * price).toFixed(2))
         },
 
         getServices () {

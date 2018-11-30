@@ -22,7 +22,6 @@ class Service extends Model
             $service->materials()->detach();
             $service->room_services->each->delete();
         });
-
     }
 
     public function service_type()

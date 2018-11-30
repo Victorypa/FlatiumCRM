@@ -10,6 +10,7 @@ export default {
     mounted () {
         this.getServices()
         this.getServiceTypes()
+        this.getServiceUnits()
     },
 
     methods: {
