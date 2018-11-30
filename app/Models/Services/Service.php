@@ -3,7 +3,7 @@
 namespace App\Models\Services;
 
 use App\Models\Units\Unit;
-use App\Models\Orders\Rooms\Room;
+use App\Models\Orders\Rooms\Services\RoomService;
 use App\Models\Materials\Material;
 use App\Models\Services\ServiceType;
 use Illuminate\Database\Eloquent\Model;
@@ -20,7 +20,7 @@ class Service extends Model
 
         static::deleting(function($service) {
             $service->materials()->detach();
-            $service->rooms()->detach();
+            $service->room_services->each->delete();
         });
 
     }
@@ -35,9 +35,9 @@ class Service extends Model
         return $this->belongsTo(Unit::class);
     }
 
-    public function rooms()
+    public function room_services()
     {
-        return $this->belongsToMany(Room::class, 'room_service');
+        return $this->hasMany(RoomService::class);
     }
 
     public function materials()
