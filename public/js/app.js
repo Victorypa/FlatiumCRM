@@ -54225,7 +54225,7 @@ var render = function() {
                                 _vm._v(
                                   " Итого по акту: " +
                                     _vm._s(
-                                      new Intl.NumberFormat().format(
+                                      new Intl.NumberFormat("ru-Ru").format(
                                         _vm.finished_order.price
                                       )
                                     ) +

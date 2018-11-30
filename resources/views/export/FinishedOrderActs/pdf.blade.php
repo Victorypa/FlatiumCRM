@@ -325,7 +325,7 @@ border-bottom: 1px solid #ebebeb;
                         @endif
 
 
-                        <div><b>{{ number_format($selected_price, 2, ',', ' ') }} Р</b> @if ($filteredFinishedOrderAct->order->discount) с учётом скидки -{{ $filteredFinishedOrderAct->order->discount }}%  @endif </div>
+                        <div><b>{{ number_format((float) $selected_price, 0, '', ' ') }} Р</b> @if ($filteredFinishedOrderAct->order->discount) с учётом скидки -{{ $filteredFinishedOrderAct->order->discount }}%  @endif </div>
                         <div>{{ $total_area }} м² </div>
                         <div>{{ $filteredFinishedOrderAct->order->address }}</div>
                         @if ($filteredFinishedOrderAct->order->client_name)
@@ -390,7 +390,7 @@ border-bottom: 1px solid #ebebeb;
                                 @foreach ($finished_services as $finished_service)
                                     <tr>
                                         <th>{{ $finished_service->name }}</th>
-                                        <td>{{ $finished_service->pivot->quantity }} м<sup>2</sup></td>
+                                        <td>{{ number_format((float) $finished_service->pivot->quantity, 2, '.', '') }} м<sup>2</sup></td>
 
                                         @if ($filteredFinishedOrderAct->order->discount)
                                             @if ($finished_service->can_be_discounted)

@@ -375,7 +375,7 @@
                                     @foreach ($room_services as $room_service)
                                         <tr>
                                             <th>{{ \App\Models\Services\Service::where('id', $room_service->service_id)->first()->name }}</th>
-                                            <td>{{ $room_service->quantity }} м<sup>2</sup></td>
+                                            <td>{{ number_format((float) $room_service->quantity, 2, '.', '') }} м<sup>2</sup></td>
                                             @if ($order->discount)
                                                 @if (\App\Models\Services\Service::where('id', $room_service->service_id)->first()->can_be_discounted)
                                                     <td>{{ \App\Models\Services\Service::where('id', $room_service->service_id)->first()->price * (1 - $order->discount/100) }} Р/м<sup>2</sup></td>
@@ -414,9 +414,9 @@
                                 <br>
                                 <span>Скидка {{ $order->discount }}%</span>
                             </td>
-                            <td class="table-caption full-summ full-summ-wrapper" colspan="2">{{ number_format($order->original_price, 2, ',', ' ') }} Р
+                            <td class="table-caption full-summ full-summ-wrapper" colspan="2">{{ number_format((int) $order->original_price, 0, '', ' ') }} Р
                                 <br>
-                                <span>{{ number_format($order->price, 2, ',', ' ') }} Р</span>
+                                <span>{{ number_format((int) $order->price, 0, '', ' ') }} Р</span>
                             </td>
 
                         </tr>
@@ -430,7 +430,7 @@
 
                             <td class="table-caption full-summ full-summ-wrapper py-25">Итого:
                             </td>
-                            <td class="table-caption full-summ full-summ-wrapper" colspan="2">{{ number_format($order->price, 2, ',', ' ') }} Р
+                            <td class="table-caption full-summ full-summ-wrapper" colspan="2">{{ number_format((int) $order->price, 0, '', ' ') }} Р
                             </td>
 
                         </tr>
@@ -444,7 +444,7 @@
 
                             <td class="table-caption full-summ full-summ-wrapper py-25">Итого:
                             </td>
-                            <td class="table-caption full-summ full-summ-wrapper" colspan="2">{{ number_format($order->price, 2, ',', ' ') }} Р
+                            <td class="table-caption full-summ full-summ-wrapper" colspan="2">{{ number_format(parseInt($order->price), 0, '', ' ') }} Р
                             </td>
 
                         </tr>

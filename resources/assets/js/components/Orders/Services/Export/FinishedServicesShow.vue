@@ -40,7 +40,7 @@
 
 
                       <div class="col-md-6 pt-3">
-                        <h2 class="main-subtitle"> Итого по акту: {{ new Intl.NumberFormat().format(finished_order.price) }} Р</h2>
+                        <h2 class="main-subtitle"> Итого по акту: {{ new Intl.NumberFormat('ru-Ru').format(finished_order.price) }} Р</h2>
                       </div>
                   </template>
 

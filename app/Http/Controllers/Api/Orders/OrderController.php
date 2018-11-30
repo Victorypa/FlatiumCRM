@@ -25,9 +25,7 @@ class OrderController extends Controller
            App::make('files')->link(storage_path('app/public'), public_path('storage'));
         }
 
-        $with = ['rooms', 'finished_order_acts', 'extra_order_acts', 'extra_order_acts.extra_rooms'];
-
-        $orders = Order::orderBy('created_at', 'asc')->with($with)->get();
+        $orders = Order::orderBy('created_at', 'asc')->with(['rooms', 'finished_order_acts', 'extra_order_acts', 'extra_order_acts.extra_rooms'])->get();
 
         return response()->json($orders);
     }
