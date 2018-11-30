@@ -85,40 +85,41 @@ export default {
                 let data = this.rooms.filter(row => {
                     return row.id === parseInt(room_id)
                 })
+
+                switch (type) {
+                    case 'description':
+                         return data[0].description
+                         break;
+
+                    case 'room_type':
+                         return data[0].room_type.type
+                         break;
+
+                    case 'room_type_id':
+                            return data[0].room_type_id
+                            break;
+
+                    case 'area':
+                         return data[0].area
+                         break;
+
+                    case 'height':
+                         return data[0].height
+                         break;
+
+                    case 'wall_area':
+                         return data[0].wall_area
+                         break;
+
+                    case 'perimeter':
+                         return data[0].perimeter
+                         break;
+
+                    default:
+                        return null
+                }
             }
 
-            switch (type) {
-                case 'description':
-                     return data[0].description
-                     break;
-
-                case 'room_type':
-                     return data[0].room_type.type
-                     break;
-
-                case 'room_type_id':
-                        return data[0].room_type_id
-                        break;
-
-                case 'area':
-                     return data[0].area
-                     break;
-
-                case 'height':
-                     return data[0].height
-                     break;
-
-                case 'wall_area':
-                     return data[0].wall_area
-                     break;
-
-                case 'perimeter':
-                     return data[0].perimeter
-                     break;
-
-                default:
-                    return null
-            }
         },
 
         removeEmptyElem(obj) {

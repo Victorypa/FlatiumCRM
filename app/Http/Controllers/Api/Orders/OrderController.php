@@ -25,23 +25,18 @@ class OrderController extends Controller
            App::make('files')->link(storage_path('app/public'), public_path('storage'));
         }
 
-        $orders = Order::orderBy('created_at', 'asc')->with(['rooms', 'finished_order_acts', 'extra_order_acts', 'extra_order_acts.extra_rooms'])->get();
+        $with = ['rooms', 'finished_order_acts', 'extra_order_acts', 'extra_order_acts.extra_rooms'];
+
+        $orders = Order::orderBy('created_at', 'asc')->with($with)->get();
 
         return response()->json($orders);
     }
 
     public function show(Order $order)
     {
-        $filterdOrder = Order::where('id', $order->id)
-                             ->with([
-                                 'rooms', 'rooms.roomType', 'manager',
-                                 'finished_order_acts',
-                                 'rooms.finished_room', 'extra_order_acts',
-                                 'finances', 'finished_order_acts', 'rooms.room_services',
-                                 ])
-                             ->first();
+        $with = ['rooms', 'rooms.roomType', 'manager', 'finished_order_acts', 'rooms.finished_room', 'extra_order_acts', 'finances', 'finished_order_acts', 'rooms.room_services'];
 
-        return $filterdOrder;
+        return Order::where('id', $order->id)->with($with)->first();
     }
 
     public function update(Order $order, Request $request)

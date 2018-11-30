@@ -302,7 +302,7 @@ export default {
   methods: {
     getOrders() {
         return axios.get(`/api/orders`).then(response => {
-          this.orders = response.data;
+          this.orders = response.data
         })
     },
 

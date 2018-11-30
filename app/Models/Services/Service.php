@@ -10,13 +10,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Service extends Model
 {
-    protected $fillable = [
-        'service_type_id',
-        'unit_id',
-        'name',
-        'price',
-        'can_be_deleted'
-    ];
+    protected $guarded = [];
 
     public $timestamps = false;
 

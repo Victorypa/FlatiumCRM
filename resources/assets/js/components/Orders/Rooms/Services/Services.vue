@@ -385,12 +385,11 @@
             addNewService () {
                     this.newServices.push({
                         unit_id: 1,
-                        service_type_id: 1,
+                        service_type_id: this.service_type_id,
                         name: null,
                         price: null,
                         can_be_discounted: false
                     })
-
             },
 
             saveNewServices () {
@@ -402,8 +401,7 @@
                         'price': item.price,
                         'can_be_discounted': item.can_be_discounted
                     }).then(response => {
-                        this.getServices()
-                        this.newServices = []
+                        window.location.reload(true)
                     })
                 })
 

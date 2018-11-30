@@ -14,6 +14,8 @@ class ExtraOrderAct extends Model
         'begin_at', 'finish_at'
     ];
 
+    protected $with = ['extra_rooms', 'order'];
+
     public function extra_rooms()
     {
         return $this->hasMany(ExtraRoom::class);

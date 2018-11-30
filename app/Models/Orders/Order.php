@@ -3,20 +3,16 @@
 namespace App\Models\Orders;
 
 use App\User;
-use App\Models\Types\Flat;
 use App\Models\Personal\Manager;
 use App\Models\Orders\Rooms\Room;
-use Illuminate\Database\Eloquent\Model;
 use App\Models\Orders\Financial\Finance;
-use Illuminate\Database\Eloquent\SoftDeletes;
-use App\Models\Orders\Acts\ExtraOrderAct;
-use App\Models\Orders\Acts\FinishedOrderAct;
 use App\Models\Traits\Orders\OrderCalculationTrait;
+use Illuminate\Database\Eloquent\{Model, SoftDeletes};
+use App\Models\Orders\Acts\{ExtraOrderAct, FinishedOrderAct};
 
 class Order extends Model
 {
-    use SoftDeletes;
-    use OrderCalculationTrait;
+    use SoftDeletes, OrderCalculationTrait;
 
     protected $guarded = [];
 
@@ -42,11 +38,6 @@ class Order extends Model
     public function manager()
     {
         return $this->belongsTo(Manager::class);
-    }
-
-    public function flat()
-    {
-        return $this->belongsTo(Flat::class);
     }
 
     public function user()
