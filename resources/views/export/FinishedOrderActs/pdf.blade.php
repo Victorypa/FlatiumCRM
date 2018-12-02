@@ -69,12 +69,7 @@
                                 </div>
                             @endif
                             @if ($finished_room->room->room_type_id === 1)
-                                <div class="room-features inline-block">
-                                    <div class="info-item">S: {{ $finished_room->room->area }} м<sup>2</sup></div>
-                                    <div class="info-item">H: {{ $finished_room->room->height }} м</div>
-                                    <div class="info-item">S стен: {{ $finished_room->room->wall_area }} м<sup>2</sup></div>
-                                    <div class="info-item">P: {{ $finished_room->room->perimeter }} м.п.</div>
-                                </div>
+                                @include('export.partials._room_details', ['room' => $finished_room])
                             @endif
                         </div>
                     </div>
@@ -130,34 +125,7 @@
                 @endforeach
             @endif
 
-
-            <div class="container comment">
-                <div>
-                    С другой стороны укрепление и развитие структуры обеспечивает широкому кругу (специалистов) участие
-                    в формировании системы обучения кадров, соответствует насущным потребностям. Значимость этих
-                    проблем настолько очевидна, что начало повседневной работы по формированию позиции играет важную
-                    роль в формировании новых предложений. Не следует, однако забывать, что сложившаяся структура
-                    организации играет важную роль в формировании систем массового участия. Таким образом начало
-                    повседневной работы по формированию позиции обеспечивает широкому кругу (специалистов) участие в
-                    формировании новых предложений.
-                    <br>
-                    @if ($filteredFinishedOrderAct->order->contract)
-                        <span>Приложение к договору № {{ $filteredFinishedOrderAct->order->contract }}</span>
-                    @else
-                        <span>&nbsp;</span>
-                    @endif
-                </div>
-
-            </div>
-
-            <div class="container signature-item">
-                <div class="signature inline-block">Заказчик:
-                    <br>_____________ /____________________/</div>
-                <div class="signature inline-block">Исполнитель:
-                    <br>_____________ /____________________/</div>
-            </div>
-
-
+            @include('export.partials._comment', ['order' => $filteredFinishedOrderAct->order])
     </section>
 
 </body>
