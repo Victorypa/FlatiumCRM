@@ -277,7 +277,6 @@
 
         data () {
             return {
-
                 service_materials: [],
                 service_material_ids: [],
                 service_material_prices: [],

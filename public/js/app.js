@@ -64372,7 +64372,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
     data: function data() {
         return {
-
             service_materials: [],
             service_material_ids: [],
             service_material_prices: [],
