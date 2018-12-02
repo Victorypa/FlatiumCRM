@@ -142,7 +142,7 @@
 
 
                             <template v-for="(room_service, index) in room_service_ids">
-                                <div class="projects__information" >
+                                <div class="projects__information">
                                     <div class="px-15 pb-3">
                                         <template v-if="!show">
                                             <h2 class="main-subtitle main-subtitle--room" @click="changeRoomName">
@@ -315,7 +315,7 @@
                 return axios.get(`/api/orders/${this.$route.params.id}`)
                             .then(response => {
                                 this.order = response.data
-                                this.rooms = response.data.rooms
+                                this.rooms = this.order.rooms
                                 this.contract = this.order.contract
                                 this.manager_id = this.order.manager_id
                                 this.client_name = this.order.client_name
@@ -358,7 +358,7 @@
                        'discount': this.percentage,
                        'markup': null
                    }).then(response => {
-                       this.getOrder()
+                       window.location.reload(true)
                    })
                }
 
@@ -367,7 +367,7 @@
                        'discount': null,
                        'markup': this.percentage
                    }).then(response => {
-                       this.getOrder()
+                       window.location.reload(true)
                    })
                }
 

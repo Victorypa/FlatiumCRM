@@ -66532,7 +66532,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
             return axios.get('/api/orders/' + this.$route.params.id).then(function (response) {
                 _this.order = response.data;
-                _this.rooms = response.data.rooms;
+                _this.rooms = _this.order.rooms;
                 _this.contract = _this.order.contract;
                 _this.manager_id = _this.order.manager_id;
                 _this.client_name = _this.order.client_name;
@@ -66565,14 +66565,12 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             });
         },
         updateOrderDiscountOrMarkup: function updateOrderDiscountOrMarkup() {
-            var _this2 = this;
-
             if (this.selected_id === "1") {
                 axios.patch('/api/orders/' + this.order.id + '/discount_or_markup/update', {
                     'discount': this.percentage,
                     'markup': null
                 }).then(function (response) {
-                    _this2.getOrder();
+                    window.location.reload(true);
                 });
             }
 
@@ -66581,7 +66579,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                     'discount': null,
                     'markup': this.percentage
                 }).then(function (response) {
-                    _this2.getOrder();
+                    window.location.reload(true);
                 });
             }
         },

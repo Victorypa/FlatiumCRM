@@ -5,7 +5,6 @@ namespace App\Http\Controllers\Api\Orders;
 use App;
 use PDF;
 use Storage;
-use App\Models\Services\Service;
 use App\Models\Orders\Order;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -49,16 +48,12 @@ class OrderController extends Controller
             'markup' => $request->markup
         ]);
 
-        $this->recalculateAfterDiscountOrMarkup($order);
+        $order->recalculateAfterDiscountOrMarkup();
     }
 
     public function exportPdfWithoutMaterials(Order $order)
     {
-        $filteredOrder = Order::where('id', $order->id)
-                         ->with([
-                             'rooms', 'rooms.roomType', 'rooms.room_services',
-                             'manager'
-                         ])->first();
+        $filteredOrder = Order::where('id', $order->id)->with(['rooms', 'rooms.room_services', 'manager'])->first();
 
         return $this->export($filteredOrder, 'export.pdf');
     }
@@ -102,78 +97,5 @@ class OrderController extends Controller
             "data" => "$name.xlsx"
         ]);
 
-    }
-
-
-    protected function recalculateAfterDiscountOrMarkup(Order $order)
-    {
-        $room_service_price = 0;
-        $room_price = 0;
-
-        if ($order->discount !== null && $order->markup === null) {
-            foreach ($order->rooms()->get() as $room) {
-                foreach ($room->room_services()->get() as $room_service) {
-                    if ($this->getServiceDetails($room_service->service_id, 'can_be_discounted')) {
-                        $room_service_price += $this->getServiceDetails($room_service->service_id, 'price') * (1 - (float) $order->discount / 100) * (float) $room_service->quantity;
-                    }
-
-                    if (!$this->getServiceDetails($room_service->service_id, 'can_be_discounted')) {
-                        $room_service_price += $this->getServiceDetails($room_service->service_id, 'price') * (float) $room_service->quantity;
-                    }
-                }
-                $result = $room->update([
-                    'price' => (float) $room_service_price
-                ]);
-                if ($result) {
-                    $room_service_price = 0;
-                }
-
-                $room_price += (float) $room->price;
-            }
-
-
-            $order->update([
-                'price' => (float) $room_price,
-                'markup' => null
-            ]);
-        }
-
-        if ($order->markup !== null && $order->discount === null) {
-            foreach ($order->rooms()->get() as $room) {
-                foreach ($room->room_services()->get() as $room_service) {
-                    $room_service_price += $this->getServiceDetails($room_service->service_id, 'price') * (1 + (float) $order->markup / 100) * (float) $room_service->quantity;
-                }
-                $result = $room->update([
-                    'price' => (float) $room_service_price
-                ]);
-                if ($result) {
-                    $room_service_price = 0;
-                }
-
-                $room_price += (float) $room->price;
-            }
-
-            $order->update([
-                'price' => (float) $room_price,
-                'discount' => null
-            ]);
-        }
-    }
-
-    protected function getServiceDetails($service_id, $type)
-    {
-        $service = Service::where('id', $service_id)->first();
-
-        switch ($type) {
-            case 'price':
-                return (float)$service->price;
-                break;
-            case 'can_be_discounted':
-                return $service->can_be_discounted;
-                break;
-            default:
-                return null;
-                break;
-        }
     }
 }
