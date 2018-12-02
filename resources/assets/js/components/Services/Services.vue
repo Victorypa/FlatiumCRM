@@ -170,46 +170,10 @@
 
         data () {
             return {
-                newServices: [],
                 service_type_id: 1,
                 quickSearchQuery: ""
             }
         },
-
-        methods: {
-            saveNewService () {
-                this.newServices.forEach(item => {
-                    axios.post(`/api/services/store`, {
-                        'service_type_id': this.service_type_id,
-                        'name': item.name,
-                        'unit_id': item.unit_id,
-                        'price': item.price,
-                        'can_be_discounted': item.can_be_discounted
-                    }).then(response => {
-                        this.getServices()
-                    })
-                })
-
-            },
-
-            addService () {
-                this.newServices.push({
-                    unit_id: 1,
-                    service_type_id: this.service_type_id,
-                    name: null,
-                    price: null,
-                    can_be_discounted: false
-                })
-            },
-
-           deleteService (id) {
-               if (confirm('Удалить ?')) {
-                   axios.delete(`/api/services/${id}/destroy`).then(response => {
-                       this.getServices()
-                   })
-               }
-           }
-       },
 
        computed: {
            filteredServices () {

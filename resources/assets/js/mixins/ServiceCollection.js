@@ -4,6 +4,7 @@ export default {
             units: [],
             services: [],
             service_types: [],
+            newServices: [],
         }
     },
 
@@ -14,6 +15,40 @@ export default {
     },
 
     methods: {
+        saveNewService () {
+            this.newServices.forEach(item => {
+                axios.post(`/api/services/store`, {
+                    'service_type_id': this.service_type_id,
+                    'name': item.name,
+                    'unit_id': item.unit_id,
+                    'price': item.price,
+                    'can_be_discounted': item.can_be_discounted
+                }).then(response => {
+                    this.newServices = []
+                    this.getServices()
+                })
+            })
+
+        },
+
+        addService () {
+            this.newServices.push({
+                unit_id: 1,
+                service_type_id: this.service_type_id,
+                name: null,
+                price: null,
+                can_be_discounted: false
+            })
+        },
+
+        deleteService (id) {
+            if (confirm('Удалить ?')) {
+                axios.delete(`/api/services/${id}/destroy`).then(response => {
+                    this.getServices()
+                })
+            }
+        },
+
         getServices () {
             return axios.get('/api/services').then(response => {
                 this.services = response.data

@@ -31704,7 +31704,8 @@ module.exports = Component.exports
         return {
             units: [],
             services: [],
-            service_types: []
+            service_types: [],
+            newServices: []
         };
     },
     mounted: function mounted() {
@@ -31715,34 +31716,68 @@ module.exports = Component.exports
 
 
     methods: {
-        getServices: function getServices() {
+        saveNewService: function saveNewService() {
             var _this = this;
 
+            this.newServices.forEach(function (item) {
+                axios.post('/api/services/store', {
+                    'service_type_id': _this.service_type_id,
+                    'name': item.name,
+                    'unit_id': item.unit_id,
+                    'price': item.price,
+                    'can_be_discounted': item.can_be_discounted
+                }).then(function (response) {
+                    _this.newServices = [];
+                    _this.getServices();
+                });
+            });
+        },
+        addService: function addService() {
+            this.newServices.push({
+                unit_id: 1,
+                service_type_id: this.service_type_id,
+                name: null,
+                price: null,
+                can_be_discounted: false
+            });
+        },
+        deleteService: function deleteService(id) {
+            var _this2 = this;
+
+            if (confirm('Удалить ?')) {
+                axios.delete('/api/services/' + id + '/destroy').then(function (response) {
+                    _this2.getServices();
+                });
+            }
+        },
+        getServices: function getServices() {
+            var _this3 = this;
+
             return axios.get('/api/services').then(function (response) {
-                _this.services = response.data;
+                _this3.services = response.data;
             });
         },
         getServiceTypes: function getServiceTypes() {
-            var _this2 = this;
+            var _this4 = this;
 
             if (localStorage.getItem('service_types')) {
                 this.service_types = JSON.parse(localStorage.getItem('service_types'));
             } else {
                 return axios.get('/api/service_types').then(function (response) {
-                    _this2.service_types = response.data;
-                    localStorage.setItem('service_types', JSON.stringify(_this2.service_types));
+                    _this4.service_types = response.data;
+                    localStorage.setItem('service_types', JSON.stringify(_this4.service_types));
                 });
             }
         },
         getServiceUnits: function getServiceUnits() {
-            var _this3 = this;
+            var _this5 = this;
 
             if (localStorage.getItem('units')) {
                 this.units = JSON.parse(localStorage.getItem('units'));
             } else {
                 return axios.get('/api/units').then(function (response) {
-                    _this3.units = response.data;
-                    localStorage.setItem('units', JSON.stringify(_this3.units));
+                    _this5.units = response.data;
+                    localStorage.setItem('units', JSON.stringify(_this5.units));
                 });
             }
         }
@@ -61481,6 +61516,7 @@ exports.push([module.i, "\n.form-control[data-v-799e8745] {\n  border-radius: 0;
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__mixins_ServiceCollection__ = __webpack_require__(148);
 //
 //
 //
@@ -61693,8 +61729,12 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 
+
+
 /* harmony default export */ __webpack_exports__["default"] = ({
     props: ['room', 'order'],
+
+    mixins: [__WEBPACK_IMPORTED_MODULE_0__mixins_ServiceCollection__["a" /* default */]],
 
     data: function data() {
         return {
@@ -61710,14 +61750,11 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             room_service_materials: [],
 
             service_quantities: [],
-            service_prices: [],
-
-            newServices: []
+            service_prices: []
 
         };
     },
     mounted: function mounted() {
-        this.getServiceTypes();
         this.getServices();
         this.getRoomServices();
         this.getServiceUnits();
@@ -61851,47 +61888,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         getMaterialSummary: function getMaterialSummary(rate, quantity, price) {
             return parseFloat(Math.ceil(rate / quantity) * price).toFixed(2);
         },
-        getServiceUnits: function getServiceUnits() {
-            var _this6 = this;
-
-            if (localStorage.getItem('units')) {
-                this.units = JSON.parse(localStorage.getItem('units'));
-            } else {
-                return axios.get('/api/units').then(function (response) {
-                    _this6.units = response.data;
-                    localStorage.setItem('units', JSON.stringify(_this6.units));
-                });
-            }
-        },
-        addNewService: function addNewService() {
-            this.newServices.push({
-                unit_id: 1,
-                service_type_id: this.service_type_id,
-                name: null,
-                price: null,
-                can_be_discounted: false
-            });
-        },
-        saveNewServices: function saveNewServices() {
-            this.newServices.forEach(function (item) {
-                axios.post('/api/services/store', {
-                    'service_type_id': item.service_type_id,
-                    'name': item.name,
-                    'unit_id': item.unit_id,
-                    'price': item.price,
-                    'can_be_discounted': item.can_be_discounted
-                }).then(function (response) {
-                    window.location.reload(true);
-                });
-            });
-        },
-        deleteService: function deleteService(id) {
-            if (confirm('Удалить ?')) {
-                axios.delete('/api/services/' + id + '/destroy').then(function (response) {
-                    window.location.reload(true);
-                });
-            }
-        },
         removeEmptyElem: function removeEmptyElem(obj) {
             var newObj = {};
 
@@ -61907,7 +61903,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
     computed: {
         filteredServices: function filteredServices() {
-            var _this7 = this;
+            var _this6 = this;
 
             var data = this.services;
 
@@ -61916,12 +61912,12 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             }
 
             data = data.filter(function (row) {
-                return row.service_type_id === _this7.service_type_id;
+                return row.service_type_id === _this6.service_type_id;
             });
 
             data = data.filter(function (row) {
                 return Object.keys(row).some(function (key) {
-                    return String(row[key]).toLowerCase().indexOf(_this7.searchQuery.toLowerCase()) > -1;
+                    return String(row[key]).toLowerCase().indexOf(_this6.searchQuery.toLowerCase()) > -1;
                 });
             });
 
@@ -62022,7 +62018,7 @@ var render = function() {
               on: {
                 submit: function($event) {
                   $event.preventDefault()
-                  _vm.saveNewServices()
+                  _vm.saveNewService()
                 }
               }
             },
@@ -62214,7 +62210,7 @@ var render = function() {
               staticClass: "add-space-button",
               on: {
                 click: function($event) {
-                  _vm.addNewService()
+                  _vm.addService()
                 }
               }
             },
@@ -69625,62 +69621,25 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
     data: function data() {
         return {
-            newServices: [],
             service_type_id: 1,
             quickSearchQuery: ""
         };
     },
 
 
-    methods: {
-        saveNewService: function saveNewService() {
-            var _this = this;
-
-            this.newServices.forEach(function (item) {
-                axios.post('/api/services/store', {
-                    'service_type_id': _this.service_type_id,
-                    'name': item.name,
-                    'unit_id': item.unit_id,
-                    'price': item.price,
-                    'can_be_discounted': item.can_be_discounted
-                }).then(function (response) {
-                    _this.getServices();
-                });
-            });
-        },
-        addService: function addService() {
-            this.newServices.push({
-                unit_id: 1,
-                service_type_id: this.service_type_id,
-                name: null,
-                price: null,
-                can_be_discounted: false
-            });
-        },
-        deleteService: function deleteService(id) {
-            var _this2 = this;
-
-            if (confirm('Удалить ?')) {
-                axios.delete('/api/services/' + id + '/destroy').then(function (response) {
-                    _this2.getServices();
-                });
-            }
-        }
-    },
-
     computed: {
         filteredServices: function filteredServices() {
-            var _this3 = this;
+            var _this = this;
 
             var data = this.services;
 
             data = data.filter(function (row) {
-                return row.service_type_id === _this3.service_type_id;
+                return row.service_type_id === _this.service_type_id;
             });
 
             data = data.filter(function (row) {
                 return Object.keys(row).some(function (key) {
-                    return String(row[key]).toLowerCase().indexOf(_this3.quickSearchQuery.toLowerCase()) > -1;
+                    return String(row[key]).toLowerCase().indexOf(_this.quickSearchQuery.toLowerCase()) > -1;
                 });
             });
 

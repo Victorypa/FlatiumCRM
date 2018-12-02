@@ -22,7 +22,7 @@
 
             <template v-for="(newService, index) in newServices">
 
-                <form class="row w-100" @submit.prevent="saveNewServices()">
+                <form class="row w-100" @submit.prevent="saveNewService()">
                     <div class="col-2 py-1">
                         &nbsp;
                         <!-- <select class="form-control" v-model="newService.service_type_id">
@@ -78,7 +78,7 @@
 
         <div class="col-12 py-3 pl-0">
             <div class="col-12">
-                <button class="add-space-button" @click="addNewService()">+ Добавить работу</button>
+                <button class="add-space-button" @click="addService()">+ Добавить работу</button>
             </div>
         </div>
 
@@ -210,8 +210,12 @@
 </template>
 
 <script>
+    import ServiceCollection from '../../../../mixins/ServiceCollection'
+
     export default {
         props: ['room', 'order'],
+
+        mixins: [ServiceCollection],
 
         data () {
             return {
@@ -229,13 +233,10 @@
                 service_quantities: [],
                 service_prices: [],
 
-                newServices: [],
-
             }
         },
 
         mounted () {
-            this.getServiceTypes()
             this.getServices()
             this.getRoomServices()
             this.getServiceUnits()
@@ -367,53 +368,6 @@
 
             getMaterialSummary (rate, quantity, price) {
                 return parseFloat(Math.ceil(rate/quantity) * price).toFixed(2)
-            },
-
-
-            getServiceUnits () {
-                if (localStorage.getItem('units')) {
-                    this.units = JSON.parse(localStorage.getItem('units'))
-                } else {
-                    return axios.get(`/api/units`)
-                                .then(response => {
-                                    this.units = response.data
-                                    localStorage.setItem('units', JSON.stringify(this.units))
-                                })
-                }
-            },
-
-            addNewService () {
-                    this.newServices.push({
-                        unit_id: 1,
-                        service_type_id: this.service_type_id,
-                        name: null,
-                        price: null,
-                        can_be_discounted: false
-                    })
-            },
-
-            saveNewServices () {
-                this.newServices.forEach(item => {
-                    axios.post(`/api/services/store`, {
-                        'service_type_id': item.service_type_id,
-                        'name': item.name,
-                        'unit_id': item.unit_id,
-                        'price': item.price,
-                        'can_be_discounted': item.can_be_discounted
-                    }).then(response => {
-                        window.location.reload(true)
-                    })
-                })
-
-            },
-
-            deleteService (id) {
-                if (confirm('Удалить ?')) {
-                    axios.delete(`/api/services/${id}/destroy`)
-                         .then(response => {
-                             window.location.reload(true)
-                         })
-                }
             },
 
             removeEmptyElem(obj) {
