@@ -11,14 +11,6 @@ use App\Http\Controllers\Controller;
 
 class RoomServiceController extends Controller
 {
-    // public function index(Order $order, Room $room)
-    // {
-    //     return response()->json([
-    //         'room_services' => $room->room_services()->get(),
-    //         'room' => $room
-    //     ]);
-    // }
-
     public function store(Order $order, Room $room, Request $request)
     {
         $diffIds_add = [];

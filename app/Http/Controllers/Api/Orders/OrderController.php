@@ -10,9 +10,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Maatwebsite\Excel\Facades\Excel;
 use App\Http\Controllers\Api\Orders\Traits\OrderExportTrait;
-use App\Models\Exports\{
-    OrdersExportWithMaterials, OrdersExportWithoutMaterials
-};
+use App\Models\Exports\{OrdersExportWithMaterials, OrdersExportWithoutMaterial};
 
 class OrderController extends Controller
 {
