@@ -15,22 +15,12 @@ class RoomController extends Controller
         $room->calculateRoomPrice($room);
         $room->calculateOrderPrice($room);
 
-        $filterdRoom = Room::where('id', $room->id)
-                       ->with([
-                           'order', 'roomType',
-                           'windows', 'order.rooms',
-                           'room_services', 'room_services.materials'
-                           ])->first();
-
-        return $filterdRoom;
-
+        return Room::where('id', $room->id)->with(['windows', 'order.rooms', 'room_services', 'room_services.materials'])->first();
     }
 
     public function store(Order $order, Request $request)
     {
-        $room = $order->rooms()->create($request->all());
-
-        return $room;
+        return $order->rooms()->create($request->all());
     }
 
     public function update(Order $order, Room $room, Request $request)

@@ -13,19 +13,18 @@ use App\Models\Types\RoomType;
 use App\Models\Materials\Material;
 use App\Models\Orders\Rooms\Services\RoomService;
 use App\Models\Traits\Rooms\{
-    RoomCalculationTrait, RoomPriceCalculationTrait,
-    RoomWindowCalculation, RoomServiceTrait
+    RoomCalculationTrait, RoomPriceCalculationTrait, RoomServiceTrait
 };
 
 class Room extends Model
 {
-    use RoomCalculationTrait;
-    use RoomPriceCalculationTrait;
-    use RoomServiceTrait;
+    use RoomCalculationTrait, RoomPriceCalculationTrait, RoomServiceTrait;
 
     protected $guarded = [];
 
     protected $dates = ['deleted_at', 'finish_at'];
+
+    protected $with = ['roomType', 'order'];
 
     public static function boot()
     {

@@ -32,7 +32,7 @@ class OrderController extends Controller
 
     public function show(Order $order)
     {
-        $with = ['rooms', 'rooms.roomType', 'manager', 'finished_order_acts', 'rooms.finished_room', 'extra_order_acts', 'finances', 'finished_order_acts', 'rooms.room_services'];
+        $with = ['rooms', 'manager', 'finished_order_acts', 'rooms.finished_room', 'extra_order_acts', 'finances', 'finished_order_acts', 'rooms.room_services'];
 
         return Order::where('id', $order->id)->with($with)->first();
     }
