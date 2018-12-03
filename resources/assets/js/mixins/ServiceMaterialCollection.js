@@ -3,6 +3,7 @@ export default {
         return {
             service: [],
             show: true,
+            columnShow: false,
             service_name: '',
             service_price: null,
 
@@ -13,6 +14,8 @@ export default {
             materials: [],
 
             service_material_quantities: [],
+
+            newMaterials: [],
         }
     },
 
@@ -134,7 +137,7 @@ export default {
        },
 
        showServiceInput () {
-           this.show = !this.show
+           this.columnShow = !this.columnShow
        },
 
        MaterialCalculation (quantity, rate, price) {

@@ -11,7 +11,7 @@
                     <div class="create__fixed-top col-10 shadow-light">
                       <div class="row align-items-center ">
 
-                          <template v-if="show">
+                          <template v-if="columnShow">
                               <div class="col-md-8 d-flex align-items-end" @click="showServiceInput()">
                                 <h2 class="main-caption col-8" v-if="service.name">
                                   {{ service.name}}
@@ -270,11 +270,13 @@
 </template>
 
 <script>
+    import ServiceMaterialCollection from '../../../mixins/ServiceMaterialCollection'
+
     export default {
+        mixins: [ServiceMaterialCollection],
+
         data () {
             return {
-                service: [],
-
                 service_materials: [],
                 service_material_ids: [],
                 service_material_prices: [],
@@ -292,30 +294,15 @@
 
                 material_ids: [],
 
-                material_units: [],
-
-                newMaterials: [],
-
                 material_units: []
             }
         },
 
         mounted () {
-            this.getMaterialUnits()
-            this.getService()
             this.getServiceMaterials()
         },
 
         methods: {
-            getService () {
-                return axios.get(`/api/services/${this.$route.params.service_id}`)
-                            .then(response => {
-                                this.service = response.data
-                                this.service_name = response.data.name
-                                this.service_price = response.data.price
-                            })
-            },
-
             getServiceMaterials () {
                 return axios.get(`/api/services/${this.$route.params.service_id}/materials`)
                             .then(response => {
@@ -330,19 +317,6 @@
 
                                 })
                             })
-            },
-
-            getMaterialUnits () {
-                if (localStorage.getItem('material_units')) {
-                    this.material_units = JSON.parse(localStorage.getItem('material_units'))
-                } else {
-                    return axios.get(`/api/material_units`)
-                                .then(response => {
-                                    this.material_units = response.data
-                                    localStorage.setItem('material_units', JSON.stringify(this.material_units))
-                                })
-                }
-
             },
 
             saveNewMaterial () {
@@ -360,38 +334,6 @@
                             console.log(err)
                         })
                 })
-            },
-
-            addMaterial () {
-                this.newMaterials.push({
-                    name: null,
-                    flat_id: 1,
-                    material_unit_id: 1,
-                    price: null,
-                    quantity: null,
-                    rate: null
-                })
-            },
-
-
-            search () {
-                axios.get(`/api/materials/search`, {
-                    params: { 'searchQuery': this.searchQuery }
-                })
-                    .then(response => {
-                        this.searchQuery = response.data.searchQuery
-                        this.materials = response.data.materials
-
-                        if (this.materials.length != 0) {
-                            this.show = false
-
-                            this.materials.forEach(item => {
-                                this.service_material_quantities[item.id] = item.quantity
-                                // this.service_material_rates[item.id] = item.pivot.rate
-
-                            })
-                        }
-                    })
             },
 
             addServiceMaterialId (id) {
@@ -418,50 +360,7 @@
                     console.log(err)
                 })
             },
-
-             removeEmptyElem(obj) {
-                 let newObj = {}
-
-                 Object.keys(obj).forEach((prop) => {
-                   if (obj[prop]) { newObj[prop] = obj[prop] }
-                 })
-
-                 return newObj
-            },
-
-            deleteMaterial (id) {
-                if (confirm()) {
-                    axios.delete(`/api/materials/${id}/delete`).then(response => {
-                        window.location.reload(true)
-                    })
-                } else {
-                    window.location.reload(true)
-                }
-            },
-
-            MaterialCalculation (quantity, rate, price) {
-                let data = Math.ceil(rate/quantity) * price
-
-                return parseFloat(data).toFixed(2)
-            },
-
-            showServiceInput () {
-                this.show = !this.show
-            },
-
-            updateService () {
-                axios.patch(`/api/services/${this.$route.params.service_id}/update`, {
-                    'name': this.service_name,
-                    'price': this.service_price
-                }).then(response => {
-                    this.show = true
-                    this.getService()
-                })
-
-            }
         },
-
-
     }
 </script>
 

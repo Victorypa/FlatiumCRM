@@ -31550,11 +31550,14 @@ module.exports = Component.exports
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
 /* harmony default export */ __webpack_exports__["a"] = ({
     data: function data() {
-        return {
+        return _defineProperty({
             service: [],
             show: true,
+            columnShow: false,
             service_name: '',
             service_price: null,
 
@@ -31565,7 +31568,8 @@ module.exports = Component.exports
             materials: [],
 
             service_material_quantities: []
-        };
+
+        }, 'newMaterials', []);
     },
     mounted: function mounted() {
         this.getService();
@@ -31684,7 +31688,7 @@ module.exports = Component.exports
             });
         },
         showServiceInput: function showServiceInput() {
-            this.show = !this.show;
+            this.columnShow = !this.columnShow;
         },
         MaterialCalculation: function MaterialCalculation(quantity, rate, price) {
             var data = Math.ceil(rate / quantity) * price;
@@ -64447,7 +64451,7 @@ var render = function() {
                       "div",
                       { staticClass: "row align-items-center " },
                       [
-                        _vm.show
+                        _vm.columnShow
                           ? [
                               _c(
                                 "div",
@@ -67866,6 +67870,7 @@ exports.push([module.i, "\n.main-caption[data-v-11eca642]::after {\n  display: n
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__mixins_ServiceMaterialCollection__ = __webpack_require__(147);
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
 //
@@ -68140,13 +68145,15 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 
+
+
 /* harmony default export */ __webpack_exports__["default"] = ({
+    mixins: [__WEBPACK_IMPORTED_MODULE_0__mixins_ServiceMaterialCollection__["a" /* default */]],
+
     data: function data() {
         var _ref;
 
         return _ref = {
-            service: [],
-
             service_materials: [],
             service_material_ids: [],
             service_material_prices: [],
@@ -68160,54 +68167,31 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
             searchQuery: '',
             materials: []
 
-        }, _defineProperty(_ref, 'show', true), _defineProperty(_ref, 'material_ids', []), _defineProperty(_ref, 'material_units', []), _defineProperty(_ref, 'newMaterials', []), _defineProperty(_ref, 'material_units', []), _ref;
+        }, _defineProperty(_ref, 'show', true), _defineProperty(_ref, 'material_ids', []), _defineProperty(_ref, 'material_units', []), _ref;
     },
     mounted: function mounted() {
-        this.getMaterialUnits();
-        this.getService();
         this.getServiceMaterials();
     },
 
 
     methods: {
-        getService: function getService() {
+        getServiceMaterials: function getServiceMaterials() {
             var _this = this;
 
-            return axios.get('/api/services/' + this.$route.params.service_id).then(function (response) {
-                _this.service = response.data;
-                _this.service_name = response.data.name;
-                _this.service_price = response.data.price;
-            });
-        },
-        getServiceMaterials: function getServiceMaterials() {
-            var _this2 = this;
-
             return axios.get('/api/services/' + this.$route.params.service_id + '/materials').then(function (response) {
-                _this2.service_materials = response.data.service_materials;
+                _this.service_materials = response.data.service_materials;
 
                 response.data.service_materials.forEach(function (item) {
-                    _this2.service_material_ids.push(item.id);
-                    _this2.service_material_prices[item.id] = item.price;
-                    _this2.service_material_quantities[item.id] = item.quantity;
+                    _this.service_material_ids.push(item.id);
+                    _this.service_material_prices[item.id] = item.price;
+                    _this.service_material_quantities[item.id] = item.quantity;
 
-                    _this2.service_material_rates[item.id] = item.pivot.rate;
+                    _this.service_material_rates[item.id] = item.pivot.rate;
                 });
             });
         },
-        getMaterialUnits: function getMaterialUnits() {
-            var _this3 = this;
-
-            if (localStorage.getItem('material_units')) {
-                this.material_units = JSON.parse(localStorage.getItem('material_units'));
-            } else {
-                return axios.get('/api/material_units').then(function (response) {
-                    _this3.material_units = response.data;
-                    localStorage.setItem('material_units', JSON.stringify(_this3.material_units));
-                });
-            }
-        },
         saveNewMaterial: function saveNewMaterial() {
-            var _this4 = this;
+            var _this2 = this;
 
             this.newMaterials.forEach(function (item, index) {
                 return axios.post('/api/materials/store', {
@@ -68216,41 +68200,12 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
                     'price': item.price,
                     'quantity': item.quantity,
                     'rate': item.rate,
-                    'service': _this4.service
+                    'service': _this2.service
                 }).then(function (response) {
                     window.location.reload(true);
                 }).catch(function (err) {
                     console.log(err);
                 });
-            });
-        },
-        addMaterial: function addMaterial() {
-            this.newMaterials.push({
-                name: null,
-                flat_id: 1,
-                material_unit_id: 1,
-                price: null,
-                quantity: null,
-                rate: null
-            });
-        },
-        search: function search() {
-            var _this5 = this;
-
-            axios.get('/api/materials/search', {
-                params: { 'searchQuery': this.searchQuery }
-            }).then(function (response) {
-                _this5.searchQuery = response.data.searchQuery;
-                _this5.materials = response.data.materials;
-
-                if (_this5.materials.length != 0) {
-                    _this5.show = false;
-
-                    _this5.materials.forEach(function (item) {
-                        _this5.service_material_quantities[item.id] = item.quantity;
-                        // this.service_material_rates[item.id] = item.pivot.rate
-                    });
-                }
             });
         },
         addServiceMaterialId: function addServiceMaterialId(id) {
@@ -68275,48 +68230,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
             }).catch(function (err) {
                 console.log(err);
             });
-        },
-        removeEmptyElem: function removeEmptyElem(obj) {
-            var newObj = {};
-
-            Object.keys(obj).forEach(function (prop) {
-                if (obj[prop]) {
-                    newObj[prop] = obj[prop];
-                }
-            });
-
-            return newObj;
-        },
-        deleteMaterial: function deleteMaterial(id) {
-            if (confirm()) {
-                axios.delete('/api/materials/' + id + '/delete').then(function (response) {
-                    window.location.reload(true);
-                });
-            } else {
-                window.location.reload(true);
-            }
-        },
-        MaterialCalculation: function MaterialCalculation(quantity, rate, price) {
-            var data = Math.ceil(rate / quantity) * price;
-
-            return parseFloat(data).toFixed(2);
-        },
-        showServiceInput: function showServiceInput() {
-            this.show = !this.show;
-        },
-        updateService: function updateService() {
-            var _this6 = this;
-
-            axios.patch('/api/services/' + this.$route.params.service_id + '/update', {
-                'name': this.service_name,
-                'price': this.service_price
-            }).then(function (response) {
-                _this6.show = true;
-                _this6.getService();
-            });
         }
     }
-
 });
 
 /***/ }),
@@ -68350,7 +68265,7 @@ var render = function() {
                       "div",
                       { staticClass: "row align-items-center " },
                       [
-                        _vm.show
+                        _vm.columnShow
                           ? [
                               _c(
                                 "div",
