@@ -10,7 +10,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Maatwebsite\Excel\Facades\Excel;
 use App\Http\Controllers\Api\Orders\Traits\OrderExportTrait;
-use App\Models\Exports\{OrdersExportWithMaterials, OrdersExportWithoutMaterial};
+use App\Models\Exports\{OrdersExportWithMaterials, OrdersExportWithoutMaterials};
 
 class OrderController extends Controller
 {
@@ -69,10 +69,7 @@ class OrderController extends Controller
 
     public function exportExcelWithoutMaterials(Order $order)
     {
-        $filteredOrder = Order::where('id', $order->id)
-                         ->with([
-                             'rooms', 'rooms.roomType'
-                         ])->first();
+        $filteredOrder = Order::where('id', $order->id)->with(['rooms'])->first();
 
         $name = str_random(12);
 

@@ -62533,7 +62533,7 @@ var render = function() {
                           _vm.room_service_ids.includes(service.id) &&
                           _vm.room.room_services.filter(function(room_service) {
                             return room_service.service_id === service.id
-                          })[0].materials
+                          })[0]
                             ? _vm._l(
                                 _vm.room.room_services.filter(function(
                                   room_service

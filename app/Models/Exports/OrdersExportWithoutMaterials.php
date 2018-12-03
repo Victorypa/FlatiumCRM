@@ -5,8 +5,9 @@ namespace App\Models\Exports;
 use App\Models\Orders\Order;
 use Illuminate\Contracts\View\View;
 use Maatwebsite\Excel\Concerns\FromView;
+use Maatwebsite\Excel\Concerns\ShouldAutoSize;
 
-class OrdersExportWithoutMaterials implements FromView
+class OrdersExportWithoutMaterials implements FromView, ShouldAutoSize
 {
     protected $order;
 
