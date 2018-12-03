@@ -16,16 +16,16 @@
         "jquery": "^2.1.*",
         "laravel-mix": "^2.1.14",
         "lodash": "^4.17.11",
-        "popper.js": "^1.14.4",
+        "popper.js": "^1.14.6",
         "vue": "^2.5.17",
         "vue-template-compiler": "^2.5.17"
     },
     "dependencies": {
         "moment": "^2.22.2",
         "vue-carousel": "^0.13.1",
-        "vue-dragscroll": "^1.8.1",
-        "vue-router": "^3.0.1",
-        "vuejs-datepicker": "^1.5.3",
+        "vue-router": "^3.0.2",
+        "vuedraggable": "^2.16.0",
+        "vuejs-datepicker": "^1.5.4",
         "vuex": "^3.0.1"
     }
 }

@@ -1,12 +1,12 @@
 <?php
 
-namespace App\Models\Orders\Acts;
+namespace App\Models\Orders\Steps;
 
 use App\Models\Orders\Order;
 use Illuminate\Database\Eloquent\Model;
-use App\Models\Orders\Acts\Rooms\FinishedRoom;
+use App\Models\Orders\Steps\Rooms\RoomStep;
 
-class FinishedOrderAct extends Model
+class OrderStep extends Model
 {
     protected $guarded = [];
 
@@ -17,8 +17,8 @@ class FinishedOrderAct extends Model
         return $this->belongsTo(Order::class);
     }
 
-    public function finished_rooms()
+    public function room_steps()
     {
-        return $this->hasMany(FinishedRoom::class);
+        return $this->hasMany(RoomStep::class);
     }
 }

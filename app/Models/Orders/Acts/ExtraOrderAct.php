@@ -10,9 +10,7 @@ class ExtraOrderAct extends Model
 {
     protected $guarded = [];
 
-    protected $dates = [
-        'begin_at', 'finish_at'
-    ];
+    protected $dates = ['begin_at', 'finish_at'];
 
     protected $with = ['extra_rooms', 'order'];
 

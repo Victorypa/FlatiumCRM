@@ -31,6 +31,13 @@ use Illuminate\Http\Request;
         });
 
         /**
+         * Order Steps
+        */
+        Route::group(['namespace' => 'Steps'], function () {
+
+        });
+
+        /**
          * Orders Exports
         */
         Route::group(['prefix' => '/{order}/export'], function ($router) {
