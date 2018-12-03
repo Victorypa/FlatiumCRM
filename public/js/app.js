@@ -50603,7 +50603,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             return axios.get('/api/orders/' + this.$route.params.id).then(function (response) {
                 _this.order = response.data;
                 _this.address = _this.order.address;
-                _this.flat_id = _this.order.flat_id;
 
                 if (_this.address !== null) {
                     _this.show = true;
@@ -50845,7 +50844,7 @@ var render = function() {
                               _vm._v(
                                 "\n                        Итого: " +
                                   _vm._s(
-                                    new Intl.NumberFormat().format(
+                                    new Intl.NumberFormat("ru-Ru").format(
                                       parseInt(_vm.order.price)
                                     )
                                   ) +
@@ -50979,7 +50978,7 @@ var render = function() {
                               _vm._v(
                                 "\n                        Итого: " +
                                   _vm._s(
-                                    new Intl.NumberFormat().format(
+                                    new Intl.NumberFormat("ru-Ru").format(
                                       parseInt(_vm.order.price)
                                     )
                                   ) +
@@ -66553,7 +66552,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
 
 
 
@@ -66869,8 +66867,8 @@ var render = function() {
                                   to: {
                                     name: "room-show",
                                     params: {
-                                      id: this.order.id,
-                                      room_id: this.order.rooms[0].id
+                                      id: _vm.order.id,
+                                      room_id: _vm.order.rooms[0].id
                                     }
                                   }
                                 }
@@ -66898,7 +66896,7 @@ var render = function() {
                                 attrs: {
                                   to: {
                                     name: "order-show",
-                                    params: { id: this.order.id }
+                                    params: { id: _vm.order.id }
                                   }
                                 }
                               },
@@ -91921,12 +91919,25 @@ exports.push([module.i, "\n.fixed-part[data-v-05e78ddf] {\n  position: fixed;\n 
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue__ = __webpack_require__(7);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_vue__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vuedraggable__ = __webpack_require__(308);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vuedraggable___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_vuedraggable__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_vuejs_datepicker__ = __webpack_require__(11);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_vuedraggable__ = __webpack_require__(308);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_vuedraggable___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_vuedraggable__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_vuejs_datepicker_dist_locale__ = __webpack_require__(12);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_vuejs_datepicker_dist_locale__ = __webpack_require__(12);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -92383,14 +92394,13 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-  components: {
-    draggable: __WEBPACK_IMPORTED_MODULE_2_vuedraggable___default.a,
-    Datepicker: __WEBPACK_IMPORTED_MODULE_1_vuejs_datepicker__["a" /* default */]
-  },
   data: function data() {
     return {
+      order: [],
+      show_input: false,
+
       ListStages: [],
-      ru: __WEBPACK_IMPORTED_MODULE_3_vuejs_datepicker_dist_locale__["a" /* ru */],
+      ru: __WEBPACK_IMPORTED_MODULE_2_vuejs_datepicker_dist_locale__["a" /* ru */],
       future_index: "START",
       list4: [{
         name: "Name 1",
@@ -92441,7 +92451,29 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     };
   },
 
+
+  components: {
+    draggable: __WEBPACK_IMPORTED_MODULE_0_vuedraggable___default.a,
+    Datepicker: __WEBPACK_IMPORTED_MODULE_1_vuejs_datepicker__["a" /* default */]
+  },
+
+  mounted: function mounted() {
+    this.getOrder();
+  },
+
+
   methods: {
+    getOrder: function getOrder() {
+      var _this = this;
+
+      return axios.get("/api/orders/" + this.$route.params.id).then(function (response) {
+        _this.order = response.data;
+        console.log(_this.order);
+        // console.log(this.order.rooms);
+      });
+    },
+
+
     onMove: function onMove(event, oEvent) {
       this.future_index += ", " + event.draggedContext.futureIndex;
     },
@@ -92453,7 +92485,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       // console.log(this.ListStages.indexOf(i));
       // let index = this.ListStages.indexOf(i)
       // this.ListStages.splice(index, 1)
-      __WEBPACK_IMPORTED_MODULE_0_vue___default.a.delete(this.ListStages, i);
+      // Vue.delete(this.ListStages, i);
     }
   }
 });
@@ -94466,7 +94498,96 @@ var render = function() {
                 "div",
                 { staticClass: "col-md-10" },
                 [
-                  _vm._m(0),
+                  _c(
+                    "div",
+                    {
+                      staticClass:
+                        "row col-10 fixed-part align-items-center shadow bg-white rounded"
+                    },
+                    [
+                      _vm._m(0),
+                      _vm._v(" "),
+                      _c(
+                        "div",
+                        { staticClass: "col-md-2" },
+                        [
+                          _vm.order.rooms
+                            ? [
+                                _c(
+                                  "router-link",
+                                  {
+                                    attrs: {
+                                      to: {
+                                        name: "room-show",
+                                        params: {
+                                          id: _vm.order.id,
+                                          room_id: _vm.order.rooms[0].id
+                                        }
+                                      }
+                                    }
+                                  },
+                                  [
+                                    _c(
+                                      "button",
+                                      {
+                                        staticClass: "primary-button w-100",
+                                        attrs: { type: "button" }
+                                      },
+                                      [
+                                        _vm._v(
+                                          "\n                            Редактировать\n                        "
+                                        )
+                                      ]
+                                    )
+                                  ]
+                                )
+                              ]
+                            : [
+                                _c(
+                                  "router-link",
+                                  {
+                                    attrs: {
+                                      to: {
+                                        name: "order-show",
+                                        params: { id: _vm.order.id }
+                                      }
+                                    }
+                                  },
+                                  [
+                                    _c(
+                                      "button",
+                                      {
+                                        staticClass: "primary-button w-100",
+                                        attrs: { type: "button" }
+                                      },
+                                      [
+                                        _vm._v(
+                                          "\n                            Редактировать\n                        "
+                                        )
+                                      ]
+                                    )
+                                  ]
+                                )
+                              ]
+                        ],
+                        2
+                      ),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "col-md-6 pt-3" }, [
+                        _c("h2", { staticClass: "main-subtitle px-15" }, [
+                          _vm._v(
+                            " Итого: " +
+                              _vm._s(
+                                new Intl.NumberFormat("ru-Ru").format(
+                                  parseInt(_vm.order.price)
+                                )
+                              ) +
+                              " Р"
+                          )
+                        ])
+                      ])
+                    ]
+                  ),
                   _vm._v(" "),
                   _c("div", { staticClass: "col-12 px-0 stages" }, [
                     _c(
@@ -95389,34 +95510,11 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c(
-      "div",
-      {
-        staticClass:
-          "row col-10 fixed-part align-items-center shadow bg-white rounded"
-      },
-      [
-        _c("div", { staticClass: "col-md-8" }, [
-          _c("h1", { staticClass: "main-caption w-100" }, [
-            _vm._v("\n                График работ\n              ")
-          ])
-        ]),
-        _vm._v(" "),
-        _c("div", { staticClass: "col-md-2 ml-auto" }, [
-          _c(
-            "button",
-            { staticClass: "primary-button w-100", attrs: { type: "button" } },
-            [_vm._v("Редактировать")]
-          )
-        ]),
-        _vm._v(" "),
-        _c("div", { staticClass: "col-md-6 pt-3" }, [
-          _c("h2", { staticClass: "main-subtitle px-15" }, [
-            _vm._v(" Итого: 2 120 000 Р")
-          ])
-        ])
-      ]
-    )
+    return _c("div", { staticClass: "col-md-8" }, [
+      _c("h1", { staticClass: "main-caption w-100" }, [
+        _vm._v("\n                График работ\n              ")
+      ])
+    ])
   },
   function() {
     var _vm = this
@@ -95424,7 +95522,7 @@ var staticRenderFns = [
     var _c = _vm._self._c || _h
     return _c("div", { staticClass: "col-md-6" }, [
       _c("div", { staticClass: "main-subtitle" }, [
-        _vm._v("\n                    Название этапа\n                  ")
+        _c("input", { staticClass: "form-control" })
       ])
     ])
   },

@@ -110,7 +110,6 @@
                             .then(response => {
                                 this.order = response.data
                                 this.address = this.order.address
-                                this.flat_id = this.order.flat_id
 
                                 if (this.address !== null) {
                                     this.show = true

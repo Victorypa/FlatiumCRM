@@ -17,7 +17,7 @@
                 <div class="col-md-6 d-flex px-0 align-items-center">
                     <div class="col-4 create__sum pl-0" style="font-size: 16px;">
                         <template v-if="order.price">
-                            Итого: {{ new Intl.NumberFormat().format(parseInt(order.price)) }} P
+                            Итого: {{ new Intl.NumberFormat('ru-Ru').format(parseInt(order.price)) }} P
                         </template>
                         <template v-else>
                             Итого: 0 P
@@ -58,7 +58,7 @@
                 <div class="col-md-6 d-flex px-0 align-items-center">
                     <template v-if="order.price != null">
                         <div class="col-4 create__sum pl-0" style="font-size: 16px;">
-                            Итого: {{ new Intl.NumberFormat().format(parseInt(order.price)) }}P
+                            Итого: {{ new Intl.NumberFormat('ru-Ru').format(parseInt(order.price)) }}P
                         </div>
                     </template>
                     <template v-else>

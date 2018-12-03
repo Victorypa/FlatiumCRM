@@ -18,12 +18,25 @@
                 </h1>
               </div>
 
-              <div class="col-md-2 ml-auto">
-                <button type="button" class="primary-button w-100">Редактировать</button>
+              <div class="col-md-2">
+                  <template v-if="order.rooms">
+                      <router-link :to="{ name: 'room-show', params: { id: order.id, room_id: order.rooms[0].id } }" >
+                          <button type="button" class="primary-button w-100">
+                              Редактировать
+                          </button>
+                      </router-link>
+                  </template>
+                  <template v-else>
+                      <router-link :to="{ name: 'order-show', params: { id: order.id } }" >
+                          <button type="button" class="primary-button w-100">
+                              Редактировать
+                          </button>
+                      </router-link>
+                  </template>
               </div>
 
               <div class="col-md-6 pt-3">
-                <h2 class="main-subtitle px-15"> Итого: 2 120 000 Р</h2>
+                <h2 class="main-subtitle px-15"> Итого: {{ new Intl.NumberFormat('ru-Ru').format(parseInt(order.price)) }} Р</h2>
               </div>
             </div>
 
@@ -31,10 +44,12 @@
               <div class="row align-items-center py-4 mb-3 mx-2 stages-border">
                 <div class="col-12 d-flex align-items-center justify-content-between mb-2">
                   <div class="col-md-6">
-                    <div class="main-subtitle">
-                      Название этапа
-                    </div>
 
+                    <div class="main-subtitle">
+
+                            <input class="form-control" />
+                      <!-- Название этапа -->
+                    </div>
                   </div>
                   <div class="col-md-4 d-flex justify-content-end align-items-center pl-0">
                     <datepicker class="my-datepicker" :language="ru"></datepicker>
@@ -449,17 +464,16 @@
 </template>
 
 <script>
-  import Vue from "vue";
-  import Datepicker from "vuejs-datepicker";
-  import draggable from "vuedraggable";
-  import { ru } from "vuejs-datepicker/dist/locale";
+  import draggable from "vuedraggable"
+  import Datepicker from "vuejs-datepicker"
+  import { ru } from "vuejs-datepicker/dist/locale"
+
   export default {
-    components: {
-      draggable,
-      Datepicker
-    },
     data() {
       return {
+          order: [],
+          show_input: false,
+
         ListStages: [],
         ru,
         future_index: "START",
@@ -520,7 +534,26 @@
         ]
       };
     },
+
+    components: {
+      draggable,
+      Datepicker
+    },
+
+    mounted () {
+        this.getOrder()
+    },
+
     methods: {
+        getOrder () {
+            return axios.get(`/api/orders/${this.$route.params.id}`)
+                        .then(response => {
+                            this.order = response.data
+                            console.log(this.order);
+                            // console.log(this.order.rooms);
+                        })
+        },
+
       onMove: function(event, oEvent) {
         this.future_index += ", " + event.draggedContext.futureIndex;
       },
@@ -532,7 +565,7 @@
         // console.log(this.ListStages.indexOf(i));
         // let index = this.ListStages.indexOf(i)
         // this.ListStages.splice(index, 1)
-        Vue.delete(this.ListStages, i);
+        // Vue.delete(this.ListStages, i);
       },
     }
   };

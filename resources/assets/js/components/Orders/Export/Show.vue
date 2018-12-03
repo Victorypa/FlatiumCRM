@@ -26,20 +26,19 @@
 
                         <div class="col-md-2">
                             <template v-if="order.rooms">
-                                <router-link :to="{ name: 'room-show', params: { id: this.order.id, room_id: this.order.rooms[0].id } }" >
+                                <router-link :to="{ name: 'room-show', params: { id: order.id, room_id: order.rooms[0].id } }" >
                                     <button type="button" class="primary-button w-100">
                                         Редактировать
                                     </button>
                                 </router-link>
                             </template>
                             <template v-else>
-                                <router-link :to="{ name: 'order-show', params: { id: this.order.id } }" >
+                                <router-link :to="{ name: 'order-show', params: { id: order.id } }" >
                                     <button type="button" class="primary-button w-100">
                                         Редактировать
                                     </button>
                                 </router-link>
                             </template>
-
                         </div>
 
                         <div class="col-md-12 px-0 pt-4">
