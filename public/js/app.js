@@ -64519,7 +64519,7 @@ var render = function() {
                       "div",
                       { staticClass: "row align-items-center " },
                       [
-                        _vm.columnShow
+                        !_vm.columnShow
                           ? [
                               _c(
                                 "div",
@@ -68332,7 +68332,7 @@ var render = function() {
                       "div",
                       { staticClass: "row align-items-center " },
                       [
-                        _vm.columnShow
+                        !_vm.columnShow
                           ? [
                               _c(
                                 "div",

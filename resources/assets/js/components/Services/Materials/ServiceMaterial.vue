@@ -11,7 +11,7 @@
                     <div class="create__fixed-top col-10 shadow-light">
                       <div class="row align-items-center ">
 
-                          <template v-if="columnShow">
+                          <template v-if="!columnShow">
                               <div class="col-md-8 d-flex align-items-end" @click="showServiceInput()">
                                 <h2 class="main-caption col-8" v-if="service.name">
                                   {{ service.name}}
