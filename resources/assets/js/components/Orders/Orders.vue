@@ -121,6 +121,9 @@
                                       Баланс
                                   </router-link>
 
+                                  <router-link class="dropdown-item text-color" :to="{ name: 'order-step', params: { id: order.id} }">
+                                      График работ
+                                  </router-link>
                               </div>
                             </div>
                           </td>
