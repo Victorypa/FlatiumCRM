@@ -11,6 +11,8 @@ class RoomStep extends Model
 {
     protected $guarded = [];
 
+    protected $with = ['services'];
+
     public function order_step()
     {
         return $this->belongTo(OrderStep::class);

@@ -12,6 +12,8 @@ class OrderStep extends Model
 
     protected $dates = ['begin_at', 'finish_at'];
 
+    protected $with = ['room_steps', 'order'];
+
     protected static function boot()
     {
         parent::boot();

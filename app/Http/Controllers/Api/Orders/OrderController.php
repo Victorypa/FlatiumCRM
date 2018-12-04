@@ -36,8 +36,7 @@ class OrderController extends Controller
         $with = [
             'rooms', 'manager', 'finished_order_acts',
             'rooms.finished_room', 'extra_order_acts',
-            'finances', 'finished_order_acts', 'rooms.room_services',
-            'order_steps', 'order_steps.room_steps'
+            'finances', 'finished_order_acts', 'rooms.room_services'
         ];
 
         return Order::where('id', $order->id)->with($with)->first();

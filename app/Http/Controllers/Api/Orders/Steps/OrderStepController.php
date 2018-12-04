@@ -11,7 +11,7 @@ class OrderStepController extends Controller
 {
     public function index(Order $order)
     {
-        $with = ['order_steps', 'order_steps.room_steps'];
+        $with = ['order_steps', 'rooms', 'rooms.room_services'];
 
         return Order::where('id', $order->id)->with($with)->first();
     }
