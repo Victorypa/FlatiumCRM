@@ -41,8 +41,10 @@ class RoomController extends Controller
                 'length' => $length = $request->length,
                 'height' => $height = $request->height,
                 'area' => $request->area,
-                'perimeter' => $perimeter = 2 * ($width * $length) - $door_length,
-                'wall_area' => $perimeter * $height - (float) $window_area,
+                'perimeter' => $request->perimeter,
+                // 'perimeter' => $perimeter = 2 * ($width * $length) - $door_length,
+                // 'wall_area' => $perimeter * $height - (float) $window_area,
+                'wall_area' => $request->wall_area
             ]);
 
         } else {
@@ -51,8 +53,10 @@ class RoomController extends Controller
                 'length' => $length = $request->length,
                 'height' => $height = $request->height,
                 'area' => $request->area,
-                'perimeter' => $perimeter = $request->perimeter,
-                'wall_area' => $perimeter * $height,
+                'perimeter' => $request->perimeter,
+                // 'perimeter' => $perimeter = $request->perimeter,
+                // 'wall_area' => $perimeter * $height,
+                'wall_area' => $request->wall_area
             ]);
         }
     }

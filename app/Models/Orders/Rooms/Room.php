@@ -9,6 +9,7 @@ use App\Models\Orders\Rooms\Windows\Window;
 use App\Models\Services\Service;
 use App\Models\Services\Acts\ServiceAct;
 use App\Models\Orders\Acts\Rooms\FinishedRoom;
+use App\Models\Orders\Steps\Rooms\RoomStep;
 use App\Models\Types\RoomType;
 use App\Models\Materials\Material;
 use App\Models\Orders\Rooms\Services\RoomService;
@@ -31,6 +32,8 @@ class Room extends Model
         parent::boot();
 
         static::created(function($room) {
+            $room->room_steps_automation($room, 'created');
+
             $room->finished_rooms_automation($room, 'created');
             $room->extra_rooms_automation($room, 'created');
         });
@@ -41,6 +44,9 @@ class Room extends Model
 
         static::deleted(function ($room) {
             $room->addRoomPriceToOrder($room);
+
+            $room->room_steps_automation($room, 'deleted');
+
             $room->finished_rooms_automation($room, 'deleted');
             $room->extra_rooms_automation($room, 'deleted');
         });
@@ -49,6 +55,11 @@ class Room extends Model
     public function room_services()
     {
         return $this->hasMany(RoomService::class);
+    }
+
+    public function room_steps()
+    {
+        return $this->hasMany(RoomStep::class);
     }
 
     public function finished_room()

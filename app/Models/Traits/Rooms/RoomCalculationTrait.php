@@ -62,6 +62,27 @@ trait RoomCalculationTrait
         ]);
     }
 
+    protected function room_steps_automation(Room $room, String $type)
+    {
+        if ($type === 'created') {
+            if (count($room->order->order_steps) !== 0) {
+                foreach ($room->order->order_steps as $order_step) {
+                    $order_step->room_steps()->create([
+                        'room_id' => $room->id
+                    ]);
+                }
+            }
+        }
+
+        if ($type === 'deleted') {
+            if (count($room->order->order_steps) !== 0) {
+                foreach ($room->order->order_steps as $order_step) {
+                    $order_step->room_steps()->where('room_id', $room->id)->delete();
+                }
+            }
+        }
+    }
+
     protected function finished_rooms_automation(Room $room, String $type)
     {
         if ($type === 'created') {

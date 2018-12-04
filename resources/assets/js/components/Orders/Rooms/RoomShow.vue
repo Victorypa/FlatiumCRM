@@ -109,8 +109,9 @@
 
                                             <div class="placeholder-text ml-2" placeholder="Сте">
                                                 <input type="number"
-                                                       min="0" disabled
-                                                       :value="wall_area"
+                                                       min="0"
+                                                       v-model="wall_area"
+                                                       @change="updateRoom()"
                                                     />
                                             </div>
 
@@ -279,6 +280,7 @@
                     'length': this.length,
                     'height': this.height,
                     'area': this.area,
+                    'wall_area': this.wall_area,
                     'perimeter': this.perimeter
                 }).then(response => {
                     this.getRoom()
