@@ -41,7 +41,7 @@
             </div>
 
 
-            <template v-for="(step, index) in newSteps">
+            <template v-for="(step, index) in order_steps">
                 <div class="col-12 px-0 stages">
                   <div class="row align-items-center py-4 mb-3 mx-2 stages-border">
                         <div class="col-12 d-flex align-items-center justify-content-between mb-2">
@@ -435,15 +435,9 @@
       return {
           ru,
           order: [],
+          order_steps: [],
           show_input: false,
-          newSteps: [
-              {
-                  name: 'Спринт',
-                  description: null,
-                  begin_at: null,
-                  finish_at: null
-              }
-          ],
+          newSteps: [],
 
         ListStages: [],
         future_index: "START",
@@ -519,8 +513,12 @@
             return axios.get(`/api/orders/${this.$route.params.id}`)
                         .then(response => {
                             this.order = response.data
+                            this.order_steps = this.order.order_steps
+                            // console.log(this.order, this.order_steps);
                         })
         },
+
+
 
       onMove: function(event, oEvent) {
         this.future_index += ", " + event.draggedContext.futureIndex;

@@ -33,6 +33,7 @@ use Illuminate\Http\Request;
          * Order Steps
         */
         Route::group(['namespace' => 'Steps'], function () {
+            // Route::get('/{order}/order_steps', 'OrderStepController@index');
             Route::post('/{order}/order_step/{order_step}/show', 'OrderStepController@show');
             Route::patch('/{order}/order_step/{order_step}/update', 'OrderStepController@update');
             Route::post('/{order}/order_step/store', 'OrderStepController@store');

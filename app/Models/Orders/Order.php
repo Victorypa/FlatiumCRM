@@ -56,4 +56,12 @@ class Order extends Model
         return $this->hasMany(Room::class);
     }
 
+    public function createFirstOrderStep()
+    {
+        if (count($this->order_steps) === 0) {
+            $this->order_steps()->create([
+                'name' => 'Спринт'
+            ]);
+        }
+    }
 }

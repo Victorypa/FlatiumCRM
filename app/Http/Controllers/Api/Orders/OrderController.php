@@ -24,12 +24,21 @@ class OrderController extends Controller
 
         $orders = Order::orderBy('created_at', 'asc')->with(['rooms', 'finished_order_acts', 'extra_order_acts', 'extra_order_acts.extra_rooms'])->get();
 
+        foreach ($orders as $order) {
+            $order->createFirstOrderStep();
+        }
+
         return response()->json($orders);
     }
 
     public function show(Order $order)
     {
-        $with = ['rooms', 'manager', 'finished_order_acts', 'rooms.finished_room', 'extra_order_acts', 'finances', 'finished_order_acts', 'rooms.room_services'];
+        $with = [
+            'rooms', 'manager', 'finished_order_acts',
+            'rooms.finished_room', 'extra_order_acts',
+            'finances', 'finished_order_acts', 'rooms.room_services',
+            'order_steps', 'order_steps.room_steps'
+        ];
 
         return Order::where('id', $order->id)->with($with)->first();
     }
