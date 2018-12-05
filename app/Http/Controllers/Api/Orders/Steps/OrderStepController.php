@@ -42,8 +42,11 @@ class OrderStepController extends Controller
 
     protected function randomHexColorGeneration()
     {
-        $rand = str_pad(dechex(rand(0x000000, 0xFFFFFF)), 6, 0, STR_PAD_LEFT);
+        $colors = [
+            '#ff7979', '#badc58', '#f0932b', '#eb4d4b', '#6ab04c', '#7ed6df',
+            '#e056fd', '#686de0', '#30336b', '#be2edd', '#22a6b3', '#4834d4'
+        ];
 
-        return "#{$rand}";
+        return $colors[array_rand($colors)];
     }
 }

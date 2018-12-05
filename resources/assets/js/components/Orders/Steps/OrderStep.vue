@@ -348,7 +348,6 @@
                         .then(response => {
                             this.order = response.data
                             this.order_steps = this.order.order_steps
-                            console.log(this.order_steps);
                         })
         },
 

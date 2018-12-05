@@ -53083,7 +53083,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             return axios.get("/api/orders/" + this.$route.params.id + "/order_steps").then(function (response) {
                 _this.order = response.data;
                 _this.order_steps = _this.order.order_steps;
-                console.log(_this.order_steps);
             });
         },
         getServiceTypeName: function getServiceTypeName(service_type_id) {
