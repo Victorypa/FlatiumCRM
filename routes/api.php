@@ -34,7 +34,7 @@ use Illuminate\Http\Request;
         */
         Route::group(['namespace' => 'Steps'], function () {
             Route::get('/{order}/order_steps', 'OrderStepController@index');
-            Route::post('/{order}/order_step/{order_step}/show', 'OrderStepController@show');
+            Route::get('/{order}/order_step/{order_step}/show', 'OrderStepController@show');
             Route::patch('/{order}/order_step/{order_step}/update', 'OrderStepController@update');
             Route::post('/{order}/order_step/store', 'OrderStepController@store');
             Route::delete('/{order}/order_step/{order_step}/destroy', 'OrderStepController@destroy');

@@ -42,7 +42,7 @@
 
 
             <template v-for="(order_step, index) in order_steps">
-                <div class="col-12 px-0 stages">
+                <div class="col-12 px-0 stages" :style="{ border: `3px solid ${order_step.color}` }">
                   <div class="row align-items-center py-4 mb-3 mx-2 stages-border">
                         <div class="col-12 d-flex align-items-center justify-content-between mb-2">
                           <div class="col-md-6">
@@ -142,7 +142,6 @@
                                                     </tr>
                                                 </template>
 
-
                                             </template>
                                         </template>
                                     </tbody>
@@ -150,38 +149,33 @@
                                 </div>
                             </template>
 
-
+                            <div class="col-12">
+                              <div class="col-12 d-flex align-items-center pl-0">
+                                <div class="col-6 pl-0">
+                                    <button class="add-button add-button--remove d-flex align-items-center" title="Удалить этап"  >
+                                        <img src="/img/del.svg" alt="add-button" class="mr-2">
+                                        Удалить этап
+                                    </button>
+                                </div>
+                                <div class="stages__summ col-6 text-right">
+                                   Итого за этап: <span>10 000 Р</span>
+                                </div>
+                              </div>
+                            </div>
                         </template>
 
 
-
-
-
-                        <div class="col-12">
-                          <div class="col-12 d-flex align-items-center pl-0">
-                            <div class="col-6 pl-0">
-                                <button class="add-button add-button--remove d-flex align-items-center" title="Удалить этап" @click="removeStage(index)" >
-                              <img src="/img/del.svg" alt="add-button" class="mr-2">
-                              Удалить этап
-                            </button>
-                            </div>
-                            <div class="stages__summ col-6 text-right">
-                               Итого за этап: <span>10 000 Р</span>
-                            </div>
-                          </div>
-                        </div>
                     </div>
-
-
-
-
-          </div>
-        </div>
+                </div>
+            </div>
         </template>
 
         <div class="row col-12">
-          <button class="add-space-button py-2" @click="addSteps">+ Создать новый этап</button>
+          <button class="add-space-button py-2" @click="createNewOrderStep()">
+              + Создать новый этап
+          </button>
         </div>
+
 
             <template v-if="order.rooms">
                 <template v-for="(room, index) in order.rooms">
@@ -367,8 +361,11 @@
             }
         },
 
-        addServicesToOrderStep () {
-
+        createNewOrderStep () {
+            axios.post(`/api/orders/${this.$route.params.id}/order_step/store`)
+                 .then(response => {
+                     this.getOrder()
+                 })
         },
 
         addSteps() {

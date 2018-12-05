@@ -21,6 +21,10 @@ class OrderStep extends Model
         static::creating(function ($order_step) {
             $order_step->color = $order_step->randomHexColorGeneration();
         });
+
+        static::created(function ($order_step) {
+            $order_step->createRoomSteps($order_step);
+        });
     }
 
     public function order()
@@ -38,5 +42,16 @@ class OrderStep extends Model
         $rand = str_pad(dechex(rand(0x000000, 0xFFFFFF)), 6, 0, STR_PAD_LEFT);
 
         return "#{$rand}";
+    }
+
+    protected function createRoomSteps($order_step)
+    {
+        if (count($order_step->room_steps) === 0) {
+            foreach ($order_step->order->rooms as $room) {
+                $order_step->room_steps()->create([
+                    'room_id' => $room->id
+                ]);
+            }
+        }
     }
 }
