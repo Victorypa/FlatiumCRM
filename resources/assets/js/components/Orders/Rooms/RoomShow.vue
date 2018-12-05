@@ -138,7 +138,7 @@
                                             <div class="col-6">
                                                 <template v-if="room_price">
                                                     <div class="create__sum" style="font-size: 16px;">
-                                                        ИТОГО В ТЕКУЩЕЙ ВКЛАДКЕ: {{ new Intl.NumberFormat().format(parseInt(room_price)) }} P
+                                                        ИТОГО В ТЕКУЩЕЙ ВКЛАДКЕ: {{ new Intl.NumberFormat('ru-Ru').format(parseInt(room_price)) }} P
                                                     </div>
                                                 </template>
                                                 <template v-else>

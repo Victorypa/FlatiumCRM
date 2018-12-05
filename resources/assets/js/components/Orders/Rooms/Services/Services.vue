@@ -139,7 +139,7 @@
                     </div>
 
                     <div class="form-group__calc w-85">
-                        {{ new Intl.NumberFormat().format(getServiceSummary(service.id)) }} P
+                        {{ getServiceSummary(service.id) }} P
                     </div>
 
                     <template v-if="service.can_be_deleted">
@@ -239,7 +239,6 @@
         mounted () {
             this.getServices()
             this.getRoomServices()
-            this.getServiceUnits()
         },
 
         methods: {
@@ -363,11 +362,11 @@
             },
 
             getServiceSummary (id) {
-                return parseFloat(this.service_prices[id] * this.service_quantities[id]).toFixed(2)
+                return new Intl.NumberFormat('ru-Ru').format(this.service_prices[id] * this.service_quantities[id])
             },
 
             getMaterialSummary (rate, quantity, price) {
-                return parseFloat(Math.ceil(rate/quantity) * price).toFixed(2)
+                return new Intl.NumberFormat('ru-Ru').format(Math.ceil(rate/quantity) * price)
             },
 
             removeEmptyElem(obj) {

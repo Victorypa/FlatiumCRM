@@ -237,12 +237,6 @@
 
             }
         },
-
-        computed: {
-            result () {
-                return this.length * this.width * this.quantity
-            }
-        }
     }
 </script>
 

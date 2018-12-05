@@ -53118,8 +53118,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
-//
 
 
 
@@ -66096,7 +66094,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     mounted: function mounted() {
         this.getServices();
         this.getRoomServices();
-        this.getServiceUnits();
     },
 
 
@@ -66222,10 +66219,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             }
         },
         getServiceSummary: function getServiceSummary(id) {
-            return parseFloat(this.service_prices[id] * this.service_quantities[id]).toFixed(2);
+            return new Intl.NumberFormat('ru-Ru').format(this.service_prices[id] * this.service_quantities[id]);
         },
         getMaterialSummary: function getMaterialSummary(rate, quantity, price) {
-            return parseFloat(Math.ceil(rate / quantity) * price).toFixed(2);
+            return new Intl.NumberFormat('ru-Ru').format(Math.ceil(rate / quantity) * price);
         },
         removeEmptyElem: function removeEmptyElem(obj) {
             var newObj = {};
@@ -66741,9 +66738,7 @@ var render = function() {
                                     _vm._v(
                                       "\n                    " +
                                         _vm._s(
-                                          new Intl.NumberFormat().format(
-                                            _vm.getServiceSummary(service.id)
-                                          )
+                                          _vm.getServiceSummary(service.id)
                                         ) +
                                         " P\n                "
                                     )
@@ -67319,12 +67314,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             } else {
                 window.location.reload(true);
             }
-        }
-    },
-
-    computed: {
-        result: function result() {
-            return this.length * this.width * this.quantity;
         }
     }
 });
@@ -68263,7 +68252,9 @@ var render = function() {
                                                 _vm._v(
                                                   "\n                                                    ИТОГО В ТЕКУЩЕЙ ВКЛАДКЕ: " +
                                                     _vm._s(
-                                                      new Intl.NumberFormat().format(
+                                                      new Intl.NumberFormat(
+                                                        "ru-Ru"
+                                                      ).format(
                                                         parseInt(_vm.room_price)
                                                       )
                                                     ) +
