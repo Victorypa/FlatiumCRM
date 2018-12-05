@@ -23,6 +23,6 @@ class FinishedRoom extends Model
 
     public function finished_services()
     {
-        return $this->belongsToMany(Service::class, 'room_finished_service')->withPivot('quantity', 'price');
+        return $this->belongsToMany(Service::class, 'room_finished_service')->withPivot('service_type_id', 'service_unit_id', 'quantity', 'price');
     }
 }

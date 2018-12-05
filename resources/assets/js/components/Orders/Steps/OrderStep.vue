@@ -36,7 +36,7 @@
               </div>
 
               <div class="col-md-6 pt-3">
-                <h2 class="main-subtitle px-15"> Итого: {{ new Intl.NumberFormat('ru-Ru').format(parseInt(order.price)) }} Р</h2>
+                <h2 class="main-subtitle px-15"> Итого: {{ new Intl.NumberFormat('ru-Ru').format(order.price) }} Р</h2>
               </div>
             </div>
 
@@ -76,55 +76,86 @@
                           </div>
                         </div>
 
-
-
                     <div class="rooms_wrapper col-12 px-0">
-                      <div class="col-12 d-flex align-items-center">
-                          <h2 class="col-6 main-subtitle py-4 pl-3">
-                            Комната 1
-                          </h2>
-                          <div class="col-6 d-flex justify-content-end align-items-center pt-3 pl-3">
-                            <div class="projects__desc-item pr-3">S: 28 м<sup>2</sup></div>
-                            <div class="projects__desc-item pr-3">H: 2,8 м м</div>
-                            <div class="projects__desc-item pr-3">S стен: 80,1 м<sup>2</sup></div>
-                            <div class="projects__desc-item">P: 29,8 м. п.</div>
-                          </div>
-                      </div>
 
-                      <div class="col-12 d-flex align-items-center">
-                              <div class="col-6 table-subtitle table-subtitle__items px-3">Наименование
-                              </div>
-                              <div class="col-6 d-flex justify-content-end px-0 table-subtitle__items">
-                                <div class="table-subtitle">Кол-во</div>
-                                <div class="table-subtitle">Цена</div>
-                                <div class="table-subtitle">Стоимость</div>
-                              </div>
-                        </div>
+                        <template v-if="order_step.room_steps">
+                            <template v-for="(room_step, index) in order_step.room_steps">
+                                <div class="col-12 d-flex align-items-center">
+                                    <h2 class="col-6 main-subtitle py-4 pl-3">
+                                      {{ room_step.room.room_type.type }} {{ index + parseInt(1) }}
+                                    </h2>
+                                    <template v-if="room_step.room.room_type_id === 1">
+                                        <div class="col-6 d-flex justify-content-end align-items-center pt-3 pl-3">
+                                          <div class="projects__desc-item pr-3">S: {{ parseFloat(room_step.room.area).toFixed(1) }} м<sup>2</sup></div>
+                                          <div class="projects__desc-item pr-3">H: {{ parseFloat(room_step.room.height).toFixed(1) }} м</div>
+                                          <div class="projects__desc-item pr-3">S стен: {{ parseFloat(room_step.room.wall_area).toFixed(1) }} м<sup>2</sup></div>
+                                          <div class="projects__desc-item">P: {{ parseFloat(room_step.room.perimeter).toFixed(1) }} м. п.</div>
+                                        </div>
+                                    </template>
+                                </div>
 
-                        <div class="col-12">
-                          <table class="table drag-table">
-                            <tbody>
-                              <tr>
-                                <th colspan="4" class="table__transparent-row">Стены</th>
-                              </tr>
-                              <tr>
-                                  <!-- <div v-for="ele in list1" class="item d-flex justify-content-between">
-                                    <th scope="row" class="col-6">
-                                      <div class="form-check custom-control checkbox">
-                                        <input type="checkbox" class="form-check-input check" id='1'>
-                                        <label class="form-check-label d-block" for="1">{{ele.name}}</label>
-                                      </div>
-                                    </th>
-                                    <div class="col-6 d-flex justify-content-end">
-                                      <td>{{ele.per}}</td>
-                                      <td>{{ele.price}}</td>
-                                      <td>{{ele.summ}}</td>
+                                <div class="col-12 d-flex align-items-center">
+                                    <div class="col-6 table-subtitle table-subtitle__items px-3">Наименование
                                     </div>
-                                  </div> -->
-                              </tr>
-                            </tbody>
-                          </table>
-                        </div>
+                                    <div class="col-6 d-flex justify-content-end px-0 table-subtitle__items">
+                                      <div class="table-subtitle">Кол-во</div>
+                                      <div class="table-subtitle">Цена</div>
+                                      <div class="table-subtitle">Стоимость</div>
+                                    </div>
+                                </div>
+
+                                <div class="col-12">
+                                  <table class="table drag-table">
+                                    <tbody>
+                                        <template v-if="room_step.services">
+                                            <template v-for="(room_step_services, service_type_id) in groupByServiceType(room_step.services)">
+                                                <tr>
+                                                  <th colspan="4" class="table__transparent-row">
+                                                      {{ getServiceTypeName(service_type_id) }}
+                                                  </th>
+                                                </tr>
+
+                                                <template v-for="room_step_service in room_step_services">
+                                                    <tr>
+                                                        <div  class="item d-flex justify-content-between">
+                                                          <th scope="row" class="col-6">
+                                                            <div class="form-check custom-control checkbox">
+                                                              <input type="checkbox"
+                                                                     class="form-check-input check"
+                                                                     :id="'room-step-' + room_step.id + '-room-step-service-' + room_step_service.id"
+                                                                     >
+
+                                                              <label class="form-check-label d-block"
+                                                                     :for="'room-step-' + room_step.id + '-room-step-service-' + room_step_service.id"
+                                                                    >
+                                                                    {{ room_step_service.name }}
+                                                              </label>
+                                                            </div>
+                                                          </th>
+
+                                                          <div class="col-6 d-flex justify-content-end">
+                                                              <td>{{ parseFloat(room_step_service.pivot.quantity).toFixed(2) }} м<sup>2</sup></td>
+                                                              <td>{{ new Intl.NumberFormat('ru-Ru').format(room_step_service.price) }} Р/ м<sup>2</sup></td>
+                                                              <td>{{ priceCount(room_step_service.pivot.quantity, room_step_service.price) }} Р</td>
+                                                          </div>
+                                                        </div>
+                                                    </tr>
+                                                </template>
+
+
+                                            </template>
+                                        </template>
+                                    </tbody>
+                                  </table>
+                                </div>
+                            </template>
+
+
+                        </template>
+
+
+
+
 
                         <div class="col-12">
                           <div class="col-12 d-flex align-items-center pl-0">
@@ -140,17 +171,17 @@
                           </div>
                         </div>
                     </div>
+
+
+
+
           </div>
         </div>
         </template>
 
-
-            <div class="row col-12">
-              <button class="add-space-button py-2" @click="addSteps">+ Создать новый этап</button>
-            </div>
-
-
-
+        <div class="row col-12">
+          <button class="add-space-button py-2" @click="addSteps">+ Создать новый этап</button>
+        </div>
 
             <template v-if="order.rooms">
                 <template v-for="(room, index) in order.rooms">
@@ -198,7 +229,6 @@
                                                   <template v-if="service_types">
                                                       {{ getServiceTypeName(service_type_id) }}
                                                   </template>
-                                                  <!-- {{ service_type_id }} -->
                                               </th>
                                           </tr>
                                           <tr>
@@ -277,7 +307,7 @@
                 </template>
             </div>
             <div class="col-md-2">
-              <button type="button" class="primary-button w-100">Добавить</button>
+              <button type="button" class="primary-button w-100" @click="addServicesToOrderStep()">Добавить</button>
             </div>
           </div>
         </div>
@@ -324,8 +354,10 @@
                         .then(response => {
                             this.order = response.data
                             this.order_steps = this.order.order_steps
+                            console.log(this.order_steps);
                         })
         },
+
 
         getServiceTypeName (service_type_id) {
             if (this.service_types && service_type_id) {
@@ -335,14 +367,18 @@
             }
         },
 
-      addSteps() {
-        this.ListStages.push({
-            'name': 'Спринт',
-            'description': null,
-            'begin_at': null,
-            'finish_at': null
-        })
-      },
+        addServicesToOrderStep () {
+
+        },
+
+        addSteps() {
+          this.ListStages.push({
+              'name': 'Спринт',
+              'description': null,
+              'begin_at': null,
+              'finish_at': null
+          })
+        },
 
     }
   };

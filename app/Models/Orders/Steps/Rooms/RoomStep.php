@@ -11,7 +11,7 @@ class RoomStep extends Model
 {
     protected $guarded = [];
 
-    protected $with = ['services'];
+    protected $with = ['room', 'services'];
 
     public function order_step()
     {
@@ -25,6 +25,6 @@ class RoomStep extends Model
 
     public function services()
     {
-        return $this->belongsToMany(Service::class, 'room_step_service')->withPivot('quantity', 'price');
+        return $this->belongsToMany(Service::class, 'room_step_service')->withPivot('service_type_id', 'service_unit_id', 'quantity', 'price');
     }
 }
