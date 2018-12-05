@@ -5355,12 +5355,14 @@ module.exports = g;
             manager_phones: [],
             manager_id: 1,
 
-            services: []
+            services: [],
+            service_types: []
         };
     },
     mounted: function mounted() {
         this.getServices();
         this.getManagers();
+        this.getServiceTypes();
     },
 
 
@@ -5375,6 +5377,18 @@ module.exports = g;
                 });
             });
         },
+        getServiceTypes: function getServiceTypes() {
+            var _this2 = this;
+
+            if (localStorage.getItem('service_types')) {
+                this.service_types = JSON.parse(localStorage.getItem('service_types'));
+            } else {
+                return axios.get('/api/service_types').then(function (response) {
+                    _this2.service_types = response.data;
+                    localStorage.setItem('service_types', JSON.stringify(_this2.service_types));
+                });
+            }
+        },
         sortServicesByCreatedAt: function sortServicesByCreatedAt(services) {
             var data = _.orderBy(services, ['created_at'], ['asc']);
 
@@ -5387,10 +5401,10 @@ module.exports = g;
             return new Intl.NumberFormat('ru-Ru').format(parseFloat(quantity * price).toFixed(2));
         },
         getServices: function getServices() {
-            var _this2 = this;
+            var _this3 = this;
 
             return axios.get('/api/services').then(function (response) {
-                _this2.services = response.data;
+                _this3.services = response.data;
             });
         },
         getServiceDetails: function getServiceDetails(service_id, type) {
@@ -5443,19 +5457,19 @@ module.exports = g;
                         break;
 
                     case 'area':
-                        return data[0].area;
+                        return parseFloat(data[0].area).toFixed(2);
                         break;
 
                     case 'height':
-                        return data[0].height;
+                        return parseFloat(data[0].height).toFixed(2);
                         break;
 
                     case 'wall_area':
-                        return data[0].wall_area;
+                        return parseFloat(data[0].wall_area).toFixed(2);
                         break;
 
                     case 'perimeter':
-                        return data[0].perimeter;
+                        return parseFloat(data[0].perimeter).toFixed(2);
                         break;
 
                     default:
@@ -53004,6 +53018,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
 
 
 
@@ -53011,68 +53027,56 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-  mixins: [__WEBPACK_IMPORTED_MODULE_2__mixins_OrderExportCollection__["a" /* default */], __WEBPACK_IMPORTED_MODULE_3__mixins_ServiceCollection__["a" /* default */]],
+    mixins: [__WEBPACK_IMPORTED_MODULE_2__mixins_OrderExportCollection__["a" /* default */], __WEBPACK_IMPORTED_MODULE_3__mixins_ServiceCollection__["a" /* default */]],
 
-  data: function data() {
-    return {
-      ru: __WEBPACK_IMPORTED_MODULE_1_vuejs_datepicker_dist_locale__["a" /* ru */],
-      order: [],
-      order_steps: [],
-      show_input: false,
-      newSteps: [],
+    data: function data() {
+        return {
+            ru: __WEBPACK_IMPORTED_MODULE_1_vuejs_datepicker_dist_locale__["a" /* ru */],
+            order: [],
+            order_steps: [],
+            show_input: false,
+            newSteps: [],
 
-      ListStages: [],
-      future_index: "START"
+            ListStages: []
 
-    };
-  },
-
-
-  components: {
-    Datepicker: __WEBPACK_IMPORTED_MODULE_0_vuejs_datepicker__["a" /* default */]
-  },
-
-  created: function created() {
-    this.getServiceTypes();
-    this.getOrder();
-  },
-
-
-  methods: {
-    getOrder: function getOrder() {
-      var _this = this;
-
-      return axios.get("/api/orders/" + this.$route.params.id + "/order_steps").then(function (response) {
-        _this.order = response.data;
-        _this.order_steps = _this.order.order_steps;
-
-        // this.order.rooms.forEach(room => {
-        //     console.log(room);
-        // })
-      });
+        };
     },
 
 
-    onMove: function onMove(event, oEvent) {
-      this.future_index += ", " + event.draggedContext.futureIndex;
+    components: {
+        Datepicker: __WEBPACK_IMPORTED_MODULE_0_vuejs_datepicker__["a" /* default */]
     },
 
-    addSteps: function addSteps() {
-      this.ListStages.push({
-        'name': 'Спринт',
-        'description': null,
-        'begin_at': null,
-        'finish_at': null
-      });
+    created: function created() {
+        this.getOrder();
     },
-    removeStage: function removeStage(i) {
-      // console.log(i);
-      // console.log(this.ListStages.indexOf(i));
-      // let index = this.ListStages.indexOf(i)
-      // this.ListStages.splice(index, 1)
-      // Vue.delete(this.ListStages, i);
+
+
+    methods: {
+        getOrder: function getOrder() {
+            var _this = this;
+
+            return axios.get("/api/orders/" + this.$route.params.id + "/order_steps").then(function (response) {
+                _this.order = response.data;
+                _this.order_steps = _this.order.order_steps;
+            });
+        },
+        getServiceTypeName: function getServiceTypeName(service_type_id) {
+            if (this.service_types && service_type_id) {
+                return this.service_types.filter(function (row) {
+                    return row.id === parseInt(service_type_id);
+                })[0].name;
+            }
+        },
+        addSteps: function addSteps() {
+            this.ListStages.push({
+                'name': 'Спринт',
+                'description': null,
+                'begin_at': null,
+                'finish_at': null
+            });
+        }
     }
-  }
 });
 
 /***/ }),
@@ -53496,14 +53500,21 @@ var render = function() {
                                                               }
                                                             },
                                                             [
-                                                              _vm._v(
-                                                                "\n                                                " +
-                                                                  _vm._s(
-                                                                    service_type_id
-                                                                  ) +
-                                                                  "\n                                            "
-                                                              )
-                                                            ]
+                                                              _vm.service_types
+                                                                ? [
+                                                                    _vm._v(
+                                                                      "\n                                                    " +
+                                                                        _vm._s(
+                                                                          _vm.getServiceTypeName(
+                                                                            service_type_id
+                                                                          )
+                                                                        ) +
+                                                                        "\n                                                "
+                                                                    )
+                                                                  ]
+                                                                : _vm._e()
+                                                            ],
+                                                            2
                                                           )
                                                         ]),
                                                         _vm._v(" "),
@@ -55515,6 +55526,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vuejs_datepicker__ = __webpack_require__(10);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_vuejs_datepicker_dist_locale__ = __webpack_require__(11);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__mixins_OrderExportCollection__ = __webpack_require__(7);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__mixins_ServiceCollection__ = __webpack_require__(8);
 //
 //
 //
@@ -55679,8 +55691,9 @@ var moment = __webpack_require__(0);
 
 
 
+
 /* harmony default export */ __webpack_exports__["default"] = ({
-    mixins: [__WEBPACK_IMPORTED_MODULE_2__mixins_OrderExportCollection__["a" /* default */]],
+    mixins: [__WEBPACK_IMPORTED_MODULE_2__mixins_OrderExportCollection__["a" /* default */], __WEBPACK_IMPORTED_MODULE_3__mixins_ServiceCollection__["a" /* default */]],
 
     data: function data() {
         return {
@@ -55719,6 +55732,13 @@ var moment = __webpack_require__(0);
                 _this.state.begin_at = response.data.begin_at;
                 _this.state.finish_at = response.data.finish_at;
             });
+        },
+        getServiceTypeName: function getServiceTypeName(service_type_id) {
+            if (this.service_types && service_type_id) {
+                return this.service_types.filter(function (row) {
+                    return row.id === parseInt(service_type_id);
+                })[0].name;
+            }
         },
         updateFinishedOrderAct: function updateFinishedOrderAct() {
             axios.patch('/api/orders/' + this.$route.params.id + '/finished_order_act/' + this.$route.params.finished_act_id + '/update', {
@@ -57263,7 +57283,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
 
 
 
@@ -57308,6 +57327,13 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                     _this.service_quantities[extra_room_service.service_id] = 1;
                 }
             });
+        },
+        getServiceTypeName: function getServiceTypeName(service_type_id) {
+            if (this.service_types && service_type_id) {
+                return this.service_types.filter(function (row) {
+                    return row.id === parseInt(service_type_id);
+                })[0].name;
+            }
         },
         getServices: function getServices() {
             var _this2 = this;
@@ -57909,9 +57935,7 @@ var render = function() {
                                     _vm._v(
                                       "\n                    " +
                                         _vm._s(
-                                          new Intl.NumberFormat("ru-Ru").format(
-                                            _vm.getServiceSummary(service.id)
-                                          )
+                                          _vm.getServiceSummary(service.id)
                                         ) +
                                         " P\n                "
                                     )
@@ -58042,7 +58066,7 @@ var render = function() {
                             extra_room_service
                           ) {
                             return extra_room_service.service_id === service.id
-                          })[0].materials
+                          })[0]
                             ? _vm._l(
                                 _vm.extra_room.extra_room_services.filter(
                                   function(extra_room_service) {
@@ -67996,6 +68020,13 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 });
             });
         },
+        getServiceTypeName: function getServiceTypeName(service_type_id) {
+            if (this.service_types && service_type_id) {
+                return this.service_types.filter(function (row) {
+                    return row.id === parseInt(service_type_id);
+                })[0].name;
+            }
+        },
         orderUpdate: function orderUpdate() {
             axios.patch('/api/orders/' + this.order.id + '/update', {
                 'manager_id': this.manager_id,
@@ -69159,7 +69190,11 @@ var render = function() {
                         _c("h2", { staticClass: "main-subtitle px-15" }, [
                           _vm._v(
                             "\n                                    Итого: " +
-                              _vm._s(_vm.order.price) +
+                              _vm._s(
+                                new Intl.NumberFormat("ru-Ru").format(
+                                  _vm.order.price
+                                )
+                              ) +
                               " Р\n                                "
                           )
                         ])

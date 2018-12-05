@@ -35,20 +35,26 @@ class FinishedRoomServiceController extends Controller
             if ($order->discount && $currentService->can_be_discounted) {
                 $finished_room->finished_services()->updateExistingPivot($selected_service_id, [
                     'quantity' => $quantity = $quantities[$selected_service_id],
-                    'price' => $quantity * $currentService->price * (1 - (float)$order->discount/100)
+                    'price' => $quantity * $currentService->price * (1 - (float)$order->discount/100),
+                    'service_type_id' => $currentService->service_type_id,
+                    'service_unit_id' => $currentService->unit_id
                 ]);
             }
             if ($order->markup) {
                 $finished_room->finished_services()->updateExistingPivot($selected_service_id, [
                     'quantity' => $quantity = $quantities[$selected_service_id],
-                    'price' => $quantity * $currentService->price * (1 + (float)$order->markup/100)
+                    'price' => $quantity * $currentService->price * (1 + (float)$order->markup/100),
+                    'service_type_id' => $currentService->service_type_id,
+                    'service_unit_id' => $currentService->unit_id
                 ]);
             }
 
             if ($order->discount === null && $order->markup === null) {
                 $finished_room->finished_services()->updateExistingPivot($selected_service_id, [
                     'quantity' => $quantity = $quantities[$selected_service_id],
-                    'price' => $quantity * $currentService->price
+                    'price' => $quantity * $currentService->price,
+                    'service_type_id' => $currentService->service_type_id,
+                    'service_unit_id' => $currentService->unit_id
                 ]);
             }
         }

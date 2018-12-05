@@ -161,9 +161,10 @@ let moment = require("moment")
 import Datepicker from 'vuejs-datepicker';
 import { ru } from 'vuejs-datepicker/dist/locale'
 import OrderExportCollection from '../../../../mixins/OrderExportCollection'
+import ServiceCollection from '../../../../mixins/ServiceCollection'
 
 export default {
-    mixins: [OrderExportCollection],
+    mixins: [OrderExportCollection, ServiceCollection],
 
     data () {
         return {
@@ -199,6 +200,14 @@ export default {
                             this.state.begin_at = response.data.begin_at
                             this.state.finish_at = response.data.finish_at
                         })
+        },
+
+        getServiceTypeName (service_type_id) {
+            if (this.service_types && service_type_id) {
+                return this.service_types.filter(row => {
+                    return row.id === parseInt(service_type_id)
+                })[0].name
+            }
         },
 
         updateFinishedOrderAct () {

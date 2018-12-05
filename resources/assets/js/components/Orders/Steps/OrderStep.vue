@@ -195,8 +195,10 @@
                                       <template v-for="(room_services, service_type_id) in groupByServiceType(room.room_services)">
                                           <tr>
                                               <th colspan="4" class="table__transparent-row">
-                                                  <!-- {{ getServiceTypeName(service_type_id) }} -->
-                                                  {{ service_type_id }}
+                                                  <template v-if="service_types">
+                                                      {{ getServiceTypeName(service_type_id) }}
+                                                  </template>
+                                                  <!-- {{ service_type_id }} -->
                                               </th>
                                           </tr>
                                           <tr>
@@ -304,7 +306,6 @@
           newSteps: [],
 
           ListStages: [],
-          future_index: "START",
 
       }
     },
@@ -314,7 +315,6 @@
     },
 
     created () {
-        this.getServiceTypes()
         this.getOrder()
     },
 
@@ -324,18 +324,16 @@
                         .then(response => {
                             this.order = response.data
                             this.order_steps = this.order.order_steps
-
-                            // this.order.rooms.forEach(room => {
-                            //     console.log(room);
-                            // })
                         })
         },
 
-
-
-      onMove: function(event, oEvent) {
-        this.future_index += ", " + event.draggedContext.futureIndex;
-      },
+        getServiceTypeName (service_type_id) {
+            if (this.service_types && service_type_id) {
+                return this.service_types.filter(row => {
+                    return row.id === parseInt(service_type_id)
+                })[0].name
+            }
+        },
 
       addSteps() {
         this.ListStages.push({
@@ -345,13 +343,7 @@
             'finish_at': null
         })
       },
-      removeStage(i) {
-        // console.log(i);
-        // console.log(this.ListStages.indexOf(i));
-        // let index = this.ListStages.indexOf(i)
-        // this.ListStages.splice(index, 1)
-        // Vue.delete(this.ListStages, i);
-      },
+
     }
   };
 </script>

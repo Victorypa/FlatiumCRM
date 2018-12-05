@@ -116,7 +116,7 @@
 
                             <td class="table-caption full-summ full-summ-wrapper py-25">Итого:
                             </td>
-                            <td class="table-caption full-summ full-summ-wrapper" colspan="2">{{ number_format(parseInt($order->price), 0, '', ' ') }} Р
+                            <td class="table-caption full-summ full-summ-wrapper" colspan="2">{{ number_format($order->price, 0, '', ' ') }} Р
                             </td>
 
                         </tr>

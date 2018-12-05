@@ -5,13 +5,15 @@ export default {
             manager_phones: [],
             manager_id: 1,
 
-            services: []
+            services: [],
+            service_types: []
         }
     },
 
     mounted () {
         this.getServices()
         this.getManagers()
+        this.getServiceTypes()
     },
 
     methods: {
@@ -23,6 +25,17 @@ export default {
                                 this.manager_phones[item.id] = item.phone
                             })
                         })
+        },
+
+        getServiceTypes () {
+            if (localStorage.getItem('service_types')) {
+                this.service_types = JSON.parse(localStorage.getItem('service_types'))
+            } else {
+                return axios.get(`/api/service_types`).then(response => {
+                    this.service_types = response.data
+                    localStorage.setItem('service_types', JSON.stringify(this.service_types))
+                })
+            }
         },
 
         sortServicesByCreatedAt (services) {
@@ -77,7 +90,6 @@ export default {
                     return row.id === parseInt(service_type_id)
                 })[0].name
             }
-
         },
 
         getRoomDetails(room_id, type) {
@@ -100,19 +112,19 @@ export default {
                             break;
 
                     case 'area':
-                         return data[0].area
+                         return parseFloat(data[0].area).toFixed(2)
                          break;
 
                     case 'height':
-                         return data[0].height
+                         return parseFloat(data[0].height).toFixed(2)
                          break;
 
                     case 'wall_area':
-                         return data[0].wall_area
+                         return parseFloat(data[0].wall_area).toFixed(2)
                          break;
 
                     case 'perimeter':
-                         return data[0].perimeter
+                         return parseFloat(data[0].perimeter).toFixed(2)
                          break;
 
                     default:

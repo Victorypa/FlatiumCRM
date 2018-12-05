@@ -122,7 +122,6 @@
                 this.room_service_ids = _.groupBy(this.room.room_services, 'service_type_id')
             },
 
-
             getServicesQuantities() {
                 this.room.room_services.forEach(room_service => {
                     this.selected_service_quantities[room_service.service_id] = parseFloat(room_service.quantity).toFixed(1)

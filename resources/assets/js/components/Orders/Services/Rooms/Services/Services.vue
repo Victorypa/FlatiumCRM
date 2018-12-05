@@ -132,7 +132,7 @@
                     </div>
 
                     <div class="form-group__calc w-85">
-                        {{ new Intl.NumberFormat('ru-Ru').format(getServiceSummary(service.id)) }} P
+                        {{ getServiceSummary(service.id) }} P
                     </div>
 
                     <template v-if="service.can_be_deleted">
@@ -168,8 +168,7 @@
                   </div>
                 </div>
 
-
-                <template v-if="extra_room_service_ids.includes(service.id) && extra_room.extra_room_services.filter(extra_room_service => extra_room_service.service_id === service.id)[0].materials">
+                <template v-if="extra_room_service_ids.includes(service.id) && extra_room.extra_room_services.filter(extra_room_service => extra_room_service.service_id === service.id)[0]">
                         <div class="row col-12" v-for="material in extra_room.extra_room_services.filter(extra_room_service => extra_room_service.service_id === service.id)[0].materials">
                           <div class="col-4 pl-5 mb-3">
                             <div class="subtitle-list">
@@ -242,6 +241,14 @@
                         this.service_quantities[extra_room_service.service_id] = 1
                     }
                 })
+            },
+
+            getServiceTypeName (service_type_id) {
+                if (this.service_types && service_type_id) {
+                    return this.service_types.filter(row => {
+                        return row.id === parseInt(service_type_id)
+                    })[0].name
+                }
             },
 
             getServices () {

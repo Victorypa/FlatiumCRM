@@ -248,7 +248,7 @@
                                     </div>
 
                                     <h2 class="main-subtitle px-15">
-                                        Итого: {{ order.price }} Р
+                                        Итого: {{ new Intl.NumberFormat('ru-Ru').format(order.price) }} Р
                                     </h2>
 
                                 </div>
@@ -339,7 +339,13 @@
                             })
             },
 
-
+            getServiceTypeName (service_type_id) {
+                if (this.service_types && service_type_id) {
+                    return this.service_types.filter(row => {
+                        return row.id === parseInt(service_type_id)
+                    })[0].name
+                }
+            },
 
             orderUpdate () {
                 axios.patch(`/api/orders/${this.order.id}/update`, {
