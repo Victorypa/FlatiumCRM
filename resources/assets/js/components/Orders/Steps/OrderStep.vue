@@ -108,7 +108,7 @@
                                 <th colspan="4" class="table__transparent-row">Стены</th>
                               </tr>
                               <tr>
-                                  <div v-for="ele in list1" class="item d-flex justify-content-between">
+                                  <!-- <div v-for="ele in list1" class="item d-flex justify-content-between">
                                     <th scope="row" class="col-6">
                                       <div class="form-check custom-control checkbox">
                                         <input type="checkbox" class="form-check-input check" id='1'>
@@ -120,7 +120,7 @@
                                       <td>{{ele.price}}</td>
                                       <td>{{ele.summ}}</td>
                                     </div>
-                                  </div>
+                                  </div> -->
                               </tr>
                             </tbody>
                           </table>
@@ -140,143 +140,10 @@
                           </div>
                         </div>
                     </div>
-
-
-
-
           </div>
         </div>
         </template>
 
-
-
-
-          <div class="row align-items-center py-4 mb-3 mx-2 stages-border" v-for="(form, index) in ListStages">
-                <div class="col-12 d-flex align-items-center justify-content-between mb-2">
-              <div class="col-md-6">
-                <div class="main-subtitle">
-                  Название этапа
-                </div>
-              </div>
-              <div class="col-md-4 d-flex justify-content-end align-items-center pl-0">
-                <datepicker class="my-datepicker" :language="ru"></datepicker>
-                <datepicker class="my-datepicker ml-3" :language="ru"></datepicker>
-              </div>
-            </div>
-
-                <div class="col-12 d-flex align-items-center">
-              <h2 class="col-6 main-subtitle py-4 pl-3">
-                Комната 1
-              </h2>
-              <div class="col-6 d-flex justify-content-end align-items-center pt-3 pl-3">
-
-                <div class="projects__desc-item pr-3">S: 28 м<sup>2</sup></div>
-                <div class="projects__desc-item pr-3">H: 2,8 м м</div>
-                <div class="projects__desc-item pr-3">S стен: 80,1 м<sup>2</sup></div>
-                <div class="projects__desc-item">P: 29,8 м. п.</div>
-              </div>
-            </div>
-
-                <div class="col-12 d-flex align-items-center">
-                <div class="col-6 table-subtitle table-subtitle__items px-3">Наименование
-                </div>
-                <div class="col-6 d-flex justify-content-end px-0 table-subtitle__items">
-                  <div class="table-subtitle">Кол-во</div>
-                  <div class="table-subtitle">Цена</div>
-                  <div class="table-subtitle">Стоимость</div>
-                </div>
-              </div>
-
-                <div class="col-12">
-                  <table class="table drag-table">
-                      <tr>
-                        <th colspan="4" class="table__transparent-row">Стены</th>
-                      </tr>
-                      <tr>
-                        <div>
-                          <draggable :list="list1" :options="{group:{ name: 'stuff'}}" @start="drag=true" @end="drag=false" :move="onMove">
-                            <div v-for="ele in list1" class="item d-flex justify-content-between">
-                              <th scope="row" class="col-6">
-                                <div class="form-check custom-control checkbox">
-                                  <input type="checkbox" class="form-check-input check" id='1'>
-                                  <label class="form-check-label d-block" for="1">{{ele.name}}</label>
-                                </div>
-                              </th>
-                              <div class="col-6 d-flex justify-content-end">
-                                <td>{{ele.per}}</td>
-                                <td>{{ele.price}}</td>
-                                <td>{{ele.summ}}</td>
-                              </div>
-                            </div>
-                          </draggable>
-                        </div>
-                      </tr>
-                    </tbody>
-                  </table>
-                </div>
-
-
-                  <div class="col-12 d-flex align-items-center">
-                    <h2 class="col-6 main-subtitle py-4 pl-3">
-                      Комната 2
-                    </h2>
-                    <div class="col-6 d-flex justify-content-end align-items-center pt-3 pl-3">
-
-                      <div class="projects__desc-item pr-3">S: 28 м<sup>2</sup></div>
-                      <div class="projects__desc-item pr-3">H: 2,8 м м</div>
-                      <div class="projects__desc-item pr-3">S стен: 80,1 м<sup>2</sup></div>
-                      <div class="projects__desc-item">P: 29,8 м. п.</div>
-                    </div>
-                  </div>
-
-                  <div class="col-12 d-flex align-items-center">
-                    <div class="col-6 table-subtitle table-subtitle__items px-3">Наименование
-                    </div>
-                    <div class="col-6 d-flex justify-content-end px-0 table-subtitle__items">
-                      <div class="table-subtitle">Кол-во</div>
-                      <div class="table-subtitle">Цена</div>
-                      <div class="table-subtitle">Стоимость</div>
-                    </div>
-                  </div>
-
-                <div class="col-12">
-                  <table class="table drag-table">
-                    <tbody>
-                      <tr>
-                        <th colspan="4" class="table__transparent-row">Пол</th>
-                      </tr>
-                      <tr>
-                        <div>
-                            <div v-for="ele in list1" class="item d-flex justify-content-between">
-                              <th scope="row" class="col-6">
-                                <div class="form-check custom-control checkbox">
-                                  <input type="checkbox" class="form-check-input check" id='1'>
-                                  <label class="form-check-label d-block" for="1">{{ele.name}}</label>
-                                </div>
-                              </th>
-                              <div class="col-6 d-flex justify-content-end">
-                                <td>{{ele.per}}</td>
-                                <td>{{ele.price}}</td>
-                                <td>{{ele.summ}}</td>
-                              </div>
-                            </div>
-                        </div>
-                      </tr>
-                    </tbody>
-                  </table>
-                  <div class="col-12 d-flex align-items-center pl-0">
-                    <div class="col-6 pl-0">
-                        <button class="add-button add-button--remove d-flex align-items-center" title="Удалить этап" @click="removeStage(index)">
-                      <img src="/img/del.svg" alt="add-button" class="mr-2">
-                      Удалить этап
-                    </button>
-                    </div>
-                    <div class="stages__summ col-6 text-right">
-                       Итого за этап: <span>10 000 Р</span>
-                    </div>
-                  </div>
-                </div>
-              </div>
 
             <div class="row col-12">
               <button class="add-space-button py-2" @click="addSteps">+ Создать новый этап</button>
@@ -436,15 +303,13 @@
           show_input: false,
           newSteps: [],
 
-
-        ListStages: [],
-        future_index: "START",
+          ListStages: [],
+          future_index: "START",
 
       }
     },
 
     components: {
-      draggable,
       Datepicker
     },
 

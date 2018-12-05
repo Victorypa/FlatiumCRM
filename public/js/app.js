@@ -53004,139 +53004,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 
 
 
@@ -53162,7 +53029,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 
   components: {
-    draggable: draggable,
     Datepicker: __WEBPACK_IMPORTED_MODULE_0_vuejs_datepicker__["a" /* default */]
   },
 
@@ -53429,93 +53295,7 @@ var render = function() {
                                 _vm._v(" "),
                                 _vm._m(2, true),
                                 _vm._v(" "),
-                                _c("div", { staticClass: "col-12" }, [
-                                  _c(
-                                    "table",
-                                    { staticClass: "table drag-table" },
-                                    [
-                                      _c("tbody", [
-                                        _vm._m(3, true),
-                                        _vm._v(" "),
-                                        _c(
-                                          "tr",
-                                          _vm._l(_vm.list1, function(ele) {
-                                            return _c(
-                                              "div",
-                                              {
-                                                staticClass:
-                                                  "item d-flex justify-content-between"
-                                              },
-                                              [
-                                                _c(
-                                                  "th",
-                                                  {
-                                                    staticClass: "col-6",
-                                                    attrs: { scope: "row" }
-                                                  },
-                                                  [
-                                                    _c(
-                                                      "div",
-                                                      {
-                                                        staticClass:
-                                                          "form-check custom-control checkbox"
-                                                      },
-                                                      [
-                                                        _c("input", {
-                                                          staticClass:
-                                                            "form-check-input check",
-                                                          attrs: {
-                                                            type: "checkbox",
-                                                            id: "1"
-                                                          }
-                                                        }),
-                                                        _vm._v(" "),
-                                                        _c(
-                                                          "label",
-                                                          {
-                                                            staticClass:
-                                                              "form-check-label d-block",
-                                                            attrs: { for: "1" }
-                                                          },
-                                                          [
-                                                            _vm._v(
-                                                              _vm._s(ele.name)
-                                                            )
-                                                          ]
-                                                        )
-                                                      ]
-                                                    )
-                                                  ]
-                                                ),
-                                                _vm._v(" "),
-                                                _c(
-                                                  "div",
-                                                  {
-                                                    staticClass:
-                                                      "col-6 d-flex justify-content-end"
-                                                  },
-                                                  [
-                                                    _c("td", [
-                                                      _vm._v(_vm._s(ele.per))
-                                                    ]),
-                                                    _vm._v(" "),
-                                                    _c("td", [
-                                                      _vm._v(_vm._s(ele.price))
-                                                    ]),
-                                                    _vm._v(" "),
-                                                    _c("td", [
-                                                      _vm._v(_vm._s(ele.summ))
-                                                    ])
-                                                  ]
-                                                )
-                                              ]
-                                            )
-                                          })
-                                        )
-                                      ])
-                                    ]
-                                  )
-                                ]),
+                                _vm._m(3, true),
                                 _vm._v(" "),
                                 _c("div", { staticClass: "col-12" }, [
                                   _c(
@@ -53563,274 +53343,6 @@ var render = function() {
                         )
                       ])
                     ]
-                  }),
-                  _vm._v(" "),
-                  _vm._l(_vm.ListStages, function(form, index) {
-                    return _c(
-                      "div",
-                      {
-                        staticClass:
-                          "row align-items-center py-4 mb-3 mx-2 stages-border"
-                      },
-                      [
-                        _c(
-                          "div",
-                          {
-                            staticClass:
-                              "col-12 d-flex align-items-center justify-content-between mb-2"
-                          },
-                          [
-                            _vm._m(5, true),
-                            _vm._v(" "),
-                            _c(
-                              "div",
-                              {
-                                staticClass:
-                                  "col-md-4 d-flex justify-content-end align-items-center pl-0"
-                              },
-                              [
-                                _c("datepicker", {
-                                  staticClass: "my-datepicker",
-                                  attrs: { language: _vm.ru }
-                                }),
-                                _vm._v(" "),
-                                _c("datepicker", {
-                                  staticClass: "my-datepicker ml-3",
-                                  attrs: { language: _vm.ru }
-                                })
-                              ],
-                              1
-                            )
-                          ]
-                        ),
-                        _vm._v(" "),
-                        _vm._m(6, true),
-                        _vm._v(" "),
-                        _vm._m(7, true),
-                        _vm._v(" "),
-                        _c("div", { staticClass: "col-12" }, [
-                          _c("table", { staticClass: "table drag-table" }, [
-                            _vm._m(8, true),
-                            _vm._v(" "),
-                            _c("tr", [
-                              _c(
-                                "div",
-                                [
-                                  _c(
-                                    "draggable",
-                                    {
-                                      attrs: {
-                                        list: _vm.list1,
-                                        options: { group: { name: "stuff" } },
-                                        move: _vm.onMove
-                                      },
-                                      on: {
-                                        start: function($event) {
-                                          _vm.drag = true
-                                        },
-                                        end: function($event) {
-                                          _vm.drag = false
-                                        }
-                                      }
-                                    },
-                                    _vm._l(_vm.list1, function(ele) {
-                                      return _c(
-                                        "div",
-                                        {
-                                          staticClass:
-                                            "item d-flex justify-content-between"
-                                        },
-                                        [
-                                          _c(
-                                            "th",
-                                            {
-                                              staticClass: "col-6",
-                                              attrs: { scope: "row" }
-                                            },
-                                            [
-                                              _c(
-                                                "div",
-                                                {
-                                                  staticClass:
-                                                    "form-check custom-control checkbox"
-                                                },
-                                                [
-                                                  _c("input", {
-                                                    staticClass:
-                                                      "form-check-input check",
-                                                    attrs: {
-                                                      type: "checkbox",
-                                                      id: "1"
-                                                    }
-                                                  }),
-                                                  _vm._v(" "),
-                                                  _c(
-                                                    "label",
-                                                    {
-                                                      staticClass:
-                                                        "form-check-label d-block",
-                                                      attrs: { for: "1" }
-                                                    },
-                                                    [_vm._v(_vm._s(ele.name))]
-                                                  )
-                                                ]
-                                              )
-                                            ]
-                                          ),
-                                          _vm._v(" "),
-                                          _c(
-                                            "div",
-                                            {
-                                              staticClass:
-                                                "col-6 d-flex justify-content-end"
-                                            },
-                                            [
-                                              _c("td", [
-                                                _vm._v(_vm._s(ele.per))
-                                              ]),
-                                              _vm._v(" "),
-                                              _c("td", [
-                                                _vm._v(_vm._s(ele.price))
-                                              ]),
-                                              _vm._v(" "),
-                                              _c("td", [
-                                                _vm._v(_vm._s(ele.summ))
-                                              ])
-                                            ]
-                                          )
-                                        ]
-                                      )
-                                    })
-                                  )
-                                ],
-                                1
-                              )
-                            ])
-                          ])
-                        ]),
-                        _vm._v(" "),
-                        _vm._m(9, true),
-                        _vm._v(" "),
-                        _vm._m(10, true),
-                        _vm._v(" "),
-                        _c("div", { staticClass: "col-12" }, [
-                          _c("table", { staticClass: "table drag-table" }, [
-                            _c("tbody", [
-                              _vm._m(11, true),
-                              _vm._v(" "),
-                              _c("tr", [
-                                _c(
-                                  "div",
-                                  _vm._l(_vm.list1, function(ele) {
-                                    return _c(
-                                      "div",
-                                      {
-                                        staticClass:
-                                          "item d-flex justify-content-between"
-                                      },
-                                      [
-                                        _c(
-                                          "th",
-                                          {
-                                            staticClass: "col-6",
-                                            attrs: { scope: "row" }
-                                          },
-                                          [
-                                            _c(
-                                              "div",
-                                              {
-                                                staticClass:
-                                                  "form-check custom-control checkbox"
-                                              },
-                                              [
-                                                _c("input", {
-                                                  staticClass:
-                                                    "form-check-input check",
-                                                  attrs: {
-                                                    type: "checkbox",
-                                                    id: "1"
-                                                  }
-                                                }),
-                                                _vm._v(" "),
-                                                _c(
-                                                  "label",
-                                                  {
-                                                    staticClass:
-                                                      "form-check-label d-block",
-                                                    attrs: { for: "1" }
-                                                  },
-                                                  [_vm._v(_vm._s(ele.name))]
-                                                )
-                                              ]
-                                            )
-                                          ]
-                                        ),
-                                        _vm._v(" "),
-                                        _c(
-                                          "div",
-                                          {
-                                            staticClass:
-                                              "col-6 d-flex justify-content-end"
-                                          },
-                                          [
-                                            _c("td", [_vm._v(_vm._s(ele.per))]),
-                                            _vm._v(" "),
-                                            _c("td", [
-                                              _vm._v(_vm._s(ele.price))
-                                            ]),
-                                            _vm._v(" "),
-                                            _c("td", [_vm._v(_vm._s(ele.summ))])
-                                          ]
-                                        )
-                                      ]
-                                    )
-                                  })
-                                )
-                              ])
-                            ])
-                          ]),
-                          _vm._v(" "),
-                          _c(
-                            "div",
-                            {
-                              staticClass:
-                                "col-12 d-flex align-items-center pl-0"
-                            },
-                            [
-                              _c("div", { staticClass: "col-6 pl-0" }, [
-                                _c(
-                                  "button",
-                                  {
-                                    staticClass:
-                                      "add-button add-button--remove d-flex align-items-center",
-                                    attrs: { title: "Удалить этап" },
-                                    on: {
-                                      click: function($event) {
-                                        _vm.removeStage(index)
-                                      }
-                                    }
-                                  },
-                                  [
-                                    _c("img", {
-                                      staticClass: "mr-2",
-                                      attrs: {
-                                        src: "/img/del.svg",
-                                        alt: "add-button"
-                                      }
-                                    }),
-                                    _vm._v(
-                                      "\n                    Удалить этап\n                  "
-                                    )
-                                  ]
-                                )
-                              ]),
-                              _vm._v(" "),
-                              _vm._m(12, true)
-                            ]
-                          )
-                        ])
-                      ]
-                    )
                   }),
                   _vm._v(" "),
                   _c("div", { staticClass: "row col-12" }, [
@@ -53950,7 +53462,7 @@ var render = function() {
                                 ]
                               ),
                               _vm._v(" "),
-                              _vm._m(13, true),
+                              _vm._m(5, true),
                               _vm._v(" "),
                               _c("div", { staticClass: "material-info" }, [
                                 _c("div", { staticClass: "row mx-3" }, [
@@ -54410,7 +53922,7 @@ var render = function() {
                     2
                   ),
                   _vm._v(" "),
-                  _vm._m(14)
+                  _vm._m(6)
                 ]
               )
             ]
@@ -54502,12 +54014,23 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("tr", [
-      _c(
-        "th",
-        { staticClass: "table__transparent-row", attrs: { colspan: "4" } },
-        [_vm._v("Стены")]
-      )
+    return _c("div", { staticClass: "col-12" }, [
+      _c("table", { staticClass: "table drag-table" }, [
+        _c("tbody", [
+          _c("tr", [
+            _c(
+              "th",
+              {
+                staticClass: "table__transparent-row",
+                attrs: { colspan: "4" }
+              },
+              [_vm._v("Стены")]
+            )
+          ]),
+          _vm._v(" "),
+          _c("tr")
+        ])
+      ])
     ])
   },
   function() {
@@ -54516,177 +54039,6 @@ var staticRenderFns = [
     var _c = _vm._self._c || _h
     return _c("div", { staticClass: "stages__summ col-6 text-right" }, [
       _vm._v("\n                             Итого за этап: "),
-      _c("span", [_vm._v("10 000 Р")])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "col-md-6" }, [
-      _c("div", { staticClass: "main-subtitle" }, [
-        _vm._v("\n                Название этапа\n              ")
-      ])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "col-12 d-flex align-items-center" }, [
-      _c("h2", { staticClass: "col-6 main-subtitle py-4 pl-3" }, [
-        _vm._v("\n              Комната 1\n            ")
-      ]),
-      _vm._v(" "),
-      _c(
-        "div",
-        {
-          staticClass:
-            "col-6 d-flex justify-content-end align-items-center pt-3 pl-3"
-        },
-        [
-          _c("div", { staticClass: "projects__desc-item pr-3" }, [
-            _vm._v("S: 28 м"),
-            _c("sup", [_vm._v("2")])
-          ]),
-          _vm._v(" "),
-          _c("div", { staticClass: "projects__desc-item pr-3" }, [
-            _vm._v("H: 2,8 м м")
-          ]),
-          _vm._v(" "),
-          _c("div", { staticClass: "projects__desc-item pr-3" }, [
-            _vm._v("S стен: 80,1 м"),
-            _c("sup", [_vm._v("2")])
-          ]),
-          _vm._v(" "),
-          _c("div", { staticClass: "projects__desc-item" }, [
-            _vm._v("P: 29,8 м. п.")
-          ])
-        ]
-      )
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "col-12 d-flex align-items-center" }, [
-      _c(
-        "div",
-        { staticClass: "col-6 table-subtitle table-subtitle__items px-3" },
-        [_vm._v("Наименование\n              ")]
-      ),
-      _vm._v(" "),
-      _c(
-        "div",
-        {
-          staticClass:
-            "col-6 d-flex justify-content-end px-0 table-subtitle__items"
-        },
-        [
-          _c("div", { staticClass: "table-subtitle" }, [_vm._v("Кол-во")]),
-          _vm._v(" "),
-          _c("div", { staticClass: "table-subtitle" }, [_vm._v("Цена")]),
-          _vm._v(" "),
-          _c("div", { staticClass: "table-subtitle" }, [_vm._v("Стоимость")])
-        ]
-      )
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("tr", [
-      _c(
-        "th",
-        { staticClass: "table__transparent-row", attrs: { colspan: "4" } },
-        [_vm._v("Стены")]
-      )
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "col-12 d-flex align-items-center" }, [
-      _c("h2", { staticClass: "col-6 main-subtitle py-4 pl-3" }, [
-        _vm._v("\n                    Комната 2\n                  ")
-      ]),
-      _vm._v(" "),
-      _c(
-        "div",
-        {
-          staticClass:
-            "col-6 d-flex justify-content-end align-items-center pt-3 pl-3"
-        },
-        [
-          _c("div", { staticClass: "projects__desc-item pr-3" }, [
-            _vm._v("S: 28 м"),
-            _c("sup", [_vm._v("2")])
-          ]),
-          _vm._v(" "),
-          _c("div", { staticClass: "projects__desc-item pr-3" }, [
-            _vm._v("H: 2,8 м м")
-          ]),
-          _vm._v(" "),
-          _c("div", { staticClass: "projects__desc-item pr-3" }, [
-            _vm._v("S стен: 80,1 м"),
-            _c("sup", [_vm._v("2")])
-          ]),
-          _vm._v(" "),
-          _c("div", { staticClass: "projects__desc-item" }, [
-            _vm._v("P: 29,8 м. п.")
-          ])
-        ]
-      )
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "col-12 d-flex align-items-center" }, [
-      _c(
-        "div",
-        { staticClass: "col-6 table-subtitle table-subtitle__items px-3" },
-        [_vm._v("Наименование\n                  ")]
-      ),
-      _vm._v(" "),
-      _c(
-        "div",
-        {
-          staticClass:
-            "col-6 d-flex justify-content-end px-0 table-subtitle__items"
-        },
-        [
-          _c("div", { staticClass: "table-subtitle" }, [_vm._v("Кол-во")]),
-          _vm._v(" "),
-          _c("div", { staticClass: "table-subtitle" }, [_vm._v("Цена")]),
-          _vm._v(" "),
-          _c("div", { staticClass: "table-subtitle" }, [_vm._v("Стоимость")])
-        ]
-      )
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("tr", [
-      _c(
-        "th",
-        { staticClass: "table__transparent-row", attrs: { colspan: "4" } },
-        [_vm._v("Пол")]
-      )
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "stages__summ col-6 text-right" }, [
-      _vm._v("\n                     Итого за этап: "),
       _c("span", [_vm._v("10 000 Р")])
     ])
   },
