@@ -53044,6 +53044,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
 
 
 
@@ -53059,10 +53062,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             order: [],
             order_steps: [],
             show_input: false,
-            newSteps: [],
-
-            ListStages: []
-
+            newSteps: []
         };
     },
 
@@ -53097,14 +53097,15 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
             axios.post("/api/orders/" + this.$route.params.id + "/order_step/store").then(function (response) {
                 _this2.getOrder();
+                window.scrollTo({ top: 0, behavior: 'smooth' });
             });
         },
-        addSteps: function addSteps() {
-            this.ListStages.push({
-                'name': 'Спринт',
-                'description': null,
-                'begin_at': null,
-                'finish_at': null
+        deleteOrderStep: function deleteOrderStep(order_step_id) {
+            var _this3 = this;
+
+            axios.delete("/api/orders/" + this.$route.params.id + "/order_step/" + order_step_id + "/destroy").then(function (response) {
+                _this3.getOrder();
+                window.scrollTo({ top: 0, behavior: 'smooth' });
             });
         }
     }
@@ -53741,7 +53742,56 @@ var render = function() {
                                           ]
                                         }),
                                         _vm._v(" "),
-                                        _vm._m(2, true)
+                                        _c("div", { staticClass: "col-12" }, [
+                                          _c(
+                                            "div",
+                                            {
+                                              staticClass:
+                                                "col-12 d-flex align-items-center pl-0"
+                                            },
+                                            [
+                                              _c(
+                                                "div",
+                                                { staticClass: "col-6 pl-0" },
+                                                [
+                                                  _c(
+                                                    "button",
+                                                    {
+                                                      staticClass:
+                                                        "add-button add-button--remove d-flex align-items-center",
+                                                      attrs: {
+                                                        title: "Удалить этап"
+                                                      },
+                                                      on: {
+                                                        click: function(
+                                                          $event
+                                                        ) {
+                                                          _vm.deleteOrderStep(
+                                                            order_step.id
+                                                          )
+                                                        }
+                                                      }
+                                                    },
+                                                    [
+                                                      _c("img", {
+                                                        staticClass: "mr-2",
+                                                        attrs: {
+                                                          src: "/img/del.svg",
+                                                          alt: "add-button"
+                                                        }
+                                                      }),
+                                                      _vm._v(
+                                                        "\n                                          Удалить этап\n                                  "
+                                                      )
+                                                    ]
+                                                  )
+                                                ]
+                                              ),
+                                              _vm._v(" "),
+                                              _vm._m(2, true)
+                                            ]
+                                          )
+                                        ])
                                       ]
                                     : _vm._e()
                                 ],
@@ -54401,33 +54451,9 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "col-12" }, [
-      _c("div", { staticClass: "col-12 d-flex align-items-center pl-0" }, [
-        _c("div", { staticClass: "col-6 pl-0" }, [
-          _c(
-            "button",
-            {
-              staticClass:
-                "add-button add-button--remove d-flex align-items-center",
-              attrs: { title: "Удалить этап" }
-            },
-            [
-              _c("img", {
-                staticClass: "mr-2",
-                attrs: { src: "/img/del.svg", alt: "add-button" }
-              }),
-              _vm._v(
-                "\n                                      Удалить этап\n                                  "
-              )
-            ]
-          )
-        ]),
-        _vm._v(" "),
-        _c("div", { staticClass: "stages__summ col-6 text-right" }, [
-          _vm._v("\n                                 Итого за этап: "),
-          _c("span", [_vm._v("10 000 Р")])
-        ])
-      ])
+    return _c("div", { staticClass: "stages__summ col-6 text-right" }, [
+      _vm._v("\n                                 Итого за этап: "),
+      _c("span", [_vm._v("10 000 Р")])
     ])
   },
   function() {

@@ -13,6 +13,15 @@ class RoomStep extends Model
 
     protected $with = ['room', 'services'];
 
+    protected static function boot()
+    {
+        parent::boot();
+
+        static::deleted(function ($room_step) {
+            $room_step->services()->detach();
+        });
+    }
+
     public function order_step()
     {
         return $this->belongTo(OrderStep::class);

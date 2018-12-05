@@ -152,9 +152,12 @@
                             <div class="col-12">
                               <div class="col-12 d-flex align-items-center pl-0">
                                 <div class="col-6 pl-0">
-                                    <button class="add-button add-button--remove d-flex align-items-center" title="Удалить этап"  >
-                                        <img src="/img/del.svg" alt="add-button" class="mr-2">
-                                        Удалить этап
+                                    <button class="add-button add-button--remove d-flex align-items-center"
+                                            title="Удалить этап"
+                                            @click="deleteOrderStep(order_step.id)"
+                                            >
+                                            <img src="/img/del.svg" alt="add-button" class="mr-2">
+                                            Удалить этап
                                     </button>
                                 </div>
                                 <div class="stages__summ col-6 text-right">
@@ -328,9 +331,6 @@
           order_steps: [],
           show_input: false,
           newSteps: [],
-
-          ListStages: [],
-
       }
     },
 
@@ -364,17 +364,17 @@
             axios.post(`/api/orders/${this.$route.params.id}/order_step/store`)
                  .then(response => {
                      this.getOrder()
+                     window.scrollTo({ top: 0, behavior: 'smooth' })
                  })
         },
 
-        addSteps() {
-          this.ListStages.push({
-              'name': 'Спринт',
-              'description': null,
-              'begin_at': null,
-              'finish_at': null
-          })
-        },
+        deleteOrderStep (order_step_id) {
+            axios.delete(`/api/orders/${this.$route.params.id}/order_step/${order_step_id}/destroy`)
+                 .then(response => {
+                     this.getOrder()
+                     window.scrollTo({ top: 0, behavior: 'smooth' })
+                 })
+        }
 
     }
   };

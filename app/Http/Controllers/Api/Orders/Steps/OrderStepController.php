@@ -37,7 +37,7 @@ class OrderStepController extends Controller
 
     public function destroy(Order $order, OrderStep $order_step)
     {
-
+        $order_step->delete();
     }
 
     protected function randomHexColorGeneration()

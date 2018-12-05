@@ -25,6 +25,10 @@ class OrderStep extends Model
         static::created(function ($order_step) {
             $order_step->createRoomSteps($order_step);
         });
+
+        static::deleting(function ($order_step) {
+            $order_step->room_steps->each->delete();
+        });
     }
 
     public function order()
