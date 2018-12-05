@@ -24,7 +24,6 @@
         "moment": "^2.22.2",
         "vue-carousel": "^0.13.1",
         "vue-router": "^3.0.2",
-        "vuedraggable": "^2.16.0",
         "vuejs-datepicker": "^1.5.4",
         "vuex": "^3.0.1"
     }

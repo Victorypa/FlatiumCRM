@@ -108,21 +108,19 @@
                                 <th colspan="4" class="table__transparent-row">Стены</th>
                               </tr>
                               <tr>
-                                  <draggable :list="list1" :options="{group:{ name: 'stuff'}}" @start="drag=true" @end="drag=false" :move="onMove">
-                                    <div v-for="ele in list1" class="item d-flex justify-content-between">
-                                      <th scope="row" class="col-6">
-                                        <div class="form-check custom-control checkbox">
-                                          <input type="checkbox" class="form-check-input check" id='1'>
-                                          <label class="form-check-label d-block" for="1">{{ele.name}}</label>
-                                        </div>
-                                      </th>
-                                      <div class="col-6 d-flex justify-content-end">
-                                        <td>{{ele.per}}</td>
-                                        <td>{{ele.price}}</td>
-                                        <td>{{ele.summ}}</td>
+                                  <div v-for="ele in list1" class="item d-flex justify-content-between">
+                                    <th scope="row" class="col-6">
+                                      <div class="form-check custom-control checkbox">
+                                        <input type="checkbox" class="form-check-input check" id='1'>
+                                        <label class="form-check-label d-block" for="1">{{ele.name}}</label>
                                       </div>
+                                    </th>
+                                    <div class="col-6 d-flex justify-content-end">
+                                      <td>{{ele.per}}</td>
+                                      <td>{{ele.price}}</td>
+                                      <td>{{ele.summ}}</td>
                                     </div>
-                                  </draggable>
+                                  </div>
                               </tr>
                             </tbody>
                           </table>
@@ -249,7 +247,6 @@
                       </tr>
                       <tr>
                         <div>
-                          <draggable :list="list1" :options="{group:{ name: 'stuff'}}" @start="drag=true" @end="drag=false" :move="onMove">
                             <div v-for="ele in list1" class="item d-flex justify-content-between">
                               <th scope="row" class="col-6">
                                 <div class="form-check custom-control checkbox">
@@ -263,7 +260,6 @@
                                 <td>{{ele.summ}}</td>
                               </div>
                             </div>
-                          </draggable>
                         </div>
                       </tr>
                     </tbody>
@@ -332,12 +328,12 @@
                                       <template v-for="(room_services, service_type_id) in groupByServiceType(room.room_services)">
                                           <tr>
                                               <th colspan="4" class="table__transparent-row">
-                                                  {{ getServiceTypeName(service_type_id) }}
+                                                  <!-- {{ getServiceTypeName(service_type_id) }} -->
+                                                  {{ service_type_id }}
                                               </th>
                                           </tr>
                                           <tr>
-                                              <draggable :list="room_services" :options="{ group:{ name: 'room_services'} }" @start="drag=true" @end="drag=false" :move="onMove">
-                                                <div v-for="room_service in room_services" class="item d-flex justify-content-between">
+                                              <div v-for="room_service in room_services" class="item d-flex justify-content-between">
 
                                                   <th scope="row" class="w-75">
                                                     <div class="form-check custom-control checkbox">
@@ -374,7 +370,6 @@
                                                   </template>
 
                                                 </div>
-                                              </draggable>
                                           </tr>
                                       </template>
                                   </template>
@@ -425,7 +420,6 @@
 </template>
 
 <script>
-  import draggable from "vuedraggable"
   import Datepicker from "vuejs-datepicker"
   import { ru } from "vuejs-datepicker/dist/locale"
   import OrderExportCollection from '../../../mixins/OrderExportCollection'
@@ -442,64 +436,11 @@
           show_input: false,
           newSteps: [],
 
+
         ListStages: [],
         future_index: "START",
-        list4: [{
-            name: "Name 1",
-            per: "28м2",
-            price: "100 Р/М2",
-            summ: "2800 Р",
-            service_type_id: "2"
-          },
-          {
-            name: "Name 2",
-            per: "28м2",
-            price: "100 Р/М2",
-            summ: "2800 Р",
-            service_type_id: "2"
-          },
-        ],
-        list3: [{
-            name: "Name 3",
-            per: "28м2",
-            price: "100 Р/М2",
-            summ: "2800 Р",
-            service_type_id: "3"
-          },
 
-          {
-            name: "Name 4",
-            per: "28м2",
-            price: "100 Р/М2",
-            summ: "2800 Р",
-            service_type_id: "3"
-          },
-        ],
-        list2: [{
-            name: "Name 5",
-            per: "28м2",
-            price: "100 Р/М2",
-            summ: "2800 Р",
-            service_type_id: "1"
-          },
-
-          {
-            name: "Name 6",
-            per: "28м2",
-            price: "100 Р/М2",
-            summ: "2800 Р",
-            service_type_id: "1"
-          },
-        ],
-            list1: [{
-            name: "Name 7",
-            per: "28м2",
-            price: "100 Р/М2",
-            summ: "2800 Р",
-            service_type_id: "7",
-            },
-        ]
-      };
+      }
     },
 
     components: {
@@ -507,7 +448,8 @@
       Datepicker
     },
 
-    mounted () {
+    created () {
+        this.getServiceTypes()
         this.getOrder()
     },
 

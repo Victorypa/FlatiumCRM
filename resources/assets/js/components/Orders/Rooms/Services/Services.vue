@@ -352,32 +352,6 @@
                     this.$emit('price', parseInt(response.data.room.price))
                 })
             },
-
-            getServiceTypeName (service_type_id) {
-                if (this.service_types.length) {
-                    return this.service_types.filter(row => {
-                        return row.id === this.service_type_id
-                    })[0].name
-                }
-            },
-
-            getServiceSummary (id) {
-                return new Intl.NumberFormat('ru-Ru').format(this.service_prices[id] * this.service_quantities[id])
-            },
-
-            getMaterialSummary (rate, quantity, price) {
-                return new Intl.NumberFormat('ru-Ru').format(Math.ceil(rate/quantity) * price)
-            },
-
-            removeEmptyElem(obj) {
-                let newObj = {}
-
-                Object.keys(obj).forEach((prop) => {
-                  if (obj[prop]) { newObj[prop] = obj[prop] }
-                })
-
-                return newObj
-           },
         },
 
         computed: {

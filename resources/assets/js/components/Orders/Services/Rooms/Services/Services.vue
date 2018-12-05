@@ -19,15 +19,11 @@
         </div>
 
 
-            <form class="w-100" @submit.prevent="saveNewServices()">
+            <form class="w-100" @submit.prevent="saveNewService()">
 
                 <div class="row" v-for="(newService, index) in newServices">
                     <div class="col-2 py-1">
-                        <select class="form-control" v-model="newService.service_type_id">
-                              <option v-for="service_type in service_types" :value="service_type.id">
-                                  {{ service_type.name }}
-                              </option>
-                        </select>
+                        &nbsp;
                     </div>
 
                     <div class="col-5 py-1">
@@ -76,7 +72,7 @@
 
         <div class="col-12 py-3 pl-0">
             <div class="col-12">
-                <button class="add-space-button" @click="addNewService()">+ Добавить работу</button>
+                <button class="add-space-button" @click="addService()">+ Добавить работу</button>
             </div>
         </div>
 
@@ -136,7 +132,7 @@
                     </div>
 
                     <div class="form-group__calc w-85">
-                        {{ new Intl.NumberFormat().format(getServiceSummary(service.id)) }} P
+                        {{ new Intl.NumberFormat('ru-Ru').format(getServiceSummary(service.id)) }} P
                     </div>
 
                     <template v-if="service.can_be_deleted">
@@ -205,8 +201,12 @@
 </template>
 
 <script>
+    import ServiceCollection from '../../../../../mixins/ServiceCollection'
+
     export default {
         props: ['extra_room', 'order'],
+
+        mixins: [ServiceCollection],
 
         data () {
             return {
@@ -227,7 +227,6 @@
 
         mounted () {
             this.getServiceTypes()
-            this.getServiceUnits()
             this.getExtraRoomServices()
             this.getServices()
         },
@@ -301,14 +300,6 @@
                 })
             },
 
-            getServiceTypeName (service_type_id) {
-                if (this.service_types.length) {
-                    return this.service_types.filter(row => {
-                        return row.id === this.service_type_id
-                    })[0].name
-                }
-            },
-
             addToExtraRoomServiceId (id) {
                 if (!this.extra_room_service_ids.includes(id)) {
                   this.extra_room_service_ids.push(id)
@@ -334,43 +325,6 @@
                 })
             },
 
-            getServiceSummary (id) {
-                return parseFloat(this.service_prices[id] * this.service_quantities[id]).toFixed(2)
-            },
-
-            saveNewServices () {
-                this.newServices.forEach(item => {
-                    axios.post(`/api/services/store`, {
-                        'service_type_id': item.service_type_id,
-                        'name': item.name,
-                        'unit_id': item.unit_id,
-                        'price': item.price,
-                        'can_be_discounted': item.can_be_discounted
-                    }).then(response => {
-                        window.location.reload(true)
-                    })
-                })
-            },
-
-            addNewService () {
-                    this.newServices.push({
-                        unit_id: 1,
-                        service_type_id: 1,
-                        name: null,
-                        price: null,
-                        can_be_discounted: false
-                    })
-            },
-
-            deleteService (id) {
-                if (confirm('Удалить ?')) {
-                    axios.delete(`/api/services/${id}/destroy`)
-                         .then(response => {
-                             window.location.reload(true)
-                         })
-                }
-            },
-
             getServiceTypes () {
                     return axios.get(`/api/service_types`).then(response => {
                             switch (parseInt(this.extra_room.room.room_type_id)) {
@@ -393,32 +347,6 @@
                     })
 
             },
-
-            getServiceUnits () {
-                if (localStorage.getItem('units')) {
-                    this.units = JSON.parse(localStorage.getItem('units'))
-                } else {
-                    return axios.get(`/api/units`)
-                                .then(response => {
-                                    this.units = response.data
-                                    localStorage.setItem('units', JSON.stringify(this.units))
-                                })
-                }
-            },
-
-            getMaterialSummary (rate, quantity, price) {
-                return parseFloat(Math.ceil(rate/quantity) * price).toFixed(2)
-            },
-
-            removeEmptyElem (obj) {
-                let newObj = {}
-
-                Object.keys(obj).forEach((prop) => {
-                  if (obj[prop]) { newObj[prop] = obj[prop] }
-                })
-
-                return newObj
-           },
         },
 
         computed: {
