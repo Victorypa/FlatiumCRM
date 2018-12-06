@@ -53047,6 +53047,16 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -53060,6 +53070,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         return {
             ru: __WEBPACK_IMPORTED_MODULE_1_vuejs_datepicker_dist_locale__["a" /* ru */],
             order: [],
+
+            order_step_names: [],
+            order_step_descriptions: [],
+
             order_steps: [],
             show_input: false,
             newSteps: []
@@ -53083,6 +53097,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             return axios.get("/api/orders/" + this.$route.params.id + "/order_steps").then(function (response) {
                 _this.order = response.data;
                 _this.order_steps = _this.order.order_steps;
+
+                _this.order_steps.forEach(function (order_step) {
+                    _this.order_step_descriptions[order_step.id] = order_step.description;
+                });
             });
         },
         getServiceTypeName: function getServiceTypeName(service_type_id) {
@@ -53106,6 +53124,19 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             axios.delete("/api/orders/" + this.$route.params.id + "/order_step/" + order_step_id + "/destroy").then(function (response) {
                 _this3.getOrder();
                 window.scrollTo({ top: 0, behavior: 'smooth' });
+            });
+        },
+        showInput: function showInput() {
+            this.show_input = !this.show_input;
+        },
+        updateOrderStep: function updateOrderStep(order_step_id, description) {
+            var _this4 = this;
+
+            axios.patch("/api/orders/" + this.$route.params.id + "/order_step/" + order_step_id + "/update", {
+                'description': description
+            }).then(function (response) {
+                _this4.showInput();
+                _this4.getOrder();
             });
         }
     }
@@ -53254,34 +53285,167 @@ var render = function() {
                                     "div",
                                     { staticClass: "col-md-6" },
                                     [
-                                      order_step.description
+                                      _vm.order_step_descriptions[order_step.id]
                                         ? [
-                                            _c(
-                                              "div",
-                                              { staticClass: "main-subtitle" },
-                                              [
-                                                _vm._v(
-                                                  "\n                                    " +
-                                                    _vm._s(
-                                                      order_step.description
-                                                    ) +
-                                                    "\n                                "
-                                                )
-                                              ]
-                                            )
+                                            !_vm.show_input
+                                              ? [
+                                                  _c(
+                                                    "div",
+                                                    {
+                                                      staticClass:
+                                                        "main-subtitle",
+                                                      on: {
+                                                        click: function(
+                                                          $event
+                                                        ) {
+                                                          _vm.showInput()
+                                                        }
+                                                      }
+                                                    },
+                                                    [
+                                                      _vm._v(
+                                                        "\n                                        " +
+                                                          _vm._s(
+                                                            _vm
+                                                              .order_step_descriptions[
+                                                              order_step.id
+                                                            ]
+                                                          ) +
+                                                          "\n                                    "
+                                                      )
+                                                    ]
+                                                  )
+                                                ]
+                                              : [
+                                                  _c("input", {
+                                                    directives: [
+                                                      {
+                                                        name: "model",
+                                                        rawName: "v-model",
+                                                        value:
+                                                          _vm
+                                                            .order_step_descriptions[
+                                                            order_step.id
+                                                          ],
+                                                        expression:
+                                                          "order_step_descriptions[order_step.id]"
+                                                      }
+                                                    ],
+                                                    staticClass: "form-control",
+                                                    domProps: {
+                                                      value:
+                                                        _vm
+                                                          .order_step_descriptions[
+                                                          order_step.id
+                                                        ]
+                                                    },
+                                                    on: {
+                                                      mouseleave: function(
+                                                        $event
+                                                      ) {
+                                                        _vm.updateOrderStep(
+                                                          order_step.id,
+                                                          _vm
+                                                            .order_step_descriptions[
+                                                            order_step.id
+                                                          ]
+                                                        )
+                                                      },
+                                                      input: function($event) {
+                                                        if (
+                                                          $event.target
+                                                            .composing
+                                                        ) {
+                                                          return
+                                                        }
+                                                        _vm.$set(
+                                                          _vm.order_step_descriptions,
+                                                          order_step.id,
+                                                          $event.target.value
+                                                        )
+                                                      }
+                                                    }
+                                                  })
+                                                ]
                                           ]
                                         : [
-                                            _c(
-                                              "div",
-                                              { staticClass: "main-subtitle" },
-                                              [
-                                                _vm._v(
-                                                  "\n                                    " +
-                                                    _vm._s(order_step.name) +
-                                                    "\n                                "
-                                                )
-                                              ]
-                                            )
+                                            !_vm.show_input
+                                              ? [
+                                                  _c(
+                                                    "div",
+                                                    {
+                                                      staticClass:
+                                                        "main-subtitle",
+                                                      on: {
+                                                        click: function(
+                                                          $event
+                                                        ) {
+                                                          _vm.showInput()
+                                                        }
+                                                      }
+                                                    },
+                                                    [
+                                                      _vm._v(
+                                                        "\n                                        " +
+                                                          _vm._s(
+                                                            order_step.name
+                                                          ) +
+                                                          "\n                                    "
+                                                      )
+                                                    ]
+                                                  )
+                                                ]
+                                              : [
+                                                  _c("input", {
+                                                    directives: [
+                                                      {
+                                                        name: "model",
+                                                        rawName: "v-model",
+                                                        value:
+                                                          _vm
+                                                            .order_step_descriptions[
+                                                            order_step.id
+                                                          ],
+                                                        expression:
+                                                          "order_step_descriptions[order_step.id]"
+                                                      }
+                                                    ],
+                                                    staticClass: "form-control",
+                                                    domProps: {
+                                                      value:
+                                                        _vm
+                                                          .order_step_descriptions[
+                                                          order_step.id
+                                                        ]
+                                                    },
+                                                    on: {
+                                                      mouseleave: function(
+                                                        $event
+                                                      ) {
+                                                        _vm.updateOrderStep(
+                                                          order_step.id,
+                                                          _vm
+                                                            .order_step_descriptions[
+                                                            order_step.id
+                                                          ]
+                                                        )
+                                                      },
+                                                      input: function($event) {
+                                                        if (
+                                                          $event.target
+                                                            .composing
+                                                        ) {
+                                                          return
+                                                        }
+                                                        _vm.$set(
+                                                          _vm.order_step_descriptions,
+                                                          order_step.id,
+                                                          $event.target.value
+                                                        )
+                                                      }
+                                                    }
+                                                  })
+                                                ]
                                           ]
                                     ],
                                     2
@@ -53571,7 +53735,11 @@ var render = function() {
                                                                                 "div",
                                                                                 {
                                                                                   staticClass:
-                                                                                    "item d-flex justify-content-between"
+                                                                                    "d-flex justify-content-between",
+                                                                                  style: {
+                                                                                    "background-color":
+                                                                                      order_step.opacity_color
+                                                                                  }
                                                                                 },
                                                                                 [
                                                                                   _c(

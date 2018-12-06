@@ -30,23 +30,13 @@ class OrderStepController extends Controller
         ]);
     }
 
-    public function update(Order $order, OrderStep $order_step)
+    public function update(Order $order, OrderStep $order_step, Request $request)
     {
-
+        $order_step->update($request->all());
     }
 
     public function destroy(Order $order, OrderStep $order_step)
     {
         $order_step->delete();
-    }
-
-    protected function randomHexColorGeneration()
-    {
-        $colors = [
-            '#ff7979', '#badc58', '#f0932b', '#eb4d4b', '#6ab04c', '#7ed6df',
-            '#e056fd', '#686de0', '#30336b', '#be2edd', '#22a6b3', '#4834d4'
-        ];
-
-        return $colors[array_rand($colors)];
     }
 }

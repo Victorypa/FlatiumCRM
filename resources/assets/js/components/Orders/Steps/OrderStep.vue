@@ -47,15 +47,25 @@
                         <div class="col-12 d-flex align-items-center justify-content-between mb-2">
                           <div class="col-md-6">
 
-                              <template v-if="order_step.description">
-                                  <div class="main-subtitle">
-                                      {{ order_step.description }}
-                                  </div>
+                              <template v-if="order_step_descriptions[order_step.id]">
+                                  <template v-if="!show_input">
+                                      <div class="main-subtitle" @click="showInput()">
+                                          {{ order_step_descriptions[order_step.id] }}
+                                      </div>
+                                  </template>
+                                  <template v-else>
+                                      <input class="form-control" v-model="order_step_descriptions[order_step.id]" @mouseleave="updateOrderStep(order_step.id, order_step_descriptions[order_step.id])" />
+                                  </template>
                               </template>
                               <template v-else>
-                                  <div class="main-subtitle">
-                                      {{ order_step.name }}
-                                  </div>
+                                  <template v-if="!show_input">
+                                      <div class="main-subtitle" @click="showInput()">
+                                          {{ order_step.name }}
+                                      </div>
+                                  </template>
+                                  <template v-else>
+                                      <input class="form-control" v-model="order_step_descriptions[order_step.id]" @mouseleave="updateOrderStep(order_step.id, order_step_descriptions[order_step.id])" />
+                                  </template>
                               </template>
 
                           </div>
@@ -117,7 +127,7 @@
 
                                                 <template v-for="room_step_service in room_step_services">
                                                     <tr>
-                                                        <div  class="item d-flex justify-content-between">
+                                                        <div :style="{ 'background-color': order_step.opacity_color }" class="d-flex justify-content-between">
                                                           <th scope="row" class="col-6">
                                                             <div class="form-check custom-control checkbox">
                                                               <input type="checkbox"
@@ -328,6 +338,10 @@
       return {
           ru,
           order: [],
+
+          order_step_names: [],
+          order_step_descriptions: [],
+
           order_steps: [],
           show_input: false,
           newSteps: [],
@@ -348,6 +362,10 @@
                         .then(response => {
                             this.order = response.data
                             this.order_steps = this.order.order_steps
+
+                            this.order_steps.forEach(order_step => {
+                                this.order_step_descriptions[order_step.id] = order_step.description
+                            })
                         })
         },
 
@@ -374,6 +392,20 @@
                      this.getOrder()
                      window.scrollTo({ top: 0, behavior: 'smooth' })
                  })
+        },
+
+        showInput () {
+            this.show_input = !this.show_input
+        },
+
+        updateOrderStep (order_step_id, description) {
+            axios.patch(`/api/orders/${this.$route.params.id}/order_step/${order_step_id}/update`, {
+                'description': description
+            }).then(response => {
+                this.showInput()
+                this.getOrder()
+            })
+
         }
 
     }
@@ -463,18 +495,6 @@
         color: #000;
       }
     }
-    // &-border {
-    //   border: 3px solid #fbf547;
-    //   .item {
-    //     background-color: #fcffe2;
-    //   }
-    //   &:first-of-type {
-    //     border: 3px solid #55fb3b;
-    //       .item {
-    //           background-color: #e6ffe2;
-    //         }
-    //   }
-    // }
   }
 
   table {

@@ -19,7 +19,8 @@ class OrderStep extends Model
         parent::boot();
 
         static::creating(function ($order_step) {
-            $order_step->color = $order_step->randomHexColorGeneration();
+            $order_step->color = $order_step->randomHexColorGeneration()['color'];
+            $order_step->opacity_color = $order_step->randomHexColorGeneration()['opacity_color'];
         });
 
         static::created(function ($order_step) {
@@ -43,9 +44,26 @@ class OrderStep extends Model
 
     protected function randomHexColorGeneration()
     {
-        $rand = str_pad(dechex(rand(0x000000, 0xFFFFFF)), 6, 0, STR_PAD_LEFT);
+        $colors = [
+            '#ff7979' => 'rgba(255, 121, 121, 0.1)',
+            '#badc58' => 'rgba(186, 220, 88, 0.1)',
+            '#f0932b' => 'rgba(240, 147, 43, 0.1)',
+            '#eb4d4b' => 'rgba(235, 77, 75, 0.1)',
+            '#6ab04c' => 'rgba(106, 176, 76, 0.1)',
+            '#7ed6df' => 'rgba(126, 214, 223, 0.1)',
+            '#e056fd' => 'rgba(224, 86, 253, 0.1)',
+            '#686de0' => 'rgba(104, 109, 224, 0.1)',
+            '#30336b' => 'rgba(48, 51, 107, 0.1)',
+            '#be2edd' => 'rgba(190, 46, 221, 0.1)',
+            '#22a6b3' => 'rgba(34, 166, 179, 0.1)',
+            '#4834d4' => 'rgba(72, 52, 212, 0.1)'
 
-        return "#{$rand}";
+        ];
+
+        return [
+            'color' => array_rand($colors),
+            'opacity_color' => $colors[array_rand($colors)]
+        ];
     }
 
     protected function createRoomSteps($order_step)
