@@ -53057,6 +53057,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
 
 
 
@@ -53071,8 +53073,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             ru: __WEBPACK_IMPORTED_MODULE_1_vuejs_datepicker_dist_locale__["a" /* ru */],
             order: [],
 
-            order_step_names: [],
             order_step_descriptions: [],
+            order_step_begin_ats: [],
+            order_step_finish_ats: [],
 
             order_steps: [],
             show_input: false,
@@ -53100,6 +53103,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
                 _this.order_steps.forEach(function (order_step) {
                     _this.order_step_descriptions[order_step.id] = order_step.description;
+                    _this.order_step_begin_ats[order_step.id] = order_step.begin_at;
+                    _this.order_step_finish_ats[order_step.id] = order_step.finish_at;
                 });
             });
         },
@@ -53129,7 +53134,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         showInput: function showInput() {
             this.show_input = !this.show_input;
         },
-        updateOrderStep: function updateOrderStep(order_step_id, description) {
+        updateOrderStepDescription: function updateOrderStepDescription(order_step_id, description) {
             var _this4 = this;
 
             axios.patch("/api/orders/" + this.$route.params.id + "/order_step/" + order_step_id + "/update", {
@@ -53138,7 +53143,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 _this4.showInput();
                 _this4.getOrder();
             });
-        }
+        },
+        updateOrderStepDate: function updateOrderStepDate(order_step_id) {}
     }
 });
 
@@ -53343,7 +53349,7 @@ var render = function() {
                                                       mouseleave: function(
                                                         $event
                                                       ) {
-                                                        _vm.updateOrderStep(
+                                                        _vm.updateOrderStepDescription(
                                                           order_step.id,
                                                           _vm
                                                             .order_step_descriptions[
@@ -53422,7 +53428,7 @@ var render = function() {
                                                       mouseleave: function(
                                                         $event
                                                       ) {
-                                                        _vm.updateOrderStep(
+                                                        _vm.updateOrderStepDescription(
                                                           order_step.id,
                                                           _vm
                                                             .order_step_descriptions[
@@ -53464,16 +53470,27 @@ var render = function() {
                                           language: _vm.ru,
                                           placeholder: "Начало"
                                         },
+                                        on: {
+                                          change: function($event) {
+                                            _vm.updateOrderStepDate(
+                                              order_step.id
+                                            )
+                                          }
+                                        },
                                         model: {
-                                          value: order_step.begin_at,
+                                          value:
+                                            _vm.order_step_begin_ats[
+                                              order_step.id
+                                            ],
                                           callback: function($$v) {
                                             _vm.$set(
-                                              order_step,
-                                              "begin_at",
+                                              _vm.order_step_begin_ats,
+                                              order_step.id,
                                               $$v
                                             )
                                           },
-                                          expression: "order_step.begin_at"
+                                          expression:
+                                            "order_step_begin_ats[order_step.id]"
                                         }
                                       }),
                                       _vm._v(" "),
@@ -53483,16 +53500,27 @@ var render = function() {
                                           language: _vm.ru,
                                           placeholder: "Окончание"
                                         },
+                                        on: {
+                                          change: function($event) {
+                                            _vm.updateOrderStepDate(
+                                              order_step.id
+                                            )
+                                          }
+                                        },
                                         model: {
-                                          value: order_step.finish_at,
+                                          value:
+                                            _vm.order_step_finish_ats[
+                                              order_step.id
+                                            ],
                                           callback: function($$v) {
                                             _vm.$set(
-                                              order_step,
-                                              "finish_at",
+                                              _vm.order_step_finish_ats,
+                                              order_step.id,
                                               $$v
                                             )
                                           },
-                                          expression: "order_step.finish_at"
+                                          expression:
+                                            "order_step_finish_ats[order_step.id]"
                                         }
                                       })
                                     ],

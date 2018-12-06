@@ -54,7 +54,7 @@
                                       </div>
                                   </template>
                                   <template v-else>
-                                      <input class="form-control" v-model="order_step_descriptions[order_step.id]" @mouseleave="updateOrderStep(order_step.id, order_step_descriptions[order_step.id])" />
+                                      <input class="form-control" v-model="order_step_descriptions[order_step.id]" @mouseleave="updateOrderStepDescription(order_step.id, order_step_descriptions[order_step.id])" />
                                   </template>
                               </template>
                               <template v-else>
@@ -64,7 +64,7 @@
                                       </div>
                                   </template>
                                   <template v-else>
-                                      <input class="form-control" v-model="order_step_descriptions[order_step.id]" @mouseleave="updateOrderStep(order_step.id, order_step_descriptions[order_step.id])" />
+                                      <input class="form-control" v-model="order_step_descriptions[order_step.id]" @mouseleave="updateOrderStepDescription(order_step.id, order_step_descriptions[order_step.id])" />
                                   </template>
                               </template>
 
@@ -73,14 +73,16 @@
                             <datepicker class="my-datepicker"
                                         :language="ru"
                                         placeholder="Начало"
-                                        v-model="order_step.begin_at"
+                                        v-model="order_step_begin_ats[order_step.id]"
+                                        @change="updateOrderStepDate(order_step.id)"
                                         >
                             </datepicker>
 
                             <datepicker class="my-datepicker ml-3"
                                         :language="ru"
                                         placeholder="Окончание"
-                                        v-model="order_step.finish_at"
+                                        v-model="order_step_finish_ats[order_step.id]"
+                                        @change="updateOrderStepDate(order_step.id)"
                                         >
                             </datepicker>
                           </div>
@@ -339,8 +341,9 @@
           ru,
           order: [],
 
-          order_step_names: [],
           order_step_descriptions: [],
+          order_step_begin_ats: [],
+          order_step_finish_ats: [],
 
           order_steps: [],
           show_input: false,
@@ -365,6 +368,8 @@
 
                             this.order_steps.forEach(order_step => {
                                 this.order_step_descriptions[order_step.id] = order_step.description
+                                this.order_step_begin_ats[order_step.id] = order_step.begin_at
+                                this.order_step_finish_ats[order_step.id] = order_step.finish_at
                             })
                         })
         },
@@ -398,13 +403,16 @@
             this.show_input = !this.show_input
         },
 
-        updateOrderStep (order_step_id, description) {
+        updateOrderStepDescription (order_step_id, description) {
             axios.patch(`/api/orders/${this.$route.params.id}/order_step/${order_step_id}/update`, {
                 'description': description
             }).then(response => {
                 this.showInput()
                 this.getOrder()
             })
+        },
+
+        updateOrderStepDate (order_step_id) {
 
         }
 
