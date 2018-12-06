@@ -33,11 +33,22 @@ class OrderStepController extends Controller
 
     public function update(Order $order, OrderStep $order_step, Request $request)
     {
-        $order_step->update([
-            'description' => $request->description,
-            'begin_at' => date('Y-m-d H:i:s', strtotime($request->begin_at)),
-            'finish_at' => date('Y-m-d H:i:s', strtotime($request->finish_at))
-        ]);
+        if ($request->description) {
+            $order_step->update([
+                'description' => $request->description,
+            ]);
+        }
+        if ($request->begin_at) {
+            $order_step->update([
+                'begin_at' => date('Y-m-d H:i:s', strtotime($request->begin_at)),
+            ]);
+        }
+
+        if ($request->finish_at) {
+            $order_step->update([
+                'finish_at' => date('Y-m-d H:i:s', strtotime($request->finish_at))
+            ]);
+        }
     }
 
     public function destroy(Order $order, OrderStep $order_step)

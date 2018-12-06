@@ -59,7 +59,6 @@ class OrderStep extends Model
             '#be2edd' => 'rgba(190, 46, 221, 0.1)',
             '#22a6b3' => 'rgba(34, 166, 179, 0.1)',
             '#4834d4' => 'rgba(72, 52, 212, 0.1)'
-
         ];
 
         return [
