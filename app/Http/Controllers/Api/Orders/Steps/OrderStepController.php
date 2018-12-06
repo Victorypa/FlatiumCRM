@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Api\Orders\Steps;
 
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use App\Models\Orders\Order;
 use App\Http\Controllers\Controller;
@@ -32,7 +33,11 @@ class OrderStepController extends Controller
 
     public function update(Order $order, OrderStep $order_step, Request $request)
     {
-        $order_step->update($request->all());
+        $order_step->update([
+            'description' => $request->description,
+            'begin_at' => date('Y-m-d H:i:s', strtotime($request->begin_at)),
+            'finish_at' => date('Y-m-d H:i:s', strtotime($request->finish_at))
+        ]);
     }
 
     public function destroy(Order $order, OrderStep $order_step)

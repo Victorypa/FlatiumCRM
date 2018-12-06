@@ -74,7 +74,7 @@
                                         :language="ru"
                                         placeholder="Начало"
                                         v-model="order_step_begin_ats[order_step.id]"
-                                        @change="updateOrderStepDate(order_step.id)"
+                                        @input="updateOrderStepBeginAt(order_step.id, order_step_begin_ats[order_step.id])"
                                         >
                             </datepicker>
 
@@ -82,7 +82,7 @@
                                         :language="ru"
                                         placeholder="Окончание"
                                         v-model="order_step_finish_ats[order_step.id]"
-                                        @change="updateOrderStepDate(order_step.id)"
+                                        @input="updateOrderStepFinishAt(order_step.id, order_step_finish_ats[order_step.id])"
                                         >
                             </datepicker>
                           </div>
@@ -412,8 +412,20 @@
             })
         },
 
-        updateOrderStepDate (order_step_id) {
+        updateOrderStepBeginAt (order_step_id, begin_at) {
+            axios.patch(`/api/orders/${this.$route.params.id}/order_step/${order_step_id}/update`, {
+                'begin_at': begin_at
+            }).then(response => {
+                this.getOrder()
+            })
+        },
 
+        updateOrderStepFinishAt (order_step_id, finish_at) {
+            axios.patch(`/api/orders/${this.$route.params.id}/order_step/${order_step_id}/update`, {
+                'finish_at': finish_at
+            }).then(response => {
+                this.getOrder()
+            })
         }
 
     }

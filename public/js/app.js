@@ -51797,8 +51797,7 @@ var moment = __webpack_require__(0);
             }
         },
         profit: function profit() {
-            var data = parseInt(this.income_amount) - parseInt(this.expense_amount);
-            return parseInt(data);
+            return new Intl.NumberFormat('ru-Ru').format(this.income_amount - this.expense_amount);
         }
     }
 });
@@ -53144,7 +53143,24 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 _this4.getOrder();
             });
         },
-        updateOrderStepDate: function updateOrderStepDate(order_step_id) {}
+        updateOrderStepBeginAt: function updateOrderStepBeginAt(order_step_id, begin_at) {
+            var _this5 = this;
+
+            axios.patch("/api/orders/" + this.$route.params.id + "/order_step/" + order_step_id + "/update", {
+                'begin_at': begin_at
+            }).then(function (response) {
+                _this5.getOrder();
+            });
+        },
+        updateOrderStepFinishAt: function updateOrderStepFinishAt(order_step_id, finish_at) {
+            var _this6 = this;
+
+            axios.patch("/api/orders/" + this.$route.params.id + "/order_step/" + order_step_id + "/update", {
+                'finish_at': finish_at
+            }).then(function (response) {
+                _this6.getOrder();
+            });
+        }
     }
 });
 
@@ -53471,9 +53487,12 @@ var render = function() {
                                           placeholder: "Начало"
                                         },
                                         on: {
-                                          change: function($event) {
-                                            _vm.updateOrderStepDate(
-                                              order_step.id
+                                          input: function($event) {
+                                            _vm.updateOrderStepBeginAt(
+                                              order_step.id,
+                                              _vm.order_step_begin_ats[
+                                                order_step.id
+                                              ]
                                             )
                                           }
                                         },
@@ -53501,9 +53520,12 @@ var render = function() {
                                           placeholder: "Окончание"
                                         },
                                         on: {
-                                          change: function($event) {
-                                            _vm.updateOrderStepDate(
-                                              order_step.id
+                                          input: function($event) {
+                                            _vm.updateOrderStepFinishAt(
+                                              order_step.id,
+                                              _vm.order_step_finish_ats[
+                                                order_step.id
+                                              ]
                                             )
                                           }
                                         },

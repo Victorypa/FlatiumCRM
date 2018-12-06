@@ -10,6 +10,8 @@ class OrderStep extends Model
 {
     protected $guarded = [];
 
+    public $timestamps = false;
+
     protected $dates = ['begin_at', 'finish_at'];
 
     protected $with = ['room_steps', 'order'];
