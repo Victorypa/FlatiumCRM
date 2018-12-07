@@ -248,6 +248,7 @@
                                                       <input type="checkbox"
                                                              class="form-check-input check"
                                                              :id="'room-' + room.id + '-service-' + room_service.service_id"
+                                                             @click="addSelectedServiceIds(room.id, room_service.service_id)"
                                                              >
                                                       <label class="form-check-label d-block"
                                                              :for="'room-' + room.id + '-service-' + room_service.service_id"
@@ -303,15 +304,16 @@
           <div class="col-12 d-flex align-items-center justify-content-end">
             <div class="col-md-2">
                 <template v-if="order_steps">
-                    <select class="w-100 form-control">
-                      <option v-for="(order_step, index) in order_steps" :value="order_step.id">
-                          <template v-if="order_step.description">
-                              {{ order_step.description }} {{ index + parseInt(1) }}
-                          </template>
-                          <template v-else>
-                              {{ order_step.name }} {{ index + parseInt(1) }}
-                          </template>
-                      </option>
+                    <select class="w-100 form-control" v-model="selected_order_step_id">
+                        <option value="">Выберите</option>
+                        <option v-for="(order_step, index) in order_steps" :value="order_step.id">
+                            <template v-if="order_step.description">
+                                {{ order_step.description }} {{ index + parseInt(1) }}
+                            </template>
+                            <template v-else>
+                                {{ order_step.name }} {{ index + parseInt(1) }}
+                            </template>
+                        </option>
                     </select>
                 </template>
             </div>
@@ -345,6 +347,9 @@
           order_step_begin_ats: [],
           order_step_finish_ats: [],
 
+          selected_order_step_id: '',
+          selected_service_ids: [],
+
           order_steps: [],
           show_input: false,
           newSteps: [],
@@ -372,6 +377,45 @@
                                 this.order_step_finish_ats[order_step.id] = order_step.finish_at
                             })
                         })
+        },
+
+        addSelectedServiceIds (room_id, service_id) {
+            this.selected_service_ids.push({
+                'room_id': room_id,
+                'service_id': service_id
+            })
+
+            return [
+                ...new Set(
+                    this.selected_service_ids.map((rs, index) => {
+                        // console.log(rs['room_id']);
+                        // rs['room_id']
+                        rs.room_id
+                        // console.log(rs.room_id);
+                    })
+                )
+            ]
+
+            // this.selected_service_ids.filter((room_service_ids, index) => {
+            //     console.log(room_service_ids);
+            //     // return [...new Set(this.room_service_ids.map(rs => rs.room_id))]
+            //
+            //     // selected_service_id.filter((service_id, room_id) => {
+            //     //     return [...new Set(this.products.map(p => p.category))]
+            //     //     // console.log(room_id, service_id);
+            //     //     // console.log(selected_service_id.indexOf(room_id) === service_id);
+            //     //     return selected_service_id.indexOf(room_id) === service_id
+            //     //     // console.log(room_id, service_id);
+            //     // })
+            //
+            //     // console.log(selected_service_id);
+            // })
+
+            console.log(this.selected_service_ids);
+        },
+
+        removeDuplicatedElements (data) {
+
         },
 
 
@@ -426,8 +470,7 @@
             }).then(response => {
                 this.getOrder()
             })
-        }
-
+        },
     }
   };
 </script>

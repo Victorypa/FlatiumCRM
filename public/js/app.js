@@ -52729,6 +52729,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_vuejs_datepicker_dist_locale__ = __webpack_require__(11);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__mixins_OrderExportCollection__ = __webpack_require__(8);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__mixins_ServiceCollection__ = __webpack_require__(5);
+function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } else { return Array.from(arr); } }
+
+//
+//
 //
 //
 //
@@ -53076,6 +53080,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             order_step_begin_ats: [],
             order_step_finish_ats: [],
 
+            selected_order_step_id: '',
+            selected_service_ids: [],
+
             order_steps: [],
             show_input: false,
             newSteps: []
@@ -53107,6 +53114,37 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 });
             });
         },
+        addSelectedServiceIds: function addSelectedServiceIds(room_id, service_id) {
+            this.selected_service_ids.push({
+                'room_id': room_id,
+                'service_id': service_id
+            });
+
+            return [].concat(_toConsumableArray(new Set(this.selected_service_ids.map(function (rs, index) {
+                // console.log(rs['room_id']);
+                // rs['room_id']
+                rs.room_id;
+                // console.log(rs.room_id);
+            }))));
+
+            // this.selected_service_ids.filter((room_service_ids, index) => {
+            //     console.log(room_service_ids);
+            //     // return [...new Set(this.room_service_ids.map(rs => rs.room_id))]
+            //
+            //     // selected_service_id.filter((service_id, room_id) => {
+            //     //     return [...new Set(this.products.map(p => p.category))]
+            //     //     // console.log(room_id, service_id);
+            //     //     // console.log(selected_service_id.indexOf(room_id) === service_id);
+            //     //     return selected_service_id.indexOf(room_id) === service_id
+            //     //     // console.log(room_id, service_id);
+            //     // })
+            //
+            //     // console.log(selected_service_id);
+            // })
+
+            console.log(this.selected_service_ids);
+        },
+        removeDuplicatedElements: function removeDuplicatedElements(data) {},
         getServiceTypeName: function getServiceTypeName(service_type_id) {
             if (this.service_types && service_type_id) {
                 return this.service_types.filter(function (row) {
@@ -54240,6 +54278,16 @@ var render = function() {
                                                                                   room.id +
                                                                                   "-service-" +
                                                                                   room_service.service_id
+                                                                              },
+                                                                              on: {
+                                                                                click: function(
+                                                                                  $event
+                                                                                ) {
+                                                                                  _vm.addSelectedServiceIds(
+                                                                                    room.id,
+                                                                                    room_service.service_id
+                                                                                  )
+                                                                                }
                                                                               }
                                                                             }
                                                                           ),
@@ -54571,38 +54619,72 @@ var render = function() {
                         ? [
                             _c(
                               "select",
-                              { staticClass: "w-100 form-control" },
-                              _vm._l(_vm.order_steps, function(
-                                order_step,
-                                index
-                              ) {
-                                return _c(
-                                  "option",
-                                  { domProps: { value: order_step.id } },
-                                  [
-                                    order_step.description
-                                      ? [
-                                          _vm._v(
-                                            "\n                            " +
-                                              _vm._s(order_step.description) +
-                                              " " +
-                                              _vm._s(index + parseInt(1)) +
-                                              "\n                        "
-                                          )
-                                        ]
-                                      : [
-                                          _vm._v(
-                                            "\n                            " +
-                                              _vm._s(order_step.name) +
-                                              " " +
-                                              _vm._s(index + parseInt(1)) +
-                                              "\n                        "
-                                          )
-                                        ]
-                                  ],
-                                  2
-                                )
-                              })
+                              {
+                                directives: [
+                                  {
+                                    name: "model",
+                                    rawName: "v-model",
+                                    value: _vm.selected_order_step_id,
+                                    expression: "selected_order_step_id"
+                                  }
+                                ],
+                                staticClass: "w-100 form-control",
+                                on: {
+                                  change: function($event) {
+                                    var $$selectedVal = Array.prototype.filter
+                                      .call($event.target.options, function(o) {
+                                        return o.selected
+                                      })
+                                      .map(function(o) {
+                                        var val =
+                                          "_value" in o ? o._value : o.value
+                                        return val
+                                      })
+                                    _vm.selected_order_step_id = $event.target
+                                      .multiple
+                                      ? $$selectedVal
+                                      : $$selectedVal[0]
+                                  }
+                                }
+                              },
+                              [
+                                _c("option", { attrs: { value: "" } }, [
+                                  _vm._v("Выберите")
+                                ]),
+                                _vm._v(" "),
+                                _vm._l(_vm.order_steps, function(
+                                  order_step,
+                                  index
+                                ) {
+                                  return _c(
+                                    "option",
+                                    { domProps: { value: order_step.id } },
+                                    [
+                                      order_step.description
+                                        ? [
+                                            _vm._v(
+                                              "\n                              " +
+                                                _vm._s(order_step.description) +
+                                                " " +
+                                                _vm._s(index + parseInt(1)) +
+                                                "\n                          "
+                                            )
+                                          ]
+                                        : [
+                                            _vm._v(
+                                              "\n                              " +
+                                                _vm._s(order_step.name) +
+                                                " " +
+                                                _vm._s(index + parseInt(1)) +
+                                                "\n                          "
+                                            )
+                                          ]
+                                    ],
+                                    2
+                                  )
+                                })
+                              ],
+                              2
                             )
                           ]
                         : _vm._e()

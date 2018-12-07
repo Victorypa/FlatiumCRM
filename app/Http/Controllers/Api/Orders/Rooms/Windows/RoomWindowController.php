@@ -38,7 +38,8 @@ class RoomWindowController extends Controller
             $door_width = $request->width;
             $room->update([
                 'wall_area' => $room->wall_area - $door_area,
-                'perimeter' => $room->perimeter - $door_width
+                // 'perimeter' => $room->perimeter - $door_width
+                'perimeter' => $room->perimeter
             ]);
         }
 
@@ -57,14 +58,16 @@ class RoomWindowController extends Controller
             if ($this->windowArea($room) != 0) {
                 $room->update([
                     'area' => $room->width * $room->length,
-                    'perimeter' => $perimeter = 2 * ($room->length + $room->width),
-                    'wall_area' => $perimeter * $room->height - $this->windowArea($room)
+                    'perimeter' => $room->perimeter,
+                    // 'perimeter' => $perimeter = 2 * ($room->length + $room->width),
+                    'wall_area' => $room->perimeter * $room->height - $this->windowArea($room)
                 ]);
             } else {
                 $room->update([
                     'area' => $room->width * $room->length,
-                    'perimeter' => $perimeter = 2 * ($room->length + $room->width),
-                    'wall_area' => $perimeter * $room->height
+                    'perimeter' => $room->perimeter,
+                    // 'perimeter' => $perimeter = 2 * ($room->length + $room->width),
+                    'wall_area' => $room->perimeter * $room->height
                 ]);
             }
 
@@ -79,14 +82,14 @@ class RoomWindowController extends Controller
         if ($this->windowArea($room) != 0) {
             $room->update([
                 'area' => $room->width * $room->length,
-                'perimeter' => $perimeter = 2 * ($room->length + $room->width),
-                'wall_area' => $perimeter * $room->height - $this->windowArea($room)
+                'perimeter' => $room->perimeter,
+                'wall_area' => $room->perimeter * $room->height - $this->windowArea($room)
             ]);
         } else {
             $room->update([
                 'area' => $room->width * $room->length,
-                'perimeter' => $perimeter = 2 * ($room->length + $room->width),
-                'wall_area' => $perimeter * $room->height
+                'perimeter' => $room->perimeter,
+                'wall_area' => $room->perimeter * $room->height
             ]);
         }
     }
