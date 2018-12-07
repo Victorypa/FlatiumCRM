@@ -2,6 +2,7 @@
 
 namespace App\Models\Orders\Rooms\Services;
 
+use App\Models\Units\Unit;
 use App\Models\Services\Service;
 use App\Models\Orders\Rooms\Room;
 use App\Models\Materials\Material;
@@ -12,7 +13,7 @@ class RoomService extends Model
 {
     protected $guarded = [];
 
-    protected $with = ['service_type'];
+    protected $with = ['service_type', 'unit'];
 
     public function room()
     {
@@ -32,5 +33,10 @@ class RoomService extends Model
     public function service()
     {
         return $this->belongsTo(Service::class);
+    }
+
+    public function unit()
+    {
+        return $this->belongsTo(Unit::class, 'service_unit_id');
     }
 }

@@ -52729,7 +52729,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_vuejs_datepicker_dist_locale__ = __webpack_require__(11);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__mixins_OrderExportCollection__ = __webpack_require__(8);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__mixins_ServiceCollection__ = __webpack_require__(5);
-function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } else { return Array.from(arr); } }
+var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
 
 //
 //
@@ -53119,32 +53119,16 @@ function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
                 'room_id': room_id,
                 'service_id': service_id
             });
-
-            return [].concat(_toConsumableArray(new Set(this.selected_service_ids.map(function (rs, index) {
-                // console.log(rs['room_id']);
-                // rs['room_id']
-                rs.room_id;
-                // console.log(rs.room_id);
-            }))));
-
-            // this.selected_service_ids.filter((room_service_ids, index) => {
-            //     console.log(room_service_ids);
-            //     // return [...new Set(this.room_service_ids.map(rs => rs.room_id))]
-            //
-            //     // selected_service_id.filter((service_id, room_id) => {
-            //     //     return [...new Set(this.products.map(p => p.category))]
-            //     //     // console.log(room_id, service_id);
-            //     //     // console.log(selected_service_id.indexOf(room_id) === service_id);
-            //     //     return selected_service_id.indexOf(room_id) === service_id
-            //     //     // console.log(room_id, service_id);
-            //     // })
-            //
-            //     // console.log(selected_service_id);
-            // })
-
-            console.log(this.selected_service_ids);
         },
-        removeDuplicatedElements: function removeDuplicatedElements(data) {},
+        linkSelectedServicesToRoomStepServices: function linkSelectedServicesToRoomStepServices() {
+            if (this.selected_order_step_id !== '') {
+                console.log(this.selected_order_step_id, _typeof(this.selected_order_step_id));
+            }
+
+            // if (this.selected_order_step_id) {
+            //
+            // }
+        },
         getServiceTypeName: function getServiceTypeName(service_type_id) {
             if (this.service_types && service_type_id) {
                 return this.service_types.filter(function (row) {
@@ -54700,7 +54684,7 @@ var render = function() {
                         attrs: { type: "button" },
                         on: {
                           click: function($event) {
-                            _vm.addServicesToOrderStep()
+                            _vm.linkSelectedServicesToRoomStepServices()
                           }
                         }
                       },
@@ -69607,9 +69591,12 @@ var render = function() {
                                                         parseFloat(
                                                           room_service.quantity
                                                         ).toFixed(2)
-                                                      ) + " м"
-                                                    ),
-                                                    _c("sup", [_vm._v("2")])
+                                                      ) +
+                                                        "  " +
+                                                        _vm._s(
+                                                          room_service.unit.name
+                                                        )
+                                                    )
                                                   ]),
                                                   _vm._v(" "),
                                                   _vm.order.discount
@@ -69633,11 +69620,14 @@ var render = function() {
                                                                             .discount
                                                                         ) /
                                                                           100)
-                                                                  ) + " Р/м"
-                                                                ),
-                                                                _c("sup", [
-                                                                  _vm._v("2")
-                                                                ])
+                                                                  ) +
+                                                                    " Р/" +
+                                                                    _vm._s(
+                                                                      room_service
+                                                                        .unit
+                                                                        .name
+                                                                    )
+                                                                )
                                                               ]),
                                                               _vm._v(" "),
                                                               _c("td", [
@@ -69669,11 +69659,14 @@ var render = function() {
                                                                       room_service.service_id,
                                                                       "price"
                                                                     )
-                                                                  ) + " Р/м"
-                                                                ),
-                                                                _c("sup", [
-                                                                  _vm._v("2")
-                                                                ])
+                                                                  ) +
+                                                                    " Р/" +
+                                                                    _vm._s(
+                                                                      room_service
+                                                                        .unit
+                                                                        .name
+                                                                    )
+                                                                )
                                                               ]),
                                                               _vm._v(" "),
                                                               _c("td", [
@@ -69708,11 +69701,13 @@ var render = function() {
                                                                       .markup
                                                                   ) /
                                                                     100)
-                                                            ) + " Р/м"
-                                                          ),
-                                                          _c("sup", [
-                                                            _vm._v("2")
-                                                          ])
+                                                            ) +
+                                                              " Р/" +
+                                                              _vm._s(
+                                                                room_service
+                                                                  .unit.name
+                                                              )
+                                                          )
                                                         ]),
                                                         _vm._v(" "),
                                                         _c("td", [
@@ -69747,11 +69742,13 @@ var render = function() {
                                                                 room_service.service_id,
                                                                 "price"
                                                               )
-                                                            ) + " Р/м"
-                                                          ),
-                                                          _c("sup", [
-                                                            _vm._v("2")
-                                                          ])
+                                                            ) +
+                                                              " Р/" +
+                                                              _vm._s(
+                                                                room_service
+                                                                  .unit.name
+                                                              )
+                                                          )
                                                         ]),
                                                         _vm._v(" "),
                                                         _c("td", [

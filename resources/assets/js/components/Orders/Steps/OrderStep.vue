@@ -318,7 +318,7 @@
                 </template>
             </div>
             <div class="col-md-2">
-              <button type="button" class="primary-button w-100" @click="addServicesToOrderStep()">Добавить</button>
+              <button type="button" class="primary-button w-100" @click="linkSelectedServicesToRoomStepServices()">Добавить</button>
             </div>
           </div>
         </div>
@@ -384,38 +384,16 @@
                 'room_id': room_id,
                 'service_id': service_id
             })
-
-            return [
-                ...new Set(
-                    this.selected_service_ids.map((rs, index) => {
-                        // console.log(rs['room_id']);
-                        // rs['room_id']
-                        rs.room_id
-                        // console.log(rs.room_id);
-                    })
-                )
-            ]
-
-            // this.selected_service_ids.filter((room_service_ids, index) => {
-            //     console.log(room_service_ids);
-            //     // return [...new Set(this.room_service_ids.map(rs => rs.room_id))]
-            //
-            //     // selected_service_id.filter((service_id, room_id) => {
-            //     //     return [...new Set(this.products.map(p => p.category))]
-            //     //     // console.log(room_id, service_id);
-            //     //     // console.log(selected_service_id.indexOf(room_id) === service_id);
-            //     //     return selected_service_id.indexOf(room_id) === service_id
-            //     //     // console.log(room_id, service_id);
-            //     // })
-            //
-            //     // console.log(selected_service_id);
-            // })
-
-            console.log(this.selected_service_ids);
         },
 
-        removeDuplicatedElements (data) {
+        linkSelectedServicesToRoomStepServices () {
+            if (this.selected_order_step_id !== '') {
+                console.log(this.selected_order_step_id, typeof(this.selected_order_step_id));
+            }
 
+            // if (this.selected_order_step_id) {
+            //
+            // }
         },
 
 

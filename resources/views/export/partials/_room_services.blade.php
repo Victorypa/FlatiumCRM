@@ -17,22 +17,22 @@
     @foreach ($room_services as $room_service)
         <tr>
             <th>{{ \App\Models\Services\Service::where('id', $room_service->service_id)->first()->name }}</th>
-            <td>{{ number_format((float) $room_service->quantity, 2, '.', '') }} м<sup>2</sup></td>
+            <td>{{ number_format((float) $room_service->quantity, 2, '.', '') }} {{ $room_service->unit->name }}</td>
             @if ($order->discount)
                 @if (\App\Models\Services\Service::where('id', $room_service->service_id)->first()->can_be_discounted)
-                    <td>{{ \App\Models\Services\Service::where('id', $room_service->service_id)->first()->price * (1 - $order->discount/100) }} Р/м<sup>2</sup></td>
+                    <td>{{ \App\Models\Services\Service::where('id', $room_service->service_id)->first()->price * (1 - $order->discount/100) }} Р/{{ $room_service->unit->name }}</td>
                     <td>{{ number_format($room_service->quantity * \App\Models\Services\Service::where('id', $room_service->service_id)->first()->price * (1 - $order->discount/100), 2, ',', ' ') }} Р</td>
                 @else
-                    <td>{{ \App\Models\Services\Service::where('id', $room_service->service_id)->first()->price }} Р/м<sup>2</sup></td>
+                    <td>{{ \App\Models\Services\Service::where('id', $room_service->service_id)->first()->price }} Р/{{ $room_service->unit->name }}</td>
                     <td>{{ number_format($room_service->quantity * \App\Models\Services\Service::where('id', $room_service->service_id)->first()->price, 2, ',', ' ') }} Р</td>
                 @endif
             @endif
             @if ($order->markup)
-                <td>{{ \App\Models\Services\Service::where('id', $room_service->service_id)->first()->price * (1 + $order->markup/100) }} Р/м<sup>2</sup></td>
+                <td>{{ \App\Models\Services\Service::where('id', $room_service->service_id)->first()->price * (1 + $order->markup/100) }} Р/{{ $room_service->unit->name }}</td>
                 <td>{{ number_format($room_service->quantity * \App\Models\Services\Service::where('id', $room_service->service_id)->first()->price * (1 + $order->markup/100), 2, ',', ' ') }} Р</td>
             @endif
             @if ($order->discount === null && $order->markup === null)
-                <td>{{ \App\Models\Services\Service::where('id', $room_service->service_id)->first()->price }} Р/м<sup>2</sup></td>
+                <td>{{ \App\Models\Services\Service::where('id', $room_service->service_id)->first()->price }} Р/{{ $room_service->unit->name }}</td>
                 <td>{{ number_format($room_service->quantity * \App\Models\Services\Service::where('id', $room_service->service_id)->first()->price, 2, ',', ' ') }} Р</td>
             @endif
         </tr>

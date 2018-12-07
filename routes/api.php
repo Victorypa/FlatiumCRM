@@ -38,6 +38,16 @@ use Illuminate\Http\Request;
             Route::patch('/{order}/order_step/{order_step}/update', 'OrderStepController@update');
             Route::post('/{order}/order_step/store', 'OrderStepController@store');
             Route::delete('/{order}/order_step/{order_step}/destroy', 'OrderStepController@destroy');
+
+            /**
+             * Room Steps - Services
+            */
+            Route::group(['namespace' => 'RoomSteps\Services'], function () {
+                Route::get('/{order}/order_steps/{order_step}/services', 'RoomStepServiceController@index');
+                Route::post('/{order}/order_steps/{order_step}/services/store', 'RoomStepServiceController@store');
+            });
+
+
         });
 
         /**
