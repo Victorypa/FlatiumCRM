@@ -15,22 +15,26 @@
                               <div class="col-md-8 d-flex align-items-end" @click="showServiceInput()">
                                 <h2 class="main-caption col-8" v-if="service.name">
                                   {{ service.name}}
+                                  <img src="/img/edit.svg" alt="add-button" title="Редактировать">
                                 </h2>
-                                <div class="main-subtitle ml-5">Цена: {{ service.price  }} Р</div>
+                                <div class="main-subtitle ml-5">
+                                    Цена: {{ service.price  }} Р
+                                    <img src="/img/edit.svg" alt="add-button" title="Редактировать">
+                                </div>
                               </div>
                           </template>
                           <template v-else>
-                              <div class="col-md-8 d-flex align-items-end" v-if="service_name" @mouseleave="showServiceInput()">
-                                  <h2 class="main-caption col-auto">
+                              <div class="col-md-8 d-flex align-items-center" v-if="service_name" @mouseleave="showServiceInput()">
+                                  <h2 class="main-caption col-8">
                                       <input type="text"
                                              v-model="service_name"
-                                             class="service-input"
+                                             class="service-input w-100"
                                              @change="updateService()"
                                              >
                                   </h2>
 
                                   <input type="number"
-                                         class="service-input"
+                                         class="service-input service-input--height"
                                          v-model="service_price"
                                          @change="updateService()"
                                          />
@@ -400,11 +404,13 @@ $main-color: #00A4D1;
  }
 
  .service-input {
-     outline: 0;
-     border-width: 0 0 2px;
-     &:focus {
-         outline: none !important;
-         border-width: 0 0 2px !important;
-     }
+  &--height {
+    line-height: 37px;
+  }
+}
+
+.main-caption img, .main-subtitle img {
+   width: 16px;
+   cursor: pointer;
  }
 </style>

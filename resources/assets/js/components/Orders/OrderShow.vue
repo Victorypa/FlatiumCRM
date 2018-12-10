@@ -161,7 +161,14 @@
         left: 20px;
       }
     }
-    .form-control:focus {
+
+    .form-control {
         box-shadow: none;
+        border-radius: 0;
+        &:focus {
+          box-shadow: none;
+          border-radius: 0;
+          border:1px solid #000;
+        }
     }
 </style>

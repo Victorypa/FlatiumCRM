@@ -22,14 +22,14 @@
                   <template v-if="order.rooms">
                       <router-link :to="{ name: 'room-show', params: { id: order.id, room_id: order.rooms[0].id } }" >
                           <button type="button" class="primary-button w-100">
-                              Редактировать
+                              Смотреть график
                           </button>
                       </router-link>
                   </template>
                   <template v-else>
                       <router-link :to="{ name: 'order-show', params: { id: order.id } }" >
                           <button type="button" class="primary-button w-100">
-                              Редактировать
+                              Смотреть график
                           </button>
                       </router-link>
                   </template>
@@ -62,6 +62,7 @@
                                   <template v-if="!show_input">
                                       <div class="main-subtitle" @click="showInput()">
                                           {{ order_step.name }}
+                                          <img src="/img/edit.svg" alt="add-button" title="Редактировать">
                                       </div>
                                   </template>
                                   <template v-else>
@@ -94,7 +95,7 @@
                         <template v-if="order_step.room_steps">
                             <template v-for="(room_step, index) in order_step.room_steps">
                                 <div class="col-12 d-flex align-items-center">
-                                    <h2 class="col-6 main-subtitle py-4 pl-3">
+                                    <h2 class="col-6 main-subtitle main-subtitle--font py-4 pl-3">
                                       {{ room_step.room.room_type.type }} {{ index + parseInt(1) }}
                                     </h2>
                                     <template v-if="room_step.room.room_type_id === 1">
@@ -307,7 +308,7 @@
         </div>
 
         <div class="fixed-footer d-flex align-items-center col-10">
-          <div class="col-12 d-flex align-items-center justify-content-end">
+          <div class="col-12 d-flex align-items-center justify-content-end pr-0">
             <div class="col-md-2">
                 <template v-if="order_steps">
                     <select class="w-100 form-control" v-model="selected_order_step_id">
@@ -405,7 +406,7 @@
                 axios.post(`/api/orders/${this.$route.params.id}/order_steps/${this.selected_order_step_id}/services/store`, {
                     'selected_service_ids': _.groupBy(this.selected_service_ids, 'room_id')
                 }).then(response => {
-                    this.getOrder()
+                    window.location.reload(true)
                 })
             } else {
                 alert('Выберите спринт')
@@ -641,8 +642,17 @@
     }
   }
 
-  .main-subtitle {
-    margin-bottom: 0;
-  }
+  .main {
+    &-subtitle {
+      margin-bottom: 0;
+      &--font {
+        font-size: 20px;
+      }
+      img {
+        width: 14px;
+        cursor: pointer;
+      }
+    }
+}
 
 </style>
