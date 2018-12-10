@@ -12,7 +12,7 @@
 
             <div class="row col-10 fixed-part align-items-center shadow bg-white rounded">
 
-              <div class="col-md-8">
+              <div class="col-md-10">
                 <h1 class="main-caption w-100">
                   График работ
                 </h1>
@@ -36,13 +36,14 @@
               </div>
 
               <div class="col-md-6 pt-3">
-                <h2 class="main-subtitle px-15"> Итого: {{ new Intl.NumberFormat('ru-Ru').format(order.price) }} Р</h2>
+                <h2 class="main-subtitle"> Итого: {{ new Intl.NumberFormat('ru-Ru').format(order.price) }} Р</h2>
               </div>
             </div>
 
+            <div class="stages__pt"></div>
 
             <template v-for="(order_step, index) in order_steps">
-                <div class="col-12 px-0 stages" :style="{ border: `3px solid ${order_step.color}` }">
+                <div class="col-12 px-0 mt-5 stages" :style="{ border: `3px solid ${order_step.color}` }">
                   <div class="row align-items-center py-4 mb-3 mx-2 stages-border">
                         <div class="col-12 d-flex align-items-center justify-content-between mb-2">
                           <div class="col-md-6">
@@ -395,6 +396,8 @@
             if (this.selected_order_step_id !== '') {
                 axios.post(`/api/orders/${this.$route.params.id}/order_steps/${this.selected_order_step_id}/services/store`, {
                     'selected_service_ids': _.groupBy(this.selected_service_ids, 'room_id')
+                }).then(response => {
+                    this.getOrder()
                 })
             } else {
                 alert('Выберите спринт')
@@ -529,8 +532,23 @@
     }
   }
 
+  .form-control {
+      border-radius: 0;
+      &::placeholder {
+        opacity: 0.3;
+      }
+      &:focus,
+      &:hover {
+        box-shadow: none;
+        border-color: #000;
+      }
+    }
+
+
   .stages {
-    margin-top: 245px;
+    &__pt {
+      margin-top: 240px;
+    }
     &__summ {
       font-size: 14px;
       color: #666;

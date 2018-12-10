@@ -146,12 +146,12 @@
                                         <template v-if="!show">
                                             <h2 class="main-subtitle main-subtitle--room" @click="changeRoomName">
                                                 {{ getRoomDetails(room_service[0], 'description') ? getRoomDetails(room_service[0], 'description') : getRoomDetails(room_service[0], 'room_type') }}
-
+                                                <img src="/img/edit.svg" alt="add-button" title="Редактировать">
                                             </h2>
                                         </template>
                                         <template v-else>
-                                            <div class="row" style="padding-top: 30px;" @mouseleave="show = false">
-                                                <div class="col-md-6">
+                                            <div class="row main-subtitle main-subtitle--room" @mouseleave="show = false">
+                                                <div class="col-md-5">
                                                     <div class="form-group">
                                                         <input type="text"
                                                                class="form-control"
@@ -499,5 +499,10 @@ textarea {
   }
   .main-subtitle--room {
     padding-top: 75px;
+  }
+
+  .main-subtitle img {
+    width: 13px;
+    cursor: pointer;
   }
 </style>

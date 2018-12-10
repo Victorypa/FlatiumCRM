@@ -78,7 +78,7 @@
 
                   <div class="px-15">
                       <template v-if="finished_room.room.description">
-                          <h2 class="main-subtitle main-subtitle--room pl-3">
+                          <h2 class="main-subtitle main-subtitle--room">
                               {{ finished_room.room.description }}
                           </h2>
                       </template>

@@ -15,13 +15,15 @@
                             <div class="col-10 d-flex">
                                 <template v-if="!show">
                                     <template v-if="description">
-                                          <h1 class="mb-0 col-auto pl-0" @click="show = !show">
+                                          <h1 class="main-caption mb-0 col-auto pl-0" @click="show = !show">
                                             {{ description }}
+                                            <img src="/img/edit.svg" alt="add-button" title="Редактировать">
                                           </h1>
                                     </template>
                                     <template v-else>
-                                          <h1 class="mb-0 col-auto pl-0" @click="show = !show">
+                                          <h1 class="main-caption mb-0 col-auto pl-0" @click="show = !show">
                                             Акт дополнительных работ
+                                            <img src="/img/edit.svg" alt="add-button" title="Редактировать">
                                           </h1>
                                     </template>
                                 </template>
@@ -686,9 +688,6 @@
     .sidebar {
       min-height: 100vh;
     }
-    .main-caption {
-      font-size: 1.4rem;
-    }
   }
 
   a:hover {
@@ -696,5 +695,10 @@
   }
    .w-85 {
       width:85px;
+  }
+
+  .main-caption img {
+    width: 16px;
+    cursor: pointer;
   }
 </style>

@@ -13,6 +13,7 @@
                         <div class="col-md-8">
                           <h1 class="main-caption w-100" @click="show = !show">
                             {{ description }}
+                            <img src="/img/edit.svg" alt="add-button" title="Редактировать">
                           </h1>
                         </div>
                     </template>
@@ -20,6 +21,7 @@
                         <div class="col-md-8">
                           <h1 class="main-caption w-100" @click="show = !show">
                             Акт выполненных работ
+                            <img src="/img/edit.svg" alt="add-button" title="Редактировать">
                           </h1>
                         </div>
                     </template>
@@ -255,5 +257,9 @@ import FinishedRoom from './Partials/FinishedRoom'
     cursor: pointer;
   }
 
+  .main-caption img {
+      width: 16px;
+      cursor: pointer;
+    }
 
 </style>
