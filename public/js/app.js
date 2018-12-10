@@ -53126,17 +53126,20 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             });
         },
         detachSelectedService: function detachSelectedService(room_step_id, service_id) {
-            // console.log(room_step_id, service_id);
-            axios.post("/api/orders/" + this.$route.params.id + "/room_steps/" + room_step_id + "/services/" + service_id + "/detach");
+            var _this2 = this;
+
+            axios.post("/api/orders/" + this.$route.params.id + "/room_steps/" + room_step_id + "/services/" + service_id + "/detach").then(function (response) {
+                _this2.getOrder();
+            });
         },
         linkSelectedServicesToRoomStepServices: function linkSelectedServicesToRoomStepServices() {
-            var _this2 = this;
+            var _this3 = this;
 
             if (this.selected_order_step_id !== '') {
                 axios.post("/api/orders/" + this.$route.params.id + "/order_steps/" + this.selected_order_step_id + "/services/store", {
                     'selected_service_ids': _.groupBy(this.selected_service_ids, 'room_id')
                 }).then(function (response) {
-                    _this2.getOrder();
+                    _this3.getOrder();
                 });
             } else {
                 alert('Выберите спринт');
@@ -53150,18 +53153,18 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             }
         },
         createNewOrderStep: function createNewOrderStep() {
-            var _this3 = this;
+            var _this4 = this;
 
             axios.post("/api/orders/" + this.$route.params.id + "/order_step/store").then(function (response) {
-                _this3.getOrder();
+                _this4.getOrder();
                 window.scrollTo({ top: 0, behavior: 'smooth' });
             });
         },
         deleteOrderStep: function deleteOrderStep(order_step_id) {
-            var _this4 = this;
+            var _this5 = this;
 
             axios.delete("/api/orders/" + this.$route.params.id + "/order_step/" + order_step_id + "/destroy").then(function (response) {
-                _this4.getOrder();
+                _this5.getOrder();
                 window.scrollTo({ top: 0, behavior: 'smooth' });
             });
         },
@@ -53169,31 +53172,31 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             this.show_input = !this.show_input;
         },
         updateOrderStepDescription: function updateOrderStepDescription(order_step_id, description) {
-            var _this5 = this;
+            var _this6 = this;
 
             axios.patch("/api/orders/" + this.$route.params.id + "/order_step/" + order_step_id + "/update", {
                 'description': description
             }).then(function (response) {
-                _this5.showInput();
-                _this5.getOrder();
+                _this6.showInput();
+                _this6.getOrder();
             });
         },
         updateOrderStepBeginAt: function updateOrderStepBeginAt(order_step_id, begin_at) {
-            var _this6 = this;
+            var _this7 = this;
 
             axios.patch("/api/orders/" + this.$route.params.id + "/order_step/" + order_step_id + "/update", {
                 'begin_at': begin_at
             }).then(function (response) {
-                _this6.getOrder();
+                _this7.getOrder();
             });
         },
         updateOrderStepFinishAt: function updateOrderStepFinishAt(order_step_id, finish_at) {
-            var _this7 = this;
+            var _this8 = this;
 
             axios.patch("/api/orders/" + this.$route.params.id + "/order_step/" + order_step_id + "/update", {
                 'finish_at': finish_at
             }).then(function (response) {
-                _this7.getOrder();
+                _this8.getOrder();
             });
         }
     }

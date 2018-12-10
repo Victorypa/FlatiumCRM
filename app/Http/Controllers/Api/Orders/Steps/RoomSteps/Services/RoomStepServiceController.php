@@ -73,6 +73,6 @@ class RoomStepServiceController extends Controller
 
     public function destroy(Order $order, RoomStep $room_step, Service $service, Request $request)
     {
-        dd('working');
+        $room_step->services()->detach($service->id);
     }
 }

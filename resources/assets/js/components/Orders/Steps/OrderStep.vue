@@ -394,8 +394,10 @@
         },
 
         detachSelectedService (room_step_id, service_id) {
-            // console.log(room_step_id, service_id);
             axios.post(`/api/orders/${this.$route.params.id}/room_steps/${room_step_id}/services/${service_id}/detach`)
+                 .then(response => {
+                     this.getOrder()
+                 })
         },
 
         linkSelectedServicesToRoomStepServices () {
