@@ -137,6 +137,7 @@
                                                                      class="form-check-input check"
                                                                      :id="'room-step-' + room_step.id + '-room-step-service-' + room_step_service.id"
                                                                      :checked="true"
+                                                                     @click="detachSelectedService(room_step.id, room_step_service.id)"
                                                                      >
 
                                                               <label class="form-check-label d-block"
@@ -390,6 +391,11 @@
                 'service_id': service_id,
                 'quantity': quantity
             })
+        },
+
+        detachSelectedService (room_step_id, service_id) {
+            // console.log(room_step_id, service_id);
+            axios.post(`/api/orders/${this.$route.params.id}/room_steps/${room_step_id}/services/${service_id}/detach`)
         },
 
         linkSelectedServicesToRoomStepServices () {

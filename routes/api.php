@@ -45,6 +45,7 @@ use Illuminate\Http\Request;
             Route::group(['namespace' => 'RoomSteps\Services'], function () {
                 Route::get('/{order}/order_steps/{order_step}/services', 'RoomStepServiceController@index');
                 Route::post('/{order}/order_steps/{order_step}/services/store', 'RoomStepServiceController@store');
+                Route::post('/{order}/room_steps/{room_step}/services/{service}/detach', 'RoomStepServiceController@destroy');
             });
 
 

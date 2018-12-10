@@ -8,6 +8,7 @@ use App\Models\Services\Service;
 use App\Models\Orders\Rooms\Room;
 use App\Http\Controllers\Controller;
 use App\Models\Orders\Steps\OrderStep;
+use App\Models\Orders\Steps\Rooms\RoomStep;
 
 class RoomStepServiceController extends Controller
 {
@@ -68,5 +69,10 @@ class RoomStepServiceController extends Controller
 
             }
         }
+    }
+
+    public function destroy(Order $order, RoomStep $room_step, Service $service, Request $request)
+    {
+        dd('working');
     }
 }
