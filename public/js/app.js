@@ -53060,6 +53060,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
 
 
 
@@ -53844,6 +53848,9 @@ var render = function() {
                                                                                                   room_step.id +
                                                                                                   "-room-step-service-" +
                                                                                                   room_step_service.id
+                                                                                              },
+                                                                                              domProps: {
+                                                                                                checked: true
                                                                                               }
                                                                                             }
                                                                                           ),
@@ -54317,13 +54324,14 @@ var render = function() {
                                                                         ).toFixed(
                                                                           2
                                                                         )
-                                                                      ) + " м"
-                                                                    ),
-                                                                    _c("sup", [
-                                                                      _vm._v(
-                                                                        "2"
-                                                                      )
-                                                                    ])
+                                                                      ) +
+                                                                        " " +
+                                                                        _vm._s(
+                                                                          room_service
+                                                                            .unit
+                                                                            .name
+                                                                        )
+                                                                    )
                                                                   ]),
                                                                   _vm._v(" "),
                                                                   _vm.order
@@ -54351,15 +54359,12 @@ var render = function() {
                                                                                           ) /
                                                                                             100)
                                                                                     ) +
-                                                                                      " Р/м"
-                                                                                  ),
-                                                                                  _c(
-                                                                                    "sup",
-                                                                                    [
-                                                                                      _vm._v(
-                                                                                        "2"
+                                                                                      " Р/" +
+                                                                                      _vm._s(
+                                                                                        room_service
+                                                                                          .unit
+                                                                                          .name
                                                                                       )
-                                                                                    ]
                                                                                   )
                                                                                 ]
                                                                               ),
@@ -54402,15 +54407,12 @@ var render = function() {
                                                                                         "price"
                                                                                       )
                                                                                     ) +
-                                                                                      " Р/м"
-                                                                                  ),
-                                                                                  _c(
-                                                                                    "sup",
-                                                                                    [
-                                                                                      _vm._v(
-                                                                                        "2"
+                                                                                      " Р/" +
+                                                                                      _vm._s(
+                                                                                        room_service
+                                                                                          .unit
+                                                                                          .name
                                                                                       )
-                                                                                    ]
                                                                                   )
                                                                                 ]
                                                                               ),
@@ -54458,15 +54460,12 @@ var render = function() {
                                                                                     ) /
                                                                                       100)
                                                                               ) +
-                                                                                " Р/м"
-                                                                            ),
-                                                                            _c(
-                                                                              "sup",
-                                                                              [
-                                                                                _vm._v(
-                                                                                  "2"
+                                                                                " Р/" +
+                                                                                _vm._s(
+                                                                                  room_service
+                                                                                    .unit
+                                                                                    .name
                                                                                 )
-                                                                              ]
                                                                             )
                                                                           ]
                                                                         ),
@@ -54517,15 +54516,12 @@ var render = function() {
                                                                                   "price"
                                                                                 )
                                                                               ) +
-                                                                                " Р/м"
-                                                                            ),
-                                                                            _c(
-                                                                              "sup",
-                                                                              [
-                                                                                _vm._v(
-                                                                                  "2"
+                                                                                " Р/" +
+                                                                                _vm._s(
+                                                                                  room_service
+                                                                                    .unit
+                                                                                    .name
                                                                                 )
-                                                                              ]
                                                                             )
                                                                           ]
                                                                         ),

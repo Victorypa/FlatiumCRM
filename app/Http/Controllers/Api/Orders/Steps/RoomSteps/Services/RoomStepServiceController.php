@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Api\Orders\Steps\RoomSteps\Services;
 
 use Illuminate\Http\Request;
 use App\Models\Orders\Order;
+use App\Models\Services\Service;
 use App\Models\Orders\Rooms\Room;
 use App\Http\Controllers\Controller;
 use App\Models\Orders\Steps\OrderStep;
@@ -28,9 +29,43 @@ class RoomStepServiceController extends Controller
             $room_step->services()->sync($service_ids);
 
             foreach ($service_quantities as $service_id => $quantity) {
-                $room_step->services()->updateExistingPivot($service_id, [
-                    'quantity' => $quantity
-                ]);
+                $currentService = Service::where('id', $service_id)->first();
+                if ($order->discount !== null) {
+                    if ($currentService->can_be_discounted) {
+                        $room_step->services()->updateExistingPivot($service_id, [
+                            'quantity' => $quantity,
+                            'price' => $quantity * $currentService->price * (1 - (float)$order->discount/100),
+                            'service_type_id' => $currentService->service_type_id,
+                            'service_unit_id' => $currentService->unit_id
+                        ]);
+                    } else {
+                        $room_step->services()->updateExistingPivot($service_id, [
+                            'quantity' => $quantity,
+                            'price' => $quantity * $currentService->price,
+                            'service_type_id' => $currentService->service_type_id,
+                            'service_unit_id' => $currentService->unit_id
+                        ]);
+                    }
+                }
+
+                if ($order->markup !== null) {
+                    $room_step->services()->updateExistingPivot($service_id, [
+                        'quantity' => $quantity,
+                        'price' => $quantity * $currentService->price * (1 + (float)$order->markup/100),
+                        'service_type_id' => $currentService->service_type_id,
+                        'service_unit_id' => $currentService->unit_id
+                    ]);
+                }
+
+                if ($order->markup === null && $order->discount === null) {
+                    $room_step->services()->updateExistingPivot($service_id, [
+                        'quantity' => $quantity,
+                        'price' => $quantity * $currentService->price,
+                        'service_type_id' => $currentService->service_type_id,
+                        'service_unit_id' => $currentService->unit_id
+                    ]);
+                }
+
             }
         }
     }
