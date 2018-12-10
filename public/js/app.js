@@ -52729,8 +52729,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_vuejs_datepicker_dist_locale__ = __webpack_require__(11);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__mixins_OrderExportCollection__ = __webpack_require__(8);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__mixins_ServiceCollection__ = __webpack_require__(5);
-var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
-
 //
 //
 //
@@ -53114,20 +53112,21 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
                 });
             });
         },
-        addSelectedServiceIds: function addSelectedServiceIds(room_id, service_id) {
+        addSelectedServiceIds: function addSelectedServiceIds(room_id, service_id, quantity) {
             this.selected_service_ids.push({
                 'room_id': room_id,
-                'service_id': service_id
+                'service_id': service_id,
+                'quantity': quantity
             });
         },
         linkSelectedServicesToRoomStepServices: function linkSelectedServicesToRoomStepServices() {
             if (this.selected_order_step_id !== '') {
-                console.log(this.selected_order_step_id, _typeof(this.selected_order_step_id));
+                axios.post("/api/orders/" + this.$route.params.id + "/order_steps/" + this.selected_order_step_id + "/services/store", {
+                    'selected_service_ids': _.groupBy(this.selected_service_ids, 'room_id')
+                });
+            } else {
+                alert('Выберите спринт');
             }
-
-            // if (this.selected_order_step_id) {
-            //
-            // }
         },
         getServiceTypeName: function getServiceTypeName(service_type_id) {
             if (this.service_types && service_type_id) {
@@ -54269,7 +54268,8 @@ var render = function() {
                                                                                 ) {
                                                                                   _vm.addSelectedServiceIds(
                                                                                     room.id,
-                                                                                    room_service.service_id
+                                                                                    room_service.service_id,
+                                                                                    room_service.quantity
                                                                                   )
                                                                                 }
                                                                               }

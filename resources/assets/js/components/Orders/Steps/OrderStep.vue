@@ -248,7 +248,7 @@
                                                       <input type="checkbox"
                                                              class="form-check-input check"
                                                              :id="'room-' + room.id + '-service-' + room_service.service_id"
-                                                             @click="addSelectedServiceIds(room.id, room_service.service_id)"
+                                                             @click="addSelectedServiceIds(room.id, room_service.service_id, room_service.quantity)"
                                                              >
                                                       <label class="form-check-label d-block"
                                                              :for="'room-' + room.id + '-service-' + room_service.service_id"
@@ -379,21 +379,22 @@
                         })
         },
 
-        addSelectedServiceIds (room_id, service_id) {
+        addSelectedServiceIds (room_id, service_id, quantity) {
             this.selected_service_ids.push({
                 'room_id': room_id,
-                'service_id': service_id
+                'service_id': service_id,
+                'quantity': quantity
             })
         },
 
         linkSelectedServicesToRoomStepServices () {
             if (this.selected_order_step_id !== '') {
-                console.log(this.selected_order_step_id, typeof(this.selected_order_step_id));
+                axios.post(`/api/orders/${this.$route.params.id}/order_steps/${this.selected_order_step_id}/services/store`, {
+                    'selected_service_ids': _.groupBy(this.selected_service_ids, 'room_id')
+                })
+            } else {
+                alert('Выберите спринт')
             }
-
-            // if (this.selected_order_step_id) {
-            //
-            // }
         },
 
 
