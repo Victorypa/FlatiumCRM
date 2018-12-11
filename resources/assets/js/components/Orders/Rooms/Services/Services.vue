@@ -25,11 +25,6 @@
                 <form class="row w-100" @submit.prevent="saveNewService()">
                     <div class="col-2 py-1">
                         &nbsp;
-                        <!-- <select class="form-control" v-model="newService.service_type_id">
-                              <option v-for="service_type in service_types" :value="service_type.id">
-                                  {{ service_type.name }}
-                              </option>
-                        </select> -->
                     </div>
 
                     <div class="col-5 py-1">
