@@ -4,47 +4,38 @@
 
     <section class="work-stages">
 
-      <div class="container-fluid ">
+      <div class="container-fluid px-0">
         <div class="row">
           <navigation></navigation>
 
-          <div class="col-md-10">
+          <div class="col-md-10 px-0">
 
-            <div class="row col-10 fixed-part align-items-center shadow bg-white rounded">
+            <div class="row col-12 fixed-part align-items-center shadow-light">
 
               <div class="col-md-10">
                 <h1 class="main-caption w-100">
-                  График работ
+                  Этапы работ
                 </h1>
               </div>
 
               <div class="col-md-2">
-                  <template v-if="order.rooms">
-                      <router-link :to="{ name: 'room-show', params: { id: order.id, room_id: order.rooms[0].id } }" >
-                          <button type="button" class="primary-button w-100">
-                              Смотреть график
-                          </button>
-                      </router-link>
-                  </template>
-                  <template v-else>
-                      <router-link :to="{ name: 'order-show', params: { id: order.id } }" >
-                          <button type="button" class="primary-button w-100">
-                              Смотреть график
-                          </button>
-                      </router-link>
-                  </template>
+                  <router-link :to="{ name: 'order-step-graphic', params: { id: order.id } }" >
+                      <button type="button" class="primary-button w-100">
+                          Смотреть график
+                      </button>
+                  </router-link>
               </div>
 
               <div class="col-md-6 pt-3">
-                <h2 class="main-subtitle"> Итого: {{ new Intl.NumberFormat('ru-Ru').format(order.price) }} Р</h2>
+                <h2 class="main-subtitle"> Итого по смете: {{ new Intl.NumberFormat('ru-Ru').format(order.price) }} Р</h2>
               </div>
             </div>
 
             <div class="stages__pt"></div>
 
             <template v-for="(order_step, index) in order_steps">
-                <div class="col-12 px-0 mt-5 stages" :style="{ border: `3px solid ${order_step.color}` }">
-                  <div class="row align-items-center py-4 mb-3 mx-2 stages-border">
+                <div class="px-0 mx-4 mt-5 stages shadow-light" :style="{ border: `3px solid ${order_step.color}` }">
+                    <div class="row w-100 align-items-center py-4 mb-3 stages-border">
                         <div class="col-12 d-flex align-items-center justify-content-between mb-2">
                           <div class="col-md-6">
 
@@ -113,7 +104,7 @@
                                     <div class="col-12 d-flex align-items-center">
                                         <div class="col-6 table-subtitle table-subtitle__items px-3">Наименование
                                         </div>
-                                        <div class="col-6 d-flex justify-content-end px-0 table-subtitle__items">
+                                        <div class="col-6 d-flex justify-content-end table-subtitle__items">
                                           <div class="table-subtitle">Кол-во</div>
                                           <div class="table-subtitle">Цена</div>
                                           <div class="table-subtitle">Стоимость</div>
@@ -253,7 +244,7 @@
                                           <tr>
                                               <div v-for="room_service in room_services" class="item d-flex justify-content-between">
 
-                                                  <th scope="row" class="w-75">
+                                                  <th scope="row" class="col-6">
                                                     <div class="form-check custom-control checkbox">
                                                       <input type="checkbox"
                                                              class="form-check-input check"
@@ -270,27 +261,28 @@
                                                       </label>
                                                     </div>
                                                   </th>
-                                                  <td>{{ parseFloat(room_service.quantity).toFixed(2) }} {{ room_service.unit.name }}</td>
+                                                  <div class="col-6 d-flex justify-content-end px-0">
+                                                      <td>{{ parseFloat(room_service.quantity).toFixed(2) }} {{ room_service.unit.name }}</td>
 
-                                                  <template v-if="order.discount">
-                                                      <template v-if="getServiceDetails(room_service.service_id, 'can_be_discounted')">
-                                                          <td>{{ getServiceDetails(room_service.service_id, 'price') * (1 - parseInt(order.discount)/100) }} Р/{{ room_service.unit.name }}</td>
-                                                          <td>{{ priceCount(room_service.quantity, getServiceDetails(room_service.service_id, 'price') * (1 - parseFloat(order.discount)/100)) }} Р</td>
+                                                      <template v-if="order.discount">
+                                                          <template v-if="getServiceDetails(room_service.service_id, 'can_be_discounted')">
+                                                              <td>{{ getServiceDetails(room_service.service_id, 'price') * (1 - parseInt(order.discount)/100) }} Р/{{ room_service.unit.name }}</td>
+                                                              <td>{{ priceCount(room_service.quantity, getServiceDetails(room_service.service_id, 'price') * (1 - parseFloat(order.discount)/100)) }} Р</td>
+                                                          </template>
+                                                          <template v-else>
+                                                              <td>{{ getServiceDetails(room_service.service_id, 'price') }} Р/{{ room_service.unit.name }}</td>
+                                                              <td>{{ priceCount(room_service.quantity, getServiceDetails(room_service.service_id, 'price')) }} Р</td>
+                                                          </template>
                                                       </template>
-                                                      <template v-else>
+                                                      <template v-if="order.markup">
+                                                          <td>{{ getServiceDetails(room_service.service_id, 'price') * (1 + parseInt(order.markup)/100) }} Р/{{ room_service.unit.name }}</td>
+                                                          <td>{{ priceCount(room_service.quantity, getServiceDetails(room_service.service_id, 'price') * (1 + parseFloat(order.markup)/100)) }} Р</td>
+                                                      </template>
+                                                      <template v-if="order.discount === null && order.markup === null">
                                                           <td>{{ getServiceDetails(room_service.service_id, 'price') }} Р/{{ room_service.unit.name }}</td>
                                                           <td>{{ priceCount(room_service.quantity, getServiceDetails(room_service.service_id, 'price')) }} Р</td>
                                                       </template>
-                                                  </template>
-                                                  <template v-if="order.markup">
-                                                      <td>{{ getServiceDetails(room_service.service_id, 'price') * (1 + parseInt(order.markup)/100) }} Р/{{ room_service.unit.name }}</td>
-                                                      <td>{{ priceCount(room_service.quantity, getServiceDetails(room_service.service_id, 'price') * (1 + parseFloat(order.markup)/100)) }} Р</td>
-                                                  </template>
-                                                  <template v-if="order.discount === null && order.markup === null">
-                                                      <td>{{ getServiceDetails(room_service.service_id, 'price') }} Р/{{ room_service.unit.name }}</td>
-                                                      <td>{{ priceCount(room_service.quantity, getServiceDetails(room_service.service_id, 'price')) }} Р</td>
-                                                  </template>
-
+                                                  </div>
                                                 </div>
                                           </tr>
                                       </template>
@@ -485,13 +477,6 @@
     $button-hover:#03B8E9;
     $text-color: #777777;
   .fixed {
-    &-part {
-      position: fixed;
-      background-color: $white;
-      padding-bottom: 35px;
-      padding-top: 85px;
-      z-index: 999;
-    }
     &-footer {
       position: fixed;
       left: 16.7%;
@@ -550,22 +535,19 @@
   }
 
   .form-control {
-      border-radius: 0;
-      &::placeholder {
-        opacity: 0.3;
-      }
-      &:focus,
-      &:hover {
-        box-shadow: none;
-        border-color: #000;
-      }
+        border-radius: 0;
+        &::placeholder {
+            opacity: 0.3;
+        }
+        &:focus,
+        &:hover {
+          box-shadow: none;
+          border-color: #000;
+        }
     }
 
 
   .stages {
-    &__pt {
-      margin-top: 240px;
-    }
     &__summ {
       font-size: 14px;
       color: #666;
@@ -631,6 +613,7 @@
 
   .table {
     &-subtitle {
+         width: 25%;
       &__items {
       background-color: #f2f4f5;
       }
@@ -646,6 +629,7 @@
       background-color: #eff8ff;
     }
     th, td {
+        width: 25%;
       border-top: 0;
     }
   }
