@@ -181,9 +181,9 @@
                                             Удалить этап
                                     </button>
                                 </div>
-                                
+
                                 <div class="stages__summ col-6 text-right">
-                                   Итого за этап: <span>10 000 Р</span>
+                                   Итого за этап: <span>{{ new Intl.NumberFormat('ru-Ru').format(order_step.price) }} Р</span>
                                 </div>
                               </div>
                             </div>
@@ -386,7 +386,6 @@
                         .then(response => {
                             this.order = response.data
                             this.order_steps = this.order.order_steps
-
                             this.order_steps.forEach(order_step => {
                                 this.order_step_descriptions[order_step.id] = order_step.description
                                 this.order_step_begin_ats[order_step.id] = order_step.begin_at

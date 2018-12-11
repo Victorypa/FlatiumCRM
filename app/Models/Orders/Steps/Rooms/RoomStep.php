@@ -24,7 +24,7 @@ class RoomStep extends Model
 
     public function order_step()
     {
-        return $this->belongTo(OrderStep::class);
+        return $this->belongsTo(OrderStep::class);
     }
 
     public function room()

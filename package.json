@@ -21,6 +21,7 @@
         "vue-template-compiler": "^2.5.17"
     },
     "dependencies": {
+        "d3": "^5.7.0",
         "moment": "^2.22.2",
         "vue-carousel": "^0.13.1",
         "vue-router": "^3.0.2",

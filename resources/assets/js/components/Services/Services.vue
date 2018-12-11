@@ -121,7 +121,7 @@
                     <template v-else>
                         <div class="col-4 d-flex justify-content-end align-items-center">
                           <div class="total-sum col-4">
-                              {{ new Intl.NumberFormat().format(parseFloat(service.price).toFixed(2)) }} Р
+                              {{ new Intl.NumberFormat('ru-Ru').format(service.price) }} Р
                           </div>
 
                          <div class="col-3">

@@ -69,15 +69,30 @@ class RoomStepServiceController extends Controller
 
             }
         }
+
+        $this->calculateOrderStepPrice($order_step);
     }
 
     public function destroy(Order $order, RoomStep $room_step, Service $service, Request $request)
     {
         $room_step->services()->detach($service->id);
+
+        $this->calculateOrderStepPrice($room_step->order_step);
     }
+
 
     protected function calculateOrderStepPrice(OrderStep $order_step)
     {
-
+        $total = 0;
+        foreach ($order_step->room_steps as $room_step) {
+            foreach ($room_step->services as $service) {
+                $total += (float) $service->pivot->price;
+            }
+        }
+        $order_step->update([
+            'price' => $total
+        ]);
     }
+
+
 }

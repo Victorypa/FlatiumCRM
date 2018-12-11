@@ -53120,7 +53120,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             return axios.get("/api/orders/" + this.$route.params.id + "/order_steps").then(function (response) {
                 _this.order = response.data;
                 _this.order_steps = _this.order.order_steps;
-
                 _this.order_steps.forEach(function (order_step) {
                     _this.order_step_descriptions[order_step.id] = order_step.description;
                     _this.order_step_begin_ats[order_step.id] = order_step.begin_at;
@@ -54121,7 +54120,29 @@ var render = function() {
                                                   ]
                                                 ),
                                                 _vm._v(" "),
-                                                _vm._m(2, true)
+                                                _c(
+                                                  "div",
+                                                  {
+                                                    staticClass:
+                                                      "stages__summ col-6 text-right"
+                                                  },
+                                                  [
+                                                    _vm._v(
+                                                      "\n                                 Итого за этап: "
+                                                    ),
+                                                    _c("span", [
+                                                      _vm._v(
+                                                        _vm._s(
+                                                          new Intl.NumberFormat(
+                                                            "ru-Ru"
+                                                          ).format(
+                                                            order_step.price
+                                                          )
+                                                        ) + " Р"
+                                                      )
+                                                    ])
+                                                  ]
+                                                )
                                               ]
                                             )
                                           ])
@@ -54260,7 +54281,7 @@ var render = function() {
                                   ]
                                 ),
                                 _vm._v(" "),
-                                _vm._m(3, true),
+                                _vm._m(2, true),
                                 _vm._v(" "),
                                 _c("div", { staticClass: "material-info" }, [
                                   _c("div", { staticClass: "row mx-3" }, [
@@ -54839,15 +54860,6 @@ var staticRenderFns = [
         _c("div", { staticClass: "table-subtitle" }, [_vm._v("Стоимость")])
       ]
     )
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "stages__summ col-6 text-right" }, [
-      _vm._v("\n                                 Итого за этап: "),
-      _c("span", [_vm._v("10 000 Р")])
-    ])
   },
   function() {
     var _vm = this
@@ -72366,11 +72378,9 @@ var render = function() {
                                         _vm._v(
                                           "\n                        " +
                                             _vm._s(
-                                              new Intl.NumberFormat().format(
-                                                parseFloat(
-                                                  service.price
-                                                ).toFixed(2)
-                                              )
+                                              new Intl.NumberFormat(
+                                                "ru-Ru"
+                                              ).format(service.price)
                                             ) +
                                             " Р\n                    "
                                         )
