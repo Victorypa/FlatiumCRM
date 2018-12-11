@@ -75,4 +75,9 @@ class RoomStepServiceController extends Controller
     {
         $room_step->services()->detach($service->id);
     }
+
+    protected function calculateOrderStepPrice(OrderStep $order_step)
+    {
+
+    }
 }

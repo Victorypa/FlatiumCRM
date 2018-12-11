@@ -94,75 +94,80 @@
 
                         <template v-if="order_step.room_steps">
                             <template v-for="(room_step, index) in order_step.room_steps">
-                                <div class="col-12 d-flex align-items-center">
-                                    <h2 class="col-6 main-subtitle main-subtitle--font py-4 pl-3">
-                                      {{ room_step.room.room_type.type }} {{ index + parseInt(1) }}
-                                    </h2>
-                                    <template v-if="room_step.room.room_type_id === 1">
-                                        <div class="col-6 d-flex justify-content-end align-items-center pt-3 pl-3">
-                                          <div class="projects__desc-item pr-3">S: {{ parseFloat(room_step.room.area).toFixed(1) }} м<sup>2</sup></div>
-                                          <div class="projects__desc-item pr-3">H: {{ parseFloat(room_step.room.height).toFixed(1) }} м</div>
-                                          <div class="projects__desc-item pr-3">S стен: {{ parseFloat(room_step.room.wall_area).toFixed(1) }} м<sup>2</sup></div>
-                                          <div class="projects__desc-item">P: {{ parseFloat(room_step.room.perimeter).toFixed(1) }} м. п.</div>
-                                        </div>
-                                    </template>
-                                </div>
+                                <template v-if="room_step.services.length">
 
-                                <div class="col-12 d-flex align-items-center">
-                                    <div class="col-6 table-subtitle table-subtitle__items px-3">Наименование
-                                    </div>
-                                    <div class="col-6 d-flex justify-content-end px-0 table-subtitle__items">
-                                      <div class="table-subtitle">Кол-во</div>
-                                      <div class="table-subtitle">Цена</div>
-                                      <div class="table-subtitle">Стоимость</div>
-                                    </div>
-                                </div>
-
-                                <div class="col-12">
-                                  <table class="table drag-table">
-                                    <tbody>
-                                        <template v-if="room_step.services">
-                                            <template v-for="(room_step_services, service_type_id) in groupByServiceType(room_step.services)">
-                                                <tr>
-                                                  <th colspan="4" class="table__transparent-row">
-                                                      {{ getServiceTypeName(service_type_id) }}
-                                                  </th>
-                                                </tr>
-
-                                                <template v-for="room_step_service in room_step_services">
-                                                    <tr>
-                                                        <div :style="{ 'background-color': order_step.opacity_color }" class="d-flex justify-content-between">
-                                                          <th scope="row" class="col-6">
-                                                            <div class="form-check custom-control checkbox">
-                                                              <input type="checkbox"
-                                                                     class="form-check-input check"
-                                                                     :id="'room-step-' + room_step.id + '-room-step-service-' + room_step_service.id"
-                                                                     :checked="true"
-                                                                     @click="detachSelectedService(room_step.id, room_step_service.id)"
-                                                                     >
-
-                                                              <label class="form-check-label d-block"
-                                                                     :for="'room-step-' + room_step.id + '-room-step-service-' + room_step_service.id"
-                                                                    >
-                                                                    {{ room_step_service.name }}
-                                                              </label>
-                                                            </div>
-                                                          </th>
-
-                                                          <div class="col-6 d-flex justify-content-end">
-                                                              <td>{{ parseFloat(room_step_service.pivot.quantity).toFixed(2) }} м<sup>2</sup></td>
-                                                              <td>{{ new Intl.NumberFormat('ru-Ru').format(room_step_service.price) }} Р/ м<sup>2</sup></td>
-                                                              <td>{{ priceCount(room_step_service.pivot.quantity, room_step_service.price) }} Р</td>
-                                                          </div>
-                                                        </div>
-                                                    </tr>
-                                                </template>
-
-                                            </template>
+                                    <div class="col-12 d-flex align-items-center">
+                                        <h2 class="col-6 main-subtitle main-subtitle--font py-4 pl-3">
+                                          {{ room_step.room.room_type.type }} {{ index + parseInt(1) }}
+                                        </h2>
+                                        <template v-if="room_step.room.room_type_id === 1">
+                                            <div class="col-6 d-flex justify-content-end align-items-center pt-3 pl-3">
+                                              <div class="projects__desc-item pr-3">S: {{ parseFloat(room_step.room.area).toFixed(1) }} м<sup>2</sup></div>
+                                              <div class="projects__desc-item pr-3">H: {{ parseFloat(room_step.room.height).toFixed(1) }} м</div>
+                                              <div class="projects__desc-item pr-3">S стен: {{ parseFloat(room_step.room.wall_area).toFixed(1) }} м<sup>2</sup></div>
+                                              <div class="projects__desc-item">P: {{ parseFloat(room_step.room.perimeter).toFixed(1) }} м. п.</div>
+                                            </div>
                                         </template>
-                                    </tbody>
-                                  </table>
-                                </div>
+                                    </div>
+
+                                    <div class="col-12 d-flex align-items-center">
+                                        <div class="col-6 table-subtitle table-subtitle__items px-3">Наименование
+                                        </div>
+                                        <div class="col-6 d-flex justify-content-end px-0 table-subtitle__items">
+                                          <div class="table-subtitle">Кол-во</div>
+                                          <div class="table-subtitle">Цена</div>
+                                          <div class="table-subtitle">Стоимость</div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-12">
+                                      <table class="table drag-table">
+                                        <tbody>
+                                            <template v-if="room_step.services">
+                                                <template v-for="(room_step_services, service_type_id) in groupByServiceType(room_step.services)">
+                                                    <tr>
+                                                      <th colspan="4" class="table__transparent-row">
+                                                          {{ getServiceTypeName(service_type_id) }}
+                                                      </th>
+                                                    </tr>
+
+                                                    <template v-for="room_step_service in room_step_services">
+                                                        <tr>
+                                                            <div :style="{ 'background-color': order_step.opacity_color }" class="d-flex justify-content-between">
+                                                              <th scope="row" class="col-6">
+                                                                <div class="form-check custom-control checkbox">
+                                                                  <input type="checkbox"
+                                                                         class="form-check-input check"
+                                                                         :id="'room-step-' + room_step.id + '-room-step-service-' + room_step_service.id"
+                                                                         :checked="true"
+                                                                         @click="detachSelectedService(room_step.id, room_step_service.id)"
+                                                                         >
+
+                                                                  <label class="form-check-label d-block"
+                                                                         :for="'room-step-' + room_step.id + '-room-step-service-' + room_step_service.id"
+                                                                        >
+                                                                        {{ room_step_service.name }}
+                                                                  </label>
+                                                                </div>
+                                                              </th>
+
+                                                              <div class="col-6 d-flex justify-content-end">
+                                                                  <td>{{ parseFloat(room_step_service.pivot.quantity).toFixed(2) }} м<sup>2</sup></td>
+                                                                  <td>{{ new Intl.NumberFormat('ru-Ru').format(room_step_service.price) }} Р/ м<sup>2</sup></td>
+                                                                  <td>{{ priceCount(room_step_service.pivot.quantity, room_step_service.price) }} Р</td>
+                                                              </div>
+                                                            </div>
+                                                        </tr>
+                                                    </template>
+
+                                                </template>
+                                            </template>
+                                        </tbody>
+                                      </table>
+                                    </div>
+                                </template>
+
+
                             </template>
 
                             <div class="col-12">
@@ -176,6 +181,7 @@
                                             Удалить этап
                                     </button>
                                 </div>
+                                
                                 <div class="stages__summ col-6 text-right">
                                    Итого за этап: <span>10 000 Р</span>
                                 </div>
@@ -307,28 +313,31 @@
           </div>
         </div>
 
-        <div class="fixed-footer d-flex align-items-center col-10">
-          <div class="col-12 d-flex align-items-center justify-content-end pr-0">
-            <div class="col-md-2">
-                <template v-if="order_steps">
-                    <select class="w-100 form-control" v-model="selected_order_step_id">
-                        <option value="">Выберите</option>
-                        <option v-for="(order_step, index) in order_steps" :value="order_step.id">
-                            <template v-if="order_step.description">
-                                {{ order_step.description }} {{ index + parseInt(1) }}
-                            </template>
-                            <template v-else>
-                                {{ order_step.name }} {{ index + parseInt(1) }}
-                            </template>
-                        </option>
-                    </select>
-                </template>
+        <template v-if="selected_service_ids.length">
+            <div class="fixed-footer d-flex align-items-center col-10">
+              <div class="col-12 d-flex align-items-center justify-content-end pr-0">
+                <div class="col-md-2">
+                    <template v-if="order_steps">
+                        <select class="w-100 form-control" v-model="selected_order_step_id">
+                            <option value="">Выберите</option>
+                            <option v-for="(order_step, index) in order_steps" :value="order_step.id">
+                                <template v-if="order_step.description">
+                                    {{ order_step.description }} {{ index + parseInt(1) }}
+                                </template>
+                                <template v-else>
+                                    {{ order_step.name }} {{ index + parseInt(1) }}
+                                </template>
+                            </option>
+                        </select>
+                    </template>
+                </div>
+                <div class="col-md-2">
+                  <button type="button" class="primary-button w-100" @click="linkSelectedServicesToRoomStepServices()">Добавить</button>
+                </div>
+              </div>
             </div>
-            <div class="col-md-2">
-              <button type="button" class="primary-button w-100" @click="linkSelectedServicesToRoomStepServices()">Добавить</button>
-            </div>
-          </div>
-        </div>
+        </template>
+
 
 
       </div>
