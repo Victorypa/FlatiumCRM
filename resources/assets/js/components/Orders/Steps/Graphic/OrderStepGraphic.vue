@@ -26,9 +26,10 @@
 
                     <div class="stages__pt"></div>
 
-                    <div class="col-12 px-0 mt-5 stages">
-                        
+                    <div class="col-12 px-0 mt-5 stages" style="vue-app">
+
                     </div>
+
                 </div>
             </div>
           </div>
@@ -37,6 +38,11 @@
 </template>
 
 <script>
+    import Vue from 'vue'
+    import VueFusionCharts from 'vue-fusioncharts'
+    import FusionCharts from 'fusioncharts'
+
+    Vue.use(VueFusionCharts, FusionCharts);
     export default {
         data () {
             return {
@@ -45,6 +51,7 @@
                 order_step_descriptions: [],
                 order_step_begin_ats: [],
                 order_step_finish_ats: [],
+
             }
         },
 
@@ -57,14 +64,11 @@
                 return axios.get(`/api/orders/${this.$route.params.id}/order_steps`)
                             .then(response => {
                                 this.order = response.data
-                                this.order_steps = this.order.order_steps
-                                this.order_steps.forEach(order_step => {
-                                    this.order_step_descriptions[order_step.id] = order_step.description
-                                    this.order_step_begin_ats[order_step.id] = order_step.begin_at
-                                    this.order_step_finish_ats[order_step.id] = order_step.finish_at
-                                })
+
                             })
             },
+
+
         }
     }
 </script>
