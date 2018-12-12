@@ -51,7 +51,7 @@
 
 
             @if ($order->rooms)
-                @foreach ($order->rooms as $room)
+                @foreach ($order->rooms()->orderBy('room_type_id')->get() as $room)
                     <div class="first-room">
                         <div class="first-room-top px-20">
                             <div class="main-subtitle pt-40 pb-20 inline-block">
@@ -68,7 +68,7 @@
                         </div>
 
                         @if ($room->room_services->count())
-                            @foreach ( $room->room_services()->get()->groupBy(function($room_service) { return $room_service->service_type_id; }) as $service_type_id => $room_services)
+                            @foreach ( $room->room_services()->orderBy('service_type_id')->get()->groupBy(function($room_service) { return $room_service->service_type_id; }) as $service_type_id => $room_services)
                                 @include('export.partials._room_services', [$service_type_id, $room_services])
                             @endforeach
                         @endif

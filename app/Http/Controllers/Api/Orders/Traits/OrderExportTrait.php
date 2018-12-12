@@ -16,7 +16,7 @@ trait OrderExportTrait
             $total_area += (float)$room->area;
         }
 
-        $name = str_random(12);
+        $name = $filteredOrder->address;
 
         $pdf = PDF::setOptions([['defaultFont' => 'DejaVu Sans, Arial']])
                   ->loadView($path, [
@@ -51,7 +51,7 @@ trait OrderExportTrait
             $total_area += (float) $room->area;
         }
 
-        $name = str_random(12);
+        $name = $filteredOrder->address;
 
         $material_names = $this->getMaterials($filteredOrder, 'name');
         $material_rates = $this->getMaterials($filteredOrder, 'rate');
