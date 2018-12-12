@@ -68,9 +68,10 @@ class RoomStepServiceController extends Controller
                 }
 
             }
+
+            $this->calculateOrderStepPrice($room_step->order_step);
         }
 
-        $this->calculateOrderStepPrice($order_step);
     }
 
     public function destroy(Order $order, RoomStep $room_step, Service $service, Request $request)

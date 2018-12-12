@@ -19,11 +19,14 @@
               </div>
 
               <div class="col-md-2">
-                  <router-link :to="{ name: 'order-step-graphic', params: { id: order.id } }" >
-                      <button type="button" class="primary-button w-100">
-                          Смотреть график
-                      </button>
-                  </router-link>
+                  <template v-if="order_steps.length">
+                      <router-link :to="{ name: 'order-step-graphic', params: { id: order.id } }" >
+                          <button type="button" class="primary-button w-100">
+                              Смотреть график
+                          </button>
+                      </router-link>
+                  </template>
+
               </div>
 
               <div class="col-md-6 pt-3">
@@ -65,6 +68,7 @@
                           <div class="col-md-4 d-flex justify-content-end align-items-center pl-0">
                             <datepicker class="my-datepicker"
                                         :language="ru"
+                                        orientation="top"
                                         placeholder="Начало"
                                         v-model="order_step_begin_ats[order_step.id]"
                                         @input="updateOrderStepBeginAt(order_step.id, order_step_begin_ats[order_step.id])"

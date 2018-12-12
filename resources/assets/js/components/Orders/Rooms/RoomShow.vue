@@ -283,7 +283,7 @@
                     'wall_area': this.wall_area,
                     'perimeter': this.perimeter
                 }).then(response => {
-                    this.getRoom()
+                    window.location.reload(true)
                 })
 
             },
