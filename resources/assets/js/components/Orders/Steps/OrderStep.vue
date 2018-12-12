@@ -34,7 +34,7 @@
             <div class="stages__pt"></div>
 
             <template v-for="(order_step, index) in order_steps">
-                <div class="px-0 mx-4 mt-5 stages shadow-light" :style="{ border: `3px solid ${order_step.color}` }">
+                <div class="px-0 mx-4 mt-5 stages shadow-light" :style="{ border: `3px solid ${order_step.color}` }" :key="index">
                     <div class="row w-100 align-items-center py-4 mb-3 stages-border">
                         <div class="col-12 d-flex align-items-center justify-content-between mb-2">
                           <div class="col-md-6">
@@ -42,7 +42,7 @@
                               <template v-if="order_step_descriptions[order_step.id]">
                                   <template v-if="!show_input">
                                       <div class="main-subtitle" @click="showInput()">
-                                          {{ order_step_descriptions[order_step.id] }}
+                                          {{ order_step_descriptions[order_step.id] }} {{ index + parseInt(1) }}
                                       </div>
                                   </template>
                                   <template v-else>
@@ -52,7 +52,7 @@
                               <template v-else>
                                   <template v-if="!show_input">
                                       <div class="main-subtitle" @click="showInput()">
-                                          {{ order_step.name }}
+                                          {{ order_step.name }} {{ index + parseInt(1) }}
                                           <img src="/img/edit.svg" alt="add-button" title="Редактировать">
                                       </div>
                                   </template>
@@ -378,7 +378,7 @@
                         .then(response => {
                             this.order = response.data
                             this.order_steps = this.order.order_steps
-                            this.order_steps.forEach(order_step => {
+                            this.order.order_steps.forEach(order_step => {
                                 this.order_step_descriptions[order_step.id] = order_step.description
                                 this.order_step_begin_ats[order_step.id] = order_step.begin_at
                                 this.order_step_finish_ats[order_step.id] = order_step.finish_at
@@ -454,16 +454,12 @@
         updateOrderStepBeginAt (order_step_id, begin_at) {
             axios.patch(`/api/orders/${this.$route.params.id}/order_step/${order_step_id}/update`, {
                 'begin_at': begin_at
-            }).then(response => {
-                this.getOrder()
             })
         },
 
         updateOrderStepFinishAt (order_step_id, finish_at) {
             axios.patch(`/api/orders/${this.$route.params.id}/order_step/${order_step_id}/update`, {
                 'finish_at': finish_at
-            }).then(response => {
-                this.getOrder()
             })
         },
     }

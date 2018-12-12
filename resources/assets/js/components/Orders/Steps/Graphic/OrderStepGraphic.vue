@@ -56,7 +56,10 @@
             return {
                 order: [],
                 order_steps: [],
+
                 order_step_dates: [],
+                order_step_labels: [],
+
                 order_step_descriptions: [],
                 order_step_begin_ats: [],
                 order_step_finish_ats: [],
@@ -94,6 +97,14 @@
 
                                 this.order.order_steps.forEach(order_step => {
 
+                                    this.order_step_labels.push({
+                                        "label": order_step.description ? order_step.description : order_step.name
+                                    })
+                                    this.order_step_dates.push({
+                                        "start": order_step.begin_at,
+                                        "end": order_step.finish_at,
+                                        "color": order_step.color
+                                    })
                                 })
 
 
@@ -101,88 +112,14 @@
                                 this.dataSource = {
                                   "chart": this.chart,
                                   "tasks": {
-                                    "task": [
-                                      {
-                                        "start": "1/1/2019",
-                                        "end": "13/1/2019",
-                                        "color": "#5D62B5"
-                                      },
-                                      {
-                                        "start": "4/1/2019",
-                                        "end": "21/1/2019",
-                                        "color": "#29C3BE"
-                                      },
-                                      {
-                                        "start": "22/1/2019",
-                                        "end": "4/2/2019",
-                                        "color": "#5D62B5"
-                                      },
-                                      {
-                                        "start": "5/2/2019",
-                                        "end": "11/2/2019",
-                                        "color": "#F2726F"
-                                      },
-                                      {
-                                        "start": "12/2/2019",
-                                        "end": "18/2/2019",
-                                        "color": "#FFC533"
-                                      },
-                                      {
-                                        "start": "19/2/2019",
-                                        "end": "11/3/2019",
-                                        "color": "#F2726F"
-                                      },
-                                      {
-                                        "start": "12/3/2019",
-                                        "end": "18/3/2019",
-                                        "color": "#62B58F"
-                                      },
-                                      {
-                                        "start": "16/3/2019",
-                                        "end": "23/3/2019",
-                                        "color": "#5D62B5"
-                                      },
-                                      {
-                                        "start": "24/3/2019",
-                                        "end": "29/3/2019",
-                                        "color": "#29C3BE"
-                                      }
-                                    ]
+                                    "task": this.order_step_dates
                                   },
                                   "processes": {
                                     "align": "left",
                                     "headertext": "",
                                     "headervalign": "bottom",
                                     "headeralign": "left",
-                                    "process": [
-                                      {
-                                        "label": "PRD & User-Stories"
-                                      },
-                                      {
-                                        "label": "Persona & Journey"
-                                      },
-                                      {
-                                        "label": "Architecture"
-                                      },
-                                      {
-                                        "label": "Prototyping"
-                                      },
-                                      {
-                                        "label": "Design"
-                                      },
-                                      {
-                                        "label": "Development"
-                                      },
-                                      {
-                                        "label": "Testing & QA"
-                                      },
-                                      {
-                                        "label": "UAT Test"
-                                      },
-                                      {
-                                        "label": "Handover & Documentation"
-                                      }
-                                    ]
+                                    "process": this.order_step_labels
                                   },
                                   "categories": [
                                     {
@@ -200,6 +137,7 @@
                 return {
                     "dateformat": "dd/mm/yyyy",
                     "theme": "fusion",
+                    "ganttpaneduration": "110",
                     "useverticalscrolling": "0"
                 }
             },
