@@ -141,7 +141,7 @@
 
 
                         <div class="row">
-                            <div class="col-md-12 px-5 pt-5 bg">
+                            <div class="col-md-12 pl-5 pt-5 bg">
 
                                 <div class="row align-items-center justify-content-between">
                                         <template v-if="extra_room.room.room_type_id != 4">

@@ -132,7 +132,7 @@
 
 
                   <template v-if="show">
-                      <div class="row justify-content-between align-items-center col-12 py-2" v-for="material in service_materials" :key="material.id">
+                      <div class="row justify-content-between align-items-center col-12 py-1" v-for="material in service_materials" :key="material.id">
                         <div class="col-6">
                           <div class="form-check">
                             <input class="form-check-input"
@@ -149,7 +149,7 @@
                           </div>
                       </div>
 
-                      <div class="col-2 d-flex pr-2 align-items-center justify-content-between">
+                      <div class="col-2 d-flex pr-2 align-items-center justify-content-between py-2">
                           <div class="total-sum col-6">
                               {{ material.price }} Р
                           </div>
@@ -200,7 +200,7 @@
                   </template>
 
                   <template v-else>
-                      <div class="row justify-content-between align-items-center col-12" v-for="material in materials">
+                      <div class="row justify-content-between align-items-center col-12 py-1" v-for="material in materials">
                         <div class="col-6">
                           <div class="form-check">
                             <input class="form-check-input"

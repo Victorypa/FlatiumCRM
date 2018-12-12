@@ -152,7 +152,7 @@
                     </template>
 
                     <template v-if="extra_room_service_ids.includes(service.id)">
-                        <router-link :to="{ name: 'order-extra-services-materials', params: { id: extra_room.extra_order_act.order.id, extra_order_act_id: extra_room.extra_order_act.id, extra_room_id: extra_room.id, service_id: service.id }}">
+                        <router-link class="ml-auto" :to="{ name: 'order-extra-services-materials', params: { id: extra_room.extra_order_act.order.id, extra_order_act_id: extra_room.extra_order_act.id, extra_room_id: extra_room.id, service_id: service.id }}">
                             <div class="col-md-auto px-0 ml-auto">
                                 <button class="add-button " title="Добавить материалы">
                                     <img src="/img/plus-circle.svg" alt="add-button">
