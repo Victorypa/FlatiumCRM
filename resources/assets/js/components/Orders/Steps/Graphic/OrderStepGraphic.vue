@@ -25,10 +25,15 @@
                     </div>
 
                     <div class="stages__pt"></div>
-
-                    <div class="col-12 px-0 mt-5 stages" style="vue-app">
-
-                    </div>
+                    <template v-cloak>
+                        <fusioncharts :type="type"
+                                      :width="width"
+                                      :height="height"
+                                      :dataFormat="dataFormat"
+                                      :dataSource="dataSource"
+                                      >
+                        </fusioncharts>
+                    </template>
 
                 </div>
             </div>
@@ -40,35 +45,172 @@
 <script>
     import Vue from 'vue'
     import VueFusionCharts from 'vue-fusioncharts'
-    import FusionCharts from 'fusioncharts'
+    import FusionCharts from 'fusioncharts/core'
+    import Gantt from 'fusioncharts/viz/gantt'
+    import FusionTheme from 'fusioncharts/themes/es/fusioncharts.theme.fusion'
 
-    Vue.use(VueFusionCharts, FusionCharts);
+    Vue.use(VueFusionCharts, FusionCharts, Gantt, FusionTheme)
+
     export default {
         data () {
             return {
                 order: [],
                 order_steps: [],
+                order_step_dates: [],
                 order_step_descriptions: [],
                 order_step_begin_ats: [],
                 order_step_finish_ats: [],
 
+                type: "gantt",
+                width: '100%',
+                height: '100%',
+                dataFormat: 'json',
+
+                dataSource: [],
+                dates: [],
             }
         },
 
-        mounted () {
+        created () {
             this.getOrder()
+            this.dateInit()
         },
 
         methods: {
+            dateInit () {
+                for (var i = 0; i < 12; i++) {
+                    this.dates.push({
+                        "start": `1/${i + 1}/2019`,
+                        "end": `31/${i + 1}/2019`,
+                        "label": this.months[i]
+                    })
+                }
+            },
+
             getOrder () {
                 return axios.get(`/api/orders/${this.$route.params.id}/order_steps`)
                             .then(response => {
                                 this.order = response.data
 
+                                this.order.order_steps.forEach(order_step => {
+
+                                })
+
+
+
+                                this.dataSource = {
+                                  "chart": this.chart,
+                                  "tasks": {
+                                    "task": [
+                                      {
+                                        "start": "1/1/2019",
+                                        "end": "13/1/2019",
+                                        "color": "#5D62B5"
+                                      },
+                                      {
+                                        "start": "4/1/2019",
+                                        "end": "21/1/2019",
+                                        "color": "#29C3BE"
+                                      },
+                                      {
+                                        "start": "22/1/2019",
+                                        "end": "4/2/2019",
+                                        "color": "#5D62B5"
+                                      },
+                                      {
+                                        "start": "5/2/2019",
+                                        "end": "11/2/2019",
+                                        "color": "#F2726F"
+                                      },
+                                      {
+                                        "start": "12/2/2019",
+                                        "end": "18/2/2019",
+                                        "color": "#FFC533"
+                                      },
+                                      {
+                                        "start": "19/2/2019",
+                                        "end": "11/3/2019",
+                                        "color": "#F2726F"
+                                      },
+                                      {
+                                        "start": "12/3/2019",
+                                        "end": "18/3/2019",
+                                        "color": "#62B58F"
+                                      },
+                                      {
+                                        "start": "16/3/2019",
+                                        "end": "23/3/2019",
+                                        "color": "#5D62B5"
+                                      },
+                                      {
+                                        "start": "24/3/2019",
+                                        "end": "29/3/2019",
+                                        "color": "#29C3BE"
+                                      }
+                                    ]
+                                  },
+                                  "processes": {
+                                    "align": "left",
+                                    "headertext": "",
+                                    "headervalign": "bottom",
+                                    "headeralign": "left",
+                                    "process": [
+                                      {
+                                        "label": "PRD & User-Stories"
+                                      },
+                                      {
+                                        "label": "Persona & Journey"
+                                      },
+                                      {
+                                        "label": "Architecture"
+                                      },
+                                      {
+                                        "label": "Prototyping"
+                                      },
+                                      {
+                                        "label": "Design"
+                                      },
+                                      {
+                                        "label": "Development"
+                                      },
+                                      {
+                                        "label": "Testing & QA"
+                                      },
+                                      {
+                                        "label": "UAT Test"
+                                      },
+                                      {
+                                        "label": "Handover & Documentation"
+                                      }
+                                    ]
+                                  },
+                                  "categories": [
+                                    {
+                                      "category": this.dates
+                                    },
+
+                                  ]
+                                }
                             })
             },
+        },
 
+        computed: {
+            chart () {
+                return {
+                    "dateformat": "dd/mm/yyyy",
+                    "theme": "fusion",
+                    "useverticalscrolling": "0"
+                }
+            },
 
+            months () {
+                return [
+                    'Янв', 'Фев', 'Мар', 'Апр',
+                    'Май', 'Июн', 'Июл', 'Авг',
+                    'Сен', 'Окт', 'Ноя', 'Дек'
+                ]
+            }
         }
     }
 </script>
