@@ -107,8 +107,6 @@
                                     })
                                 })
 
-
-
                                 this.dataSource = {
                                   "chart": this.chart,
                                   "tasks": {
@@ -137,7 +135,8 @@
                 return {
                     "dateformat": "dd/mm/yyyy",
                     "theme": "fusion",
-                    "ganttpaneduration": "110",
+                    "ganttpaneduration": "200",
+                    "ganttpanedurationunit": "d",
                     "useverticalscrolling": "0"
                 }
             },
