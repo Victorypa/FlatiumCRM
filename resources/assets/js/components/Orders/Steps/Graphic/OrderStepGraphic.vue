@@ -34,7 +34,7 @@
                                       >
                         </fusioncharts>
                     </template>
-
+                    <br><br>
                 </div>
             </div>
           </div>
@@ -71,6 +71,7 @@
 
                 dataSource: [],
                 dates: [],
+                weeks: []
             }
         },
 
@@ -81,12 +82,33 @@
 
         methods: {
             dateInit () {
-                for (var i = 0; i < 12; i++) {
-                    this.dates.push({
-                        "start": `1/${i + 1}/2019`,
-                        "end": `31/${i + 1}/2019`,
-                        "label": this.months[i]
-                    })
+                for (let i = 0; i < 12; i++) {
+                    this.dates.push(
+                        {
+                            "start": `1/${i + 1}/2019`,
+                            "end": `7/${i + 1}/2019`,
+                            "label": `1.${i + 1}.2019`
+                        },
+
+                        {
+                            "start": `7/${i + 1}/2019`,
+                            "end": `14/${i + 1}/2019`,
+                            "label": `7.${i + 1}.2019`
+                        },
+
+                        {
+                            "start": `14/${i + 1}/2019`,
+                            "end": `21/${i + 1}/2019`,
+                            "label": `14.${i + 1}.2019`
+                        },
+
+                        {
+                            "start": `21/${i + 1}/2019`,
+                            "end": `28/${i + 1}/2019`,
+                            "label": `21.${i + 1}.2019`
+                        },
+                    )
+
                 }
             },
 
@@ -122,8 +144,7 @@
                                   "categories": [
                                     {
                                       "category": this.dates
-                                    },
-
+                                    }
                                   ]
                                 }
                             })
@@ -134,20 +155,15 @@
             chart () {
                 return {
                     "dateformat": "dd/mm/yyyy",
+                    "outputdateformat": "dd.mm.yyyy",
                     "theme": "fusion",
-                    "ganttpaneduration": "200",
+                    "ganttpaneduration": "100",
                     "ganttpanedurationunit": "d",
-                    "useverticalscrolling": "0"
+                    "useverticalscrolling": "0",
+                    "GanttWidthPercent": "80",
+                    "showFullDataTable": "0",
                 }
             },
-
-            months () {
-                return [
-                    'Янв', 'Фев', 'Мар', 'Апр',
-                    'Май', 'Июн', 'Июл', 'Авг',
-                    'Сен', 'Окт', 'Ноя', 'Дек'
-                ]
-            }
         }
     }
 </script>
