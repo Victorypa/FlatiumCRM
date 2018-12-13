@@ -65,8 +65,9 @@
                               </template>
 
                           </div>
-                          <div class="col-md-4 d-flex justify-content-end align-items-center pl-0">
+                          <div class="col-md-6 d-flex justify-content-end align-items-center pl-0">
                             <datepicker class="my-datepicker"
+                                        calendar-class="my-datepicker_calendar"
                                         :language="ru"
                                         orientation="top"
                                         placeholder="Начало"
@@ -76,6 +77,7 @@
                             </datepicker>
 
                             <datepicker class="my-datepicker ml-3"
+                                        calendar-class="my-datepicker_calendar"
                                         :language="ru"
                                         placeholder="Окончание"
                                         v-model="order_step_finish_ats[order_step.id]"
@@ -96,7 +98,7 @@
                                           {{ room_step.room.room_type.type }} {{ index + parseInt(1) }}
                                         </h2>
                                         <template v-if="room_step.room.room_type_id === 1">
-                                            <div class="col-6 d-flex justify-content-end align-items-center pt-3 pl-3">
+                                            <div class="col-6 d-flex justify-content-end align-items-center pt-3">
                                               <div class="projects__desc-item pr-3">S: {{ parseFloat(room_step.room.area).toFixed(1) }} м<sup>2</sup></div>
                                               <div class="projects__desc-item pr-3">H: {{ parseFloat(room_step.room.height).toFixed(1) }} м</div>
                                               <div class="projects__desc-item pr-3">S стен: {{ parseFloat(room_step.room.wall_area).toFixed(1) }} м<sup>2</sup></div>
@@ -608,6 +610,9 @@
   .my-datepicker {
     border: none;
     border-bottom: 1px solid #ccc;
+    &:not(:first-child) {
+        margin-right: 45px;
+    }
   }
 
 

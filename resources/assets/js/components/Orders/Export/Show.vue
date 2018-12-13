@@ -296,6 +296,7 @@
                 selected_id: null,
 
                 room_service_ids: [],
+                room_service_booleans: [],
                 rooms: [],
 
             }
@@ -331,11 +332,22 @@
 
                                 this.square = 0
                                 this.order.rooms.forEach(room => {
+
+                                    room.room_services.forEach(room_service => {
+                                        this.room_service_booleans.push(
+                                            {
+                                                'room_id': room_service.room_id,
+                                                'service_id': room_service.service_id,
+                                                'show': false
+                                            }
+                                        )
+                                    })
+
                                     this.square += parseInt(room.area)
                                     let data = _.groupBy(room.room_services, 'room_id')
                                     this.room_service_ids.push(Object.entries(data)[0])
                                 })
-
+                                console.log(this.room_service_booleans);
                             })
             },
 
@@ -423,6 +435,9 @@
                }
            },
 
+           fetchServiceBoolean () {
+               
+           }
 
 
         },
