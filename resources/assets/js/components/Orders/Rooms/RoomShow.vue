@@ -22,7 +22,6 @@
 
                                         <div class="carousel-item active">
 
-                                            <template v-if="room_types.length">
                                                 <carousel class="my-carousel carousel-arrows"
                                                           :perPage="5" :navigationEnabled="true"
                                                           :pagination-enabled="false"
@@ -37,12 +36,16 @@
                                                                     <div class="create__features__name col-auto px-0 mx-2"
                                                                             :class="{ 'active': path === '/orders/' + order.id + '/rooms/' + room.id }"
                                                                             >
-                                                                            {{ room_types[room.room_type_id] }} {{ parseInt(index) + 1 }}
+                                                                            <template v-if="room.description">
+                                                                                {{ room.description }}
+                                                                            </template>
+                                                                            <template v-else>
+                                                                                {{ room.room_type.type }}
+                                                                            </template>
                                                                     </div>
                                                                 </router-link>
                                                             </slide>
                                                 </carousel>
-                                            </template>
 
                                         </div>
 
@@ -64,12 +67,22 @@
 
 
                                 <div class="row align-items-center py-5 bg-white rounded px-15">
-                                    <div class="col-4 pl-0">
-                                        <select class="form-control match-content">
-                                            <option>
-                                                {{ room_type }}
-                                            </option>
-                                        </select>
+                                    <div class="col-4 pl-0" v-if="room.room_type">
+                                        <template v-if="room_description">
+                                            <input type="text"
+                                                   class="form-control match-content"
+                                                   v-model="room_description"
+                                                   @change="updateDescription(room.id)"
+                                                   >
+                                        </template>
+                                        <template v-else>
+                                            <input type="text"
+                                                   class="form-control match-content"
+                                                   :placeholder="room.room_type.type"
+                                                   v-model="room_description"
+                                                   @change="updateDescription(room.id)"
+                                                   >
+                                        </template>
                                     </div>
 
                                     <template v-if="room_type_id === 1">
@@ -191,10 +204,10 @@
             return {
                 room: [],
                 room_id: null,
+                room_description: null,
                 order: [],
                 room_type: null,
                 address: null,
-                room_types: [],
                 rooms: [],
                 room_type_id: null,
                 room_price: 0,
@@ -224,7 +237,6 @@
         },
 
         mounted () {
-            this.getRoomTypes()
             this.getRoom()
             this.getUnits()
         },
@@ -235,6 +247,9 @@
                             .then(response => {
                                 this.room = response.data
                                 this.room_price = this.room.price
+
+                                this.room_description = this.room.description
+
                                 this.order = this.room.order
                                 this.order_price = this.order.price
 
@@ -266,14 +281,6 @@
                 }
             },
 
-            getRoomTypes () {
-                return axios.get(`/api/room_types`).then(response => {
-                    response.data.forEach(item => {
-                        this.room_types[item.id] = item.type
-                    })
-                })
-            },
-
              updateRoom () {
                  axios.patch(`/api/orders/${this.$route.params.id}/rooms/${this.room.id}/update`, {
                     'width': this.width,
@@ -286,6 +293,14 @@
                     window.location.reload(true)
                 })
 
+            },
+
+            updateDescription (id) {
+                axios.patch(`/api/orders/${this.$route.params.id}/rooms/${id}/update_description`, {
+                   'description': this.room_description
+               }).then(response => {
+                   this.getRoom()
+               })
             },
 
             deleteRoom () {
