@@ -75,7 +75,7 @@
                     </div>
 
                     @if (count($finished_room->finished_services))
-                        @foreach ($finished_room->finished_services()->get()->groupBy(function($finished_service) { return $finished_service->service_type_id; }) as $service_type_id => $finished_services)
+                        @foreach ($finished_room->finished_services()->orderBy('service_type_id')->get()->groupBy(function($finished_service) { return $finished_service->service_type_id; }) as $service_type_id => $finished_services)
                             <table class="floor">
                                 <tr>
                                     <th class="table-subtitle">Наименование

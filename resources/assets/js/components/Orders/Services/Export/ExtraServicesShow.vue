@@ -174,26 +174,26 @@
                                                                     <th scope="row" class="w-50">
                                                                         {{ extra_room_service.service.name }}
                                                                     </th>
-                                                                    <td>{{ parseFloat(extra_room_service.quantity).toFixed(2) }} м<sup>2</sup></td>
+                                                                    <td>{{ parseFloat(extra_room_service.quantity).toFixed(2) }} {{ extra_room_service.unit.name }}</td>
 
                                                                     <template v-if="extra_order.order.discount">
                                                                         <template v-if="extra_room_service.service.can_be_discounted">
-                                                                            <td>{{ extra_room_service.service.price * (1 - parseInt(extra_order.order.discount)/100) }} Р/м<sup>2</sup></td>
+                                                                            <td>{{ extra_room_service.service.price * (1 - parseInt(extra_order.order.discount)/100) }} Р/{{ extra_room_service.unit.name }}</td>
                                                                             <td>{{ priceCount(extra_room_service.quantity, extra_room_service.service.price * (1 - parseInt(extra_order.order.discount)/100)) }} Р</td>
                                                                         </template>
                                                                         <template v-else>
-                                                                            <td>{{ extra_room_service.service.price }} Р/м<sup>2</sup></td>
+                                                                            <td>{{ extra_room_service.service.price }} Р/{{ extra_room_service.unit.name }}</td>
                                                                             <td>{{ priceCount(extra_room_service.quantity, extra_room_service.service.price) }} Р</td>
                                                                         </template>
                                                                     </template>
 
                                                                     <template v-if="extra_order.order.markup">
-                                                                        <td>{{ extra_room_service.service.price * (1 + parseInt(extra_order.order.markup)/100) }} Р/м<sup>2</sup></td>
+                                                                        <td>{{ extra_room_service.service.price * (1 + parseInt(extra_order.order.markup)/100) }} Р/{{ extra_room_service.unit.name }}</td>
                                                                         <td>{{ priceCount(extra_room_service.quantity, extra_room_service.service.price * (1 + parseInt(extra_order.order.markup)/100)) }} Р</td>
                                                                     </template>
 
                                                                     <template v-if="extra_order.order.discount === null && extra_order.order.markup === null">
-                                                                        <td>{{ extra_room_service.service.price }} Р/м<sup>2</sup></td>
+                                                                        <td>{{ extra_room_service.service.price }} Р/{{ extra_room_service.unit.name }}</td>
                                                                         <td>{{ priceCount(extra_room_service.quantity, extra_room_service.service.price) }} Р</td>
                                                                     </template>
                                                                 </tr>

@@ -17,7 +17,7 @@ class ExtraOrderActController extends Controller
         $filteredExtraOrderAct = ExtraOrderAct::where('id', $extra_order_act->id)
                                     ->with([
                                         'order', 'extra_rooms', 'extra_rooms.room',
-                                        'extra_rooms.room.roomType', 'extra_rooms.extra_room_services',
+                                        'extra_rooms.room.roomType', 'extra_rooms.extra_room_services', 
                                         'extra_rooms.extra_room_services', 'order.rooms.order', 'extra_rooms.extra_room_services.service'
                                     ])
                                     ->first();

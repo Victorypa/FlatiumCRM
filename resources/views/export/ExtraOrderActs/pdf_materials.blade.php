@@ -45,71 +45,73 @@
                 </div>
             </div>
 
-            @if ($filteredExtraOrder->extra_rooms->count())
-                @foreach ($filteredExtraOrder->extra_rooms->sortBy(['created_at']) as $index => $extra_room)
-                    <div class="first-room">
-                    <div class="first-room-top px-20">
-                        <div class="main-subtitle pt-40 pb-20 inline-block">
-                            @if ($extra_room->room->description)
-                                {{ $extra_room->room->description }}
-                            @else
-                                {{ $extra_room->room->roomType->type }}
-                            @endif
-
-                        </div>
-                        @if ($extra_room->room->room_type_id === 1)
-                            @include('export.partials._room_details', ['room' => $extra_room->room])
-                        @endif
-
-                    </div>
-
-                    @foreach ($extra_room->extra_room_services()->get()->groupBy(function($extra_room_service) { return $extra_room_service->service_type_id; }) as $service_type_id => $extra_room_services)
-                        <table class="floor">
-                            <tr>
-                                <th class="table-subtitle">Наименование
-                                </th>
-                                <td class="table-subtitle">Кол-во</td>
-                                <td class="table-subtitle">Цена</td>
-                                <td class="table-subtitle">Стоимость</td>
-                            </tr>
-                            <tr class="borders">
-                                <th class="table-caption">{{ \App\Models\Services\ServiceType::where('id', $service_type_id)->first()->name }}</th>
-                                <td class="table-caption"></td>
-                                <td class="table-caption"></td>
-                                <td class="table-caption"></td>
-                            </tr>
-
-                            @foreach ($extra_room_services as $extra_room_service)
-                                <tr>
-                                    <th>{{ $extra_room_service->service->name }}</th>
-                                    <td>{{ number_format((float) $extra_room_service->quantity, 2, '.', '') }} м<sup>2</sup></td>
-
-                                    @if ($filteredExtraOrder->order->discount)
-                                        @if ($extra_room_service->service->can_be_discounted)
-                                            <td>{{ $extra_room_service->service->price * (1 - $filteredExtraOrder->order->discount/100) }} Р/м<sup>2</sup></td>
-                                            <td>{{ number_format($extra_room_service->quantity * $extra_room_service->service->price * (1 - $filteredExtraOrder->order->discount/100), 2, ',', ' ') }} Р</td>
-                                        @else
-                                            <td>{{ $extra_room_service->service->price }} Р/м<sup>2</sup></td>
-                                            <td>{{ number_format($extra_room_service->quantity * $extra_room_service->service->price, 2, ',', ' ') }} Р</td>
-                                        @endif
+            @if (count($filteredExtraOrder->extra_rooms))
+                @foreach ($filteredExtraOrder->extra_rooms->sortBy(['room.room_type_id']) as $index => $extra_room)
+                    @if (count($extra_room->extra_room_services))
+                        <div class="first-room">
+                            <div class="first-room-top px-20">
+                                <div class="main-subtitle pt-40 pb-20 inline-block">
+                                    @if ($extra_room->room->description)
+                                        {{ $extra_room->room->description }}
+                                    @else
+                                        {{ $extra_room->room->roomType->type }}
                                     @endif
 
-                                    @if ($filteredExtraOrder->order->markup)
-                                        <td>{{ $extra_room_service->service->price * (1 + $filteredExtraOrder->order->markup/100) }} Р/м<sup>2</sup></td>
-                                        <td>{{ number_format($extra_room_service->quantity * $extra_room_service->service->price * (1 + $filteredExtraOrder->order->markup/100), 2, ',', ' ') }} Р</td>
-                                    @endif
+                                </div>
+                                @if ($extra_room->room->room_type_id === 1)
+                                    @include('export.partials._room_details', ['room' => $extra_room->room])
+                                @endif
 
-                                    @if ($filteredExtraOrder->order->discount === null && $filteredExtraOrder->order->markup === null )
-                                        <td>{{ $extra_room_service->service->price }} Р/м<sup>2</sup></td>
-                                        <td>{{ number_format($extra_room_service->quantity * $extra_room_service->service->price, 2, ',', ' ') }} Р</td>
-                                    @endif
-                                </tr>
+                            </div>
+
+                            @foreach ($extra_room->extra_room_services()->get()->groupBy(function($extra_room_service) { return $extra_room_service->service_type_id; }) as $service_type_id => $extra_room_services)
+                                <table class="floor">
+                                    <tr>
+                                        <th class="table-subtitle">Наименование
+                                        </th>
+                                        <td class="table-subtitle">Кол-во</td>
+                                        <td class="table-subtitle">Цена</td>
+                                        <td class="table-subtitle">Стоимость</td>
+                                    </tr>
+                                    <tr class="borders">
+                                        <th class="table-caption">{{ \App\Models\Services\ServiceType::where('id', $service_type_id)->first()->name }}</th>
+                                        <td class="table-caption"></td>
+                                        <td class="table-caption"></td>
+                                        <td class="table-caption"></td>
+                                    </tr>
+
+                                    @foreach ($extra_room_services as $extra_room_service)
+                                        <tr>
+                                            <th>{{ $extra_room_service->service->name }}</th>
+                                            <td>{{ number_format((float) $extra_room_service->quantity, 2, '.', '') }} {{ $extra_room_service->unit->name }}</td>
+
+                                            @if ($filteredExtraOrder->order->discount)
+                                                @if ($extra_room_service->service->can_be_discounted)
+                                                    <td>{{ $extra_room_service->service->price * (1 - $filteredExtraOrder->order->discount/100) }} Р/{{ $extra_room_service->unit->name }}</td>
+                                                    <td>{{ number_format($extra_room_service->quantity * $extra_room_service->service->price * (1 - $filteredExtraOrder->order->discount/100), 2, ',', ' ') }} Р</td>
+                                                @else
+                                                    <td>{{ $extra_room_service->service->price }} Р/{{ $extra_room_service->unit->name }}</td>
+                                                    <td>{{ number_format($extra_room_service->quantity * $extra_room_service->service->price, 2, ',', ' ') }} Р</td>
+                                                @endif
+                                            @endif
+
+                                            @if ($filteredExtraOrder->order->markup)
+                                                <td>{{ $extra_room_service->service->price * (1 + $filteredExtraOrder->order->markup/100) }} Р/{{ $extra_room_service->unit->name }}</td>
+                                                <td>{{ number_format($extra_room_service->quantity * $extra_room_service->service->price * (1 + $filteredExtraOrder->order->markup/100), 2, ',', ' ') }} Р</td>
+                                            @endif
+
+                                            @if ($filteredExtraOrder->order->discount === null && $filteredExtraOrder->order->markup === null )
+                                                <td>{{ $extra_room_service->service->price }} Р/{{ $extra_room_service->unit->name }}</td>
+                                                <td>{{ number_format($extra_room_service->quantity * $extra_room_service->service->price, 2, ',', ' ') }} Р</td>
+                                            @endif
+                                        </tr>
+                                    @endforeach
+
+                                </table>
                             @endforeach
 
-                        </table>
-                    @endforeach
-
-                </div>
+                        </div>
+                    @endif
                 @endforeach
             @endif
 

@@ -37,6 +37,6 @@ class ExtraRoomService extends Model
 
     public function unit()
     {
-        return $this->belongsTo(Unit::class);
+        return $this->belongsTo(Unit::class, 'service_unit_id');
     }
 }

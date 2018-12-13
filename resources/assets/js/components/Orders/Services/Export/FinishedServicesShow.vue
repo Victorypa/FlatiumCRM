@@ -90,7 +90,7 @@
                       <template v-if="finished_room.room.room_type_id === 1">
                             <div class="projects__desc col-8 d-flex justify-content-between align-items-center py-3 pl-0">
                                 <div class="projects__desc-item">Общая площадь: {{ finished_room.room.area }} м<sup>2</sup></div>
-                                <div class="projects__desc-item">Высота потолка: {{ finished_room.room.heigth }} м</div>
+                                <div class="projects__desc-item">Высота потолка: {{ finished_room.room.height }} м</div>
                                 <div class="projects__desc-item">Площадь стен: {{ finished_room.room.wall_area }} м<sup>2</sup></div>
                                 <div class="projects__desc-item">Периметр: {{ finished_room.room.perimeter }}</div>
                             </div>
@@ -113,25 +113,25 @@
                                     <tbody>
                                       <tr v-for="finished_service in finished_services">
                                         <th scope="row" class="w-50">{{ finished_service.name }}</th>
-                                        <td>{{ finished_service.pivot.quantity }}м<sup>2</sup></td>
+                                    <td>{{ finished_service.pivot.quantity }} {{ finished_service.unit.name }}</td>
 
                                         <template v-if="finished_order.order.discount">
                                             <template v-if="finished_service.can_be_discounted">
-                                                <td>{{ finished_service.price * (1 - parseInt(finished_order.order.discount)/100) }} Р</td>
+                                                <td>{{ finished_service.price * (1 - parseInt(finished_order.order.discount)/100) }} Р/{{ finished_service.unit.name }}</td>
                                                 <td>{{ priceCount(finished_service.pivot.quantity, finished_service.price * (1 - parseInt(finished_order.order.discount)/100)) }} Р</td>
                                             </template>
                                             <template v-else>
-                                                <td>{{ finished_service.price }} Р</td>
-                                                <td>{{ priceCount(finished_service.pivot.quantity, finished_service.price) }}</td>
+                                                <td>{{ finished_service.price }} Р/{{ finished_service.unit.name }}</td>
+                                                <td>{{ priceCount(finished_service.pivot.quantity, finished_service.price) }} Р</td>
                                             </template>
                                         </template>
                                         <template v-if="finished_order.order.markup">
-                                            <td>{{ finished_service.price * (1 + parseInt(finished_order.order.markup)/100) }} Р</td>
+                                            <td>{{ finished_service.price * (1 + parseInt(finished_order.order.markup)/100) }} Р/{{ finished_service.unit.name }}</td>
                                             <td>{{ priceCount(finished_service.pivot.quantity, finished_service.price * (1 + parseInt(finished_order.order.markup)/100)) }} Р</td>
                                         </template>
                                         <template v-if="finished_order.order.discount === null && finished_order.order.markup === null">
-                                            <td>{{ finished_service.price }} Р</td>
-                                            <td>{{ priceCount(finished_service.pivot.quantity, finished_service.price) }}</td>
+                                            <td>{{ finished_service.price }} Р/{{ finished_service.unit.name }}</td>
+                                            <td>{{ priceCount(finished_service.pivot.quantity, finished_service.price) }} Р</td>
                                         </template>
                                       </tr>
 
