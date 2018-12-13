@@ -276,4 +276,12 @@ th:first-child {
 section {
     margin: 0 10px
 }
+
+.background-solid {
+    border-bottom: 5px solid black;
+}
+
+.border-black {
+    border: 1px solid black;
+}
 </style>

@@ -51,7 +51,7 @@
 
             @if ($order->rooms)
                 @foreach ($order->rooms()->orderBy('room_type_id')->get() as $room)
-                    <div class="first-room">
+                    <div class="first-room border-black">
                         <div class="first-room-top px-20">
                             <div class="main-subtitle pt-40 pb-20 inline-block">
                                 @if ($room->description)
@@ -65,6 +65,8 @@
                                 @include('export.partials._room_details', [$room])
                             @endif
                         </div>
+
+                        <div class="first-room-top background-solid"></div>
 
                         @if ($room->room_services->count())
                             @foreach ( $room->room_services()->orderBy('service_type_id')->get()->groupBy(function($room_service) { return $room_service->service_type_id; }) as $service_type_id => $room_services)
