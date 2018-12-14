@@ -74,6 +74,15 @@
                                 @include('export.partials._room_services', [$service_type_id, $room_services])
                             @endforeach
                         @endif
+
+                        <table>
+                            <tr class="borders">
+                                <th class="table-caption"></th>
+                                <td class="table-caption"></td>
+                                <td class="table-caption"></td>
+                                <td class="table-caption"><strong class="font-size-fix"><b>{{ number_format($room->price, 0, ',', ' ') }} Р</b></strong></td>
+                            </tr>
+                        </table>
                     </div>
                 @endforeach
             @endif
@@ -116,53 +125,56 @@
                             @endforeach
 
                             <tr class="borders">
-                                <th class="table-caption full-summ-wrapper"></th>
-                                <td class="material-summ full-summ-wrapper py-15" colspan="2">Итого по материалам:</td>
-                                <td class="material-summ full-summ-wrapper material-summ-value py-15"> {{ number_format((int) $material_total_price, 0, '', ' ') }} Р</td>
-                            </tr>
-                        @endif
-
-
-                        @if ($order->discount)
-                            <tr class="borders">
-                                <th class="table-caption full-summ-wrapper"></th>
-
-                                <td class="table-caption full-summ full-summ-wrapper py-25">Итого:
-                                    <br>
-                                    <span>Скидка {{ $order->discount }}%</span>
-                                </td>
-                                <td class="table-caption full-summ full-summ-wrapper" colspan="2">{{ number_format((int) $order->original_price, 0, '', ' ') }} Р
-                                    <br>
-                                    <span>{{ number_format($order->price, 2, ',', ' ') }} Р</span>
-                                </td>
-
-                            </tr>
-                        @endif
-
-                        @if ($order->markup)
-                            <tr class="borders">
-                                <th class="table-caption full-summ-wrapper"></th>
-
-                                <td class="table-caption full-summ full-summ-wrapper py-25">Итого:
-                                </td>
-                                <td class="table-caption full-summ full-summ-wrapper" colspan="2">{{ number_format((int) $order->price, 0, '', ' ') }} Р
-                                </td>
-
-                            </tr>
-                        @endif
-
-                        @if ($order->discount === null && $order->markup === null)
-                            <tr class="borders">
-                                <th class="table-caption full-summ-wrapper"></th>
-
-                                <td class="table-caption full-summ full-summ-wrapper py-25">Итого:
-                                </td>
-                                <td class="table-caption full-summ full-summ-wrapper" colspan="2">{{ number_format((int)$order->price, 0, '', ' ') }} Р
-                                </td>
+                                <th class="table-caption full-summ-wrapper border-bottom-black"></th>
+                                <td class="material-summ full-summ-wrapper py-15 border-bottom-black" colspan="2">Итого по материалам:</td>
+                                <td class="material-summ full-summ-wrapper material-summ-value py-15 border-bottom-black font-size-fix"> {{ number_format((int) $material_total_price, 0, '', ' ') }} Р</td>
                             </tr>
                         @endif
                     </table>
 
+                    @if ($order->discount)
+                        <table class="border-free">
+                            <tr class="border-free">
+                                <th class="table-caption border-free background-free"></th>
+
+                                <td class="py-25 table-caption border-free ml-20"><strong><b>ИТОГО:</b></strong>
+                                    <br>
+                                    <span class="font-size-fix">Скидка {{ $order->discount }}%</span>
+                                </td>
+                                <td class="table-caption border-free ml-15" colspan="2">
+                                    <strong class="font-size-fix"><b>{{ number_format((int) $order->original_price, 0, '', ' ') }} Р</b></strong>
+                                    <strong class="font-size-fix"><b>{{ number_format((int) $order->price, 0, '', ' ') }} Р</b></strong>
+                                </td>
+
+                            </tr>
+                        </table>
+                    @endif
+
+                    @if ($order->markup)
+                        <table class="border-free">
+                            <tr class="border-free">
+                                <th class="table-caption border-free background-free"></th>
+
+                                <td class="py-25 table-caption border-free ml-20"><strong><b>ИТОГО:</b></strong></td>
+
+                                <td class="table-caption border-free ml-15 font-size-fix" colspan="2">{{ number_format((int) $order->price, 0, '', ' ') }} Р
+                                </td>
+
+                            </tr>
+                        </table>
+                    @endif
+
+                    @if ($order->discount === null && $order->markup === null)
+                        <table class="border-free">
+                            <tr class="border-free">
+                                <th class="table-caption border-free background-free"></th>
+
+                                <td class="py-25 table-caption border-free ml-20"><strong><b>ИТОГО:</b></strong></td>
+                                <td class="table-caption border-free ml-15 font-size-fix" colspan="2"><strong><b>{{ number_format($order->price, 0, '', ' ') }} Р</b></strong></td>
+
+                            </tr>
+                        </table>
+                    @endif
                 </div>
 
 

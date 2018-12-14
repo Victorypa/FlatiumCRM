@@ -61,6 +61,14 @@ body {
   margin-bottom: 40px;
 }
 
+.ml-15 {
+    margin-left: 15px !important;
+}
+
+.ml-20 {
+    margin-left: 20px !important;
+}
+
 a {
   color: #000;
 }
@@ -281,10 +289,19 @@ section {
 }
 
 .border-free {
-    border: 0 @!important;
+    border: transparent;
 }
 
 .background-free {
-    background-color: none;
+    background-color: transparent;
 }
+
+.border-bottom-black {
+    border-bottom: 1px solid #000 !important;
+}
+
+.font-size-fix {
+    font-size: 11px;
+}
+
 </style>
