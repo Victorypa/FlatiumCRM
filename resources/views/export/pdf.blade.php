@@ -51,8 +51,8 @@
 
             @if ($order->rooms)
                 @foreach ($order->rooms()->orderBy('room_type_id')->get() as $room)
-                    <div class="first-room border-black">
-                        <div class="first-room-top px-20">
+                    <div class="first-room">
+                        <div class="first-room-top px-20 border-black">
                             <div class="main-subtitle pt-40 pb-20 inline-block">
                                 @if ($room->description)
                                     {{ $room->description }}

@@ -23,15 +23,9 @@ body {
   margin: 0;
   font-family: 'DejaVu Sans', "Arial" !important;
   overflow-x: hidden;
-  /* height: 842px; */
-  /* width: 595px; */
   margin-left: auto;
   margin-right: auto;
 }
-
-/* .container {
-  margin: 0px 20px;
-} */
 
 .px-20 {
   padding: 0 20px;
@@ -160,13 +154,14 @@ table {
   width: 100%;
   border-collapse: collapse;
   font-size: 10px;
+  border: 1px solid black;
 }
 
 td,
 th {
   text-align: left;
   background-color: #f2f4f5;
-  border-bottom: 1px solid #fff;
+  border: 1px solid black;
   color: #777777;
   padding: 4px 0;
   padding-left: 20px;
@@ -283,5 +278,13 @@ section {
 
 .border-black {
     border: 1px solid black;
+}
+
+.border-free {
+    border: 0 @!important;
+}
+
+.background-free {
+    background-color: none;
 }
 </style>

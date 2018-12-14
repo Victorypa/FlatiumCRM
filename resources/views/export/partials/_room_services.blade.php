@@ -37,5 +37,11 @@
             @endif
         </tr>
     @endforeach
+    <tr class="borders">
+        <th class="table-caption"></th>
+        <td class="table-caption"></td>
+        <td class="table-caption"></td>
+        <td class="table-caption"><strong><b>{{ number_format($room->price, 0, ',', ' ') }} Р</b></strong></td>
+    </tr>
 
 </table>

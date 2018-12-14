@@ -347,7 +347,6 @@
                                     let data = _.groupBy(room.room_services, 'room_id')
                                     this.room_service_ids.push(Object.entries(data)[0])
                                 })
-                                console.log(this.room_service_booleans);
                             })
             },
 
@@ -400,7 +399,6 @@
               }).then(response => {
                   window.location.reload(true)
               })
-
            },
 
            exportFile () {
@@ -436,7 +434,7 @@
            },
 
            fetchServiceBoolean () {
-               
+
            }
 
 
