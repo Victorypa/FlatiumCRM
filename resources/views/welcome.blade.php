@@ -5,7 +5,6 @@
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
         <meta name="csrf-token" content="">
 
-
         <title>Flatium</title>
 
         <script src="{{ URL::asset('js/app.js') }}" defer></script>

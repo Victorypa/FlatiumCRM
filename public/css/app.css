@@ -1,11 +1,3 @@
-@font-face {
-  font-family: "tahoma";
-  font-weight: normal;
-  font-style: normal;
-  src: url(/fonts/Tahoma.eot?1b5d8f3d23958fd8ec6e7ebe4bf35048);
-  src: url(/fonts/Tahoma.eot?1b5d8f3d23958fd8ec6e7ebe4bf35048?#iefix) format("embedded-opentype"), url(/fonts/Tahoma.woff?d293367275c74db23a88f66465be2c46) format("woff"), url(/fonts/Tahoma.ttf?5ac249d81725139fce95a11d99066872) format("truetype");
-}
-
 body {
   /* * {
   outline: 1px solid red;
