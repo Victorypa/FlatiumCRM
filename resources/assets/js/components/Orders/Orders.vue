@@ -150,7 +150,7 @@
                                             {{ dateFormatter(finished_order_act.created_at) }}
                                         </div>
 
-                                        <template v-if="checkIfLastElement(finished_order_act, order)">
+                                        <template v-if="checkIfLastElement(finished_order_act, order.finished_order_acts)">
                                             <div class="d-flex align-items-center pl-30 show-button">
                                                 <router-link :to="{ name: 'order-finished-services', params: { id: order.id, finished_act_id: finished_order_act.id }}">
                                                     <button class="add-button add-button--remove d-flex align-items-center">
@@ -191,7 +191,7 @@
                                             {{ dateFormatter(extra_order_act.created_at) }}
                                         </div>
 
-                                        <template v-if="checkIfLastElementExtra(extra_order_act, order)">
+                                        <template v-if="checkIfLastElement(extra_order_act, order.extra_order_acts)">
                                             <div class="d-flex align-items-center pl-30 show-button">
                                                 <router-link :to="{ name: 'order-extra-services-rooms-show', params: { id: order.id, extra_order_act_id: extra_order_act.id, extra_room_id: extra_order_act.extra_rooms[0].id }}">
                                                     <button class="add-button add-button--remove d-flex align-items-center" title="Редактировать">
@@ -228,7 +228,6 @@ export default {
 
       orders: [],
       sortByDate: false,
-      contractChecked: false,
       quickSearchQuery: "",
     };
   },
@@ -258,10 +257,7 @@ export default {
             'order_id': id,
             'name': `Акт дополнительных работ`
         }).then(response => {
-            this.getOrders()
-            if (response.data.extra_rooms.length) {
-                this.$router.push({ name: 'order-extra-services-rooms-show', params: { id: id, extra_order_act_id: response.data.id, extra_room_id: response.data.extra_rooms[0].id }})
-            }
+            this.$router.push({ name: 'order-extra-services-rooms-show', params: { id: id, extra_order_act_id: response.data.id, extra_room_id: response.data.extra_rooms[0].id }})
         })
     },
 
@@ -281,12 +277,8 @@ export default {
           }
     },
 
-    checkIfLastElement (finished_order_act, order) {
-        return finished_order_act === order.finished_order_acts[order.finished_order_acts.length - 1]
-    },
-
-    checkIfLastElementExtra (extra_order_act, order) {
-        return extra_order_act === order.extra_order_acts[order.extra_order_acts.length - 1]
+    checkIfLastElement (element, data) {
+        return element === data[data.length - 1]
     },
 
     deleteFinishedOrderAct (order_id, finished_order_act_id) {
@@ -326,13 +318,6 @@ export default {
             data = _.orderBy(data, ['created_at'], ['desc'])
       } else {
             data = _.orderBy(data, ['created_at'], ['asc'])
-      }
-
-
-      if (this.contractChecked) {
-        data = data.filter(row => {
-          return row.contract !== null;
-        });
       }
 
       return data;

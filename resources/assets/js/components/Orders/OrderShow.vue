@@ -11,9 +11,7 @@
 
                     <div class="container-fluid px-0">
 
-                        <template v-if="order.length != 0">
-                            <order-detail :order="order" @order-saved="orderSaved"></order-detail>
-                        </template>
+                        <order-detail :order="order" @order-saved="orderSaved"></order-detail>
 
                         <template v-if="show">
                             <div class="container-fluid create__carousel-wrapper px-0">
@@ -54,11 +52,6 @@
                                             </div>
                                         </div>
                                     </template>
-
-                                    <template v-else>
-                                        &nbsp;
-                                    </template>
-
 
                                 </div>
 
