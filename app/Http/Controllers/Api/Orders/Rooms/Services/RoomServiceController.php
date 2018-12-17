@@ -5,9 +5,9 @@ namespace App\Http\Controllers\Api\Orders\Rooms\Services;
 use Illuminate\Http\Request;
 use App\Models\Orders\Order;
 use App\Models\Orders\Rooms\Room;
-use App\Modes\Orders\Rooms\Services\RoomService;
 use App\Models\Services\Service;
 use App\Http\Controllers\Controller;
+use App\Modes\Orders\Rooms\Services\RoomService;
 
 class RoomServiceController extends Controller
 {
@@ -122,6 +122,7 @@ class RoomServiceController extends Controller
                 }
             }
         }
+
 
         $updatedRoom = $room->calculateRoomPrice($room);
 

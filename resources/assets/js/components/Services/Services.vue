@@ -1,5 +1,4 @@
 <template>
-
       <div class="create-floor-work">
            <basic-header></basic-header>
         <div class="container-fluid px-0">
@@ -145,9 +144,6 @@
                             </div>
                           </div>
                         </div>
-                    </template>
-                    <template v-else>
-                        &nbsp;
                     </template>
 
                   </div>
