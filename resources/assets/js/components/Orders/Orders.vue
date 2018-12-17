@@ -130,152 +130,87 @@
                         </tr>
 
                         <template v-if="order.finished_order_acts.length" v-for="(finished_order_act, index) in order.finished_order_acts">
-                            <template v-if="checkIfLastElement(finished_order_act, order)">
                                 <tr class="small-case">
                                     <td>
-                                        <template v-if="finished_order_act.description">
-                                            <router-link :to="{ name: 'order-finished-services-export-show', params: { id: order.id, finished_act_id: finished_order_act.id } }">
-                                                <div class="d-flex">
-                                                    <div class="col-9">
+                                        <router-link :to="{ name: 'order-finished-services-export-show', params: { id: order.id, finished_act_id: finished_order_act.id } }">
+                                            <div class="d-flex">
+                                                <div class="col-9">
+                                                    <template v-if="finished_order_act.description">
                                                         {{ finished_order_act.description }}({{ index + parseInt(1) }})
-                                                    </div>
-                                                </div>
-                                            </router-link>
-                                        </template>
-                                        <template v-else>
-                                            <router-link :to="{ name: 'order-finished-services-export-show', params: { id: order.id, finished_act_id: finished_order_act.id } }">
-                                                <div class="d-flex">
-                                                    <div class="col-9">
+                                                    </template>
+                                                    <template v-else>
                                                         {{ finished_order_act.name }}({{ index + parseInt(1) }})
-                                                    </div>
+                                                    </template>
                                                 </div>
-                                            </router-link>
-                                        </template>
-
+                                            </div>
+                                        </router-link>
                                     </td>
                                     <td class="d-flex justify-content-end">
                                         <div class="col-auto">
                                             {{ dateFormatter(finished_order_act.created_at) }}
                                         </div>
 
-                                        <div class="d-flex align-items-center pl-30 show-button">
-                                            <router-link :to="{ name: 'order-finished-services', params: { id: order.id, finished_act_id: finished_order_act.id }}">
-                                                <button class="add-button add-button--remove d-flex align-items-center" title="Редактировать">
-                                                    <img src="/img/edit.svg" alt="add-button">
-                                                </button>
-                                            </router-link>
+                                        <template v-if="checkIfLastElement(finished_order_act, order)">
+                                            <div class="d-flex align-items-center pl-30 show-button">
+                                                <router-link :to="{ name: 'order-finished-services', params: { id: order.id, finished_act_id: finished_order_act.id }}">
+                                                    <button class="add-button add-button--remove d-flex align-items-center">
+                                                        <img src="/img/edit.svg" alt="add-button">
+                                                    </button>
+                                                </router-link>
 
-                                            <button class="add-button add-button--remove d-flex align-items-center" @click="deleteFinishedOrderAct(order.id, finished_order_act.id)">
-                                                <img src="/img/del.svg" alt="add-button">
-                                            </button>
-                                        </div>
+                                                <button class="add-button add-button--remove d-flex align-items-center" @click="deleteFinishedOrderAct(order.id, finished_order_act.id)">
+                                                    <img src="/img/del.svg" alt="add-button">
+                                                </button>
+                                            </div>
+                                        </template>
+
                                     </td>
                                 </tr>
-                            </template>
-                            <template v-else>
-                                <tr class="small-case">
-                                  <td>
-                                    <div class="d-flex">
-                                        <div class="col-9">
-                                            <template v-if="finished_order_act.description">
-                                                {{ finished_order_act.description }}
-                                            </template>
-                                            <template v-else>
-                                                {{ finished_order_act.name }}({{ index + parseInt(1) }})
-                                            </template>
-
-                                        </div>
-                                    </div>
-                                  </td>
-                                  <td class="d-flex justify-content-end">
-                                    <div class="col-auto small-case__date">
-                                        {{ dateFormatter(finished_order_act.created_at) }}
-                                    </div>
-                                  </td>
-                              </tr>
-                            </template>
                         </template>
 
 
                         <template v-if="order.extra_order_acts.length" v-for="(extra_order_act, index) in order.extra_order_acts">
-                            <template v-if="checkIfLastElementExtra(extra_order_act, order)">
                                 <tr class="small-case">
-                                    <template v-if="extra_order_act.description">
-                                        <td>
-                                            <router-link :to="{ name: 'order-extra-services-export-show', params: { id: order.id, extra_order_act_id: extra_order_act.id } }">
-                                                <div class="d-flex">
-                                                    <div class="col-9">
+                                    <td>
+                                        <router-link :to="{ name: 'order-extra-services-export-show', params: { id: order.id, extra_order_act_id: extra_order_act.id } }">
+                                            <div class="d-flex">
+                                                <div class="col-9">
+                                                    <template v-if="extra_order_act.description">
                                                         {{ extra_order_act.description }}({{ index + parseInt(1) }})
-                                                    </div>
+                                                    </template>
+                                                    <template v-else>
+                                                        {{ extra_order_act.name }}({{ index + parseInt(1) }})
+                                                    </template>
                                                 </div>
-                                            </router-link>
-                                        </td>
-                                    </template>
-                                    <template v-else>
-                                        <td>
-                                            <router-link :to="{ name: 'order-extra-services-export-show', params: { id: order.id, extra_order_act_id: extra_order_act.id } }">
-                                                <div class="d-flex">
-                                                    <div class="col-9">
-                                                        <template v-if="extra_order_act.description">
-                                                            {{ extra_order_act.description }}
-                                                        </template>
-                                                        <template v-else>
-                                                            {{ extra_order_act.name }}({{ index + parseInt(1) }})
-                                                        </template>
-
-                                                    </div>
-                                                </div>
-                                            </router-link>
-                                        </td>
-                                    </template>
+                                            </div>
+                                        </router-link>
+                                    </td>
 
                                     <td class="d-flex justify-content-end">
                                         <div class="col-auto">
                                             {{ dateFormatter(extra_order_act.created_at) }}
                                         </div>
 
-                                        <div class="d-flex align-items-center pl-30 show-button">
-                                            <template v-if="extra_order_act.extra_rooms">
-                                                    <router-link :to="{ name: 'order-extra-services-rooms-show', params: { id: order.id, extra_order_act_id: extra_order_act.id, extra_room_id: extra_order_act.extra_rooms[0].id }}">
-                                                        <button class="add-button add-button--remove d-flex align-items-center" title="Редактировать">
-                                                            <img src="/img/edit.svg" alt="add-button">
-                                                        </button>
-                                                    </router-link>
-                                            </template>
+                                        <template v-if="checkIfLastElementExtra(extra_order_act, order)">
+                                            <div class="d-flex align-items-center pl-30 show-button">
+                                                <router-link :to="{ name: 'order-extra-services-rooms-show', params: { id: order.id, extra_order_act_id: extra_order_act.id, extra_room_id: extra_order_act.extra_rooms[0].id }}">
+                                                    <button class="add-button add-button--remove d-flex align-items-center" title="Редактировать">
+                                                        <img src="/img/edit.svg" alt="add-button">
+                                                    </button>
+                                                </router-link>
 
                                                 <button class="add-button add-button--remove d-flex align-items-center" @click="deleteExtraOrderAct(order.id, extra_order_act.id)">
                                                     <img src="/img/del.svg" alt="add-button">
                                                 </button>
-                                        </div>
+                                            </div>
+                                        </template>
                                     </td>
                                 </tr>
-                            </template>
-
-                            <template v-else>
-                                <tr class="small-case">
-                                  <td>
-                                    <div class="d-flex">
-                                        <div class="col-9">
-                                            {{ extra_order_act.name }}({{ index + parseInt(1) }})
-                                        </div>
-                                    </div>
-                                  </td>
-                                  <td class="d-flex justify-content-end">
-                                    <div class="col-auto small-case__date">
-                                        {{ dateFormatter(extra_order_act.created_at) }}
-                                    </div>
-                                  </td>
-                              </tr>
-                            </template>
                         </template>
                     </template>
-
-
-
                 </tbody>
               </table>
             </div>
-
           </div>
 
         </div>
@@ -284,12 +219,12 @@
 </template>
 
 <script>
-let moment = require("moment")
+import moment from 'moment'
 
 export default {
   data() {
     return {
-      moment: moment,
+      moment,
 
       orders: [],
       sortByDate: false,
@@ -314,7 +249,6 @@ export default {
             'order_id': id,
             'name': `Акт выполненных работ`
         }).then(response => {
-            this.getOrders()
             this.$router.push({ name: 'order-finished-services', params: { id: id, finished_act_id: response.data.id }})
         })
     },
