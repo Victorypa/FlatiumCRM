@@ -177,14 +177,6 @@ use Illuminate\Http\Request;
                 Route::patch('/{order}/rooms/{room}/windows/{window}/update', 'RoomWindowController@update');
                 Route::delete('/{order}/rooms/{room}/windows/{window}/destroy', 'RoomWindowController@destroy');
             });
-
-            /**
-             * Room - Works
-            */
-            Route::group(['namespace' => 'Works'], function () {
-                Route::get('/{order}/rooms/{room}/works', 'RoomWorkController@index');
-                Route::patch('/{order}/rooms/{room}/works/update', 'RoomWorkController@update');
-            });
         });
 
     });
@@ -230,17 +222,6 @@ Route::group(['prefix' => 'services', 'namespace' => 'Api\Services'], function (
        Route::patch('/{service}/update', 'ServiceController@update');
        Route::delete('/{service}/destroy', 'ServiceController@destroy');
 });
-
-
-/**
- * Works
-*/
-Route::group(['prefix' => 'works', 'namespace' => 'Api\Works'], function () {
-    Route::get('/', 'WorkController@index');
-});
-
-
-
 
 /**
  * Materials

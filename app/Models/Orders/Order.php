@@ -21,6 +21,17 @@ class Order extends Model
 
     protected $dates = ['deleted_at', 'finish_at', 'created_at', 'updated_at'];
 
+    protected static function boot()
+    {
+        parent::boot();
+
+        static::created(function ($order) {
+            $order->order_steps()->create([
+                'name' => 'Спринт'
+            ]);
+        });
+    }
+
     public function order_steps()
     {
         return $this->hasMany(OrderStep::class);
@@ -54,14 +65,5 @@ class Order extends Model
     public function rooms()
     {
         return $this->hasMany(Room::class);
-    }
-
-    public function createFirstOrderStep()
-    {
-        if (count($this->order_steps) === 0) {
-            $this->order_steps()->create([
-                'name' => 'Спринт'
-            ]);
-        }
     }
 }

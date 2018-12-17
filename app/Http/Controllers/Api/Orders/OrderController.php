@@ -24,10 +24,6 @@ class OrderController extends Controller
 
         $orders = Order::orderBy('created_at', 'asc')->with(['rooms', 'finished_order_acts', 'extra_order_acts'])->get();
 
-        foreach ($orders as $order) {
-            $order->createFirstOrderStep();
-        }
-
         return response()->json($orders);
     }
 
@@ -59,20 +55,19 @@ class OrderController extends Controller
 
     public function exportPdfWithoutMaterials(Order $order)
     {
-        $filteredOrder = Order::where('id', $order->id)->with(['rooms', 'rooms.room_services', 'manager'])->first();
-
-        return $this->export($filteredOrder, 'export.pdf');
+        return $this->export(
+            Order::where('id', $order->id)->with(['rooms', 'rooms.room_services', 'manager'])->first(),
+            'export.pdf'
+        );
     }
 
 
     public function exportPdfWithMaterials(Order $order)
     {
-        $filteredOrder = Order::where('id', $order->id)
-                         ->with([
-                             'rooms', 'rooms.roomType'
-                         ])->first();
-
-        return $this->exportWithMaterials($filteredOrder, 'export.pdf_material');
+        return $this->exportWithMaterials(
+            Order::where('id', $order->id)->with(['rooms', 'rooms.roomType'])->first(),
+            'export.pdf_material'
+        );
     }
 
     public function exportExcelWithoutMaterials(Order $order)

@@ -38,10 +38,6 @@ class Room extends Model
             $room->extra_rooms_automation($room, 'created');
         });
 
-        static::deleting(function($room) {
-            $room->windows()->delete();
-        });
-
         static::deleted(function ($room) {
             $room->addRoomPriceToOrder($room);
 
@@ -80,11 +76,5 @@ class Room extends Model
     public function order()
     {
         return $this->belongsTo(Order::class);
-    }
-
-    public function works()
-    {
-        return $this->belongsToMany(Work::class, 'room_work')
-                    ->withPivot('begin_at', 'finish_at', 'begin_at_in_fact', 'finish_at_in_fact');
     }
 }
