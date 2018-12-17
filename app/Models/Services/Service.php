@@ -14,6 +14,8 @@ class Service extends Model
 
     public $timestamps = false;
 
+    protected $with = ['service_type', 'unit'];
+    
     public static function boot()
     {
         parent::boot();

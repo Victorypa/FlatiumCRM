@@ -8,12 +8,11 @@ use Illuminate\Database\Eloquent\Model;
 
 class Material extends Model
 {
-    protected $fillable = [
-        'material_unit_id', 'univalence', 'can_be_deleted',
-        'flat_id', 'name', 'number', 'price', 'quantity'
-    ];
+    protected $guarded = [];
 
     public $timestamps = false;
+
+    protected $with = ['material_unit'];
 
     public static function boot()
     {
@@ -22,9 +21,7 @@ class Material extends Model
         });
 
         static::deleting(function($material) {
-            if ($material->can_be_deleted) {
-                $material->services()->detach();
-            }
+            $material->services()->detach();
         });
     }
 

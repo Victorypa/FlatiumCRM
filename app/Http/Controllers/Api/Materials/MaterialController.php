@@ -10,20 +10,12 @@ use App\Http\Controllers\Controller;
 
 class MaterialController extends Controller
 {
-    public function index()
-    {
-        $materials = Material::orderBy('name', 'asc')->with(['material_unit'])->get();
-
-        return $materials;
-    }
-
     public function search(Request $request)
     {
         $query = $request->searchQuery;
 
         $materials = Material::whereRaw('LOWER(name) LIKE LOWER(?)', ["%" . $query . "%"])
                             ->orderBy('name', 'asc')
-                            ->with(['material_unit'])
                             ->take(100)
                             ->get();
 
@@ -58,8 +50,6 @@ class MaterialController extends Controller
     public function destroy(Material $material)
     {
         if ($material->can_be_deleted) {
-            $material->services()->detach();
-
             $material->delete();
         } else {
             return response()->json([

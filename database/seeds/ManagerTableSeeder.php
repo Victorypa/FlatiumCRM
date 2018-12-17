@@ -9,16 +9,8 @@ class ManagerTableSeeder extends Seeder
     {
         $managers = [
             [
-                'name' => 'Дмитрий Щеблыкин',
-                'phone' => '8-931-376-81-42'
-            ],
-            [
                 'name' => 'Елизавета Васильева',
                 'phone' => '8-931-376-81-41'
-            ],
-            [
-                'name' => 'Илья Лысенко',
-                'phone' => '8-931-376-81-34'
             ]
         ];
 

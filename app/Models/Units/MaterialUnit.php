@@ -7,9 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class MaterialUnit extends Model
 {
-    protected $fillable = [
-        'name'
-    ];
+    protected $guarded = [];
 
     public $timestamps = false;
 

@@ -10,21 +10,19 @@ class ServiceController extends Controller
 {
     public function index()
     {
-        $services = Service::orderBy('name', 'asc')->with(['unit', 'materials', 'service_type'])->get();
-
-        return response()->json($services);
+        return response()->json(
+            Service::orderBy('name', 'asc')->with(['materials'])->get()
+        );
     }
 
     public function show(Service $service)
     {
-        $filteredService = Service::where('id', $service->id)->with(['materials'])->first();
-
-        return $filteredService;
+        return Service::where('id', $service->id)->with(['materials'])->first();
     }
 
     public function store(Request $request)
     {
-        $service = Service::create([
+        return Service::create([
             'service_type_id' => $request->service_type_id,
             'name' => $request->name,
             'unit_id' => $request->unit_id,
@@ -32,8 +30,6 @@ class ServiceController extends Controller
             'can_be_deleted' => true,
             'can_be_discounted' => $request->can_be_discounted
         ]);
-
-        return $service;
     }
 
     public function update(Service $service, Request $request)

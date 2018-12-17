@@ -12,7 +12,7 @@ class ServiceMaterialController extends Controller
     public function index(Service $service)
     {
         return response()->json([
-            'service_materials' => $service->materials()->with(['material_unit'])->get(),
+            'service_materials' => $service->materials()->get(),
             'service' => $service
         ]);
     }

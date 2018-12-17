@@ -22,7 +22,6 @@
                         <template v-else>
                             Итого: 0 P
                         </template>
-
                     </div>
 
                     <div class="col-4 pl-0">
@@ -33,13 +32,7 @@
                         </router-link>
                     </div>
 
-                    <div class="col-4 pl-0">
-                        <router-link :to="{ name: 'room-graphic', params: { id: order.id, room_id: room.id } }" >
-                            <button type="button" class="primary-button w-100">
-                                ГРАФИК РАБОТЫ
-                            </button>
-                        </router-link>
-                    </div>
+
                 </div>
             </template>
 
