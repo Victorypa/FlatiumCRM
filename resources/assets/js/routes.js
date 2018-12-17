@@ -107,14 +107,6 @@ let routes = [
     },
 
     {
-        name: 'room-graphic',
-        path: '/orders/:id?/rooms/:room_id?/graphic',
-        component: require('./components/Orders/Rooms/Graphics/RoomGraphic'),
-        meta: { requiresAuth: true },
-        props: true
-    },
-
-    {
         name: 'order-export-show',
         path: '/orders/:id?/export/pdf/show',
         component: require('./components/Orders/Export/Show'),
