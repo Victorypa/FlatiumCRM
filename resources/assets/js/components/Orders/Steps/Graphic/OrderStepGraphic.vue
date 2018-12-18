@@ -25,16 +25,8 @@
                     </div>
 
                     <div class="stages__pt"></div>
-                    <template v-cloak>
-                        <fusioncharts :type="type"
-                                      :width="width"
-                                      :height="height"
-                                      :dataFormat="dataFormat"
-                                      :dataSource="dataSource"
-                                      >
-                        </fusioncharts>
-                    </template>
-                    <br><br>
+
+
                 </div>
             </div>
           </div>
@@ -43,132 +35,23 @@
 </template>
 
 <script>
-    import Vue from 'vue'
-    import VueFusionCharts from 'vue-fusioncharts'
-    import FusionCharts from 'fusioncharts/core'
-    import Gantt from 'fusioncharts/viz/gantt'
-    import FusionTheme from 'fusioncharts/themes/es/fusioncharts.theme.fusion'
-
-    Vue.use(VueFusionCharts, FusionCharts, Gantt, FusionTheme)
 
     export default {
         data () {
             return {
-                order: [],
-                order_steps: [],
 
-                order_step_dates: [],
-                order_step_labels: [],
-
-                order_step_descriptions: [],
-                order_step_begin_ats: [],
-                order_step_finish_ats: [],
-
-                type: "gantt",
-                width: '100%',
-                height: '70%',
-                dataFormat: 'json',
-
-                dataSource: [],
-                dates: [],
-                weeks: []
             }
         },
 
         created () {
             this.getOrder()
-            this.dateInit()
         },
 
         methods: {
-            dateInit () {
-                for (let i = 0; i < 12; i++) {
-                    this.dates.push(
-                        {
-                            "start": `1/${i + 1}/2019`,
-                            "end": `7/${i + 1}/2019`,
-                            "label": `1.${i + 1}.19`
-                        },
 
-                        {
-                            "start": `7/${i + 1}/2019`,
-                            "end": `14/${i + 1}/2019`,
-                            "label": `7.${i + 1}.19`
-                        },
-
-                        {
-                            "start": `14/${i + 1}/2019`,
-                            "end": `21/${i + 1}/2019`,
-                            "label": `14.${i + 1}.19`
-                        },
-
-                        {
-                            "start": `21/${i + 1}/2019`,
-                            "end": `28/${i + 1}/2019`,
-                            "label": `21.${i + 1}.19`
-                        },
-                    )
-
-                }
-            },
-
-            getOrder () {
-                return axios.get(`/api/orders/${this.$route.params.id}/order_steps`)
-                            .then(response => {
-                                this.order = response.data
-
-                                this.order.order_steps.forEach(order_step => {
-
-                                    this.order_step_labels.push({
-                                        "label": ''
-                                    })
-                                    this.order_step_dates.push({
-                                        "label": `${order_step.description ? order_step.description : order_step.name} ${order_step.price ? order_step.price : 0} Р`,
-                                        "start": order_step.begin_at,
-                                        "end": order_step.finish_at,
-                                        "color": order_step.color
-                                    })
-                                })
-
-                                this.dataSource = {
-                                  "chart": this.chart,
-                                  "tasks": {
-                                    "showlabels": "1",
-                                    "task": this.order_step_dates
-                                  },
-                                  "processes": {
-                                    "align": "left",
-                                    "headertext": "",
-                                    "headervalign": "bottom",
-                                    "headeralign": "left",
-                                    "process": this.order_step_labels
-                                  },
-                                  "categories": [
-                                    {
-                                      "category": this.dates
-                                    }
-                                  ]
-                                }
-                            })
-            },
         },
 
-        computed: {
-            chart () {
-                return {
-                    "baseFont": "Arial",
-                    "baseFontSize": "18",
-                    "dateformat": "dd/mm/yyyy",
-                    "outputdateformat": "dd.mm.yyyy",
-                    "theme": "fusion",
-                    "ganttpaneduration": "100",
-                    "ganttpanedurationunit": "d",
-                    "useverticalscrolling": "0",
-                    "GanttWidthPercent": "100",
-                    "showFullDataTable": "0",
-                }
-            },
-        }
+        
     }
 </script>
 

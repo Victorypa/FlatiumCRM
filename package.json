@@ -21,10 +21,8 @@
         "vue-template-compiler": "^2.5.17"
     },
     "dependencies": {
-        "fusioncharts": "^3.13.3",
         "moment": "^2.22.2",
         "vue-carousel": "^0.13.1",
-        "vue-fusioncharts": "^2.0.4",
         "vue-router": "^3.0.2",
         "vuejs-datepicker": "^1.5.4",
         "vuex": "^3.0.1"
