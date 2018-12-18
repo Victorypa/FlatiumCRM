@@ -54637,21 +54637,53 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     data: function data() {
         return {
+            order: [],
+            order_steps: [],
+
             tasks: {
-                data: [{ id: 1, text: 'Task #1', start_date: '15-07-2018', duration: 3, progress: 0.6 }, { id: 2, text: 'Task #2', start_date: '18-04-2017', duration: 3, progress: 0.4 }]
-            }
-        };
+                data: []
+                // tasks: {
+                //     data: [
+                //       {id: 1, text: 'Task #1', start_date: '15-07-2018', duration: 3, progress: 1},
+                //       {id: 2, text: 'Task #2', start_date: '18-04-2017', duration: 3, progress: 1}
+                //     ]
+                // },
+            } };
     },
 
 
     components: {
         Gantt: __WEBPACK_IMPORTED_MODULE_0__Partials_Gantt_vue___default.a
+    },
+
+    mounted: function mounted() {
+        this.getOrder();
+    },
+
+
+    methods: {
+        getOrder: function getOrder() {
+            var _this = this;
+
+            return axios.get('/api/orders/' + this.$route.params.id + '/order_steps').then(function (response) {
+                _this.order = response.data;
+                response.data.order_steps.forEach(function (order_step) {
+                    _this.order_steps.push({
+                        id: order_step.id,
+                        text: order_step.description ? order_step.description : order_step.name,
+                        start_date: order_step.begin_at,
+                        end_date: order_step.finish_at,
+                        progress: 1
+                    });
+                });
+                _this.tasks.data = _this.order_steps;
+            });
+        }
     }
 });
 
@@ -54741,7 +54773,7 @@ exports = module.exports = __webpack_require__(2)(false);
 exports.i(__webpack_require__(149), "");
 
 // module
-exports.push([module.i, "\n.gantt_grid {\n    display: none !important;\n}\n", ""]);
+exports.push([module.i, "\n.no_drag_progress .gantt_task_progress_drag{\n    display:none !important;\n}\n\n", ""]);
 
 // exports
 
@@ -54781,6 +54813,12 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         ganttInit: function ganttInit() {
             gantt.config.min_column_width = 100;
             gantt.config.grid_width = 0;
+
+            gantt.templates.task_class = function (start, end, task) {
+                var css = [];
+                css.push("no_drag_progress");
+                return css.join(" ");
+            };
             gantt.init(this.$refs.gantt);
             gantt.locale = {
                 date: {
@@ -54790,34 +54828,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                     day_full: ["Воскресенье", "Понедельник", "Вторник", "Среда", "Четверг", "Пятница", "Суббота"],
 
                     day_short: ["Вс", "Пн", "Вт", "Ср", "Чт", "Пт", "Сб"]
-                },
-                labels: {
-                    new_task: "New task",
-                    icon_save: "Save",
-                    icon_cancel: "Cancel",
-                    icon_details: "Details",
-                    icon_edit: "Edit",
-                    icon_delete: "Delete",
-                    confirm_closing: "", //Your changes will be lost, are you sure ?
-                    confirm_deleting: "Task will be deleted permanently, are you sure?",
-
-                    section_description: "Description",
-                    section_time: "Time period",
-
-                    /* link confirmation */
-
-                    confirm_link_deleting: "Dependency will be deleted permanently, are you sure?",
-                    link_from: "From",
-                    link_to: "To",
-                    link_start: "Start",
-                    link_end: "End",
-
-                    minutes: "Minutes",
-                    hours: "Hours",
-                    days: "Days",
-                    weeks: "Week",
-                    months: "Months",
-                    years: "Years"
                 }
             };
             gantt.parse(this.$props.tasks);
@@ -54885,13 +54895,57 @@ var render = function() {
                 "div",
                 { staticClass: "col-md-10" },
                 [
-                  _vm._m(0),
+                  _c(
+                    "div",
+                    {
+                      staticClass:
+                        "row col-10 fixed-part align-items-center shadow bg-white rounded"
+                    },
+                    [
+                      _vm._m(0),
+                      _vm._v(" "),
+                      _c(
+                        "div",
+                        { staticClass: "col-md-2" },
+                        [
+                          _c(
+                            "router-link",
+                            {
+                              attrs: {
+                                to: {
+                                  name: "order-step",
+                                  params: { id: _vm.order.id }
+                                }
+                              }
+                            },
+                            [
+                              _c(
+                                "button",
+                                {
+                                  staticClass: "primary-button w-100",
+                                  attrs: { type: "button" }
+                                },
+                                [
+                                  _vm._v(
+                                    "\n                                Назад\n                            "
+                                  )
+                                ]
+                              )
+                            ]
+                          )
+                        ],
+                        1
+                      )
+                    ]
+                  ),
                   _vm._v(" "),
                   _c("div", { staticClass: "stages__pt" }),
                   _vm._v(" "),
-                  _c("gantt", { attrs: { tasks: _vm.tasks } })
+                  _vm.tasks
+                    ? [_c("gantt", { attrs: { tasks: _vm.tasks } })]
+                    : _vm._e()
                 ],
-                1
+                2
               )
             ],
             1
@@ -54907,34 +54961,11 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c(
-      "div",
-      {
-        staticClass:
-          "row col-10 fixed-part align-items-center shadow bg-white rounded"
-      },
-      [
-        _c("div", { staticClass: "col-md-10" }, [
-          _c("h1", { staticClass: "main-caption w-100" }, [
-            _vm._v(
-              "\n                        График работ\n                      "
-            )
-          ])
-        ]),
-        _vm._v(" "),
-        _c("div", { staticClass: "col-md-2" }, [
-          _c(
-            "button",
-            { staticClass: "primary-button w-100", attrs: { type: "button" } },
-            [
-              _vm._v(
-                "\n                            Назад\n                        "
-              )
-            ]
-          )
-        ])
-      ]
-    )
+    return _c("div", { staticClass: "col-md-10" }, [
+      _c("h1", { staticClass: "main-caption w-100" }, [
+        _vm._v("\n                        График работ\n                      ")
+      ])
+    ])
   }
 ]
 render._withStripped = true

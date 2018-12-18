@@ -16,20 +16,19 @@
                         </div>
 
                         <div class="col-md-2">
-                            <button type="button" class="primary-button w-100">
-                                Назад
-                            </button>
-                            <!-- <router-link :to="{ name: 'order-step', params: { id: order.id } }" >
+                            <router-link :to="{ name: 'order-step', params: { id: order.id } }" >
                                 <button type="button" class="primary-button w-100">
                                     Назад
                                 </button>
-                            </router-link> -->
+                            </router-link>
                         </div>
                     </div>
 
                     <div class="stages__pt"></div>
 
-                    <gantt :tasks="tasks"></gantt>
+                    <template v-if="tasks">
+                        <gantt :tasks="tasks"></gantt>
+                    </template>
                 </div>
             </div>
           </div>
@@ -42,18 +41,47 @@
     export default {
         data () {
             return {
+                order: [],
+                order_steps: [],
+
                 tasks: {
-                    data: [
-                      {id: 1, text: 'Task #1', start_date: '15-07-2018', duration: 3, progress: 0.6},
-                      {id: 2, text: 'Task #2', start_date: '18-04-2017', duration: 3, progress: 0.4}
-                    ]
-                },
+                    data: []
+                }
+                // tasks: {
+                //     data: [
+                //       {id: 1, text: 'Task #1', start_date: '15-07-2018', duration: 3, progress: 1},
+                //       {id: 2, text: 'Task #2', start_date: '18-04-2017', duration: 3, progress: 1}
+                //     ]
+                // },
             }
         },
 
         components: {
             Gantt
         },
+
+        mounted () {
+            this.getOrder()
+        },
+
+        methods: {
+            getOrder () {
+                return axios.get(`/api/orders/${this.$route.params.id}/order_steps`)
+                            .then(response => {
+                                this.order = response.data
+                                response.data.order_steps.forEach(order_step => {
+                                    this.order_steps.push({
+                                        id: order_step.id,
+                                        text: order_step.description ? order_step.description : order_step.name,
+                                        start_date: order_step.begin_at,
+                                        end_date: order_step.finish_at,
+                                        progress: 1
+                                    })
+                                })
+                                this.tasks.data = this.order_steps
+                            })
+            }
+        }
     }
 </script>
 
