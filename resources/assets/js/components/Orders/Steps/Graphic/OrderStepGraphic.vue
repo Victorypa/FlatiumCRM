@@ -16,17 +16,20 @@
                         </div>
 
                         <div class="col-md-2">
-                            <router-link :to="{ name: 'order-step', params: { id: order.id } }" >
+                            <button type="button" class="primary-button w-100">
+                                Назад
+                            </button>
+                            <!-- <router-link :to="{ name: 'order-step', params: { id: order.id } }" >
                                 <button type="button" class="primary-button w-100">
                                     Назад
                                 </button>
-                            </router-link>
+                            </router-link> -->
                         </div>
                     </div>
 
                     <div class="stages__pt"></div>
 
-
+                    <gantt :tasks="tasks"></gantt>
                 </div>
             </div>
           </div>
@@ -35,28 +38,29 @@
 </template>
 
 <script>
-
+    import Gantt from './Partials/Gantt.vue';
     export default {
         data () {
             return {
-
+                tasks: {
+                    data: [
+                      {id: 1, text: 'Task #1', start_date: '15-04-2017', duration: 3, progress: 0.6},
+                      {id: 2, text: 'Task #2', start_date: '18-04-2017', duration: 3, progress: 0.4}
+                    ]
+                },
             }
         },
 
-        created () {
-            this.getOrder()
+        components: {
+            Gantt
         },
-
-        methods: {
-
-        },
-
-        
     }
 </script>
 
 
 <style lang="scss" scoped>
+    @import "~dhtmlx-gantt/codebase/dhtmlxgantt.css";
+
     $white: #fff;
     $main-color: #00A4D1;
     $ccc: #CCCCCC;
