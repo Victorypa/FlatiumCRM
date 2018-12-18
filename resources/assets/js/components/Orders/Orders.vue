@@ -262,7 +262,7 @@ export default {
     },
 
     dateFormatter(dateString) {
-      return moment(new Date(dateString)).format("DD-MM-YYYY");
+      return moment(new Date(dateString)).format("DD-MM-YYYY")
     },
 
     filteredOrderName(order) {

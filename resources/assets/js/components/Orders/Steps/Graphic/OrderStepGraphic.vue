@@ -72,12 +72,12 @@
                                 response.data.order_steps.forEach(order_step => {
                                     this.order_steps.push({
                                         id: order_step.id,
+                                        color: order_step.color,
                                         text: order_step.description ? order_step.description : order_step.name,
                                         start_date: moment(new Date(order_step.begin_at)).format("DD-MM-YYYY"),
                                         end_date: moment(new Date(order_step.finish_at)).format("DD-MM-YYYY"),
                                         duration: moment(new Date(order_step.finish_at)).diff(moment(new Date(order_step.begin_at)), 'days'),
                                         price: order_step.price
-                                        // progress: 1
                                     })
                                 })
                                 this.tasks.data = this.order_steps

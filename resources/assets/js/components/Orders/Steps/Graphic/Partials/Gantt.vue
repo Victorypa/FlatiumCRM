@@ -24,12 +24,17 @@
 
       methods: {
           ganttInit () {
-                gantt.config.min_column_width = 60
+                gantt.config.step = 1
+                gantt.config.min_column_width = 50
                 gantt.config.grid_width = 0
+                gantt.config.row_height = 50
+                gantt.config.task_height = 24
 
                 gantt.templates.tooltip_text = function(start, end, task) {
                     return "<b>Название:</b> " + task.text +
-                           "<br/><b>Премужуток:</b> " + task.duration +
+                           "<br/><b>Начало:</b> " + moment(new Date(task.start_date)).format("DD-MM-YYYY") +
+                           "<br/><b>Окончание:</b> " + moment(new Date(task.end_date)).format("DD-MM-YYYY") +
+                           "<br/><b>Промежуток:</b> " + task.duration + " Дней" +
                            "<br/><b>Цена:</b> " + task.price + " Р";
                 }
 

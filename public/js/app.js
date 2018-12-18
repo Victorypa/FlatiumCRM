@@ -54669,12 +54669,12 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 response.data.order_steps.forEach(function (order_step) {
                     _this.order_steps.push({
                         id: order_step.id,
+                        color: order_step.color,
                         text: order_step.description ? order_step.description : order_step.name,
                         start_date: moment(new Date(order_step.begin_at)).format("DD-MM-YYYY"),
                         end_date: moment(new Date(order_step.finish_at)).format("DD-MM-YYYY"),
                         duration: moment(new Date(order_step.finish_at)).diff(moment(new Date(order_step.begin_at)), 'days'),
                         price: order_step.price
-                        // progress: 1
                     });
                 });
                 _this.tasks.data = _this.order_steps;
@@ -54811,11 +54811,14 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
     methods: {
         ganttInit: function ganttInit() {
-            gantt.config.min_column_width = 60;
+            gantt.config.step = 1;
+            gantt.config.min_column_width = 50;
             gantt.config.grid_width = 0;
+            gantt.config.row_height = 50;
+            gantt.config.task_height = 24;
 
             gantt.templates.tooltip_text = function (start, end, task) {
-                return "<b>Название:</b> " + task.text + "<br/><b>Премужуток:</b> " + task.duration + "<br/><b>Цена:</b> " + task.price + " Р";
+                return "<b>Название:</b> " + task.text + "<br/><b>Начало:</b> " + moment(new Date(task.start_date)).format("DD-MM-YYYY") + "<br/><b>Окончание:</b> " + moment(new Date(task.end_date)).format("DD-MM-YYYY") + "<br/><b>Промежуток:</b> " + task.duration + " Дней" + "<br/><b>Цена:</b> " + task.price + " Р";
             };
 
             gantt.templates.task_class = function (start, end, task) {
