@@ -467,7 +467,7 @@
             axios.patch(`/api/orders/${this.$route.params.id}/order_step/${order_step_id}/update`, {
                 'finish_at': finish_at
             })
-        },
+        }
     }
   };
 </script>

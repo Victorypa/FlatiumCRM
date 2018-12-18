@@ -26,8 +26,8 @@
 
                     <div class="stages__pt"></div>
 
-                    <template v-if="tasks.data.length">
-                        <gantt :tasks="tasks"></gantt>
+                    <template v-if="tasks.data.length && order">
+                        <gantt :tasks="tasks" :order="order" @update-date="updateDate"></gantt>
                     </template>
                 </div>
             </div>
@@ -47,12 +47,6 @@
                 tasks: {
                     data: []
                 }
-                // tasks: {
-                //     data: [
-                //       {id: 1, text: 'Task #1', start_date: '15-07-2018', duration: 3, progress: 1},
-                //       {id: 2, text: 'Task #2', start_date: '18-04-2017', duration: 3, progress: 1}
-                //     ]
-                // },
             }
         },
 
@@ -82,6 +76,24 @@
                                 })
                                 this.tasks.data = this.order_steps
                             })
+            },
+
+            updateDate (id, item) {
+                this.updateOrderStepBeginAt(id, item.start_date)
+                this.updateOrderStepFinishAt(id, item.end_date)
+            },
+
+
+            updateOrderStepBeginAt (order_step_id, begin_at) {
+                axios.patch(`/api/orders/${this.$route.params.id}/order_step/${order_step_id}/update`, {
+                    'begin_at': moment(new Date(begin_at)).format("DD-MM-YYYY")
+                })
+            },
+
+            updateOrderStepFinishAt (order_step_id, finish_at) {
+                axios.patch(`/api/orders/${this.$route.params.id}/order_step/${order_step_id}/update`, {
+                    'finish_at': moment(new Date(finish_at)).format("DD-MM-YYYY")
+                })
             }
         }
     }
