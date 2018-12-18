@@ -219,13 +219,9 @@
 </template>
 
 <script>
-import moment from 'moment'
-
 export default {
   data() {
     return {
-      moment,
-
       orders: [],
       sortByDate: false,
       quickSearchQuery: "",
@@ -266,7 +262,7 @@ export default {
     },
 
     dateFormatter(dateString) {
-      return this.moment(new Date(dateString)).format("DD-MM-YYYY");
+      return moment(new Date(dateString)).format("DD-MM-YYYY");
     },
 
     filteredOrderName(order) {

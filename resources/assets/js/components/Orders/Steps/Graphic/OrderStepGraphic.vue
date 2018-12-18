@@ -26,7 +26,7 @@
 
                     <div class="stages__pt"></div>
 
-                    <template v-if="tasks">
+                    <template v-if="tasks.data.length">
                         <gantt :tasks="tasks"></gantt>
                     </template>
                 </div>
@@ -73,9 +73,11 @@
                                     this.order_steps.push({
                                         id: order_step.id,
                                         text: order_step.description ? order_step.description : order_step.name,
-                                        start_date: order_step.begin_at,
-                                        end_date: order_step.finish_at,
-                                        progress: 1
+                                        start_date: moment(new Date(order_step.begin_at)).format("DD-MM-YYYY"),
+                                        end_date: moment(new Date(order_step.finish_at)).format("DD-MM-YYYY"),
+                                        duration: moment(new Date(order_step.finish_at)).diff(moment(new Date(order_step.begin_at)), 'days'),
+                                        price: order_step.price
+                                        // progress: 1
                                     })
                                 })
                                 this.tasks.data = this.order_steps
@@ -87,8 +89,6 @@
 
 
 <style lang="scss" scoped>
-    @import "~dhtmlx-gantt/codebase/dhtmlxgantt.css";
-
     $white: #fff;
     $main-color: #00A4D1;
     $ccc: #CCCCCC;

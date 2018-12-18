@@ -1,9 +1,11 @@
 <template>
-    <div ref="gantt" style="height: 70%;"></div>
+    <div ref="gantt" style="height: 100%;"></div>
 </template>
 
 <script>
     import 'dhtmlx-gantt'
+    import "dhtmlx-gantt/codebase/ext/dhtmlxgantt_tooltip.js"
+
     export default {
         props: {
           tasks: {
@@ -22,14 +24,21 @@
 
       methods: {
           ganttInit () {
-                gantt.config.min_column_width = 100
+                gantt.config.min_column_width = 60
                 gantt.config.grid_width = 0
+
+                gantt.templates.tooltip_text = function(start, end, task) {
+                    return "<b>Название:</b> " + task.text +
+                           "<br/><b>Премужуток:</b> " + task.duration +
+                           "<br/><b>Цена:</b> " + task.price + " Р";
+                }
 
                 gantt.templates.task_class = function(start, end, task){
                       let css = []
                       css.push("no_drag_progress")
                       return css.join(" ")
                 }
+
                 gantt.init(this.$refs.gantt)
                 gantt.locale = {
                     date:{
