@@ -8,13 +8,14 @@
                 </select>
         </div>
         <div class="col-10 d-flex align-items-center pl-0 pb-2">
-            <div class="form-group col-12">
+            <div class="form-group col-12 d-flex align-items-center">
                 <input type="text"
                        class="form-control"
                        placeholder="Название вида работы"
                        v-model="searchQuery"
                        autofocus
                        >
+                       <i class="fa fa-search"></i>
             </div>
         </div>
 
@@ -27,12 +28,13 @@
                     </div>
 
                     <div class="col-5 py-1">
-                        <div class="form-group">
+                        <div class="form-group d-flex align-items-center">
                             <input type="text"
                                    class="form-control"
                                    placeholder="Название"
                                    v-model="newService.name"
                                    >
+                                   <i class="fa fa-search"></i>
                         </div>
                     </div>
 
@@ -414,5 +416,9 @@ $main-color: #00A4D1;
         box-shadow: none;
         border-color: #000;
     }
+}
+
+.fa-search::before {
+  right: 25px;
 }
 </style>

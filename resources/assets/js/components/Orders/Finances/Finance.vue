@@ -33,10 +33,10 @@
 
 
                     <div class="col-12 pt-3 d-flex">
-                      <div class="main-subtitle px-15 col-auto pl-0"> Итого: {{ new Intl.NumberFormat('ru-Ru').format(service_price) }} Р <span>(работы)</span></div>
-                      <div class="main-subtitle px-15 col-auto"> {{ new Intl.NumberFormat('ru-Ru').format(material_price) }} Р<span>(материалы)</span></div>
-                      <div class="main-subtitle px-15 col-auto"> Приход: {{ new Intl.NumberFormat('ru-Ru').format(income_amount) }} Р</div>
-                      <div class="main-subtitle px-15 col-auto"> Прибыль: {{ new Intl.NumberFormat('ru-Ru').format(profit) }} Р</div>
+                      <div class="main-subtitle px-15 col-auto pl-0"> Итого: {{ new Intl.NumberFormat('ru-Ru').format(parseInt(service_price)) }} Р <span>(работы)</span></div>
+                      <div class="main-subtitle px-15 col-auto"> {{ new Intl.NumberFormat('ru-Ru').format(parseInt(material_price)) }} Р<span>(материалы)</span></div>
+                      <div class="main-subtitle px-15 col-auto"> Приход: {{ new Intl.NumberFormat('ru-Ru').format(parseInt(income_amount)) }} Р</div>
+                      <div class="main-subtitle px-15 col-auto"> Прибыль: {{ new Intl.NumberFormat('ru-Ru').format(parseInt(profit)) }} Р</div>
                     </div>
 
                   </div>
@@ -414,5 +414,17 @@ input:required:valid {
 
 .my-datepicker {
   line-height: 15px;
+}
+
+.form-control {
+  border-radius: 0;
+  &::placeholder {
+    opacity: 0.3;
+  }
+  &:focus,
+  &:hover {
+    box-shadow: none;
+    border-color: #000;
+  }
 }
 </style>

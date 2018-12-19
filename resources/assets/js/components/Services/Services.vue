@@ -32,6 +32,7 @@
                             class="form-control"
                             v-model="quickSearchQuery"
                             >
+                             <i class="fa fa-search"></i>
                </div>
 
                 </div>
@@ -44,6 +45,7 @@
                                class="form-control"
                                v-model="newService.name"
                                >
+                                <i class="fa fa-search"></i>
                       </div>
 
                       <div class="col-md-2">
