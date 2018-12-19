@@ -338,7 +338,7 @@ export default {
         },
 
         profit () {
-            return new Intl.NumberFormat('ru-Ru').format(this.income_amount - this.expense_amount)
+            return parseInt(this.income_amount) - parseInt(this.expense_amount)
         }
     }
 };

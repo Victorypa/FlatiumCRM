@@ -422,7 +422,6 @@
                        axios.get(`/api/orders/${this.order.id}/export/excel/materials`)
                             .then(response => {
                                 window.open(`${response.data.url}/storage/${response.data.data}`)
-                                console.log(response);
                             })
                    } else {
                        axios.get(`/api/orders/${this.order.id}/export/excel`)

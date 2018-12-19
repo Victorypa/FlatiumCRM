@@ -1,5 +1,5 @@
 <template>
-    <div ref="gantt" style="height: 100%;"></div>
+    <div ref="gantt" style="height: 40%;"></div>
 </template>
 
 <script>
