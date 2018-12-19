@@ -45,7 +45,7 @@
                                class="form-control"
                                v-model="newService.name"
                                >
-                                <i class="fa fa-search"></i>
+                            <i class="fa fa-search"></i>
                       </div>
 
                       <div class="col-md-2">
