@@ -87,11 +87,11 @@ export default {
         },
 
         getServiceSummary (id) {
-            return new Intl.NumberFormat('ru-Ru').format(this.service_prices[id] * this.service_quantities[id])
+            return new Intl.NumberFormat('ru-Ru').format(parseInt(this.service_prices[id] * this.service_quantities[id]))
         },
 
         getMaterialSummary (rate, quantity, price) {
-            return new Intl.NumberFormat('ru-Ru').format(Math.ceil(rate/quantity) * price)
+            return new Intl.NumberFormat('ru-Ru').format(parseInt(Math.ceil(rate/quantity) * price))
         },
 
         removeEmptyElem(obj) {

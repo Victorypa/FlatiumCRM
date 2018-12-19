@@ -313,7 +313,7 @@
                     'service_material_rates': this.removeEmptyElem(this.service_material_rates),
                     'service_material_quantities': this.removeEmptyElem(this.service_material_quantities),
                 }).then(response => {
-                    window.location.reload(true)
+                    
                 }).catch(err => {
                     console.log(err)
                 })
