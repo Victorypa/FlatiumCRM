@@ -163,6 +163,11 @@
                                                 </button>
                                             </div>
                                         </template>
+                                        <template v-else>
+                                            <div class="d-flex align-items-center pl-50 show-button" style="margin-right: 75px;">
+                                                &nbsp;
+                                            </div>
+                                        </template>
 
                                     </td>
                                 </tr>
