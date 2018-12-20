@@ -7,10 +7,18 @@ use App\Models\Orders\Order;
 use App\Models\Orders\Rooms\Room;
 use App\Models\Services\Service;
 use App\Http\Controllers\Controller;
-use App\Modes\Orders\Rooms\Services\RoomService;
+use App\Models\Orders\Rooms\Services\RoomService;
 
 class RoomServiceController extends Controller
 {
+    public function show(Order $order, Room $room, Service $service, Request $request)
+    {
+        return RoomService::where([
+            ['room_id', $room->id],
+            ['service_id', $service->id]
+        ])->first();
+    }
+
     public function store(Order $order, Room $room, Request $request)
     {
         $diffIds_add = [];

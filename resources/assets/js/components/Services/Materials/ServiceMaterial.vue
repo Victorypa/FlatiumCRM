@@ -84,13 +84,13 @@
                         </div>
 
                           <div class="col-2 d-flex pr-0">
-                            <input type="number"
+                            <input type="text"
                                    class="form-control"
                                    placeholder="Цена"
                                    v-model="newMaterial.price"
                                    >
 
-                            <input type="number"
+                            <input type="text"
                                    class="form-control ml-2"
                                    placeholder="Ед.уп"
                                    v-model="newMaterial.quantity"
@@ -106,7 +106,7 @@
                                   </option>
                               </select>
 
-                                <input type="number"
+                                <input type="text"
                                        class="form-control col-3 ml-2"
                                        placeholder="Расход"
                                        v-model="newMaterial.rate"

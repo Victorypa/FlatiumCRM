@@ -5404,9 +5404,6 @@ module.exports = {
         getServiceSummary: function getServiceSummary(id) {
             return new Intl.NumberFormat('ru-Ru').format(parseInt(this.service_prices[id] * this.service_quantities[id]));
         },
-        getMaterialSummary: function getMaterialSummary(rate, quantity, price) {
-            return new Intl.NumberFormat('ru-Ru').format(parseInt(Math.ceil(rate / quantity) * price));
-        },
         removeEmptyElem: function removeEmptyElem(obj) {
             var newObj = {};
 
@@ -64376,6 +64373,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             }).then(function (response) {
                 _this4.$emit('price', parseInt(response.data.room.price));
             });
+        },
+        getMaterialSummary: function getMaterialSummary(rate, quantity, price, room_service_quantity) {
+            return new Intl.NumberFormat('ru-Ru').format(parseInt(Math.ceil(rate * room_service_quantity / quantity) * price));
         }
     },
 
@@ -65094,7 +65094,11 @@ var render = function() {
                                                                 material.pivot
                                                                   .rate,
                                                                 material.quantity,
-                                                                material.price
+                                                                material.price,
+                                                                _vm
+                                                                  .service_quantities[
+                                                                  service.id
+                                                                ]
                                                               )
                                                             ) +
                                                             " Р\n                              "
@@ -66929,6 +66933,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
     data: function data() {
         return {
+            currentRoomService: [],
+
             service_materials: [],
             service_material_ids: [],
             service_material_prices: [],
@@ -66938,23 +66944,31 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         };
     },
     mounted: function mounted() {
+        this.getCurrentRoomService();
         this.getActualServiceMaterials();
     },
 
 
     methods: {
-        getActualServiceMaterials: function getActualServiceMaterials() {
+        getCurrentRoomService: function getCurrentRoomService() {
             var _this = this;
 
+            return axios.get('/api/orders/' + this.$route.params.id + '/rooms/' + this.$route.params.room_id + '/services/' + this.$route.params.service_id + '/show').then(function (response) {
+                _this.currentRoomService = response.data;
+            });
+        },
+        getActualServiceMaterials: function getActualServiceMaterials() {
+            var _this2 = this;
+
             return axios.get('/api/orders/' + this.$route.params.id + '/rooms/' + this.$route.params.room_id + '/services/' + this.$route.params.service_id + '/materials').then(function (response) {
-                _this.service_materials = response.data.actual_service_materials;
+                _this2.service_materials = response.data.actual_service_materials;
 
                 response.data.actual_service_materials.forEach(function (item) {
-                    _this.service_material_ids.push(item.id);
-                    _this.service_material_prices[item.id] = item.price;
-                    _this.service_material_quantities[item.id] = item.quantity;
+                    _this2.service_material_ids.push(item.id);
+                    _this2.service_material_prices[item.id] = item.price;
+                    _this2.service_material_quantities[item.id] = item.quantity;
 
-                    _this.service_material_rates[item.id] = item.pivot.rate;
+                    _this2.service_material_rates[item.id] = item.pivot.rate;
                 });
             });
         },
@@ -66966,6 +66980,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             }).then(function (response) {}).catch(function (err) {
                 console.log(err);
             });
+        },
+        MaterialCalculation: function MaterialCalculation(quantity, rate, price, room_service_quantity) {
+            var data = Math.ceil(rate * room_service_quantity / quantity) * price;
+            return new Intl.NumberFormat('ru-Ru').format(parseInt(data));
         }
     }
 
@@ -67284,10 +67302,7 @@ var render = function() {
                                     }
                                   ],
                                   staticClass: "form-control",
-                                  attrs: {
-                                    type: "number",
-                                    placeholder: "Цена"
-                                  },
+                                  attrs: { type: "text", placeholder: "Цена" },
                                   domProps: { value: newMaterial.price },
                                   on: {
                                     input: function($event) {
@@ -67313,10 +67328,7 @@ var render = function() {
                                     }
                                   ],
                                   staticClass: "form-control ml-2",
-                                  attrs: {
-                                    type: "number",
-                                    placeholder: "Ед.уп"
-                                  },
+                                  attrs: { type: "text", placeholder: "Ед.уп" },
                                   domProps: { value: newMaterial.quantity },
                                   on: {
                                     input: function($event) {
@@ -67412,7 +67424,7 @@ var render = function() {
                                       ],
                                       staticClass: "form-control col-3 ml-2",
                                       attrs: {
-                                        type: "number",
+                                        type: "text",
                                         placeholder: "Расход"
                                       },
                                       domProps: { value: newMaterial.rate },
@@ -67447,7 +67459,9 @@ var render = function() {
                                                     _vm.MaterialCalculation(
                                                       newMaterial.quantity,
                                                       newMaterial.rate,
-                                                      newMaterial.price
+                                                      newMaterial.price,
+                                                      _vm.currentRoomService
+                                                        .quantity
                                                     )
                                                   ) +
                                                   " Р\n                                "
@@ -67704,7 +67718,9 @@ var render = function() {
                                                         .service_material_rates[
                                                         material.id
                                                       ],
-                                                      material.price
+                                                      material.price,
+                                                      _vm.currentRoomService
+                                                        .quantity
                                                     )
                                                   ) +
                                                   " Р\n                            "
@@ -67912,7 +67928,7 @@ var render = function() {
                                       staticClass: "form-control col-3 ml-2",
                                       attrs: {
                                         type: "text",
-                                        placeholder: "Расход/м2",
+                                        placeholder: "Расход",
                                         id: "material-" + material.id
                                       },
                                       domProps: {
@@ -67959,7 +67975,9 @@ var render = function() {
                                                         .service_material_rates[
                                                         material.id
                                                       ],
-                                                      material.price
+                                                      material.price,
+                                                      _vm.currentRoomService
+                                                        .quantity
                                                     )
                                                   ) +
                                                   " Р\n                                "
@@ -70496,10 +70514,7 @@ var render = function() {
                                     }
                                   ],
                                   staticClass: "form-control",
-                                  attrs: {
-                                    type: "number",
-                                    placeholder: "Цена"
-                                  },
+                                  attrs: { type: "text", placeholder: "Цена" },
                                   domProps: { value: newMaterial.price },
                                   on: {
                                     input: function($event) {
@@ -70525,10 +70540,7 @@ var render = function() {
                                     }
                                   ],
                                   staticClass: "form-control ml-2",
-                                  attrs: {
-                                    type: "number",
-                                    placeholder: "Ед.уп"
-                                  },
+                                  attrs: { type: "text", placeholder: "Ед.уп" },
                                   domProps: { value: newMaterial.quantity },
                                   on: {
                                     input: function($event) {
@@ -70624,7 +70636,7 @@ var render = function() {
                                       ],
                                       staticClass: "form-control col-3 ml-2",
                                       attrs: {
-                                        type: "number",
+                                        type: "text",
                                         placeholder: "Расход"
                                       },
                                       domProps: { value: newMaterial.rate },

@@ -189,7 +189,7 @@
                                 <div class="d-flex align-items-center">
                                   <div class="col-4" style="margin-left:163px"></div>
                                   <div class="form-group__calc col-md-2">
-                                      {{ getMaterialSummary(material.pivot.rate, material.quantity, material.price) }} Р
+                                      {{ getMaterialSummary(material.pivot.rate, material.quantity, material.price, service_quantities[service.id]) }} Р
                                   </div>
                                 </div>
                               </div>
@@ -348,6 +348,10 @@
                 }).then(response => {
                     this.$emit('price', parseInt(response.data.room.price))
                 })
+            },
+
+            getMaterialSummary (rate, quantity, price, room_service_quantity) {
+                return new Intl.NumberFormat('ru-Ru').format(parseInt(Math.ceil((rate * room_service_quantity)/quantity) * price))
             },
         },
 

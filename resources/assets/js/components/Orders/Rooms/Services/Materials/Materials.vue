@@ -80,13 +80,13 @@
                         </div>
 
                           <div class="col-2 d-flex pr-0">
-                            <input type="number"
+                            <input type="text"
                                    class="form-control"
                                    placeholder="Цена"
                                    v-model="newMaterial.price"
                                    >
 
-                            <input type="number"
+                            <input type="text"
                                    class="form-control ml-2"
                                    placeholder="Ед.уп"
                                    v-model="newMaterial.quantity"
@@ -102,7 +102,7 @@
                                   </option>
                               </select>
 
-                                <input type="number"
+                                <input type="text"
                                        class="form-control col-3 ml-2"
                                        placeholder="Расход"
                                        v-model="newMaterial.rate"
@@ -110,7 +110,7 @@
 
                                 <template v-if="newMaterial.quantity && newMaterial.rate && newMaterial.price">
                                     <div class="total-sum col-3 text-right pr-0">
-                                        {{ MaterialCalculation(newMaterial.quantity, newMaterial.rate, newMaterial.price) }} Р
+                                        {{ MaterialCalculation(newMaterial.quantity, newMaterial.rate, newMaterial.price, currentRoomService.quantity) }} Р
                                     </div>
                                 </template>
                                 <template v-else>
@@ -179,7 +179,7 @@
 
                             <div class="total-sum col-3 text-right pr-0">
                                 <template v-if="service_material_quantities[material.id] && service_material_rates[material.id]">
-                                    {{ MaterialCalculation(service_material_quantities[material.id], service_material_rates[material.id], material.price) }} Р
+                                    {{ MaterialCalculation(service_material_quantities[material.id], service_material_rates[material.id], material.price, currentRoomService.quantity) }} Р
                                 </template>
                                 <template v-else>
                                     0 Р
@@ -237,14 +237,14 @@
 
                                  <input type="text"
                                         class="form-control col-3 ml-2"
-                                        placeholder="Расход/м2"
+                                        placeholder="Расход"
                                         :id="'material-' + material.id"
                                         v-model="service_material_rates[material.id]"
                                         >
 
                                 <div class="total-sum col-3 text-right pr-0">
                                     <template v-if="service_material_quantities[material.id] && service_material_rates[material.id]">
-                                        {{ MaterialCalculation(service_material_quantities[material.id], service_material_rates[material.id], material.price) }} Р
+                                        {{ MaterialCalculation(service_material_quantities[material.id], service_material_rates[material.id], material.price, currentRoomService.quantity) }} Р
                                     </template>
                                     <template v-else>
                                         0 Р
@@ -277,6 +277,8 @@
 
         data () {
             return {
+                currentRoomService: [],
+
                 service_materials: [],
                 service_material_ids: [],
                 service_material_prices: [],
@@ -287,10 +289,18 @@
         },
 
         mounted () {
+            this.getCurrentRoomService()
             this.getActualServiceMaterials()
         },
 
         methods: {
+            getCurrentRoomService () {
+                return axios.get(`/api/orders/${this.$route.params.id}/rooms/${this.$route.params.room_id}/services/${this.$route.params.service_id}/show`)
+                            .then(response => {
+                                this.currentRoomService = response.data
+                            })
+            },
+
             getActualServiceMaterials () {
                 return axios.get(`/api/orders/${this.$route.params.id}/rooms/${this.$route.params.room_id}/services/${this.$route.params.service_id}/materials`)
                             .then(response => {
@@ -313,10 +323,15 @@
                     'service_material_rates': this.removeEmptyElem(this.service_material_rates),
                     'service_material_quantities': this.removeEmptyElem(this.service_material_quantities),
                 }).then(response => {
-                    
+
                 }).catch(err => {
                     console.log(err)
                 })
+            },
+
+            MaterialCalculation (quantity, rate, price, room_service_quantity) {
+                let data = Math.ceil((rate * room_service_quantity)/quantity) * price
+                return new Intl.NumberFormat('ru-Ru').format(parseInt(data))
             },
         },
 
