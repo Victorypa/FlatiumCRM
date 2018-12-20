@@ -5,6 +5,7 @@ namespace App\Models\Materials;
 use App\Models\Services\Service;
 use App\Models\Units\MaterialUnit;
 use Illuminate\Database\Eloquent\Model;
+use App\Models\Orders\Rooms\Services\RoomService;
 
 class Material extends Model
 {
@@ -33,6 +34,11 @@ class Material extends Model
     public function services()
     {
         return $this->belongsToMany(Service::class, 'service_material');
+    }
+
+    public function RoomServices()
+    {
+        return $this->belongsToMany(RoomService::class, 'room_service_material');
     }
 
     protected function calculateUnivalence($material)

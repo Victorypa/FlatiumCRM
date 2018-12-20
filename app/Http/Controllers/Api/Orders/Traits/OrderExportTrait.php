@@ -122,11 +122,10 @@ trait OrderExportTrait
 
                     if ($material->pivot->rate != null) {
                         if (!array_key_exists($material->id, $material_rates)) {
-                            $material_rates[$material->id] = (float) $material->pivot->rate;
+                            $material_rates[$material->id] = (float) $material->pivot->rate * $material->RoomServices()->where('room_id', $room->id)->first()->quantity;
                         }  else {
-                            $material_rates[$material->id] += (float) $material->pivot->rate;
+                            $material_rates[$material->id] += (float) $material->pivot->rate * $material->RoomServices()->where('room_id', $room->id)->first()->quantity;
                         }
-
                     } else {
                         $material_rates[$material->id] = 0;
                     }
