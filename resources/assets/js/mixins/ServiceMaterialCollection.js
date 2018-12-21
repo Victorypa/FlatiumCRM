@@ -2,6 +2,7 @@ export default {
     data () {
         return {
             service: [],
+            default_service_materials: [],
             show: true,
             columnShow: false,
             service_name: '',
@@ -29,8 +30,13 @@ export default {
             return axios.get(`/api/services/${this.$route.params.service_id}`)
                         .then(response => {
                             this.service = response.data
+                            this.default_service_materials = response.data.materials
                             this.service_name = response.data.name
                             this.service_price = response.data.price
+
+                            this.default_service_materials.forEach(material => {
+                                this.service_material_quantities[material.id] = material.quantity
+                            })
                         })
         },
 

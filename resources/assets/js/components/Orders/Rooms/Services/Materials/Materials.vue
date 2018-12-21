@@ -61,7 +61,8 @@
                   <div class="input-group">
                     <input class="form-control py-2"
                            placeholder="Введите навание материала"
-                           v-model="searchQuery">
+                           v-model="searchQuery"
+                           >
                     <i class="fa fa-search"></i>
                   </div>
                 </form>
@@ -129,133 +130,70 @@
                         <button type="submit" style="display: none;"></button>
                   </form>
 
+                  <div class="row justify-content-between align-items-center col-12 py-1" v-for="material in filteredMaterials" :key="material.id">
+                    <div class="col-6">
+                      <div class="form-check">
+                        <input class="form-check-input"
+                               :id="'service-material-' + material.id"
+                               type="checkbox"
+                               @click="addServiceMaterialId(material.id)"
+                               >
 
+                        <label class="form-check-label"
+                               :for="'service-material-' + material.id">
+                               {{ material.name }}
+                        </label>
+                      </div>
+                  </div>
 
-                  <template v-if="show">
-                      <div class="row justify-content-between align-items-center col-12 py-1" v-for="material in service_materials" :key="material.id">
-                        <div class="col-6">
-                          <div class="form-check">
-                            <input class="form-check-input"
-                                   :id="'service-material-' + material.id"
-                                   type="checkbox"
-                                   :checked="true"
-                                   @click="addServiceMaterialId(material.id)"
-                                   >
-
-                            <label class="form-check-label"
-                                   :for="'service-material-' + material.id">
-                                   {{ material.name }}
-                            </label>
-                          </div>
+                  <div class="col-2 d-flex pr-2 align-items-center justify-content-between py-2">
+                      <div class="total-sum col-6">
+                          {{ material.price }} Р
                       </div>
 
-                      <div class="col-2 d-flex pr-2 align-items-center justify-content-between py-2">
-                          <div class="total-sum col-6">
-                              {{ material.price }} Р
-                          </div>
+                      <input type="text"
+                             class="form-control ml-2 col-6"
+                             placeholder="Ед.уп"
+                             v-model="service_material_quantities[material.id]"
+                             >
+                   </div>
+
+                   <div class="col-md-4 px-0">
+                       <div class="form-group d-flex align-items-center mb-0 justify-around">
+
+                          <select class="form-control col-4 ml-2" disabled>
+                            <option :value="material.material_unit.id">
+                                {{ material.material_unit.name }}
+                            </option>
+                          </select>
 
                           <input type="text"
-                                 class="form-control ml-2 col-6"
-                                 placeholder="Ед.уп"
-                                 v-model="service_material_quantities[material.id]"
+                                 class="form-control col-3 ml-2"
+                                 placeholder="Расход/м2"
+                                 :id="'service-material-' + material.id"
+                                 v-model="service_material_rates[material.id]"
                                  >
-                       </div>
 
-                       <div class="col-md-4 px-0">
-                           <div class="form-group d-flex align-items-center mb-0 justify-around">
-
-                              <select class="form-control col-4 ml-2" disabled>
-                                <option :value="material.material_unit.id">
-                                    {{ material.material_unit.name }}
-                                </option>
-                              </select>
-
-                              <input type="text"
-                                     class="form-control col-3 ml-2"
-                                     placeholder="Расход/м2"
-                                     :id="'service-material-' + material.id"
-                                     v-model="service_material_rates[material.id]"
-                                     >
-
-                            <div class="total-sum col-3 text-right pr-0">
-                                <template v-if="service_material_quantities[material.id] && service_material_rates[material.id]">
-                                    {{ MaterialCalculation(service_material_quantities[material.id], service_material_rates[material.id], material.price, currentRoomService.quantity) }} Р
-                                </template>
-                                <template v-else>
-                                    0 Р
-                                </template>
-                            </div>
-
-                            <template v-if="material.can_be_deleted">
-                                <button @click="deleteMaterial(material.id)" class="add-button add-button--remove ml-auto" title="Удалить материал">
-                                    <img src="/img/del.svg" alt="add-button">
-                                </button>
+                        <div class="total-sum col-3 text-right pr-0">
+                            <template v-if="service_material_quantities[material.id] && service_material_rates[material.id]">
+                                {{ MaterialCalculation(service_material_quantities[material.id], service_material_rates[material.id], material.price, currentRoomService.quantity) }} Р
                             </template>
                             <template v-else>
-                                &nbsp;
+                                0 Р
                             </template>
-                          </div>
                         </div>
+
+                        <template v-if="material.can_be_deleted">
+                            <button @click="deleteMaterial(material.id)" class="add-button add-button--remove ml-auto" title="Удалить материал">
+                                <img src="/img/del.svg" alt="add-button">
+                            </button>
+                        </template>
+                        <template v-else>
+                            &nbsp;
+                        </template>
                       </div>
-                  </template>
-
-                  <template v-else>
-                      <div class="row justify-content-between align-items-center col-12 py-1" v-for="material in materials">
-                        <div class="col-6">
-                          <div class="form-check">
-                            <input class="form-check-input"
-                                   :id="'material-' + material.id"
-                                   type="checkbox"
-                                   :checked="service_material_ids.includes(material.id)"
-                                   @click="addServiceMaterialId(material.id)"
-                                   >
-
-                            <label class="form-check-label"
-                                   :for="'material-' + material.id">
-                                {{ material.name }}
-                            </label>
-                          </div>
-                      </div>
-
-                      <div class="col-2 d-flex pr-2 align-items-center justify-content-between">
-                          <div class="total-sum col-6">
-                              {{ material.price }} Р
-                          </div>
-
-                          <input type="text"
-                                 class="form-control ml-2 col-6"
-                                 placeholder="Ед.уп"
-                                 v-model="service_material_quantities[material.id]"
-                                 >
-                       </div>
-
-                         <div class="col-md-4 px-0">
-                             <div class="form-group d-flex align-items-center mb-0 justify-around">
-                                 <select class="form-control col-4 ml-2" disabled>
-                                   <option :value="material.material_unit_id">{{ material.material_unit.name }}</option>
-                                 </select>
-
-                                 <input type="text"
-                                        class="form-control col-3 ml-2"
-                                        placeholder="Расход"
-                                        :id="'material-' + material.id"
-                                        v-model="service_material_rates[material.id]"
-                                        >
-
-                                <div class="total-sum col-3 text-right pr-0">
-                                    <template v-if="service_material_quantities[material.id] && service_material_rates[material.id]">
-                                        {{ MaterialCalculation(service_material_quantities[material.id], service_material_rates[material.id], material.price, currentRoomService.quantity) }} Р
-                                    </template>
-                                    <template v-else>
-                                        0 Р
-                                    </template>
-                                </div>
-                          </div>
-                        </div>
-                      </div>
-
-                  </template>
-
+                    </div>
+                  </div>
 
               </div>
 
@@ -290,30 +228,29 @@
 
         mounted () {
             this.getCurrentRoomService()
-            this.getActualServiceMaterials()
         },
 
         methods: {
+            getService () {
+                return axios.get(`/api/services/${this.$route.params.service_id}`)
+                            .then(response => {
+                                this.service = response.data
+                                this.default_service_materials = response.data.materials
+                                this.service_name = response.data.name
+                                this.service_price = response.data.price
+
+                                this.default_service_materials.forEach(material => {
+                                    this.service_material_quantities[material.id] = material.quantity
+                                    this.service_material_rates[material.id] = material.pivot.rate
+                                })
+                            })
+            },
+
             getCurrentRoomService () {
                 return axios.get(`/api/orders/${this.$route.params.id}/rooms/${this.$route.params.room_id}/services/${this.$route.params.service_id}/show`)
                             .then(response => {
                                 this.currentRoomService = response.data
-                            })
-            },
-
-            getActualServiceMaterials () {
-                return axios.get(`/api/orders/${this.$route.params.id}/rooms/${this.$route.params.room_id}/services/${this.$route.params.service_id}/materials`)
-                            .then(response => {
-                                this.service_materials = response.data.actual_service_materials
-
-                                response.data.actual_service_materials.forEach(item => {
-                                    this.service_material_ids.push(item.id)
-                                    this.service_material_prices[item.id] = item.price
-                                    this.service_material_quantities[item.id] = item.quantity
-
-                                    this.service_material_rates[item.id] = item.pivot.rate
-
-                                })
+                                console.log(this.currentRoomService);
                             })
             },
 
@@ -335,7 +272,23 @@
             },
         },
 
+        computed: {
+          filteredMaterials() {
+            let data = this.default_service_materials
 
+            data = data.filter(row => {
+              return Object.keys(row).some(key => {
+                return (
+                  String(row[key])
+                    .toLowerCase()
+                    .indexOf(this.searchQuery.toLowerCase()) > -1
+                )
+              })
+            })
+
+            return data
+          }
+        }
     }
 </script>
 
