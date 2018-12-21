@@ -13,7 +13,7 @@ class RoomService extends Model
 {
     protected $guarded = [];
 
-    protected $with = ['service_type', 'unit'];
+    protected $with = ['service_type', 'unit', 'materials'];
 
     public function room()
     {

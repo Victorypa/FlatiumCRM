@@ -45,11 +45,11 @@
                               Назад
                             </button>
 
-                            <button type="button"
+                            <!-- <button type="button"
                                     class="primary-button col-6 ml-2"
                                     @click="saveServiceMaterial()">
                                 Сохранить
-                            </button>
+                            </button> -->
                         </div>
 
                       </div>
@@ -136,6 +136,7 @@
                         <input class="form-check-input"
                                :id="'service-material-' + material.id"
                                type="checkbox"
+                               :checked="room_service_material_ids.includes(material.id)"
                                @click="addServiceMaterialId(material.id)"
                                >
 
@@ -216,6 +217,7 @@
         data () {
             return {
                 currentRoomService: [],
+                room_service_material_ids: [],
 
                 service_materials: [],
                 service_material_ids: [],
@@ -250,19 +252,31 @@
                 return axios.get(`/api/orders/${this.$route.params.id}/rooms/${this.$route.params.room_id}/services/${this.$route.params.service_id}/show`)
                             .then(response => {
                                 this.currentRoomService = response.data
-                                console.log(this.currentRoomService);
+                                this.currentRoomService.materials.forEach(material => {
+                                    this.room_service_material_ids.push(material.id)
+                                })
                             })
+            },
+
+            addServiceMaterialId (id) {
+                if (!this.room_service_material_ids.includes(id)) {
+                    this.room_service_material_ids.push(id)
+                } else {
+                    var index = this.room_service_material_ids.indexOf(id)
+
+                    if (index > -1) {
+                        this.room_service_material_ids.splice(index, 1)
+                    }
+                }
+
+                this.saveServiceMaterial()
             },
 
             saveServiceMaterial () {
                 axios.post(`/api/orders/${this.$route.params.id}/rooms/${this.$route.params.room_id}/services/${this.$route.params.service_id}/materials/store`, {
-                    'service_material_ids': this.service_material_ids,
+                    'service_material_ids': this.room_service_material_ids,
                     'service_material_rates': this.removeEmptyElem(this.service_material_rates),
                     'service_material_quantities': this.removeEmptyElem(this.service_material_quantities),
-                }).then(response => {
-
-                }).catch(err => {
-                    console.log(err)
                 })
             },
 

@@ -66869,6 +66869,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
 
 
 
@@ -66878,6 +66879,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     data: function data() {
         return {
             currentRoomService: [],
+            room_service_material_ids: [],
 
             service_materials: [],
             service_material_ids: [],
@@ -66913,16 +66915,29 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
             return axios.get('/api/orders/' + this.$route.params.id + '/rooms/' + this.$route.params.room_id + '/services/' + this.$route.params.service_id + '/show').then(function (response) {
                 _this2.currentRoomService = response.data;
-                console.log(_this2.currentRoomService);
+                _this2.currentRoomService.materials.forEach(function (material) {
+                    _this2.room_service_material_ids.push(material.id);
+                });
             });
+        },
+        addServiceMaterialId: function addServiceMaterialId(id) {
+            if (!this.room_service_material_ids.includes(id)) {
+                this.room_service_material_ids.push(id);
+            } else {
+                var index = this.room_service_material_ids.indexOf(id);
+
+                if (index > -1) {
+                    this.room_service_material_ids.splice(index, 1);
+                }
+            }
+
+            this.saveServiceMaterial();
         },
         saveServiceMaterial: function saveServiceMaterial() {
             axios.post('/api/orders/' + this.$route.params.id + '/rooms/' + this.$route.params.room_id + '/services/' + this.$route.params.service_id + '/materials/store', {
-                'service_material_ids': this.service_material_ids,
+                'service_material_ids': this.room_service_material_ids,
                 'service_material_rates': this.removeEmptyElem(this.service_material_rates),
                 'service_material_quantities': this.removeEmptyElem(this.service_material_quantities)
-            }).then(function (response) {}).catch(function (err) {
-                console.log(err);
             });
         },
         MaterialCalculation: function MaterialCalculation(quantity, rate, price, room_service_quantity) {
@@ -67120,24 +67135,6 @@ var render = function() {
                               [
                                 _vm._v(
                                   "\n                          Назад\n                        "
-                                )
-                              ]
-                            ),
-                            _vm._v(" "),
-                            _c(
-                              "button",
-                              {
-                                staticClass: "primary-button col-6 ml-2",
-                                attrs: { type: "button" },
-                                on: {
-                                  click: function($event) {
-                                    _vm.saveServiceMaterial()
-                                  }
-                                }
-                              },
-                              [
-                                _vm._v(
-                                  "\n                            Сохранить\n                        "
                                 )
                               ]
                             )
@@ -67491,6 +67488,11 @@ var render = function() {
                                 attrs: {
                                   id: "service-material-" + material.id,
                                   type: "checkbox"
+                                },
+                                domProps: {
+                                  checked: _vm.room_service_material_ids.includes(
+                                    material.id
+                                  )
                                 },
                                 on: {
                                   click: function($event) {

@@ -16,7 +16,7 @@ class RoomServiceController extends Controller
         return RoomService::where([
             ['room_id', $room->id],
             ['service_id', $service->id]
-        ])->first()->with(['materials'])->get();
+        ])->first();
     }
 
     public function store(Order $order, Room $room, Request $request)
