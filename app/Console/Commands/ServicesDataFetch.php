@@ -25,6 +25,8 @@ class ServicesDataFetch extends Command
         $this->plumbing_services();
         $this->electricity_services();
 
+        $this->restore_services();
+        
         $this->updateCanBeDiscountedColumn();
     }
 
@@ -229,6 +231,21 @@ class ServicesDataFetch extends Command
                     'price' => $service['price'],
                 ]);
             }
+        }
+    }
+
+    protected function restore_services()
+    {
+        $path = public_path() . "/files/services/services_restore.json";
+        $data = json_decode(file_get_contents($path), true)['Sheet1'];
+
+        foreach ($data as $service) {
+            Service::create([
+                'service_type_id' => $service['service_type_id'],
+                'unit_id' => $service['unit_id'],
+                'name' => $service['name'],
+                'price' => $service['price'],
+            ]);
         }
     }
 

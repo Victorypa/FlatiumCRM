@@ -1,0 +1,268 @@
+{
+    "Sheet1": [
+      {
+        "price" : 90,
+        "unit_id" : 1,
+        "can_be_deleted" : true,
+        "service_type_id" : 1,
+        "name" : "Демонтаж ламината",
+        "can_be_discounted" : true
+      },
+      {
+        "price" : 400,
+        "unit_id" : 1,
+        "can_be_deleted" : true,
+        "service_type_id" : 3,
+        "name" : "Монтаж натяжных потолков",
+        "can_be_discounted" : false
+      },
+      {
+        "price" : 1800,
+        "unit_id" : 1,
+        "can_be_deleted" : true,
+        "service_type_id" : 2,
+        "name" : "Облицовка стен декоративным камнем",
+        "can_be_discounted" : true
+      },
+      {
+        "price" : 650,
+        "unit_id" : 1,
+        "can_be_deleted" : true,
+        "service_type_id" : 2,
+        "name" : "Облицовка стен деревянными панелями на клямер",
+        "can_be_discounted" : true
+      },
+      {
+        "price" : 3000,
+        "unit_id" : 4,
+        "can_be_deleted" : true,
+        "service_type_id" : 2,
+        "name" : "Монтаж гипсокартонного короба (ГВС, ХВС, фановая, инсталляция)",
+        "can_be_discounted" : true
+      },
+      {
+        "price" : 10000,
+        "unit_id" : 4,
+        "can_be_deleted" : true,
+        "service_type_id" : 1,
+        "name" : "Монтаж душевого подиума с трапом",
+        "can_be_discounted" : true
+      },
+      {
+        "price" : 2500,
+        "unit_id" : 3,
+        "can_be_deleted" : true,
+        "service_type_id" : 2,
+        "name" : "Монтаж межкомнатных дверей",
+        "can_be_discounted" : false
+      },
+      {
+        "price" : 150,
+        "unit_id" : 1,
+        "can_be_deleted" : true,
+        "service_type_id" : 2,
+        "name" : "Затирка швов декоративного камня",
+        "can_be_discounted" : true
+      },
+      {
+        "price" : 250,
+        "unit_id" : 1,
+        "can_be_deleted" : true,
+        "service_type_id" : 2,
+        "name" : "Разборка кирпича (без сохранения)",
+        "can_be_discounted" : true
+      },
+      {
+        "price" : 1100,
+        "unit_id" : 3,
+        "can_be_deleted" : true,
+        "service_type_id" : 4,
+        "name" : "Монтаж душевой стойки",
+        "can_be_discounted" : true
+      },
+      {
+        "price" : 350,
+        "unit_id" : 2,
+        "can_be_deleted" : true,
+        "service_type_id" : 4,
+        "name" : "Штробление пола в местах прокладки труб отопления",
+        "can_be_discounted" : true
+      },
+      {
+        "price" : 850,
+        "unit_id" : 3,
+        "can_be_deleted" : true,
+        "service_type_id" : 3,
+        "name" : "Монтаж кронштейна потолочного для телевизора, с усилением",
+        "can_be_discounted" : true
+      },
+      {
+        "price" : 800,
+        "unit_id" : 7,
+        "can_be_deleted" : true,
+        "service_type_id" : 3,
+        "name" : "Монтаж закладной (усиление) под раздвижные двери",
+        "can_be_discounted" : false
+      },
+      {
+        "price" : 200,
+        "unit_id" : 2,
+        "can_be_deleted" : true,
+        "service_type_id" : 2,
+        "name" : "Оштукатуривание в местах демонтажа перегородки",
+        "can_be_discounted" : true
+      },
+      {
+        "price" : 2000,
+        "unit_id" : 4,
+        "can_be_deleted" : true,
+        "service_type_id" : 2,
+        "name" : "Монтаж гипсокартонного короба (инсталляция)",
+        "can_be_discounted" : true
+      },
+      {
+        "price" : 100,
+        "unit_id" : 1,
+        "can_be_deleted" : true,
+        "service_type_id" : 1,
+        "name" : "Укладка \"Пеноплекс\"",
+        "can_be_discounted" : true
+      },
+      {
+        "price" : 5000,
+        "unit_id" : 7,
+        "can_be_deleted" : true,
+        "service_type_id" : 2,
+        "name" : "Демонтаж оконного блока",
+        "can_be_discounted" : true
+      },
+      {
+        "price" : 200,
+        "unit_id" : 1,
+        "can_be_deleted" : true,
+        "service_type_id" : 3,
+        "name" : "Утепление потолка",
+        "can_be_discounted" : true
+      },
+      {
+        "price" : 1100,
+        "unit_id" : 3,
+        "can_be_deleted" : true,
+        "service_type_id" : 4,
+        "name" : "Монтаж гигиенического душа",
+        "can_be_discounted" : true
+      },
+      {
+        "price" : 800,
+        "unit_id" : 1,
+        "can_be_deleted" : true,
+        "service_type_id" : 2,
+        "name" : "Закладка дверного проема",
+        "can_be_discounted" : true
+      },
+      {
+        "price" : 200,
+        "unit_id" : 1,
+        "can_be_deleted" : true,
+        "service_type_id" : 2,
+        "name" : "Оклейка стен стеклохолстом",
+        "can_be_discounted" : true
+      },
+      {
+        "price" : 250,
+        "unit_id" : 1,
+        "can_be_deleted" : true,
+        "service_type_id" : 2,
+        "name" : "Нанесение защитного лака на кирпичную стену",
+        "can_be_discounted" : true
+      },
+      {
+        "price" : 270,
+        "unit_id" : 1,
+        "can_be_deleted" : true,
+        "service_type_id" : 3,
+        "name" : "Покрытие лаком потолка",
+        "can_be_discounted" : true
+      },
+      {
+        "price" : 6000,
+        "unit_id" : 7,
+        "can_be_deleted" : true,
+        "service_type_id" : 3,
+        "name" : "Монтаж натяжного потолка ( минимальный объем)",
+        "can_be_discounted" : false
+      },
+      {
+        "price" : 1300,
+        "unit_id" : 3,
+        "can_be_deleted" : true,
+        "service_type_id" : 4,
+        "name" : "Монтаж и подключение сушильной машины",
+        "can_be_discounted" : true
+      },
+      {
+        "price" : 400,
+        "unit_id" : 3,
+        "can_be_deleted" : true,
+        "service_type_id" : 4,
+        "name" : "Пробивка отверстий в железобетонной стене",
+        "can_be_discounted" : true
+      },
+      {
+        "price" : 200,
+        "unit_id" : 3,
+        "can_be_deleted" : true,
+        "service_type_id" : 4,
+        "name" : "Пробивка отверстий в кирпичной стене",
+        "can_be_discounted" : true
+      },
+      {
+        "price" : 15000,
+        "unit_id" : 7,
+        "can_be_deleted" : true,
+        "service_type_id" : 2,
+        "name" : "Формирование дверного проема с усилением (при наличии проекта)",
+        "can_be_discounted" : false
+      },
+      {
+        "price" : 2000,
+        "unit_id" : 7,
+        "can_be_deleted" : true,
+        "service_type_id" : 5,
+        "name" : "Демонтаж существующей электрики",
+        "can_be_discounted" : true
+      },
+      {
+        "price" : 150,
+        "unit_id" : 2,
+        "can_be_deleted" : true,
+        "service_type_id" : 5,
+        "name" : "Укладка кабеля витого ПВХ",
+        "can_be_discounted" : true
+      },
+      {
+        "price" : 16000,
+        "unit_id" : 4,
+        "can_be_deleted" : true,
+        "service_type_id" : 1,
+        "name" : "Монтаж подиума",
+        "can_be_discounted" : true
+      },
+      {
+        "price" : 3000,
+        "unit_id" : 4,
+        "can_be_deleted" : true,
+        "service_type_id" : 2,
+        "name" : "Монтаж короба (зашивка радиатора)",
+        "can_be_discounted" : true
+      },
+      {
+        "price" : 2000,
+        "unit_id" : 4,
+        "can_be_deleted" : true,
+        "service_type_id" : 2,
+        "name" : "Монтаж гипсокартонной перегородки (опора для встроенного шкафа)",
+        "can_be_discounted" : true
+      }
+    ]
+}

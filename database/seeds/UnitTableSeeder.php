@@ -30,6 +30,10 @@ class UnitTableSeeder extends Seeder
 
             [
                 'name' => 'точ'
+            ],
+
+            [
+                'name' => 'услуг'
             ]
         ];
 

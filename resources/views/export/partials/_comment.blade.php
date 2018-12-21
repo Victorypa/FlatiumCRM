@@ -1,18 +1,13 @@
-<div class="container comment">
+<div class="container">
     <div>
         @if ($order->description)
             <strong>Комментарий:</strong>  {{ $order->description }}
         @endif
         <br>
-        @if ($order->contract)
-            <span>Приложение к договору № {{ $order->contract }}</span>
-        @else
-            <span>&nbsp;</span>
-        @endif
     </div>
 </div>
-
-<div class="container signature-item">
+<br><br>
+<div class="container">
     <div class="signature inline-block">Заказчик:
         <br>_____________ /____________________/</div>
     <div class="signature inline-block">Исполнитель:

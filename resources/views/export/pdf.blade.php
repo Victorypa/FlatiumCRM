@@ -25,6 +25,7 @@
 
                         <div class="main-info">Заказчик: </div>
                         <div class="main-info">Менеджер: </div>
+                        <div class="main-info">Приложение к договору № </div>
                     </div>
                     <div class="main-info-subtitles inline-block">
                         <div><b>{{ number_format($order->price, 2, ',', ' ') }} Р</b>@if ($order->discount) (с учётом скидки -{{ $order->discount }}%) @endif </div>
@@ -42,6 +43,12 @@
                             <div>
                                 &nbsp;
                             </div>
+                        @endif
+
+                        @if ($order->contract)
+                            <div>{{ $order->contract }}</div>
+                        @else
+                            <div>&nbsp;</div>
                         @endif
 
                     </div>

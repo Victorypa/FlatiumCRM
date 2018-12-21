@@ -156,6 +156,7 @@
                              class="form-control ml-2 col-6"
                              placeholder="Ед.уп"
                              v-model="service_material_quantities[material.id]"
+                             @change="saveServiceMaterial()"
                              >
                    </div>
 
@@ -173,6 +174,7 @@
                                  placeholder="Расход/м2"
                                  :id="'service-material-' + material.id"
                                  v-model="service_material_rates[material.id]"
+                                 @change="saveServiceMaterial()"
                                  >
 
                         <div class="total-sum col-3 text-right pr-0">
