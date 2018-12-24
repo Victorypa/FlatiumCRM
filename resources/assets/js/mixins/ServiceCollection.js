@@ -44,7 +44,7 @@ export default {
         deleteService (id) {
             if (confirm('Удалить ?')) {
                 axios.delete(`/api/services/${id}/destroy`).then(response => {
-                    this.getServices()
+                    window.location.reload(true)
                 })
             }
         },

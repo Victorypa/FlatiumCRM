@@ -85,7 +85,110 @@
                   {{ getServiceTypeName(service_type_id) }}
               </div>
 
-              <div class="col-md-12 px-0 all-items" v-for="service in filteredServices" :key="service.id">
+              <div class="col-md-12 px-0 all-items" v-for="room_service in room.room_services" :key="room_service.service_id">
+                <div class="row align-items-center">
+                    <label class="col-md-4 mb-0">
+                        <div class="form-check custom-control d-flex edit-show">
+                            <input class="form-check-input"
+                                   type="checkbox"
+                                   :id="'service-' + room_service.service_id"
+                                   :checked="true"
+                                   @click="addToRoomServiceId(room_service.service_id)"
+                                   >
+
+                            <label class="form-check-label"
+                                   :for="'service-' + room_service.service_id"
+                                   >
+                                   {{ room_service.service.name }}
+                            </label>
+
+                            <router-link class="ml-auto edit" :to="{ name: 'service-material', params: { service_id: room_service.service_id } }">
+                                    Ред.
+                            </router-link>
+                        </div>
+                    </label>
+
+                    <div class="col-md-8 pr-0">
+                      <div class="form-group form-group--margin d-flex align-items-center">
+                          <input type="number"
+                                 class="form-control w-85"
+                                 placeholder="Кол-во"
+                                 min="0"
+                                 v-model="service_quantities[room_service.service_id]"
+                                 @change="linkServicesToRoom()"
+                                 >
+
+                          <div class="inputs-caption col-md-2">
+                              {{ room_service.unit.name }}
+                          </div>
+
+                          <input type="number"
+                          class="form-control w-85"
+                          min="0"
+                          disabled
+                          :value="service_prices[room_service.service_id]"
+                          >
+
+                          <div class="inputs-caption col-md-2">
+                              Р/{{ room_service.unit.name }}
+                          </div>
+
+                          <div class="form-group__calc w-85">
+                              {{ getServiceSummary(room_service.service_id) }} P
+                          </div>
+
+                          <template v-if="room_service.service.can_be_deleted">
+                              <div class="col-md-2">
+                                  <button @click="deleteService(room_service.service_id)" class="add-button add-button--remove d-flex align-items-center" title="Удалить материал">
+                                      <img src="/img/del.svg" alt="add-button">
+                                      <div class="remove-materials ml-1">
+                                        Удалить
+                                      </div>
+                                  </button>
+                              </div>
+                          </template>
+                          <template v-else>
+                              <div class="col-md-2">
+                                  &nbsp;
+                              </div>
+                          </template>
+
+                          <div class="col-md-auto px-0 ml-auto">
+                              <template v-if="room.order">
+                                  <router-link :to="{ name: 'actual-material', params: { id: room.order.id, room_id: room.id, service_id: room_service.service_id }}">
+                                      <button class="add-button " title="Добавить материалы">
+                                          <img src="/img/plus-circle.svg" alt="add-button">
+                                      </button>
+                                  </router-link>
+                              </template>
+                          </div>
+
+                      </div>
+                  </div>
+
+                  <div class="row col-12" v-for="material in room_service.materials">
+                    <div class="col-4 pl-5 mb-3">
+                      <div class="subtitle-list">
+                        <div class="subtitle-list__item">
+                            {{ material.name }}
+                        </div>
+                      </div>
+                    </div>
+                    <template v-if="material.pivot.rate">
+                        <div class="col-8">
+                          <div class="d-flex align-items-center">
+                            <div class="col-4" style="margin-left:163px"></div>
+                            <div class="form-group__calc col-md-2">
+                                {{ getMaterialSummary(material.pivot.rate, material.quantity, material.price, service_quantities[room_service.service_id]) }} Р
+                            </div>
+                          </div>
+                        </div>
+                    </template>
+                  </div>
+                </div>
+            </div>
+
+              <div class="col-md-12 px-0 all-items" v-for="service in filteredServices" :key="'service-' + service.id" v-if="!room_service_ids.includes(service.id)">
 
                 <div class="row align-items-center">
 
@@ -138,65 +241,8 @@
                     <div class="form-group__calc w-85">
                         {{ getServiceSummary(service.id) }} P
                     </div>
-
-                    <template v-if="service.can_be_deleted">
-                        <div class="col-md-2">
-                            <button @click="deleteService(service.id)" class="add-button add-button--remove d-flex align-items-center" title="Удалить материал">
-                                <img src="/img/del.svg" alt="add-button">
-                                <div class="remove-materials ml-1">
-                                  Удалить
-                                </div>
-                            </button>
-                        </div>
-                    </template>
-                    <template v-else>
-                        <div class="col-md-2">
-                            &nbsp;
-                        </div>
-                    </template>
-
-                    <template v-if="room_service_ids.includes(service.id)">
-                        <div class="col-md-auto px-0 ml-auto">
-                            <template v-if="room.order">
-                                <router-link :to="{ name: 'actual-material', params: { id: room.order.id, room_id: room.id, service_id: service.id }}">
-                                    <button class="add-button " title="Добавить материалы">
-                                        <img src="/img/plus-circle.svg" alt="add-button">
-                                    </button>
-                                </router-link>
-                            </template>
-
-                        </div>
-                    </template>
-                    <template v-else>
-                        <div class="col-md-auto px-0">
-                            &nbsp;
-                        </div>
-                    </template>
                   </div>
                 </div>
-
-                <template v-if="room_service_ids.includes(service.id) && room.room_services.filter(room_service => room_service.service_id === service.id)[0]">
-                        <div class="row col-12" v-for="material in room.room_services.filter(room_service => room_service.service_id === service.id)[0].materials">
-                          <div class="col-4 pl-5 mb-3">
-                            <div class="subtitle-list">
-                              <div class="subtitle-list__item">
-                                  {{ material.name }}
-                              </div>
-                            </div>
-                          </div>
-                          <template v-if="material.pivot.rate">
-                              <div class="col-8">
-                                <div class="d-flex align-items-center">
-                                  <div class="col-4" style="margin-left:163px"></div>
-                                  <div class="form-group__calc col-md-2">
-                                      {{ getMaterialSummary(material.pivot.rate, material.quantity, material.price, service_quantities[service.id]) }} Р
-                                  </div>
-                                </div>
-                              </div>
-                          </template>
-                        </div>
-                    </template>
-
                 </div>
               </div>
             </div>
@@ -240,14 +286,17 @@
 
         methods: {
             getRoomServices() {
-                this.room.room_services.forEach(item => {
-                    this.room_service_ids.push(item.service_id)
-                    if (item.quantity != null) {
-                        this.service_quantities[item.service_id] = item.quantity
-                    } else {
-                        this.service_quantities[item.service_id] = 1
-                    }
-                })
+                return axios.get(`/api/orders/${this.$route.params.id}/rooms/${this.$route.params.room_id}`)
+                            .then(response => {
+                                response.data.room_services.forEach(item => {
+                                    this.room_service_ids.push(item.service_id)
+                                    if (item.quantity != null) {
+                                        this.service_quantities[item.service_id] = item.quantity
+                                    } else {
+                                        this.service_quantities[item.service_id] = 1
+                                    }
+                                })
+                            })
             },
 
             getServiceTypes () {
@@ -302,24 +351,26 @@
 
                     response.data.forEach(item => {
                         if (!this.room_service_ids.includes(item.id)) {
-                            switch (item.unit.id) {
-                                case 1:
-                                    if (item.service_type_id === 1) {
-                                        this.service_quantities[item.id] = this.room.area
-                                    }
-                                    if (item.service_type_id === 2) {
-                                        this.service_quantities[item.id] = this.room.wall_area
-                                    }
+                            if (this.service_quantities[item.id] !== null) {
+                                switch (item.unit.id) {
+                                    case 1:
+                                        if (item.service_type_id === 1) {
+                                            this.service_quantities[item.id] = this.room.area
+                                        }
+                                        if (item.service_type_id === 2) {
+                                            this.service_quantities[item.id] = this.room.wall_area
+                                        }
 
-                                    if (item.service_type_id === 3) {
-                                        this.service_quantities[item.id] = this.room.area
-                                    }
-                                    break;
-                                case 2:
-                                    this.service_quantities[item.id] = this.room.perimeter
-                                    break;
-                                default:
-                                    this.service_quantities[item.id] = 1
+                                        if (item.service_type_id === 3) {
+                                            this.service_quantities[item.id] = this.room.area
+                                        }
+                                        break;
+                                    case 2:
+                                        this.service_quantities[item.id] = this.room.perimeter
+                                        break;
+                                    default:
+                                        this.service_quantities[item.id] = 1
+                                }
                             }
                         }
 
@@ -346,6 +397,7 @@
                     'service_quantities': this.removeEmptyElem(this.service_quantities),
                     'service_prices': this.service_prices
                 }).then(response => {
+                    this.getRoomServices()
                     this.$emit('price', parseInt(response.data.room.price))
                 })
             },
