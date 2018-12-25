@@ -22,9 +22,11 @@ class OrderController extends Controller
            App::make('files')->link(storage_path('app/public'), public_path('storage'));
         }
 
-        $orders = Order::orderBy('created_at', 'asc')->with(['rooms', 'finished_order_acts', 'extra_order_acts'])->get();
+        $with = ['rooms', 'finished_order_acts', 'extra_order_acts'];
 
-        return response()->json($orders);
+        return response()->json(
+            Order::orderBy('created_at', 'asc')->with($with)->get();
+        );
     }
 
     public function show(Order $order)

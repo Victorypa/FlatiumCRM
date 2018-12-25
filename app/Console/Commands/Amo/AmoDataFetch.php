@@ -142,7 +142,6 @@ class AmoDataFetch extends Command
     protected function createOrder($data)
     {
          Order::create([
-            'user_id' => 2,
             'amo_id' => $data->id,
             'order_name' => $data->name,
             'status' => $data->status_id,
