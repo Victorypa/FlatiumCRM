@@ -85,7 +85,7 @@
                   {{ getServiceTypeName(service_type_id) }}
               </div>
 
-              <div class="col-md-12 px-0 all-items" v-for="room_service in room.room_services" :key="room_service.service_id">
+              <div class="col-md-12 px-0 all-items" v-for="room_service in room.room_services.filter(row => row.service_type_id === service_type_id)" :key="room_service.service_id">
                 <div class="row align-items-center">
                     <label class="col-md-4 mb-0">
                         <div class="form-check custom-control d-flex edit-show">
