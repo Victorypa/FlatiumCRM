@@ -121,7 +121,38 @@ class OrderController extends Controller
 
     protected function fullCopy(Order $order)
     {
-        return 'full';
+        $newOrder = Order::create([
+            'order_name' => "{$order->order_name} копия",
+            'address' => "{$order->address} копия"
+        ]);
+
+        foreach ($order->rooms as $room) {
+            $newRoom = $newOrder->rooms()->create([
+                'room_type_id' => $room->room_type_id,
+                'length' => $room->length,
+                'width' => $room->width,
+                'height' => $room->height,
+                'area' => $room->area,
+                'wall_area' => $room->wall_area,
+                'perimeter' => $room->perimeter,
+                'description' => $room->description,
+            ]);
+
+            foreach ($room->room_services as $room_service) {
+                $newRoom->room_services()->create([
+                    'service_id' =>  $room_service->service_id,
+                    'service_type_id' => $room_service->service_type_id,
+                    'service_unit_id' => $room_service->service_unit_id,
+                    'quantity' => $room_service->quantity,
+                    'price' => $room_service->price
+                ]);
+            }
+        }
+        
+        return response()->json([
+            $newOrder,
+            $newOrder->rooms()->first()
+        ]);
     }
 
     protected function optionalCopy(Order $order)
@@ -143,6 +174,7 @@ class OrderController extends Controller
                 'description' => $room->description,
             ]);
         }
+
         return response()->json([
             $newOrder,
             $newOrder->rooms()->first()
