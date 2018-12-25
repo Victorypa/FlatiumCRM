@@ -70,7 +70,7 @@
                         <div class="first-room-top background-solid"></div>
 
                         @if ($room->room_services->count())
-                            @foreach ( $room->room_services()->orderBy('created_at', 'asc')->get()->groupBy(function($room_service) { return $room_service->service_type_id; }) as $service_type_id => $room_services)
+                            @foreach ( $room->room_services()->orderBy('created_at', 'asc')->orderBy('service_type_id', 'asc')->get()->groupBy(function($room_service) { return $room_service->service_type_id; }) as $service_type_id => $room_services)
                                 @include('export.partials._room_services', [$service_type_id, $room_services])
                             @endforeach
                         @endif
