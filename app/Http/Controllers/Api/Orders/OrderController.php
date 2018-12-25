@@ -6,6 +6,7 @@ use App;
 use PDF;
 use Artisan;
 use Storage;
+use Carbon\Carbon;
 use App\Models\Orders\Order;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -123,7 +124,8 @@ class OrderController extends Controller
     {
         $newOrder = Order::create([
             'order_name' => "{$order->order_name} копия",
-            'address' => "{$order->address} копия"
+            'address' => "{$order->address} копия",
+            'created_at' => Carbon::now()
         ]);
 
         foreach ($order->rooms as $room) {
@@ -132,11 +134,23 @@ class OrderController extends Controller
                 'length' => $room->length,
                 'width' => $room->width,
                 'height' => $room->height,
+                'description' => $room->description,
+            ]);
+
+            $newRoom->update([
                 'area' => $room->area,
                 'wall_area' => $room->wall_area,
                 'perimeter' => $room->perimeter,
-                'description' => $room->description,
             ]);
+
+            foreach ($room->windows as $window) {
+                $newRoom->windows()->create([
+                    'type' => $window->type,
+                    'length' => $window->length,
+                    'width' => $window->width,
+                    'quantity' => $window->quantity
+                ]);
+            }
 
             foreach ($room->room_services as $room_service) {
                 $newRoom->room_services()->create([
@@ -148,7 +162,7 @@ class OrderController extends Controller
                 ]);
             }
         }
-        
+
         return response()->json([
             $newOrder,
             $newOrder->rooms()->first()
@@ -159,20 +173,29 @@ class OrderController extends Controller
     {
         $newOrder = Order::create([
             'order_name' => "{$order->order_name} копия",
-            'address' => "{$order->address} копия"
+            'address' => "{$order->address} копия",
+            'created_at' => Carbon::now()
         ]);
 
         foreach ($order->rooms as $room) {
-            $newOrder->rooms()->create([
+            $newRoom = $newOrder->rooms()->create([
                 'room_type_id' => $room->room_type_id,
                 'length' => $room->length,
                 'width' => $room->width,
                 'height' => $room->height,
-                'area' => $room->area,
-                'wall_area' => $room->wall_area,
-                'perimeter' => $room->perimeter,
                 'description' => $room->description,
             ]);
+
+            foreach ($room->windows as $window) {
+                $newRoom->windows()->create([
+                    'type' => $window->type,
+                    'length' => $window->length,
+                    'width' => $window->width,
+                    'quantity' => $window->quantity
+                ]);
+            }
+
+            
         }
 
         return response()->json([
