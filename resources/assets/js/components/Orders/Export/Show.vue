@@ -49,19 +49,19 @@
 
 
                                 <template v-if="order.discount">
-                                    <span>Итого:</span> {{ new Intl.NumberFormat('ru-Ru').format(order.price) }} Р
-                                    <span class="small-case">{{ order.original_price }} Р</span>
+                                    <span>Итого:</span> {{ new Intl.NumberFormat('ru-Ru').format(parseInt(order.price)) }} Р
+                                    <span class="small-case">{{ new Intl.NumberFormat('ru-Ru').format(parseInt(order.original_price)) }} Р</span>
                                     <span class="small-case">(скидка: -{{ order.discount }}%)</span>
                                 </template>
 
                                 <template v-else-if="order.markup">
-                                    <span>Итого:</span> {{ new Intl.NumberFormat('ru-Ru').format(order.price) }} Р
-                                    <span class="small-case">{{ order.original_price }} Р</span>
+                                    <span>Итого:</span> {{ new Intl.NumberFormat('ru-Ru').format(parseInt(order.price)) }} Р
+                                    <span class="small-case">{{ new Intl.NumberFormat('ru-Ru').format(parseInt(order.original_price)) }} Р</span>
                                     <span class="small-case">(наценка: +{{ order.markup }}%)</span>
                                 </template>
 
                                 <template v-else>
-                                    <span>Итого:</span> {{ new Intl.NumberFormat('ru-Ru').format(order.price) }} Р
+                                    <span>Итого:</span> {{ new Intl.NumberFormat('ru-Ru').format(parseInt(order.price)) }} Р
                                 </template>
                             </h2>
                         </div>

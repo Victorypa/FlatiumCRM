@@ -30,7 +30,7 @@
               </div>
 
               <div class="col-md-6 pt-3">
-                <h2 class="main-subtitle"> Итого по смете: {{ new Intl.NumberFormat('ru-Ru').format(order.price) }} Р</h2>
+                <h2 class="main-subtitle"> Итого по смете: {{ new Intl.NumberFormat('ru-Ru').format(parseInt(order.price)) }} Р</h2>
               </div>
             </div>
 
@@ -95,14 +95,20 @@
 
                                     <div class="col-12 d-flex align-items-center">
                                         <h2 class="col-6 main-subtitle main-subtitle--font py-4 pl-3">
-                                          {{ room_step.room.room_type.type }} {{ index + parseInt(1) }}
+                                            <template v-if="room_step.room.description">
+                                                {{ room_step.room.description }}
+                                            </template>
+                                            <template v-else>
+                                                {{ room_step.room.room_type.type }}
+                                            </template>
+                                            {{ index + parseInt(1) }}
                                         </h2>
                                         <template v-if="room_step.room.room_type_id === 1">
                                             <div class="col-6 d-flex justify-content-end align-items-center pt-3">
-                                              <div class="projects__desc-item pr-3">S: {{ parseFloat(room_step.room.area).toFixed(1) }} м<sup>2</sup></div>
-                                              <div class="projects__desc-item pr-3">H: {{ parseFloat(room_step.room.height).toFixed(1) }} м</div>
-                                              <div class="projects__desc-item pr-3">S стен: {{ parseFloat(room_step.room.wall_area).toFixed(1) }} м<sup>2</sup></div>
-                                              <div class="projects__desc-item">P: {{ parseFloat(room_step.room.perimeter).toFixed(1) }} м. п.</div>
+                                              <div class="projects__desc-item pr-3">S: {{ parseFloat(room_step.room.area).toFixed(2) }} м<sup>2</sup></div>
+                                              <div class="projects__desc-item pr-3">H: {{ parseFloat(room_step.room.height).toFixed(2) }} м</div>
+                                              <div class="projects__desc-item pr-3">S стен: {{ parseFloat(room_step.room.wall_area).toFixed(2) }} м<sup>2</sup></div>
+                                              <div class="projects__desc-item">P: {{ parseFloat(room_step.room.perimeter).toFixed(2) }} м. п.</div>
                                             </div>
                                         </template>
                                     </div>
@@ -214,10 +220,10 @@
                         </h2>
 
                         <div class="col-6 d-flex justify-content-end align-items-center pt-3 pl-3">
-                            <div class="projects__desc-item pr-3">S: {{ room.area }} м<sup>2</sup></div>
-                            <div class="projects__desc-item pr-3">H: {{ room.height }} м</div>
-                            <div class="projects__desc-item pr-3">S стен: {{ room.wall_area }} м<sup>2</sup></div>
-                            <div class="projects__desc-item">P: {{ room.perimeter }} м. п.</div>
+                            <div class="projects__desc-item pr-3">S: {{ parseFloat(room.area).toFixed(2) }} м<sup>2</sup></div>
+                            <div class="projects__desc-item pr-3">H: {{ parseFloat(room.height).toFixed(2) }} м</div>
+                            <div class="projects__desc-item pr-3">S стен: {{ parseFloat(room.wall_area).toFixed(2) }} м<sup>2</sup></div>
+                            <div class="projects__desc-item">P: {{ parseFloat(room.perimeter).toFixed(2) }} м. п.</div>
                         </div>
                       </div>
 

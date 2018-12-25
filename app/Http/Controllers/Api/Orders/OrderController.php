@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Api\Orders;
 
 use App;
 use PDF;
+use Artisan;
 use Storage;
 use App\Models\Orders\Order;
 use Illuminate\Http\Request;
@@ -22,10 +23,12 @@ class OrderController extends Controller
            App::make('files')->link(storage_path('app/public'), public_path('storage'));
         }
 
+        Artisan::call('amo:data');
+        
         $with = ['rooms', 'finished_order_acts', 'extra_order_acts'];
 
         return response()->json(
-            Order::orderBy('created_at', 'asc')->with($with)->get();
+            Order::orderBy('created_at', 'asc')->with($with)->get()
         );
     }
 
