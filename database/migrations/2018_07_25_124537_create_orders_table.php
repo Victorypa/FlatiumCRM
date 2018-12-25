@@ -15,7 +15,7 @@ class CreateOrdersTable extends Migration
     {
         Schema::create('orders', function (Blueprint $table) {
             $table->increments('id');
-            $table->bigInteger('amo_id')->unsigned()->unique();
+            $table->bigInteger('amo_id')->unsigned()->unique()->nullable();
             $table->bigInteger('user_id')->unsigned()->index()->nullable();
             $table->integer('manager_id')->index()->unsigned()->nullable();
             $table->longText('contract')->nullable();

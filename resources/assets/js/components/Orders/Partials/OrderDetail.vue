@@ -31,6 +31,12 @@
                             </button>
                         </router-link>
                     </div>
+
+                    <div class="col-4 pl-0">
+                        <button type="button" @click="copyOrder(order.id)" class="primary-button w-100">
+                            Копировать
+                        </button>
+                    </div>
                 </div>
             </template>
 
@@ -110,7 +116,17 @@ export default {
             console.log(error);
           });
       }
-    }
+  },
+
+
+  copyOrder (id) {
+      let option = prompt("Полностью (1) или Только Помещения (2)", "2")
+
+      axios.get(`/api/orders/${id}/copy?option=${option}`)
+           .then(response => {
+               this.$router.push({ name: 'room-show', params: { id: response.data[0].id, room_id: response.data[1].id } })
+           })
+       }
   }
 };
 </script>

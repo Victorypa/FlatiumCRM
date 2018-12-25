@@ -18,6 +18,7 @@ use Illuminate\Http\Request;
     Route::group(['prefix' => 'orders', 'namespace' => 'Api\Orders'], function ($router) {
         Route::get('/', 'OrderController@index');
         Route::get('/{order}', 'OrderController@show');
+        Route::get('/{order}/copy', 'OrderController@copy');
         Route::patch('/{order}/update', 'OrderController@update');
         Route::patch('/{order}/discount_or_markup/update', 'OrderController@updateOrderDiscountOrMarkup');
 

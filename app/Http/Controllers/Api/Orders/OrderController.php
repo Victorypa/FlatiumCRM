@@ -24,12 +24,29 @@ class OrderController extends Controller
         }
 
         Artisan::call('amo:data');
-        
+
         $with = ['rooms', 'finished_order_acts', 'extra_order_acts'];
 
         return response()->json(
             Order::orderBy('created_at', 'asc')->with($with)->get()
         );
+    }
+
+    public function copy(Order $order)
+    {
+        switch (request('option')) {
+            case '1':
+                return $this->fullCopy($order);
+                break;
+
+            case '2':
+                return $this->optionalCopy($order);
+                break;
+            default:
+                return null;
+                break;
+        }
+
     }
 
     public function show(Order $order)
@@ -100,5 +117,35 @@ class OrderController extends Controller
             "data" => "$name.xlsx"
         ]);
 
+    }
+
+    protected function fullCopy(Order $order)
+    {
+        return 'full';
+    }
+
+    protected function optionalCopy(Order $order)
+    {
+        $newOrder = Order::create([
+            'order_name' => "{$order->order_name} копия",
+            'address' => "{$order->address} копия"
+        ]);
+
+        foreach ($order->rooms as $room) {
+            $newOrder->rooms()->create([
+                'room_type_id' => $room->room_type_id,
+                'length' => $room->length,
+                'width' => $room->width,
+                'height' => $room->height,
+                'area' => $room->area,
+                'wall_area' => $room->wall_area,
+                'perimeter' => $room->perimeter,
+                'description' => $room->description,
+            ]);
+        }
+        return response()->json([
+            $newOrder,
+            $newOrder->rooms()->first()
+        ]);
     }
 }
