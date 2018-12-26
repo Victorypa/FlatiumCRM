@@ -381,8 +381,9 @@
                     'service_quantities': this.removeEmptyElem(this.service_quantities),
                     'service_prices': this.service_prices
                 }).then(response => {
-                    this.getRoomServices()
                     this.$emit('price', parseInt(response.data.room.price))
+                }).then(response => {
+                    this.getRoomServices()
                 })
             },
 

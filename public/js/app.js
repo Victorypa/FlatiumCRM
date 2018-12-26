@@ -48644,7 +48644,7 @@ exports = module.exports = __webpack_require__(2)(false);
 
 
 // module
-exports.push([module.i, "\na[data-v-033f9948] {\n  color: #666666;\n}\na[data-v-033f9948]:hover {\n    text-decoration: none;\n    color: #00a4d1;\n}\ntable th[data-v-033f9948] {\n  border-top: none;\n}\ntable tr:hover .estimates__dropdown-img--rotate[data-v-033f9948] {\n  opacity: 1;\n}\ntable tr:hover .show-button[data-v-033f9948] {\n  opacity: 1;\n}\n.estimates__dropdown-img--rotate[data-v-033f9948] {\n  opacity: 0;\n}\n.estimates__dropdown-img--rotate img[data-v-033f9948] {\n    -webkit-transform: none;\n            transform: none;\n}\n.show-button[data-v-033f9948] {\n  opacity: 0;\n}\n.add-button img[data-v-033f9948] {\n  width: 11px;\n  cursor: pointer;\n}\n.small-case[data-v-033f9948] {\n  font-size: 0.9rem;\n}\n.small-case td[data-v-033f9948]:first-child {\n    padding-left: 35px;\n}\n.small-case__date[data-v-033f9948] {\n    margin-right: 75px;\n}\n.text-color[data-v-033f9948] {\n  color: #666 !important;\n  cursor: pointer;\n}\n.text-color[data-v-033f9948]:hover {\n    color: #00a4d1 !important;\n}\n.text-color[data-v-033f9948]:active {\n    background-color: transparent;\n}\n", ""]);
+exports.push([module.i, "\na[data-v-033f9948] {\n  color: #666666;\n}\na[data-v-033f9948]:hover {\n    text-decoration: none;\n    color: #00a4d1;\n}\ntable th[data-v-033f9948] {\n  border-top: none;\n}\ntable tr:hover .estimates__dropdown-img--rotate[data-v-033f9948] {\n  opacity: 1;\n}\ntable tr:hover .show-button[data-v-033f9948] {\n  opacity: 1;\n}\ntable tr:hover .add-button[data-v-033f9948] {\n  opacity: 1;\n}\ntable .add-button[data-v-033f9948] {\n  opacity: 0;\n}\ntable .form-check-label[data-v-033f9948] {\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n}\n.estimates__dropdown-img--rotate[data-v-033f9948] {\n  opacity: 0;\n}\n.estimates__dropdown-img--rotate img[data-v-033f9948] {\n    -webkit-transform: none;\n            transform: none;\n}\n.show-button[data-v-033f9948] {\n  opacity: 0;\n}\n.add-button img[data-v-033f9948] {\n  width: 11px;\n  cursor: pointer;\n}\n.small-case[data-v-033f9948] {\n  font-size: 0.9rem;\n}\n.small-case td[data-v-033f9948]:first-child {\n    padding-left: 35px;\n}\n.small-case__date[data-v-033f9948] {\n    margin-right: 75px;\n}\n.text-color[data-v-033f9948] {\n  color: #666 !important;\n  cursor: pointer;\n}\n.text-color[data-v-033f9948]:hover {\n    color: #00a4d1 !important;\n}\n.text-color[data-v-033f9948]:active {\n    background-color: transparent;\n}\n", ""]);
 
 // exports
 
@@ -48913,108 +48913,122 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-  data: function data() {
-    return {
-      orders: [],
-      sortByDate: false,
-      quickSearchQuery: ""
-    };
-  },
-  mounted: function mounted() {
-    this.getOrders();
-  },
+    data: function data() {
+        return {
+            orders: [],
+            sortByDate: false,
+            quickSearchQuery: ""
+        };
+    },
+    mounted: function mounted() {
+        this.getOrders();
+    },
 
 
-  methods: {
-    getOrders: function getOrders() {
-      var _this = this;
+    methods: {
+        getOrders: function getOrders() {
+            var _this = this;
 
-      return axios.get('/api/orders').then(function (response) {
-        _this.orders = response.data;
-      });
-    },
-    deleteOrder: function deleteOrder(id) {
-      axios.delete('/ai/orders/' + id + '/destroy');
-    },
-    createFinishedOrderAct: function createFinishedOrderAct(id) {
-      var _this2 = this;
+            return axios.get('/api/orders').then(function (response) {
+                _this.orders = response.data;
+            });
+        },
+        deleteOrder: function deleteOrder(order) {
+            var _this2 = this;
 
-      axios.post('/api/orders/' + id + '/finished_order_act/store', {
-        'order_id': id,
-        'name': '\u0410\u043A\u0442 \u0432\u044B\u043F\u043E\u043B\u043D\u0435\u043D\u043D\u044B\u0445 \u0440\u0430\u0431\u043E\u0442'
-      }).then(function (response) {
-        _this2.$router.push({ name: 'order-finished-services', params: { id: id, finished_act_id: response.data.id } });
-      });
-    },
-    createExtraOrderAct: function createExtraOrderAct(id) {
-      var _this3 = this;
+            if (confirm('Удалить ?')) {
+                axios.delete('/api/orders/' + order.id + '/destroy').then(function (response) {
+                    _this2.getOrders();
+                });
+            }
+        },
+        createFinishedOrderAct: function createFinishedOrderAct(id) {
+            var _this3 = this;
 
-      axios.post('/api/orders/' + id + '/extra_order_act/store', {
-        'order_id': id,
-        'name': '\u0410\u043A\u0442 \u0434\u043E\u043F\u043E\u043B\u043D\u0438\u0442\u0435\u043B\u044C\u043D\u044B\u0445 \u0440\u0430\u0431\u043E\u0442'
-      }).then(function (response) {
-        _this3.$router.push({ name: 'order-extra-services-rooms-show', params: { id: id, extra_order_act_id: response.data.id, extra_room_id: response.data.extra_rooms[0].id } });
-      });
-    },
-    sortByDateStart: function sortByDateStart() {
-      this.sortByDate = !this.sortByDate;
-    },
-    dateFormatter: function dateFormatter(dateString) {
-      return moment(new Date(dateString)).format("DD-MM-YYYY");
-    },
-    filteredOrderName: function filteredOrderName(order) {
-      if (order.address != null) {
-        return order.address;
-      } else {
-        return order.order_name.substring(0, 25);
-      }
-    },
-    checkIfLastElement: function checkIfLastElement(element, data) {
-      return element === data[data.length - 1];
-    },
-    deleteFinishedOrderAct: function deleteFinishedOrderAct(order_id, finished_order_act_id) {
-      var _this4 = this;
+            axios.post('/api/orders/' + id + '/finished_order_act/store', {
+                'order_id': id,
+                'name': '\u0410\u043A\u0442 \u0432\u044B\u043F\u043E\u043B\u043D\u0435\u043D\u043D\u044B\u0445 \u0440\u0430\u0431\u043E\u0442'
+            }).then(function (response) {
+                _this3.$router.push({ name: 'order-finished-services', params: { id: id, finished_act_id: response.data.id } });
+            });
+        },
+        createExtraOrderAct: function createExtraOrderAct(id) {
+            var _this4 = this;
 
-      if (confirm('Удалить?')) {
-        axios.delete('/api/orders/' + order_id + '/finished_order_act/' + finished_order_act_id + '/destroy').then(function (response) {
-          _this4.getOrders();
-        });
-      }
-    },
-    deleteExtraOrderAct: function deleteExtraOrderAct(order_id, extra_order_act_id) {
-      var _this5 = this;
+            axios.post('/api/orders/' + id + '/extra_order_act/store', {
+                'order_id': id,
+                'name': '\u0410\u043A\u0442 \u0434\u043E\u043F\u043E\u043B\u043D\u0438\u0442\u0435\u043B\u044C\u043D\u044B\u0445 \u0440\u0430\u0431\u043E\u0442'
+            }).then(function (response) {
+                _this4.$router.push({ name: 'order-extra-services-rooms-show', params: { id: id, extra_order_act_id: response.data.id, extra_room_id: response.data.extra_rooms[0].id } });
+            });
+        },
+        sortByDateStart: function sortByDateStart() {
+            this.sortByDate = !this.sortByDate;
+        },
+        dateFormatter: function dateFormatter(dateString) {
+            return moment(new Date(dateString)).format("DD-MM-YYYY");
+        },
+        filteredOrderName: function filteredOrderName(order) {
+            if (order.address != null) {
+                return order.address;
+            } else {
+                return order.order_name.substring(0, 25);
+            }
+        },
+        checkIfLastElement: function checkIfLastElement(element, data) {
+            return element === data[data.length - 1];
+        },
+        deleteFinishedOrderAct: function deleteFinishedOrderAct(order_id, finished_order_act_id) {
+            var _this5 = this;
 
-      if (confirm('Удалить?')) {
-        axios.delete('/api/orders/' + order_id + '/extra_order_act/' + extra_order_act_id + '/destroy').then(function (response) {
-          _this5.getOrders();
-        });
-      }
+            if (confirm('Удалить?')) {
+                axios.delete('/api/orders/' + order_id + '/finished_order_act/' + finished_order_act_id + '/destroy').then(function (response) {
+                    _this5.getOrders();
+                });
+            }
+        },
+        deleteExtraOrderAct: function deleteExtraOrderAct(order_id, extra_order_act_id) {
+            var _this6 = this;
+
+            if (confirm('Удалить?')) {
+                axios.delete('/api/orders/' + order_id + '/extra_order_act/' + extra_order_act_id + '/destroy').then(function (response) {
+                    _this6.getOrders();
+                });
+            }
+        }
+    },
+
+    computed: {
+        filteredOrders: function filteredOrders() {
+            var _this7 = this;
+
+            var data = this.orders;
+
+            data = data.filter(function (row) {
+                return Object.keys(row).some(function (key) {
+                    return String(row[key]).toLowerCase().indexOf(_this7.quickSearchQuery.toLowerCase()) > -1;
+                });
+            });
+
+            if (!this.sortByDate) {
+                data = _.orderBy(data, ['created_at'], ['desc']);
+            } else {
+                data = _.orderBy(data, ['created_at'], ['asc']);
+            }
+
+            return data;
+        }
     }
-  },
-
-  computed: {
-    filteredOrders: function filteredOrders() {
-      var _this6 = this;
-
-      var data = this.orders;
-
-      data = data.filter(function (row) {
-        return Object.keys(row).some(function (key) {
-          return String(row[key]).toLowerCase().indexOf(_this6.quickSearchQuery.toLowerCase()) > -1;
-        });
-      });
-
-      if (!this.sortByDate) {
-        data = _.orderBy(data, ['created_at'], ['desc']);
-      } else {
-        data = _.orderBy(data, ['created_at'], ['asc']);
-      }
-
-      return data;
-    }
-  }
 });
 
 /***/ }),
@@ -49163,7 +49177,37 @@ var render = function() {
                                                         "\n                                      "
                                                     )
                                                   ]
-                                                )
+                                                ),
+                                                _vm._v(" "),
+                                                order.isCopy
+                                                  ? [
+                                                      _c(
+                                                        "button",
+                                                        {
+                                                          staticClass:
+                                                            "add-button add-button--remove d-flex align-items-center",
+                                                          on: {
+                                                            click: function(
+                                                              $event
+                                                            ) {
+                                                              _vm.deleteOrder(
+                                                                order
+                                                              )
+                                                            }
+                                                          }
+                                                        },
+                                                        [
+                                                          _c("img", {
+                                                            attrs: {
+                                                              src:
+                                                                "/img/del.svg",
+                                                              alt: "add-button"
+                                                            }
+                                                          })
+                                                        ]
+                                                      )
+                                                    ]
+                                                  : _vm._e()
                                               ]
                                             : [
                                                 _c(
@@ -64493,8 +64537,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 'service_quantities': this.removeEmptyElem(this.service_quantities),
                 'service_prices': this.service_prices
             }).then(function (response) {
-                _this4.getRoomServices();
                 _this4.$emit('price', parseInt(response.data.room.price));
+            }).then(function (response) {
+                _this4.getRoomServices();
             });
         },
         getMaterialSummary: function getMaterialSummary(rate, quantity, price, room_service_quantity) {
@@ -68406,6 +68451,13 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -69062,6 +69114,8 @@ var render = function() {
                         )
                       ])
                     ]),
+                    _vm._v(" "),
+                    _vm._m(0),
                     _vm._v(" "),
                     _c("div", { staticClass: "col-12 px-0 pt-3" }, [
                       _c(
@@ -69735,7 +69789,18 @@ var render = function() {
     1
   )
 }
-var staticRenderFns = []
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "row align-items-center pt-5" }, [
+      _c("div", { staticClass: "col-10" }, [
+        _c("div", { staticClass: "form-group d-flex align-items-center" })
+      ])
+    ])
+  }
+]
 render._withStripped = true
 module.exports = { render: render, staticRenderFns: staticRenderFns }
 if (false) {

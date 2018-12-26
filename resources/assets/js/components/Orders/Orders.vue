@@ -84,6 +84,14 @@
                                       <router-link :to="{ name: 'room-show', params: { id: order.id, room_id: order.rooms[order.rooms.length - 1].id } }">
                                           {{ filteredOrderName(order) }}
                                       </router-link>
+
+                                      <template v-if="order.isCopy">
+                                          <button class="add-button add-button--remove d-flex align-items-center"
+                                                  @click="deleteOrder(order)">
+                                              <img src="/img/del.svg" alt="add-button">
+                                          </button>
+                                      </template>
+
                                   </template>
 
                                   <template v-else>
@@ -244,8 +252,13 @@ export default {
         })
     },
 
-    deleteOrder (id) {
-        axios.delete(`/ai/orders/${id}/destroy`)
+    deleteOrder (order) {
+        if (confirm('Удалить ?')) {
+            axios.delete(`/api/orders/${order.id}/destroy`)
+                 .then(response => {
+                     this.getOrders()
+                 })
+        }
     },
 
     createFinishedOrderAct (id) {
@@ -351,20 +364,26 @@ table {
    .show-button {
      opacity:1;
    }
+   .add-button {
+     opacity: 1;
+   }
+  }
+  .add-button {
+    opacity: 0;
+  }
+  .form-check-label {
+    display: flex;
   }
 }
  .estimates__dropdown-img--rotate {
    opacity: 0;
    img {
-       transform: none;
+    transform: none;
    }
  }
-
  .show-button {
    opacity:0;
-
  }
-
  .add-button img {
    width: 11px;
    cursor: pointer;
@@ -391,5 +410,4 @@ table {
       background-color: transparent;
   }
 }
-
 </style>
