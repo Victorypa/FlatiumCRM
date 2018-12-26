@@ -10,13 +10,15 @@ class UserTableSeeder extends Seeder
         $user1 = User::create([
             'name' => 'Elijah',
             'email' => 'elijah@gmail.com',
-            'password' => bcrypt('secret')
+            'password' => bcrypt('secret'),
+            'isAdmin' => true
         ]);
 
         $user2 = User::create([
             'name' => 'Anna',
             'email' => 'anna.kudelya@flatium.ru',
-            'password' => bcrypt('secret')
+            'password' => bcrypt('secret'),
+            'isAdmin' => true
         ]);
 
         $user1->roles()->syncWithoutDetaching([1]);

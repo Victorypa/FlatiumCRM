@@ -333,32 +333,32 @@
                         })
                     }
 
-                    response.data.forEach(item => {
-                        if (!this.room_service_ids.includes(item.id)) {
-                            if (this.service_quantities[item.id] !== null) {
-                                switch (item.unit.id) {
-                                    case 1:
-                                        if (item.service_type_id === 1) {
-                                            this.service_quantities[item.id] = this.room.area
-                                        }
-                                        if (item.service_type_id === 2) {
-                                            this.service_quantities[item.id] = this.room.wall_area
-                                        }
-
-                                        if (item.service_type_id === 3) {
-                                            this.service_quantities[item.id] = this.room.area
-                                        }
-                                        break;
-                                    case 2:
-                                        this.service_quantities[item.id] = this.room.perimeter
-                                        break;
-                                    default:
-                                        this.service_quantities[item.id] = 1
-                                }
-                            }
-                        }
-
-                    })
+                    // response.data.forEach(item => {
+                    //     if (!this.room_service_ids.includes(item.id)) {
+                    //         if (this.service_quantities[item.id] !== null) {
+                    //             switch (item.unit.id) {
+                    //                 case 1:
+                    //                     if (item.service_type_id === 1) {
+                    //                         this.service_quantities[item.id] = this.room.area
+                    //                     }
+                    //                     if (item.service_type_id === 2) {
+                    //                         this.service_quantities[item.id] = this.room.wall_area
+                    //                     }
+                    //
+                    //                     if (item.service_type_id === 3) {
+                    //                         this.service_quantities[item.id] = this.room.area
+                    //                     }
+                    //                     break;
+                    //                 case 2:
+                    //                     this.service_quantities[item.id] = this.room.perimeter
+                    //                     break;
+                    //                 default:
+                    //                     this.service_quantities[item.id] = 1
+                    //             }
+                    //         }
+                    //     }
+                    //
+                    // })
 
                 })
             },

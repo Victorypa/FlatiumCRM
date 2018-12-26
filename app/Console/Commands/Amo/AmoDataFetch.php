@@ -2,6 +2,7 @@
 
 namespace App\Console\Commands\Amo;
 
+use App\User;
 use Carbon\Carbon;
 use App\Models\Orders\Order;
 use GuzzleHttp\Client;
@@ -66,7 +67,7 @@ class AmoDataFetch extends Command
             foreach ($this->allowedStatuses() as $allowed_status_id) {
                 if ($this->fetchAmoOrders($allowed_status_id) !== null) {
                     foreach ($this->fetchAmoOrders($allowed_status_id) as $order) {
-                            $this->createOrder($order);
+                        $this->createOrder($order, "https://flatium.amocrm.ru/" . $order->contacts->_links->self->href);
                     }
                 }
 
@@ -139,13 +140,28 @@ class AmoDataFetch extends Command
         }
     }
 
-    protected function createOrder($data)
+    protected function createOrder($data, $contact_link = null)
     {
+         $user = $this->createUser($contact_link);
+
          Order::create([
             'amo_id' => $data->id,
+            'user_id' => $user->id,
             'order_name' => $data->name,
+            'client_name' => $user->name,
             'status' => $data->status_id,
             'created_at' => Carbon::createFromTimestamp($data->created_at)
+        ]);
+    }
+
+    protected function createUser($contact_link)
+    {
+        $contact = json_decode($this->client->request('GET', $contact_link)->getBody())->response->contacts[0];
+        
+        return User::create([
+            'name' => $contact->name,
+            'phone' => $contact->custom_fields[0]->values[0]->value,
+            'password' => str_random(6)
         ]);
     }
 }

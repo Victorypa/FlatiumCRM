@@ -122,14 +122,6 @@
                                     </div>
                                 </div>
 
-                                <div class="row align-items-center pt-5">
-                                    <div class="col-10">
-                                        <div class="form-group d-flex align-items-center">
-                                            
-                                        </div>
-                                    </div>
-                                </div>
-
                                 <div class="col-12 px-0 pt-3">
                                   <div class="form-check custom-control checkbox">
                                     <input class="form-check-input check"
