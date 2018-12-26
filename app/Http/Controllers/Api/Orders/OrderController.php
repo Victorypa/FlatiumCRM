@@ -66,6 +66,13 @@ class OrderController extends Controller
         $order->update($request->all());
     }
 
+    public function destroy(Order $order)
+    {
+        if ($order->isCopy) {
+            $order->delete();
+        }
+    }
+
     public function updateOrderDiscountOrMarkup(Order $order, Request $request)
     {
         $order->update([
@@ -125,7 +132,8 @@ class OrderController extends Controller
         $newOrder = Order::create([
             'order_name' => "{$order->order_name} копия",
             'address' => "{$order->address} копия",
-            'created_at' => Carbon::now()
+            'created_at' => Carbon::now(),
+            'isCopy' => true
         ]);
 
         foreach ($order->rooms as $room) {
@@ -174,7 +182,8 @@ class OrderController extends Controller
         $newOrder = Order::create([
             'order_name' => "{$order->order_name} копия",
             'address' => "{$order->address} копия",
-            'created_at' => Carbon::now()
+            'created_at' => Carbon::now(),
+            'isCopy' => true
         ]);
 
         foreach ($order->rooms as $room) {
@@ -195,7 +204,7 @@ class OrderController extends Controller
                 ]);
             }
 
-            
+
         }
 
         return response()->json([

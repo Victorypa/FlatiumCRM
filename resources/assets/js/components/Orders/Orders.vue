@@ -244,6 +244,10 @@ export default {
         })
     },
 
+    deleteOrder (id) {
+        axios.delete(`/ai/orders/${id}/destroy`)
+    },
+
     createFinishedOrderAct (id) {
         axios.post(`/api/orders/${id}/finished_order_act/store`, {
             'order_id': id,
