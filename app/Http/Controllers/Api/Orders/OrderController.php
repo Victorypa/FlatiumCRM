@@ -133,6 +133,8 @@ class OrderController extends Controller
             'order_name' => "{$order->order_name} копия",
             'address' => "{$order->address} копия",
             'created_at' => Carbon::now(),
+            'original_price' => $order->original_price,
+            'price' => $order->price,
             'isCopy' => true
         ]);
 
@@ -142,6 +144,8 @@ class OrderController extends Controller
                 'length' => $room->length,
                 'width' => $room->width,
                 'height' => $room->height,
+                'price' => $room->price,
+                'original_price' => $order->original_price,
                 'description' => $room->description,
             ]);
 
@@ -182,6 +186,8 @@ class OrderController extends Controller
         $newOrder = Order::create([
             'order_name' => "{$order->order_name} копия",
             'address' => "{$order->address} копия",
+            'original_price' => $order->original_price,
+            'price' => $order->price,
             'created_at' => Carbon::now(),
             'isCopy' => true
         ]);
@@ -192,6 +198,8 @@ class OrderController extends Controller
                 'length' => $room->length,
                 'width' => $room->width,
                 'height' => $room->height,
+                'price' => $room->price,
+                'original_price' => $order->original_price,
                 'description' => $room->description,
             ]);
 
