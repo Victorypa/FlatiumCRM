@@ -143,30 +143,29 @@ class AmoDataFetch extends Command
     {
          $user = $this->createUser($contact_link);
 
-        //  Order::create([
-        //     'amo_id' => $data->id,
-        //     'user_id' => $user->id,
-        //     'order_name' => $data->name,
-        //     'client_name' => $user->name,
-        //     'status' => $data->status_id,
-        //     'created_at' => Carbon::createFromTimestamp($data->created_at)
-        // ]);
+         Order::create([
+            'amo_id' => $data->id,
+            'user_id' => $user->id,
+            'order_name' => $data->name,
+            'client_name' => $user->name,
+            'status' => $data->status_id,
+            'created_at' => Carbon::createFromTimestamp($data->created_at)
+        ]);
     }
 
     protected function createUser($contact_link)
     {
+        $uselessLetters = ['+', ' ', '(', ')', '-'];
+        $replacement = [0 => '8'];
+
         $contact = json_decode($this->client->request('GET', $contact_link)->getBody())->response->contacts[0];
 
-        $phone = $contact->custom_fields[0]->values[0]->value;
+        $phone = implode("", array_replace(str_split(str_replace($uselessLetters, "", $contact->custom_fields[0]->values[0]->value)), $replacement));
 
-        $uselessLetters = ['+', ' ', '(', ')', '-'];
-        
-        dump(str_replace($uselessLetters, "", $phone));
-
-        // return User::create([
-        //     'name' => $contact->name,
-        //     'phone' => $phone,
-        //     'password' => str_random(6)
-        // ]);
+        return User::create([
+            'name' => $contact->name,
+            'phone' => $phone,
+            'password' => str_random(6)
+        ]);
     }
 }
