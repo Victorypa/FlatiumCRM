@@ -2,7 +2,7 @@
 
 namespace App;
 
-use App\Models\Order;
+use App\Models\Orders\Order;
 use Illuminate\Notifications\Notifiable;
 use Tymon\JWTAuth\Contracts\JWTSubject;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -31,6 +31,8 @@ class User extends Authenticatable implements JWTSubject
     protected $hidden = [
         'password', 'remember_token',
     ];
+
+    protected $with = ['orders'];
 
     public function orders()
     {
