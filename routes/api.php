@@ -5,7 +5,7 @@ use Illuminate\Http\Request;
     /**
      * Authentication
     */
-    Route::group(['namespace' => 'Api\Auth', 'prefix' => 'auth', 'middleware' => 'cors'], function ($router) {
+    Route::group(['namespace' => 'Api\Auth', 'prefix' => 'auth'], function ($router) {
         Route::post('login', 'UserController@login')->name('login');
         Route::post('logout', 'UserController@logout');
         Route::post('refresh', 'UserController@refresh');
