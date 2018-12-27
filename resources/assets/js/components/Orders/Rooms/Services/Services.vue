@@ -85,24 +85,24 @@
                   {{ getServiceTypeName(service_type_id) }}
               </div>
 
-              <div class="col-md-12 px-0 all-items" v-for="room_service in room_services" :key="room_service.service_id">
+              <div class="col-md-12 px-0 all-items" v-for="room_service_id in room_service_ids" :key="room_service_id">
                 <div class="row align-items-center">
                     <label class="col-md-4 mb-0">
                         <div class="form-check custom-control d-flex edit-show">
                             <input class="form-check-input"
                                    type="checkbox"
-                                   :id="'service-' + room_service.service_id"
+                                   :id="'service-' + room_service_id"
                                    :checked="true"
-                                   @click="addToRoomServiceId(room_service.service_id)"
+                                   @click="addToRoomServiceId(room_service_id)"
                                    >
 
                             <label class="form-check-label"
-                                   :for="'service-' + room_service.service_id"
+                                   :for="'service-' + room_service_id"
                                    >
-                                   {{ service_names[room_service.service_id] }}
+                                   {{ service_names[room_service_id] }}
                             </label>
 
-                            <router-link class="ml-auto edit" :to="{ name: 'service-material', params: { service_id: room_service.service_id } }">
+                            <router-link class="ml-auto edit" :to="{ name: 'service-material', params: { service_id: room_service_id } }">
                                     Ред.
                             </router-link>
                         </div>
@@ -114,32 +114,32 @@
                                  class="form-control w-85"
                                  placeholder="Кол-во"
                                  min="0"
-                                 v-model="service_quantities[room_service.service_id]"
+                                 v-model="service_quantities[room_service_id]"
                                  @change="linkServicesToRoom()"
                                  >
 
                           <div class="inputs-caption col-md-2">
-                              {{ service_units[room_service.service_id] }}
+                              {{ service_units[room_service_id] }}
                           </div>
 
                           <input type="number"
                           class="form-control w-85"
                           min="0"
                           disabled
-                          :value="service_prices[room_service.service_id]"
+                          :value="service_prices[room_service_id]"
                           >
 
                           <div class="inputs-caption col-md-2">
-                              Р/{{ service_units[room_service.service_id] }}
+                              Р/{{ service_units[room_service_id] }}
                           </div>
 
                           <div class="form-group__calc w-85">
-                              {{ getServiceSummary(room_service.service_id) }} P
+                              {{ getServiceSummary(room_service_id) }} P
                           </div>
 
-                          <template v-if="service_can_be_deleted[room_service.service_id]">
+                          <template v-if="service_can_be_deleted[room_service_id]">
                               <div class="col-md-2">
-                                  <button @click="deleteService(room_service.service_id)" class="add-button add-button--remove d-flex align-items-center" title="Удалить материал">
+                                  <button @click="deleteService(room_service_id)" class="add-button add-button--remove d-flex align-items-center" title="Удалить материал">
                                       <img src="/img/del.svg" alt="add-button">
                                       <div class="remove-materials ml-1">
                                         Удалить
@@ -155,7 +155,7 @@
 
                           <div class="col-md-auto px-0 ml-auto">
                               <template v-if="room.order">
-                                  <router-link :to="{ name: 'actual-material', params: { id: room.order.id, room_id: room.id, service_id: room_service.service_id }}">
+                                  <router-link :to="{ name: 'actual-material', params: { id: room.order.id, room_id: room.id, service_id: room_service_id }}">
                                       <button class="add-button " title="Добавить материалы">
                                           <img src="/img/plus-circle.svg" alt="add-button">
                                       </button>
@@ -380,26 +380,16 @@
                 })
             },
 
-            addToRoomServiceId (service_id) {
-                if (this.room_services.map(room_service => room_service.service_id === service_id)) {
-                    this.room_services.push({
-                        service_id: service_id,
-                        service_type_id: this.service_type_id
-                    })
+            addToRoomServiceId (id) {
+                if (!this.room_service_ids.includes(id)) {
+                  this.room_service_ids.push(id);
                 } else {
-                    let index = this.room_services.find(room_service => room_service.service_id)
-                    this.room_services.filter(room_service => room_service.service_id != service_id)
+                  let index = this.room_service_ids.indexOf(id);
+                  if (index > -1) {
+                    this.room_service_ids.splice(index, 1);
+                  }
                 }
-                console.log(this.room_services);
-                // if (!this.room_service_ids.includes(id)) {
-                //   this.room_service_ids.push(id);
-                // } else {
-                //   let index = this.room_service_ids.indexOf(id);
-                //   if (index > -1) {
-                //     this.room_service_ids.splice(index, 1);
-                //   }
-                // }
-                // this.linkServicesToRoom()
+                this.linkServicesToRoom()
             },
 
             linkServicesToRoom () {

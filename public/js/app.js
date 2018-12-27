@@ -64535,32 +64535,16 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 });
             });
         },
-        addToRoomServiceId: function addToRoomServiceId(service_id) {
-            if (this.room_services.map(function (room_service) {
-                return room_service.service_id === service_id;
-            })) {
-                this.room_services.push({
-                    service_id: service_id,
-                    service_type_id: this.service_type_id
-                });
+        addToRoomServiceId: function addToRoomServiceId(id) {
+            if (!this.room_service_ids.includes(id)) {
+                this.room_service_ids.push(id);
             } else {
-                var index = this.room_services.find(function (room_service) {
-                    return room_service.service_id;
-                });
-                this.room_services.filter(function (room_service) {
-                    return room_service.service_id != service_id;
-                });
+                var index = this.room_service_ids.indexOf(id);
+                if (index > -1) {
+                    this.room_service_ids.splice(index, 1);
+                }
             }
-            console.log(this.room_services);
-            // if (!this.room_service_ids.includes(id)) {
-            //   this.room_service_ids.push(id);
-            // } else {
-            //   let index = this.room_service_ids.indexOf(id);
-            //   if (index > -1) {
-            //     this.room_service_ids.splice(index, 1);
-            //   }
-            // }
-            // this.linkServicesToRoom()
+            this.linkServicesToRoom();
         },
         linkServicesToRoom: function linkServicesToRoom() {
             var _this4 = this;
@@ -64929,11 +64913,11 @@ var render = function() {
                   ]
                 ),
                 _vm._v(" "),
-                _vm._l(_vm.room_services, function(room_service) {
+                _vm._l(_vm.room_service_ids, function(room_service_id) {
                   return _c(
                     "div",
                     {
-                      key: room_service.service_id,
+                      key: room_service_id,
                       staticClass: "col-md-12 px-0 all-items"
                     },
                     [
@@ -64950,14 +64934,12 @@ var render = function() {
                                 staticClass: "form-check-input",
                                 attrs: {
                                   type: "checkbox",
-                                  id: "service-" + room_service.service_id
+                                  id: "service-" + room_service_id
                                 },
                                 domProps: { checked: true },
                                 on: {
                                   click: function($event) {
-                                    _vm.addToRoomServiceId(
-                                      room_service.service_id
-                                    )
+                                    _vm.addToRoomServiceId(room_service_id)
                                   }
                                 }
                               }),
@@ -64966,17 +64948,13 @@ var render = function() {
                                 "label",
                                 {
                                   staticClass: "form-check-label",
-                                  attrs: {
-                                    for: "service-" + room_service.service_id
-                                  }
+                                  attrs: { for: "service-" + room_service_id }
                                 },
                                 [
                                   _vm._v(
                                     "\n                               " +
                                       _vm._s(
-                                        _vm.service_names[
-                                          room_service.service_id
-                                        ]
+                                        _vm.service_names[room_service_id]
                                       ) +
                                       "\n                        "
                                   )
@@ -64990,9 +64968,7 @@ var render = function() {
                                   attrs: {
                                     to: {
                                       name: "service-material",
-                                      params: {
-                                        service_id: room_service.service_id
-                                      }
+                                      params: { service_id: room_service_id }
                                     }
                                   }
                                 },
@@ -65021,11 +64997,9 @@ var render = function() {
                                     name: "model",
                                     rawName: "v-model",
                                     value:
-                                      _vm.service_quantities[
-                                        room_service.service_id
-                                      ],
+                                      _vm.service_quantities[room_service_id],
                                     expression:
-                                      "service_quantities[room_service.service_id]"
+                                      "service_quantities[room_service_id]"
                                   }
                                 ],
                                 staticClass: "form-control w-85",
@@ -65035,10 +65009,7 @@ var render = function() {
                                   min: "0"
                                 },
                                 domProps: {
-                                  value:
-                                    _vm.service_quantities[
-                                      room_service.service_id
-                                    ]
+                                  value: _vm.service_quantities[room_service_id]
                                 },
                                 on: {
                                   change: function($event) {
@@ -65050,7 +65021,7 @@ var render = function() {
                                     }
                                     _vm.$set(
                                       _vm.service_quantities,
-                                      room_service.service_id,
+                                      room_service_id,
                                       $event.target.value
                                     )
                                   }
@@ -65064,9 +65035,7 @@ var render = function() {
                                   _vm._v(
                                     "\n                          " +
                                       _vm._s(
-                                        _vm.service_units[
-                                          room_service.service_id
-                                        ]
+                                        _vm.service_units[room_service_id]
                                       ) +
                                       "\n                      "
                                   )
@@ -65081,8 +65050,7 @@ var render = function() {
                                   disabled: ""
                                 },
                                 domProps: {
-                                  value:
-                                    _vm.service_prices[room_service.service_id]
+                                  value: _vm.service_prices[room_service_id]
                                 }
                               }),
                               _vm._v(" "),
@@ -65093,9 +65061,7 @@ var render = function() {
                                   _vm._v(
                                     "\n                          Р/" +
                                       _vm._s(
-                                        _vm.service_units[
-                                          room_service.service_id
-                                        ]
+                                        _vm.service_units[room_service_id]
                                       ) +
                                       "\n                      "
                                   )
@@ -65109,18 +65075,14 @@ var render = function() {
                                   _vm._v(
                                     "\n                          " +
                                       _vm._s(
-                                        _vm.getServiceSummary(
-                                          room_service.service_id
-                                        )
+                                        _vm.getServiceSummary(room_service_id)
                                       ) +
                                       " P\n                      "
                                   )
                                 ]
                               ),
                               _vm._v(" "),
-                              _vm.service_can_be_deleted[
-                                room_service.service_id
-                              ]
+                              _vm.service_can_be_deleted[room_service_id]
                                 ? [
                                     _c("div", { staticClass: "col-md-2" }, [
                                       _c(
@@ -65131,9 +65093,7 @@ var render = function() {
                                           attrs: { title: "Удалить материал" },
                                           on: {
                                             click: function($event) {
-                                              _vm.deleteService(
-                                                room_service.service_id
-                                              )
+                                              _vm.deleteService(room_service_id)
                                             }
                                           }
                                         },
@@ -65184,8 +65144,7 @@ var render = function() {
                                                 params: {
                                                   id: _vm.room.order.id,
                                                   room_id: _vm.room.id,
-                                                  service_id:
-                                                    room_service.service_id
+                                                  service_id: room_service_id
                                                 }
                                               }
                                             }

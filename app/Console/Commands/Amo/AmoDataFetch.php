@@ -83,13 +83,12 @@ class AmoDataFetch extends Command
 
 
             if (count($diffIds = array_diff($this->amo_ids, $this->order_amo_ids)) != 0 ) {
-
                 foreach ($diffIds as $key => $value) {
                     $response = json_decode(
                         $this->client->request('GET', 'https://flatium.amocrm.ru/api/v2/leads?id=' . $value . '&type=json'
                     )->getBody())->_embedded->items;
 
-                    $this->createOrder($response[0]);
+                    $this->createOrder($response[0], "https://flatium.amocrm.ru/" . $response[0]->contacts->_links->self->href);
                 }
 
             }
@@ -144,24 +143,30 @@ class AmoDataFetch extends Command
     {
          $user = $this->createUser($contact_link);
 
-         Order::create([
-            'amo_id' => $data->id,
-            'user_id' => $user->id,
-            'order_name' => $data->name,
-            'client_name' => $user->name,
-            'status' => $data->status_id,
-            'created_at' => Carbon::createFromTimestamp($data->created_at)
-        ]);
+        //  Order::create([
+        //     'amo_id' => $data->id,
+        //     'user_id' => $user->id,
+        //     'order_name' => $data->name,
+        //     'client_name' => $user->name,
+        //     'status' => $data->status_id,
+        //     'created_at' => Carbon::createFromTimestamp($data->created_at)
+        // ]);
     }
 
     protected function createUser($contact_link)
     {
         $contact = json_decode($this->client->request('GET', $contact_link)->getBody())->response->contacts[0];
+
+        $phone = $contact->custom_fields[0]->values[0]->value;
+
+        $uselessLetters = ['+', ' ', '(', ')', '-'];
         
-        return User::create([
-            'name' => $contact->name,
-            'phone' => $contact->custom_fields[0]->values[0]->value,
-            'password' => str_random(6)
-        ]);
+        dump(str_replace($uselessLetters, "", $phone));
+
+        // return User::create([
+        //     'name' => $contact->name,
+        //     'phone' => $phone,
+        //     'password' => str_random(6)
+        // ]);
     }
 }
