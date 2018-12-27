@@ -38,9 +38,9 @@
                           </template>
 
 
-                        <div class="col-md-4 text-right d-flex">
+                        <div class="col-md-4 d-flex">
                             <button type="button"
-                                    class="primary-button primary-button--outline col-6"
+                                    class="primary-button primary-button--outline col-6 ml-auto"
                                     @click="$router.go(-1)">
                               Назад
                             </button>

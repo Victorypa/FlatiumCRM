@@ -99,11 +99,11 @@
 
                     <template v-if="service.can_be_deleted">
                         <div class="col-4 d-flex justify-content-end align-items-center">
-                          <div class="total-sum col-3">
+                          <div class="total-sum col-4">
                               {{ new Intl.NumberFormat().format(parseInt(service.price)) }} Р
                           </div>
 
-                          <button class="add-button add-button--remove d-flex align-items-center ml-3"
+                          <button class="add-button add-button--remove d-flex align-items-center col-3"
                                   title="Удалить"
                                   @click.prevent="deleteService(service.id)">
                             <img src="/img/del.svg" alt="add-button">

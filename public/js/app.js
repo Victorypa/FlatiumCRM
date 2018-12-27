@@ -67347,30 +67347,26 @@ var render = function() {
                                 : _vm._e()
                             ],
                         _vm._v(" "),
-                        _c(
-                          "div",
-                          { staticClass: "col-md-4 text-right d-flex" },
-                          [
-                            _c(
-                              "button",
-                              {
-                                staticClass:
-                                  "primary-button primary-button--outline col-6",
-                                attrs: { type: "button" },
-                                on: {
-                                  click: function($event) {
-                                    _vm.$router.go(-1)
-                                  }
+                        _c("div", { staticClass: "col-md-4 d-flex" }, [
+                          _c(
+                            "button",
+                            {
+                              staticClass:
+                                "primary-button primary-button--outline col-6 ml-auto",
+                              attrs: { type: "button" },
+                              on: {
+                                click: function($event) {
+                                  _vm.$router.go(-1)
                                 }
-                              },
-                              [
-                                _vm._v(
-                                  "\n                          Назад\n                        "
-                                )
-                              ]
-                            )
-                          ]
-                        )
+                              }
+                            },
+                            [
+                              _vm._v(
+                                "\n                          Назад\n                        "
+                              )
+                            ]
+                          )
+                        ])
                       ],
                       2
                     )
@@ -71865,7 +71861,7 @@ var render = function() {
                                   [
                                     _c(
                                       "div",
-                                      { staticClass: "total-sum col-3" },
+                                      { staticClass: "total-sum col-4" },
                                       [
                                         _vm._v(
                                           "\n                        " +
@@ -71883,7 +71879,7 @@ var render = function() {
                                       "button",
                                       {
                                         staticClass:
-                                          "add-button add-button--remove d-flex align-items-center ml-3",
+                                          "add-button add-button--remove d-flex align-items-center col-3",
                                         attrs: { title: "Удалить" },
                                         on: {
                                           click: function($event) {
