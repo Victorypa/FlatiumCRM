@@ -72569,6 +72569,7 @@ try {
 window.axios = __webpack_require__(18);
 
 window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
+window.axios.defaults.headers.common['Access-Control-Allow-Credentials'] = true;
 
 var token = document.head.querySelector('meta[name="csrf-token"]');
 
