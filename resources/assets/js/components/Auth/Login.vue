@@ -8,7 +8,7 @@
                     <div class="login-form">
 
                         <div class="form-group">
-                            <input type="email"
+                            <input type="text"
                                    placeholder="Почта"
                                    class="form-control"
                                    autofocus

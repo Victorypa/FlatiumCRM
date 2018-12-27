@@ -48471,7 +48471,7 @@ var render = function() {
                       ],
                       staticClass: "form-control",
                       attrs: {
-                        type: "email",
+                        type: "text",
                         placeholder: "Почта",
                         autofocus: ""
                       },
