@@ -63,6 +63,8 @@ class Kernel extends HttpKernel
         'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
         'jwt.verify' => \App\Http\Middleware\JwtMiddleware::class,
 
+        'admin' => \App\Http\Middleware\isAdmin::class,
+
         'doNotCacheResponse' => \Spatie\ResponseCache\Middlewares\DoNotCacheResponse::class,
         'cacheResponse' => \Spatie\ResponseCache\Middlewares\CacheResponse::class,
     ];
