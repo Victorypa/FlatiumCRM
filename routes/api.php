@@ -15,7 +15,7 @@ use Illuminate\Http\Request;
     /**
      * Orders
     */
-    Route::group(['prefix' => 'orders', 'namespace' => 'Api\Orders', 'middleware' => ['admin', 'jwt.verify']], function ($router) {
+    Route::group(['prefix' => 'orders', 'namespace' => 'Api\Orders', 'middleware' => ['admin']], function ($router) {
         Route::get('/', 'OrderController@index');
         Route::get('/{order}', 'OrderController@show');
         Route::get('/{order}/copy', 'OrderController@copy');

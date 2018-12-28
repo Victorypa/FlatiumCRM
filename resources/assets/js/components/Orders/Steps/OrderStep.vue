@@ -418,7 +418,7 @@
                 axios.post(`/api/orders/${this.$route.params.id}/order_steps/${this.selected_order_step_id}/services/store`, {
                     'selected_service_ids': _.groupBy(this.selected_service_ids, 'room_id')
                 }).then(response => {
-                    window.location.reload(true)
+                    this.getOrder()
                 })
             } else {
                 alert('Выберите спринт')

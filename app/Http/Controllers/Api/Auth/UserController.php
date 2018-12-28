@@ -44,7 +44,9 @@ class UserController extends Controller
 
     public function me()
     {
-        return response()->json(auth()->user()->orders()->with(['order_steps'])->get());
+        return response()->json(
+            auth()->user()->orders()->with(['order_steps'])->get()
+        );
     }
 
     protected function respondWithToken($token)
