@@ -7,6 +7,10 @@
             <div class="sidebar-list">
                 <router-link class="sidebar-list-item" :to="{ name: 'services' }">Виды работ</router-link>
             </div>
+
+            <div class="sidebar-list">
+                <router-link class="sidebar-list-item" :to="{ name: 'report' }">Сводный отчет</router-link>
+            </div>
         </div>
     </div>
 </template>

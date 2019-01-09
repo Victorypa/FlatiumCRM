@@ -13,6 +13,11 @@ use Illuminate\Http\Request;
     });
 
     /**
+     * Reports
+    */
+    Route::get('/reports', 'Api\Reports\ReportController@index');
+    
+    /**
      * Orders
     */
     Route::group(['prefix' => 'orders', 'namespace' => 'Api\Orders', 'middleware' => ['admin']], function ($router) {
