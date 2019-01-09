@@ -132,6 +132,10 @@
                                   <router-link class="dropdown-item text-color" :to="{ name: 'order-step', params: { id: order.id} }">
                                       График работ
                                   </router-link>
+
+                                  <router-link class="dropdown-item text-color" :to="{ name: 'order-upload', params: { id: order.id} }">
+                                      Загрузить файлы
+                                  </router-link>
                               </div>
                             </div>
                           </td>
