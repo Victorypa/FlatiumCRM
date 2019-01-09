@@ -23,6 +23,6 @@ class OrderFolderController extends Controller
             'name' => $folderName = $request->date
         ]);
 
-        Storage::disk('local')->makeDirectory("app/public/{$folderName}");
+        Storage::disk('local')->makeDirectory("/public/{$folderName}");
     }
 }

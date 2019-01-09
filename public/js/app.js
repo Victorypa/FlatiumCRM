@@ -50014,6 +50014,30 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -94414,24 +94438,56 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("table", { staticClass: "table mp-10" }, [
-      _c("thead", [
-        _c("tr", [
-          _c("th", { attrs: { scope: "col" } }, [_vm._v("#")]),
+    return _c("div", { staticClass: "row mp-10" }, [
+      _c("div", { staticClass: "col-md-6" }, [
+        _c("h4", [_vm._v("Документы")]),
+        _vm._v(" "),
+        _c("table", { staticClass: "table" }, [
+          _c("thead", [
+            _c("tr", [
+              _c("th", { attrs: { scope: "col" } }, [_vm._v("#")]),
+              _vm._v(" "),
+              _c("th", { attrs: { scope: "col" } }, [_vm._v("Название")]),
+              _vm._v(" "),
+              _c("th", { attrs: { scope: "col" } }, [_vm._v("Дата Загрузки")])
+            ])
+          ]),
           _vm._v(" "),
-          _c("th", { attrs: { scope: "col" } }, [_vm._v("Название")]),
-          _vm._v(" "),
-          _c("th", { attrs: { scope: "col" } }, [_vm._v("Дата Загрузки")])
+          _c("tbody", [
+            _c("tr", [
+              _c("td", [_vm._v("1")]),
+              _vm._v(" "),
+              _c("td", [_vm._v("Название")]),
+              _vm._v(" "),
+              _c("td", [_vm._v("Имя")])
+            ])
+          ])
         ])
       ]),
       _vm._v(" "),
-      _c("tbody", [
-        _c("tr", [
-          _c("td", [_vm._v("1")]),
+      _c("div", { staticClass: "col-md-6" }, [
+        _c("h4", [_vm._v("Фото")]),
+        _vm._v(" "),
+        _c("table", { staticClass: "table" }, [
+          _c("thead", [
+            _c("tr", [
+              _c("th", { attrs: { scope: "col" } }, [_vm._v("#")]),
+              _vm._v(" "),
+              _c("th", { attrs: { scope: "col" } }, [_vm._v("Название")]),
+              _vm._v(" "),
+              _c("th", { attrs: { scope: "col" } }, [_vm._v("Дата Загрузки")])
+            ])
+          ]),
           _vm._v(" "),
-          _c("td", [_vm._v("Название")]),
-          _vm._v(" "),
-          _c("td", [_vm._v("Имя")])
+          _c("tbody", [
+            _c("tr", [
+              _c("td", [_vm._v("1")]),
+              _vm._v(" "),
+              _c("td", [_vm._v("Название")]),
+              _vm._v(" "),
+              _c("td", [_vm._v("Имя")])
+            ])
+          ])
         ])
       ])
     ])

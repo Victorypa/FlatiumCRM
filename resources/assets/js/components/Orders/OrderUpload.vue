@@ -22,22 +22,46 @@
                               class="mp-10">
                 </vue-dropzone>
 
-              <table class="table mp-10">
-                <thead>
-                  <tr>
-                      <th scope="col">#</th>
-                      <th scope="col">Название</th>
-                      <th scope="col">Дата Загрузки</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                      <td>1</td>
-                      <td>Название</td>
-                      <td>Имя</td>
-                  </tr>
-                </tbody>
-              </table>
+                <div class="row mp-10">
+                    <div class="col-md-6">
+                        <h4>Документы</h4>
+                        <table class="table">
+                          <thead>
+                            <tr>
+                                <th scope="col">#</th>
+                                <th scope="col">Название</th>
+                                <th scope="col">Дата Загрузки</th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                            <tr>
+                                <td>1</td>
+                                <td>Название</td>
+                                <td>Имя</td>
+                            </tr>
+                          </tbody>
+                        </table>
+                    </div>
+                    <div class="col-md-6">
+                        <h4>Фото</h4>
+                        <table class="table">
+                          <thead>
+                            <tr>
+                                <th scope="col">#</th>
+                                <th scope="col">Название</th>
+                                <th scope="col">Дата Загрузки</th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                            <tr>
+                                <td>1</td>
+                                <td>Название</td>
+                                <td>Имя</td>
+                            </tr>
+                          </tbody>
+                        </table>
+                    </div>
+                </div>
             </div>
           </div>
         </div>

@@ -16,8 +16,8 @@ class CreateOrderUploadsTable extends Migration
         Schema::create('order_uploads', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('folder_id')->unsigned()->index();
-            $table->string('name')->nullable();
             $table->string('path');
+            $table->enum('type', ['doc', 'photo']);
             $table->timestamps();
 
             $table->foreign('folder_id')->references('id')->on('folders')->onDelete('cascade');

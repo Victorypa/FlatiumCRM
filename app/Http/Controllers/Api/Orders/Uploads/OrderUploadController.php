@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Api\Orders\Uploads;
 
+use Storage;
 use App\Models\Orders\Order;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -17,13 +18,27 @@ class OrderUploadController extends Controller
 
         if ($request->hasFile('uploadedFile')) {
             if (in_array($request->file('uploadedFile')->getClientOriginalExtension(), $this->imageExtensions)) {
-                $path = $request->file('uploadedFile')->store(
-                    "app/public/{$folder->name}/photos", 'local'
+                Storage::putFileAs(
+                    "/public/{$folder->name}/photos",
+                    $request->file('uploadedFile'),
+                    $fileName = $request->file('uploadedFile')->getClientOriginalName()
                 );
+
+                $folder->order_uploads()->create([
+                    'path' => $fileName,
+                    'type' => 'photo'
+                ]);
             } else {
-                $path = $request->file('uploadedFile')->store(
-                    "app/public/{$folder->name}/docs", 'local'
+                Storage::putFileAs(
+                    "/public/{$folder->name}/docs",
+                    $request->file('uploadedFile'),
+                    $fileName = $request->file('uploadedFile')->getClientOriginalName()
                 );
+
+                $folder->order_uploads()->create([
+                    'path' => $fileName,
+                    'type' => 'doc'
+                ]);
             }
 
         }
