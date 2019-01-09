@@ -7,7 +7,9 @@
           <div class="col-md-10">
 
             <div class="col-md-12 px-0">
-                <vue-dropzone ref="myVueDropzone" id="dropzone" :options="dropzoneOptions" class="mp-10"></vue-dropzone>
+                <vue-dropzone ref="myVueDropzone" id="dropzone" :options="dropzoneOptions" class="mp-10">
+
+                </vue-dropzone>
               <table class="table mp-10">
                 <thead>
                   <tr>
@@ -40,9 +42,11 @@
         data () {
             return {
                 dropzoneOptions: {
-                    url: 'https://httpbin.org/post',
-                    thumbnailWidth: 150,
-                    maxFilesize: 0.5,
+                    url: `/api/orders/${this.$route.params.id}/upload/store`,
+                    thumbnailWidth: 300,
+                    addRemoveLinks: true,
+                    maxFilesize: 2.0,
+                    dictDefaultMessage: "<i class='fa fa-cloud-upload'></i> Документы или Фотки",
                     headers: { "My-Awesome-Header": "header value" }
                 }
             }
@@ -55,6 +59,23 @@
 </script>
 
 <style lang="scss" scoped>
+.dropzone-custom-content {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+}
+
+.dropzone-custom-title {
+  margin-top: 0;
+  color: #00b782;
+}
+
+.subtitle {
+  color: #314b5f;
+}
+
 .mp-10 {
     margin-top: 100px;
 }

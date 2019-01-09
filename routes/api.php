@@ -24,6 +24,13 @@ use Illuminate\Http\Request;
         Route::patch('/{order}/discount_or_markup/update', 'OrderController@updateOrderDiscountOrMarkup');
 
         /**
+         * Order - Upload
+        */
+        Route::group(['namespace' => 'Uploads'], function ($router) {
+            Route::post('/{order}/upload/store', 'OrderUploadController@store');
+        });
+
+        /**
          * Financial
         */
         Route::group(['namespace' => 'Financial'], function ($router) {

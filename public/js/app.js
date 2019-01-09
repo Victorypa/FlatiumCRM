@@ -49998,6 +49998,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
 
 
 
@@ -50006,9 +50008,11 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     data: function data() {
         return {
             dropzoneOptions: {
-                url: 'https://httpbin.org/post',
-                thumbnailWidth: 150,
-                maxFilesize: 0.5,
+                url: '/api/orders/' + this.$route.params.id + '/upload/store',
+                thumbnailWidth: 300,
+                addRemoveLinks: true,
+                maxFilesize: 2.0,
+                dictDefaultMessage: "<i class='fa fa-cloud-upload'></i> Документы или Фотки",
                 headers: { "My-Awesome-Header": "header value" }
             }
         };
@@ -94308,7 +94312,7 @@ exports = module.exports = __webpack_require__(2)(false);
 
 
 // module
-exports.push([module.i, "\n.mp-10[data-v-0811aa9c] {\n  margin-top: 100px;\n}\n", ""]);
+exports.push([module.i, "\n.dropzone-custom-content[data-v-0811aa9c] {\n  position: absolute;\n  top: 50%;\n  left: 50%;\n  -webkit-transform: translate(-50%, -50%);\n          transform: translate(-50%, -50%);\n  text-align: center;\n}\n.dropzone-custom-title[data-v-0811aa9c] {\n  margin-top: 0;\n  color: #00b782;\n}\n.subtitle[data-v-0811aa9c] {\n  color: #314b5f;\n}\n.mp-10[data-v-0811aa9c] {\n  margin-top: 100px;\n}\n", ""]);
 
 // exports
 
