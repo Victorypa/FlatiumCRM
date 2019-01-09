@@ -18,10 +18,8 @@
                 <vue-dropzone v-if="chosenDate"
                               ref="myVueDropzone"
                               id="dropzone"
-                              name="file"
                               :options="dropzoneOptions"
                               class="mp-10">
-
                 </vue-dropzone>
 
               <table class="table mp-10">
@@ -60,7 +58,8 @@
                 ru,
                 chosenDate: null,
                 dropzoneOptions: {
-                    url: `/api/orders/${this.$route.params.id}/upload/store`,
+                    url: `/api/orders/${this.$route.params.id}/uploads/store`,
+                    paramName: 'uploadedFile',
                     thumbnailWidth: 300,
                     addRemoveLinks: true,
                     maxFilesize: 3.0,
@@ -76,7 +75,11 @@
 
         methods: {
             createFolder () {
-                
+                axios.post(`/api/orders/${this.$route.params.id}/folders/store`, {
+                    'date': moment(this.chosenDate).format('DD-MM-YYYY')
+                }).then(response => {
+                    console.log(response);
+                })
             }
         }
     }

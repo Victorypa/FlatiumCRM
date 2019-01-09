@@ -50014,8 +50014,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
-//
 
 
 
@@ -50028,7 +50026,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             ru: __WEBPACK_IMPORTED_MODULE_3_vuejs_datepicker_dist_locale__["a" /* ru */],
             chosenDate: null,
             dropzoneOptions: {
-                url: '/api/orders/' + this.$route.params.id + '/upload/store',
+                url: '/api/orders/' + this.$route.params.id + '/uploads/store',
+                paramName: 'uploadedFile',
                 thumbnailWidth: 300,
                 addRemoveLinks: true,
                 maxFilesize: 3.0,
@@ -50044,7 +50043,13 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     },
 
     methods: {
-        createFolder: function createFolder() {}
+        createFolder: function createFolder() {
+            axios.post('/api/orders/' + this.$route.params.id + '/folders/store', {
+                'date': moment(this.chosenDate).format('DD-MM-YYYY')
+            }).then(function (response) {
+                console.log(response);
+            });
+        }
     }
 });
 
@@ -94387,11 +94392,7 @@ var render = function() {
                     ? _c("vue-dropzone", {
                         ref: "myVueDropzone",
                         staticClass: "mp-10",
-                        attrs: {
-                          id: "dropzone",
-                          name: "file",
-                          options: _vm.dropzoneOptions
-                        }
+                        attrs: { id: "dropzone", options: _vm.dropzoneOptions }
                       })
                     : _vm._e(),
                   _vm._v(" "),
