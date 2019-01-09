@@ -7,6 +7,7 @@ use App\Models\Personal\Manager;
 use App\Models\Orders\Rooms\Room;
 use App\Models\Orders\Steps\OrderStep;
 use App\Models\Orders\Financial\Finance;
+use App\Models\Orders\Uploads\OrderUpload;
 use App\Models\Traits\Orders\OrderCalculationTrait;
 use Illuminate\Database\Eloquent\{Model, SoftDeletes};
 use App\Models\Orders\Acts\{ExtraOrderAct, FinishedOrderAct};
@@ -65,5 +66,10 @@ class Order extends Model
     public function rooms()
     {
         return $this->hasMany(Room::class);
+    }
+
+    public function order_uploads()
+    {
+        return $this->hasMany(OrderUpload::class);
     }
 }
