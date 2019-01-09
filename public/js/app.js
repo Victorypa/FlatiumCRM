@@ -50006,7 +50006,42 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_vue2_dropzone_dist_vue2Dropzone_min_css___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_vue2_dropzone_dist_vue2Dropzone_min_css__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_vuejs_datepicker__ = __webpack_require__(9);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_vuejs_datepicker_dist_locale__ = __webpack_require__(10);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_vue_faq_accordion__ = __webpack_require__(321);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_vue_badger_accordion__ = __webpack_require__(321);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -50064,14 +50099,15 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 dictDefaultMessage: "<i class='fa fa-cloud-upload'></i> Документы или Фотки"
             },
 
-            folders: []
+            folders: [],
+            currentPath: window.location.origin
         };
     },
 
 
     components: {
         vueDropzone: __WEBPACK_IMPORTED_MODULE_0_vue2_dropzone___default.a,
-        Datepicker: __WEBPACK_IMPORTED_MODULE_2_vuejs_datepicker__["a" /* default */], VueFaqAccordion: __WEBPACK_IMPORTED_MODULE_4_vue_faq_accordion__["a" /* default */]
+        Datepicker: __WEBPACK_IMPORTED_MODULE_2_vuejs_datepicker__["a" /* default */], BadgerAccordion: __WEBPACK_IMPORTED_MODULE_4_vue_badger_accordion__["a" /* BadgerAccordion */], BadgerAccordionItem: __WEBPACK_IMPORTED_MODULE_4_vue_badger_accordion__["b" /* BadgerAccordionItem */]
     },
     mounted: function mounted() {
         this.getFolders();
@@ -50083,13 +50119,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             var _this = this;
 
             axios.get('/api/orders/' + this.$route.params.id + '/folders').then(function (response) {
-                response.data.forEach(function (folder) {
-                    _this.folders.push({
-                        title: folder.name,
-                        value: '\n                             <div class="row">\n                                <div class="col-md-6">\n                                    <h4>\u0424\u043E\u0442\u043E</h4>\n                                    <table class="table">\n                                        <thead>\n                                            <th>\u041D\u0430\u0437\u0432\u0430\u043D\u0438\u0435</th>\n                                            <th>\u0414\u0430\u0442\u0430 \u0437\u0430\u0433\u0440\u0443\u0437\u043A\u0438</th>\n                                        </thead>\n                                        <tbody>\n                                            <tr>\n                                                <td>\n                                                3\n                                                </td>\n                                                <td>\n                                                    4\n                                                </td>\n                                            </tr>\n                                        </tbody>\n                                    </table>\n                                </div>\n                                <div class="col-md-6">\n                                    <h4>\u0414\u043E\u043A\u0443\u043C\u0435\u043D\u0442\u044B</h4>\n                                    <table class="table">\n                                        <thead>\n                                            <th>\u041D\u0430\u0437\u0432\u0430\u043D\u0438\u0435</th>\n                                            <th>\u0414\u0430\u0442\u0430 \u0437\u0430\u0433\u0440\u0443\u0437\u043A\u0438</th>\n                                        </thead>\n                                        <tbody>\n                                            <tr>\n                                                <td>\n                                                1\n                                                </td>\n                                                <td>\n                                                    2\n                                                </td>\n                                            </tr>\n                                        </tbody>\n                                    </table>\n                                </div>\n                             </div>\n                             ',
-                        category: folder.name
-                    });
-                });
+                _this.folders = response.data;
             });
         },
         createFolder: function createFolder() {
@@ -50634,7 +50664,7 @@ var render = function() {
             _c("div", { staticClass: "col-md-10" }, [
               _c(
                 "div",
-                { staticClass: "col-md-12 px-0" },
+                { staticClass: "col-md-12" },
                 [
                   _c("datepicker", {
                     staticClass: "mp-10",
@@ -50668,7 +50698,185 @@ var render = function() {
                 ? _c(
                     "div",
                     { staticClass: "col-md-12 mp-10" },
-                    [_c("VueFaqAccordion", { attrs: { items: _vm.folders } })],
+                    [
+                      _c(
+                        "badger-accordion",
+                        _vm._l(_vm.folders, function(folder) {
+                          return _c(
+                            "badger-accordion-item",
+                            { key: "folder-" + folder.id },
+                            [
+                              _c("template", { slot: "header" }, [
+                                _c("a", [_vm._v(_vm._s(folder.name))])
+                              ]),
+                              _vm._v(" "),
+                              folder.order_uploads
+                                ? _c("template", { slot: "content" }, [
+                                    _c(
+                                      "div",
+                                      { staticClass: "collapse show" },
+                                      [
+                                        _c(
+                                          "div",
+                                          { staticClass: "card-body" },
+                                          [
+                                            _c("div", { staticClass: "row" }, [
+                                              folder.order_uploads.filter(
+                                                function(row) {
+                                                  return row.type === "photo"
+                                                }
+                                              ).length
+                                                ? _c(
+                                                    "div",
+                                                    { staticClass: "col-md-6" },
+                                                    [
+                                                      _c("h5", [
+                                                        _vm._v("Фото")
+                                                      ]),
+                                                      _vm._v(" "),
+                                                      _c(
+                                                        "ul",
+                                                        {
+                                                          staticClass:
+                                                            "list-group"
+                                                        },
+                                                        _vm._l(
+                                                          folder.order_uploads.filter(
+                                                            function(row) {
+                                                              return (
+                                                                row.type ===
+                                                                "photo"
+                                                              )
+                                                            }
+                                                          ),
+                                                          function(upload) {
+                                                            return _c(
+                                                              "li",
+                                                              {
+                                                                key:
+                                                                  "upload-" +
+                                                                  upload.id,
+                                                                staticClass:
+                                                                  "list-group-item"
+                                                              },
+                                                              [
+                                                                _c(
+                                                                  "a",
+                                                                  {
+                                                                    attrs: {
+                                                                      href:
+                                                                        _vm.currentPath +
+                                                                        "/storage/" +
+                                                                        folder.name +
+                                                                        "/photos/" +
+                                                                        upload.path,
+                                                                      target:
+                                                                        "_blank"
+                                                                    }
+                                                                  },
+                                                                  [
+                                                                    _vm._v(
+                                                                      "\n                                                    " +
+                                                                        _vm._s(
+                                                                          upload.path
+                                                                        ) +
+                                                                        "\n                                                "
+                                                                    )
+                                                                  ]
+                                                                )
+                                                              ]
+                                                            )
+                                                          }
+                                                        )
+                                                      )
+                                                    ]
+                                                  )
+                                                : _vm._e(),
+                                              _vm._v(" "),
+                                              folder.order_uploads.filter(
+                                                function(row) {
+                                                  return row.type === "doc"
+                                                }
+                                              ).length
+                                                ? _c(
+                                                    "div",
+                                                    { staticClass: "col-md-6" },
+                                                    [
+                                                      _c("h5", [
+                                                        _vm._v("Документы")
+                                                      ]),
+                                                      _vm._v(" "),
+                                                      _c(
+                                                        "ul",
+                                                        {
+                                                          staticClass:
+                                                            "list-group"
+                                                        },
+                                                        _vm._l(
+                                                          folder.order_uploads.filter(
+                                                            function(row) {
+                                                              return (
+                                                                row.type ===
+                                                                "doc"
+                                                              )
+                                                            }
+                                                          ),
+                                                          function(upload) {
+                                                            return _c(
+                                                              "li",
+                                                              {
+                                                                key:
+                                                                  "upload-" +
+                                                                  upload.id,
+                                                                staticClass:
+                                                                  "list-group-item"
+                                                              },
+                                                              [
+                                                                _c(
+                                                                  "a",
+                                                                  {
+                                                                    attrs: {
+                                                                      href:
+                                                                        _vm.currentPath +
+                                                                        "/storage/" +
+                                                                        folder.name +
+                                                                        "/docs/" +
+                                                                        upload.path,
+                                                                      target:
+                                                                        "_blank"
+                                                                    }
+                                                                  },
+                                                                  [
+                                                                    _vm._v(
+                                                                      "\n                                                    " +
+                                                                        _vm._s(
+                                                                          upload.path
+                                                                        ) +
+                                                                        "\n                                                "
+                                                                    )
+                                                                  ]
+                                                                )
+                                                              ]
+                                                            )
+                                                          }
+                                                        )
+                                                      )
+                                                    ]
+                                                  )
+                                                : _vm._e()
+                                            ])
+                                          ]
+                                        )
+                                      ]
+                                    )
+                                  ])
+                                : _vm._e()
+                            ],
+                            2
+                          )
+                        })
+                      )
+                    ],
                     1
                   )
                 : _vm._e()
@@ -94494,691 +94702,1138 @@ $(window).scroll(function () {
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* WEBPACK VAR INJECTION */(function(global) {/* unused harmony export install */
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue2_transitions__ = __webpack_require__(322);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__src_BadgerAccordion__ = __webpack_require__(322);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__src_BadgerAccordion___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__src_BadgerAccordion__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__src_BadgerAccordionItem__ = __webpack_require__(326);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__src_BadgerAccordionItem___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__src_BadgerAccordionItem__);
 
 
-(function(){ if(typeof document !== 'undefined'){ var head=document.head||document.getElementsByTagName('head')[0], style=document.createElement('style'), css="*[data-v-36e025b4] { box-sizing: border-box; margin: 0; padding: 0; } button[data-v-36e025b4] { border: none; background: none; outline: none; } .faq[data-v-36e025b4] { width: 100%; padding: 0 10px; } .faq-wrapper[data-v-36e025b4] { max-width: 825px; margin: 0 auto; } .faq__title[data-v-36e025b4] { text-align: center; margin-bottom: 25px; } .faq__nav[data-v-36e025b4] { display: flex; justify-content: space-between; border: 2px solid var(--border-color); border-radius: 5px; } .faq__nav-item[data-v-36e025b4] { height: 60px; flex: 1; display: flex; justify-content: center; align-items: center; border-right: 2px solid var(--border-color); cursor: pointer; font-weight: 600; transition: all 0.3s; text-align: center; user-select: none; color: var(--font-color); } .faq__nav-item_active[data-v-36e025b4] { color: var(--active-color); } .faq__nav-item[data-v-36e025b4]:hover { color: var(--active-color); } .faq__nav-item[data-v-36e025b4]:last-child { border-right: none; } .faq__accordion[data-v-36e025b4] { min-height: 250px; } .accordion-fade-slide-enter-active[data-v-36e025b4], .accordion-fade-slide-leave-active[data-v-36e025b4] { transition: all 0.3s; } .accordion-fade-slide-enter[data-v-36e025b4] { transform: translateY(-25px); opacity: 0; } .accordion-fade-slide-leave-to[data-v-36e025b4] { transform: translateY(25px); opacity: 0; } .accordion[data-v-36e025b4] { border: 2px solid var(--border-color); border-radius: 5px; margin-top: 15px; } .accordion__item[data-v-36e025b4] { border-bottom: 2px solid var(--border-color); } .accordion__item[data-v-36e025b4]:last-child { border-bottom: none; } .accordion__title[data-v-36e025b4] { display: flex; justify-content: space-between; align-items: center; padding: 25px; cursor: pointer; transition: all 0.3s; color: var(--font-color); } .accordion__title_active[data-v-36e025b4] { color: var(--active-color); } .accordion__title[data-v-36e025b4]:hover { color: var(--active-color); } .accordion__title:hover .accordion__toggle-button[data-v-36e025b4]::before, .accordion__title:hover .accordion__toggle-button[data-v-36e025b4]::after { background: var(--active-color); } .accordion__title-text[data-v-36e025b4] { margin-right: 10px; } .accordion__value[data-v-36e025b4] { padding: 0 25px 25px 25px; text-align: left; color: var(--font-color); } .accordion__toggle-button[data-v-36e025b4] { position: relative; width: 16px; height: 16px; transition: all 0.3s; transform-origin: 50% 50%; padding-left: 16px; cursor: pointer; } .accordion__toggle-button[data-v-36e025b4]::before, .accordion__toggle-button[data-v-36e025b4]::after { content: ''; position: absolute; left: 0; width: 100%; height: 2px; transition: all 0.3s; background: black; } .accordion__toggle-button[data-v-36e025b4]::before { transform: rotate(90deg); } .accordion__toggle-button_active[data-v-36e025b4] { transform: rotate(45deg); } .accordion__toggle-button_active[data-v-36e025b4]::before, .accordion__toggle-button_active[data-v-36e025b4]::after { background: var(--active-color); } "; style.type='text/css'; if (style.styleSheet){ style.styleSheet.cssText = css; } else { style.appendChild(document.createTextNode(css)); } head.appendChild(style); } })();
 
-var component = {render: function(){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('section',{ref:"rootEl",staticClass:"faq"},[_c('div',{staticClass:"faq-wrapper"},[(_vm.hasNavigation)?_c('nav',{staticClass:"faq__nav"},_vm._l((_vm.categories),function(category,i){return _c('div',{key:("category-" + i),class:_vm.generateCategoryClasses(category),domProps:{"innerHTML":_vm._s(category)},on:{"click":function($event){_vm.makeActiveCategory(category);}}})})):_vm._e(),_vm._v(" "),_c('transition',{attrs:{"name":"accordion-fade-slide","mode":"out-in"}},[(_vm.showAccordion)?_c('div',{staticClass:"accordion"},_vm._l((_vm.categoryItems),function(item,i){return _c('div',{key:("accordion-item-" + i),staticClass:"accordion__item"},[_c('div',{class:_vm.generateQuestionClasses(i),on:{"click":function($event){_vm.makeActive(i);}}},[_c('p',{staticClass:"accordion__title-text",domProps:{"innerHTML":_vm._s(item[_vm.questionProperty])}}),_vm._v(" "),_c('button',{class:_vm.generateButtonClasses(i)})]),_vm._v(" "),_c('collapse-transition',[(i === _vm.activeQuestionIndex)?_c('div',[_c('p',{staticClass:"accordion__value",domProps:{"innerHTML":_vm._s(item[_vm.answerProperty])}})]):_vm._e()])],1)})):_vm._e()])],1)])},staticRenderFns: [],_scopeId: 'data-v-36e025b4',
-  name: 'VueFaqAccordion',
-  components: {
-    CollapseTransition: __WEBPACK_IMPORTED_MODULE_0_vue2_transitions__["a" /* CollapseTransition */]
-  },
-  data: function data () {
-    return {
-      activeTab: '',
-      activeQuestionIndex: null,
-      showAccordion: true
-    }
-  },
-  props: {
-    /**
-     * Array of items
-     * Object style {questionProperty: string, answerProperty: string, tabName: string}
-     * You can change object keys names using other props (questionProperty, answerProperty, tabName)
-     */
-    items: {
-      type: Array,
-      required: true
-    },
-    /**
-     * Key name of object in items array for specifying title of question
-     */
-    questionProperty: {
-      type: String,
-      default: 'title'
-    },
-    /**
-     * Key name of object in items array for specifying content text of open question
-     */
-    answerProperty: {
-      type: String,
-      default: 'value'
-    },
-    /**
-     * Key name of object in items array for specifying navigation tab name
-     */
-    tabName: {
-      type: String,
-      default: 'category'
-    },
-    /**
-     * Color for hover and active tab/question
-     * possible values: 'red', '#F00', 'rgb(255, 0, 0)'
-     */
-    activeColor: {
-      type: String,
-      default: '#D50000'
-    },
-    /**
-     * Color for borders
-     */
-    borderColor: {
-      type: String,
-      default: '#9E9E9E'
-    },
-    /**
-     * Color for fonts
-     */
-    fontColor: {
-      type: String,
-      default: '#000000'
-    }
-  },
-  computed: {
-    categories: function categories () {
-      var this$1 = this;
+const BadgerAccordion = __WEBPACK_IMPORTED_MODULE_0__src_BadgerAccordion___default.a
+/* harmony export (immutable) */ __webpack_exports__["a"] = BadgerAccordion;
 
-      var uniqueCategories = this.items
-        .map(function (item) { return item[this$1.tabName]; })
-        .filter(function (category, index, categories) { return categories.indexOf(category) === index; });
-      this.activeTab = uniqueCategories[0];
-      return uniqueCategories
-    },
-    categoryItems: function categoryItems () {
-      var this$1 = this;
-
-      return this.items
-        .filter(function (item) { return item[this$1.tabName] === this$1.activeTab; })
-    },
-    hasNavigation: function hasNavigation () {
-      return !!this.categories[0]
-    }
-  },
-  methods: {
-    makeActive: function makeActive (itemIndex) {
-      this.activeQuestionIndex === itemIndex
-        ? this.activeQuestionIndex = null
-        : this.activeQuestionIndex = itemIndex;
-    },
-    generateButtonClasses: function generateButtonClasses (buttonIndex) {
-      return [
-        'accordion__toggle-button',
-        this.activeQuestionIndex === buttonIndex
-          ? 'accordion__toggle-button_active'
-          : null
-      ]
-    },
-    generateQuestionClasses: function generateQuestionClasses (questionIndex) {
-      return [
-        'accordion__title',
-        this.activeQuestionIndex === questionIndex
-          ? 'accordion__title_active'
-          : null
-      ]
-    },
-    makeActiveCategory: function makeActiveCategory (category) {
-      var this$1 = this;
-
-      if (this.activeTab === category) { return }
-
-      this.showAccordion = false;
-      this.activeTab = category;
-      this.activeQuestionIndex = null;
-      setTimeout( function () {
-        this$1.showAccordion = true;
-      }, 300 );
-    },
-    generateCategoryClasses: function generateCategoryClasses (category) {
-      return [
-        'faq__nav-item',
-        this.activeTab === category
-          ? 'faq__nav-item_active'
-          : null
-      ]
-    }
-  },
-  mounted: function mounted () {
-    this.$refs.rootEl.style.setProperty('--active-color', this.activeColor);
-    this.$refs.rootEl.style.setProperty('--border-color', this.borderColor);
-    this.$refs.rootEl.style.setProperty('--font-color', this.fontColor);
-  }
-}
-
-// Import vue component
-
-// install function executed by Vue.use()
-function install(Vue) {
-	if (install.installed) { return; }
-	install.installed = true;
-	Vue.component('VueFaqAccordion', component);
-}
-
-// Create module definition for Vue.use()
-var plugin = {
-	install: install,
-};
-
-// To auto-install when vue is found
-var GlobalVue = null;
-if (typeof window !== 'undefined') {
-	GlobalVue = window.Vue;
-} else if (typeof global !== 'undefined') {
-	GlobalVue = global.Vue;
-}
-if (GlobalVue) {
-	GlobalVue.use(plugin);
-}
-
-// It's possible to expose named exports when writing components that can
-// also be used as directives, etc. - eg. import { RollupDemoDirective } from 'rollup-demo';
-// export const RollupDemoDirective = component;
-
-/* harmony default export */ __webpack_exports__["a"] = (component);
+const BadgerAccordionItem = __WEBPACK_IMPORTED_MODULE_1__src_BadgerAccordionItem___default.a
+/* harmony export (immutable) */ __webpack_exports__["b"] = BadgerAccordionItem;
 
 
-/* WEBPACK VAR INJECTION */}.call(__webpack_exports__, __webpack_require__(6)))
 
 /***/ }),
 /* 322 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+var normalizeComponent = __webpack_require__(1)
+/* script */
+var __vue_script__ = __webpack_require__(323)
+/* template */
+var __vue_template__ = __webpack_require__(325)
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = null
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "node_modules/vue-badger-accordion/src/BadgerAccordion.vue"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-17205bd2", Component.options)
+  } else {
+    hotAPI.reload("data-v-17205bd2", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 323 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* unused harmony export FadeTransition */
-/* unused harmony export ZoomCenterTransition */
-/* unused harmony export ZoomXTransition */
-/* unused harmony export ZoomYTransition */
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return CollapseTransition; });
-/* unused harmony export ScaleTransition */
-/* unused harmony export SlideYUpTransition */
-/* unused harmony export SlideYDownTransition */
-/* unused harmony export SlideXLeftTransition */
-/* unused harmony export SlideXRightTransition */
-/*!
- * vue2-transitions v0.2.3
- * (c) 2018-present cristij <joracristi@gmail.com>
- * Released under the MIT License.
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_badger_accordion__ = __webpack_require__(324);
+var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
+
+//
+//
+//
+//
+
+
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+    name: 'BadgerAccordion',
+    props: {
+        options: {
+            type: Object,
+            default: function _default() {
+                return {};
+            }
+        },
+        icons: {
+            default: function _default() {
+                return { opened: '-', closed: '+' };
+            }
+        }
+    },
+    data: function data() {
+        return {
+            accordion: null,
+            itemsReady: false
+        };
+    },
+    created: function created() {
+        var _this = this;
+
+        // On child-item rendered initiate badger-accordion
+        this.$on('item:ready', function () {
+            _this.accordion = new __WEBPACK_IMPORTED_MODULE_0_badger_accordion__["a" /* default */](_this.$refs.badger, _this.options || {});
+        });
+    },
+
+
+    methods: {
+        init: function init() {
+            this.accordion.init();
+        },
+        getState: function getState() {
+            return this.accordion.getState();
+        },
+        open: function open() {
+            this.accordion.open();
+        },
+        close: function close() {
+            this.accordion.close();
+        },
+        togglePanel: function togglePanel() {
+            this.accordion.togglePanel();
+        },
+        openAll: function openAll() {
+            this.accordion.openAll();
+        },
+        closeAll: function closeAll() {
+            this.accordion.closeAll();
+        },
+        calculateAllPanelsHeight: function calculateAllPanelsHeight() {
+            this.accordion.calculateAllPanelsHeight();
+        },
+        calculatePanelHeight: function calculatePanelHeight() {
+            this.accordion.calculatePanelHeight();
+        }
+    },
+    computed: {
+        opened: function opened() {
+            if (this.accordion) {
+                return _typeof(this.accordion.states.find(function (item) {
+                    return item.state == 'open';
+                })) == 'object';
+            }
+            return false;
+        }
+    }
+});
+
+/***/ }),
+/* 324 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+function _classCallCheck(instance, Constructor) {
+  if (!(instance instanceof Constructor)) {
+    throw new TypeError("Cannot call a class as a function");
+  }
+}
+
+function _defineProperties(target, props) {
+  for (var i = 0; i < props.length; i++) {
+    var descriptor = props[i];
+    descriptor.enumerable = descriptor.enumerable || false;
+    descriptor.configurable = true;
+    if ("value" in descriptor) descriptor.writable = true;
+    Object.defineProperty(target, descriptor.key, descriptor);
+  }
+}
+
+function _createClass(Constructor, protoProps, staticProps) {
+  if (protoProps) _defineProperties(Constructor.prototype, protoProps);
+  if (staticProps) _defineProperties(Constructor, staticProps);
+  return Constructor;
+}
+
+function _extends() {
+  _extends = Object.assign || function (target) {
+    for (var i = 1; i < arguments.length; i++) {
+      var source = arguments[i];
+
+      for (var key in source) {
+        if (Object.prototype.hasOwnProperty.call(source, key)) {
+          target[key] = source[key];
+        }
+      }
+    }
+
+    return target;
+  };
+
+  return _extends.apply(this, arguments);
+}
+
+if (!Array.from) {
+  Array.from = function () {
+    var toStr = Object.prototype.toString;
+
+    var isCallable = function isCallable(fn) {
+      return typeof fn === 'function' || toStr.call(fn) === '[object Function]';
+    };
+
+    var toInteger = function toInteger(value) {
+      var number = Number(value);
+
+      if (isNaN(number)) {
+        return 0;
+      }
+
+      if (number === 0 || !isFinite(number)) {
+        return number;
+      }
+
+      return (number > 0 ? 1 : -1) * Math.floor(Math.abs(number));
+    };
+
+    var maxSafeInteger = Math.pow(2, 53) - 1;
+
+    var toLength = function toLength(value) {
+      var len = toInteger(value);
+      return Math.min(Math.max(len, 0), maxSafeInteger);
+    }; // The length property of the from method is 1.
+
+
+    return function from(arrayLike
+    /* , mapFn, thisArg */
+    ) {
+      // 1. Let C be the this value.
+      var C = this; // 2. Let items be ToObject(arrayLike).
+
+      var items = Object(arrayLike); // 3. ReturnIfAbrupt(items).
+
+      if (arrayLike == null) {
+        throw new TypeError('Array.from requires an array-like object - not null or undefined');
+      } // 4. If mapfn is undefined, then let mapping be false.
+
+
+      var mapFn = arguments.length > 1 ? arguments[1] : void undefined;
+      var T;
+
+      if (typeof mapFn !== 'undefined') {
+        // 5. else
+        // 5. a If IsCallable(mapfn) is false, throw a TypeError exception.
+        if (!isCallable(mapFn)) {
+          throw new TypeError('Array.from: when provided, the second argument must be a function');
+        } // 5. b. If thisArg was supplied, let T be thisArg; else let T be undefined.
+
+
+        if (arguments.length > 2) {
+          T = arguments[2];
+        }
+      } // 10. Let lenValue be Get(items, "length").
+      // 11. Let len be ToLength(lenValue).
+
+
+      var len = toLength(items.length); // 13. If IsConstructor(C) is true, then
+      // 13. a. Let A be the result of calling the [[Construct]] internal method
+      // of C with an argument list containing the single item len.
+      // 14. a. Else, Let A be ArrayCreate(len).
+
+      var A = isCallable(C) ? Object(new C(len)) : new Array(len); // 16. Let k be 0.
+
+      var k = 0; // 17. Repeat, while k < len… (also steps a - h)
+
+      var kValue;
+
+      while (k < len) {
+        kValue = items[k];
+
+        if (mapFn) {
+          A[k] = typeof T === 'undefined' ? mapFn(kValue, k) : mapFn.call(T, kValue, k);
+        } else {
+          A[k] = kValue;
+        }
+
+        k += 1;
+      } // 18. Let putStatus be Put(A, "length", len, true).
+
+
+      A.length = len; // 20. Return A.
+
+      return A;
+    };
+  }();
+}
+
+/*
+	By Osvaldas Valutis, www.osvaldas.info
+	Available for use under the MIT License
+*/
+
+/* eslint-disable no-unused-vars */
+(function (document, window) {
+  var el = document.body || document.documentElement,
+      s = el.style,
+      prefixAnimation = '',
+      prefixTransition = '';
+  if (s.WebkitAnimation == '') prefixAnimation = '-webkit-';
+  if (s.MozAnimation == '') prefixAnimation = '-moz-';
+  if (s.OAnimation == '') prefixAnimation = '-o-';
+  if (s.WebkitTransition == '') prefixTransition = '-webkit-';
+  if (s.MozTransition == '') prefixTransition = '-moz-';
+  if (s.OTransition == '') prefixTransition = '-o-';
+  Object.defineProperty(Object.prototype, 'onCSSAnimationEnd', {
+    value: function value(callback) {
+      var runOnce = function runOnce(e) {
+        callback();
+        e.target.removeEventListener(e.type, runOnce);
+      };
+
+      this.addEventListener('webkitAnimationEnd', runOnce);
+      this.addEventListener('mozAnimationEnd', runOnce);
+      this.addEventListener('oAnimationEnd', runOnce);
+      this.addEventListener('oanimationend', runOnce);
+      this.addEventListener('animationend', runOnce);
+      if (prefixAnimation == '' && !('animation' in s) || getComputedStyle(this)[prefixAnimation + 'animation-duration'] == '0s') callback();
+      return this;
+    },
+    enumerable: false,
+    writable: true
+  });
+  Object.defineProperty(Object.prototype, 'onCSSTransitionEnd', {
+    value: function value(callback) {
+      var runOnce = function runOnce(e) {
+        callback();
+        e.target.removeEventListener(e.type, runOnce);
+      };
+
+      this.addEventListener('webkitTransitionEnd', runOnce);
+      this.addEventListener('mozTransitionEnd', runOnce);
+      this.addEventListener('oTransitionEnd', runOnce);
+      this.addEventListener('transitionend', runOnce);
+      this.addEventListener('transitionend', runOnce);
+      if (prefixTransition == '' && !('transition' in s) || getComputedStyle(this)[prefixTransition + 'transition-duration'] == '0s') callback();
+      return this;
+    },
+    enumerable: false,
+    writable: true
+  });
+})(document, window, 0);
+
+/**
+ *  ACCORDION
+ *
+ * A lightwight vanilla JS accordion with an exstensible API
  */
-var baseTransition = {
-  inheritAttrs: false,
-  props: {
-    /**
-     * Transition duration. Number for specifying the same duration for enter/leave transitions
-     * Object style {enter: 300, leave: 300} for specifying explicit durations for enter/leave
-     */
-    duration: {
-      type: [Number, Object],
-      default: 300
-    },
-    /**
-     * Whether the component should be a `transition-group` component.
-     */
-    group: Boolean,
-    /**
-     * Transition tag, in case the component is a `transition-group`
-     */
-    tag: {
-      type: String,
-      default: 'span'
-    },
-    /**
-     *  Transform origin property https://tympanus.net/codrops/css_reference/transform-origin/.
-     *  Can be specified with styles as well but it's shorter with this prop
-     */
-    origin: {
-      type: String,
-      default: ''
-    },
-    /**
-     * Element styles that are applied during transition. These styles are applied on @beforeEnter and @beforeLeave hooks
-     */
-    styles: {
-      type: Object,
-      default: function () {
-        return {
-          animationFillMode: 'both',
-          animationTimingFunction: 'ease-out'
-        };
-      }
+// import uuid from 'uuid/v4';
+// const uuidV4 = uuid;
+
+/* eslint-disable no-unused-vars */
+/**
+ * CONSTRUCTOR
+ * Initializes the object
+ */
+
+var BadgerAccordion =
+/*#__PURE__*/
+function () {
+  function BadgerAccordion(el, options) {
+    _classCallCheck(this, BadgerAccordion);
+
+    var container = typeof el === 'string' ? document.querySelector(el) : el; // If el is not defined
+
+    if (container == null) {
+      return;
     }
-  },
-  computed: {
-    componentType: function componentType() {
-      return this.group ? 'transition-group' : 'transition';
-    },
-    hooks: function hooks() {
-      return Object.assign({
-        beforeEnter: this.beforeEnter,
-        afterEnter: this.cleanUpStyles,
-        beforeLeave: this.beforeLeave,
-        leave: this.leave,
-        afterLeave: this.cleanUpStyles
-      }, this.$listeners);
-    }
-  },
-  methods: {
-    beforeEnter: function beforeEnter(el) {
-      var enterDuration = this.duration.enter ? this.duration.enter : this.duration;
-      el.style.animationDuration = (enterDuration / 1000) + "s";
-      this.setStyles(el);
-    },
-    cleanUpStyles: function cleanUpStyles(el) {
-      var this$1 = this;
 
-      Object.keys(this.styles).forEach(function (key) {
-        var styleValue = this$1.styles[key];
-        if (styleValue) {
-          el.style[key] = '';
-        }
-      });
-      el.style.animationDuration = '';
-    },
-    beforeLeave: function beforeLeave(el) {
-      var leaveDuration = this.duration.leave ? this.duration.leave : this.duration;
-      el.style.animationDuration = (leaveDuration / 1000) + "s";
-      this.setStyles(el);
-    },
-    leave: function leave(el) {
-      this.setAbsolutePosition(el);
-    },
-    setStyles: function setStyles(el) {
-      var this$1 = this;
+    var defaults = {
+      headerClass: '.js-badger-accordion-header',
+      panelClass: '.js-badger-accordion-panel',
+      panelInnerClass: '.js-badger-accordion-panel-inner',
+      hiddenClass: '-ba-is-hidden',
+      activeClass: '-ba-is-active',
 
-      this.setTransformOrigin(el);
-      Object.keys(this.styles).forEach(function (key) {
-        var styleValue = this$1.styles[key];
-        if (styleValue) {
-          el.style[key] = styleValue;
-        }
-      });
-    },
-    setAbsolutePosition: function setAbsolutePosition(el) {
-      if (this.group) {
-        el.style.position = 'absolute';
-      }
-      return this;
-    },
-    setTransformOrigin: function setTransformOrigin(el) {
-      if (this.origin) {
-        el.style.transformOrigin = this.origin;
-      }
-      return this;
-    }
-  }
-};
+      get hidenClass() {
+        return this.hiddenClass;
+      },
 
-(function () {
-  if (typeof document !== 'undefined') {
-    var head = document.head || document.getElementsByTagName('head')[0],
-        style = document.createElement('style'),
-        css = " @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } } .fadeIn { animation-name: fadeIn; } @keyframes fadeOut { from { opacity: 1; } to { opacity: 0; } } .fadeOut { animation-name: fadeOut; } .fade-move { transition: transform .3s ease-out; } ";style.type = 'text/css';if (style.styleSheet) {
-      style.styleSheet.cssText = css;
-    } else {
-      style.appendChild(document.createTextNode(css));
-    }head.appendChild(style);
-  }
-})();
+      initializedClass: 'badger-accordion--initialized',
 
-var FadeTransition = { render: function () {
-    var _vm = this;var _h = _vm.$createElement;var _c = _vm._self._c || _h;return _c(_vm.componentType, _vm._g(_vm._b({ tag: "component", attrs: { "tag": _vm.tag, "enter-active-class": "fadeIn", "move-class": "fade-move", "leave-active-class": "fadeOut" } }, 'component', _vm.$attrs, false), _vm.hooks), [_vm._t("default")], 2);
-  }, staticRenderFns: [],
-  name: 'fade-transition',
-  mixins: [baseTransition]
-};
+      get initalisedClass() {
+        return this.hiddenClass;
+      },
 
-(function () {
-  if (typeof document !== 'undefined') {
-    var head = document.head || document.getElementsByTagName('head')[0],
-        style = document.createElement('style'),
-        css = ".zoom-move { transition: transform .3s ease-out; } @keyframes zoomIn { from { opacity: 0; transform: scale3d(0.3, 0.3, 0.3); } 50% { opacity: 1; } } .zoomIn { animation-name: zoomIn; } @keyframes zoomOut { from { opacity: 1; } 50% { opacity: 0; transform: scale3d(0.3, 0.3, 0.3); } to { opacity: 0; } } .zoomOut { animation-name: zoomOut; } ";style.type = 'text/css';if (style.styleSheet) {
-      style.styleSheet.cssText = css;
-    } else {
-      style.appendChild(document.createTextNode(css));
-    }head.appendChild(style);
-  }
-})();
+      headerDataAttr: 'data-badger-accordion-header-id',
+      openMultiplePanels: false,
+      openHeadersOnLoad: [],
+      headerOpenLabel: 'Open accordion panel',
+      headerCloseLabel: 'Close accordion panel',
+      roles: true // toggleEl:            // If you want to use a different element to trigger the accordion
 
-var ZoomCenterTransition = { render: function () {
-    var _vm = this;var _h = _vm.$createElement;var _c = _vm._self._c || _h;return _c(_vm.componentType, _vm._g(_vm._b({ tag: "component", attrs: { "tag": _vm.tag, "enter-active-class": "zoomIn", "move-class": "zoom-move", "leave-active-class": "zoomOut" } }, 'component', _vm.$attrs, false), _vm.hooks), [_vm._t("default")], 2);
-  }, staticRenderFns: [],
-  name: 'zoom-center-transition',
-  mixins: [baseTransition]
-};
+    }; // Options
 
-(function () {
-  if (typeof document !== 'undefined') {
-    var head = document.head || document.getElementsByTagName('head')[0],
-        style = document.createElement('style'),
-        css = ".zoom-move { transition: transform .3s ease-out; } @keyframes zoomInX { from { opacity: 0; transform: scaleX(0); } 50% { opacity: 1; } } .zoomInX { animation-name: zoomInX; } @keyframes zoomOutX { from { opacity: 1; } 50% { opacity: 0; transform: scaleX(0); } to { opacity: 0; } } .zoomOutX { animation-name: zoomOutX; } ";style.type = 'text/css';if (style.styleSheet) {
-      style.styleSheet.cssText = css;
-    } else {
-      style.appendChild(document.createTextNode(css));
-    }head.appendChild(style);
-  }
-})();
+    this.settings = _extends({}, defaults, options); // Deprecating `settings.hidenClass` but adding fallback for older versions
 
-var ZoomXTransition = { render: function () {
-    var _vm = this;var _h = _vm.$createElement;var _c = _vm._self._c || _h;return _c(_vm.componentType, _vm._g(_vm._b({ tag: "component", attrs: { "tag": _vm.tag, "enter-active-class": "zoomInX", "move-class": "zoom-move", "leave-active-class": "zoomOutX" } }, 'component', _vm.$attrs, false), _vm.hooks), [_vm._t("default")], 2);
-  }, staticRenderFns: [],
-  name: 'zoom-x-transition',
-  props: {
-    styles: {
-      type: Object,
-      default: function () {
-        return {
-          animationFillMode: 'both',
-          animationTimingFunction: 'cubic-bezier(.55,0,.1,1)'
-        };
-      }
-    }
-  },
-  mixins: [baseTransition]
-};
+    if (this.settings.hidenClass !== this.settings.hiddenClass) {
+      this.settings.hiddenClass = this.settings.hidenClass;
+    } // Setting getting elements
 
-(function () {
-  if (typeof document !== 'undefined') {
-    var head = document.head || document.getElementsByTagName('head')[0],
-        style = document.createElement('style'),
-        css = ".zoom-move { transition: transform .3s ease-out; } @keyframes zoomInY { from { opacity: 0; transform: scaleY(0); } 50% { opacity: 1; tranform: scaleY(1); } } .zoomInY { animation-name: zoomInY; } @keyframes zoomOutY { from { opacity: 1; } 50% { opacity: 0; transform: scaleY(0); } to { opacity: 0; } } .zoomOutY { animation-name: zoomOutY; } ";style.type = 'text/css';if (style.styleSheet) {
-      style.styleSheet.cssText = css;
-    } else {
-      style.appendChild(document.createTextNode(css));
-    }head.appendChild(style);
-  }
-})();
 
-var ZoomYTransition = { render: function () {
-    var _vm = this;var _h = _vm.$createElement;var _c = _vm._self._c || _h;return _c(_vm.componentType, _vm._g(_vm._b({ tag: "component", attrs: { "tag": _vm.tag, "enter-active-class": "zoomInY", "move-class": "zoom-move", "leave-active-class": "zoomOutY" } }, 'component', _vm.$attrs, false), _vm.hooks), [_vm._t("default")], 2);
-  }, staticRenderFns: [],
-  name: 'zoom-y-transition',
-  mixins: [baseTransition],
-  props: {
-    styles: {
-      type: Object,
-      default: function () {
-        return {
-          animationFillMode: 'both',
-          animationTimingFunction: 'cubic-bezier(.55,0,.1,1)'
-        };
-      }
-    }
-  }
-};
+    this.container = container;
+    this.headers = Array.from(this.container.querySelectorAll(this.settings.headerClass));
+    this.panels = Array.from(this.container.querySelectorAll(this.settings.panelClass));
+    this.toggleEl = this.settings.toggleEl !== undefined ? Array.from(this.container.querySelectorAll(this.settings.toggleEl)) : this.headers; // This is for managing state of the accordion. It by default sets
+    // all accordion panels to be closed
 
-(function () {
-  if (typeof document !== 'undefined') {
-    var head = document.head || document.getElementsByTagName('head')[0],
-        style = document.createElement('style'),
-        css = " .collapse-move { transition: transform .3s ease-in-out; } ";style.type = 'text/css';if (style.styleSheet) {
-      style.styleSheet.cssText = css;
-    } else {
-      style.appendChild(document.createTextNode(css));
-    }head.appendChild(style);
-  }
-})();
-
-var CollapseTransition = { render: function () {
-    var _vm = this;var _h = _vm.$createElement;var _c = _vm._self._c || _h;return _c(_vm.componentType, _vm._g(_vm._b({ tag: "component", attrs: { "tag": _vm.tag, "move-class": "collapse-move" }, on: { "before-enter": _vm.beforeEnter, "after-enter": _vm.afterEnter, "enter": _vm.enter, "before-leave": _vm.beforeLeave, "leave": _vm.leave, "after-leave": _vm.afterLeave } }, 'component', _vm.$attrs, false), _vm.$listeners), [_vm._t("default")], 2);
-  }, staticRenderFns: [],
-  name: 'collapse-transition',
-  mixins: [baseTransition],
-  methods: {
-    transitionStyle: function transitionStyle(duration) {
-      if ( duration === void 0 ) duration = 300;
-
-      var durationInSeconds = duration / 1000;
-      var style = durationInSeconds + "s height ease-in-out, " + durationInSeconds + "s padding-top ease-in-out, " + durationInSeconds + "s padding-bottom ease-in-out";
-      return style;
-    },
-    beforeEnter: function beforeEnter(el) {
-      var enterDuration = this.duration.enter ? this.duration.enter : this.duration;
-      el.style.transition = this.transitionStyle(enterDuration);
-      if (!el.dataset) { el.dataset = {}; }
-
-      el.dataset.oldPaddingTop = el.style.paddingTop;
-      el.dataset.oldPaddingBottom = el.style.paddingBottom;
-
-      el.style.height = '0';
-      el.style.paddingTop = 0;
-      el.style.paddingBottom = 0;
-      this.setStyles(el);
-    },
-
-    enter: function enter(el) {
-      el.dataset.oldOverflow = el.style.overflow;
-      if (el.scrollHeight !== 0) {
-        el.style.height = el.scrollHeight + 'px';
-        el.style.paddingTop = el.dataset.oldPaddingTop;
-        el.style.paddingBottom = el.dataset.oldPaddingBottom;
-      } else {
-        el.style.height = '';
-        el.style.paddingTop = el.dataset.oldPaddingTop;
-        el.style.paddingBottom = el.dataset.oldPaddingBottom;
-      }
-
-      el.style.overflow = 'hidden';
-    },
-
-    afterEnter: function afterEnter(el) {
-      // for safari: remove class then reset height is necessary
-      el.style.transition = '';
-      el.style.height = '';
-      el.style.overflow = el.dataset.oldOverflow;
-    },
-
-    beforeLeave: function beforeLeave(el) {
-      if (!el.dataset) { el.dataset = {}; }
-      el.dataset.oldPaddingTop = el.style.paddingTop;
-      el.dataset.oldPaddingBottom = el.style.paddingBottom;
-      el.dataset.oldOverflow = el.style.overflow;
-
-      el.style.height = el.scrollHeight + 'px';
-      el.style.overflow = 'hidden';
-      this.setStyles(el);
-    },
-
-    leave: function leave(el) {
-      var leaveDuration = this.duration.leave ? this.duration.leave : this.duration;
-      if (el.scrollHeight !== 0) {
-        // for safari: add class after set height, or it will jump to zero height suddenly, weired
-        el.style.transition = this.transitionStyle(leaveDuration);
-        el.style.height = 0;
-        el.style.paddingTop = 0;
-        el.style.paddingBottom = 0;
-      }
-      // necessary for transition-group
-      this.setAbsolutePosition(el);
-    },
-
-    afterLeave: function afterLeave(el) {
-      el.style.transition = '';
-      el.style.height = '';
-      el.style.overflow = el.dataset.oldOverflow;
-      el.style.paddingTop = el.dataset.oldPaddingTop;
-      el.style.paddingBottom = el.dataset.oldPaddingBottom;
-    }
-  }
-};
-
-(function () {
-  if (typeof document !== 'undefined') {
-    var head = document.head || document.getElementsByTagName('head')[0],
-        style = document.createElement('style'),
-        css = " @keyframes scaleIn { from { opacity: 0; transform: scale(0) } to { opacity: 1; } } .scaleIn { animation-name: scaleIn; } @keyframes scaleOut { from { opacity: 1; } to { opacity: 0; transform: scale(0); } } .scaleOut { animation-name: scaleOut; } .scale-move { transition: transform .3s cubic-bezier(.25, .8, .50, 1); } ";style.type = 'text/css';if (style.styleSheet) {
-      style.styleSheet.cssText = css;
-    } else {
-      style.appendChild(document.createTextNode(css));
-    }head.appendChild(style);
-  }
-})();
-
-var ScaleTransition = { render: function () {
-    var _vm = this;var _h = _vm.$createElement;var _c = _vm._self._c || _h;return _c(_vm.componentType, _vm._g(_vm._b({ tag: "component", attrs: { "tag": _vm.tag, "enter-active-class": "scaleIn", "move-class": "scale-move", "leave-active-class": "scaleOut" } }, 'component', _vm.$attrs, false), _vm.hooks), [_vm._t("default")], 2);
-  }, staticRenderFns: [],
-  name: 'scale-transition',
-  mixins: [baseTransition],
-  props: {
-    origin: {
-      type: String,
-      default: 'top left'
-    },
-    styles: {
-      type: Object,
-      default: function () {
-        return {
-          animationFillMode: 'both',
-          animationTimingFunction: 'cubic-bezier(.25,.8,.50,1)'
-        };
-      }
-    }
-  }
-};
-
-(function () {
-  if (typeof document !== 'undefined') {
-    var head = document.head || document.getElementsByTagName('head')[0],
-        style = document.createElement('style'),
-        css = ".slide-move { transition: transform .3s; } @keyframes slideYIn { from { opacity: 0; transform: translateY(-15px); } to { opacity: 1; } } .slideYIn { animation-name: slideYIn; } @keyframes slideYOut { from { opacity: 1; } to { opacity: 0; transform: translateY(-15px); } } .slideYOut { animation-name: slideYOut; } ";style.type = 'text/css';if (style.styleSheet) {
-      style.styleSheet.cssText = css;
-    } else {
-      style.appendChild(document.createTextNode(css));
-    }head.appendChild(style);
-  }
-})();
-
-var SlideYUpTransition = { render: function () {
-    var _vm = this;var _h = _vm.$createElement;var _c = _vm._self._c || _h;return _c(_vm.componentType, _vm._g(_vm._b({ tag: "component", attrs: { "tag": _vm.tag, "type": "animation", "enter-active-class": "slideYIn", "move-class": "slide-move", "leave-active-class": "slideYOut" } }, 'component', _vm.$attrs, false), _vm.hooks), [_vm._t("default")], 2);
-  }, staticRenderFns: [],
-  name: 'slide-y-up-transition',
-  mixins: [baseTransition],
-  props: {
-    styles: {
-      type: Object,
-      default: function () {
-        return {
-          animationFillMode: 'both',
-          animationTimingFunction: 'cubic-bezier(.25,.8,.50,1)'
-        };
-      }
-    }
-  }
-};
-
-(function () {
-  if (typeof document !== 'undefined') {
-    var head = document.head || document.getElementsByTagName('head')[0],
-        style = document.createElement('style'),
-        css = ".slide-move { transition: transform .3s; } @keyframes slideYDownIn { from { opacity: 0; transform: translateY(15px); } to { opacity: 1; } } .slideYDownIn { animation-name: slideYDownIn; } @keyframes slideYDownOut { from { opacity: 1; } to { opacity: 0; transform: translateY(15px); } } .slideYDownOut { animation-name: slideYDownOut; } ";style.type = 'text/css';if (style.styleSheet) {
-      style.styleSheet.cssText = css;
-    } else {
-      style.appendChild(document.createTextNode(css));
-    }head.appendChild(style);
-  }
-})();
-
-var SlideYDownTransition = { render: function () {
-    var _vm = this;var _h = _vm.$createElement;var _c = _vm._self._c || _h;return _c(_vm.componentType, _vm._g(_vm._b({ tag: "component", attrs: { "tag": _vm.tag, "enter-active-class": "slideYDownIn", "leave-active-class": "slideYDownOut" } }, 'component', _vm.$attrs, false), _vm.hooks), [_vm._t("default")], 2);
-  }, staticRenderFns: [],
-  name: 'slide-y-down-transition',
-  mixins: [baseTransition],
-  props: {
-    styles: {
-      type: Object,
-      default: function () {
-        return {
-          animationFillMode: 'both',
-          animationTimingFunction: 'cubic-bezier(.25,.8,.50,1)'
-        };
-      }
-    }
-  }
-};
-
-(function () {
-  if (typeof document !== 'undefined') {
-    var head = document.head || document.getElementsByTagName('head')[0],
-        style = document.createElement('style'),
-        css = ".slide-move { transition: transform .3s; } @keyframes slideXLeftIn { from { opacity: 0; transform: translateX(-15px); } to { opacity: 1; } } .slideXLeftIn { animation-name: slideXLeftIn; } @keyframes slideXLeftOut { from { opacity: 1; } to { opacity: 0; transform: translateX(-15px); } } .slideXLeftOut { animation-name: slideXLeftOut; } ";style.type = 'text/css';if (style.styleSheet) {
-      style.styleSheet.cssText = css;
-    } else {
-      style.appendChild(document.createTextNode(css));
-    }head.appendChild(style);
-  }
-})();
-
-var SlideXLeftTransition = { render: function () {
-    var _vm = this;var _h = _vm.$createElement;var _c = _vm._self._c || _h;return _c(_vm.componentType, _vm._g(_vm._b({ tag: "component", attrs: { "tag": _vm.tag, "enter-active-class": "slideXLeftIn", "move-class": "slide-move", "leave-active-class": "slideXLeftOut" } }, 'component', _vm.$attrs, false), _vm.hooks), [_vm._t("default")], 2);
-  }, staticRenderFns: [],
-  name: 'slide-x-left-transition',
-  mixins: [baseTransition],
-  props: {
-    styles: {
-      type: Object,
-      default: function () {
-        return {
-          animationFillMode: 'both',
-          animationTimingFunction: 'cubic-bezier(.25,.8,.50,1)'
-        };
-      }
-    }
-  }
-};
-
-(function () {
-  if (typeof document !== 'undefined') {
-    var head = document.head || document.getElementsByTagName('head')[0],
-        style = document.createElement('style'),
-        css = ".slide-move { transition: transform .3s; } @keyframes slideXRightIn { from { opacity: 0; transform: translateX(15px); } to { opacity: 1; } } .slideXRightIn { animation-name: slideXRightIn; } @keyframes slideXRightOut { from { opacity: 1; } to { opacity: 0; transform: translateX(15px); } } .slideXRightOut { animation-name: slideXRightOut; } ";style.type = 'text/css';if (style.styleSheet) {
-      style.styleSheet.cssText = css;
-    } else {
-      style.appendChild(document.createTextNode(css));
-    }head.appendChild(style);
-  }
-})();
-
-var SlideXRightTransition = { render: function () {
-    var _vm = this;var _h = _vm.$createElement;var _c = _vm._self._c || _h;return _c(_vm.componentType, _vm._g(_vm._b({ tag: "component", attrs: { "tag": _vm.tag, "enter-active-class": "slideXRightIn", "move-class": "slide-move", "leave-active-class": "slideXRightOut" } }, 'component', _vm.$attrs, false), _vm.hooks), [_vm._t("default")], 2);
-  }, staticRenderFns: [],
-  name: 'slide-x-right-transition',
-  mixins: [baseTransition],
-  props: {
-    styles: {
-      type: Object,
-      default: function () {
-        return {
-          animationFillMode: 'both',
-          animationTimingFunction: 'cubic-bezier(.25,.8,.50,1)'
-        };
-      }
-    }
-  }
-};
-
-var components = {};
-components[FadeTransition.name] = FadeTransition;
-components[ZoomCenterTransition.name] = ZoomCenterTransition;
-components[ZoomXTransition.name] = ZoomXTransition;
-components[ZoomYTransition.name] = ZoomYTransition;
-components[CollapseTransition.name] = CollapseTransition;
-components[ScaleTransition.name] = ScaleTransition;
-components[SlideYUpTransition.name] = SlideYUpTransition;
-components[SlideYDownTransition.name] = SlideYDownTransition;
-components[SlideXLeftTransition.name] = SlideXLeftTransition;
-components[SlideXRightTransition.name] = SlideXRightTransition;
-
-function install(Vue, options) {
-  if (options && options.components) {
-    options.components.forEach(function (c) { return Vue.component(c.name, components[c.name]); });
-  } else {
-    Object.keys(components).forEach(function (key) {
-      Vue.component(key, components[key]);
+    this.states = [].map.call(this.headers, function () {
+      return {
+        state: 'closed'
+      };
     });
+    this.ids = [].map.call(this.headers, function () {
+      return {
+        id: Math.floor(Math.random() * 1000000 + 1)
+      };
+    }); // This is to ensure that once an open/close event has been fired
+    // another cannot start until the first event has finished.
+    // @TODO - get this working...
+
+    this.toggling = false; // Initiating the accordion
+
+    if (this.container) {
+      this.init();
+    } else {
+      /* eslint-disable no-console */
+      console.log('Something is wrong with you markup...');
+    }
+  }
+  /**
+   *  INIT
+   *
+   *  Initalises the accordion
+   */
+
+
+  _createClass(BadgerAccordion, [{
+    key: "init",
+    value: function init() {
+      // Sets up ID, aria attrs & data-attrs
+      this._setupAttributes(); // Setting up the inital view of the accordion
+
+
+      this._initalState(); // Setting the height of each panel
+
+
+      this.calculateAllPanelsHeight(); // Inserting data-attribute onto each `header`
+
+      this._insertDataAttrs(); // Adding listeners to headers
+
+
+      this._addListeners(); // Adds class to accordion for initalisation
+
+
+      this._finishInitialization();
+    }
+    /**
+     * CHECK ROLES ETTING
+     * @return {[boolean]}
+     * Checks roles setting for all roles or a single role.
+     * First checks if a `boolean` has been used to set all
+     * roles to either true or false. If the setting is an
+     * object it will only set the attribute where each
+     * attribute has explicitly been set as true, eg;
+     * ```
+     * roles: {
+     *     region: true
+     * }
+     * ```
+     */
+
+  }, {
+    key: "_setRole",
+    value: function _setRole(role, el) {
+      if (typeof this.settings.roles === 'boolean' && this.settings.roles || this.settings.roles[role] !== undefined && this.settings.roles[role] !== false) {
+        el.setAttribute('role', role);
+      }
+    }
+    /**
+     *  INSERT DATA ATTRS
+     *
+     *  Updates state object for inital loading of the accordion
+     */
+
+  }, {
+    key: "_initalState",
+    value: function _initalState() {
+      // Sets state object as per `this.settings.openHeadersOnLoad`
+      var headersToOpen = this.settings.openHeadersOnLoad;
+
+      if (headersToOpen.length) {
+        this._openHeadersOnLoad(headersToOpen);
+      } // Render DOM as per the updates `this.states` object
+
+
+      this._renderDom();
+    }
+    /**
+     *  INSERT DATA ATTRS
+     *
+     *  Adds `headerDataAttr` to all headers
+     */
+
+  }, {
+    key: "_insertDataAttrs",
+    value: function _insertDataAttrs() {
+      var _this2 = this;
+
+      this.headers.forEach(function (header, index) {
+        header.setAttribute(_this2.settings.headerDataAttr, index);
+      });
+    }
+    /**
+     *  FINISH INITALISATION
+     *
+     *  Adds in `initializedClass` to accordion
+     */
+
+  }, {
+    key: "_finishInitialization",
+    value: function _finishInitialization() {
+      this.container.classList.add(this.settings.initializedClass);
+
+      this._setRole('presentation', this.container);
+    }
+    /**
+     *  ADD LISTENERS
+     *
+     *  Adds click event to each header
+     */
+
+  }, {
+    key: "_addListeners",
+    value: function _addListeners() {
+      // So we can reference the badger-accordion object inside out eventListener
+      var _this = this; // Adding click event to accordion
+
+
+      this.headers.forEach(function (header, index) {
+        header.addEventListener('click', function () {
+          // Getting the target of the click
+          // const clickedEl = event.target;
+          _this.handleClick(header, index);
+        });
+      });
+    }
+    /**
+     *  HANDLE CLICK
+     *
+     *  Handles click and checks if click was on an header element
+     *  @param {object} targetHeader - The header node you want to open
+     */
+
+  }, {
+    key: "handleClick",
+    value: function handleClick(targetHeader, headerIndex) {
+      // Removing current `.` from `this.settings.headerClass` class so it can
+      // be checked against the `targetHeader` classList
+      var targetHeaderClass = this.settings.headerClass.substr(1); // Checking that the thing that was clicked on was the accordions header
+
+      if (targetHeader.classList.contains(targetHeaderClass) && this.toggling === false) {
+        this.toggling = true; // Updating states
+
+        this.setState(headerIndex); // Render DOM as per the updates `this.states` object
+
+        this._renderDom();
+      }
+    }
+    /**
+     *  SET STATES
+     *
+     *  Sets the state for all headers. The 'target header' will have its state toggeled
+     *  @param {object} targetHeaderId - The header node you want to open
+     */
+
+  }, {
+    key: "setState",
+    value: function setState(targetHeaderId) {
+      var _this3 = this;
+
+      var states = this.getState(); // If `this.settings.openMultiplePanels` is false we need to ensure only one panel
+      // be can open at once. If it is false then all panels state APART from the one that
+      // has just been clicked needs to be set to 'closed'.
+
+      if (!this.settings.openMultiplePanels) {
+        states.filter(function (state, index) {
+          if (index != targetHeaderId) {
+            state.state = 'closed';
+          }
+        });
+      } // Toggles the state value of the target header. This was `array.find` but `find`
+      // isnt supported in IE11
+
+
+      states.filter(function (state, index) {
+        if (index == targetHeaderId) {
+          var newState = _this3.toggleState(state.state);
+
+          return state.state = newState;
+        }
+      });
+    }
+    /**
+     *  RENDER DOM
+     *
+     *  Renders the accordion in the DOM using the `this.states` object
+     */
+
+  }, {
+    key: "_renderDom",
+    value: function _renderDom() {
+      var _this4 = this;
+
+      // Filter through all open headers and open them
+      this.states.filter(function (state, index) {
+        if (state.state === 'open') {
+          // Opening the current panel but _NOT_ updating the state
+          _this4.open(index, false);
+        }
+      }); // Filter through all closed headers and closes them
+
+      this.states.filter(function (state, index) {
+        if (state.state === 'closed') {
+          // Closing the current panel but _NOT_ updating the state
+          _this4.close(index, false);
+        }
+      });
+    }
+    /**
+     *  OPEN
+     *
+     *  Closes a specific panel
+     *  @param {integer} headerIndex - The header node index you want to open
+     */
+
+  }, {
+    key: "open",
+    value: function open(headerIndex) {
+      var setState = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : true;
+
+      // 1. If being fired directly the state needs to be updated.
+      if (setState) {
+        this.setState(headerIndex);
+      }
+
+      this.togglePanel('open', headerIndex);
+    }
+    /**
+     *  CLOSE
+     *
+     *  Closes a specific panel
+     *  @param {integer} headerIndex - The header node index you want to close
+     */
+
+  }, {
+    key: "close",
+    value: function close(headerIndex) {
+      var setState = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : true;
+
+      // 1. If being fired directly the state needs to be updated.
+      if (setState) {
+        this.setState(headerIndex);
+      }
+
+      this.togglePanel('closed', headerIndex);
+    }
+    /**
+     *  OPEN ALL
+     *
+     *  Opens all panels
+     */
+
+  }, {
+    key: "openAll",
+    value: function openAll() {
+      var _this5 = this;
+
+      this.headers.forEach(function (header, headerIndex) {
+        _this5.togglePanel('open', headerIndex);
+      });
+    }
+    /**
+     *  CLOSE ALL
+     *
+     *  Closes all panels
+     */
+
+  }, {
+    key: "closeAll",
+    value: function closeAll() {
+      var _this6 = this;
+
+      this.headers.forEach(function (header, headerIndex) {
+        _this6.togglePanel('closed', headerIndex);
+      });
+    }
+    /**
+     *  GET STATE
+     *
+     *  Getting state of headers. By default gets state of all headers
+     *  @param {string} animationAction - The animation you want to invoke
+     *  @param {integer} headerIndex    - The header node index you want to animate
+     */
+
+  }, {
+    key: "togglePanel",
+    value: function togglePanel(animationAction, headerIndex) {
+      var _this7 = this;
+
+      if (animationAction !== undefined && headerIndex !== undefined) {
+        if (animationAction === 'closed') {
+          // 1. Getting ID of panel that we want to close
+          var header = this.headers[headerIndex];
+          var panelToClose = this.panels[headerIndex]; // 2. Closeing panel
+
+          panelToClose.classList.add(this.settings.hiddenClass); // 3. Removing active classes
+
+          panelToClose.classList.remove(this.settings.activeClass);
+          header.classList.remove(this.settings.activeClass); // 4. Set aria attrs
+
+          header.setAttribute('aria-expanded', false);
+          header.setAttribute('aria-label', this.settings.headerOpenLabel); // 5. Resetting toggling so a new event can be fired
+
+          panelToClose.onCSSTransitionEnd(function () {
+            return _this7.toggling = false;
+          });
+        } else if (animationAction === 'open') {
+          // 1. Getting ID of panel that we want to open
+          var _header = this.headers[headerIndex];
+          var panelToOpen = this.panels[headerIndex]; // 2. Opening panel
+
+          panelToOpen.classList.remove(this.settings.hiddenClass); // 3. Adding active classes
+
+          panelToOpen.classList.add(this.settings.activeClass);
+
+          _header.classList.add(this.settings.activeClass); // 4. Set aria attrs
+
+
+          _header.setAttribute('aria-expanded', true);
+
+          _header.setAttribute('aria-label', this.settings.headerCloseLabel); // 5. Resetting toggling so a new event can be fired
+
+
+          panelToOpen.onCSSTransitionEnd(function () {
+            return _this7.toggling = false;
+          });
+        }
+      }
+    } // @TODO - is this needed anymore?
+    // checkState(headerId) {
+    //     let state = this.states[headerId].state;
+    //
+    //     if(state === 'closed') {
+    //         return state;
+    //     } else if(state === 'open') {
+    //         return state;
+    //     }
+    // }
+
+    /**
+     *  GET STATE
+     *
+     *  Getting state of headers. By default gets state of all headers
+     *  @param {array} headerIds - Id/'s of the headers you want to check
+     */
+
+  }, {
+    key: "getState",
+    value: function getState() {
+      var _this8 = this;
+
+      var headerIds = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : [];
+
+      if (headerIds.length && Array.isArray(headerIds)) {
+        var states = headerIds.map(function (header) {
+          return _this8.states[header];
+        });
+        return states;
+      } else {
+        return this.states;
+      }
+    }
+    /**
+     *  TOGGLE STATE
+     *
+     *  Toggling the state value
+     *  @param {string} currentState - Current state value for a header
+     */
+
+  }, {
+    key: "toggleState",
+    value: function toggleState(currentState) {
+      if (currentState !== undefined) {
+        return currentState === 'closed' ? 'open' : 'closed';
+      }
+    }
+    /**
+     *  HEADERS TO OPEN
+     *
+     *  Setting which headers should be open when accordion is initalised
+     *  @param {array} headersToOpen - Array of ID's for the headers to be open
+     */
+
+  }, {
+    key: "_openHeadersOnLoad",
+    value: function _openHeadersOnLoad() {
+      var _this9 = this;
+
+      var headersToOpen = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : [];
+
+      if (headersToOpen.length && Array.isArray(headersToOpen)) {
+        var headers = headersToOpen.filter(function (header) {
+          return header != undefined;
+        });
+        headers.forEach(function (header) {
+          _this9.setState(header);
+        });
+      }
+    }
+    /**
+     *  SET UP ATTRIBUTES
+     *
+     *  Initalises accordion attribute methods
+     */
+
+  }, {
+    key: "_setupAttributes",
+    value: function _setupAttributes() {
+      // Adding ID & aria-controls
+      this._setupHeaders(); // Adding ID & aria-labeledby
+
+
+      this._setupPanels(); // Inserting data-attribute onto each `header`
+
+
+      this._insertDataAttrs();
+    }
+    /**
+     *  SET PANEL HEIGHT - ** DEPRICATED **
+     *
+     *  Depreicated as this method is becoming public and
+     *  I want to name it something that lets devs know
+     *  it's not just for using inside the `init()` method.
+     */
+
+  }, {
+    key: "_setPanelHeight",
+    value: function _setPanelHeight() {
+      this.calculateAllPanelsHeight();
+    }
+    /**
+     *  CALCULATE PANEL HEIGHT
+     *
+     *  Setting height for panels using pannels inner element
+     */
+
+  }, {
+    key: "calculatePanelHeight",
+    value: function calculatePanelHeight(panel) {
+      var panelInner = panel.querySelector(this.settings.panelInnerClass);
+      var activeHeight = panelInner.offsetHeight;
+      return panel.style.maxHeight = "".concat(activeHeight, "px");
+    }
+    /**
+     *  CALCULATE PANEL HEIGHT
+     *
+     *  Setting height for panels using pannels inner element
+     */
+
+  }, {
+    key: "calculateAllPanelsHeight",
+    value: function calculateAllPanelsHeight() {
+      var _this10 = this;
+
+      this.panels.forEach(function (panel) {
+        _this10.calculatePanelHeight(panel);
+      });
+    }
+    /**
+     * SET UP HEADERS
+     */
+
+  }, {
+    key: "_setupHeaders",
+    value: function _setupHeaders() {
+      var _this11 = this;
+
+      this.headers.forEach(function (header, index) {
+        header.setAttribute('id', "badger-accordion-header-".concat(_this11.ids[index].id));
+        header.setAttribute('aria-controls', "badger-accordion-panel-".concat(_this11.ids[index].id));
+        header.setAttribute('aria-label', _this11.settings.headerOpenLabel);
+      });
+    }
+    /**
+     * SET UP PANELS
+     */
+
+  }, {
+    key: "_setupPanels",
+    value: function _setupPanels() {
+      var _this12 = this;
+
+      this.panels.forEach(function (panel, index) {
+        panel.setAttribute('id', "badger-accordion-panel-".concat(_this12.ids[index].id));
+        panel.setAttribute('aria-labeledby', "badger-accordion-header-".concat(_this12.ids[index].id));
+
+        if (_this12.settings.roles === true || _this12.settings.roles.region !== false) {
+          _this12._setRole('region', panel);
+        }
+      });
+    }
+  }]);
+
+  return BadgerAccordion;
+}(); // Export
+
+/* harmony default export */ __webpack_exports__["a"] = (BadgerAccordion);
+//# sourceMappingURL=badger-accordion.esm.js.map
+
+
+/***/ }),
+/* 325 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c(
+    "div",
+    { ref: "badger", staticClass: "component-badger-accordion" },
+    [_vm._t("default")],
+    2
+  )
+}
+var staticRenderFns = []
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-17205bd2", module.exports)
   }
 }
 
-// Automatic installation if Vue has been added to the global scope.
-if (typeof window !== 'undefined' && window.Vue) {
-  window.Vue.use({ install: install });
+/***/ }),
+/* 326 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+function injectStyle (ssrContext) {
+  if (disposed) return
+  __webpack_require__(327)
+}
+var normalizeComponent = __webpack_require__(1)
+/* script */
+var __vue_script__ = __webpack_require__(329)
+/* template */
+var __vue_template__ = __webpack_require__(330)
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = injectStyle
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "node_modules/vue-badger-accordion/src/BadgerAccordionItem.vue"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-25a8184a", Component.options)
+  } else {
+    hotAPI.reload("data-v-25a8184a", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 327 */
+/***/ (function(module, exports, __webpack_require__) {
+
+// style-loader: Adds some css to the DOM by adding a <style> tag
+
+// load the styles
+var content = __webpack_require__(328);
+if(typeof content === 'string') content = [[module.i, content, '']];
+if(content.locals) module.exports = content.locals;
+// add the styles to the DOM
+var update = __webpack_require__(3)("1e5b7c71", content, false, {});
+// Hot Module Replacement
+if(false) {
+ // When the styles change, update the <style> tags
+ if(!content.locals) {
+   module.hot.accept("!!../../css-loader/index.js!../../vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-25a8184a\",\"scoped\":false,\"hasInlineConfig\":true}!../../sass-loader/lib/loader.js!../../vue-loader/lib/selector.js?type=styles&index=0!./BadgerAccordionItem.vue", function() {
+     var newContent = require("!!../../css-loader/index.js!../../vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-25a8184a\",\"scoped\":false,\"hasInlineConfig\":true}!../../sass-loader/lib/loader.js!../../vue-loader/lib/selector.js?type=styles&index=0!./BadgerAccordionItem.vue");
+     if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+     update(newContent);
+   });
+ }
+ // When the module is disposed, remove the <style> tags
+ module.hot.dispose(function() { update(); });
 }
 
-var index = {
-  install: install
-};
+/***/ }),
+/* 328 */
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(2)(false);
+// imports
 
 
-/* unused harmony default export */ var _unused_webpack_default_export = (index);
+// module
+exports.push([module.i, "\n.badger-accordion__panel {\n  max-height: 75vh;\n  overflow: hidden;\n}\n.badger-accordion__panel.-ba-is-hidden {\n    max-height: 0 !important;\n}\n.badger-accordion--initalised .badger-accordion__panel {\n  -webkit-transition: max-height ease-in-out 0.2s;\n  transition: max-height ease-in-out 0.2s;\n}\n.badger-accordion__header .js-badger-accordion-header {\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-box-align: center;\n      -ms-flex-align: center;\n          align-items: center;\n}\n.badger-accordion__header .js-badger-accordion-header .badger-accordion-toggle {\n    -webkit-box-flex: 0;\n        -ms-flex: 0 0 90%;\n            flex: 0 0 90%;\n    cursor: pointer;\n}\n.badger-accordion__header .js-badger-accordion-header .badger-toggle-indicator {\n    -webkit-box-flex: 0;\n        -ms-flex: 0 0 10%;\n            flex: 0 0 10%;\n    display: -webkit-box;\n    display: -ms-flexbox;\n    display: flex;\n    -webkit-box-align: center;\n        -ms-flex-align: center;\n            align-items: center;\n    -webkit-box-pack: end;\n        -ms-flex-pack: end;\n            justify-content: flex-end;\n    cursor: pointer;\n}\n", ""]);
 
+// exports
+
+
+/***/ }),
+/* 329 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+    name: 'BadgerAccordionItem',
+    mounted: function mounted() {
+        // If item rendered emit readyness to parent
+        this.$parent.$emit('item:ready');
+    },
+
+    computed: {
+        iconOpened: function iconOpened() {
+            return this.$parent.icons ? this.$parent.icons.opened : '';
+        },
+        iconClosed: function iconClosed() {
+            return this.$parent.icons ? this.$parent.icons.closed : '';
+        },
+        icon: function icon() {
+            return this.$parent.opened ? this.iconOpened : this.iconClosed;
+        }
+    }
+});
+
+/***/ }),
+/* 330 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", { staticClass: "badger-accordion-item" }, [
+    _c("div", { staticClass: "badger-accordion__header" }, [
+      _c("div", { staticClass: "js-badger-accordion-header" }, [
+        _c(
+          "div",
+          { staticClass: "badger-accordion-toggle" },
+          [_vm._t("header", [_vm._v("Collapse-Title")])],
+          2
+        ),
+        _vm._v(" "),
+        _c("span", {
+          staticClass: "badger-toggle-indicator",
+          domProps: { innerHTML: _vm._s(_vm.icon) }
+        })
+      ])
+    ]),
+    _vm._v(" "),
+    _c(
+      "div",
+      { staticClass: "badger-accordion__panel js-badger-accordion-panel" },
+      [
+        _c(
+          "div",
+          { staticClass: "js-badger-accordion-panel-inner" },
+          [_vm._t("content")],
+          2
+        )
+      ]
+    )
+  ])
+}
+var staticRenderFns = []
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-25a8184a", module.exports)
+  }
+}
 
 /***/ })
 /******/ ]);
