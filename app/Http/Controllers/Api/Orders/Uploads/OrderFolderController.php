@@ -19,7 +19,7 @@ class OrderFolderController extends Controller
 
     public function store(Order $order, Request $request)
     {
-        Folder::create([
+        $order->folders()->create([
             'name' => $folderName = $request->date
         ]);
 
