@@ -2,15 +2,15 @@
 
 namespace App\Models\Orders\Uploads;
 
-use App\Models\Orders\Order;
+use App\Models\Orders\Uploads\Folder;
 use Illuminate\Database\Eloquent\Model;
 
 class OrderUpload extends Model
 {
     protected $guarded = [];
 
-    public function order()
+    public function folder()
     {
-        return $this->belongsTo(Order::class);
+        return $this->belongsTo(Folder::class);
     }
 }

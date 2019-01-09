@@ -49964,6 +49964,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue2_dropzone___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_vue2_dropzone__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_vue2_dropzone_dist_vue2Dropzone_min_css__ = __webpack_require__(320);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_vue2_dropzone_dist_vue2Dropzone_min_css___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_vue2_dropzone_dist_vue2Dropzone_min_css__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_vuejs_datepicker__ = __webpack_require__(12);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_vuejs_datepicker_dist_locale__ = __webpack_require__(13);
 //
 //
 //
@@ -50000,6 +50002,22 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+
 
 
 
@@ -50007,20 +50025,26 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony default export */ __webpack_exports__["default"] = ({
     data: function data() {
         return {
+            ru: __WEBPACK_IMPORTED_MODULE_3_vuejs_datepicker_dist_locale__["a" /* ru */],
+            chosenDate: null,
             dropzoneOptions: {
                 url: '/api/orders/' + this.$route.params.id + '/upload/store',
                 thumbnailWidth: 300,
                 addRemoveLinks: true,
-                maxFilesize: 2.0,
-                dictDefaultMessage: "<i class='fa fa-cloud-upload'></i> Документы или Фотки",
-                headers: { "My-Awesome-Header": "header value" }
+                maxFilesize: 3.0,
+                dictDefaultMessage: "<i class='fa fa-cloud-upload'></i> Документы или Фотки"
             }
         };
     },
 
 
     components: {
-        vueDropzone: __WEBPACK_IMPORTED_MODULE_0_vue2_dropzone___default.a
+        vueDropzone: __WEBPACK_IMPORTED_MODULE_0_vue2_dropzone___default.a,
+        Datepicker: __WEBPACK_IMPORTED_MODULE_2_vuejs_datepicker__["a" /* default */]
+    },
+
+    methods: {
+        createFolder: function createFolder() {}
     }
 });
 
@@ -94342,11 +94366,34 @@ var render = function() {
                 "div",
                 { staticClass: "col-md-12 px-0" },
                 [
-                  _c("vue-dropzone", {
-                    ref: "myVueDropzone",
+                  _c("datepicker", {
                     staticClass: "mp-10",
-                    attrs: { id: "dropzone", options: _vm.dropzoneOptions }
+                    attrs: { language: _vm.ru, placeholder: "Выбрать Дату" },
+                    on: {
+                      input: function($event) {
+                        _vm.createFolder()
+                      }
+                    },
+                    model: {
+                      value: _vm.chosenDate,
+                      callback: function($$v) {
+                        _vm.chosenDate = $$v
+                      },
+                      expression: "chosenDate"
+                    }
                   }),
+                  _vm._v(" "),
+                  _vm.chosenDate
+                    ? _c("vue-dropzone", {
+                        ref: "myVueDropzone",
+                        staticClass: "mp-10",
+                        attrs: {
+                          id: "dropzone",
+                          name: "file",
+                          options: _vm.dropzoneOptions
+                        }
+                      })
+                    : _vm._e(),
                   _vm._v(" "),
                   _vm._m(0)
                 ],

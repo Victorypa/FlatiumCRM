@@ -27,6 +27,7 @@ use Illuminate\Http\Request;
          * Order - Upload
         */
         Route::group(['namespace' => 'Uploads'], function ($router) {
+            Route::get('/{order}/uploads', 'OrderUploadController@index');
             Route::post('/{order}/upload/store', 'OrderUploadController@store');
         });
 

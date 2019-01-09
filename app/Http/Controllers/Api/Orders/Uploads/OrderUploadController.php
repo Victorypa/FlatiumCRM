@@ -8,8 +8,20 @@ use App\Http\Controllers\Controller;
 
 class OrderUploadController extends Controller
 {
-    public function store(Order $order)
+    public function index(Order $order)
     {
-        dd($order);
+        $filteredOrder = Order::where('id', $order->id)->with(['order_uploads'])->first();
+
+        return $filteredOrder;
+    }
+
+    public function store(Order $order, Request $request)
+    {
+        if ($request->file('file')->isValid()) {
+            dd($request->file->path(), $request->file->extension());
+        }
+        // $file = $request->file('file');
+        // dd($file->getClientOriginalName);
+        // dd($order);
     }
 }

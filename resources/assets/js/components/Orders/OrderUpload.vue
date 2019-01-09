@@ -5,11 +5,25 @@
         <div class="row">
           <navigation></navigation>
           <div class="col-md-10">
-
             <div class="col-md-12 px-0">
-                <vue-dropzone ref="myVueDropzone" id="dropzone" :options="dropzoneOptions" class="mp-10">
+                <datepicker class="mp-10"
+                            :language="ru"
+                            placeholder="Выбрать Дату"
+                            v-model="chosenDate"
+                            @input="createFolder()"
+                            >
+                </datepicker>
+
+
+                <vue-dropzone v-if="chosenDate"
+                              ref="myVueDropzone"
+                              id="dropzone"
+                              name="file"
+                              :options="dropzoneOptions"
+                              class="mp-10">
 
                 </vue-dropzone>
+
               <table class="table mp-10">
                 <thead>
                   <tr>
@@ -37,24 +51,34 @@
 <script>
     import vue2Dropzone from 'vue2-dropzone'
     import 'vue2-dropzone/dist/vue2Dropzone.min.css'
+    import Datepicker from "vuejs-datepicker"
+    import { ru } from "vuejs-datepicker/dist/locale"
 
     export default {
         data () {
             return {
+                ru,
+                chosenDate: null,
                 dropzoneOptions: {
                     url: `/api/orders/${this.$route.params.id}/upload/store`,
                     thumbnailWidth: 300,
                     addRemoveLinks: true,
-                    maxFilesize: 2.0,
-                    dictDefaultMessage: "<i class='fa fa-cloud-upload'></i> Документы или Фотки",
-                    headers: { "My-Awesome-Header": "header value" }
+                    maxFilesize: 3.0,
+                    dictDefaultMessage: "<i class='fa fa-cloud-upload'></i> Документы или Фотки"
                 }
             }
         },
 
         components: {
-            vueDropzone: vue2Dropzone
+            vueDropzone: vue2Dropzone,
+            Datepicker
         },
+
+        methods: {
+            createFolder () {
+                
+            }
+        }
     }
 </script>
 

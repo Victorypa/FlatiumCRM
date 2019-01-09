@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateOrderUploadsTable extends Migration
+class CreateFoldersTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,14 +13,10 @@ class CreateOrderUploadsTable extends Migration
      */
     public function up()
     {
-        Schema::create('order_uploads', function (Blueprint $table) {
+        Schema::create('folders', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('order_id')->unsigned()->index();
-            $table->string('name')->nullable();
-            $table->string('path');
+            $table->string('name');
             $table->timestamps();
-
-            $table->foreign('order_id')->references('id')->on('orders')->onDelete('cascade');
         });
     }
 
@@ -31,6 +27,6 @@ class CreateOrderUploadsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('order_uploads');
+        Schema::dropIfExists('folders');
     }
 }
