@@ -55,7 +55,6 @@
                 </div>
             </div>
 
-
             @if ($order->rooms)
                 @foreach ($order->rooms()->orderBy('room_type_id')->get() as $room)
                     <div class="first-room" style="margin-top: 30px;">
@@ -147,3 +146,5 @@
     </section>
 
 </body>
+
+</html>
