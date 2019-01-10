@@ -9,14 +9,15 @@ use Illuminate\Http\Request;
         Route::post('login', 'UserController@login')->name('login');
         Route::post('logout', 'UserController@logout');
         Route::post('refresh', 'UserController@refresh');
-        Route::get('me', 'UserController@me');
     });
 
     /**
      * Reports
     */
     Route::get('/reports', 'Api\Reports\ReportController@index');
-    
+
+
+    Route::post('/auth/me', 'Api\Auth\UserController@me');
     /**
      * Orders
     */

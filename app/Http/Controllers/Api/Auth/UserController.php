@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Api\Auth;
 
 use App\User;
+use App\Models\Orders\Order;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Tymon\JWTAuth\Facades\JWTAuth;
@@ -11,7 +12,7 @@ class UserController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('auth:api', ['except' => ['login']]);
+        $this->middleware('auth:api', ['except' => ['login', 'me']]);
     }
 
     public function login(Request $request)
@@ -42,11 +43,9 @@ class UserController extends Controller
         return response()->json(['message' => 'Successfully logged out']);
     }
 
-    public function me()
+    public function me(Request $request)
     {
-        return response()->json(
-            auth()->user()->orders()->with(['order_steps'])->get()
-        );
+        return Order::where('user_id', $request->user_id)->with(['order_steps'])->first();
     }
 
     protected function respondWithToken($token)
@@ -54,7 +53,8 @@ class UserController extends Controller
         return response()->json([
             'access_token' => $token,
             'token_type' => 'bearer',
-            'expires_in' => auth()->factory()->getTTL() * 3600
+            'expires_in' => auth()->factory()->getTTL() * 3600,
+            'user_id' => auth()->id()
         ]);
     }
 }
