@@ -144,4 +144,22 @@
 .mp-10 {
     margin-top: 100px;
 }
+.badger-accordion {
+  &-item {
+    box-shadow: 0 1px 10px rgba(0, 0, 0, 0.1), 0 1px 4px rgba(0, 0, 0, 0.1);
+  border-radius: 4px;
+  padding: 15px;
+  &:hover {
+    background-color: #00A4D1;
+  }
+  }
+}
+.js-badger-accordion-header .-ba-is-active {
+  &:hover {
+          background-color: #red;
+  }
+
+}
+
+
 </style>
