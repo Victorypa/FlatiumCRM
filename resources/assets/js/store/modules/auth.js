@@ -26,6 +26,10 @@ const actions = {
             window.axios.defaults.headers.common.Authorization = `Bearer ${response.data.access_token}`
             commit('loginUser')
             router.push({ name: 'orders' })
+
+            setTimeout(() => {
+              commit('logoutUser')
+            }, 60000 * 3)
         })
         .catch(err => {
             window.location.reload(true)

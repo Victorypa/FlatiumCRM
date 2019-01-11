@@ -44612,6 +44612,10 @@ var actions = {
             window.axios.defaults.headers.common.Authorization = 'Bearer ' + response.data.access_token;
             commit('loginUser');
             __WEBPACK_IMPORTED_MODULE_0__routes__["a" /* default */].push({ name: 'orders' });
+
+            setTimeout(function () {
+                commit('logoutUser');
+            }, 60000 * 3);
         }).catch(function (err) {
             window.location.reload(true);
         });
@@ -49921,29 +49925,7 @@ var staticRenderFns = [
     var _c = _vm._self._c || _h
     return _c("div", { staticClass: "row pt-4 justify-content-end" }, [
       _c("div", { staticClass: "px-30" }, [
-        _c(
-          "a",
-          {
-            staticClass: "estimates__dropdown-img",
-            attrs: {
-              href: ".",
-              "data-toggle": "dropdown",
-              "data-html": "true",
-              title: "Действия"
-            }
-          },
-          [
-            _c("img", {
-              attrs: { src: "/img/dropdown-toggle.svg", alt: "export" }
-            })
-          ]
-        ),
-        _vm._v(" "),
-        _c("div", { staticClass: "dropdown-menu dropdown-menu-right" }, [
-          _c("a", { staticClass: "dropdown-item", attrs: { href: "#" } }, [
-            _vm._v("Экспорт")
-          ])
-        ])
+        _vm._v("\n                   \n                    ")
       ])
     ])
   },
