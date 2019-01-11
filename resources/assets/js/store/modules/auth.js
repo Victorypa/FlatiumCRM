@@ -29,7 +29,7 @@ const actions = {
 
             setTimeout(() => {
               commit('logoutUser')
-            }, 60000 * 3)
+            }, 60000 * 15)
         })
         .catch(err => {
             window.location.reload(true)
