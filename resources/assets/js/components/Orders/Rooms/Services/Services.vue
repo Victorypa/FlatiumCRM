@@ -166,7 +166,7 @@
                       </div>
                   </div>
 
-                  <!-- <div class="row col-12" v-for="material in room_service.materials">
+                  <div class="row col-12" v-for="(material) in room_service_materials[room_service_id]">
                     <div class="col-4 pl-5 mb-3">
                       <div class="subtitle-list">
                         <div class="subtitle-list__item">
@@ -179,12 +179,12 @@
                           <div class="d-flex align-items-center">
                             <div class="col-4" style="margin-left:163px"></div>
                             <div class="form-group__calc col-md-2">
-                                {{ getMaterialSummary(material.pivot.rate, material.quantity, material.price, service_quantities[room_service.service_id]) }} Р
+                                {{ getMaterialSummary(material.pivot.rate, material.quantity, material.price, service_quantities[room_service_id]) }} Р
                             </div>
                           </div>
                         </div>
                     </template>
-                  </div> -->
+                  </div>
                 </div>
             </div>
 
@@ -296,6 +296,7 @@
                             .then(response => {
                                 response.data.room_services.forEach(item => {
                                     this.room_service_ids.push(item.service_id)
+                                    this.room_service_materials[item.service_id] = item.materials
 
                                     this.room_services.push({
                                         service_id: item.service_id,
@@ -308,6 +309,7 @@
                                         this.service_quantities[item.service_id] = 1
                                     }
                                 })
+                                // console.log(this.room_service_materials);
                             })
             },
 
