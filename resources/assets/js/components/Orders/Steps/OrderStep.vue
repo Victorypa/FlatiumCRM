@@ -21,7 +21,7 @@
               <div class="col-md-2">
                   <template v-if="order_steps.length">
                       <router-link :to="{ name: 'order-step-graphic', params: { id: order.id } }" >
-                          <button type="button" class="primary-button w-100">
+                          <button type="button" class="primary-button w-100" onClick="window.location.reload(true)">
                               Смотреть график
                           </button>
                       </router-link>
@@ -45,7 +45,7 @@
                               <template v-if="order_step_descriptions[order_step.id]">
                                   <template v-if="!show_input">
                                       <div class="main-subtitle" @click="showInput()">
-                                          {{ order_step_descriptions[order_step.id] }} {{ index + parseInt(1) }}
+                                          {{ order_step_descriptions[order_step.id] }}
                                       </div>
                                   </template>
                                   <template v-else>
@@ -418,7 +418,8 @@
                 axios.post(`/api/orders/${this.$route.params.id}/order_steps/${this.selected_order_step_id}/services/store`, {
                     'selected_service_ids': _.groupBy(this.selected_service_ids, 'room_id')
                 }).then(response => {
-                    this.getOrder()
+                  window.location.reload(true)
+                    // this.getOrder()
                 })
             } else {
                 alert('Выберите спринт')

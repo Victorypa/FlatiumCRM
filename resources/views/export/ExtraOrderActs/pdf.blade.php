@@ -156,7 +156,7 @@
 
             </div>
 
-            @include('export.partials._comment', ['order' => $filteredExtraOrder->order])
+            {{-- @include('export.partials._comment', ['order' => $filteredExtraOrder->order]) --}}
     </section>
 
 </body>

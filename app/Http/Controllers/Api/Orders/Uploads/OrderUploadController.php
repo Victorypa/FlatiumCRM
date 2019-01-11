@@ -7,10 +7,16 @@ use App\Models\Orders\Order;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\Orders\Uploads\Folder;
+use App\Models\Orders\Uploads\OrderUpload;
 
 class OrderUploadController extends Controller
 {
     protected $imageExtensions = ['gif', 'jpg', 'jpeg', 'png', 'flv', 'pjpeg'];
+
+    public function index(Order $order, Folder $folder)
+    {
+      return OrderUpload::where('folder_id', $folder->id)->with(['folder'])->get();
+    }
 
     public function store(Order $order, Request $request)
     {

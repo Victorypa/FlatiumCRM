@@ -21,6 +21,12 @@
                               :options="dropzoneOptions"
                               class="mp-10">
                 </vue-dropzone>
+
+                <button v-if="chosenDate"
+                        type="button"
+                        class="btn primary-button mp-10"
+                        @click="finish()"
+                        >Готово ?</button>
             </div>
 
             <div class="col-md-12 mp-10" v-if="folders.length">
@@ -108,8 +114,11 @@
                 axios.get(`/api/orders/${this.$route.params.id}/folders`)
                      .then(response => {
                          this.folders = response.data
-
                      })
+            },
+
+            finish () {
+              window.location.reload(true)
             },
 
             createFolder () {

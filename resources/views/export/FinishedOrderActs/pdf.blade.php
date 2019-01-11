@@ -125,7 +125,7 @@
                 @endforeach
             @endif
 
-            @include('export.partials._comment', ['order' => $filteredFinishedOrderAct->order])
+            {{-- @include('export.partials._comment', ['order' => $filteredFinishedOrderAct->order]) --}}
     </section>
 
 </body>

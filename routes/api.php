@@ -42,6 +42,7 @@ use Illuminate\Http\Request;
             /**
              * Docs
             */
+            Route::get('/{order}/folders/{folder}/uploads', 'OrderUploadController@index');
             Route::post('/{order}/uploads/store', 'OrderUploadController@store');
         });
 
