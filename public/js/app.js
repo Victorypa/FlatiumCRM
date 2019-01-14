@@ -53838,7 +53838,7 @@ var moment = __webpack_require__(0);
             return axios.get("/api/orders/" + this.$route.params.id).then(function (response) {
                 _this.order = response.data;
 
-                _this.service_price = _this.order.price;
+                _this.service_price = _this.order.price === null ? 0 : _this.order.price;
 
                 _this.income = null;
                 _this.income_amount = 0;

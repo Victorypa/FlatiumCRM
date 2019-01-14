@@ -239,7 +239,7 @@ export default {
                         .then(response => {
                             this.order = response.data
 
-                            this.service_price = this.order.price
+                            this.service_price = this.order.price === null ? 0 : this.order.price
 
                             this.income = null
                             this.income_amount = 0
