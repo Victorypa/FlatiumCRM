@@ -300,7 +300,6 @@
                 return axios.get(`/api/orders/${this.$route.params.id}/rooms/${this.$route.params.room_id}`)
                             .then(response => {
                                 response.data.room_services.forEach(item => {
-                                    this.room_service_types[item.service_id] = item.service_type_id
                                     this.room_service_ids.push(item.service_id)
                                     this.room_service_materials[item.service_id] = item.materials
 
@@ -356,7 +355,8 @@
                         this.service_names[item.id] = item.name
                         this.service_units[item.id] = item.unit.name
                         this.service_can_be_deleted[item.id] = item.can_be_deleted
-
+                        this.room_service_types[item.id] = item.service_type_id
+                        
                         if (!this.room_service_ids.includes(item.id)) {
                             if (this.service_quantities[item.id] !== null) {
                                 switch (item.unit.id) {
