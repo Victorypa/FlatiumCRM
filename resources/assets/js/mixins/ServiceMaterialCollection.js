@@ -142,7 +142,7 @@ export default {
                this.getService()
            })
          } else {
-           alert('Заполняй пол')
+           alert('Заполните поле')
            this.getService()
          }
        },

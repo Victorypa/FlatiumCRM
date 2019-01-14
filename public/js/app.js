@@ -19310,7 +19310,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
                     _this5.getService();
                 });
             } else {
-                alert('Заполняй пол');
+                alert('Заполните поле');
                 this.getService();
             }
         },
@@ -53867,7 +53867,7 @@ var moment = __webpack_require__(0);
                             room.room_services.forEach(function (service) {
                                 if (service.materials) {
                                     service.materials.forEach(function (material) {
-                                        _this.material_price += parseFloat(material.pivot.rate).toFixed(2) * parseFloat(material.price).toFixed(2);
+                                        _this.material_price += Math.ceil(parseFloat(material.pivot.rate).toFixed(2) * parseFloat(service.quantity).toFixed(2) / parseFloat(material.quantity).toFixed(2)) * parseFloat(material.price).toFixed(2);
                                     });
                                 }
                             });

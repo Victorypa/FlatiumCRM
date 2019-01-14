@@ -279,7 +279,7 @@
     import ServiceMaterialCollection from '../../../mixins/ServiceMaterialCollection'
 
     export default {
-        mixins: [ServiceMaterialCollection],
+        mixins: [ ServiceMaterialCollection ],
 
         data () {
             return {

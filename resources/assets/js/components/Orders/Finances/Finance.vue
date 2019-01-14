@@ -262,14 +262,13 @@ export default {
                                 }
                             })
 
-
                             if (this.order.rooms) {
                                 this.order.rooms.forEach(room => {
                                   if (room.room_services) {
                                     room.room_services.forEach(service => {
                                       if (service.materials) {
                                         service.materials.forEach(material => {
-                                          this.material_price += parseFloat(material.pivot.rate).toFixed(2) * parseFloat(material.price).toFixed(2)
+                                          this.material_price += Math.ceil(parseFloat(material.pivot.rate).toFixed(2) * parseFloat(service.quantity).toFixed(2) / parseFloat(material.quantity).toFixed(2)) * parseFloat(material.price).toFixed(2)
                                         })
                                       }
                                     })

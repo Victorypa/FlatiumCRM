@@ -20,7 +20,7 @@ class UserController extends Controller
     {
         Artisan::call('config:cache');
         Artisan::call('cache:clear');
-        
+
         if(is_numeric($request->get('email'))) {
             $credentials = [ 'phone' => $request->get('email'), 'password' => $request->get('password') ];
         }
@@ -49,7 +49,13 @@ class UserController extends Controller
 
     public function me(Request $request)
     {
-        return Order::where('user_id', $request->user_id)->with(['order_steps'])->first();
+        return Order::where('user_id', $request->user_id)
+                    ->with([
+                      'order_steps', 'order_steps.room_steps', 'order_steps.room_steps.room.roomType',
+                      'order_steps.room_steps.room', 'order_steps.room_steps.services',
+                      'order_steps.room_steps.services'
+                    ])
+                    ->first();
     }
 
     protected function respondWithToken($token)
