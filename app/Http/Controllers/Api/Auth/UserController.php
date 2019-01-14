@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Api\Auth;
 
+use Artisan;
 use App\User;
 use App\Models\Orders\Order;
 use Illuminate\Http\Request;
@@ -17,6 +18,9 @@ class UserController extends Controller
 
     public function login(Request $request)
     {
+        Artisan::call('config:cache');
+        Artisan::call('cache:clear');
+        
         if(is_numeric($request->get('email'))) {
             $credentials = [ 'phone' => $request->get('email'), 'password' => $request->get('password') ];
         }

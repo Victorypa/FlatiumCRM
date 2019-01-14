@@ -53863,10 +53863,10 @@ var moment = __webpack_require__(0);
 
                 if (_this.order.rooms) {
                     _this.order.rooms.forEach(function (room) {
-                        if (room.services) {
-                            room.services.forEach(function (service) {
-                                if (service.actual_materials) {
-                                    service.actual_materials.forEach(function (material) {
+                        if (room.room_services) {
+                            room.room_services.forEach(function (service) {
+                                if (service.materials) {
+                                    service.materials.forEach(function (material) {
                                         _this.material_price += parseFloat(material.pivot.rate).toFixed(2) * parseFloat(material.price).toFixed(2);
                                     });
                                 }
