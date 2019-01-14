@@ -50085,7 +50085,7 @@ exports = module.exports = __webpack_require__(2)(false);
 
 
 // module
-exports.push([module.i, "\n.table {\n  margin-top: 100px;\n  min-width: 3100px;\n}\n.table__wrapper {\n    overflow-x: scroll;\n}\n", ""]);
+exports.push([module.i, "\n.table {\n  margin-top: 100px;\n  min-width: 3100px;\n}\n.table__wrapper {\n    overflow: auto;\n}\n", ""]);
 
 // exports
 
@@ -50096,6 +50096,38 @@ exports.push([module.i, "\n.table {\n  margin-top: 100px;\n  min-width: 3100px;\
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -50197,7 +50229,14 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             var _this = this;
 
             return axios.get('/api/reports').then(function (response) {
-                _this.orders = response.data;
+                _this.orders = response.data.filter(function (order) {
+                    return order.rooms.length !== 0;
+                });
+            });
+        },
+        getOrderFinancialStatus: function getOrderFinancialStatus(id) {
+            axios.get('/api/orders/' + id + '/finances').then(function (response) {
+                console.log(response.data);
             });
         },
         calculateMaterialsPrice: function calculateMaterialsPrice(order) {
@@ -50296,8 +50335,6 @@ var render = function() {
                           )
                         ]),
                         _vm._v(" "),
-                        _c("td", [_vm._v("Х")]),
-                        _vm._v(" "),
                         _c("td", [
                           _vm._v(
                             _vm._s(
@@ -50316,8 +50353,6 @@ var render = function() {
                           )
                         ]),
                         _vm._v(" "),
-                        _c("td", [_vm._v("0")]),
-                        _vm._v(" "),
                         _c("td", [_vm._v("121212Р")]),
                         _vm._v(" "),
                         _c("td", [_vm._v("121212Р")]),
@@ -50330,9 +50365,9 @@ var render = function() {
                         _vm._v(" "),
                         _c("td", [_vm._v("121212Р")]),
                         _vm._v(" "),
-                        _c("td", [_vm._v("121212Р")]),
-                        _vm._v(" "),
-                        _c("td", [_vm._v("121212Р")]),
+                        _c("td", [
+                          _vm._v(_vm._s(_vm.getOrderFinancialStatus(order.id)))
+                        ]),
                         _vm._v(" "),
                         _c("td", [_vm._v("121212Р")]),
                         _vm._v(" "),
@@ -50342,9 +50377,7 @@ var render = function() {
                         _vm._v(" "),
                         _c("td", [_vm._v("28.11.19")]),
                         _vm._v(" "),
-                        _c("td", [_vm._v("28.11.19")]),
-                        _vm._v(" "),
-                        _c("td", [_vm._v("Статус")])
+                        _c("td", [_vm._v("28.11.19")])
                       ])
                     })
                   )
@@ -50382,13 +50415,9 @@ var staticRenderFns = [
         _vm._v(" "),
         _c("th", [_vm._v("Сумма договора")]),
         _vm._v(" "),
-        _c("th", [_vm._v("Дизайн")]),
-        _vm._v(" "),
         _c("th", [_vm._v("Работы")]),
         _vm._v(" "),
         _c("th", [_vm._v("Материалы")]),
-        _vm._v(" "),
-        _c("th", [_vm._v("Мебель")]),
         _vm._v(" "),
         _c("th", [_vm._v("Плановая прибыль")]),
         _vm._v(" "),
@@ -50410,13 +50439,9 @@ var staticRenderFns = [
         _vm._v(" "),
         _c("th", [_vm._v("Балланс Мат")]),
         _vm._v(" "),
-        _c("th", [_vm._v("Бонусы")]),
-        _vm._v(" "),
         _c("th", [_vm._v("Дата начала")]),
         _vm._v(" "),
-        _c("th", [_vm._v("Дата сдачи")]),
-        _vm._v(" "),
-        _c("th", [_vm._v("Статус")])
+        _c("th", [_vm._v("Дата сдачи")])
       ])
     ])
   }

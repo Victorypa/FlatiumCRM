@@ -10,66 +10,98 @@
                 <thead>
                   <tr>
                     <th>Название</th>
+                    <!-- 1 -->
                     <th>Клиент</th>
+                    <!-- 2 -->
                     <th>Дата подписания</th>
+                    <!-- 3 -->
                     <th>Номер договора</th>
+                    <!-- 4 -->
                     <th>Менеджер</th>
+                    <!-- 5 -->
                     <th>Скидка</th>
+                    <!-- 6 -->
                     <th>Наценка</th>
+                    <!-- 7 -->
                     <th>Сумма договора</th>
-                    <th>Дизайн</th>
+                    <!-- 8 -->
                     <th>Работы</th>
+                    <!-- 9 -->
                     <th>Материалы</th>
-                    <th>Мебель</th>
+                    <!-- 10 -->
                     <th>Плановая прибыль</th>
+                    <!-- 11 -->
                     <th>Баланс итого</th>
+                    <!-- 12 -->
                     <th>Тек.приб.раб</th>
+                    <!-- 13 -->
                     <th>Тек.приб. Мат</th>
+                    <!-- 14 -->
                     <th>Пр работы</th>
+                    <!-- 15 -->
                     <th>Рсхд работы</th>
+                    <!-- 16 -->
                     <th>Баланс работы</th>
+                    <!-- 17 -->
                     <th>Пр Мат</th>
+                    <!-- 18 -->
                     <th>Рсхд Мат</th>
+                    <!-- 19 -->
                     <th>Балланс Мат</th>
-                    <th>Бонусы</th>
+                    <!-- 20 -->
                     <th>Дата начала</th>
+                    <!-- 21 -->
                     <th>Дата сдачи</th>
-                    <th>Статус</th>
+                    <!-- 22 -->
                   </tr>
                 </thead>
                 <tbody>
 
                   <tr v-for="order in orders" :key="order.id">
                     <td>{{ order.address ? order.address : order.order_name }}</td>
+                    <!-- 1 -->
                     <td></td>
+                    <!-- 2 -->
                     <td>28.11.19</td>
+                    <!-- 3 -->
                     <td>{{ order.contract ? order.contract : '' }}</td>
+                    <!-- 4 -->
                     <td>{{ order.manager ? order.manager.name : '' }}</td>
+                    <!-- 5 -->
                     <td>{{ order.discount ? order.discount : '' }}</td>
+                    <!-- 6 -->
                     <td>{{ order.markup ? order.markup : '' }}</td>
+                    <!-- 7 -->
                     <td>{{ order.price ? new Intl.NumberFormat('ru-Ru').format(parseInt(order.price) + parseInt(calculateMaterialsPrice(order))) : 0 }} Р</td>
-                    <td>Х</td>
-                    <!-- Дизайн -->
+                    <!-- 8 -->
                     <td>{{ order.price ? new Intl.NumberFormat('ru-Ru').format(parseInt(order.price)) : 0 }}</td>
-                    <!-- Работы -->
+                    <!-- 9 -->
                     <td>{{ calculateMaterialsPrice(order) }} Р</td>
-                    <!-- Материалы -->
-                    <td>0</td>
-                    <!-- мебель -->
+                    <!-- 10 -->
                     <td>121212Р</td>
+                    <!-- 11 -->
                     <td>121212Р</td>
+                    <!-- 12 -->
                     <td>121212Р</td>
+                    <!-- 13 -->
                     <td>121212Р</td>
+                    <!-- 14 -->
                     <td>121212Р</td>
+                    <!-- 15 -->
                     <td>121212Р</td>
+                    <!-- 16 -->
+                    <td>{{ getOrderFinancialStatus(order.id) }}</td>
+                    <!-- 17 -->
                     <td>121212Р</td>
+                    <!-- 18 -->
                     <td>121212Р</td>
+                    <!-- 19 -->
                     <td>121212Р</td>
-                    <td>121212Р</td>
-                    <td>121212Р</td>
+                    <!-- 20 -->
                     <td>28.11.19</td>
+                    <!-- 21 -->
                     <td>28.11.19</td>
-                    <td>Статус</td>
+                    <!-- 22 -->
                   </tr>
                 </tbody>
               </table>
@@ -97,8 +129,14 @@ export default {
     methods: {
         getOrders() {
             return axios.get(`/api/reports`).then(response => {
-              this.orders = response.data
+              this.orders = response.data.filter(order => order.rooms.length !== 0)
             })
+        },
+
+        getOrderFinancialStatus (id) {
+          axios.get(`/api/orders/${id}/finances`).then(response => {
+            console.log(response.data);
+          })
         },
 
         calculateMaterialsPrice (order) {
@@ -128,7 +166,8 @@ export default {
   margin-top: 100px;
   min-width: 3100px;
   &__wrapper {
-    overflow-x: scroll;
+    overflow: auto;
   }
+
 }
 </style>
