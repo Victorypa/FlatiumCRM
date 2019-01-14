@@ -30,13 +30,15 @@
                                              v-model="service_name"
                                              class="service-input w-100"
                                              @change="updateService()"
+                                             required
                                              >
                                   </h2>
 
                                   <input type="number"
-                                         class="service-input service-input--height"
+                                         class="service-input service-input--height col-2"
                                          v-model="service_price"
                                          @change="updateService()"
+                                         required
                                          />
                               </div>
                           </template>
@@ -370,6 +372,10 @@
 
 <style scoped lang="scss">
 $main-color: #00A4D1;
+
+input:required:valid {
+    border-color: #495057 !important;
+}
 
 .main-caption {
   &::after {

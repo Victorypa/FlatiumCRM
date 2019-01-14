@@ -133,6 +133,7 @@ export default {
        },
 
        updateService () {
+         if (this.service_name && this.service_price) {
            axios.patch(`/api/services/${this.$route.params.service_id}/update`, {
                'name': this.service_name,
                'price': this.service_price
@@ -140,6 +141,10 @@ export default {
                this.show = true
                this.getService()
            })
+         } else {
+           alert('Заполняй пол')
+           this.getService()
+         }
        },
 
        showServiceInput () {
