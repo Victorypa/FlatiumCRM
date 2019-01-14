@@ -9,6 +9,11 @@ use App\Http\Controllers\Controller;
 
 class FinanceController extends Controller
 {
+    public function index(Order $order)
+    {
+      return $order->finances()->get();
+    }
+
     public function store(Order $order, Request $request)
     {
         $order->finances()->create([

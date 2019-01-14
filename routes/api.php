@@ -50,6 +50,7 @@ use Illuminate\Http\Request;
          * Financial
         */
         Route::group(['namespace' => 'Financial'], function ($router) {
+            Route::get('/{order}/finances', 'FinanceController@index');
             Route::post('/{order}/finance/store', 'FinanceController@store');
             Route::delete('/{order}/finance/{finance}/delete', 'FinanceController@destroy');
         });
