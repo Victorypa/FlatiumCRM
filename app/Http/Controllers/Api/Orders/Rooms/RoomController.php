@@ -25,40 +25,14 @@ class RoomController extends Controller
 
     public function update(Order $order, Room $room, Request $request)
     {
-        if ($room->windows->count()) {
-            $window_area = 0;
-            $door_length = 0;
-
-            foreach ($room->windows as $window) {
-                $window_area += (float) $window->length * (float) $window->width * (int) $window->quantity;
-                if ($window->type === "door") {
-                    $door_length += (float)$window->width;
-                }
-            }
-
-            $room->update([
-                'width' => $width = $request->width,
-                'length' => $length = $request->length,
-                'height' => $height = $request->height,
-                'area' => $request->area,
-                'perimeter' => $request->perimeter,
-                // 'perimeter' => $perimeter = 2 * ($width * $length) - $door_length,
-                // 'wall_area' => $perimeter * $height - (float) $window_area,
-                'wall_area' => $request->wall_area
-            ]);
-
-        } else {
-            $room->update([
-                'width' => $width = $request->width,
-                'length' => $length = $request->length,
-                'height' => $height = $request->height,
-                'area' => $request->area,
-                'perimeter' => $request->perimeter,
-                // 'perimeter' => $perimeter = $request->perimeter,
-                // 'wall_area' => $perimeter * $height,
-                'wall_area' => $request->wall_area
-            ]);
-        }
+      $room->update([
+          'width' => $width = $request->width,
+          'length' => $length = $request->length,
+          'height' => $height = $request->height,
+          'area' => $request->area,
+          'perimeter' => $request->perimeter,
+          'wall_area' => $request->wall_area
+      ]);
     }
 
     public function updateDescription(Order $order, Room $room, Request $request)

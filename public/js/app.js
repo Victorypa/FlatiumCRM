@@ -50231,20 +50231,29 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         var incomes = 0;
         var expenses = 0;
         var worker_expenses = 0;
+        var service_income = 0;
+        var service_expense = 0;
+
         order.finances.forEach(function (item) {
           if (item.finance_type === 'income') {
             incomes += parseInt(item.price);
+            if (item.reason === 'Акт выполненных работ' || item.reason === 'Акт дополнительных работ') {
+              service_income += parseInt(item.price);
+            }
           }
           if (item.finance_type === 'expense') {
             expenses += parseInt(item.price);
             if (item.reason === 'Оплата рабочим') {
               worker_expenses += parseInt(item.price);
             }
+            if (item.reason === 'Акт выполненных работ' || item.reason === 'Акт дополнительных работ') {
+              service_expense += parseInt(item.price);
+            }
           }
         });
         switch (type) {
           case 'balance':
-            return new Intl.NumberFormat('ru-Ru').format(incomes - expenses);
+            return new Intl.NumberFormat('ru-Ru').format(parseInt(incomes - expenses));
             break;
 
           case 'income':
@@ -50256,6 +50265,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             break;
           case 'worker_expense':
             return new Intl.NumberFormat('ru-Ru').format(worker_expenses);
+            break;
+
+          case 'service_balance':
+            return new Intl.NumberFormat('ru-Ru').format(parseInt(service_income - service_expense));
             break;
           default:
             return 0;
@@ -50351,17 +50364,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       }
       return materialPrice ? new Intl.NumberFormat('ru-Ru').format(materialPrice) : 0;
     },
-    removeEmptyElem: function removeEmptyElem(obj) {
-      var newObj = {};
-
-      Object.keys(obj).forEach(function (prop) {
-        if (obj[prop]) {
-          newObj[prop] = obj[prop];
-        }
-      });
-
-      return newObj;
-    }
+    getServicesBalance: function getServicesBalance(order) {}
   }
 });
 
@@ -50755,7 +50758,12 @@ var render = function() {
                               _vm._v(_vm._s(_vm.getPlannedProfit(order)) + " Р")
                             ]),
                             _vm._v(" "),
-                            _c("td", [_vm._v("121212Р")]),
+                            _c("td", [
+                              _vm._v(
+                                _vm._s(_vm.getTotalBalance(order, "balance")) +
+                                  " Р"
+                              )
+                            ]),
                             _vm._v(" "),
                             _c("td", [
                               _vm._v(_vm._s(_vm.getPresentProfit(order)) + " Р")
@@ -50777,8 +50785,9 @@ var render = function() {
                             _vm._v(" "),
                             _c("td", [
                               _vm._v(
-                                _vm._s(_vm.getTotalBalance(order, "balance")) +
-                                  " Р"
+                                _vm._s(
+                                  _vm.getTotalBalance(order, "service_balance")
+                                ) + " Р"
                               )
                             ]),
                             _vm._v(" "),

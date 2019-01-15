@@ -74,7 +74,7 @@
                     <!-- 10 -->
                     <td>{{ getPlannedProfit(order) }} Р</td>
                     <!-- 11 -->
-                    <td>121212Р</td>
+                    <td>{{ getTotalBalance(order, 'balance') }} Р</td>
                     <!-- 12 -->
                     <td>{{ getPresentProfit(order) }} Р</td>
                     <!-- 13 -->
@@ -82,7 +82,7 @@
                     <!-- 15 -->
                     <td>{{ getTotalBalance(order, 'worker_expense') }} Р</td>
                     <!-- 16 -->
-                    <td>{{ getTotalBalance(order, 'balance') }} Р</td>
+                    <td>{{ getTotalBalance(order, 'service_balance') }} Р</td>
                     <!-- 17 -->
                     <td>{{ getMaterialsExpense(order, 'income') }} Р</td>
                     <!-- 18 -->
@@ -128,20 +128,29 @@ export default {
             let incomes = 0
             let expenses = 0
             let worker_expenses = 0
+            let service_income = 0
+            let service_expense = 0
+
             order.finances.forEach(item => {
               if (item.finance_type === 'income') {
                 incomes += parseInt(item.price)
+                if (item.reason === 'Акт выполненных работ' || item.reason === 'Акт дополнительных работ') {
+                  service_income += parseInt(item.price)
+                }
               }
               if (item.finance_type === 'expense') {
                 expenses += parseInt(item.price)
                 if (item.reason === 'Оплата рабочим') {
                   worker_expenses += parseInt(item.price)
                 }
+                if (item.reason === 'Акт выполненных работ' || item.reason === 'Акт дополнительных работ') {
+                  service_expense += parseInt(item.price)
+                }
               }
             })
             switch (type) {
               case 'balance':
-                return new Intl.NumberFormat('ru-Ru').format(incomes - expenses)
+                return new Intl.NumberFormat('ru-Ru').format(parseInt(incomes - expenses))
                 break;
 
               case 'income':
@@ -153,6 +162,10 @@ export default {
                 break;
               case 'worker_expense':
                 return new Intl.NumberFormat('ru-Ru').format(worker_expenses)
+                break;
+
+              case 'service_balance':
+                return new Intl.NumberFormat('ru-Ru').format(parseInt(service_income - service_expense))
                 break;
               default:
                 return 0
@@ -256,15 +269,9 @@ export default {
             return materialPrice ? new Intl.NumberFormat('ru-Ru').format(materialPrice) : 0
         },
 
-        removeEmptyElem(obj) {
-            let newObj = {}
+        getServicesBalance (order) {
 
-            Object.keys(obj).forEach((prop) => {
-              if (obj[prop]) { newObj[prop] = obj[prop] }
-            })
-
-            return newObj
-       },
+        }
     }
 }
 </script>
