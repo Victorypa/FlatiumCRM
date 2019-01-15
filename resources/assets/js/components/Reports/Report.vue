@@ -49,10 +49,6 @@
                     <!-- 19 -->
                     <th>Балланс Мат</th>
                     <!-- 20 -->
-                    <th>Дата начала</th>
-                    <!-- 21 -->
-                    <th>Дата сдачи</th>
-                    <!-- 22 -->
                   </tr>
                 </thead>
                 <tbody v-if="orders.length">
@@ -96,12 +92,8 @@
                     <!-- 18 -->
                     <td>121212Р</td>
                     <!-- 19 -->
-                    <td>121212Р</td>
+                    <td>{{ getMaterialsExpense(order) }} Р</td>
                     <!-- 20 -->
-                    <td>28.11.19</td>
-                    <!-- 21 -->
-                    <td>28.11.19</td>
-                    <!-- 22 -->
                   </tr>
                 </tbody>
               </table>
@@ -158,6 +150,26 @@ export default {
               expenses += parseInt(act.price)
             })
             return new Intl.NumberFormat('ru-Ru').format(expenses)
+          } else {
+            return 0
+          }
+        },
+
+        getMaterialsExpense (order) {
+          if (order.finances.length) {
+              let material_incomes = 0
+              let material_expenses = 0
+
+              order.finances.forEach(finance => {
+                if (finance.reason === "Оплата материалов от клиента") {
+                  material_incomes += parseInt(finance.price)
+                }
+                if (finance.reason === "Оплата материалов") {
+                  material_expenses += parseInt(finance.price)
+                }
+              })
+
+              return new Intl.NumberFormat('ru-Ru').format(material_incomes - material_expenses)
           } else {
             return 0
           }

@@ -12,7 +12,7 @@ class ReportController extends Controller
     {
         return Order::with([
           'manager', 'rooms.room_services', 'rooms.room_services.materials',
-          'finances', 'finished_order_acts'
+          'finances', 'finished_order_acts', 'extra_order_acts'
         ])->get();
     }
 }

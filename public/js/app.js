@@ -50204,95 +50204,106 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-    data: function data() {
-        return {
-            orders: []
-        };
+  data: function data() {
+    return {
+      orders: []
+    };
+  },
+  created: function created() {
+    this.getOrders();
+  },
+
+
+  methods: {
+    getOrders: function getOrders() {
+      var _this = this;
+
+      return axios.get('/api/reports').then(function (response) {
+        _this.orders = response.data.filter(function (order) {
+          return order.rooms.length !== 0;
+        });
+      });
     },
-    created: function created() {
-        this.getOrders();
+    getTotalBalance: function getTotalBalance(order) {
+      if (order.finances.length) {
+        var incomes = 0;
+        var expenses = 0;
+        order.finances.forEach(function (item) {
+          if (item.finance_type === 'income') {
+            incomes += parseInt(item.price);
+          }
+          if (item.finance_type === 'expense') {
+            expenses += parseInt(item.price);
+          }
+        });
+        return new Intl.NumberFormat('ru-Ru').format(incomes - expenses);
+      } else {
+        return 0;
+      }
     },
+    getServicesExpense: function getServicesExpense(order) {
+      if (order.finished_order_acts.length) {
+        var expenses = 0;
+        order.finished_order_acts.forEach(function (act) {
+          expenses += parseInt(act.price);
+        });
+        return new Intl.NumberFormat('ru-Ru').format(expenses);
+      } else {
+        return 0;
+      }
+    },
+    getMaterialsExpense: function getMaterialsExpense(order) {
+      if (order.finances.length) {
+        var material_incomes = 0;
+        var material_expenses = 0;
 
+        order.finances.forEach(function (finance) {
+          if (finance.reason === "Оплата материалов от клиента") {
+            material_incomes += parseInt(finance.price);
+          }
+          if (finance.reason === "Оплата материалов") {
+            material_expenses += parseInt(finance.price);
+          }
+        });
 
-    methods: {
-        getOrders: function getOrders() {
-            var _this = this;
+        return new Intl.NumberFormat('ru-Ru').format(material_incomes - material_expenses);
+      } else {
+        return 0;
+      }
+    },
+    getPlannedProfit: function getPlannedProfit(order) {},
+    calculateMaterialsPrice: function calculateMaterialsPrice(order) {
+      var materialPrice = 0;
 
-            return axios.get('/api/reports').then(function (response) {
-                _this.orders = response.data.filter(function (order) {
-                    return order.rooms.length !== 0;
+      if (order.rooms) {
+        order.rooms.forEach(function (room) {
+          if (room.room_services) {
+            room.room_services.forEach(function (room_service) {
+              if (room_service.materials) {
+                room_service.materials.forEach(function (material) {
+                  materialPrice += parseInt(material.price) * parseFloat(material.pivot.rate);
                 });
+              }
             });
-        },
-        getTotalBalance: function getTotalBalance(order) {
-            if (order.finances.length) {
-                var incomes = 0;
-                var expenses = 0;
-                order.finances.forEach(function (item) {
-                    if (item.finance_type === 'income') {
-                        incomes += parseInt(item.price);
-                    }
-                    if (item.finance_type === 'expense') {
-                        expenses += parseInt(item.price);
-                    }
-                });
-                return new Intl.NumberFormat('ru-Ru').format(incomes - expenses);
-            } else {
-                return 0;
-            }
-        },
-        getServicesExpense: function getServicesExpense(order) {
-            if (order.finished_order_acts.length) {
-                var expenses = 0;
-                order.finished_order_acts.forEach(function (act) {
-                    expenses += parseInt(act.price);
-                });
-                return new Intl.NumberFormat('ru-Ru').format(expenses);
-            } else {
-                return 0;
-            }
-        },
-        getPlannedProfit: function getPlannedProfit(order) {},
-        calculateMaterialsPrice: function calculateMaterialsPrice(order) {
-            var materialPrice = 0;
+          }
+        });
+      }
+      return materialPrice ? new Intl.NumberFormat('ru-Ru').format(materialPrice) : 0;
+    },
+    removeEmptyElem: function removeEmptyElem(obj) {
+      var newObj = {};
 
-            if (order.rooms) {
-                order.rooms.forEach(function (room) {
-                    if (room.room_services) {
-                        room.room_services.forEach(function (room_service) {
-                            if (room_service.materials) {
-                                room_service.materials.forEach(function (material) {
-                                    materialPrice += parseInt(material.price) * parseFloat(material.pivot.rate);
-                                });
-                            }
-                        });
-                    }
-                });
-            }
-            return materialPrice ? new Intl.NumberFormat('ru-Ru').format(materialPrice) : 0;
-        },
-        removeEmptyElem: function removeEmptyElem(obj) {
-            var newObj = {};
-
-            Object.keys(obj).forEach(function (prop) {
-                if (obj[prop]) {
-                    newObj[prop] = obj[prop];
-                }
-            });
-
-            return newObj;
+      Object.keys(obj).forEach(function (prop) {
+        if (obj[prop]) {
+          newObj[prop] = obj[prop];
         }
+      });
+
+      return newObj;
     }
+  }
 });
 
 /***/ }),
@@ -50422,11 +50433,11 @@ var render = function() {
                             _vm._v(" "),
                             _c("td", [_vm._v("121212Р")]),
                             _vm._v(" "),
-                            _c("td", [_vm._v("121212Р")]),
-                            _vm._v(" "),
-                            _c("td", [_vm._v("28.11.19")]),
-                            _vm._v(" "),
-                            _c("td", [_vm._v("28.11.19")])
+                            _c("td", [
+                              _vm._v(
+                                _vm._s(_vm.getMaterialsExpense(order)) + " Р"
+                              )
+                            ])
                           ])
                         })
                       )
@@ -50487,11 +50498,7 @@ var staticRenderFns = [
         _vm._v(" "),
         _c("th", [_vm._v("Рсхд Мат")]),
         _vm._v(" "),
-        _c("th", [_vm._v("Балланс Мат")]),
-        _vm._v(" "),
-        _c("th", [_vm._v("Дата начала")]),
-        _vm._v(" "),
-        _c("th", [_vm._v("Дата сдачи")])
+        _c("th", [_vm._v("Балланс Мат")])
       ])
     ])
   }
