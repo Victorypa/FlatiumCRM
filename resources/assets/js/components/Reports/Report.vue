@@ -55,7 +55,7 @@
                     <!-- 22 -->
                   </tr>
                 </thead>
-                <tbody>
+                <tbody v-if="orders.length">
 
                   <tr v-for="order in orders" :key="order.id">
                     <td>{{ order.address ? order.address : order.order_name }}</td>
@@ -78,7 +78,7 @@
                     <!-- 9 -->
                     <td>{{ calculateMaterialsPrice(order) }} Р</td>
                     <!-- 10 -->
-                    <td>121212Р</td>
+                    <td>{{ getPlannedProfit(order) }}</td>
                     <!-- 11 -->
                     <td>121212Р</td>
                     <!-- 12 -->
@@ -88,9 +88,9 @@
                     <!-- 14 -->
                     <td>121212Р</td>
                     <!-- 15 -->
-                    <td>121212Р</td>
+                    <td>{{ getServicesExpense(order) }}</td>
                     <!-- 16 -->
-                    <td>{{ getOrderFinancialStatus(order.id) }}</td>
+                    <td>{{ getTotalBalance(order) }} Р</td>
                     <!-- 17 -->
                     <td>121212Р</td>
                     <!-- 18 -->
@@ -133,10 +133,30 @@ export default {
             })
         },
 
-        getOrderFinancialStatus (id) {
-          axios.get(`/api/orders/${id}/finances`).then(response => {
-            console.log(response.data);
-          })
+        getTotalBalance (order) {
+          if (order.finances.length) {
+            let incomes = 0
+            let expenses = 0
+            order.finances.forEach(item => {
+              if (item.finance_type === 'income') {
+                incomes += parseInt(item.price)
+              }
+              if (item.finance_type === 'expense') {
+                expenses += parseInt(item.price)
+              }
+            })
+            return new Intl.NumberFormat('ru-Ru').format(incomes - expenses)
+          } else {
+            return 0
+          }
+        },
+
+        getServicesExpense (order) {
+          
+        },
+
+        getPlannedProfit (order) {
+
         },
 
         calculateMaterialsPrice (order) {
@@ -156,7 +176,17 @@ export default {
                 })
             }
             return materialPrice ? new Intl.NumberFormat('ru-Ru').format(materialPrice) : 0
-        }
+        },
+
+        removeEmptyElem(obj) {
+            let newObj = {}
+
+            Object.keys(obj).forEach((prop) => {
+              if (obj[prop]) { newObj[prop] = obj[prop] }
+            })
+
+            return newObj
+       },
     }
 }
 </script>

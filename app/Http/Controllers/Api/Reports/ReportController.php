@@ -10,6 +10,9 @@ class ReportController extends Controller
 {
     public function index()
     {
-        return Order::with(['manager', 'rooms.room_services', 'rooms.room_services.materials'])->get();
+        return Order::with([
+          'manager', 'rooms.room_services', 'rooms.room_services.materials',
+          'finances', 'finished_order_acts'
+        ])->get();
     }
 }

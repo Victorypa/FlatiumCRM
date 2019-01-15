@@ -50234,11 +50234,25 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 });
             });
         },
-        getOrderFinancialStatus: function getOrderFinancialStatus(id) {
-            axios.get('/api/orders/' + id + '/finances').then(function (response) {
-                console.log(response.data);
-            });
+        getTotalBalance: function getTotalBalance(order) {
+            if (order.finances.length) {
+                var incomes = 0;
+                var expenses = 0;
+                order.finances.forEach(function (item) {
+                    if (item.finance_type === 'income') {
+                        incomes += parseInt(item.price);
+                    }
+                    if (item.finance_type === 'expense') {
+                        expenses += parseInt(item.price);
+                    }
+                });
+                return new Intl.NumberFormat('ru-Ru').format(incomes - expenses);
+            } else {
+                return 0;
+            }
         },
+        getServicesExpense: function getServicesExpense(order) {},
+        getPlannedProfit: function getPlannedProfit(order) {},
         calculateMaterialsPrice: function calculateMaterialsPrice(order) {
             var materialPrice = 0;
 
@@ -50256,6 +50270,17 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 });
             }
             return materialPrice ? new Intl.NumberFormat('ru-Ru').format(materialPrice) : 0;
+        },
+        removeEmptyElem: function removeEmptyElem(obj) {
+            var newObj = {};
+
+            Object.keys(obj).forEach(function (prop) {
+                if (obj[prop]) {
+                    newObj[prop] = obj[prop];
+                }
+            });
+
+            return newObj;
         }
     }
 });
@@ -50286,101 +50311,114 @@ var render = function() {
                 _c("table", { staticClass: "table table-hover" }, [
                   _vm._m(0),
                   _vm._v(" "),
-                  _c(
-                    "tbody",
-                    _vm._l(_vm.orders, function(order) {
-                      return _c("tr", { key: order.id }, [
-                        _c("td", [
-                          _vm._v(
-                            _vm._s(
-                              order.address ? order.address : order.order_name
-                            )
-                          )
-                        ]),
-                        _vm._v(" "),
-                        _c("td"),
-                        _vm._v(" "),
-                        _c("td", [_vm._v("28.11.19")]),
-                        _vm._v(" "),
-                        _c("td", [
-                          _vm._v(_vm._s(order.contract ? order.contract : ""))
-                        ]),
-                        _vm._v(" "),
-                        _c("td", [
-                          _vm._v(
-                            _vm._s(order.manager ? order.manager.name : "")
-                          )
-                        ]),
-                        _vm._v(" "),
-                        _c("td", [
-                          _vm._v(_vm._s(order.discount ? order.discount : ""))
-                        ]),
-                        _vm._v(" "),
-                        _c("td", [
-                          _vm._v(_vm._s(order.markup ? order.markup : ""))
-                        ]),
-                        _vm._v(" "),
-                        _c("td", [
-                          _vm._v(
-                            _vm._s(
-                              order.price
-                                ? new Intl.NumberFormat("ru-Ru").format(
-                                    parseInt(order.price) +
-                                      parseInt(
-                                        _vm.calculateMaterialsPrice(order)
+                  _vm.orders.length
+                    ? _c(
+                        "tbody",
+                        _vm._l(_vm.orders, function(order) {
+                          return _c("tr", { key: order.id }, [
+                            _c("td", [
+                              _vm._v(
+                                _vm._s(
+                                  order.address
+                                    ? order.address
+                                    : order.order_name
+                                )
+                              )
+                            ]),
+                            _vm._v(" "),
+                            _c("td"),
+                            _vm._v(" "),
+                            _c("td", [_vm._v("28.11.19")]),
+                            _vm._v(" "),
+                            _c("td", [
+                              _vm._v(
+                                _vm._s(order.contract ? order.contract : "")
+                              )
+                            ]),
+                            _vm._v(" "),
+                            _c("td", [
+                              _vm._v(
+                                _vm._s(order.manager ? order.manager.name : "")
+                              )
+                            ]),
+                            _vm._v(" "),
+                            _c("td", [
+                              _vm._v(
+                                _vm._s(order.discount ? order.discount : "")
+                              )
+                            ]),
+                            _vm._v(" "),
+                            _c("td", [
+                              _vm._v(_vm._s(order.markup ? order.markup : ""))
+                            ]),
+                            _vm._v(" "),
+                            _c("td", [
+                              _vm._v(
+                                _vm._s(
+                                  order.price
+                                    ? new Intl.NumberFormat("ru-Ru").format(
+                                        parseInt(order.price) +
+                                          parseInt(
+                                            _vm.calculateMaterialsPrice(order)
+                                          )
                                       )
-                                  )
-                                : 0
-                            ) + " Р"
-                          )
-                        ]),
-                        _vm._v(" "),
-                        _c("td", [
-                          _vm._v(
-                            _vm._s(
-                              order.price
-                                ? new Intl.NumberFormat("ru-Ru").format(
-                                    parseInt(order.price)
-                                  )
-                                : 0
-                            )
-                          )
-                        ]),
-                        _vm._v(" "),
-                        _c("td", [
-                          _vm._v(
-                            _vm._s(_vm.calculateMaterialsPrice(order)) + " Р"
-                          )
-                        ]),
-                        _vm._v(" "),
-                        _c("td", [_vm._v("121212Р")]),
-                        _vm._v(" "),
-                        _c("td", [_vm._v("121212Р")]),
-                        _vm._v(" "),
-                        _c("td", [_vm._v("121212Р")]),
-                        _vm._v(" "),
-                        _c("td", [_vm._v("121212Р")]),
-                        _vm._v(" "),
-                        _c("td", [_vm._v("121212Р")]),
-                        _vm._v(" "),
-                        _c("td", [_vm._v("121212Р")]),
-                        _vm._v(" "),
-                        _c("td", [
-                          _vm._v(_vm._s(_vm.getOrderFinancialStatus(order.id)))
-                        ]),
-                        _vm._v(" "),
-                        _c("td", [_vm._v("121212Р")]),
-                        _vm._v(" "),
-                        _c("td", [_vm._v("121212Р")]),
-                        _vm._v(" "),
-                        _c("td", [_vm._v("121212Р")]),
-                        _vm._v(" "),
-                        _c("td", [_vm._v("28.11.19")]),
-                        _vm._v(" "),
-                        _c("td", [_vm._v("28.11.19")])
-                      ])
-                    })
-                  )
+                                    : 0
+                                ) + " Р"
+                              )
+                            ]),
+                            _vm._v(" "),
+                            _c("td", [
+                              _vm._v(
+                                _vm._s(
+                                  order.price
+                                    ? new Intl.NumberFormat("ru-Ru").format(
+                                        parseInt(order.price)
+                                      )
+                                    : 0
+                                )
+                              )
+                            ]),
+                            _vm._v(" "),
+                            _c("td", [
+                              _vm._v(
+                                _vm._s(_vm.calculateMaterialsPrice(order)) +
+                                  " Р"
+                              )
+                            ]),
+                            _vm._v(" "),
+                            _c("td", [
+                              _vm._v(_vm._s(_vm.getPlannedProfit(order)))
+                            ]),
+                            _vm._v(" "),
+                            _c("td", [_vm._v("121212Р")]),
+                            _vm._v(" "),
+                            _c("td", [_vm._v("121212Р")]),
+                            _vm._v(" "),
+                            _c("td", [_vm._v("121212Р")]),
+                            _vm._v(" "),
+                            _c("td", [_vm._v("121212Р")]),
+                            _vm._v(" "),
+                            _c("td", [
+                              _vm._v(_vm._s(_vm.getServicesExpense(order)))
+                            ]),
+                            _vm._v(" "),
+                            _c("td", [
+                              _vm._v(_vm._s(_vm.getTotalBalance(order)) + " Р")
+                            ]),
+                            _vm._v(" "),
+                            _c("td", [_vm._v("121212Р")]),
+                            _vm._v(" "),
+                            _c("td", [_vm._v("121212Р")]),
+                            _vm._v(" "),
+                            _c("td", [_vm._v("121212Р")]),
+                            _vm._v(" "),
+                            _c("td", [_vm._v("28.11.19")]),
+                            _vm._v(" "),
+                            _c("td", [_vm._v("28.11.19")])
+                          ])
+                        })
+                      )
+                    : _vm._e()
                 ])
               ])
             ])
