@@ -55,7 +55,7 @@
                               <template v-else>
                                   <template v-if="!show_input">
                                       <div class="main-subtitle" @click="showInput()">
-                                          {{ order_step.name }} {{ index + parseInt(1) }}
+                                          {{ order_step.name }}
                                           <img src="/img/edit.svg" alt="add-button" title="Редактировать">
                                       </div>
                                   </template>
@@ -211,9 +211,9 @@
 
                       <div class="col-12 d-flex align-items-center">
                         <h2 class="col-6 main-subtitle py-4 pl-3">
-                          <tempate v-if="room.description">
+                          <template v-if="room.description">
                               {{ room.description }}
-                          </tempate>
+                          </template>
                           <template v-else>
                               {{ room.room_type.type }} {{ index + parseInt(1) }}
                           </template>
@@ -389,7 +389,7 @@
             return axios.get(`/api/orders/${this.$route.params.id}/order_steps`)
                         .then(response => {
                             this.order = response.data
-                            this.order_steps = this.order.order_steps
+                            this.order_steps = _.sortBy(this.order.order_steps, ['id'])
                             this.order.order_steps.forEach(order_step => {
                                 this.order_step_descriptions[order_step.id] = order_step.description
                                 this.order_step_begin_ats[order_step.id] = order_step.begin_at

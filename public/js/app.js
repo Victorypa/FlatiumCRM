@@ -55741,7 +55741,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
             return axios.get("/api/orders/" + this.$route.params.id + "/order_steps").then(function (response) {
                 _this.order = response.data;
-                _this.order_steps = _this.order.order_steps;
+                _this.order_steps = _.sortBy(_this.order.order_steps, ['id']);
                 _this.order.order_steps.forEach(function (order_step) {
                     _this.order_step_descriptions[order_step.id] = order_step.description;
                     _this.order_step_begin_ats[order_step.id] = order_step.begin_at;
@@ -56057,11 +56057,6 @@ var render = function() {
                                                           "\n                                        " +
                                                             _vm._s(
                                                               order_step.name
-                                                            ) +
-                                                            " " +
-                                                            _vm._s(
-                                                              index +
-                                                                parseInt(1)
                                                             ) +
                                                             "\n                                        "
                                                         ),
@@ -56815,13 +56810,13 @@ var render = function() {
                                       },
                                       [
                                         room.description
-                                          ? _c("tempate", [
+                                          ? [
                                               _vm._v(
                                                 "\n                            " +
                                                   _vm._s(room.description) +
                                                   "\n                        "
                                               )
-                                            ])
+                                            ]
                                           : [
                                               _vm._v(
                                                 "\n                            " +
