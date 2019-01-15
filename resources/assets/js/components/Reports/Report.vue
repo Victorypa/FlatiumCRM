@@ -33,10 +33,8 @@
                     <!-- 11 -->
                     <th>Баланс итого</th>
                     <!-- 12 -->
-                    <th>Тек.приб.раб</th>
+                    <th>Тек.приб</th>
                     <!-- 13 -->
-                    <th>Тек.приб. Мат</th>
-                    <!-- 14 -->
                     <th>Пр работы</th>
                     <!-- 15 -->
                     <th>Рсхд работы</th>
@@ -78,15 +76,13 @@
                     <!-- 11 -->
                     <td>121212Р</td>
                     <!-- 12 -->
-                    <td>121212Р</td>
+                    <td>{{ getPresentProfit(order) }} Р</td>
                     <!-- 13 -->
-                    <td>121212Р</td>
-                    <!-- 14 -->
-                    <td>121212Р</td>
+                    <td>{{ getServicesIncome(order) }} Р</td>
                     <!-- 15 -->
-                    <td>{{ getServicesExpense(order) }} Р</td>
+                    <td>{{ getTotalBalance(order, 'worker_expense') }} Р</td>
                     <!-- 16 -->
-                    <td>{{ getTotalBalance(order) }} Р</td>
+                    <td>{{ getTotalBalance(order, 'balance') }} Р</td>
                     <!-- 17 -->
                     <td>{{ getMaterialsExpense(order, 'income') }} Р</td>
                     <!-- 18 -->
@@ -127,33 +123,75 @@ export default {
             })
         },
 
-        getTotalBalance (order) {
+        getTotalBalance (order, type) {
           if (order.finances.length) {
             let incomes = 0
             let expenses = 0
+            let worker_expenses = 0
             order.finances.forEach(item => {
               if (item.finance_type === 'income') {
                 incomes += parseInt(item.price)
               }
               if (item.finance_type === 'expense') {
                 expenses += parseInt(item.price)
+                if (item.reason === 'Оплата рабочим') {
+                  worker_expenses += parseInt(item.price)
+                }
               }
             })
-            return new Intl.NumberFormat('ru-Ru').format(incomes - expenses)
+            switch (type) {
+              case 'balance':
+                return new Intl.NumberFormat('ru-Ru').format(incomes - expenses)
+                break;
+
+              case 'income':
+                return new Intl.NumberFormat('ru-Ru').format(incomes)
+                break;
+
+              case 'expense':
+                return new Intl.NumberFormat('ru-Ru').format(expenses)
+                break;
+              case 'worker_expense':
+                return new Intl.NumberFormat('ru-Ru').format(worker_expenses)
+                break;
+              default:
+                return 0
+            }
           } else {
             return 0
           }
         },
 
-        getServicesExpense (order) {
+        getServicesIncome (order) {
+          let finished_act_incomes = 0
+          let extra_act_incomes = 0
+
           if (order.finished_order_acts.length) {
-            let expenses = 0
             order.finished_order_acts.forEach(act => {
-              expenses += parseInt(act.price)
+              finished_act_incomes += parseInt(act.price)
             })
-            return new Intl.NumberFormat('ru-Ru').format(expenses)
           } else {
             return 0
+          }
+
+          if (order.extra_order_acts.length) {
+            order.extra_order_acts.forEach(act => {
+              extra_act_incomes += parseInt(act.price)
+            })
+          } else {
+            return 0
+          }
+          return new Intl.NumberFormat('ru-Ru').format(parseInt(finished_act_incomes + extra_act_incomes))
+        },
+
+        getPresentProfit (order) {
+          if (order.discount !== 0 && order.discount !== null) {
+            let result = parseInt(this.getTotalBalance(order, 'income')) * (1 - 0.55 / 1 * (parseInt(order.discount) / 100) )
+            return new Intl.NumberFormat('ru-Ru').format(parseInt(result))
+          }
+          else {
+            let result = parseInt(this.getTotalBalance(order, 'income')) * (1 - 0.55 )
+            return new Intl.NumberFormat('ru-Ru').format(parseInt(result))
           }
         },
 

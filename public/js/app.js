@@ -50202,10 +50202,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
-//
-//
-//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -50230,32 +50226,72 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         });
       });
     },
-    getTotalBalance: function getTotalBalance(order) {
+    getTotalBalance: function getTotalBalance(order, type) {
       if (order.finances.length) {
         var incomes = 0;
         var expenses = 0;
+        var worker_expenses = 0;
         order.finances.forEach(function (item) {
           if (item.finance_type === 'income') {
             incomes += parseInt(item.price);
           }
           if (item.finance_type === 'expense') {
             expenses += parseInt(item.price);
+            if (item.reason === 'Оплата рабочим') {
+              worker_expenses += parseInt(item.price);
+            }
           }
         });
-        return new Intl.NumberFormat('ru-Ru').format(incomes - expenses);
+        switch (type) {
+          case 'balance':
+            return new Intl.NumberFormat('ru-Ru').format(incomes - expenses);
+            break;
+
+          case 'income':
+            return new Intl.NumberFormat('ru-Ru').format(incomes);
+            break;
+
+          case 'expense':
+            return new Intl.NumberFormat('ru-Ru').format(expenses);
+            break;
+          case 'worker_expense':
+            return new Intl.NumberFormat('ru-Ru').format(worker_expenses);
+            break;
+          default:
+            return 0;
+        }
       } else {
         return 0;
       }
     },
-    getServicesExpense: function getServicesExpense(order) {
+    getServicesIncome: function getServicesIncome(order) {
+      var finished_act_incomes = 0;
+      var extra_act_incomes = 0;
+
       if (order.finished_order_acts.length) {
-        var expenses = 0;
         order.finished_order_acts.forEach(function (act) {
-          expenses += parseInt(act.price);
+          finished_act_incomes += parseInt(act.price);
         });
-        return new Intl.NumberFormat('ru-Ru').format(expenses);
       } else {
         return 0;
+      }
+
+      if (order.extra_order_acts.length) {
+        order.extra_order_acts.forEach(function (act) {
+          extra_act_incomes += parseInt(act.price);
+        });
+      } else {
+        return 0;
+      }
+      return new Intl.NumberFormat('ru-Ru').format(parseInt(finished_act_incomes + extra_act_incomes));
+    },
+    getPresentProfit: function getPresentProfit(order) {
+      if (order.discount !== 0 && order.discount !== null) {
+        var result = parseInt(this.getTotalBalance(order, 'income')) * (1 - 0.55 / 1 * (parseInt(order.discount) / 100));
+        return new Intl.NumberFormat('ru-Ru').format(parseInt(result));
+      } else {
+        var _result = parseInt(this.getTotalBalance(order, 'income')) * (1 - 0.55);
+        return new Intl.NumberFormat('ru-Ru').format(parseInt(_result));
       }
     },
     getMaterialsExpense: function getMaterialsExpense(order, type) {
@@ -50293,8 +50329,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         var result = (parseInt(order.price) + parseInt(this.calculateMaterialsPrice(order))) * (1 - 0.55 / 1 * (parseInt(order.discount) / 100));
         return new Intl.NumberFormat('ru-Ru').format(parseInt(result));
       } else {
-        var _result = (parseInt(order.price) + parseInt(this.calculateMaterialsPrice(order))) * (1 - 0.55);
-        return new Intl.NumberFormat('ru-Ru').format(parseInt(_result));
+        var _result2 = (parseInt(order.price) + parseInt(this.calculateMaterialsPrice(order))) * (1 - 0.55);
+        return new Intl.NumberFormat('ru-Ru').format(parseInt(_result2));
       }
     },
     calculateMaterialsPrice: function calculateMaterialsPrice(order) {
@@ -50721,20 +50757,29 @@ var render = function() {
                             _vm._v(" "),
                             _c("td", [_vm._v("121212Р")]),
                             _vm._v(" "),
-                            _c("td", [_vm._v("121212Р")]),
-                            _vm._v(" "),
-                            _c("td", [_vm._v("121212Р")]),
-                            _vm._v(" "),
-                            _c("td", [_vm._v("121212Р")]),
+                            _c("td", [
+                              _vm._v(_vm._s(_vm.getPresentProfit(order)) + " Р")
+                            ]),
                             _vm._v(" "),
                             _c("td", [
                               _vm._v(
-                                _vm._s(_vm.getServicesExpense(order)) + " Р"
+                                _vm._s(_vm.getServicesIncome(order)) + " Р"
                               )
                             ]),
                             _vm._v(" "),
                             _c("td", [
-                              _vm._v(_vm._s(_vm.getTotalBalance(order)) + " Р")
+                              _vm._v(
+                                _vm._s(
+                                  _vm.getTotalBalance(order, "worker_expense")
+                                ) + " Р"
+                              )
+                            ]),
+                            _vm._v(" "),
+                            _c("td", [
+                              _vm._v(
+                                _vm._s(_vm.getTotalBalance(order, "balance")) +
+                                  " Р"
+                              )
                             ]),
                             _vm._v(" "),
                             _c("td", [
@@ -50806,9 +50851,7 @@ var staticRenderFns = [
         _vm._v(" "),
         _c("th", [_vm._v("Баланс итого")]),
         _vm._v(" "),
-        _c("th", [_vm._v("Тек.приб.раб")]),
-        _vm._v(" "),
-        _c("th", [_vm._v("Тек.приб. Мат")]),
+        _c("th", [_vm._v("Тек.приб")]),
         _vm._v(" "),
         _c("th", [_vm._v("Пр работы")]),
         _vm._v(" "),
