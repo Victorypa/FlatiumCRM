@@ -64,9 +64,9 @@
                     <!-- 4 -->
                     <td>{{ order.manager ? order.manager.name : '' }}</td>
                     <!-- 5 -->
-                    <td>{{ order.discount ? order.discount : '' }}</td>
+                    <td>{{ order.discount ? order.discount : 0 }} %</td>
                     <!-- 6 -->
-                    <td>{{ order.markup ? order.markup : '' }}</td>
+                    <td>{{ order.markup ? order.markup : 0 }} %</td>
                     <!-- 7 -->
                     <td>{{ order.price ? new Intl.NumberFormat('ru-Ru').format(parseInt(order.price) + parseInt(calculateMaterialsPrice(order))) : 0 }} Р</td>
                     <!-- 8 -->
@@ -74,7 +74,7 @@
                     <!-- 9 -->
                     <td>{{ calculateMaterialsPrice(order) }} Р</td>
                     <!-- 10 -->
-                    <td>{{ getPlannedProfit(order) }}</td>
+                    <td>{{ getPlannedProfit(order) }} Р</td>
                     <!-- 11 -->
                     <td>121212Р</td>
                     <!-- 12 -->
@@ -189,7 +189,14 @@ export default {
         },
 
         getPlannedProfit (order) {
-
+          if (order.discount !== 0 && order.discount !== null) {
+            let result = (parseInt(order.price) + parseInt(this.calculateMaterialsPrice(order))) * (1 - (0.55 / 1 * (parseInt(order.discount) / 100) ))
+            return new Intl.NumberFormat('ru-Ru').format(parseInt(result))
+          }
+          else {
+            let result = (parseInt(order.price) + parseInt(this.calculateMaterialsPrice(order))) * (1 - 0.55 )
+            return new Intl.NumberFormat('ru-Ru').format(parseInt(result))
+          }
         },
 
         calculateMaterialsPrice (order) {

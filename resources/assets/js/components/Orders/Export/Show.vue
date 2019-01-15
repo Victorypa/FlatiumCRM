@@ -429,12 +429,7 @@
                             })
                    }
                }
-           },
-
-           fetchServiceBoolean () {
-
            }
-
 
         },
 
