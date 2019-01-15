@@ -56,9 +56,9 @@
                   <tr v-for="order in orders" :key="order.id">
                     <td>{{ order.address ? order.address : order.order_name }}</td>
                     <!-- 1 -->
-                    <td></td>
+                    <td>{{ order.client_name ? order.client_name : '' }}</td>
                     <!-- 2 -->
-                    <td>28.11.19</td>
+                    <td>{{ moment(new Date(order.created_at)).format('DD-MM-YYYY') }}</td>
                     <!-- 3 -->
                     <td>{{ order.contract ? order.contract : '' }}</td>
                     <!-- 4 -->
@@ -107,9 +107,11 @@
 </template>
 
 <script>
+import moment from 'moment'
 export default {
     data () {
         return {
+            moment,
             orders: []
         }
     },

@@ -50096,6 +50096,8 @@ exports.push([module.i, "\n.table {\n  margin-top: 100px;\n  min-width: 3100px;\
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_moment__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_moment___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_moment__);
 //
 //
 //
@@ -50205,9 +50207,11 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 
+
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
+      moment: __WEBPACK_IMPORTED_MODULE_0_moment___default.a,
       orders: []
     };
   },
@@ -50358,9 +50362,23 @@ var render = function() {
                               )
                             ]),
                             _vm._v(" "),
-                            _c("td"),
+                            _c("td", [
+                              _vm._v(
+                                _vm._s(
+                                  order.client_name ? order.client_name : ""
+                                )
+                              )
+                            ]),
                             _vm._v(" "),
-                            _c("td", [_vm._v("28.11.19")]),
+                            _c("td", [
+                              _vm._v(
+                                _vm._s(
+                                  _vm
+                                    .moment(new Date(order.created_at))
+                                    .format("DD-MM-YYYY")
+                                )
+                              )
+                            ]),
                             _vm._v(" "),
                             _c("td", [
                               _vm._v(
