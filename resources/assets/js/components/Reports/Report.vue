@@ -88,11 +88,11 @@
                     <!-- 16 -->
                     <td>{{ getTotalBalance(order) }} Р</td>
                     <!-- 17 -->
-                    <td>121212Р</td>
+                    <td>{{ getMaterialsExpense(order, 'income') }} Р</td>
                     <!-- 18 -->
-                    <td>121212Р</td>
+                    <td>{{ getMaterialsExpense(order, 'expense') }} Р</td>
                     <!-- 19 -->
-                    <td>{{ getMaterialsExpense(order) }} Р</td>
+                    <td>{{ getMaterialsExpense(order, 'balance') }} Р</td>
                     <!-- 20 -->
                   </tr>
                 </tbody>
@@ -155,7 +155,7 @@ export default {
           }
         },
 
-        getMaterialsExpense (order) {
+        getMaterialsExpense (order, type) {
           if (order.finances.length) {
               let material_incomes = 0
               let material_expenses = 0
@@ -168,8 +168,19 @@ export default {
                   material_expenses += parseInt(finance.price)
                 }
               })
-
-              return new Intl.NumberFormat('ru-Ru').format(material_incomes - material_expenses)
+              switch (type) {
+                case 'balance':
+                  return new Intl.NumberFormat('ru-Ru').format(material_incomes - material_expenses)
+                  break;
+                case 'income':
+                  return new Intl.NumberFormat('ru-Ru').format(material_incomes)
+                  break;
+                case 'expense':
+                  return new Intl.NumberFormat('ru-Ru').format(material_expenses)
+                  break;
+                default:
+                  return 0
+              }
           } else {
             return 0
           }

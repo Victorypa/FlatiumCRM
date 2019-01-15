@@ -50254,7 +50254,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         return 0;
       }
     },
-    getMaterialsExpense: function getMaterialsExpense(order) {
+    getMaterialsExpense: function getMaterialsExpense(order, type) {
       if (order.finances.length) {
         var material_incomes = 0;
         var material_expenses = 0;
@@ -50267,8 +50267,19 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             material_expenses += parseInt(finance.price);
           }
         });
-
-        return new Intl.NumberFormat('ru-Ru').format(material_incomes - material_expenses);
+        switch (type) {
+          case 'balance':
+            return new Intl.NumberFormat('ru-Ru').format(material_incomes - material_expenses);
+            break;
+          case 'income':
+            return new Intl.NumberFormat('ru-Ru').format(material_incomes);
+            break;
+          case 'expense':
+            return new Intl.NumberFormat('ru-Ru').format(material_expenses);
+            break;
+          default:
+            return 0;
+        }
       } else {
         return 0;
       }
@@ -50429,13 +50440,27 @@ var render = function() {
                               _vm._v(_vm._s(_vm.getTotalBalance(order)) + " Р")
                             ]),
                             _vm._v(" "),
-                            _c("td", [_vm._v("121212Р")]),
-                            _vm._v(" "),
-                            _c("td", [_vm._v("121212Р")]),
+                            _c("td", [
+                              _vm._v(
+                                _vm._s(
+                                  _vm.getMaterialsExpense(order, "income")
+                                ) + " Р"
+                              )
+                            ]),
                             _vm._v(" "),
                             _c("td", [
                               _vm._v(
-                                _vm._s(_vm.getMaterialsExpense(order)) + " Р"
+                                _vm._s(
+                                  _vm.getMaterialsExpense(order, "expense")
+                                ) + " Р"
+                              )
+                            ]),
+                            _vm._v(" "),
+                            _c("td", [
+                              _vm._v(
+                                _vm._s(
+                                  _vm.getMaterialsExpense(order, "balance")
+                                ) + " Р"
                               )
                             ])
                           ])
