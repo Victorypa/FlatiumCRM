@@ -50085,7 +50085,7 @@ exports = module.exports = __webpack_require__(2)(false);
 
 
 // module
-exports.push([module.i, "\n.table {\n  margin-top: 100px;\n  min-width: 3100px;\n}\n.table__wrapper {\n    overflow: auto;\n}\n", ""]);
+exports.push([module.i, "\n.table {\n  margin-top: 100px;\n  min-width: 3100px;\n}\n.table__wrapper {\n    overflow: auto;\n}\n.strong-black {\n  color: black;\n}\n", ""]);
 
 // exports
 
@@ -50098,6 +50098,10 @@ exports.push([module.i, "\n.table {\n  margin-top: 100px;\n  min-width: 3100px;\
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_moment__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_moment___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_moment__);
+//
+//
+//
+//
 //
 //
 //
@@ -50363,8 +50367,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         });
       }
       return materialPrice ? new Intl.NumberFormat('ru-Ru').format(materialPrice) : 0;
-    },
-    getServicesBalance: function getServicesBalance(order) {}
+    }
   }
 });
 
@@ -50667,15 +50670,33 @@ var render = function() {
                         "tbody",
                         _vm._l(_vm.orders, function(order) {
                           return _c("tr", { key: order.id }, [
-                            _c("td", [
-                              _vm._v(
-                                _vm._s(
-                                  order.address
-                                    ? order.address
-                                    : order.order_name
+                            _c(
+                              "td",
+                              [
+                                _c(
+                                  "router-link",
+                                  {
+                                    attrs: {
+                                      to: {
+                                        name: "room-show",
+                                        params: {
+                                          id: order.id,
+                                          room_id: order.rooms[0].id
+                                        }
+                                      }
+                                    }
+                                  },
+                                  [
+                                    _c(
+                                      "strong",
+                                      { staticClass: "strong-black" },
+                                      [_vm._v(_vm._s(order.address))]
+                                    )
+                                  ]
                                 )
-                              )
-                            ]),
+                              ],
+                              1
+                            ),
                             _vm._v(" "),
                             _c("td", [
                               _vm._v(

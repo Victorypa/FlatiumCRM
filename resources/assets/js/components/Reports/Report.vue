@@ -52,7 +52,11 @@
                 <tbody v-if="orders.length">
 
                   <tr v-for="order in orders" :key="order.id">
-                    <td>{{ order.address ? order.address : order.order_name }}</td>
+                    <td>
+                      <router-link :to="{ name: 'room-show', params: { id: order.id, room_id: order.rooms[0].id } }">
+                        <strong class="strong-black">{{ order.address }}</strong>
+                      </router-link>
+                    </td>
                     <!-- 1 -->
                     <td>{{ order.client_name ? order.client_name : '' }}</td>
                     <!-- 2 -->
@@ -267,10 +271,6 @@ export default {
                 })
             }
             return materialPrice ? new Intl.NumberFormat('ru-Ru').format(materialPrice) : 0
-        },
-
-        getServicesBalance (order) {
-
         }
     }
 }
@@ -283,6 +283,9 @@ export default {
   &__wrapper {
     overflow: auto;
   }
+}
 
+.strong-black {
+  color: black;
 }
 </style>
