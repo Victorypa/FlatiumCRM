@@ -50251,7 +50251,17 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 return 0;
             }
         },
-        getServicesExpense: function getServicesExpense(order) {},
+        getServicesExpense: function getServicesExpense(order) {
+            if (order.finished_order_acts.length) {
+                var expenses = 0;
+                order.finished_order_acts.forEach(function (act) {
+                    expenses += parseInt(act.price);
+                });
+                return new Intl.NumberFormat('ru-Ru').format(expenses);
+            } else {
+                return 0;
+            }
+        },
         getPlannedProfit: function getPlannedProfit(order) {},
         calculateMaterialsPrice: function calculateMaterialsPrice(order) {
             var materialPrice = 0;
@@ -50399,7 +50409,9 @@ var render = function() {
                             _c("td", [_vm._v("121212Р")]),
                             _vm._v(" "),
                             _c("td", [
-                              _vm._v(_vm._s(_vm.getServicesExpense(order)))
+                              _vm._v(
+                                _vm._s(_vm.getServicesExpense(order)) + " Р"
+                              )
                             ]),
                             _vm._v(" "),
                             _c("td", [

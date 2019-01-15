@@ -88,7 +88,7 @@
                     <!-- 14 -->
                     <td>121212Р</td>
                     <!-- 15 -->
-                    <td>{{ getServicesExpense(order) }}</td>
+                    <td>{{ getServicesExpense(order) }} Р</td>
                     <!-- 16 -->
                     <td>{{ getTotalBalance(order) }} Р</td>
                     <!-- 17 -->
@@ -152,7 +152,15 @@ export default {
         },
 
         getServicesExpense (order) {
-          
+          if (order.finished_order_acts.length) {
+            let expenses = 0
+            order.finished_order_acts.forEach(act => {
+              expenses += parseInt(act.price)
+            })
+            return new Intl.NumberFormat('ru-Ru').format(expenses)
+          } else {
+            return 0
+          }
         },
 
         getPlannedProfit (order) {
