@@ -25,14 +25,37 @@ class RoomController extends Controller
 
     public function update(Order $order, Room $room, Request $request)
     {
-      $room->update([
+      if ($request->has('width') && $request->has('length')) {
+        $room->update([
           'width' => $width = $request->width,
           'length' => $length = $request->length,
-          'height' => $height = $request->height,
-          'area' => $request->area,
+          'area' => $width * $length,
+        ]);
+      }
+
+      if ($request->has('height')) {
+        $room->update([
+          'height' => $request->height
+        ]);
+      }
+
+      if ($request->has('area')) {
+        $room->update([
+          'area' => $request->width * $request->length,
+        ]);
+      }
+
+      if ($request->has('perimeter')) {
+        $room->update([
           'perimeter' => $request->perimeter,
-          'wall_area' => $request->wall_area
-      ]);
+        ]);
+      }
+
+      if ($request->has('wall_area')) {
+        $room->update([
+          'wall_area' => $request->wall_area,
+        ]);
+      }
     }
 
     public function updateDescription(Order $order, Room $room, Request $request)

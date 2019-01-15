@@ -53,8 +53,8 @@
 
                   <tr v-for="order in orders" :key="order.id">
                     <td>
-                      <router-link :to="{ name: 'room-show', params: { id: order.id, room_id: order.rooms[0].id } }">
-                        <strong class="strong-black">{{ order.address }}</strong>
+                      <router-link class="strong-black" :to="{ name: 'room-show', params: { id: order.id, room_id: order.rooms[0].id } }">
+                        <strong>{{ order.address }}</strong>
                       </router-link>
                     </td>
                     <!-- 1 -->
