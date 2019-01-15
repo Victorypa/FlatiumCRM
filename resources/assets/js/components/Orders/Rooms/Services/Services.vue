@@ -356,7 +356,7 @@
                         this.service_units[item.id] = item.unit.name
                         this.service_can_be_deleted[item.id] = item.can_be_deleted
                         this.room_service_types[item.id] = item.service_type_id
-                        
+
                         if (!this.room_service_ids.includes(item.id)) {
                             if (this.service_quantities[item.id] !== null) {
                                 switch (item.unit.id) {
@@ -410,15 +410,6 @@
             getMaterialSummary (rate, quantity, price, room_service_quantity) {
                 return new Intl.NumberFormat('ru-Ru').format(parseInt(Math.ceil((rate * room_service_quantity)/quantity) * price))
             },
-
-            // filteredRoomServiceIds (room_service_ids) {
-            //     let data = this.service_service_types.filter((key, value) => value === this.service_type_id)
-            //
-            //
-            //
-            //     let data = room_service_ids.filter(row => row.service_type_id === this.service_type_id)
-            //     return _.orderBy(data, ['created_at', 'asc'])
-            // }
         },
 
         computed: {

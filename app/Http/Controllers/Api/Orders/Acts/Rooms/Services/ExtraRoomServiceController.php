@@ -8,9 +8,18 @@ use App\Models\Services\Service;
 use App\Http\Controllers\Controller;
 use App\Models\Orders\Acts\ExtraOrderAct;
 use App\Models\Orders\Acts\Rooms\ExtraRoom;
+use App\Models\Orders\Acts\Rooms\Services\ExtraRoomService;
 
 class ExtraRoomServiceController extends Controller
 {
+    public function show(Order $order, ExtraOrderAct $extra_order_act, ExtraRoom $extra_room, Service $extra_service, Request $request)
+    {
+        return ExtraRoomService::where([
+            ['extra_room_id', $extra_room->id],
+            ['service_id', $extra_service->id]
+        ])->first();
+    }
+
     public function store(Order $order, ExtraOrderAct $extra_order_act, ExtraRoom $extra_room, Request $request)
     {
         $diffIds_add = [];

@@ -151,6 +151,7 @@ use Illuminate\Http\Request;
                 */
                 Route::group(['namespace' => 'Services'], function () {
                     Route::get('/{order}/extra_order_act/{extra_order_act}/extra_rooms/{extra_room}/extra_services', 'ExtraRoomServiceController@index');
+                    Route::get('/{order}/extra_order_act/{extra_order_act}/extra_rooms/{extra_room}/extra_services/{extra_service}/show', 'ExtraRoomServiceController@show');
                     Route::post('/{order}/extra_order_act/{extra_order_act}/extra_rooms/{extra_room}/extra_services/store', 'ExtraRoomServiceController@store');
 
                     /**

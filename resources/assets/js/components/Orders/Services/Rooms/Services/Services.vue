@@ -125,7 +125,7 @@
 
                     <input type="number"
                            class="form-control w-85"
-                           :value="service_prices[service.id]"
+                           :value="parseInt(service_prices[service.id])"
                            disabled
                            >
 
@@ -184,7 +184,7 @@
                                 <div class="d-flex align-items-center">
                                   <div class="col-4" style="margin-left:163px"></div>
                                   <div class="form-group__calc col-md-2">
-                                      {{ getMaterialSummary(material.pivot.rate, material.quantity, material.price) }} Р
+                                      {{ getMaterialSummary(material.pivot.rate, material.quantity, material.price, service_quantities[service.id]) }} Р
                                   </div>
                                 </div>
                               </div>
@@ -336,25 +336,13 @@
 
             getServiceTypes () {
                     return axios.get(`/api/service_types`).then(response => {
-                            switch (parseInt(this.extra_room.room.room_type_id)) {
-                                case parseInt(1):
-                                    this.service_types = response.data.slice(0, 3)
-                                    this.service_type_id = this.service_types[0].id
-                                    break;
-                                case parseInt(2):
-                                    this.service_types = response.data.slice(4, 5)
-                                    this.service_type_id = this.service_types[0].id
-                                    break;
-                                case parseInt(3):
-                                    this.service_types = response.data.slice(3, 4)
-                                    this.service_type_id = this.service_types[0].id
-                                    break;
-                                default:
-                                    this.service_type_id = 1
-                                    this.service_types = response.data
-                            }
+                        this.service_types = response.data
+                        this.service_type_id = this.service_types[0].id
                     })
+            },
 
+            getMaterialSummary (rate, quantity, price, room_service_quantity) {
+                return new Intl.NumberFormat('ru-Ru').format(parseInt(Math.ceil((rate * room_service_quantity) / quantity) * price))
             },
         },
 

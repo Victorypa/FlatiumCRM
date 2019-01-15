@@ -50085,7 +50085,7 @@ exports = module.exports = __webpack_require__(2)(false);
 
 
 // module
-exports.push([module.i, "\n.table {\n  margin-top: 100px;\n  min-width: 3100px;\n}\n.table__wrapper {\n    overflow: auto;\n}\n.strong-black {\n  color: black;\n}\n", ""]);
+exports.push([module.i, "\n.table {\n  margin-top: 100px;\n  min-width: 3100px;\n}\n.table__wrapper {\n    overflow: auto;\n    height: 100vh;\n}\n.strong-black {\n  color: black;\n}\n", ""]);
 
 // exports
 
@@ -50663,7 +50663,60 @@ var render = function() {
             _c("div", { staticClass: "col-md-10" }, [
               _c("div", { staticClass: "col-md-12 table__wrapper px-0" }, [
                 _c("table", { staticClass: "table table-hover" }, [
-                  _vm._m(0),
+                  _c("thead", [
+                    _c(
+                      "tr",
+                      {
+                        directives: [
+                          {
+                            name: "scroll",
+                            rawName: "v-scroll",
+                            value: _vm.handleScroll,
+                            expression: "handleScroll"
+                          }
+                        ]
+                      },
+                      [
+                        _c("th", [_vm._v("Название")]),
+                        _vm._v(" "),
+                        _c("th", [_vm._v("Клиент")]),
+                        _vm._v(" "),
+                        _c("th", [_vm._v("Дата подписания")]),
+                        _vm._v(" "),
+                        _c("th", [_vm._v("Номер договора")]),
+                        _vm._v(" "),
+                        _c("th", [_vm._v("Менеджер")]),
+                        _vm._v(" "),
+                        _c("th", [_vm._v("Скидка")]),
+                        _vm._v(" "),
+                        _c("th", [_vm._v("Наценка")]),
+                        _vm._v(" "),
+                        _c("th", [_vm._v("Сумма договора")]),
+                        _vm._v(" "),
+                        _c("th", [_vm._v("Работы")]),
+                        _vm._v(" "),
+                        _c("th", [_vm._v("Материалы")]),
+                        _vm._v(" "),
+                        _c("th", [_vm._v("Плановая прибыль")]),
+                        _vm._v(" "),
+                        _c("th", [_vm._v("Баланс итого")]),
+                        _vm._v(" "),
+                        _c("th", [_vm._v("Тек.приб")]),
+                        _vm._v(" "),
+                        _c("th", [_vm._v("Пр работы")]),
+                        _vm._v(" "),
+                        _c("th", [_vm._v("Рсхд работы")]),
+                        _vm._v(" "),
+                        _c("th", [_vm._v("Баланс работы")]),
+                        _vm._v(" "),
+                        _c("th", [_vm._v("Пр Мат")]),
+                        _vm._v(" "),
+                        _c("th", [_vm._v("Рсхд Мат")]),
+                        _vm._v(" "),
+                        _c("th", [_vm._v("Балланс Мат")])
+                      ]
+                    )
+                  ]),
                   _vm._v(" "),
                   _vm.orders.length
                     ? _c(
@@ -50849,54 +50902,7 @@ var render = function() {
     1
   )
 }
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("thead", [
-      _c("tr", [
-        _c("th", [_vm._v("Название")]),
-        _vm._v(" "),
-        _c("th", [_vm._v("Клиент")]),
-        _vm._v(" "),
-        _c("th", [_vm._v("Дата подписания")]),
-        _vm._v(" "),
-        _c("th", [_vm._v("Номер договора")]),
-        _vm._v(" "),
-        _c("th", [_vm._v("Менеджер")]),
-        _vm._v(" "),
-        _c("th", [_vm._v("Скидка")]),
-        _vm._v(" "),
-        _c("th", [_vm._v("Наценка")]),
-        _vm._v(" "),
-        _c("th", [_vm._v("Сумма договора")]),
-        _vm._v(" "),
-        _c("th", [_vm._v("Работы")]),
-        _vm._v(" "),
-        _c("th", [_vm._v("Материалы")]),
-        _vm._v(" "),
-        _c("th", [_vm._v("Плановая прибыль")]),
-        _vm._v(" "),
-        _c("th", [_vm._v("Баланс итого")]),
-        _vm._v(" "),
-        _c("th", [_vm._v("Тек.приб")]),
-        _vm._v(" "),
-        _c("th", [_vm._v("Пр работы")]),
-        _vm._v(" "),
-        _c("th", [_vm._v("Рсхд работы")]),
-        _vm._v(" "),
-        _c("th", [_vm._v("Баланс работы")]),
-        _vm._v(" "),
-        _c("th", [_vm._v("Пр Мат")]),
-        _vm._v(" "),
-        _c("th", [_vm._v("Рсхд Мат")]),
-        _vm._v(" "),
-        _c("th", [_vm._v("Балланс Мат")])
-      ])
-    ])
-  }
-]
+var staticRenderFns = []
 render._withStripped = true
 module.exports = { render: render, staticRenderFns: staticRenderFns }
 if (false) {
@@ -56627,7 +56633,9 @@ var render = function() {
                                                                                                         new Intl.NumberFormat(
                                                                                                           "ru-Ru"
                                                                                                         ).format(
-                                                                                                          room_step_service.price
+                                                                                                          parseInt(
+                                                                                                            room_step_service.price
+                                                                                                          )
                                                                                                         )
                                                                                                       ) +
                                                                                                         " Р/ м"
@@ -57104,17 +57112,19 @@ var render = function() {
                                                                                       [
                                                                                         _vm._v(
                                                                                           _vm._s(
-                                                                                            _vm.getServiceDetails(
-                                                                                              room_service.service_id,
-                                                                                              "price"
-                                                                                            ) *
-                                                                                              (1 -
-                                                                                                parseInt(
-                                                                                                  _vm
-                                                                                                    .order
-                                                                                                    .discount
-                                                                                                ) /
-                                                                                                  100)
+                                                                                            parseInt(
+                                                                                              _vm.getServiceDetails(
+                                                                                                room_service.service_id,
+                                                                                                "price"
+                                                                                              ) *
+                                                                                                (1 -
+                                                                                                  parseInt(
+                                                                                                    _vm
+                                                                                                      .order
+                                                                                                      .discount
+                                                                                                  ) /
+                                                                                                    100)
+                                                                                            )
                                                                                           ) +
                                                                                             " Р/" +
                                                                                             _vm._s(
@@ -57159,9 +57169,11 @@ var render = function() {
                                                                                       [
                                                                                         _vm._v(
                                                                                           _vm._s(
-                                                                                            _vm.getServiceDetails(
-                                                                                              room_service.service_id,
-                                                                                              "price"
+                                                                                            parseInt(
+                                                                                              _vm.getServiceDetails(
+                                                                                                room_service.service_id,
+                                                                                                "price"
+                                                                                              )
                                                                                             )
                                                                                           ) +
                                                                                             " Р/" +
@@ -57208,17 +57220,19 @@ var render = function() {
                                                                                 [
                                                                                   _vm._v(
                                                                                     _vm._s(
-                                                                                      _vm.getServiceDetails(
-                                                                                        room_service.service_id,
-                                                                                        "price"
-                                                                                      ) *
-                                                                                        (1 +
-                                                                                          parseInt(
-                                                                                            _vm
-                                                                                              .order
-                                                                                              .markup
-                                                                                          ) /
-                                                                                            100)
+                                                                                      parseInt(
+                                                                                        _vm.getServiceDetails(
+                                                                                          room_service.service_id,
+                                                                                          "price"
+                                                                                        ) *
+                                                                                          (1 +
+                                                                                            parseInt(
+                                                                                              _vm
+                                                                                                .order
+                                                                                                .markup
+                                                                                            ) /
+                                                                                              100)
+                                                                                      )
                                                                                     ) +
                                                                                       " Р/" +
                                                                                       _vm._s(
@@ -57275,9 +57289,11 @@ var render = function() {
                                                                                 [
                                                                                   _vm._v(
                                                                                     _vm._s(
-                                                                                      _vm.getServiceDetails(
-                                                                                        room_service.service_id,
-                                                                                        "price"
+                                                                                      parseInt(
+                                                                                        _vm.getServiceDetails(
+                                                                                          room_service.service_id,
+                                                                                          "price"
+                                                                                        )
                                                                                       )
                                                                                     ) +
                                                                                       " Р/" +
@@ -58879,13 +58895,15 @@ var render = function() {
                                       _c("td", [
                                         _vm._v(
                                           _vm._s(
-                                            _vm.getServiceDetails(
-                                              room_service.service_id,
-                                              "price"
-                                            ) *
-                                              (1 -
-                                                parseInt(_vm.order.discount) /
-                                                  100)
+                                            parseInt(
+                                              _vm.getServiceDetails(
+                                                room_service.service_id,
+                                                "price"
+                                              ) *
+                                                (1 -
+                                                  parseInt(_vm.order.discount) /
+                                                    100)
+                                            )
                                           ) +
                                             " Р/" +
                                             _vm._s(
@@ -58904,13 +58922,17 @@ var render = function() {
                                               _vm.selected_service_quantities[
                                                 room_service.service_id
                                               ],
-                                              _vm.getServiceDetails(
-                                                room_service.service_id,
-                                                "price"
-                                              ) *
-                                                (1 -
-                                                  parseInt(_vm.order.discount) /
-                                                    100)
+                                              parseInt(
+                                                _vm.getServiceDetails(
+                                                  room_service.service_id,
+                                                  "price"
+                                                ) *
+                                                  (1 -
+                                                    parseInt(
+                                                      _vm.order.discount
+                                                    ) /
+                                                      100)
+                                              )
                                             )
                                           ) + " Р"
                                         )
@@ -58920,9 +58942,11 @@ var render = function() {
                                       _c("td", [
                                         _vm._v(
                                           _vm._s(
-                                            _vm.getServiceDetails(
-                                              room_service.service_id,
-                                              "price"
+                                            parseInt(
+                                              _vm.getServiceDetails(
+                                                room_service.service_id,
+                                                "price"
+                                              )
                                             )
                                           ) +
                                             " Р/" +
@@ -58942,9 +58966,11 @@ var render = function() {
                                               _vm.selected_service_quantities[
                                                 room_service.service_id
                                               ],
-                                              _vm.getServiceDetails(
-                                                room_service.service_id,
-                                                "price"
+                                              parseInt(
+                                                _vm.getServiceDetails(
+                                                  room_service.service_id,
+                                                  "price"
+                                                )
                                               )
                                             )
                                           ) + " Р"
@@ -58959,11 +58985,13 @@ var render = function() {
                                 _c("td", [
                                   _vm._v(
                                     _vm._s(
-                                      _vm.getServiceDetails(
-                                        room_service.service_id,
-                                        "price"
-                                      ) *
-                                        (1 + parseInt(_vm.order.markup) / 100)
+                                      parseInt(
+                                        _vm.getServiceDetails(
+                                          room_service.service_id,
+                                          "price"
+                                        ) *
+                                          (1 + parseInt(_vm.order.markup) / 100)
+                                      )
                                     ) +
                                       " Р/" +
                                       _vm._s(
@@ -58982,11 +59010,14 @@ var render = function() {
                                         _vm.selected_service_quantities[
                                           room_service.service_id
                                         ],
-                                        _vm.getServiceDetails(
-                                          room_service.service_id,
-                                          "price"
-                                        ) *
-                                          (1 + parseInt(_vm.order.markup) / 100)
+                                        parseInt(
+                                          _vm.getServiceDetails(
+                                            room_service.service_id,
+                                            "price"
+                                          ) *
+                                            (1 +
+                                              parseInt(_vm.order.markup) / 100)
+                                        )
                                       )
                                     ) + " Р"
                                   )
@@ -59000,9 +59031,11 @@ var render = function() {
                                 _c("td", [
                                   _vm._v(
                                     _vm._s(
-                                      _vm.getServiceDetails(
-                                        room_service.service_id,
-                                        "price"
+                                      parseInt(
+                                        _vm.getServiceDetails(
+                                          room_service.service_id,
+                                          "price"
+                                        )
                                       )
                                     ) +
                                       " Р/" +
@@ -59022,9 +59055,11 @@ var render = function() {
                                         _vm.selected_service_quantities[
                                           room_service.service_id
                                         ],
-                                        _vm.getServiceDetails(
-                                          room_service.service_id,
-                                          "price"
+                                        parseInt(
+                                          _vm.getServiceDetails(
+                                            room_service.service_id,
+                                            "price"
+                                          )
                                         )
                                       )
                                     ) + " Р"
@@ -60874,6 +60909,16 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -60900,6 +60945,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             perimeter: null,
 
             newExtraWindows: [],
+            extra_room_service_materials: [],
 
             show: false,
 
@@ -61457,24 +61503,12 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             var _this4 = this;
 
             return axios.get('/api/service_types').then(function (response) {
-                switch (parseInt(_this4.extra_room.room.room_type_id)) {
-                    case parseInt(1):
-                        _this4.service_types = response.data.slice(0, 3);
-                        _this4.service_type_id = _this4.service_types[0].id;
-                        break;
-                    case parseInt(2):
-                        _this4.service_types = response.data.slice(4, 5);
-                        _this4.service_type_id = _this4.service_types[0].id;
-                        break;
-                    case parseInt(3):
-                        _this4.service_types = response.data.slice(3, 4);
-                        _this4.service_type_id = _this4.service_types[0].id;
-                        break;
-                    default:
-                        _this4.service_type_id = 1;
-                        _this4.service_types = response.data;
-                }
+                _this4.service_types = response.data;
+                _this4.service_type_id = _this4.service_types[0].id;
             });
+        },
+        getMaterialSummary: function getMaterialSummary(rate, quantity, price, room_service_quantity) {
+            return new Intl.NumberFormat('ru-Ru').format(parseInt(Math.ceil(rate * room_service_quantity / quantity) * price));
         }
     },
 
@@ -61963,7 +61997,9 @@ var render = function() {
                                   staticClass: "form-control w-85",
                                   attrs: { type: "number", disabled: "" },
                                   domProps: {
-                                    value: _vm.service_prices[service.id]
+                                    value: parseInt(
+                                      _vm.service_prices[service.id]
+                                    )
                                   }
                                 }),
                                 _vm._v(" "),
@@ -62194,7 +62230,11 @@ var render = function() {
                                                                 material.pivot
                                                                   .rate,
                                                                 material.quantity,
-                                                                material.price
+                                                                material.price,
+                                                                _vm
+                                                                  .service_quantities[
+                                                                  service.id
+                                                                ]
                                                               )
                                                             ) +
                                                             " Р\n                              "
@@ -62564,22 +62604,58 @@ var render = function() {
                                                               }
                                                             },
                                                             [
-                                                              _vm._v(
-                                                                "\n                                                        " +
-                                                                  _vm._s(
+                                                              room.room
+                                                                .description
+                                                                ? [
                                                                     room.room
-                                                                      .room_type
-                                                                      .type
-                                                                  ) +
-                                                                  " " +
-                                                                  _vm._s(
-                                                                    parseInt(
-                                                                      index
-                                                                    ) + 1
-                                                                  ) +
-                                                                  "\n                                                    "
-                                                              )
-                                                            ]
+                                                                      .description
+                                                                      .length >
+                                                                    13
+                                                                      ? _c(
+                                                                          "span",
+                                                                          [
+                                                                            _vm._v(
+                                                                              "\n                                                                " +
+                                                                                _vm._s(
+                                                                                  room.room.description.substring(
+                                                                                    0,
+                                                                                    13
+                                                                                  ) +
+                                                                                    "..."
+                                                                                ) +
+                                                                                "\n                                                            "
+                                                                            )
+                                                                          ]
+                                                                        )
+                                                                      : _c(
+                                                                          "span",
+                                                                          [
+                                                                            _vm._v(
+                                                                              "\n                                                                " +
+                                                                                _vm._s(
+                                                                                  room
+                                                                                    .room
+                                                                                    .description
+                                                                                ) +
+                                                                                "\n                                                            "
+                                                                            )
+                                                                          ]
+                                                                        )
+                                                                  ]
+                                                                : [
+                                                                    _vm._v(
+                                                                      "\n                                                            " +
+                                                                        _vm._s(
+                                                                          room
+                                                                            .room
+                                                                            .room_type
+                                                                            .type
+                                                                        ) +
+                                                                        "\n                                                        "
+                                                                    )
+                                                                  ]
+                                                            ],
+                                                            2
                                                           )
                                                         ]
                                                       )
@@ -63628,9 +63704,11 @@ var render = function() {
                                                             _vm._v(
                                                               "\n                                                      " +
                                                                 _vm._s(
-                                                                  window.length *
-                                                                    window.width *
-                                                                    window.quantity
+                                                                  parseFloat(
+                                                                    window.length *
+                                                                      window.width *
+                                                                      window.quantity
+                                                                  ).toFixed(2)
                                                                 ) +
                                                                 " M"
                                                             ),
@@ -64111,28 +64189,38 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             service_material_prices: [],
             service_material_rates: [],
 
+            currentExtraRoomService: [],
+
             material_ids: []
 
         };
     },
     mounted: function mounted() {
         this.getActualServiceMaterials();
+        this.getCurrentExtraRoomService();
     },
 
 
     methods: {
-        getActualServiceMaterials: function getActualServiceMaterials() {
+        getCurrentExtraRoomService: function getCurrentExtraRoomService() {
             var _this = this;
 
+            return axios.get('/api/orders/' + this.$route.params.id + '/extra_order_act/' + this.$route.params.extra_order_act_id + '/extra_rooms/' + this.$route.params.extra_room_id + '/extra_services/' + this.$route.params.service_id + '/show').then(function (response) {
+                _this.currentExtraRoomService = response.data;
+            });
+        },
+        getActualServiceMaterials: function getActualServiceMaterials() {
+            var _this2 = this;
+
             return axios.get('/api/orders/' + this.$route.params.id + '/extra_order_act/' + this.$route.params.extra_order_act_id + '/extra_rooms/' + this.$route.params.extra_room_id + '/services/' + this.$route.params.service_id + '/materials').then(function (response) {
-                _this.service_materials = response.data.actual_service_materials;
+                _this2.service_materials = response.data.actual_service_materials;
 
                 response.data.actual_service_materials.forEach(function (item) {
-                    _this.service_material_ids.push(item.id);
-                    _this.service_material_prices[item.id] = item.price;
-                    _this.service_material_quantities[item.id] = item.quantity;
+                    _this2.service_material_ids.push(item.id);
+                    _this2.service_material_prices[item.id] = item.price;
+                    _this2.service_material_quantities[item.id] = item.quantity;
 
-                    _this.service_material_rates[item.id] = item.pivot.rate;
+                    _this2.service_material_rates[item.id] = item.pivot.rate;
                 });
             });
         },
@@ -64142,10 +64230,16 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 'service_material_rates': this.removeEmptyElem(this.service_material_rates),
                 'service_material_quantities': this.removeEmptyElem(this.service_material_quantities)
             }).then(function (response) {
-                // window.location.reload(true)
+                window.location.reload(true);
             }).catch(function (err) {
                 console.log(err);
             });
+        },
+        MaterialCalculation: function MaterialCalculation(quantity, rate, price, room_service_quantity) {
+            console.log(room_service_quantity);
+            var data = Math.ceil(parseFloat(rate) * parseFloat(room_service_quantity) / parseFloat(quantity)) * parseFloat(price);
+
+            return new Intl.NumberFormat('ru-Ru').format(parseInt(data));
         }
     }
 
@@ -64884,7 +64978,10 @@ var render = function() {
                                                         .service_material_rates[
                                                         material.id
                                                       ],
-                                                      material.price
+                                                      material.price,
+                                                      _vm
+                                                        .currentExtraRoomService
+                                                        .quantity
                                                     )
                                                   ) +
                                                   " Р\n                            "
@@ -65139,7 +65236,10 @@ var render = function() {
                                                         .service_material_rates[
                                                         material.id
                                                       ],
-                                                      material.price
+                                                      material.price,
+                                                      _vm
+                                                        .currentExtraRoomService
+                                                        .quantity
                                                     )
                                                   ) +
                                                   " Р\n                                "
@@ -69986,12 +70086,6 @@ exports.push([module.i, "\n.main-caption[data-v-7672b952]::after {\n  display: n
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__mixins_ServiceMaterialCollection__ = __webpack_require__(14);
-//
-//
-//
-//
-//
-//
 //
 //
 //

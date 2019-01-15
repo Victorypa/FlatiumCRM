@@ -8,7 +8,7 @@
             <div class="col-md-12 table__wrapper px-0">
               <table class="table table-hover">
                 <thead>
-                  <tr>
+                  <tr v-scroll="handleScroll">
                     <th>Название</th>
                     <!-- 1 -->
                     <th>Клиент</th>
@@ -282,6 +282,7 @@ export default {
   min-width: 3100px;
   &__wrapper {
     overflow: auto;
+    height: 100vh;
   }
 }
 

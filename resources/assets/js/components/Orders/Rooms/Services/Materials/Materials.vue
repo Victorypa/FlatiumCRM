@@ -44,12 +44,6 @@
                                     @click="$router.go(-1)">
                               Назад
                             </button>
-
-                            <!-- <button type="button"
-                                    class="primary-button col-6 ml-2"
-                                    @click="saveServiceMaterial()">
-                                Сохранить
-                            </button> -->
                         </div>
 
                       </div>
@@ -283,7 +277,7 @@
             },
 
             MaterialCalculation (quantity, rate, price, room_service_quantity) {
-                let data = Math.ceil((rate * room_service_quantity)/quantity) * price
+                let data = Math.ceil((rate * room_service_quantity) / quantity) * price
                 return new Intl.NumberFormat('ru-Ru').format(parseInt(data))
             },
         },

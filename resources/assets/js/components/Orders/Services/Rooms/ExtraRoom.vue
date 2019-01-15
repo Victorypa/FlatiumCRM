@@ -84,7 +84,17 @@
                                                         <div class="create__features__name col-auto px-0 mx-2"
                                                              :class="{ 'active': path === '/orders/' + order.id + '/order_extra_services/' + extra_order_act.id + '/extra_rooms/' + room.id }"
                                                             >
-                                                            {{ room.room.room_type.type }} {{ parseInt(index) + 1 }}
+                                                            <template v-if="room.room.description">
+                                                                <span v-if="room.room.description.length > 13">
+                                                                    {{ room.room.description.substring(0, 13) + '...' }}
+                                                                </span>
+                                                                <span v-else>
+                                                                    {{ room.room.description }}
+                                                                </span>
+                                                            </template>
+                                                            <template v-else>
+                                                                {{ room.room.room_type.type }}
+                                                            </template>
                                                         </div>
                                                     </router-link>
                                                 </slide>
@@ -296,7 +306,7 @@
 
                                                   <div class="form-group col-md-2">
                                                       <div class="form-group__calc ">
-                                                          {{ window.length * window.width * window.quantity }} M<sup>2</sup>
+                                                          {{ parseFloat(window.length * window.width * window.quantity).toFixed(2) }} M<sup>2</sup>
                                                       </div>
                                                   </div>
 
@@ -360,6 +370,7 @@
               perimeter: null,
 
               newExtraWindows: [],
+              extra_room_service_materials: [],
 
               show: false,
 
@@ -391,6 +402,7 @@
 
                               this.extra_room_price = this.extra_room.price
                               this.extra_order_act_price = this.extra_order_act.price
+
 
                               this.path = this.$router.history.current.path
 

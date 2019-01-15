@@ -179,7 +179,7 @@
 
                             <div class="total-sum col-3 text-right pr-0">
                                 <template v-if="service_material_quantities[material.id] && service_material_rates[material.id]">
-                                    {{ MaterialCalculation(service_material_quantities[material.id], service_material_rates[material.id], material.price) }} Р
+                                    {{ MaterialCalculation(service_material_quantities[material.id], service_material_rates[material.id], material.price, currentExtraRoomService.quantity) }} Р
                                 </template>
                                 <template v-else>
                                     0 Р
@@ -244,7 +244,7 @@
 
                                 <div class="total-sum col-3 text-right pr-0">
                                     <template v-if="service_material_quantities[material.id] && service_material_rates[material.id]">
-                                        {{ MaterialCalculation(service_material_quantities[material.id], service_material_rates[material.id], material.price) }} Р
+                                        {{ MaterialCalculation(service_material_quantities[material.id], service_material_rates[material.id], material.price, currentExtraRoomService.quantity) }} Р
                                     </template>
                                     <template v-else>
                                         0 Р
@@ -282,6 +282,8 @@
                 service_material_prices: [],
                 service_material_rates: [],
 
+                currentExtraRoomService: [],
+
                 material_ids: [],
 
             }
@@ -289,9 +291,17 @@
 
         mounted () {
             this.getActualServiceMaterials()
+            this.getCurrentExtraRoomService()
         },
 
         methods: {
+          getCurrentExtraRoomService () {
+              return axios.get(`/api/orders/${this.$route.params.id}/extra_order_act/${this.$route.params.extra_order_act_id}/extra_rooms/${this.$route.params.extra_room_id}/extra_services/${this.$route.params.service_id}/show`)
+                          .then(response => {
+                              this.currentExtraRoomService = response.data
+                          })
+          },
+
             getActualServiceMaterials () {
                 return axios.get(`/api/orders/${this.$route.params.id}/extra_order_act/${this.$route.params.extra_order_act_id}/extra_rooms/${this.$route.params.extra_room_id}/services/${this.$route.params.service_id}/materials`)
                             .then(response => {
@@ -314,10 +324,17 @@
                     'service_material_rates': this.removeEmptyElem(this.service_material_rates),
                     'service_material_quantities': this.removeEmptyElem(this.service_material_quantities),
                 }).then(response => {
-                    // window.location.reload(true)
+                    window.location.reload(true)
                 }).catch(err => {
                     console.log(err)
                 })
+            },
+
+            MaterialCalculation (quantity, rate, price, room_service_quantity) {
+              console.log(room_service_quantity);
+                let data = Math.ceil((parseFloat(rate) * parseFloat(room_service_quantity)) / parseFloat(quantity)) * parseFloat(price)
+
+                return new Intl.NumberFormat('ru-Ru').format(parseInt(data))
             },
         },
 

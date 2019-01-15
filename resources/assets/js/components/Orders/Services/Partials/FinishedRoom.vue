@@ -62,21 +62,21 @@
 
                           <template v-if="order.discount">
                               <template v-if="getServiceDetails(room_service.service_id, 'can_be_discounted')">
-                                  <td>{{ getServiceDetails(room_service.service_id, 'price') * (1 - parseInt(order.discount)/100) }} Р/{{ getServiceDetails(room_service.service_id, 'unit') }}</td>
-                                  <td>{{ priceCount(selected_service_quantities[room_service.service_id], getServiceDetails(room_service.service_id, 'price') * (1 - parseInt(order.discount)/100)) }} Р</td>
+                                  <td>{{ parseInt(getServiceDetails(room_service.service_id, 'price') * (1 - parseInt(order.discount)/100)) }} Р/{{ getServiceDetails(room_service.service_id, 'unit') }}</td>
+                                  <td>{{ priceCount(selected_service_quantities[room_service.service_id], parseInt(getServiceDetails(room_service.service_id, 'price') * (1 - parseInt(order.discount)/100))) }} Р</td>
                               </template>
                               <template v-else>
-                                  <td>{{ getServiceDetails(room_service.service_id, 'price') }} Р/{{ getServiceDetails(room_service.service_id, 'unit') }}</td>
-                                  <td>{{ priceCount(selected_service_quantities[room_service.service_id], getServiceDetails(room_service.service_id, 'price')) }} Р</td>
+                                  <td>{{ parseInt(getServiceDetails(room_service.service_id, 'price')) }} Р/{{ getServiceDetails(room_service.service_id, 'unit') }}</td>
+                                  <td>{{ priceCount(selected_service_quantities[room_service.service_id], parseInt(getServiceDetails(room_service.service_id, 'price'))) }} Р</td>
                               </template>
                           </template>
                           <template v-if="order.markup">
-                              <td>{{ getServiceDetails(room_service.service_id, 'price') * (1 + parseInt(order.markup)/100) }} Р/{{ getServiceDetails(room_service.service_id, 'unit') }}</td>
-                              <td>{{ priceCount(selected_service_quantities[room_service.service_id], getServiceDetails(room_service.service_id, 'price') * (1 + parseInt(order.markup)/100)) }} Р</td>
+                              <td>{{ parseInt(getServiceDetails(room_service.service_id, 'price') * (1 + parseInt(order.markup)/100)) }} Р/{{ getServiceDetails(room_service.service_id, 'unit') }}</td>
+                              <td>{{ priceCount(selected_service_quantities[room_service.service_id], parseInt(getServiceDetails(room_service.service_id, 'price') * (1 + parseInt(order.markup)/100))) }} Р</td>
                           </template>
                           <template v-if="order.markup === null && order.discount === null">
-                              <td>{{ getServiceDetails(room_service.service_id, 'price') }} Р/{{ getServiceDetails(room_service.service_id, 'unit') }}</td>
-                              <td>{{ priceCount(selected_service_quantities[room_service.service_id], getServiceDetails(room_service.service_id, 'price')) }} Р</td>
+                              <td>{{ parseInt(getServiceDetails(room_service.service_id, 'price')) }} Р/{{ getServiceDetails(room_service.service_id, 'unit') }}</td>
+                              <td>{{ priceCount(selected_service_quantities[room_service.service_id], parseInt(getServiceDetails(room_service.service_id, 'price'))) }} Р</td>
                           </template>
                         </tr>
                       </tbody>
