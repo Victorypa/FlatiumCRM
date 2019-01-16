@@ -137,8 +137,6 @@
                   </div>
                 @endif
             </div>
-
-            {{-- @include('export.partials._comment', ['order' => $filteredExtraOrder->order]) --}}
     </section>
 
 </body>
