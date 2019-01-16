@@ -54334,6 +54334,32 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -54451,12 +54477,21 @@ var moment = __webpack_require__(0);
                 alert('Вводи причину или дату');
             }
         },
-        deleteFinance: function deleteFinance(id) {
+        updateFinance: function updateFinance(finance) {
             var _this4 = this;
+
+            axios.patch("/api/orders/" + this.$route.params.id + "/finance/" + finance.id + "/update", {
+                'can_be_showed': !finance.can_be_showed
+            }).then(function (response) {
+                _this4.getOrder();
+            });
+        },
+        deleteFinance: function deleteFinance(id) {
+            var _this5 = this;
 
             if (confirm('Удалить ?')) {
                 axios.delete("/api/orders/" + this.$route.params.id + "/finance/" + id + "/delete").then(function (response) {
-                    _this4.getOrder();
+                    _this5.getOrder();
                 });
             }
         },
@@ -55192,6 +55227,58 @@ var render = function() {
                                                           )
                                                         ]
                                                       )
+                                                    ]),
+                                                    _vm._v(" "),
+                                                    _c("td", [
+                                                      _c(
+                                                        "div",
+                                                        {
+                                                          staticClass:
+                                                            "form-check custom-control checkbox"
+                                                        },
+                                                        [
+                                                          _c("input", {
+                                                            staticClass:
+                                                              "form-check-input check",
+                                                            attrs: {
+                                                              id:
+                                                                "finance-" +
+                                                                finance.id,
+                                                              type: "checkbox"
+                                                            },
+                                                            domProps: {
+                                                              checked: !finance.can_be_showed
+                                                            },
+                                                            on: {
+                                                              click: function(
+                                                                $event
+                                                              ) {
+                                                                _vm.updateFinance(
+                                                                  finance
+                                                                )
+                                                              }
+                                                            }
+                                                          }),
+                                                          _vm._v(" "),
+                                                          _c(
+                                                            "label",
+                                                            {
+                                                              staticClass:
+                                                                "form-check-label",
+                                                              attrs: {
+                                                                for:
+                                                                  "finance-" +
+                                                                  finance.id
+                                                              }
+                                                            },
+                                                            [
+                                                              _vm._v(
+                                                                "\n                                              не показывать\n                                            "
+                                                              )
+                                                            ]
+                                                          )
+                                                        ]
+                                                      )
                                                     ])
                                                   ]
                                                 )
@@ -55265,6 +55352,58 @@ var render = function() {
                                                           [
                                                             _vm._v(
                                                               "\n                                                    Удалить\n                                                  "
+                                                            )
+                                                          ]
+                                                        )
+                                                      ]
+                                                    )
+                                                  ]),
+                                                  _vm._v(" "),
+                                                  _c("td", [
+                                                    _c(
+                                                      "div",
+                                                      {
+                                                        staticClass:
+                                                          "form-check custom-control checkbox"
+                                                      },
+                                                      [
+                                                        _c("input", {
+                                                          staticClass:
+                                                            "form-check-input check",
+                                                          attrs: {
+                                                            id:
+                                                              "finance-" +
+                                                              finance.id,
+                                                            type: "checkbox"
+                                                          },
+                                                          domProps: {
+                                                            checked: !finance.can_be_showed
+                                                          },
+                                                          on: {
+                                                            click: function(
+                                                              $event
+                                                            ) {
+                                                              _vm.updateFinance(
+                                                                finance
+                                                              )
+                                                            }
+                                                          }
+                                                        }),
+                                                        _vm._v(" "),
+                                                        _c(
+                                                          "label",
+                                                          {
+                                                            staticClass:
+                                                              "form-check-label",
+                                                            attrs: {
+                                                              for:
+                                                                "finance-" +
+                                                                finance.id
+                                                            }
+                                                          },
+                                                          [
+                                                            _vm._v(
+                                                              "\n                                              не показывать\n                                            "
                                                             )
                                                           ]
                                                         )

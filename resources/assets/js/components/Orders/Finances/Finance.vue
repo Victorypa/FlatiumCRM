@@ -160,6 +160,19 @@
                                                       </div>
                                                 </button>
                                             </td>
+                                            <td>
+                                              <div class="form-check custom-control checkbox">
+                                                <input class="form-check-input check"
+                                                       :id="'finance-' + finance.id"
+                                                       type="checkbox"
+                                                       :checked="!finance.can_be_showed"
+                                                       @click="updateFinance(finance)"
+                                                       >
+                                                <label class="form-check-label" :for="'finance-' + finance.id">
+                                                  не показывать
+                                                </label>
+                                              </div>
+                                            </td>
                                           </tr>
                                       </template>
                                       <template v-if="finance.finance_type === 'expense'">
@@ -174,6 +187,19 @@
                                                         Удалить
                                                       </div>
                                                 </button>
+                                            </td>
+                                            <td>
+                                              <div class="form-check custom-control checkbox">
+                                                <input class="form-check-input check"
+                                                       :id="'finance-' + finance.id"
+                                                       type="checkbox"
+                                                       :checked="!finance.can_be_showed"
+                                                       @click="updateFinance(finance)"
+                                                       >
+                                                <label class="form-check-label" :for="'finance-' + finance.id">
+                                                  не показывать
+                                                </label>
+                                              </div>
                                             </td>
                                           </tr>
                                       </template>
@@ -310,6 +336,14 @@ export default {
                 alert('Вводи причину или дату')
             }
 
+        },
+
+        updateFinance (finance) {
+          axios.patch(`/api/orders/${this.$route.params.id}/finance/${finance.id}/update`, {
+            'can_be_showed': !finance.can_be_showed
+          }).then(response => {
+              this.getOrder()
+          })
         },
 
         deleteFinance (id) {
