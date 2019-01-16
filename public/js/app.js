@@ -50998,7 +50998,7 @@ exports = module.exports = __webpack_require__(2)(false);
 
 
 // module
-exports.push([module.i, "\n.container-fluid.px-0 .row[data-v-0811aa9c] {\n  margin-left: 0;\n  margin-right: 0;\n}\n.vue-dropzone[data-v-0811aa9c] {\n  -webkit-box-shadow: 0 1px 10px rgba(0, 0, 0, 0.1), 0 1px 4px rgba(0, 0, 0, 0.1);\n          box-shadow: 0 1px 10px rgba(0, 0, 0, 0.1), 0 1px 4px rgba(0, 0, 0, 0.1);\n  border-radius: 4px;\n}\n.dropzone-custom-content[data-v-0811aa9c] {\n  position: absolute;\n  top: 50%;\n  left: 50%;\n  -webkit-transform: translate(-50%, -50%);\n          transform: translate(-50%, -50%);\n  text-align: center;\n}\n.dropzone-custom-title[data-v-0811aa9c] {\n  margin-top: 0;\n  color: #00b782;\n}\n.subtitle[data-v-0811aa9c] {\n  color: #314b5f;\n}\n.mp-10[data-v-0811aa9c] {\n  margin-top: 100px;\n}\n.mp-5[data-v-0811aa9c] {\n  margin-top: 50px;\n}\n.badger-accordion-item[data-v-0811aa9c] {\n  -webkit-box-shadow: 0 1px 10px rgba(0, 0, 0, 0.1), 0 1px 4px rgba(0, 0, 0, 0.1);\n          box-shadow: 0 1px 10px rgba(0, 0, 0, 0.1), 0 1px 4px rgba(0, 0, 0, 0.1);\n  border-radius: 4px;\n  padding: 15px;\n}\n.badger-accordion-item[data-v-0811aa9c]:hover {\n    background-color: #00A4D1;\n}\n.js-badger-accordion-header .-ba-is-active[data-v-0811aa9c]:hover {\n  background-color: #red;\n}\n.h-200[data-v-0811aa9c] {\n  height: 200px;\n}\n.accordion-wrapper[data-v-0811aa9c] {\n  padding: 0 30px;\n}\n", ""]);
+exports.push([module.i, "\n.container-fluid.px-0 .row[data-v-0811aa9c] {\n  margin-left: 0;\n  margin-right: 0;\n}\n.vue-dropzone[data-v-0811aa9c] {\n  -webkit-box-shadow: 0 1px 10px rgba(0, 0, 0, 0.1), 0 1px 4px rgba(0, 0, 0, 0.1);\n          box-shadow: 0 1px 10px rgba(0, 0, 0, 0.1), 0 1px 4px rgba(0, 0, 0, 0.1);\n  border-radius: 4px;\n}\n.dropzone-custom-content[data-v-0811aa9c] {\n  position: absolute;\n  top: 50%;\n  left: 50%;\n  -webkit-transform: translate(-50%, -50%);\n          transform: translate(-50%, -50%);\n  text-align: center;\n}\n.dropzone-custom-title[data-v-0811aa9c] {\n  margin-top: 0;\n  color: #00b782;\n}\n.subtitle[data-v-0811aa9c] {\n  color: #314b5f;\n}\n.mp-10[data-v-0811aa9c] {\n  margin-top: 100px;\n}\n.mp-5[data-v-0811aa9c] {\n  margin-top: 50px;\n}\n.badger-accordion-item[data-v-0811aa9c] {\n  -webkit-box-shadow: 0 1px 10px rgba(0, 0, 0, 0.1), 0 1px 4px rgba(0, 0, 0, 0.1);\n          box-shadow: 0 1px 10px rgba(0, 0, 0, 0.1), 0 1px 4px rgba(0, 0, 0, 0.1);\n  border-radius: 4px;\n  padding: 15px;\n}\n.badger-accordion-item[data-v-0811aa9c]:hover {\n    background-color: #00A4D1;\n}\n.js-badger-accordion-header .-ba-is-active[data-v-0811aa9c]:hover {\n  background-color: #red;\n}\n.h-200[data-v-0811aa9c] {\n  height: 200px;\n}\n.accordion-wrapper[data-v-0811aa9c] {\n  padding: 0 30px;\n}\n.add-button[data-v-0811aa9c] {\n  background-color: transparent;\n  border: none;\n  cursor: pointer;\n}\n.add-button[data-v-0811aa9c]:focus {\n    outline: none;\n}\n.add-button img[data-v-0811aa9c] {\n    width: 35px;\n    border-radius: 50%;\n}\n.add-button img[data-v-0811aa9c]:hover {\n      -webkit-box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);\n              box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);\n}\n.add-button--remove[data-v-0811aa9c] {\n    color: #ccc;\n}\n.add-button--remove[data-v-0811aa9c]:hover {\n      color: #00A4D1;\n}\n.add-button--remove img[data-v-0811aa9c] {\n      width: 15px;\n}\ntd[data-v-0811aa9c]:first-child {\n  padding-left: 30px;\n}\n.story-text[data-v-0811aa9c] {\n  padding-left: 30px;\n  margin-top: 30px;\n  color: #00A4D1;\n  font-weight: bold;\n  font-size: 18px;\n}\n", ""]);
 
 // exports
 
@@ -51015,7 +51015,40 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_vue2_dropzone_dist_vue2Dropzone_min_css___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_vue2_dropzone_dist_vue2Dropzone_min_css__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_vuejs_datepicker__ = __webpack_require__(9);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_vuejs_datepicker_dist_locale__ = __webpack_require__(10);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_vue_badger_accordion__ = __webpack_require__(203);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -51116,7 +51149,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 
 
-
+// import { BadgerAccordion, BadgerAccordionItem } from 'vue-badger-accordion'
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     data: function data() {
@@ -51142,7 +51175,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
     components: {
         vueDropzone: __WEBPACK_IMPORTED_MODULE_0_vue2_dropzone___default.a,
-        Datepicker: __WEBPACK_IMPORTED_MODULE_2_vuejs_datepicker__["a" /* default */], BadgerAccordion: __WEBPACK_IMPORTED_MODULE_4_vue_badger_accordion__["a" /* BadgerAccordion */], BadgerAccordionItem: __WEBPACK_IMPORTED_MODULE_4_vue_badger_accordion__["b" /* BadgerAccordionItem */]
+        Datepicker: __WEBPACK_IMPORTED_MODULE_2_vuejs_datepicker__["a" /* default */]
     },
     mounted: function mounted() {
         this.getFolders();
@@ -51681,1144 +51714,16 @@ module.exports = function (css) {
 
 
 /***/ }),
-/* 203 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__src_BadgerAccordion__ = __webpack_require__(204);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__src_BadgerAccordion___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__src_BadgerAccordion__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__src_BadgerAccordionItem__ = __webpack_require__(208);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__src_BadgerAccordionItem___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__src_BadgerAccordionItem__);
-
-
-
-const BadgerAccordion = __WEBPACK_IMPORTED_MODULE_0__src_BadgerAccordion___default.a
-/* harmony export (immutable) */ __webpack_exports__["a"] = BadgerAccordion;
-
-const BadgerAccordionItem = __WEBPACK_IMPORTED_MODULE_1__src_BadgerAccordionItem___default.a
-/* harmony export (immutable) */ __webpack_exports__["b"] = BadgerAccordionItem;
-
-
-
-/***/ }),
-/* 204 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var disposed = false
-var normalizeComponent = __webpack_require__(1)
-/* script */
-var __vue_script__ = __webpack_require__(205)
-/* template */
-var __vue_template__ = __webpack_require__(207)
-/* template functional */
-var __vue_template_functional__ = false
-/* styles */
-var __vue_styles__ = null
-/* scopeId */
-var __vue_scopeId__ = null
-/* moduleIdentifier (server only) */
-var __vue_module_identifier__ = null
-var Component = normalizeComponent(
-  __vue_script__,
-  __vue_template__,
-  __vue_template_functional__,
-  __vue_styles__,
-  __vue_scopeId__,
-  __vue_module_identifier__
-)
-Component.options.__file = "node_modules/vue-badger-accordion/src/BadgerAccordion.vue"
-
-/* hot reload */
-if (false) {(function () {
-  var hotAPI = require("vue-hot-reload-api")
-  hotAPI.install(require("vue"), false)
-  if (!hotAPI.compatible) return
-  module.hot.accept()
-  if (!module.hot.data) {
-    hotAPI.createRecord("data-v-17205bd2", Component.options)
-  } else {
-    hotAPI.reload("data-v-17205bd2", Component.options)
-  }
-  module.hot.dispose(function (data) {
-    disposed = true
-  })
-})()}
-
-module.exports = Component.exports
-
-
-/***/ }),
-/* 205 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_badger_accordion__ = __webpack_require__(206);
-var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
-
-//
-//
-//
-//
-
-
-
-/* harmony default export */ __webpack_exports__["default"] = ({
-    name: 'BadgerAccordion',
-    props: {
-        options: {
-            type: Object,
-            default: function _default() {
-                return {};
-            }
-        },
-        icons: {
-            default: function _default() {
-                return { opened: '-', closed: '+' };
-            }
-        }
-    },
-    data: function data() {
-        return {
-            accordion: null,
-            itemsReady: false
-        };
-    },
-    created: function created() {
-        var _this = this;
-
-        // On child-item rendered initiate badger-accordion
-        this.$on('item:ready', function () {
-            _this.accordion = new __WEBPACK_IMPORTED_MODULE_0_badger_accordion__["a" /* default */](_this.$refs.badger, _this.options || {});
-        });
-    },
-
-
-    methods: {
-        init: function init() {
-            this.accordion.init();
-        },
-        getState: function getState() {
-            return this.accordion.getState();
-        },
-        open: function open() {
-            this.accordion.open();
-        },
-        close: function close() {
-            this.accordion.close();
-        },
-        togglePanel: function togglePanel() {
-            this.accordion.togglePanel();
-        },
-        openAll: function openAll() {
-            this.accordion.openAll();
-        },
-        closeAll: function closeAll() {
-            this.accordion.closeAll();
-        },
-        calculateAllPanelsHeight: function calculateAllPanelsHeight() {
-            this.accordion.calculateAllPanelsHeight();
-        },
-        calculatePanelHeight: function calculatePanelHeight() {
-            this.accordion.calculatePanelHeight();
-        }
-    },
-    computed: {
-        opened: function opened() {
-            if (this.accordion) {
-                return _typeof(this.accordion.states.find(function (item) {
-                    return item.state == 'open';
-                })) == 'object';
-            }
-            return false;
-        }
-    }
-});
-
-/***/ }),
-/* 206 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-function _classCallCheck(instance, Constructor) {
-  if (!(instance instanceof Constructor)) {
-    throw new TypeError("Cannot call a class as a function");
-  }
-}
-
-function _defineProperties(target, props) {
-  for (var i = 0; i < props.length; i++) {
-    var descriptor = props[i];
-    descriptor.enumerable = descriptor.enumerable || false;
-    descriptor.configurable = true;
-    if ("value" in descriptor) descriptor.writable = true;
-    Object.defineProperty(target, descriptor.key, descriptor);
-  }
-}
-
-function _createClass(Constructor, protoProps, staticProps) {
-  if (protoProps) _defineProperties(Constructor.prototype, protoProps);
-  if (staticProps) _defineProperties(Constructor, staticProps);
-  return Constructor;
-}
-
-function _extends() {
-  _extends = Object.assign || function (target) {
-    for (var i = 1; i < arguments.length; i++) {
-      var source = arguments[i];
-
-      for (var key in source) {
-        if (Object.prototype.hasOwnProperty.call(source, key)) {
-          target[key] = source[key];
-        }
-      }
-    }
-
-    return target;
-  };
-
-  return _extends.apply(this, arguments);
-}
-
-if (!Array.from) {
-  Array.from = function () {
-    var toStr = Object.prototype.toString;
-
-    var isCallable = function isCallable(fn) {
-      return typeof fn === 'function' || toStr.call(fn) === '[object Function]';
-    };
-
-    var toInteger = function toInteger(value) {
-      var number = Number(value);
-
-      if (isNaN(number)) {
-        return 0;
-      }
-
-      if (number === 0 || !isFinite(number)) {
-        return number;
-      }
-
-      return (number > 0 ? 1 : -1) * Math.floor(Math.abs(number));
-    };
-
-    var maxSafeInteger = Math.pow(2, 53) - 1;
-
-    var toLength = function toLength(value) {
-      var len = toInteger(value);
-      return Math.min(Math.max(len, 0), maxSafeInteger);
-    }; // The length property of the from method is 1.
-
-
-    return function from(arrayLike
-    /* , mapFn, thisArg */
-    ) {
-      // 1. Let C be the this value.
-      var C = this; // 2. Let items be ToObject(arrayLike).
-
-      var items = Object(arrayLike); // 3. ReturnIfAbrupt(items).
-
-      if (arrayLike == null) {
-        throw new TypeError('Array.from requires an array-like object - not null or undefined');
-      } // 4. If mapfn is undefined, then let mapping be false.
-
-
-      var mapFn = arguments.length > 1 ? arguments[1] : void undefined;
-      var T;
-
-      if (typeof mapFn !== 'undefined') {
-        // 5. else
-        // 5. a If IsCallable(mapfn) is false, throw a TypeError exception.
-        if (!isCallable(mapFn)) {
-          throw new TypeError('Array.from: when provided, the second argument must be a function');
-        } // 5. b. If thisArg was supplied, let T be thisArg; else let T be undefined.
-
-
-        if (arguments.length > 2) {
-          T = arguments[2];
-        }
-      } // 10. Let lenValue be Get(items, "length").
-      // 11. Let len be ToLength(lenValue).
-
-
-      var len = toLength(items.length); // 13. If IsConstructor(C) is true, then
-      // 13. a. Let A be the result of calling the [[Construct]] internal method
-      // of C with an argument list containing the single item len.
-      // 14. a. Else, Let A be ArrayCreate(len).
-
-      var A = isCallable(C) ? Object(new C(len)) : new Array(len); // 16. Let k be 0.
-
-      var k = 0; // 17. Repeat, while k < len… (also steps a - h)
-
-      var kValue;
-
-      while (k < len) {
-        kValue = items[k];
-
-        if (mapFn) {
-          A[k] = typeof T === 'undefined' ? mapFn(kValue, k) : mapFn.call(T, kValue, k);
-        } else {
-          A[k] = kValue;
-        }
-
-        k += 1;
-      } // 18. Let putStatus be Put(A, "length", len, true).
-
-
-      A.length = len; // 20. Return A.
-
-      return A;
-    };
-  }();
-}
-
-/*
-	By Osvaldas Valutis, www.osvaldas.info
-	Available for use under the MIT License
-*/
-
-/* eslint-disable no-unused-vars */
-(function (document, window) {
-  var el = document.body || document.documentElement,
-      s = el.style,
-      prefixAnimation = '',
-      prefixTransition = '';
-  if (s.WebkitAnimation == '') prefixAnimation = '-webkit-';
-  if (s.MozAnimation == '') prefixAnimation = '-moz-';
-  if (s.OAnimation == '') prefixAnimation = '-o-';
-  if (s.WebkitTransition == '') prefixTransition = '-webkit-';
-  if (s.MozTransition == '') prefixTransition = '-moz-';
-  if (s.OTransition == '') prefixTransition = '-o-';
-  Object.defineProperty(Object.prototype, 'onCSSAnimationEnd', {
-    value: function value(callback) {
-      var runOnce = function runOnce(e) {
-        callback();
-        e.target.removeEventListener(e.type, runOnce);
-      };
-
-      this.addEventListener('webkitAnimationEnd', runOnce);
-      this.addEventListener('mozAnimationEnd', runOnce);
-      this.addEventListener('oAnimationEnd', runOnce);
-      this.addEventListener('oanimationend', runOnce);
-      this.addEventListener('animationend', runOnce);
-      if (prefixAnimation == '' && !('animation' in s) || getComputedStyle(this)[prefixAnimation + 'animation-duration'] == '0s') callback();
-      return this;
-    },
-    enumerable: false,
-    writable: true
-  });
-  Object.defineProperty(Object.prototype, 'onCSSTransitionEnd', {
-    value: function value(callback) {
-      var runOnce = function runOnce(e) {
-        callback();
-        e.target.removeEventListener(e.type, runOnce);
-      };
-
-      this.addEventListener('webkitTransitionEnd', runOnce);
-      this.addEventListener('mozTransitionEnd', runOnce);
-      this.addEventListener('oTransitionEnd', runOnce);
-      this.addEventListener('transitionend', runOnce);
-      this.addEventListener('transitionend', runOnce);
-      if (prefixTransition == '' && !('transition' in s) || getComputedStyle(this)[prefixTransition + 'transition-duration'] == '0s') callback();
-      return this;
-    },
-    enumerable: false,
-    writable: true
-  });
-})(document, window, 0);
-
-/**
- *  ACCORDION
- *
- * A lightwight vanilla JS accordion with an exstensible API
- */
-// import uuid from 'uuid/v4';
-// const uuidV4 = uuid;
-
-/* eslint-disable no-unused-vars */
-/**
- * CONSTRUCTOR
- * Initializes the object
- */
-
-var BadgerAccordion =
-/*#__PURE__*/
-function () {
-  function BadgerAccordion(el, options) {
-    _classCallCheck(this, BadgerAccordion);
-
-    var container = typeof el === 'string' ? document.querySelector(el) : el; // If el is not defined
-
-    if (container == null) {
-      return;
-    }
-
-    var defaults = {
-      headerClass: '.js-badger-accordion-header',
-      panelClass: '.js-badger-accordion-panel',
-      panelInnerClass: '.js-badger-accordion-panel-inner',
-      hiddenClass: '-ba-is-hidden',
-      activeClass: '-ba-is-active',
-
-      get hidenClass() {
-        return this.hiddenClass;
-      },
-
-      initializedClass: 'badger-accordion--initialized',
-
-      get initalisedClass() {
-        return this.hiddenClass;
-      },
-
-      headerDataAttr: 'data-badger-accordion-header-id',
-      openMultiplePanels: false,
-      openHeadersOnLoad: [],
-      headerOpenLabel: 'Open accordion panel',
-      headerCloseLabel: 'Close accordion panel',
-      roles: true // toggleEl:            // If you want to use a different element to trigger the accordion
-
-    }; // Options
-
-    this.settings = _extends({}, defaults, options); // Deprecating `settings.hidenClass` but adding fallback for older versions
-
-    if (this.settings.hidenClass !== this.settings.hiddenClass) {
-      this.settings.hiddenClass = this.settings.hidenClass;
-    } // Setting getting elements
-
-
-    this.container = container;
-    this.headers = Array.from(this.container.querySelectorAll(this.settings.headerClass));
-    this.panels = Array.from(this.container.querySelectorAll(this.settings.panelClass));
-    this.toggleEl = this.settings.toggleEl !== undefined ? Array.from(this.container.querySelectorAll(this.settings.toggleEl)) : this.headers; // This is for managing state of the accordion. It by default sets
-    // all accordion panels to be closed
-
-    this.states = [].map.call(this.headers, function () {
-      return {
-        state: 'closed'
-      };
-    });
-    this.ids = [].map.call(this.headers, function () {
-      return {
-        id: Math.floor(Math.random() * 1000000 + 1)
-      };
-    }); // This is to ensure that once an open/close event has been fired
-    // another cannot start until the first event has finished.
-    // @TODO - get this working...
-
-    this.toggling = false; // Initiating the accordion
-
-    if (this.container) {
-      this.init();
-    } else {
-      /* eslint-disable no-console */
-      console.log('Something is wrong with you markup...');
-    }
-  }
-  /**
-   *  INIT
-   *
-   *  Initalises the accordion
-   */
-
-
-  _createClass(BadgerAccordion, [{
-    key: "init",
-    value: function init() {
-      // Sets up ID, aria attrs & data-attrs
-      this._setupAttributes(); // Setting up the inital view of the accordion
-
-
-      this._initalState(); // Setting the height of each panel
-
-
-      this.calculateAllPanelsHeight(); // Inserting data-attribute onto each `header`
-
-      this._insertDataAttrs(); // Adding listeners to headers
-
-
-      this._addListeners(); // Adds class to accordion for initalisation
-
-
-      this._finishInitialization();
-    }
-    /**
-     * CHECK ROLES ETTING
-     * @return {[boolean]}
-     * Checks roles setting for all roles or a single role.
-     * First checks if a `boolean` has been used to set all
-     * roles to either true or false. If the setting is an
-     * object it will only set the attribute where each
-     * attribute has explicitly been set as true, eg;
-     * ```
-     * roles: {
-     *     region: true
-     * }
-     * ```
-     */
-
-  }, {
-    key: "_setRole",
-    value: function _setRole(role, el) {
-      if (typeof this.settings.roles === 'boolean' && this.settings.roles || this.settings.roles[role] !== undefined && this.settings.roles[role] !== false) {
-        el.setAttribute('role', role);
-      }
-    }
-    /**
-     *  INSERT DATA ATTRS
-     *
-     *  Updates state object for inital loading of the accordion
-     */
-
-  }, {
-    key: "_initalState",
-    value: function _initalState() {
-      // Sets state object as per `this.settings.openHeadersOnLoad`
-      var headersToOpen = this.settings.openHeadersOnLoad;
-
-      if (headersToOpen.length) {
-        this._openHeadersOnLoad(headersToOpen);
-      } // Render DOM as per the updates `this.states` object
-
-
-      this._renderDom();
-    }
-    /**
-     *  INSERT DATA ATTRS
-     *
-     *  Adds `headerDataAttr` to all headers
-     */
-
-  }, {
-    key: "_insertDataAttrs",
-    value: function _insertDataAttrs() {
-      var _this2 = this;
-
-      this.headers.forEach(function (header, index) {
-        header.setAttribute(_this2.settings.headerDataAttr, index);
-      });
-    }
-    /**
-     *  FINISH INITALISATION
-     *
-     *  Adds in `initializedClass` to accordion
-     */
-
-  }, {
-    key: "_finishInitialization",
-    value: function _finishInitialization() {
-      this.container.classList.add(this.settings.initializedClass);
-
-      this._setRole('presentation', this.container);
-    }
-    /**
-     *  ADD LISTENERS
-     *
-     *  Adds click event to each header
-     */
-
-  }, {
-    key: "_addListeners",
-    value: function _addListeners() {
-      // So we can reference the badger-accordion object inside out eventListener
-      var _this = this; // Adding click event to accordion
-
-
-      this.headers.forEach(function (header, index) {
-        header.addEventListener('click', function () {
-          // Getting the target of the click
-          // const clickedEl = event.target;
-          _this.handleClick(header, index);
-        });
-      });
-    }
-    /**
-     *  HANDLE CLICK
-     *
-     *  Handles click and checks if click was on an header element
-     *  @param {object} targetHeader - The header node you want to open
-     */
-
-  }, {
-    key: "handleClick",
-    value: function handleClick(targetHeader, headerIndex) {
-      // Removing current `.` from `this.settings.headerClass` class so it can
-      // be checked against the `targetHeader` classList
-      var targetHeaderClass = this.settings.headerClass.substr(1); // Checking that the thing that was clicked on was the accordions header
-
-      if (targetHeader.classList.contains(targetHeaderClass) && this.toggling === false) {
-        this.toggling = true; // Updating states
-
-        this.setState(headerIndex); // Render DOM as per the updates `this.states` object
-
-        this._renderDom();
-      }
-    }
-    /**
-     *  SET STATES
-     *
-     *  Sets the state for all headers. The 'target header' will have its state toggeled
-     *  @param {object} targetHeaderId - The header node you want to open
-     */
-
-  }, {
-    key: "setState",
-    value: function setState(targetHeaderId) {
-      var _this3 = this;
-
-      var states = this.getState(); // If `this.settings.openMultiplePanels` is false we need to ensure only one panel
-      // be can open at once. If it is false then all panels state APART from the one that
-      // has just been clicked needs to be set to 'closed'.
-
-      if (!this.settings.openMultiplePanels) {
-        states.filter(function (state, index) {
-          if (index != targetHeaderId) {
-            state.state = 'closed';
-          }
-        });
-      } // Toggles the state value of the target header. This was `array.find` but `find`
-      // isnt supported in IE11
-
-
-      states.filter(function (state, index) {
-        if (index == targetHeaderId) {
-          var newState = _this3.toggleState(state.state);
-
-          return state.state = newState;
-        }
-      });
-    }
-    /**
-     *  RENDER DOM
-     *
-     *  Renders the accordion in the DOM using the `this.states` object
-     */
-
-  }, {
-    key: "_renderDom",
-    value: function _renderDom() {
-      var _this4 = this;
-
-      // Filter through all open headers and open them
-      this.states.filter(function (state, index) {
-        if (state.state === 'open') {
-          // Opening the current panel but _NOT_ updating the state
-          _this4.open(index, false);
-        }
-      }); // Filter through all closed headers and closes them
-
-      this.states.filter(function (state, index) {
-        if (state.state === 'closed') {
-          // Closing the current panel but _NOT_ updating the state
-          _this4.close(index, false);
-        }
-      });
-    }
-    /**
-     *  OPEN
-     *
-     *  Closes a specific panel
-     *  @param {integer} headerIndex - The header node index you want to open
-     */
-
-  }, {
-    key: "open",
-    value: function open(headerIndex) {
-      var setState = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : true;
-
-      // 1. If being fired directly the state needs to be updated.
-      if (setState) {
-        this.setState(headerIndex);
-      }
-
-      this.togglePanel('open', headerIndex);
-    }
-    /**
-     *  CLOSE
-     *
-     *  Closes a specific panel
-     *  @param {integer} headerIndex - The header node index you want to close
-     */
-
-  }, {
-    key: "close",
-    value: function close(headerIndex) {
-      var setState = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : true;
-
-      // 1. If being fired directly the state needs to be updated.
-      if (setState) {
-        this.setState(headerIndex);
-      }
-
-      this.togglePanel('closed', headerIndex);
-    }
-    /**
-     *  OPEN ALL
-     *
-     *  Opens all panels
-     */
-
-  }, {
-    key: "openAll",
-    value: function openAll() {
-      var _this5 = this;
-
-      this.headers.forEach(function (header, headerIndex) {
-        _this5.togglePanel('open', headerIndex);
-      });
-    }
-    /**
-     *  CLOSE ALL
-     *
-     *  Closes all panels
-     */
-
-  }, {
-    key: "closeAll",
-    value: function closeAll() {
-      var _this6 = this;
-
-      this.headers.forEach(function (header, headerIndex) {
-        _this6.togglePanel('closed', headerIndex);
-      });
-    }
-    /**
-     *  GET STATE
-     *
-     *  Getting state of headers. By default gets state of all headers
-     *  @param {string} animationAction - The animation you want to invoke
-     *  @param {integer} headerIndex    - The header node index you want to animate
-     */
-
-  }, {
-    key: "togglePanel",
-    value: function togglePanel(animationAction, headerIndex) {
-      var _this7 = this;
-
-      if (animationAction !== undefined && headerIndex !== undefined) {
-        if (animationAction === 'closed') {
-          // 1. Getting ID of panel that we want to close
-          var header = this.headers[headerIndex];
-          var panelToClose = this.panels[headerIndex]; // 2. Closeing panel
-
-          panelToClose.classList.add(this.settings.hiddenClass); // 3. Removing active classes
-
-          panelToClose.classList.remove(this.settings.activeClass);
-          header.classList.remove(this.settings.activeClass); // 4. Set aria attrs
-
-          header.setAttribute('aria-expanded', false);
-          header.setAttribute('aria-label', this.settings.headerOpenLabel); // 5. Resetting toggling so a new event can be fired
-
-          panelToClose.onCSSTransitionEnd(function () {
-            return _this7.toggling = false;
-          });
-        } else if (animationAction === 'open') {
-          // 1. Getting ID of panel that we want to open
-          var _header = this.headers[headerIndex];
-          var panelToOpen = this.panels[headerIndex]; // 2. Opening panel
-
-          panelToOpen.classList.remove(this.settings.hiddenClass); // 3. Adding active classes
-
-          panelToOpen.classList.add(this.settings.activeClass);
-
-          _header.classList.add(this.settings.activeClass); // 4. Set aria attrs
-
-
-          _header.setAttribute('aria-expanded', true);
-
-          _header.setAttribute('aria-label', this.settings.headerCloseLabel); // 5. Resetting toggling so a new event can be fired
-
-
-          panelToOpen.onCSSTransitionEnd(function () {
-            return _this7.toggling = false;
-          });
-        }
-      }
-    } // @TODO - is this needed anymore?
-    // checkState(headerId) {
-    //     let state = this.states[headerId].state;
-    //
-    //     if(state === 'closed') {
-    //         return state;
-    //     } else if(state === 'open') {
-    //         return state;
-    //     }
-    // }
-
-    /**
-     *  GET STATE
-     *
-     *  Getting state of headers. By default gets state of all headers
-     *  @param {array} headerIds - Id/'s of the headers you want to check
-     */
-
-  }, {
-    key: "getState",
-    value: function getState() {
-      var _this8 = this;
-
-      var headerIds = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : [];
-
-      if (headerIds.length && Array.isArray(headerIds)) {
-        var states = headerIds.map(function (header) {
-          return _this8.states[header];
-        });
-        return states;
-      } else {
-        return this.states;
-      }
-    }
-    /**
-     *  TOGGLE STATE
-     *
-     *  Toggling the state value
-     *  @param {string} currentState - Current state value for a header
-     */
-
-  }, {
-    key: "toggleState",
-    value: function toggleState(currentState) {
-      if (currentState !== undefined) {
-        return currentState === 'closed' ? 'open' : 'closed';
-      }
-    }
-    /**
-     *  HEADERS TO OPEN
-     *
-     *  Setting which headers should be open when accordion is initalised
-     *  @param {array} headersToOpen - Array of ID's for the headers to be open
-     */
-
-  }, {
-    key: "_openHeadersOnLoad",
-    value: function _openHeadersOnLoad() {
-      var _this9 = this;
-
-      var headersToOpen = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : [];
-
-      if (headersToOpen.length && Array.isArray(headersToOpen)) {
-        var headers = headersToOpen.filter(function (header) {
-          return header != undefined;
-        });
-        headers.forEach(function (header) {
-          _this9.setState(header);
-        });
-      }
-    }
-    /**
-     *  SET UP ATTRIBUTES
-     *
-     *  Initalises accordion attribute methods
-     */
-
-  }, {
-    key: "_setupAttributes",
-    value: function _setupAttributes() {
-      // Adding ID & aria-controls
-      this._setupHeaders(); // Adding ID & aria-labeledby
-
-
-      this._setupPanels(); // Inserting data-attribute onto each `header`
-
-
-      this._insertDataAttrs();
-    }
-    /**
-     *  SET PANEL HEIGHT - ** DEPRICATED **
-     *
-     *  Depreicated as this method is becoming public and
-     *  I want to name it something that lets devs know
-     *  it's not just for using inside the `init()` method.
-     */
-
-  }, {
-    key: "_setPanelHeight",
-    value: function _setPanelHeight() {
-      this.calculateAllPanelsHeight();
-    }
-    /**
-     *  CALCULATE PANEL HEIGHT
-     *
-     *  Setting height for panels using pannels inner element
-     */
-
-  }, {
-    key: "calculatePanelHeight",
-    value: function calculatePanelHeight(panel) {
-      var panelInner = panel.querySelector(this.settings.panelInnerClass);
-      var activeHeight = panelInner.offsetHeight;
-      return panel.style.maxHeight = "".concat(activeHeight, "px");
-    }
-    /**
-     *  CALCULATE PANEL HEIGHT
-     *
-     *  Setting height for panels using pannels inner element
-     */
-
-  }, {
-    key: "calculateAllPanelsHeight",
-    value: function calculateAllPanelsHeight() {
-      var _this10 = this;
-
-      this.panels.forEach(function (panel) {
-        _this10.calculatePanelHeight(panel);
-      });
-    }
-    /**
-     * SET UP HEADERS
-     */
-
-  }, {
-    key: "_setupHeaders",
-    value: function _setupHeaders() {
-      var _this11 = this;
-
-      this.headers.forEach(function (header, index) {
-        header.setAttribute('id', "badger-accordion-header-".concat(_this11.ids[index].id));
-        header.setAttribute('aria-controls', "badger-accordion-panel-".concat(_this11.ids[index].id));
-        header.setAttribute('aria-label', _this11.settings.headerOpenLabel);
-      });
-    }
-    /**
-     * SET UP PANELS
-     */
-
-  }, {
-    key: "_setupPanels",
-    value: function _setupPanels() {
-      var _this12 = this;
-
-      this.panels.forEach(function (panel, index) {
-        panel.setAttribute('id', "badger-accordion-panel-".concat(_this12.ids[index].id));
-        panel.setAttribute('aria-labeledby', "badger-accordion-header-".concat(_this12.ids[index].id));
-
-        if (_this12.settings.roles === true || _this12.settings.roles.region !== false) {
-          _this12._setRole('region', panel);
-        }
-      });
-    }
-  }]);
-
-  return BadgerAccordion;
-}(); // Export
-
-/* harmony default export */ __webpack_exports__["a"] = (BadgerAccordion);
-//# sourceMappingURL=badger-accordion.esm.js.map
-
-
-/***/ }),
-/* 207 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var render = function() {
-  var _vm = this
-  var _h = _vm.$createElement
-  var _c = _vm._self._c || _h
-  return _c(
-    "div",
-    { ref: "badger", staticClass: "component-badger-accordion" },
-    [_vm._t("default")],
-    2
-  )
-}
-var staticRenderFns = []
-render._withStripped = true
-module.exports = { render: render, staticRenderFns: staticRenderFns }
-if (false) {
-  module.hot.accept()
-  if (module.hot.data) {
-    require("vue-hot-reload-api")      .rerender("data-v-17205bd2", module.exports)
-  }
-}
-
-/***/ }),
-/* 208 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var disposed = false
-function injectStyle (ssrContext) {
-  if (disposed) return
-  __webpack_require__(209)
-}
-var normalizeComponent = __webpack_require__(1)
-/* script */
-var __vue_script__ = __webpack_require__(211)
-/* template */
-var __vue_template__ = __webpack_require__(212)
-/* template functional */
-var __vue_template_functional__ = false
-/* styles */
-var __vue_styles__ = injectStyle
-/* scopeId */
-var __vue_scopeId__ = null
-/* moduleIdentifier (server only) */
-var __vue_module_identifier__ = null
-var Component = normalizeComponent(
-  __vue_script__,
-  __vue_template__,
-  __vue_template_functional__,
-  __vue_styles__,
-  __vue_scopeId__,
-  __vue_module_identifier__
-)
-Component.options.__file = "node_modules/vue-badger-accordion/src/BadgerAccordionItem.vue"
-
-/* hot reload */
-if (false) {(function () {
-  var hotAPI = require("vue-hot-reload-api")
-  hotAPI.install(require("vue"), false)
-  if (!hotAPI.compatible) return
-  module.hot.accept()
-  if (!module.hot.data) {
-    hotAPI.createRecord("data-v-25a8184a", Component.options)
-  } else {
-    hotAPI.reload("data-v-25a8184a", Component.options)
-  }
-  module.hot.dispose(function (data) {
-    disposed = true
-  })
-})()}
-
-module.exports = Component.exports
-
-
-/***/ }),
-/* 209 */
-/***/ (function(module, exports, __webpack_require__) {
-
-// style-loader: Adds some css to the DOM by adding a <style> tag
-
-// load the styles
-var content = __webpack_require__(210);
-if(typeof content === 'string') content = [[module.i, content, '']];
-if(content.locals) module.exports = content.locals;
-// add the styles to the DOM
-var update = __webpack_require__(3)("1e5b7c71", content, false, {});
-// Hot Module Replacement
-if(false) {
- // When the styles change, update the <style> tags
- if(!content.locals) {
-   module.hot.accept("!!../../css-loader/index.js!../../vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-25a8184a\",\"scoped\":false,\"hasInlineConfig\":true}!../../sass-loader/lib/loader.js!../../vue-loader/lib/selector.js?type=styles&index=0!./BadgerAccordionItem.vue", function() {
-     var newContent = require("!!../../css-loader/index.js!../../vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-25a8184a\",\"scoped\":false,\"hasInlineConfig\":true}!../../sass-loader/lib/loader.js!../../vue-loader/lib/selector.js?type=styles&index=0!./BadgerAccordionItem.vue");
-     if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
-     update(newContent);
-   });
- }
- // When the module is disposed, remove the <style> tags
- module.hot.dispose(function() { update(); });
-}
-
-/***/ }),
-/* 210 */
-/***/ (function(module, exports, __webpack_require__) {
-
-exports = module.exports = __webpack_require__(2)(false);
-// imports
-
-
-// module
-exports.push([module.i, "\n.badger-accordion__panel {\n  max-height: 75vh;\n  overflow: hidden;\n}\n.badger-accordion__panel.-ba-is-hidden {\n    max-height: 0 !important;\n}\n.badger-accordion--initalised .badger-accordion__panel {\n  -webkit-transition: max-height ease-in-out 0.2s;\n  transition: max-height ease-in-out 0.2s;\n}\n.badger-accordion__header .js-badger-accordion-header {\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-box-align: center;\n      -ms-flex-align: center;\n          align-items: center;\n}\n.badger-accordion__header .js-badger-accordion-header .badger-accordion-toggle {\n    -webkit-box-flex: 0;\n        -ms-flex: 0 0 90%;\n            flex: 0 0 90%;\n    cursor: pointer;\n}\n.badger-accordion__header .js-badger-accordion-header .badger-toggle-indicator {\n    -webkit-box-flex: 0;\n        -ms-flex: 0 0 10%;\n            flex: 0 0 10%;\n    display: -webkit-box;\n    display: -ms-flexbox;\n    display: flex;\n    -webkit-box-align: center;\n        -ms-flex-align: center;\n            align-items: center;\n    -webkit-box-pack: end;\n        -ms-flex-pack: end;\n            justify-content: flex-end;\n    cursor: pointer;\n}\n", ""]);
-
-// exports
-
-
-/***/ }),
-/* 211 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-
-/* harmony default export */ __webpack_exports__["default"] = ({
-    name: 'BadgerAccordionItem',
-    mounted: function mounted() {
-        // If item rendered emit readyness to parent
-        this.$parent.$emit('item:ready');
-    },
-
-    computed: {
-        iconOpened: function iconOpened() {
-            return this.$parent.icons ? this.$parent.icons.opened : '';
-        },
-        iconClosed: function iconClosed() {
-            return this.$parent.icons ? this.$parent.icons.closed : '';
-        },
-        icon: function icon() {
-            return this.$parent.opened ? this.iconOpened : this.iconClosed;
-        }
-    }
-});
-
-/***/ }),
-/* 212 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var render = function() {
-  var _vm = this
-  var _h = _vm.$createElement
-  var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "badger-accordion-item" }, [
-    _c("div", { staticClass: "badger-accordion__header" }, [
-      _c("div", { staticClass: "js-badger-accordion-header" }, [
-        _c(
-          "div",
-          { staticClass: "badger-accordion-toggle" },
-          [_vm._t("header", [_vm._v("Collapse-Title")])],
-          2
-        ),
-        _vm._v(" "),
-        _c("span", {
-          staticClass: "badger-toggle-indicator",
-          domProps: { innerHTML: _vm._s(_vm.icon) }
-        })
-      ])
-    ]),
-    _vm._v(" "),
-    _c(
-      "div",
-      { staticClass: "badger-accordion__panel js-badger-accordion-panel" },
-      [
-        _c(
-          "div",
-          { staticClass: "js-badger-accordion-panel-inner" },
-          [_vm._t("content")],
-          2
-        )
-      ]
-    )
-  ])
-}
-var staticRenderFns = []
-render._withStripped = true
-module.exports = { render: render, staticRenderFns: staticRenderFns }
-if (false) {
-  module.hot.accept()
-  if (module.hot.data) {
-    require("vue-hot-reload-api")      .rerender("data-v-25a8184a", module.exports)
-  }
-}
-
-/***/ }),
+/* 203 */,
+/* 204 */,
+/* 205 */,
+/* 206 */,
+/* 207 */,
+/* 208 */,
+/* 209 */,
+/* 210 */,
+/* 211 */,
+/* 212 */,
 /* 213 */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -52917,192 +51822,75 @@ var render = function() {
                 ])
               ]),
               _vm._v(" "),
-              _vm.folders.length
-                ? _c(
-                    "div",
-                    { staticClass: "col-md-12 mp-5 accordion-wrapper" },
-                    [
+              _c("div", { staticClass: "story-text" }, [
+                _vm._v("История загрузок:")
+              ]),
+              _vm._v(" "),
+              _c("table", { staticClass: "table table-hover" }, [
+                _c("tbody", [
+                  _c("tr", [
+                    _c("td", [_vm._v("{{}} фото ")]),
+                    _vm._v(" "),
+                    _c("td", [_vm._v("Дата съёмки {{}}")]),
+                    _vm._v(" "),
+                    _c("td", [_vm._v("10 октября 2019")]),
+                    _vm._v(" "),
+                    _c("td", [
                       _c(
-                        "badger-accordion",
-                        _vm._l(_vm.folders, function(folder) {
-                          return _c(
-                            "badger-accordion-item",
-                            { key: "folder-" + folder.id },
-                            [
-                              _c("template", { slot: "header" }, [
-                                _c("a", [_vm._v(_vm._s(folder.name))])
-                              ]),
-                              _vm._v(" "),
-                              folder.order_uploads
-                                ? _c("template", { slot: "content" }, [
-                                    _c(
-                                      "div",
-                                      { staticClass: "collapse show" },
-                                      [
-                                        _c(
-                                          "div",
-                                          { staticClass: "card-body" },
-                                          [
-                                            _c("div", { staticClass: "row" }, [
-                                              folder.order_uploads.filter(
-                                                function(row) {
-                                                  return row.type === "photo"
-                                                }
-                                              ).length
-                                                ? _c(
-                                                    "div",
-                                                    { staticClass: "col-md-6" },
-                                                    [
-                                                      _c("h5", [
-                                                        _vm._v("Фото")
-                                                      ]),
-                                                      _vm._v(" "),
-                                                      _c(
-                                                        "ul",
-                                                        {
-                                                          staticClass:
-                                                            "list-group"
-                                                        },
-                                                        _vm._l(
-                                                          folder.order_uploads.filter(
-                                                            function(row) {
-                                                              return (
-                                                                row.type ===
-                                                                "photo"
-                                                              )
-                                                            }
-                                                          ),
-                                                          function(upload) {
-                                                            return _c(
-                                                              "li",
-                                                              {
-                                                                key:
-                                                                  "upload-" +
-                                                                  upload.id,
-                                                                staticClass:
-                                                                  "list-group-item"
-                                                              },
-                                                              [
-                                                                _c(
-                                                                  "a",
-                                                                  {
-                                                                    attrs: {
-                                                                      href:
-                                                                        _vm.currentPath +
-                                                                        "/storage/" +
-                                                                        folder.name +
-                                                                        "/photos/" +
-                                                                        upload.path,
-                                                                      target:
-                                                                        "_blank"
-                                                                    }
-                                                                  },
-                                                                  [
-                                                                    _vm._v(
-                                                                      "\n                                                    " +
-                                                                        _vm._s(
-                                                                          upload.path
-                                                                        ) +
-                                                                        "\n                                                "
-                                                                    )
-                                                                  ]
-                                                                )
-                                                              ]
-                                                            )
-                                                          }
-                                                        )
-                                                      )
-                                                    ]
-                                                  )
-                                                : _vm._e(),
-                                              _vm._v(" "),
-                                              folder.order_uploads.filter(
-                                                function(row) {
-                                                  return row.type === "doc"
-                                                }
-                                              ).length
-                                                ? _c(
-                                                    "div",
-                                                    { staticClass: "col-md-6" },
-                                                    [
-                                                      _c("h5", [
-                                                        _vm._v("Документы")
-                                                      ]),
-                                                      _vm._v(" "),
-                                                      _c(
-                                                        "ul",
-                                                        {
-                                                          staticClass:
-                                                            "list-group"
-                                                        },
-                                                        _vm._l(
-                                                          folder.order_uploads.filter(
-                                                            function(row) {
-                                                              return (
-                                                                row.type ===
-                                                                "doc"
-                                                              )
-                                                            }
-                                                          ),
-                                                          function(upload) {
-                                                            return _c(
-                                                              "li",
-                                                              {
-                                                                key:
-                                                                  "upload-" +
-                                                                  upload.id,
-                                                                staticClass:
-                                                                  "list-group-item"
-                                                              },
-                                                              [
-                                                                _c(
-                                                                  "a",
-                                                                  {
-                                                                    attrs: {
-                                                                      href:
-                                                                        _vm.currentPath +
-                                                                        "/storage/" +
-                                                                        folder.name +
-                                                                        "/docs/" +
-                                                                        upload.path,
-                                                                      target:
-                                                                        "_blank"
-                                                                    }
-                                                                  },
-                                                                  [
-                                                                    _vm._v(
-                                                                      "\n                                                    " +
-                                                                        _vm._s(
-                                                                          upload.path
-                                                                        ) +
-                                                                        "\n                                                "
-                                                                    )
-                                                                  ]
-                                                                )
-                                                              ]
-                                                            )
-                                                          }
-                                                        )
-                                                      )
-                                                    ]
-                                                  )
-                                                : _vm._e()
-                                            ])
-                                          ]
-                                        )
-                                      ]
-                                    )
-                                  ])
-                                : _vm._e()
-                            ],
-                            2
-                          )
-                        })
+                        "button",
+                        {
+                          staticClass:
+                            "add-button add-button--remove d-flex align-items-center",
+                          attrs: { title: "Удалить" },
+                          on: { click: function($event) {} }
+                        },
+                        [
+                          _c("img", {
+                            attrs: { src: "/img/del.svg", alt: "add-button" }
+                          }),
+                          _vm._v(" "),
+                          _c("div", { staticClass: "remove-materials ml-1" }, [
+                            _vm._v(
+                              "\n                          Удалить\n                        "
+                            )
+                          ])
+                        ]
                       )
-                    ],
-                    1
-                  )
-                : _vm._e()
+                    ])
+                  ]),
+                  _vm._v(" "),
+                  _c("tr", [
+                    _c("td", [_vm._v("{{}} фото ")]),
+                    _vm._v(" "),
+                    _c("td", [_vm._v("Дата съёмки {{}}")]),
+                    _vm._v(" "),
+                    _c("td", [_vm._v("10 октября 2019")]),
+                    _vm._v(" "),
+                    _c("td", [
+                      _c(
+                        "button",
+                        {
+                          staticClass:
+                            "add-button add-button--remove d-flex align-items-center",
+                          attrs: { title: "Удалить" },
+                          on: { click: function($event) {} }
+                        },
+                        [
+                          _c("img", {
+                            attrs: { src: "/img/del.svg", alt: "add-button" }
+                          }),
+                          _vm._v(" "),
+                          _c("div", { staticClass: "remove-materials ml-1" }, [
+                            _vm._v(
+                              "\n                          Удалить\n                        "
+                            )
+                          ])
+                        ]
+                      )
+                    ])
+                  ])
+                ])
+              ])
             ])
           ],
           1

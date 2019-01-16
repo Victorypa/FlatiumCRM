@@ -48,7 +48,7 @@
               </div>
             </div>
 
-            <div class="col-md-12 mp-5 accordion-wrapper" v-if="folders.length">
+            <!-- <div class="col-md-12 mp-5 accordion-wrapper" v-if="folders.length">
                 <badger-accordion>
                     <badger-accordion-item v-for="folder in folders" :key="'folder-' + folder.id">
                         <template slot="header">
@@ -85,7 +85,41 @@
                         </template>
                     </badger-accordion-item>
                 </badger-accordion>
-            </div>
+            </div> -->
+
+            <div class="story-text">История загрузок:</div>
+
+
+            <table class="table table-hover">
+              <tbody>
+                <tr>
+                  <td>{{}} фото </td>
+                  <td>Дата съёмки {{}}</td>
+                  <td>10 октября 2019</td>
+                  <td>
+                    <button @click="" class="add-button add-button--remove d-flex align-items-center" title="Удалить">
+                          <img src="/img/del.svg" alt="add-button">
+                          <div class="remove-materials ml-1">
+                            Удалить
+                          </div>
+                    </button>
+                  </td>
+                </tr>
+                <tr>
+                  <td>{{}} фото </td>
+                  <td>Дата съёмки {{}}</td>
+                  <td>10 октября 2019</td>
+                  <td>
+                    <button @click="" class="add-button add-button--remove d-flex align-items-center" title="Удалить">
+                          <img src="/img/del.svg" alt="add-button">
+                          <div class="remove-materials ml-1">
+                            Удалить
+                          </div>
+                    </button>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
           </div>
         </div>
       </div>
@@ -98,7 +132,7 @@
     import 'vue2-dropzone/dist/vue2Dropzone.min.css'
     import Datepicker from "vuejs-datepicker"
     import { ru } from "vuejs-datepicker/dist/locale"
-    import { BadgerAccordion, BadgerAccordionItem } from 'vue-badger-accordion'
+    // import { BadgerAccordion, BadgerAccordionItem } from 'vue-badger-accordion'
 
     export default {
         data () {
@@ -123,7 +157,7 @@
 
         components: {
             vueDropzone: vue2Dropzone,
-            Datepicker, BadgerAccordion, BadgerAccordionItem
+            Datepicker
         },
         mounted () {
             this.getFolders()
@@ -218,6 +252,46 @@ border-radius: 4px;
 
 .accordion-wrapper {
   padding: 0 30px;
+}
+
+
+.add-button {
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  &:focus {
+    outline: none;
+  }
+  img {
+    width: 35px;
+    border-radius: 50%;
+    &:hover {
+      box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
+    }
+  }
+  &--remove {
+    color: #ccc;
+    &:hover {
+      color: #00A4D1;
+    }
+    img {
+      width: 15px;
+    }
+  }
+}
+
+td {
+  &:first-child {
+    padding-left: 30px;
+  }
+}
+
+.story-text {
+  padding-left: 30px;
+  margin-top: 30px;
+  color:  #00A4D1;
+  font-weight: bold;
+  font-size: 18px;
 }
 
 </style>
