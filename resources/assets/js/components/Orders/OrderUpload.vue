@@ -1,19 +1,19 @@
 <template>
     <div>
       <basic-header></basic-header>
-      <div class="container-fluid">
+      <div class="container-fluid px-0">
         <div class="row">
           <navigation></navigation>
-          <div class="col-md-10">
+          <div class="col-md-10 px-0">
             <div class="create__fixed-top col-10 shadow-light">
               <div class="row align-items-center ">
                 <div class="col-md-8">
-                  <h4>Загрузить файлов</h4>
+                  <h4>Загрузить файл</h4>
                 </div>
                 <div class="col-md-4 text-right d-flex">
                     <button v-if="chosenDate"
                             type="button"
-                            class="primary-button col-6"
+                            class="primary-button col-6 ml-auto"
                             @click.prevent="uploadFiles()"
                             >
                         Сохранить
@@ -48,7 +48,7 @@
               </div>
             </div>
 
-            <div class="col-md-12 mp-5" v-if="folders.length">
+            <div class="col-md-12 mp-5 accordion-wrapper" v-if="folders.length">
                 <badger-accordion>
                     <badger-accordion-item v-for="folder in folders" :key="'folder-' + folder.id">
                         <template slot="header">
@@ -153,6 +153,21 @@
 </script>
 
 <style lang="scss" scoped>
+
+.container-fluid {
+	&.px-0 {
+		.row {
+			margin-left: 0;
+			margin-right: 0;
+		}
+	}
+}
+
+.vue-dropzone {
+  box-shadow: 0 1px 10px rgba(0, 0, 0, 0.1), 0 1px 4px rgba(0, 0, 0, 0.1);
+border-radius: 4px;
+}
+
 .dropzone-custom-content {
   position: absolute;
   top: 50%;
@@ -197,6 +212,11 @@
 
 .h-200 {
   height: 200px;
+}
+
+
+.accordion-wrapper {
+  padding: 0 30px;
 }
 
 </style>

@@ -50998,7 +50998,7 @@ exports = module.exports = __webpack_require__(2)(false);
 
 
 // module
-exports.push([module.i, "\n.dropzone-custom-content[data-v-0811aa9c] {\n  position: absolute;\n  top: 50%;\n  left: 50%;\n  -webkit-transform: translate(-50%, -50%);\n          transform: translate(-50%, -50%);\n  text-align: center;\n}\n.dropzone-custom-title[data-v-0811aa9c] {\n  margin-top: 0;\n  color: #00b782;\n}\n.subtitle[data-v-0811aa9c] {\n  color: #314b5f;\n}\n.mp-10[data-v-0811aa9c] {\n  margin-top: 100px;\n}\n.mp-5[data-v-0811aa9c] {\n  margin-top: 50px;\n}\n.badger-accordion-item[data-v-0811aa9c] {\n  -webkit-box-shadow: 0 1px 10px rgba(0, 0, 0, 0.1), 0 1px 4px rgba(0, 0, 0, 0.1);\n          box-shadow: 0 1px 10px rgba(0, 0, 0, 0.1), 0 1px 4px rgba(0, 0, 0, 0.1);\n  border-radius: 4px;\n  padding: 15px;\n}\n.badger-accordion-item[data-v-0811aa9c]:hover {\n    background-color: #00A4D1;\n}\n.js-badger-accordion-header .-ba-is-active[data-v-0811aa9c]:hover {\n  background-color: #red;\n}\n.h-200[data-v-0811aa9c] {\n  height: 200px;\n}\n", ""]);
+exports.push([module.i, "\n.container-fluid.px-0 .row[data-v-0811aa9c] {\n  margin-left: 0;\n  margin-right: 0;\n}\n.vue-dropzone[data-v-0811aa9c] {\n  -webkit-box-shadow: 0 1px 10px rgba(0, 0, 0, 0.1), 0 1px 4px rgba(0, 0, 0, 0.1);\n          box-shadow: 0 1px 10px rgba(0, 0, 0, 0.1), 0 1px 4px rgba(0, 0, 0, 0.1);\n  border-radius: 4px;\n}\n.dropzone-custom-content[data-v-0811aa9c] {\n  position: absolute;\n  top: 50%;\n  left: 50%;\n  -webkit-transform: translate(-50%, -50%);\n          transform: translate(-50%, -50%);\n  text-align: center;\n}\n.dropzone-custom-title[data-v-0811aa9c] {\n  margin-top: 0;\n  color: #00b782;\n}\n.subtitle[data-v-0811aa9c] {\n  color: #314b5f;\n}\n.mp-10[data-v-0811aa9c] {\n  margin-top: 100px;\n}\n.mp-5[data-v-0811aa9c] {\n  margin-top: 50px;\n}\n.badger-accordion-item[data-v-0811aa9c] {\n  -webkit-box-shadow: 0 1px 10px rgba(0, 0, 0, 0.1), 0 1px 4px rgba(0, 0, 0, 0.1);\n          box-shadow: 0 1px 10px rgba(0, 0, 0, 0.1), 0 1px 4px rgba(0, 0, 0, 0.1);\n  border-radius: 4px;\n  padding: 15px;\n}\n.badger-accordion-item[data-v-0811aa9c]:hover {\n    background-color: #00A4D1;\n}\n.js-badger-accordion-header .-ba-is-active[data-v-0811aa9c]:hover {\n  background-color: #red;\n}\n.h-200[data-v-0811aa9c] {\n  height: 200px;\n}\n.accordion-wrapper[data-v-0811aa9c] {\n  padding: 0 30px;\n}\n", ""]);
 
 // exports
 
@@ -52830,14 +52830,14 @@ var render = function() {
     [
       _c("basic-header"),
       _vm._v(" "),
-      _c("div", { staticClass: "container-fluid" }, [
+      _c("div", { staticClass: "container-fluid px-0" }, [
         _c(
           "div",
           { staticClass: "row" },
           [
             _c("navigation"),
             _vm._v(" "),
-            _c("div", { staticClass: "col-md-10" }, [
+            _c("div", { staticClass: "col-md-10 px-0" }, [
               _c(
                 "div",
                 { staticClass: "create__fixed-top col-10 shadow-light" },
@@ -52850,7 +52850,7 @@ var render = function() {
                         ? _c(
                             "button",
                             {
-                              staticClass: "primary-button col-6",
+                              staticClass: "primary-button col-6 ml-auto",
                               attrs: { type: "button" },
                               on: {
                                 click: function($event) {
@@ -52919,7 +52919,7 @@ var render = function() {
               _vm.folders.length
                 ? _c(
                     "div",
-                    { staticClass: "col-md-12 mp-5" },
+                    { staticClass: "col-md-12 mp-5 accordion-wrapper" },
                     [
                       _c(
                         "badger-accordion",
@@ -53117,7 +53117,7 @@ var staticRenderFns = [
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c("div", { staticClass: "col-md-8" }, [
-      _c("h4", [_vm._v("Загрузить файлов")])
+      _c("h4", [_vm._v("Загрузить файл")])
     ])
   }
 ]
