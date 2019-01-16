@@ -24,6 +24,13 @@ class FinanceController extends Controller
         ]);
     }
 
+    public function update(Order $order, Finance $finance, Request $request)
+    {
+        $finance->update([
+          'can_be_showed' => $request->can_be_showed
+        ]);
+    }
+
     public function destroy(Order $order, Finance $finance)
     {
         $finance->delete();

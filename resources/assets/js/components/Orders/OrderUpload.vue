@@ -125,6 +125,7 @@
             vueDropzone: vue2Dropzone,
             Datepicker, BadgerAccordion, BadgerAccordionItem
         },
+
         mounted () {
             this.getFolders()
         },

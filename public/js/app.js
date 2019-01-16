@@ -51144,6 +51144,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         vueDropzone: __WEBPACK_IMPORTED_MODULE_0_vue2_dropzone___default.a,
         Datepicker: __WEBPACK_IMPORTED_MODULE_2_vuejs_datepicker__["a" /* default */], BadgerAccordion: __WEBPACK_IMPORTED_MODULE_4_vue_badger_accordion__["a" /* BadgerAccordion */], BadgerAccordionItem: __WEBPACK_IMPORTED_MODULE_4_vue_badger_accordion__["b" /* BadgerAccordionItem */]
     },
+
     mounted: function mounted() {
         this.getFolders();
     },
