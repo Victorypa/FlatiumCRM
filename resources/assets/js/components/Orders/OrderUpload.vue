@@ -139,6 +139,7 @@
 
             uploadFiles () {
               this.$refs.myVueDropzone.processQueue()
+              window.location.reload(true)
             },
 
             createFolder () {

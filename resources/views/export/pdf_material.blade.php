@@ -51,7 +51,7 @@
 
 
             @if ($order->rooms)
-                @foreach ($order->rooms()->orderBy('room_type_id')->get() as $room)
+                @foreach ($order->rooms()->where('room_type_id', '!=', 4)->orderBy('room_type_id')->get() as $room)
                     <div class="first-room border-black">
                         <div class="first-room-top px-20">
                             <div class="main-subtitle pt-40 pb-20 inline-block">
@@ -165,6 +165,7 @@
                     @endif
 
                     @if ($order->discount === null && $order->markup === null)
+                      <div class="container">
                         <table class="border-free">
                             <tr class="border-free">
                                 <th class="table-caption border-free background-free"></th>
@@ -174,7 +175,49 @@
 
                             </tr>
                         </table>
+                      </div>
                     @endif
+                </div>
+
+                <div class="container header-name">
+                  @if ($order->rooms)
+                      @foreach ($order->rooms()->where('room_type_id', 4)->orderBy('room_type_id')->get() as $room)
+                          <div class="first-room" style="margin-top: 30px;">
+                              <div class="first-room-top px-20 border-black">
+                                  <div class="main-subtitle pt-40 pb-20 inline-block">
+                                      @if ($room->description)
+                                          {{ $room->description }}
+                                      @else
+                                          {{ $room->roomType->type }}
+                                      @endif
+
+                                  </div>
+                                  @if ($room->room_type_id === 1)
+                                      @include('export.partials._room_details', [$room])
+                                  @endif
+                              </div>
+
+                              <div class="first-room-top background-solid"></div>
+
+                              @if ($room->room_services->count())
+                                  @foreach ( $room->room_services()->orderBy('created_at', 'asc')->orderBy('service_type_id', 'asc')->get()->groupBy(function($room_service) { return $room_service->service_type_id; }) as $service_type_id => $room_services)
+                                      @include('export.partials._room_services', [$service_type_id, $room_services])
+                                  @endforeach
+                              @endif
+
+                              <table>
+                                  <tr class="borders">
+                                      <th class="table-caption"></th>
+                                      <td class="table-caption"></td>
+                                      <td class="table-caption"></td>
+                                      <td class="table-caption">
+                                          <strong class="font-size-fix"><b>{{ number_format($room->price, 0, ',', ' ') }} Р</b></strong>
+                                      </td>
+                                  </tr>
+                              </table>
+                          </div>
+                      @endforeach
+                  @endif
                 </div>
 
 

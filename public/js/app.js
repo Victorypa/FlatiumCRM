@@ -51159,6 +51159,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         },
         uploadFiles: function uploadFiles() {
             this.$refs.myVueDropzone.processQueue();
+            window.location.reload(true);
         },
         createFolder: function createFolder() {
             var _this2 = this;
