@@ -35,7 +35,7 @@
                                 ref="myVueDropzone"
                                 id="dropzone"
                                 :options="dropzoneOptions"
-                                class="mp-10 h-200">
+                                class="mp-10">
                   </vue-dropzone>
                 </div>
               </div>
@@ -113,9 +113,10 @@
                 dropzoneOptions: {
                     url: `/api/orders/${this.$route.params.id}/uploads/store`,
                     paramName: 'uploadedFile',
-                    thumbnailWidth: 300,
+                    autoProcessQueue: false,
+                    thumbnailWidth: 100,
                     addRemoveLinks: true,
-                    maxFilesize: 3.0,
+                    maxFilesize: 10.0,
                     dictDefaultMessage: "<i class='fa fa-cloud-upload'></i> Документы или Фотки"
                 },
 
@@ -140,8 +141,8 @@
                      })
             },
 
-            finish () {
-              window.location.reload(true)
+            uploadFiles () {
+
             },
 
             createFolder () {

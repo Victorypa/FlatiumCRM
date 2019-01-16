@@ -51131,9 +51131,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             dropzoneOptions: {
                 url: '/api/orders/' + this.$route.params.id + '/uploads/store',
                 paramName: 'uploadedFile',
-                thumbnailWidth: 300,
+                autoProcessQueue: false,
+                thumbnailWidth: 100,
                 addRemoveLinks: true,
-                maxFilesize: 3.0,
+                maxFilesize: 10.0,
                 dictDefaultMessage: "<i class='fa fa-cloud-upload'></i> Документы или Фотки"
             },
 
@@ -51160,9 +51161,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 _this.folders = response.data;
             });
         },
-        finish: function finish() {
-            window.location.reload(true);
-        },
+        uploadFiles: function uploadFiles() {},
         createFolder: function createFolder() {
             var _this2 = this;
 
@@ -52893,7 +52892,7 @@ var render = function() {
                     [
                       _c("vue-dropzone", {
                         ref: "myVueDropzone",
-                        staticClass: "mp-10 h-200",
+                        staticClass: "mp-10",
                         attrs: { id: "dropzone", options: _vm.dropzoneOptions }
                       })
                     ],
