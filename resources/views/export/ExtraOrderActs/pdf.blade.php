@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
     <title>Flatium</title>
-
     @include('export.partials._styles')
 </head>
 
@@ -48,9 +47,9 @@
             @if (count($filteredExtraOrder->extra_rooms))
                 @foreach ($filteredExtraOrder->extra_rooms->sortBy(['room.room_type_id']) as $index => $extra_room)
                     @if (count($extra_room->extra_room_services))
-                        <div class="first-room">
-                            <div class="first-room-top px-20">
-                                <div class="main-subtitle pt-40 pb-20 inline-block">
+                        <div class="first-room" style="margin-top: 30px;">
+                          <div class="first-room-top px-20 border-black">
+                              <div class="main-subtitle pt-40 pb-20 inline-block">
                                     @if ($extra_room->room->description)
                                         {{ $extra_room->room->description }}
                                     @else
@@ -61,55 +60,30 @@
                                 @if ($extra_room->room->room_type_id === 1)
                                     @include('export.partials._room_details', ['room' => $extra_room->room])
                                 @endif
-
                             </div>
 
-                            @foreach ($extra_room->extra_room_services()->get()->groupBy(function($extra_room_service) { return $extra_room_service->service_type_id; }) as $service_type_id => $extra_room_services)
-                                <table class="floor">
-                                    <tr>
-                                        <th class="table-subtitle">Наименование
-                                        </th>
-                                        <td class="table-subtitle">Кол-во</td>
-                                        <td class="table-subtitle">Цена</td>
-                                        <td class="table-subtitle">Стоимость</td>
-                                    </tr>
-                                    <tr class="borders">
-                                        <th class="table-caption">{{ \App\Models\Services\ServiceType::where('id', $service_type_id)->first()->name }}</th>
-                                        <td class="table-caption"></td>
-                                        <td class="table-caption"></td>
-                                        <td class="table-caption"></td>
-                                    </tr>
+                            <div class="first-room-top background-solid"></div>
 
-                                    @foreach ($extra_room_services as $extra_room_service)
-                                        <tr>
-                                            <th>{{ $extra_room_service->service->name }}</th>
-                                            <td>{{ number_format((float) $extra_room_service->quantity, 2, '.', '') }} {{ $extra_room_service->unit->name }}</td>
+                            @if ($extra_room->extra_room_services->count())
+                              @foreach ($extra_room->extra_room_services()->orderBy('service_type_id', 'asc')->get()->groupBy(function($extra_room_service) { return $extra_room_service->service_type_id; }) as $service_type_id => $extra_room_services)
+                                  @include('export.partials._room_services', [
+                                    'service_type_id' => $service_type_id,
+                                    'room_services' => $extra_room_services,
+                                    'order' => $filteredExtraOrder->order
+                                  ])
+                              @endforeach
+                            @endif
 
-                                            @if ($filteredExtraOrder->order->discount)
-                                                @if ($extra_room_service->service->can_be_discounted)
-                                                    <td>{{ $extra_room_service->service->price * (1 - $filteredExtraOrder->order->discount/100) }} Р/{{ $extra_room_service->unit->name }}</td>
-                                                    <td>{{ number_format($extra_room_service->quantity * $extra_room_service->service->price * (1 - $filteredExtraOrder->order->discount/100), 2, ',', ' ') }} Р</td>
-                                                @else
-                                                    <td>{{ $extra_room_service->service->price }} Р/{{ $extra_room_service->unit->name }}</td>
-                                                    <td>{{ number_format($extra_room_service->quantity * $extra_room_service->service->price, 2, ',', ' ') }} Р</td>
-                                                @endif
-                                            @endif
-
-                                            @if ($filteredExtraOrder->order->markup)
-                                                <td>{{ $extra_room_service->service->price * (1 + $filteredExtraOrder->order->markup/100) }} Р/{{ $extra_room_service->unit->name }}</td>
-                                                <td>{{ number_format($extra_room_service->quantity * $extra_room_service->service->price * (1 + $filteredExtraOrder->order->markup/100), 2, ',', ' ') }} Р</td>
-                                            @endif
-
-                                            @if ($filteredExtraOrder->order->discount === null && $filteredExtraOrder->order->markup === null )
-                                                <td>{{ $extra_room_service->service->price }} Р/{{ $extra_room_service->unit->name }}</td>
-                                                <td>{{ number_format($extra_room_service->quantity * $extra_room_service->service->price, 2, ',', ' ') }} Р</td>
-                                            @endif
-                                        </tr>
-                                    @endforeach
-
-                                </table>
-                            @endforeach
-
+                            <table>
+                                <tr class="borders">
+                                    <th class="table-caption"></th>
+                                    <td class="table-caption"></td>
+                                    <td class="table-caption"></td>
+                                    <td class="table-caption">
+                                        <strong class="font-size-fix"><b>{{ number_format($extra_room->price, 0, ',', ' ') }} Р</b></strong>
+                                    </td>
+                                </tr>
+                            </table>
                         </div>
                     @endif
                 @endforeach
@@ -119,41 +93,49 @@
 
 
             <div class="value-materials-wrapper">
+                @if ($filteredExtraOrder->order->discount)
+                    <table class="border-free">
+                        <tr class="border-free">
+                            <th class="table-caption border-free background-free"></th>
 
-                <table>
-
-                    <tr class="borders">
-                        <th class="table-caption full-summ-wrapper">
-                        </th>
-
-                        @if ($filteredExtraOrder->order->discount)
-                            <td class="table-caption full-summ full-summ-wrapper py-25">Итого:
+                            <td class="py-25 table-caption border-free ml-20"><strong><b>ИТОГО:</b></strong>
                                 <br>
-                                <span>Скидка {{ $filteredExtraOrder->order->discount }}%</span>
+                                <span class="font-size-fix">Скидка {{ $filteredExtraOrder->order->discount }}%</span>
                             </td>
-                        @else
-                            <td class="table-caption full-summ full-summ-wrapper py-25">&nbsp;
-                                <br>
-                                <span>&nbsp;</span>
+                            <td class="table-caption border-free ml-15" colspan="2">
+                                <strong class="font-size-fix"><b>{{ number_format((int) $filteredExtraOrder->order->original_price, 0, '', ' ') }} Р</b></strong>
+                                <strong class="font-size-fix"><b>{{ number_format((int) $filteredExtraOrder->order->price, 0, '', ' ') }} Р</b></strong>
                             </td>
-                        @endif
 
-                        @if ($filteredExtraOrder->order->discount)
-                            <td class="table-caption full-summ full-summ-wrapper" colspan="2">
-                                {{ number_format((int) $filteredExtraOrder->order->original_price, 0, '', ' ') }} Р
-                                <br>
-                                <span>{{ number_format((int) $filteredExtraOrder->order->price, 0, '', ' ') }} Р</span>
-                            </td>
-                        @else
-                            <td class="table-caption full-summ full-summ-wrapper" colspan="2">
-                                {{ number_format((int) $filteredExtraOrder->order->price, 0, '', ' ') }} Р
-                                <br>
-                                <span>&nbsp;</span>
-                            </td>
-                        @endif
-                    </tr>
-                </table>
+                        </tr>
+                    </table>
+                @endif
 
+                @if ($filteredExtraOrder->order->markup)
+                    <table class="border-free">
+                        <tr class="border-free">
+                            <th class="table-caption border-free background-free"></th>
+
+                            <td class="py-25 table-caption border-free ml-20"><strong><b>ИТОГО:</b></strong></td>
+
+                            <td class="table-caption border-free ml-15 font-size-fix" colspan="2">{{ number_format((int) $filteredExtraOrder->order->price, 0, '', ' ') }} Р
+                            </td>
+
+                        </tr>
+                    </table>
+                @endif
+
+                @if ($filteredExtraOrder->order->discount === null && $filteredExtraOrder->order->markup === null)
+                  <div class="container">
+                    <table class="border-free">
+                        <tr class="border-free">
+                            <th class="table-caption border-free background-free"></th>
+                            <td class="py-25 table-caption border-free ml-20"><strong><b>ИТОГО:</b></strong></td>
+                            <td class="table-caption border-free ml-15 font-size-fix" colspan="2"><strong><b>{{ number_format($filteredExtraOrder->order->price, 0, '', ' ') }} Р</b></strong></td>
+                        </tr>
+                    </table>
+                  </div>
+                @endif
             </div>
 
             {{-- @include('export.partials._comment', ['order' => $filteredExtraOrder->order]) --}}

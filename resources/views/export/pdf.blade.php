@@ -95,7 +95,6 @@
             @endif
 
             <div class="value-materials-wrapper">
-
                 @if ($order->discount)
                     <table class="border-free">
                         <tr class="border-free">
