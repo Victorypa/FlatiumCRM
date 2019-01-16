@@ -50998,7 +50998,7 @@ exports = module.exports = __webpack_require__(2)(false);
 
 
 // module
-exports.push([module.i, "\n.dropzone-custom-content[data-v-0811aa9c] {\n  position: absolute;\n  top: 50%;\n  left: 50%;\n  -webkit-transform: translate(-50%, -50%);\n          transform: translate(-50%, -50%);\n  text-align: center;\n}\n.dropzone-custom-title[data-v-0811aa9c] {\n  margin-top: 0;\n  color: #00b782;\n}\n.subtitle[data-v-0811aa9c] {\n  color: #314b5f;\n}\n.mp-10[data-v-0811aa9c] {\n  margin-top: 100px;\n}\n.badger-accordion-item[data-v-0811aa9c] {\n  -webkit-box-shadow: 0 1px 10px rgba(0, 0, 0, 0.1), 0 1px 4px rgba(0, 0, 0, 0.1);\n          box-shadow: 0 1px 10px rgba(0, 0, 0, 0.1), 0 1px 4px rgba(0, 0, 0, 0.1);\n  border-radius: 4px;\n  padding: 15px;\n}\n.badger-accordion-item[data-v-0811aa9c]:hover {\n    background-color: #00A4D1;\n}\n.js-badger-accordion-header .-ba-is-active[data-v-0811aa9c]:hover {\n  background-color: #red;\n}\n", ""]);
+exports.push([module.i, "\n.dropzone-custom-content[data-v-0811aa9c] {\n  position: absolute;\n  top: 50%;\n  left: 50%;\n  -webkit-transform: translate(-50%, -50%);\n          transform: translate(-50%, -50%);\n  text-align: center;\n}\n.dropzone-custom-title[data-v-0811aa9c] {\n  margin-top: 0;\n  color: #00b782;\n}\n.subtitle[data-v-0811aa9c] {\n  color: #314b5f;\n}\n.mp-10[data-v-0811aa9c] {\n  margin-top: 100px;\n}\n.badger-accordion-item[data-v-0811aa9c] {\n  -webkit-box-shadow: 0 1px 10px rgba(0, 0, 0, 0.1), 0 1px 4px rgba(0, 0, 0, 0.1);\n          box-shadow: 0 1px 10px rgba(0, 0, 0, 0.1), 0 1px 4px rgba(0, 0, 0, 0.1);\n  border-radius: 4px;\n  padding: 15px;\n}\n.badger-accordion-item[data-v-0811aa9c]:hover {\n    background-color: #00A4D1;\n}\n.js-badger-accordion-header .-ba-is-active[data-v-0811aa9c]:hover {\n  background-color: #red;\n}\n.h-200[data-v-0811aa9c] {\n  height: 200px;\n}\n", ""]);
 
 // exports
 
@@ -51016,6 +51016,12 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_vuejs_datepicker__ = __webpack_require__(9);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_vuejs_datepicker_dist_locale__ = __webpack_require__(10);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_vue_badger_accordion__ = __webpack_require__(203);
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -52825,20 +52831,13 @@ var render = function() {
             _c("navigation"),
             _vm._v(" "),
             _c("div", { staticClass: "col-md-10" }, [
-              _c(
-                "div",
-                { staticClass: "col-md-12" },
-                [
-                  _c(
-                    "div",
-                    {
-                      staticClass: "card mp-10",
-                      staticStyle: { width: "18rem" }
-                    },
-                    [
+              _c("div", { staticClass: "col-md-12" }, [
+                _c("div", { staticClass: "row" }, [
+                  _c("div", { staticClass: "col-md-3" }, [
+                    _c("div", { staticClass: "card mp-10 h-200" }, [
                       _c("div", { staticClass: "card-header" }, [
                         _vm._v(
-                          "\n                Создать папку по дате\n              "
+                          "\n                    Создать папку по дате\n                  "
                         )
                       ]),
                       _vm._v(" "),
@@ -52868,35 +52867,28 @@ var render = function() {
                         ],
                         1
                       )
-                    ]
-                  ),
+                    ])
+                  ]),
                   _vm._v(" "),
-                  _vm.chosenDate
-                    ? _c("vue-dropzone", {
-                        ref: "myVueDropzone",
-                        staticClass: "mp-10",
-                        attrs: { id: "dropzone", options: _vm.dropzoneOptions }
-                      })
-                    : _vm._e(),
-                  _vm._v(" "),
-                  _vm.chosenDate
-                    ? _c(
-                        "button",
-                        {
-                          staticClass: "btn primary-button mp-10",
-                          attrs: { type: "button" },
-                          on: {
-                            click: function($event) {
-                              _vm.finish()
+                  _c(
+                    "div",
+                    { staticClass: "col-md-9" },
+                    [
+                      _vm.chosenDate
+                        ? _c("vue-dropzone", {
+                            ref: "myVueDropzone",
+                            staticClass: "mp-10 h-200",
+                            attrs: {
+                              id: "dropzone",
+                              options: _vm.dropzoneOptions
                             }
-                          }
-                        },
-                        [_vm._v("Готово ?")]
-                      )
-                    : _vm._e()
-                ],
-                1
-              ),
+                          })
+                        : _vm._e()
+                    ],
+                    1
+                  )
+                ])
+              ]),
               _vm._v(" "),
               _vm.folders.length
                 ? _c(

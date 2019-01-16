@@ -7,33 +7,39 @@
           <div class="col-md-10">
             <div class="col-md-12">
 
-              <div class="card mp-10" style="width: 18rem;">
-                <div class="card-header">
-                  Создать папку по дате
+              <div class="row">
+                <div class="col-md-3">
+                  <div class="card mp-10 h-200">
+                    <div class="card-header">
+                      Создать папку по дате
+                    </div>
+                    <ul class="list-group list-group-flush">
+                      <datepicker :language="ru"
+                                  class="list-group-item"
+                                  placeholder="Выбрать Дату"
+                                  v-model="chosenDate"
+                                  @input="createFolder()"
+                                  >
+                      </datepicker>
+                    </ul>
+                  </div>
                 </div>
-                <ul class="list-group list-group-flush">
-                  <datepicker :language="ru"
-                              class="list-group-item"
-                              placeholder="Выбрать Дату"
-                              v-model="chosenDate"
-                              @input="createFolder()"
-                              >
-                  </datepicker>
-                </ul>
+
+                <div class="col-md-9">
+                  <vue-dropzone v-if="chosenDate"
+                                ref="myVueDropzone"
+                                id="dropzone"
+                                :options="dropzoneOptions"
+                                class="mp-10 h-200">
+                  </vue-dropzone>
+                </div>
               </div>
 
-                <vue-dropzone v-if="chosenDate"
-                              ref="myVueDropzone"
-                              id="dropzone"
-                              :options="dropzoneOptions"
-                              class="mp-10">
-                </vue-dropzone>
-
-                <button v-if="chosenDate"
+                <!-- <button v-if="chosenDate"
                         type="button"
                         class="btn primary-button mp-10"
                         @click="finish()"
-                        >Готово ?</button>
+                        >Готово ?</button> -->
             </div>
 
             <div class="col-md-12 mp-10" v-if="folders.length">
@@ -177,5 +183,8 @@
 
 }
 
+.h-200 {
+  height: 200px;
+}
 
 </style>
