@@ -6,14 +6,21 @@
           <navigation></navigation>
           <div class="col-md-10">
             <div class="col-md-12">
-                <datepicker class="mp-10"
-                            :language="ru"
-                            placeholder="Выбрать Дату"
-                            v-model="chosenDate"
-                            @input="createFolder()"
-                            >
-                </datepicker>
 
+              <div class="card mp-10" style="width: 18rem;">
+                <div class="card-header">
+                  Создать папку по дате
+                </div>
+                <ul class="list-group list-group-flush">
+                  <datepicker :language="ru"
+                              class="list-group-item"
+                              placeholder="Выбрать Дату"
+                              v-model="chosenDate"
+                              @input="createFolder()"
+                              >
+                  </datepicker>
+                </ul>
+              </div>
 
                 <vue-dropzone v-if="chosenDate"
                               ref="myVueDropzone"

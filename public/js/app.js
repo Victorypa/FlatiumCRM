@@ -51092,6 +51092,13 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -52822,22 +52829,47 @@ var render = function() {
                 "div",
                 { staticClass: "col-md-12" },
                 [
-                  _c("datepicker", {
-                    staticClass: "mp-10",
-                    attrs: { language: _vm.ru, placeholder: "Выбрать Дату" },
-                    on: {
-                      input: function($event) {
-                        _vm.createFolder()
-                      }
+                  _c(
+                    "div",
+                    {
+                      staticClass: "card mp-10",
+                      staticStyle: { width: "18rem" }
                     },
-                    model: {
-                      value: _vm.chosenDate,
-                      callback: function($$v) {
-                        _vm.chosenDate = $$v
-                      },
-                      expression: "chosenDate"
-                    }
-                  }),
+                    [
+                      _c("div", { staticClass: "card-header" }, [
+                        _vm._v(
+                          "\n                Создать папку по дате\n              "
+                        )
+                      ]),
+                      _vm._v(" "),
+                      _c(
+                        "ul",
+                        { staticClass: "list-group list-group-flush" },
+                        [
+                          _c("datepicker", {
+                            staticClass: "list-group-item",
+                            attrs: {
+                              language: _vm.ru,
+                              placeholder: "Выбрать Дату"
+                            },
+                            on: {
+                              input: function($event) {
+                                _vm.createFolder()
+                              }
+                            },
+                            model: {
+                              value: _vm.chosenDate,
+                              callback: function($$v) {
+                                _vm.chosenDate = $$v
+                              },
+                              expression: "chosenDate"
+                            }
+                          })
+                        ],
+                        1
+                      )
+                    ]
+                  ),
                   _vm._v(" "),
                   _vm.chosenDate
                     ? _c("vue-dropzone", {
