@@ -51111,10 +51111,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
-//
-//
-//
 
 
 
@@ -51161,7 +51157,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 _this.folders = response.data;
             });
         },
-        uploadFiles: function uploadFiles() {},
+        uploadFiles: function uploadFiles() {
+            this.$refs.myVueDropzone.processQueue();
+        },
         createFolder: function createFolder() {
             var _this2 = this;
 
@@ -52848,37 +52846,26 @@ var render = function() {
                     _vm._m(0),
                     _vm._v(" "),
                     _c("div", { staticClass: "col-md-4 text-right d-flex" }, [
-                      _c(
-                        "button",
-                        {
-                          staticClass:
-                            "primary-button primary-button--outline col-6",
-                          attrs: { type: "button" },
-                          on: {
-                            click: function($event) {
-                              _vm.$router.go(-1)
-                            }
-                          }
-                        },
-                        [
-                          _vm._v(
-                            "\n                    Назад\n                  "
+                      _vm.chosenDate
+                        ? _c(
+                            "button",
+                            {
+                              staticClass: "primary-button col-6",
+                              attrs: { type: "button" },
+                              on: {
+                                click: function($event) {
+                                  $event.preventDefault()
+                                  _vm.uploadFiles()
+                                }
+                              }
+                            },
+                            [
+                              _vm._v(
+                                "\n                      Сохранить\n                  "
+                              )
+                            ]
                           )
-                        ]
-                      ),
-                      _vm._v(" "),
-                      _c(
-                        "button",
-                        {
-                          staticClass: "primary-button col-6 ml-2",
-                          attrs: { type: "button" }
-                        },
-                        [
-                          _vm._v(
-                            "\n                      Сохранить\n                  "
-                          )
-                        ]
-                      )
+                        : _vm._e()
                     ])
                   ])
                 ]

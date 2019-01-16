@@ -11,14 +11,10 @@
                   <h4>Загрузить файлов</h4>
                 </div>
                 <div class="col-md-4 text-right d-flex">
-                    <button type="button"
-                            class="primary-button primary-button--outline col-6"
-                            @click="$router.go(-1)">
-                      Назад
-                    </button>
-
-                    <button type="button"
-                            class="primary-button col-6 ml-2"
+                    <button v-if="chosenDate"
+                            type="button"
+                            class="primary-button col-6"
+                            @click.prevent="uploadFiles()"
                             >
                         Сохранить
                     </button>
@@ -142,7 +138,7 @@
             },
 
             uploadFiles () {
-
+              this.$refs.myVueDropzone.processQueue()
             },
 
             createFolder () {
