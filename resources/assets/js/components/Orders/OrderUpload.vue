@@ -5,28 +5,33 @@
         <div class="row">
           <navigation></navigation>
           <div class="col-md-10">
-            <div class="col-md-12">
+            <div class="create__fixed-top col-10 shadow-light">
+              <div class="row align-items-center ">
+                <div class="col-md-8">
+                  <h4>Загрузить файлов</h4>
+                </div>
+                <div class="col-md-4 text-right d-flex">
+                    <button type="button"
+                            class="primary-button primary-button--outline col-6"
+                            @click="$router.go(-1)">
+                      Назад
+                    </button>
 
-              <div class="row">
-                <div class="col-md-3">
-                  <div class="card mp-10 h-200">
-                    <div class="card-header">
-                      Создать папку по дате
-                    </div>
-                    <ul class="list-group list-group-flush">
-                      <datepicker :language="ru"
-                                  class="list-group-item"
-                                  placeholder="Выбрать Дату"
-                                  v-model="chosenDate"
-                                  @input="createFolder()"
-                                  >
-                      </datepicker>
-                    </ul>
-                  </div>
+                    <button type="button"
+                            class="primary-button col-6 ml-2"
+                            >
+                        Сохранить
+                    </button>
                 </div>
 
-                <div class="col-md-9">
-                  <vue-dropzone v-if="chosenDate"
+              </div>
+            </div>
+
+            <div class="col-md-12 mp-10">
+
+              <div class="row">
+                <div class="col-md-12">
+                  <vue-dropzone
                                 ref="myVueDropzone"
                                 id="dropzone"
                                 :options="dropzoneOptions"
@@ -35,14 +40,19 @@
                 </div>
               </div>
 
-                <!-- <button v-if="chosenDate"
-                        type="button"
-                        class="btn primary-button mp-10"
-                        @click="finish()"
-                        >Готово ?</button> -->
+              <div class="row mp-5">
+                <div class="col-md-4">
+                  <datepicker :language="ru"
+                              placeholder="Выбрать Дату"
+                              v-model="chosenDate"
+                              @input="createFolder()"
+                              >
+                  </datepicker>
+                </div>
+              </div>
             </div>
 
-            <div class="col-md-12 mp-10" v-if="folders.length">
+            <div class="col-md-12 mp-5" v-if="folders.length">
                 <badger-accordion>
                     <badger-accordion-item v-for="folder in folders" :key="'folder-' + folder.id">
                         <template slot="header">
@@ -166,6 +176,11 @@
 .mp-10 {
     margin-top: 100px;
 }
+
+.mp-5 {
+    margin-top: 50px;
+}
+
 .badger-accordion {
   &-item {
     box-shadow: 0 1px 10px rgba(0, 0, 0, 0.1), 0 1px 4px rgba(0, 0, 0, 0.1);
