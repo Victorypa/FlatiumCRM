@@ -326,10 +326,10 @@
                             <option value="">Выберите</option>
                             <option v-for="(order_step, index) in order_steps" :value="order_step.id">
                                 <template v-if="order_step.description">
-                                    {{ order_step.description }} {{ index + parseInt(1) }}
+                                    {{ order_step.description }}
                                 </template>
                                 <template v-else>
-                                    {{ order_step.name }} {{ index + parseInt(1) }}
+                                    {{ order_step.name }}
                                 </template>
                             </option>
                         </select>
@@ -439,7 +439,6 @@
             axios.post(`/api/orders/${this.$route.params.id}/order_step/store`)
                  .then(response => {
                      this.getOrder()
-                     window.scrollTo({ top: 0, behavior: 'smooth' })
                  })
         },
 
@@ -447,7 +446,6 @@
             axios.delete(`/api/orders/${this.$route.params.id}/order_step/${order_step_id}/destroy`)
                  .then(response => {
                      this.getOrder()
-                     window.scrollTo({ top: 0, behavior: 'smooth' })
                  })
         },
 

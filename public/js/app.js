@@ -55787,7 +55787,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
             axios.post("/api/orders/" + this.$route.params.id + "/order_step/store").then(function (response) {
                 _this3.getOrder();
-                window.scrollTo({ top: 0, behavior: 'smooth' });
             });
         },
         deleteOrderStep: function deleteOrderStep(order_step_id) {
@@ -55795,7 +55794,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
             axios.delete("/api/orders/" + this.$route.params.id + "/order_step/" + order_step_id + "/destroy").then(function (response) {
                 _this4.getOrder();
-                window.scrollTo({ top: 0, behavior: 'smooth' });
             });
         },
         showInput: function showInput() {
@@ -57436,10 +57434,6 @@ var render = function() {
                                                         _vm._s(
                                                           order_step.description
                                                         ) +
-                                                        " " +
-                                                        _vm._s(
-                                                          index + parseInt(1)
-                                                        ) +
                                                         "\n                              "
                                                     )
                                                   ]
@@ -57448,10 +57442,6 @@ var render = function() {
                                                       "\n                                  " +
                                                         _vm._s(
                                                           order_step.name
-                                                        ) +
-                                                        " " +
-                                                        _vm._s(
-                                                          index + parseInt(1)
                                                         ) +
                                                         "\n                              "
                                                     )
@@ -69375,7 +69365,7 @@ var render = function() {
                 "div",
                 { staticClass: "container-fluid px-0" },
                 [
-                  _vm.order.length != 0 && _vm.room.length != 0
+                  _vm.order && _vm.room
                     ? [
                         _c("order-detail", {
                           attrs: { order: _vm.order, room: _vm.room }

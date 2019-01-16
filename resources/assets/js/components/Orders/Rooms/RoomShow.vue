@@ -11,7 +11,7 @@
 
                     <div class="container-fluid px-0">
 
-                            <template v-if="order.length != 0 && room.length != 0">
+                            <template v-if="order && room">
                                 <order-detail :order="order" :room="room"></order-detail>
                             </template>
 
