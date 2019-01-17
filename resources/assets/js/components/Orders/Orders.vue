@@ -35,15 +35,6 @@
 
                 <div class="px-30">
                   &nbsp;
-                    <!-- <a class="estimates__dropdown-img" href="." data-toggle="dropdown" data-html="true"
-                      title="Действия">
-                      <img src="/img/dropdown-toggle.svg" alt="export">
-                    </a>
-
-
-                  <div class="dropdown-menu dropdown-menu-right">
-                    <a class="dropdown-item" href="#">Экспорт</a>
-                  </div> -->
                 </div>
               </div>
             </div>
