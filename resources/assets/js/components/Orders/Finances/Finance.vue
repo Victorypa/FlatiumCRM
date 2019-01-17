@@ -340,7 +340,7 @@ export default {
 
         updateFinance (finance) {
           axios.patch(`/api/orders/${this.$route.params.id}/finance/${finance.id}/update`, {
-            'can_be_showed': !finance.can_be_showed
+            'can_be_showed': finance.can_be_showed ? false : true
           }).then(response => {
               this.getOrder()
           })

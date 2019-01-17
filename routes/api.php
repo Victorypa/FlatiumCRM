@@ -38,6 +38,7 @@ use Illuminate\Http\Request;
             */
             Route::get('/{order}/folders', 'OrderFolderController@index');
             Route::post('/{order}/folders/store', 'OrderFolderController@store');
+            Route::delete('/{order}/folders/{folder}/destroy', 'OrderFolderController@destroy');
 
             /**
              * Docs
