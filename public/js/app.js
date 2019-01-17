@@ -48767,7 +48767,7 @@ exports = module.exports = __webpack_require__(2)(false);
 
 
 // module
-exports.push([module.i, "\na[data-v-033f9948] {\n  color: #666666;\n}\na[data-v-033f9948]:hover {\n    text-decoration: none;\n    color: #00a4d1;\n}\ntable th[data-v-033f9948] {\n  border-top: none;\n}\ntable tr:hover .estimates__dropdown-img--rotate[data-v-033f9948] {\n  opacity: 1;\n}\ntable tr:hover .show-button[data-v-033f9948] {\n  opacity: 1;\n}\ntable tr:hover .add-button[data-v-033f9948] {\n  opacity: 1;\n}\ntable .add-button[data-v-033f9948] {\n  opacity: 0;\n}\ntable .form-check-label[data-v-033f9948] {\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n}\n.estimates__dropdown-img--rotate[data-v-033f9948] {\n  opacity: 0;\n}\n.estimates__dropdown-img--rotate img[data-v-033f9948] {\n    -webkit-transform: none;\n            transform: none;\n}\n.show-button[data-v-033f9948] {\n  opacity: 0;\n}\n.add-button img[data-v-033f9948] {\n  width: 11px;\n  cursor: pointer;\n}\n.small-case[data-v-033f9948] {\n  font-size: 0.9rem;\n}\n.small-case td[data-v-033f9948]:first-child {\n    padding-left: 35px;\n}\n.small-case__date[data-v-033f9948] {\n    margin-right: 75px;\n}\n.text-color[data-v-033f9948] {\n  color: #666 !important;\n  cursor: pointer;\n}\n.text-color[data-v-033f9948]:hover {\n    color: #00a4d1 !important;\n}\n.text-color[data-v-033f9948]:active {\n    background-color: transparent;\n}\n", ""]);
+exports.push([module.i, "\na[data-v-033f9948] {\n  color: #666666;\n}\na[data-v-033f9948]:hover {\n    text-decoration: none;\n    color: #00a4d1;\n}\ntable th[data-v-033f9948] {\n  border-top: none;\n}\ntable tr:hover .estimates__dropdown-img--rotate[data-v-033f9948] {\n  opacity: 1;\n}\ntable tr:hover .show-button[data-v-033f9948] {\n  opacity: 1;\n}\ntable tr:hover .add-button[data-v-033f9948] {\n  opacity: 1;\n}\ntable .add-button[data-v-033f9948] {\n  opacity: 0;\n}\ntable .form-check-label[data-v-033f9948] {\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n}\n.estimates__dropdown-img--rotate[data-v-033f9948] {\n  opacity: 0;\n}\n.estimates__dropdown-img--rotate img[data-v-033f9948] {\n    -webkit-transform: none;\n            transform: none;\n}\n.show-button[data-v-033f9948] {\n  opacity: 0;\n}\n.add-button img[data-v-033f9948] {\n  width: 11px;\n  cursor: pointer;\n}\n.small-case[data-v-033f9948] {\n  font-size: 0.9rem;\n}\n.small-case td[data-v-033f9948]:first-child {\n    padding-left: 35px;\n}\n.small-case__date[data-v-033f9948] {\n    margin-right: 75px;\n}\n.text-color[data-v-033f9948] {\n  color: #666 !important;\n  cursor: pointer;\n}\n.text-color[data-v-033f9948]:hover {\n    color: #00a4d1 !important;\n}\n.text-color[data-v-033f9948]:active {\n    background-color: transparent;\n}\n.pl-35[data-v-033f9948] {\n  padding-left: 35px;\n}\n.pr-30[data-v-033f9948] {\n  padding-right: 30px;\n}\n.mr--76[data-v-033f9948] {\n  margin-right: -76px;\n}\n.mr-78[data-v-033f9948] {\n  margin-right: 78px;\n}\n.mr-80[data-v-033f9948] {\n  margin-right: 80px;\n}\n", ""]);
 
 // exports
 
@@ -48811,6 +48811,11 @@ module.exports = function listToStyles (parentId, list) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
+//
+//
 //
 //
 //
@@ -49371,7 +49376,7 @@ var render = function() {
                                   "td",
                                   { staticClass: "d-flex justify-content-end" },
                                   [
-                                    _c("div", { staticClass: "pr-4" }, [
+                                    _c("div", { staticClass: "pr-30" }, [
                                       _vm._v(
                                         "\n                                   " +
                                           _vm._s(
@@ -49605,7 +49610,7 @@ var render = function() {
                                                     "div",
                                                     {
                                                       staticClass:
-                                                        "d-flex align-items-center pl-30 show-button"
+                                                        "d-flex align-items-center show-button pl-35"
                                                     },
                                                     [
                                                       _c(
@@ -49628,7 +49633,7 @@ var render = function() {
                                                             "button",
                                                             {
                                                               staticClass:
-                                                                "add-button add-button--remove d-flex align-items-center"
+                                                                "add-button add-button--remove d-flex align-items-center last-elem"
                                                             },
                                                             [
                                                               _c("img", {
@@ -49679,10 +49684,7 @@ var render = function() {
                                                     "div",
                                                     {
                                                       staticClass:
-                                                        "d-flex align-items-center pl-50 show-button",
-                                                      staticStyle: {
-                                                        "margin-right": "75px"
-                                                      }
+                                                        "d-flex align-items-center pl-50 show-button mr-78"
                                                     },
                                                     [
                                                       _vm._v(
@@ -49795,16 +49797,22 @@ var render = function() {
                                                         extra_order_act.created_at
                                                       )
                                                     ) +
-                                                    "\n                                        "
+                                                    "\n\n                                        "
                                                 )
                                               ]
                                             ),
+                                            _vm._v(" "),
+                                            _c("div", { staticClass: "mr-80" }),
                                             _vm._v(" "),
                                             _vm.checkIfLastElement(
                                               extra_order_act,
                                               order.extra_order_acts
                                             )
                                               ? [
+                                                  _c("div", {
+                                                    staticClass: "mr--76"
+                                                  }),
+                                                  _vm._v(" "),
                                                   _c(
                                                     "div",
                                                     {

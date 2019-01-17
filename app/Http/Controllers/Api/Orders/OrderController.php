@@ -23,8 +23,8 @@ class OrderController extends Controller
         if(!file_exists(public_path('storage'))) {
            App::make('files')->link(storage_path('app/public'), public_path('storage'));
         }
-
-        Artisan::call('amo:data');
+        //
+        // Artisan::call('amo:data');
 
         $with = ['rooms', 'finished_order_acts', 'extra_order_acts'];
 

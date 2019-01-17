@@ -104,7 +104,7 @@
                           </td>
 
                           <td class="d-flex justify-content-end">
-                              <div class="pr-4">
+                              <div class="pr-30">
                                    {{ dateFormatter(order.created_at) }}
                               </div>
 
@@ -163,9 +163,9 @@
                                         </div>
 
                                         <template v-if="checkIfLastElement(finished_order_act, order.finished_order_acts)">
-                                            <div class="d-flex align-items-center pl-30 show-button">
+                                            <div class="d-flex align-items-center show-button pl-35">
                                                 <router-link :to="{ name: 'order-finished-services', params: { id: order.id, finished_act_id: finished_order_act.id }}">
-                                                    <button class="add-button add-button--remove d-flex align-items-center">
+                                                    <button class="add-button add-button--remove d-flex align-items-center last-elem">
                                                         <img src="/img/edit.svg" alt="add-button">
                                                     </button>
                                                 </router-link>
@@ -176,7 +176,7 @@
                                             </div>
                                         </template>
                                         <template v-else>
-                                            <div class="d-flex align-items-center pl-50 show-button" style="margin-right: 75px;">
+                                            <div class="d-flex align-items-center pl-50 show-button mr-78">
                                                 &nbsp;
                                             </div>
                                         </template>
@@ -206,9 +206,13 @@
                                     <td class="d-flex justify-content-end">
                                         <div class="col-auto">
                                             {{ dateFormatter(extra_order_act.created_at) }}
+
                                         </div>
 
+                                        <div class="mr-80"></div>
+
                                         <template v-if="checkIfLastElement(extra_order_act, order.extra_order_acts)">
+                                            <div class="mr--76"></div>
                                             <div class="d-flex align-items-center pl-30 show-button">
                                                 <router-link :to="{ name: 'order-extra-services-rooms-show', params: { id: order.id, extra_order_act_id: extra_order_act.id, extra_room_id: extra_order_act.extra_rooms[0].id }}">
                                                     <button class="add-button add-button--remove d-flex align-items-center" title="Редактировать">
@@ -220,6 +224,7 @@
                                                     <img src="/img/del.svg" alt="add-button">
                                                 </button>
                                             </div>
+
                                         </template>
                                     </td>
                                 </tr>
@@ -414,4 +419,25 @@ table {
       background-color: transparent;
   }
 }
+
+.pl-35 {
+  padding-left: 35px;
+}
+
+.pr-30 {
+  padding-right: 30px;
+}
+
+.mr--76 {
+  margin-right: -76px;
+}
+
+.mr-78 {
+  margin-right: 78px;
+}
+
+.mr-80 {
+  margin-right: 80px;
+}
+
 </style>
