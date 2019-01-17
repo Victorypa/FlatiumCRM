@@ -89,39 +89,15 @@
 
             <div class="story-text">История загрузок:</div>
 
-<<<<<<< HEAD
             <table class="table table-hover" v-if="folders.length">
               <tbody>
                 <tr v-for="folder in folders" :key="folder.id">
-                  <td>{{ folder.order_uploads.filter(row => row.type === 'photo').length }} фото </td>
+                  <td>{{ folder.order_uploads.filter(row => row.type === 'photo').length }} фото</td>
+                  <td>{{ folder.order_uploads.filter(row => row.type === 'doc').length }} док</td>
                   <td>Дата съёмки {{ folder.name }}</td>
                   <td>{{ folder.created_at }}</td>
                   <td>
                     <button @click="deleteFolder(folder.id)" class="add-button add-button--remove d-flex align-items-center" title="Удалить">
-=======
-
-            <table class="table table-hover">
-              <tbody>
-                <tr>
-                  <td>{{}} фото </td>
-                  <td>Дата съёмки {{}}</td>
-                  <td>10 октября 2019</td>
-                  <td>
-                    <button @click="" class="add-button add-button--remove d-flex align-items-center" title="Удалить">
-                          <img src="/img/del.svg" alt="add-button">
-                          <div class="remove-materials ml-1">
-                            Удалить
-                          </div>
-                    </button>
-                  </td>
-                </tr>
-                <tr>
-                  <td>{{}} фото </td>
-                  <td>Дата съёмки {{}}</td>
-                  <td>10 октября 2019</td>
-                  <td>
-                    <button @click="" class="add-button add-button--remove d-flex align-items-center" title="Удалить">
->>>>>>> 37cdf85e0d7eff7cd874cf4eaa3922485835d11a
                           <img src="/img/del.svg" alt="add-button">
                           <div class="remove-materials ml-1">
                             Удалить
@@ -131,10 +107,6 @@
                 </tr>
               </tbody>
             </table>
-<<<<<<< HEAD
-            <span v-else>Загрузок нет</span>
-=======
->>>>>>> 37cdf85e0d7eff7cd874cf4eaa3922485835d11a
           </div>
         </div>
       </div>
@@ -147,10 +119,6 @@
     import 'vue2-dropzone/dist/vue2Dropzone.min.css'
     import Datepicker from "vuejs-datepicker"
     import { ru } from "vuejs-datepicker/dist/locale"
-<<<<<<< HEAD
-=======
-    // import { BadgerAccordion, BadgerAccordionItem } from 'vue-badger-accordion'
->>>>>>> 37cdf85e0d7eff7cd874cf4eaa3922485835d11a
 
     export default {
         data () {
