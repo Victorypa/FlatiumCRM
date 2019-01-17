@@ -48,45 +48,6 @@
               </div>
             </div>
 
-            <!-- <div class="col-md-12 mp-5 accordion-wrapper" v-if="folders.length">
-                <badger-accordion>
-                    <badger-accordion-item v-for="folder in folders" :key="'folder-' + folder.id">
-                        <template slot="header">
-                            <a>{{ folder.name }}</a>
-                        </template>
-
-                        <template slot="content" v-if="folder.order_uploads">
-                            <div class="collapse show">
-                                 <div class="card-body">
-                                   <div class="row">
-                                       <div class="col-md-6" v-if="folder.order_uploads.filter(row => row.type === 'photo').length">
-                                           <h5>Фото</h5>
-                                           <ul class="list-group">
-                                              <li class="list-group-item" v-for="upload in folder.order_uploads.filter(row => row.type === 'photo')" :key="'upload-' + upload.id">
-                                                  <a :href="currentPath + '/storage/' + folder.name + '/photos/' + upload.path" target="_blank">
-                                                      {{ upload.path }}
-                                                  </a>
-                                              </li>
-                                          </ul>
-                                       </div>
-                                       <div class="col-md-6" v-if="folder.order_uploads.filter(row => row.type === 'doc').length">
-                                           <h5>Документы</h5>
-                                           <ul class="list-group">
-                                              <li class="list-group-item" v-for="upload in folder.order_uploads.filter(row => row.type === 'doc')" :key="'upload-' + upload.id">
-                                                  <a :href="currentPath + '/storage/' + folder.name + '/docs/' + upload.path" target="_blank">
-                                                      {{ upload.path }}
-                                                  </a>
-                                              </li>
-                                          </ul>
-                                       </div>
-                                   </div>
-                                 </div>
-                             </div>
-                        </template>
-                    </badger-accordion-item>
-                </badger-accordion>
-            </div> -->
-
             <div class="story-text">История загрузок:</div>
 
             <table class="table table-hover" v-if="folders.length">
