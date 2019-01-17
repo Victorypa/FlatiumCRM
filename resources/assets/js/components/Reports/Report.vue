@@ -57,35 +57,35 @@
                         <strong>{{ order.address }}</strong>
                       </router-link>
                     </td>
-                    <!-- 1 -->
+                    <!-- 1 Название done -->
                     <td>{{ order.client_name ? order.client_name : '' }}</td>
-                    <!-- 2 -->
+                    <!-- 2 Клиент done -->
                     <td>{{ moment(new Date(order.created_at)).format('DD-MM-YYYY') }}</td>
-                    <!-- 3 -->
+                    <!-- 3 Дата подписания done -->
                     <td>{{ order.contract ? order.contract : '' }}</td>
-                    <!-- 4 -->
+                    <!-- 4 Номер договора done -->
                     <td>{{ order.manager ? order.manager.name : '' }}</td>
-                    <!-- 5 -->
+                    <!-- 5 Менеджер done -->
                     <td>{{ order.discount ? order.discount : 0 }} %</td>
-                    <!-- 6 -->
+                    <!-- 6 Скидка done -->
                     <td>{{ order.markup ? order.markup : 0 }} %</td>
-                    <!-- 7 -->
+                    <!-- 7 Наценка done -->
                     <td>{{ order.price ? new Intl.NumberFormat('ru-Ru').format(parseInt(order.price) + parseInt(calculateMaterialsPrice(order))) : 0 }} Р</td>
-                    <!-- 8 -->
+                    <!-- 8 Сумма договора done -->
                     <td>{{ order.price ? new Intl.NumberFormat('ru-Ru').format(parseInt(order.price)) : 0 }}</td>
-                    <!-- 9 -->
+                    <!-- 9 Работы done -->
                     <td>{{ calculateMaterialsPrice(order) }} Р</td>
-                    <!-- 10 -->
+                    <!-- 10 Материалы done -->
                     <td>{{ getPlannedProfit(order) }} Р</td>
-                    <!-- 11 -->
+                    <!-- 11 Плановая прибыль done -->
                     <td>{{ getTotalBalance(order, 'balance') }} Р</td>
-                    <!-- 12 -->
+                    <!-- 12 Баланс итого -->
                     <td>{{ getPresentProfit(order) }} Р</td>
-                    <!-- 13 -->
+                    <!-- 13 Тек.приб -->
                     <td>{{ getServicesIncome(order) }} Р</td>
-                    <!-- 15 -->
+                    <!-- 15 Пр работы -->
                     <td>{{ getTotalBalance(order, 'worker_expense') }} Р</td>
-                    <!-- 16 -->
+                    <!-- 16 Рсхд работы -->
                     <td>{{ getTotalBalance(order, 'service_balance') }} Р</td>
                     <!-- 17 -->
                     <td>{{ getMaterialsExpense(order, 'income') }} Р</td>
@@ -245,11 +245,11 @@ export default {
 
         getPlannedProfit (order) {
           if (order.discount !== 0 && order.discount !== null) {
-            let result = (parseInt(order.price) + parseInt(this.calculateMaterialsPrice(order))) * (1 - (0.55 / 1 * (parseInt(order.discount) / 100) ))
+            let result = parseInt(order.original_price) * 0.45 * (1 - parseInt(order.discount) / 100)
             return new Intl.NumberFormat('ru-Ru').format(parseInt(result))
           }
           else {
-            let result = (parseInt(order.price) + parseInt(this.calculateMaterialsPrice(order))) * (1 - 0.55 )
+            let result = parseInt(order.price) * 0.45
             return new Intl.NumberFormat('ru-Ru').format(parseInt(result))
           }
         },
