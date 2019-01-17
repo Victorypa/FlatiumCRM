@@ -203,11 +203,11 @@ export default {
 
         getPresentProfit (order) {
           if (order.discount !== 0 && order.discount !== null) {
-            let result = parseInt(this.getTotalBalance(order, 'income')) * (1 - 0.55 / 1 * (parseInt(order.discount) / 100) )
+            let result = parseInt(this.getTotalBalance(order, 'income')) * 0.45 * (1 - parseInt(order.discount) / 100)
             return new Intl.NumberFormat('ru-Ru').format(parseInt(result))
           }
           else {
-            let result = parseInt(this.getTotalBalance(order, 'income')) * (1 - 0.55 )
+            let result = parseInt(this.getTotalBalance(order, 'income')) * 0.45
             return new Intl.NumberFormat('ru-Ru').format(parseInt(result))
           }
         },
