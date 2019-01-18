@@ -53098,6 +53098,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
 
 
 
@@ -53122,6 +53123,8 @@ var moment = __webpack_require__(0);
             material_price: 0,
 
             finances: [],
+
+            file: null,
 
             ru: __WEBPACK_IMPORTED_MODULE_1_vuejs_datepicker_dist_locale__["a" /* ru */],
             moment: moment
@@ -53728,6 +53731,7 @@ var render = function() {
                             "form",
                             {
                               staticClass: "row align-items-center py-4",
+                              attrs: { enctype: "multipart/form-data" },
                               on: {
                                 submit: function($event) {
                                   $event.preventDefault()
@@ -53859,7 +53863,23 @@ var render = function() {
                                 1
                               ),
                               _vm._v(" "),
-                              _vm._m(0)
+                              _vm.expense_reason === "Оплата материалов"
+                                ? _c("div", { staticClass: "col-2 ml-5" }, [
+                                    _c("input", {
+                                      staticClass: "inputfile",
+                                      attrs: {
+                                        type: "file",
+                                        name: "file_path",
+                                        id: "file"
+                                      },
+                                      on: { change: _vm.file }
+                                    }),
+                                    _vm._v(" "),
+                                    _c("label", { attrs: { for: "file" } }, [
+                                      _vm._v("Выбрать файл")
+                                    ])
+                                  ])
+                                : _vm._e()
                             ]
                           )
                         ])
@@ -54171,21 +54191,7 @@ var render = function() {
     2
   )
 }
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "col-2 ml-5" }, [
-      _c("input", {
-        staticClass: "inputfile",
-        attrs: { type: "file", name: "file", id: "file" }
-      }),
-      _vm._v(" "),
-      _c("label", { attrs: { for: "file" } }, [_vm._v("Выбрать файл")])
-    ])
-  }
-]
+var staticRenderFns = []
 render._withStripped = true
 module.exports = { render: render, staticRenderFns: staticRenderFns }
 if (false) {

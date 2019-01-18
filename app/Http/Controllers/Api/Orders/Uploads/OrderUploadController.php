@@ -23,6 +23,7 @@ class OrderUploadController extends Controller
         $folder = Folder::orderBy('created_at', 'desc')->first();
 
         if ($request->hasFile('uploadedFile')) {
+
             if (in_array($request->file('uploadedFile')->getClientOriginalExtension(), $this->imageExtensions)) {
                 Storage::putFileAs(
                     "/public/{$folder->name}/photos",

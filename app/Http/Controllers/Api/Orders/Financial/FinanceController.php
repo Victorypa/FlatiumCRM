@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Api\Orders\Financial;
 
+use Storage;
 use App\Models\Orders\Order;
 use Illuminate\Http\Request;
 use App\Models\Orders\Financial\Finance;
@@ -16,12 +17,23 @@ class FinanceController extends Controller
 
     public function store(Order $order, Request $request)
     {
-        $order->finances()->create([
+        $finance = $order->finances()->create([
             'finance_type' => $request->type,
             'price' => $request->income,
             'reason' => $request->income_reason,
             'inputed_at' => strtotime($request->income_date)
         ]);
+
+        if ($request->has('file_path')) {
+            Storage::putFileAs(
+                "/public/finances",
+                $request->file('file_path'),
+                $fileName = $request->file('file_path')->getClientOriginalName()
+            );
+            $finance->update([
+                'file_path' => $fileName
+            ]);
+        }
     }
 
     public function update(Order $order, Finance $finance, Request $request)

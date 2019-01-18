@@ -107,7 +107,7 @@
                         <button type="submit" style="display: none;"></button>
                     </form>
 
-                      <form @submit.prevent="saveExpense()" class="row align-items-center py-4">
+                      <form @submit.prevent="saveExpense()" class="row align-items-center py-4" enctype="multipart/form-data">
                             <div class="main-subtitle profit col-1 mr-4">
                               Расход:
                             </div>
@@ -135,10 +135,11 @@
                               </datepicker>
                             </div>
 
-                            <div class="col-2 ml-5">
-                                <input type="file" name="file" id="file" class="inputfile" />
+                            <div class="col-2 ml-5" v-if="expense_reason === 'Оплата материалов'">
+                                <input type="file" name="file_path" id="file" class="inputfile" @change="file" />
                                 <label for="file">Выбрать файл</label>
                             </div>
+
                       </form>
 
                     </div>
@@ -248,6 +249,8 @@ export default {
             material_price: 0,
 
             finances: [],
+
+            file: null,
 
             ru,
             moment
