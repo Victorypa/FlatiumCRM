@@ -135,7 +135,10 @@
                               </datepicker>
                             </div>
 
-                            <button type="submit" style="display: none;"></button>
+                            <div class="col-2 ml-5">
+                                <input type="file" name="file" id="file" class="inputfile" />
+                                <label for="file">Выбрать файл</label>
+                            </div>
                       </form>
 
                     </div>
@@ -461,4 +464,20 @@ input:required:valid {
     border-color: #000;
   }
 }
+
+.inputfile {
+	width: 0.1px;
+	height: 0.1px;
+	opacity: 0;
+	overflow: hidden;
+	position: absolute;
+	z-index: -1;
+}
+
+
+
+.inputfile + label {
+	cursor: pointer; /* "hand" cursor */
+}
+
 </style>

@@ -201,17 +201,6 @@ export default {
           return new Intl.NumberFormat('ru-Ru').format(parseInt(finished_act_incomes + extra_act_incomes))
         },
 
-        getPresentProfit (order) {
-          if (order.discount !== 0 && order.discount !== null) {
-            let result = parseInt(this.getTotalBalance(order, 'income')) * 0.45 * (1 - parseInt(order.discount) / 100)
-            return new Intl.NumberFormat('ru-Ru').format(parseInt(result))
-          }
-          else {
-            let result = parseInt(this.getTotalBalance(order, 'income')) * 0.45
-            return new Intl.NumberFormat('ru-Ru').format(parseInt(result))
-          }
-        },
-
         getMaterialsExpense (order, type) {
           if (order.finances.length) {
               let material_incomes = 0
@@ -240,6 +229,17 @@ export default {
               }
           } else {
             return 0
+          }
+        },
+
+        getPresentProfit (order) {
+          if (order.discount !== 0 && order.discount !== null) {
+            let result = parseInt(this.getTotalBalance(order, 'income')) * 0.45 * (1 - parseInt(order.discount) / 100)
+            return new Intl.NumberFormat('ru-Ru').format(parseInt(result))
+          }
+          else {
+            let result = parseInt(this.getTotalBalance(order, 'income')) * 0.45
+            return new Intl.NumberFormat('ru-Ru').format(parseInt(result))
           }
         },
 
