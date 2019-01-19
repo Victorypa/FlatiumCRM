@@ -53,7 +53,6 @@ use Illuminate\Http\Request;
         Route::group(['namespace' => 'Financial'], function ($router) {
             Route::get('/{order}/finances', 'FinanceController@index');
             Route::post('/{order}/finance/store', 'FinanceController@store');
-            Route::post('/{order}/finance/files/store', 'FinanceFileController@store');
             Route::patch('/{order}/finance/{finance}/update', 'FinanceController@update');
             Route::delete('/{order}/finance/{finance}/delete', 'FinanceController@destroy');
         });
