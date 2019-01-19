@@ -140,7 +140,8 @@
                                               ref="MyDropzone"
                                               id="dropzone"
                                               :options="dropzoneOptions"
-                                              class="mp-10">
+                                              class="mp-10"
+                                              >
                                 </vue-dropzone>
                             </div>
 
@@ -202,13 +203,17 @@
                                                 <input class="form-check-input check"
                                                        :id="'finance-' + finance.id"
                                                        type="checkbox"
-                                                       :checked="!finance.can_be_showed"
+                                                       :checked="finance.can_be_showed"
                                                        @click="updateFinance(finance)"
                                                        >
                                                 <label class="form-check-label" :for="'finance-' + finance.id">
-                                                  не показывать
+                                                  показывать
                                                 </label>
                                               </div>
+                                            </td>
+
+                                            <td v-if="finance.finance_files.length">
+                                                <a href="">смотреть файл</a>
                                             </td>
                                           </tr>
                                       </template>
@@ -269,8 +274,10 @@ export default {
                 thumbnailWidth: 100,
                 addRemoveLinks: true,
                 maxFilesize: 10.0,
-                dictDefaultMessage: "<i class='fa fa-cloud-upload'></i> Документы или Фотки"
+                dictDefaultMessage: "<i class='fa fa-cloud-upload'></i> Документы или Фотки",
             },
+
+
         }
     },
 
@@ -356,6 +363,9 @@ export default {
                         'income_reason': this.expense_reason,
                     }).then(() => {
                         this.$refs.MyDropzone.processQueue()
+                        setTimeout(() => {
+                            window.location.reload(true)
+                        }, 3000)
                     })
                 } else {
                     axios.post(`/api/orders/${this.$route.params.id}/finance/store`, {

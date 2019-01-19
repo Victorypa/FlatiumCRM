@@ -53108,6 +53108,11 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
 
 
 
@@ -53149,6 +53154,7 @@ var moment = __webpack_require__(0);
                 maxFilesize: 10.0,
                 dictDefaultMessage: "<i class='fa fa-cloud-upload'></i> Документы или Фотки"
             }
+
         };
     },
 
@@ -53236,6 +53242,9 @@ var moment = __webpack_require__(0);
                         'income_reason': this.expense_reason
                     }).then(function () {
                         _this3.$refs.MyDropzone.processQueue();
+                        setTimeout(function () {
+                            window.location.reload(true);
+                        }, 3000);
                     });
                 } else {
                     axios.post("/api/orders/" + this.$route.params.id + "/finance/store", {
@@ -54170,7 +54179,8 @@ var render = function() {
                                                             type: "checkbox"
                                                           },
                                                           domProps: {
-                                                            checked: !finance.can_be_showed
+                                                            checked:
+                                                              finance.can_be_showed
                                                           },
                                                           on: {
                                                             click: function(
@@ -54196,13 +54206,29 @@ var render = function() {
                                                           },
                                                           [
                                                             _vm._v(
-                                                              "\n                                              не показывать\n                                            "
+                                                              "\n                                              показывать\n                                            "
                                                             )
                                                           ]
                                                         )
                                                       ]
                                                     )
-                                                  ])
+                                                  ]),
+                                                  _vm._v(" "),
+                                                  finance.finance_files.length
+                                                    ? _c("td", [
+                                                        _c(
+                                                          "a",
+                                                          {
+                                                            attrs: { href: "" }
+                                                          },
+                                                          [
+                                                            _vm._v(
+                                                              "смотреть файл"
+                                                            )
+                                                          ]
+                                                        )
+                                                      ])
+                                                    : _vm._e()
                                                 ])
                                               ]
                                             : _vm._e()

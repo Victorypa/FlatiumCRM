@@ -14,7 +14,7 @@ class AddCanBeShowedToFinancesTable extends Migration
     public function up()
     {
         Schema::table('finances', function (Blueprint $table) {
-          $table->boolean('can_be_showed')->default(true);
+          $table->boolean('can_be_showed')->default(false);
         });
     }
 

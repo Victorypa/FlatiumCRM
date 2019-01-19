@@ -12,7 +12,7 @@ class FinanceController extends Controller
 {
     public function index(Order $order)
     {
-      return $order->finances()->get();
+      return $order->finances()->with('finance_files')->get();
     }
 
     public function store(Order $order, Request $request)
