@@ -17,21 +17,24 @@ class FinanceController extends Controller
 
     public function store(Order $order, Request $request)
     {
-        $finance = $order->finances()->create([
-            'finance_type' => $request->type,
-            'price' => $request->income,
-            'reason' => $request->income_reason,
-            'inputed_at' => strtotime($request->income_date)
-        ]);
 
-        if ($request->has('file_path')) {
+        if ($request->hasFile('file_path')) {
+            $finance = Finance::orderBy('id', 'desc')->first();
             Storage::putFileAs(
                 "/public/finances",
                 $request->file('file_path'),
                 $fileName = $request->file('file_path')->getClientOriginalName()
             );
-            $finance->update([
+
+            $finance->finance_files()->create([
                 'file_path' => $fileName
+            ]);
+        } else {
+            $finance = $order->finances()->create([
+                'finance_type' => $request->type,
+                'price' => $request->income,
+                'reason' => $request->income_reason,
+                'inputed_at' => strtotime($request->income_date)
             ]);
         }
     }

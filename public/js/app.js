@@ -52872,6 +52872,10 @@ exports.push([module.i, "\ninput[data-v-058ad6b2]:required:valid {\n  border-col
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vuejs_datepicker__ = __webpack_require__(9);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_vuejs_datepicker_dist_locale__ = __webpack_require__(10);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_vue2_dropzone__ = __webpack_require__(198);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_vue2_dropzone___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_vue2_dropzone__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_vue2_dropzone_dist_vue2Dropzone_min_css__ = __webpack_require__(199);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_vue2_dropzone_dist_vue2Dropzone_min_css___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_vue2_dropzone_dist_vue2Dropzone_min_css__);
 //
 //
 //
@@ -53099,6 +53103,13 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+
+
 
 
 
@@ -53127,13 +53138,24 @@ var moment = __webpack_require__(0);
             file: null,
 
             ru: __WEBPACK_IMPORTED_MODULE_1_vuejs_datepicker_dist_locale__["a" /* ru */],
-            moment: moment
+            moment: moment,
+
+            dropzoneOptions: {
+                url: "/api/orders/" + this.$route.params.id + "/finance/store",
+                paramName: 'file_path',
+                autoProcessQueue: false,
+                thumbnailWidth: 100,
+                addRemoveLinks: true,
+                maxFilesize: 10.0,
+                dictDefaultMessage: "<i class='fa fa-cloud-upload'></i> Документы или Фотки"
+            }
         };
     },
 
 
     components: {
-        Datepicker: __WEBPACK_IMPORTED_MODULE_0_vuejs_datepicker__["a" /* default */]
+        Datepicker: __WEBPACK_IMPORTED_MODULE_0_vuejs_datepicker__["a" /* default */],
+        vueDropzone: __WEBPACK_IMPORTED_MODULE_2_vue2_dropzone___default.a
     },
 
     mounted: function mounted() {
@@ -53202,18 +53224,29 @@ var moment = __webpack_require__(0);
                 alert('Вводи причину или дату');
             }
         },
-        saveExpense: function saveExpense() {
+        saveExpense: function saveExpense(e) {
             var _this3 = this;
 
             if (this.expense_reason !== null && this.expense_date !== null) {
-                axios.post("/api/orders/" + this.$route.params.id + "/finance/store", {
-                    'type': 'expense',
-                    'income': this.expense,
-                    'income_date': this.expense_date,
-                    'income_reason': this.expense_reason
-                }).then(function (response) {
-                    _this3.getOrder();
-                });
+                if (this.expense_reason === 'Оплата материалов') {
+                    axios.post("/api/orders/" + this.$route.params.id + "/finance/store", {
+                        'type': 'expense',
+                        'income': this.expense,
+                        'income_date': this.expense_date,
+                        'income_reason': this.expense_reason
+                    }).then(function () {
+                        _this3.$refs.MyDropzone.processQueue();
+                    });
+                } else {
+                    axios.post("/api/orders/" + this.$route.params.id + "/finance/store", {
+                        'type': 'expense',
+                        'income': this.expense,
+                        'income_date': this.expense_date,
+                        'income_reason': this.expense_reason
+                    }).then(function (response) {
+                        _this3.getOrder();
+                    });
+                }
             } else {
                 alert('Вводи причину или дату');
             }
@@ -53864,22 +53897,27 @@ var render = function() {
                               ),
                               _vm._v(" "),
                               _vm.expense_reason === "Оплата материалов"
-                                ? _c("div", { staticClass: "col-2 ml-5" }, [
-                                    _c("input", {
-                                      staticClass: "inputfile",
-                                      attrs: {
-                                        type: "file",
-                                        name: "file_path",
-                                        id: "file"
-                                      },
-                                      on: { change: _vm.file }
-                                    }),
-                                    _vm._v(" "),
-                                    _c("label", { attrs: { for: "file" } }, [
-                                      _vm._v("Выбрать файл")
-                                    ])
-                                  ])
-                                : _vm._e()
+                                ? _c(
+                                    "div",
+                                    { staticClass: "col-2 ml-5" },
+                                    [
+                                      _c("vue-dropzone", {
+                                        ref: "MyDropzone",
+                                        staticClass: "mp-10",
+                                        attrs: {
+                                          id: "dropzone",
+                                          options: _vm.dropzoneOptions
+                                        }
+                                      })
+                                    ],
+                                    1
+                                  )
+                                : _vm._e(),
+                              _vm._v(" "),
+                              _c("button", {
+                                staticStyle: { display: "none" },
+                                attrs: { type: "submit" }
+                              })
                             ]
                           )
                         ])

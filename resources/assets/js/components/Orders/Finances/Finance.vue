@@ -136,10 +136,15 @@
                             </div>
 
                             <div class="col-2 ml-5" v-if="expense_reason === 'Оплата материалов'">
-                                <input type="file" name="file_path" id="file" class="inputfile" @change="file" />
-                                <label for="file">Выбрать файл</label>
+                                <vue-dropzone
+                                              ref="MyDropzone"
+                                              id="dropzone"
+                                              :options="dropzoneOptions"
+                                              class="mp-10">
+                                </vue-dropzone>
                             </div>
 
+                      <button type="submit" style="display:none;"></button>
                       </form>
 
                     </div>
@@ -226,8 +231,10 @@
 
 
 <script>
-import Datepicker from "vuejs-datepicker";
-import { ru } from "vuejs-datepicker/dist/locale";
+import Datepicker from "vuejs-datepicker"
+import { ru } from "vuejs-datepicker/dist/locale"
+import vue2Dropzone from 'vue2-dropzone'
+import 'vue2-dropzone/dist/vue2Dropzone.min.css'
 let moment = require("moment")
 
 export default {
@@ -253,12 +260,23 @@ export default {
             file: null,
 
             ru,
-            moment
+            moment,
+
+            dropzoneOptions: {
+                url: `/api/orders/${this.$route.params.id}/finance/store`,
+                paramName: 'file_path',
+                autoProcessQueue: false,
+                thumbnailWidth: 100,
+                addRemoveLinks: true,
+                maxFilesize: 10.0,
+                dictDefaultMessage: "<i class='fa fa-cloud-upload'></i> Документы или Фотки"
+            },
         }
     },
 
     components: {
-        Datepicker
+        Datepicker,
+        vueDropzone: vue2Dropzone,
     },
 
     mounted () {
@@ -328,16 +346,28 @@ export default {
 
         },
 
-        saveExpense () {
+        saveExpense (e) {
             if (this.expense_reason !== null && this.expense_date !== null) {
-                axios.post(`/api/orders/${this.$route.params.id}/finance/store`, {
-                    'type': 'expense',
-                    'income': this.expense,
-                    'income_date': this.expense_date,
-                    'income_reason': this.expense_reason
-                }).then(response => {
-                    this.getOrder()
-                })
+                if (this.expense_reason === 'Оплата материалов') {
+                    axios.post(`/api/orders/${this.$route.params.id}/finance/store`, {
+                        'type': 'expense',
+                        'income': this.expense,
+                        'income_date': this.expense_date,
+                        'income_reason': this.expense_reason,
+                    }).then(() => {
+                        this.$refs.MyDropzone.processQueue()
+                    })
+                } else {
+                    axios.post(`/api/orders/${this.$route.params.id}/finance/store`, {
+                        'type': 'expense',
+                        'income': this.expense,
+                        'income_date': this.expense_date,
+                        'income_reason': this.expense_reason
+                    }).then(response => {
+                        this.getOrder()
+                    })
+                }
+
             } else {
                 alert('Вводи причину или дату')
             }
