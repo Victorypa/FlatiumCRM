@@ -53153,8 +53153,9 @@ var moment = __webpack_require__(0);
                 addRemoveLinks: true,
                 maxFilesize: 10.0,
                 dictDefaultMessage: "<i class='fa fa-cloud-upload'></i> Документы или Фотки"
-            }
+            },
 
+            path: window.location.hostname
         };
     },
 
@@ -54219,7 +54220,13 @@ var render = function() {
                                                         _c(
                                                           "a",
                                                           {
-                                                            attrs: { href: "" }
+                                                            attrs: {
+                                                              href:
+                                                                "/storage/finances/" +
+                                                                finance
+                                                                  .finance_files[0]
+                                                                  .file_path
+                                                            }
                                                           },
                                                           [
                                                             _vm._v(

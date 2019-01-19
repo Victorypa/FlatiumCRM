@@ -213,7 +213,7 @@
                                             </td>
 
                                             <td v-if="finance.finance_files.length">
-                                                <a href="">смотреть файл</a>
+                                                <a :href="'/storage/finances/' + finance.finance_files[0].file_path">смотреть файл</a>
                                             </td>
                                           </tr>
                                       </template>
@@ -277,7 +277,7 @@ export default {
                 dictDefaultMessage: "<i class='fa fa-cloud-upload'></i> Документы или Фотки",
             },
 
-
+            path: window.location.hostname
         }
     },
 
