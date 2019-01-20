@@ -14,6 +14,8 @@ class Finance extends Model
 
     protected $dates = ['inputed_at'];
 
+    protected $with = ['finance_files'];
+
     public function finance_files()
     {
         return $this->hasMany(FinanceFile::class);

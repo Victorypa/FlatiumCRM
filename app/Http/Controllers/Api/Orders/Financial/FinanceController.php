@@ -12,12 +12,11 @@ class FinanceController extends Controller
 {
     public function index(Order $order)
     {
-      return $order->finances()->with('finance_files')->get();
+      return $order->finances()->get();
     }
 
     public function store(Order $order, Request $request)
     {
-
         if ($request->hasFile('file_path')) {
             $finance = Finance::orderBy('id', 'desc')->first();
             Storage::putFileAs(
