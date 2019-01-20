@@ -175,14 +175,15 @@
                                                 <input class="form-check-input check"
                                                        :id="'finance-' + finance.id"
                                                        type="checkbox"
-                                                       :checked="!finance.can_be_showed"
+                                                       :checked="finance.can_be_showed"
                                                        @click="updateFinance(finance)"
                                                        >
                                                 <label class="form-check-label" :for="'finance-' + finance.id">
-                                                  не показывать
+                                                  показывать
                                                 </label>
                                               </div>
                                             </td>
+                                            <td>&nbsp;</td>
                                           </tr>
                                       </template>
                                       <template v-if="finance.finance_type === 'expense'">
