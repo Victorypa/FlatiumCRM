@@ -24,6 +24,8 @@
                         <div class="main-info">Адрес: </div>
 
                         <div class="main-info">Заказчик: </div>
+                        <div class="main-info">Телефон: </div>
+                        <div class="main-info">Почта: </div>
                         <div class="main-info">Менеджер: </div>
                         <div class="main-info">Приложение к договору № </div>
                     </div>
@@ -33,6 +35,18 @@
                         <div>{{ $order->address }}</div>
                         @if ($order->client_name)
                             <div> {{ $order->client_name }} </div>
+                        @else
+                            <div>&nbsp;</div>
+                        @endif
+
+                        @if ($order->user->phone)
+                            <div> {{ $order->user->phone }} </div>
+                        @else
+                            <div>&nbsp;</div>
+                        @endif
+
+                        @if ($order->user->email)
+                            <div> {{ $order->user->email }} </div>
                         @else
                             <div>&nbsp;</div>
                         @endif
