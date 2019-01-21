@@ -23,6 +23,10 @@
                         <div class="main-info">Итого по акту</div>
                         <div class="main-info">S объекта: </div>
                         <div class="main-info">Адрес: </div>
+
+                        <div class="main-info">Телефон: </div>
+                        <div class="main-info">Почта: </div>
+
                         <div class="main-info">Заказчик:</div>
                         <div class="main-info">Менеджер: </div>
                     </div>
@@ -39,6 +43,19 @@
                         <div><b>{{ number_format((float) $selected_price, 0, '', ' ') }} Р</b> @if ($filteredFinishedOrderAct->order->discount) с учётом скидки -{{ $filteredFinishedOrderAct->order->discount }}%  @endif </div>
                         <div>{{ $total_area }} м² </div>
                         <div>{{ $filteredFinishedOrderAct->order->address }}</div>
+
+                        @if ($filteredFinishedOrderAct->order->user->phone)
+                            <div>{{ $filteredFinishedOrderAct->order->user->phone }}</div>
+                        @else
+                            <div>&nbsp;</div>
+                        @endif
+
+                        @if ($filteredFinishedOrderAct->order->user->phone)
+                            <div>{{ $filteredFinishedOrderAct->order->user->phone }}</div>
+                        @else
+                            <div>&nbsp;</div>
+                        @endif
+
                         @if ($filteredFinishedOrderAct->order->client_name)
                             <div>{{ $filteredFinishedOrderAct->order->client_name }}</div>
                         @else

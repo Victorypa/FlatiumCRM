@@ -172,7 +172,7 @@ export default {
             order.finances.forEach(item => {
               if (item.finance_type === 'income') {
                 incomes += parseInt(item.price)
-                if (item.reason === 'Акт выполненных работ' || item.reason === 'Акт дополнительных работ') {
+                if (item.reason !== 'Оплата материалов от клиента') {
                   service_income += parseInt(item.price)
                 }
               }
@@ -181,7 +181,7 @@ export default {
                 if (item.reason === 'Оплата рабочим') {
                   worker_expenses += parseInt(item.price)
                 }
-                if (item.reason === 'Акт выполненных работ' || item.reason === 'Акт дополнительных работ') {
+                if (item.reason !== 'Оплата материалов') {
                   service_expense += parseInt(item.price)
                 }
               }
