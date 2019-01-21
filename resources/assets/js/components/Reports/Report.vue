@@ -82,11 +82,15 @@
                     <!-- 12 Баланс итого -->
                     <td>{{ getPresentProfit(order) }} Р</td>
                     <!-- 13 Тек.приб -->
-                    <td>{{ getServicesIncome(order) }} Р</td>
+
+
+                    <td>{{ getServicesFinance(order, 'income') }} Р</td>
                     <!-- 15 Пр работы -->
-                    <td>{{ getTotalBalance(order, 'worker_expense') }} Р</td>
+                    <td>{{ getServicesFinance(order, 'expense') }} Р</td>
                     <!-- 16 Рсхд работы -->
-                    <td>{{ getTotalBalance(order, 'service_balance') }} Р</td>
+                    <td>{{ getServicesFinance(order, 'balance') }} Р</td>
+
+
                     <!-- 17 -->
                     <td>{{ getMaterialsExpense(order, 'income') }} Р</td>
                     <!-- 18 -->
@@ -121,6 +125,36 @@ export default {
     },
 
     methods: {
+        getServicesFinance (order, type) {
+            let service_income = 0
+            let service_expense = 0
+            if (order.finances.length) {
+                order.finances.forEach(finance => {
+                    if (finance.finance_type === 'income' && finance.reason !== 'Оплата материалов от клиента') {
+                        service_income += parseInt(finance.price)
+                    }
+
+                    if (finance.finance_type === 'expense' && finance.reason !== 'Оплата материалов') {
+                        service_expense += parseInt(finance.price)
+                    }
+                })
+            }
+            switch (type) {
+                case 'income':
+                    return new Intl.NumberFormat('ru-Ru').format(parseInt(service_income))
+                    break;
+                case 'expense':
+                    return new Intl.NumberFormat('ru-Ru').format(parseInt(service_expense))
+                    break;
+
+                case 'balance':
+                    return new Intl.NumberFormat('ru-Ru').format(parseInt(service_income) - parseInt(service_expense))
+                default:
+                    return 0
+            }
+
+        },
+
         getOrders() {
             return axios.get(`/api/reports`).then(response => {
               this.orders = response.data.filter(order => order.rooms.length !== 0)
@@ -177,28 +211,6 @@ export default {
           } else {
             return 0
           }
-        },
-
-        getServicesIncome (order) {
-          let finished_act_incomes = 0
-          let extra_act_incomes = 0
-
-          if (order.finished_order_acts.length) {
-            order.finished_order_acts.forEach(act => {
-              finished_act_incomes += parseInt(act.price)
-            })
-          } else {
-            return 0
-          }
-
-          if (order.extra_order_acts.length) {
-            order.extra_order_acts.forEach(act => {
-              extra_act_incomes += parseInt(act.price)
-            })
-          } else {
-            return 0
-          }
-          return new Intl.NumberFormat('ru-Ru').format(parseInt(finished_act_incomes + extra_act_incomes))
         },
 
         getMaterialsExpense (order, type) {
