@@ -33,6 +33,7 @@
                         <div><b>{{ number_format($order->price, 2, ',', ' ') }} Р</b>@if ($order->discount) (с учётом скидки -{{ $order->discount }}%) @endif </div>
                         <div>{{ $total_area }} м² </div>
                         <div>{{ $order->address }}</div>
+
                         @if ($order->client_name)
                             <div> {{ $order->client_name }} </div>
                         @else
