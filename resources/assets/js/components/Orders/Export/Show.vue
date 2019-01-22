@@ -401,9 +401,9 @@
            },
 
            exportFile () {
-               let answer = prompt("PDF or Excel", "PDF")
+               let answer = prompt("PDF (1) или Excel (2)", "1")
 
-               if (answer.toLowerCase() === 'pdf') {
+               if (answer.toLowerCase() === '1') {
                    if (this.withMaterials) {
                        axios.get(`/api/orders/${this.order.id}/export/pdf/materials`)
                             .then(response => {
@@ -416,7 +416,7 @@
                             })
                    }
                }
-               if (answer.toLowerCase() === 'excel') {
+               if (answer.toLowerCase() === '2') {
                    if (this.withMaterials) {
                        axios.get(`/api/orders/${this.order.id}/export/excel/materials`)
                             .then(response => {
