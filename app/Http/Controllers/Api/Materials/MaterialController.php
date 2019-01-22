@@ -47,6 +47,11 @@ class MaterialController extends Controller
         ]);
     }
 
+    public function update(Material $material, Request $request)
+    {
+        $material->update($request->all());
+    }
+
     public function destroy(Material $material)
     {
         if ($material->can_be_deleted) {

@@ -257,6 +257,7 @@ Route::group(['prefix' => 'services', 'namespace' => 'Api\Services'], function (
 Route::group(['namespace' => 'Api\Materials', 'middleware' => 'cacheResponse:30'], function () {
     Route::get('/materials/search', 'MaterialController@search');
     Route::post('/materials/store', 'MaterialController@store');
+    Route::patch('/materials/{material}/update', 'MaterialController@update');
     Route::delete('/materials/{material}/delete', 'MaterialController@destroy');
 
 
