@@ -124,6 +124,36 @@
                                   <option selected disabled value="null">Причина</option>
                                   <option value="Оплата материалов">Оплата материалов</option>
                                   <option value="Оплата рабочим">Оплата рабочим</option>
+
+                                  <template v-if="order.finished_order_acts">
+                                      <template v-for="(finished_order_act, index) in order.finished_order_acts">
+                                          <template v-if="finished_order_act.description">
+                                              <option :value="finished_order_act.description">
+                                                  {{ finished_order_act.description }} ({{ parseInt(index) + 1 }})
+                                              </option>
+                                          </template>
+                                          <template v-else>
+                                              <option :value="finished_order_act.name">
+                                                  {{ finished_order_act.name }} ({{ parseInt(index) + 1 }})
+                                              </option>
+                                          </template>
+
+                                      </template>
+                                  </template>
+                                  <template v-if="order.extra_order_acts">
+                                      <template v-for="(extra_order_act, index) in order.extra_order_acts">
+                                          <template v-if="extra_order_act.description">
+                                              <option :value="extra_order_act.description">
+                                                  {{ extra_order_act.description }} ({{ parseInt(index) + 1 }})
+                                              </option>
+                                          </template>
+                                          <template v-else>
+                                              <option :value="extra_order_act.name">
+                                                  {{ extra_order_act.name }} ({{ parseInt(index) + 1 }})
+                                              </option>
+                                          </template>
+                                      </template>
+                                  </template>
                               </select>
                             </div>
                             <div class="col-2">
