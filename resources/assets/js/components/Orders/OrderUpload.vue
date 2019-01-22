@@ -56,7 +56,7 @@
                   <td>{{ folder.order_uploads.filter(row => row.type === 'photo').length }} фото</td>
                   <td>{{ folder.order_uploads.filter(row => row.type === 'doc').length }} док</td>
                   <td>Дата съёмки {{ folder.name }}</td>
-                  <td>{{ folder.created_at }}</td>
+                  <td>{{ moment(folder.created_at).format('DD-MM-YYYY') }}</td>
                   <td>
                     <button @click="deleteFolder(folder.id)" class="add-button add-button--remove d-flex align-items-center" title="Удалить">
                           <img src="/img/del.svg" alt="add-button">
@@ -85,6 +85,7 @@
         data () {
             return {
                 ru,
+                moment,
                 chosenDate: null,
 
                 dropzoneOptions: {
