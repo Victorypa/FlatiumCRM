@@ -88,7 +88,11 @@ class AmoDataFetch extends Command
                         $this->client->request('GET', 'https://flatium.amocrm.ru/api/v2/leads?id=' . $value . '&type=json'
                     )->getBody())->_embedded->items;
 
-                    $this->createOrder($response[0], "https://flatium.amocrm.ru/" . $response[0]->contacts->_links->self->href);
+                    // dump(count((array) $response[0]->contacts));
+                    $this->createOrder(
+                        $response[0],
+                        count((array) $response[0]->contacts) > 0 ? "https://flatium.amocrm.ru/" . $response[0]->contacts->_links->self->href : null
+                    );
                 }
 
             }
@@ -101,7 +105,7 @@ class AmoDataFetch extends Command
         $allowed_status_ids = [
             19015585, 21236431, 18733813, 21851482,
             20686033, 142, 20500951, 18733678, 22510579,
-            19015582, 18733675, 143
+            19015582, 18733675, 143, 19260151, 19260154
         ];
 
         return $allowed_status_ids;
@@ -149,9 +153,9 @@ class AmoDataFetch extends Command
 
          Order::create([
             'amo_id' => $data->id,
-            'user_id' => $user->id,
+            'user_id' => isset($user) ? $user->id : null,
             'order_name' => $data->name,
-            'client_name' => $user->name,
+            'client_name' => isset($user) ? $user->name : null,
             'status' => $data->status_id,
             'created_at' => Carbon::createFromTimestamp($data->created_at)
         ]);
@@ -159,16 +163,18 @@ class AmoDataFetch extends Command
 
     protected function createUser($contact_link)
     {
-        $uselessLetters = ['+', ' ', '(', ')', '-'];
-        $replacement = [0 => '8'];
+        if ($contact_link !== null) {
+            $uselessLetters = ['+', ' ', '(', ')', '-'];
+            $replacement = [0 => '8'];
 
-        $contact = json_decode($this->client->request('GET', $contact_link)->getBody())->response->contacts[0];
+            $contact = json_decode($this->client->request('GET', $contact_link)->getBody())->response->contacts[0];
 
-        return User::create([
-            'name' => $contact->name,
-            'phone' => isset($contact->custom_fields[0]) ? $contact->custom_fields[0]->values[0]->value : null,
-            'email' => isset($contact->custom_fields[1]) ? $contact->custom_fields[1]->values[0]->value : null,
-            'password' => str_random(6)
-        ]);
+            return User::create([
+                'name' => $contact->name,
+                'phone' => isset($contact->custom_fields[0]) ? $contact->custom_fields[0]->values[0]->value : null,
+                'email' => isset($contact->custom_fields[1]) ? $contact->custom_fields[1]->values[0]->value : null,
+                'password' => str_random(6)
+            ]);
+        }
     }
 }
