@@ -98,7 +98,11 @@ class AmoDataFetch extends Command
 
     protected function allowedStatuses()
     {
-        $allowed_status_ids = [19015585, 21236431, 18733813, 21851482, 20686033, 142];
+        $allowed_status_ids = [
+            19015585, 21236431, 18733813, 21851482,
+            20686033, 142, 20500951, 18733678, 22510579,
+            19015582, 18733675, 143
+        ];
 
         return $allowed_status_ids;
     }
@@ -160,11 +164,9 @@ class AmoDataFetch extends Command
 
         $contact = json_decode($this->client->request('GET', $contact_link)->getBody())->response->contacts[0];
 
-        $phone = implode("", array_replace(str_split(str_replace($uselessLetters, "", $contact->custom_fields[0]->values[0]->value)), $replacement));
-
         return User::create([
             'name' => $contact->name,
-            'phone' => $phone,
+            'phone' => isset($contact->custom_fields[0]) ? $contact->custom_fields[0]->values[0]->value : null,
             'email' => isset($contact->custom_fields[1]) ? $contact->custom_fields[1]->values[0]->value : null,
             'password' => str_random(6)
         ]);

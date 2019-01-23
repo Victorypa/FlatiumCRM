@@ -49,6 +49,7 @@ class MaterialController extends Controller
 
     public function update(Material $material, Request $request)
     {
+        dd($request->all());
         $material->update($request->all());
     }
 

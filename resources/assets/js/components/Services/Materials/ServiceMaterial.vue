@@ -106,7 +106,7 @@
                                   <option v-for="material_unit in material_units" :value="material_unit.id">
                                       {{ material_unit.name }}
                                   </option>
-                              </select>
+                                </select>
 
                                 <input type="text"
                                        class="form-control col-3 ml-2"
@@ -170,11 +170,14 @@
                        <div class="col-md-4 px-0">
                            <div class="form-group d-flex align-items-center mb-0 justify-around">
 
-                              <select class="form-control col-4 ml-2" disabled>
-                                <option :value="material.material_unit.id">
-                                    {{ material.material_unit.name }}
-                                </option>
-                              </select>
+                               <select class="form-control col-4 ml-2">
+                                   <option v-for="material_unit in material_units"
+                                          :value="material_unit.id"
+                                          :selected="material_unit.id === material.material_unit_id"
+                                           >
+                                       {{ material_unit.name }}
+                                   </option>
+                               </select>
 
                               <input type="text"
                                      class="form-control col-3 ml-2"
@@ -237,8 +240,13 @@
 
                          <div class="col-md-4 px-0">
                              <div class="form-group d-flex align-items-center mb-0 justify-around">
-                                 <select class="form-control col-4 ml-2" disabled>
-                                   <option :value="material.material_unit_id">{{ material.material_unit.name }}</option>
+                                 <select class="form-control col-4 ml-2">
+                                   <option v-for="material_unit in material_units"
+                                          :value="material_unit.id"
+                                          :selected="material_unit.id === material.material_unit_id"
+                                           >
+                                       {{ material_unit.name }}
+                                   </option>
                                  </select>
 
                                  <input type="text"
@@ -300,6 +308,7 @@
 
                 material_ids: [],
 
+                material_unit_id: null,
                 material_units: []
             }
         },
@@ -309,6 +318,14 @@
         },
 
         methods: {
+            updateMaterial (material, material_unit_id) {
+                console.log(material_unit_id);
+                // axios.post(`/api/materials/${materia.id}/update`, {
+                //     'material_unit_id': material_unit.id
+                // })
+
+            },
+
             getServiceMaterials () {
                 return axios.get(`/api/services/${this.$route.params.service_id}/materials`)
                             .then(response => {
