@@ -13,6 +13,7 @@
   @include('export.partials._header')
 
   <section class="print">
+        <span style="font-size: 12px; float: right;">Страница 1</span>
         <div class="container header-name">
             <div class="inline-block px-20">
                 <h2 class="main-caption">
@@ -72,7 +73,7 @@
 
 
             @if ($order->rooms)
-                @foreach ($order->rooms()->where('room_type_id', '!=', 4)->orderBy('room_type_id')->get() as $room)
+                @foreach ($order->rooms()->where('room_type_id', '!=', 4)->orderBy('room_type_id')->get() as $index => $room)
                     <div class="first-room border-black">
                         <div class="first-room-top px-20">
                             <div class="main-subtitle pt-40 pb-20 inline-block">
@@ -104,6 +105,9 @@
                                 <td class="table-caption"><strong class="font-size-fix"><b>{{ number_format($room->price, 0, ',', ' ') }} Р</b></strong></td>
                             </tr>
                         </table>
+                    </div>
+                    <div class="page-break" style="float: right;">
+                        <span style="font-size: 12px;">Страница {{ $index + 2 }}</span>
                     </div>
                 @endforeach
             @endif
