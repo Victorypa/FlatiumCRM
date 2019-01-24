@@ -1,7 +1,5 @@
 <?php
-// Route::get('{path}', function () {
-//     return view('welcome');
-// })->where( 'path', '([A-z\d-\/_.]+)?' );
+use Illuminate\Http\Request;
 
 Route::get('/', function () {
     return view('welcome');
