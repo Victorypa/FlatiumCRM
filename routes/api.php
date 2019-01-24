@@ -269,3 +269,10 @@ Route::group(['namespace' => 'Api\Materials', 'middleware' => 'cacheResponse:30'
         Route::post('/services/{service}/materials/store', 'ServiceMaterialController@store');
     });
 });
+
+/**
+ * Quiz
+*/
+Route::group(['namespace' => 'Quiz', 'prefix' => 'quiz'], function () {
+    Route::post('/person', 'Quiz\Person\PersonController@store');
+});
