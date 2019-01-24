@@ -10,7 +10,6 @@
 
 <body>
     @include('export.partials._header')
-
   <section class="print">
         <div class="container header-name">
             <div class="inline-block px-20">

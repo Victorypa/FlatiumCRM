@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Api\Orders\Traits;
 
+use App;
 use PDF;
 use Storage;
 use App\Models\Orders\Order;
@@ -18,14 +19,16 @@ trait OrderExportTrait
 
         $name = $filteredOrder->address;
 
-        $pdf = PDF::setOptions([['defaultFont' => 'DejaVu Sans, Arial']])
-                  ->loadView($path, [
-                      'order' => $filteredOrder,
-                      'total_area' => $total_area
-                  ])->setPaper('a4', 'portrait');
+        $pdf = PDF::setOptions([['defaultFont' => 'DejaVu Sans, Arial']]);
+
+        $pdf->loadView($path, [
+            'order' => $filteredOrder,
+            'total_area' => $total_area,
+            'pdf' => $pdf
+        ])->setPaper('a4', 'portrait');
 
 
-        $pdf = $pdf->save($path = storage_path("app/public/$name.pdf"));
+        $pdf->save($path = storage_path("app/public/$name.pdf"));
 
         if (!$pdf) {
             return response()->json(['message' => 'some error']);

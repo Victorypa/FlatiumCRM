@@ -52084,7 +52084,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         Slide: __WEBPACK_IMPORTED_MODULE_0_vue_carousel__["Slide"]
     },
 
-    mounted: function mounted() {
+    created: function created() {
         this.getOrder();
         this.getRoomTypes();
     },
@@ -52231,9 +52231,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
-//
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: ["order", "room"],
@@ -52296,7 +52293,7 @@ var render = function() {
         "div",
         { staticClass: "row align-items-center pb-3" },
         [
-          _vm.room && _vm.room.id
+          _vm.room
             ? [
                 _c(
                   "div",
@@ -52339,7 +52336,7 @@ var render = function() {
                         staticStyle: { "font-size": "16px" }
                       },
                       [
-                        _vm.order.price
+                        _vm.order.price && _vm.order.price != 0
                           ? [
                               _vm._v(
                                 "\n                        Итого: " +
@@ -52351,11 +52348,7 @@ var render = function() {
                                   " P\n                    "
                               )
                             ]
-                          : [
-                              _vm._v(
-                                "\n                        Итого: 0 P\n                    "
-                              )
-                            ]
+                          : _vm._e()
                       ],
                       2
                     ),

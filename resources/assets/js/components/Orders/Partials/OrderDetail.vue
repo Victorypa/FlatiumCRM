@@ -2,7 +2,7 @@
     <div class="create__fixed-top col-10 px-0 shadow-light align-items-center pl-3">
         <div class="row align-items-center pb-3">
 
-            <template v-if="room && room.id">
+            <template v-if="room">
                 <div class="col-md-6 d-flex justify-content-between align-items-center">
                     <h1 class="main-caption col-12 pl-0">
                         <template v-if="order.address != null">
@@ -16,11 +16,8 @@
 
                 <div class="col-md-6 d-flex px-0 align-items-center">
                     <div class="col-4 create__sum pl-0" style="font-size: 16px;">
-                        <template v-if="order.price">
+                        <template v-if="order.price && order.price != 0">
                             Итого: {{ new Intl.NumberFormat('ru-Ru').format(parseInt(order.price)) }} P
-                        </template>
-                        <template v-else>
-                            Итого: 0 P
                         </template>
                     </div>
 

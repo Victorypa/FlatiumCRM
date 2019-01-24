@@ -92,7 +92,7 @@
             Slide
         },
 
-        mounted () {
+        created () {
             this.getOrder()
             this.getRoomTypes()
         },
