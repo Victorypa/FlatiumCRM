@@ -141,4 +141,14 @@ class RoomServiceController extends Controller
             'order' => $updatedOrder
         ]);
     }
+
+    public function update(Order $order, Room $room, Request $request)
+    {
+        foreach ($request->room_service_markups as $service_id => $markup) {
+            $room_service = $room->room_services()->where('service_id', $service_id)->first();
+            $room_service->markup = $markup;
+            $room_service->price = $room_service->price * (1 + ((int)$markup/100));
+            $room_service->save();
+        }
+    }
 }

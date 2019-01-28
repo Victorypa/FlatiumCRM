@@ -187,6 +187,7 @@ use Illuminate\Http\Request;
                 Route::get('/{order}/rooms/{room}/services', 'RoomServiceController@index');
                 Route::get('/{order}/rooms/{room}/services/{service}/show', 'RoomServiceController@show');
                 Route::post('/{order}/rooms/{room}/services/store', 'RoomServiceController@store');
+                Route::patch('/{order}/rooms/{room}/services/update', 'RoomServiceController@update');
 
                 /**
                  * Rooms - Services - Materials

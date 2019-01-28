@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class AddMarkupToRoomsTable extends Migration
+class AddMarkupToRoomServices extends Migration
 {
     /**
      * Run the migrations.
@@ -13,7 +13,7 @@ class AddMarkupToRoomsTable extends Migration
      */
     public function up()
     {
-        Schema::table('rooms', function (Blueprint $table) {
+        Schema::table('room_services', function (Blueprint $table) {
             $table->integer('markup')->nullable();
         });
     }
@@ -25,8 +25,8 @@ class AddMarkupToRoomsTable extends Migration
      */
     public function down()
     {
-        Schema::table('rooms', function (Blueprint $table) {
-            $table->dropColumn(['markup']);
+        Schema::table('room_services', function (Blueprint $table) {
+            $table->dropColumn('markup');
         });
     }
 }

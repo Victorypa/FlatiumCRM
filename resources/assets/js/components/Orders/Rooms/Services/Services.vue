@@ -124,38 +124,53 @@
                                 {{ service_units[room_service_id] }}
                             </div>
 
-                            <input type="number"
-                            class="form-control w-85"
-                            min="0"
-                            disabled
-                            :value="service_prices[room_service_id]"
+                            <input  type="number"
+                                    class="form-control w-85"
+                                    min="0"
+                                    disabled
+                                    :value="service_prices[room_service_id]"
                             >
 
                             <div class="inputs-caption col-md-2">
                                 Р/{{ service_units[room_service_id] }}
                             </div>
 
-                            <div class="form-group__calc w-85">
-                                {{ getServiceSummary(room_service_id) }} P
-                            </div>
+                            <template v-if="room_service_markups[room_service_id]">
+                                <div class="form-group__calc w-85">
+                                    {{ parseInt(service_prices[room_service_id] * service_quantities[room_service_id] * (1 + (parseInt(room_service_markups[room_service_id])/100))) }} P
+                                </div>
+                            </template>
+                            <template v-else>
+                                <div class="form-group__calc w-85">
+                                    {{ getServiceSummary(room_service_id) }} P
+                                </div>
+                            </template>
+
 
                             <template v-if="service_can_be_deleted[room_service_id]">
-                                <div class="col-md-2">
+                                <div class="col-md-1">
                                     <button @click="deleteService(room_service_id)" class="add-button add-button--remove d-flex align-items-center" title="Удалить материал">
                                         <img src="/img/del.svg" alt="add-button">
-                                        <div class="remove-materials ml-1">
-                                          Удалить
-                                        </div>
                                     </button>
                                 </div>
                             </template>
                             <template v-else>
-                                <div class="col-md-2">
+                                <div class="col-md-1">
                                     &nbsp;
                                 </div>
                             </template>
 
-                            <div class="col-md-auto px-0 ml-auto">
+                            <div class="col-md-2">
+                                <input type="number"
+                                       class="form-control w-85"
+                                       min="0"
+                                       placeholder="Наценка"
+                                       v-model="room_service_markups[room_service_id]"
+                                       @change="updateRoomServiceMarkup()"
+                                       >
+                            </div>
+
+                            <div class="col-md-auto">
                                 <template v-if="room.order">
                                     <router-link :to="{ name: 'actual-material', params: { id: room.order.id, room_id: room.id, service_id: room_service_id }}">
                                         <button class="add-button " title="Добавить материалы">
@@ -280,6 +295,7 @@
                 room_service_ids: [],
                 room_service_types: [],
                 room_service_materials: [],
+                room_service_markups: [],
 
                 service_names: [],
                 service_units: [],
@@ -302,6 +318,8 @@
                                 response.data.room_services.forEach(item => {
                                     this.room_service_ids.push(item.service_id)
                                     this.room_service_materials[item.service_id] = item.materials
+
+                                    this.room_service_markups[item.service_id] = item.markup
 
                                     this.room_services.push({
                                         service_id: item.service_id,
@@ -414,6 +432,15 @@
                     'service_quantities': this.removeEmptyElem(this.service_quantities),
                     'service_prices': this.service_prices
                 }).then(response => {
+                    this.$emit('price', parseInt(response.data.room.price))
+                })
+            },
+
+            updateRoomServiceMarkup () {
+                axios.patch(`/api/orders/${this.$route.params.id}/rooms/${this.$route.params.room_id}/services/update`, {
+                    'room_service_markups': this.removeEmptyElem(this.room_service_markups)
+                })
+                .then(response => {
                     this.$emit('price', parseInt(response.data.room.price))
                 })
             },
