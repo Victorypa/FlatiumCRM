@@ -89,13 +89,14 @@
                                         </template>
                                     </div>
 
-                                    <div class="col-2 pl-0">
+                                    <div class="col-2 pl-0 d-flex align-item-center">
                                         <input type="text"
                                                placeholder="Наценка"
                                                class="form-control match-content"
                                                v-model="room_markup"
-                                               @change="updateRoomMarkup(room_markup)"
+                                               @change="updateRoomMarkup(room_markup, room.id)"
                                                >
+                                               <span class="form-control" style="border: none;">%</span>
                                     </div>
 
                                     <template v-if="room_type_id === 1">
@@ -262,8 +263,8 @@
                             .then(response => {
                                 this.room = response.data
                                 this.room_price = this.room.price
-
                                 this.room_description = this.room.description
+                                this.room_markup = this.room.markup
 
                                 this.order = this.room.order
                                 this.order_price = this.order.price
@@ -316,6 +317,14 @@
                }).then(response => {
                    this.getRoom()
                })
+            },
+
+            updateRoomMarkup (room_markup, id) {
+                axios.patch(`/api/orders/${this.$route.params.id}/rooms/${id}/update_markup`, {
+                    'markup': this.room_markup
+                }).then(response => {
+                    this.getRoom()
+                })
             },
 
             deleteRoom () {

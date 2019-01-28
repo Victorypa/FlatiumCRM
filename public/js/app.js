@@ -66152,6 +66152,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
 
 
 
@@ -66201,8 +66202,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
             return axios.get('/api/orders/' + this.$route.params.id + '/rooms/' + this.$route.params.room_id).then(function (response) {
                 _this.room = response.data;
                 _this.room_price = _this.room.price;
-
                 _this.room_description = _this.room.description;
+                _this.room_markup = _this.room.markup;
 
                 _this.order = _this.room.order;
                 _this.order_price = _this.order.price;
@@ -66255,15 +66256,24 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
                 _this3.getRoom();
             });
         },
-        deleteRoom: function deleteRoom() {
+        updateRoomMarkup: function updateRoomMarkup(room_markup, id) {
             var _this4 = this;
+
+            axios.patch('/api/orders/' + this.$route.params.id + '/rooms/' + id + '/update_markup', {
+                'markup': this.room_markup
+            }).then(function (response) {
+                _this4.getRoom();
+            });
+        },
+        deleteRoom: function deleteRoom() {
+            var _this5 = this;
 
             if (confirm('Удалить?')) {
                 axios.delete('/api/orders/' + this.$route.params.id + '/rooms/' + this.room.id + '/destroy').then(function (response) {
                     if (response.data.id) {
-                        _this4.$router.push({ name: 'room-show', params: { id: _this4.$route.params.id, room_id: response.data.id } });
+                        _this5.$router.push({ name: 'room-show', params: { id: _this5.$route.params.id, room_id: response.data.id } });
                     } else {
-                        _this4.$router.push({ name: 'order-show', params: { id: _this4.$route.params.id } });
+                        _this5.$router.push({ name: 'order-show', params: { id: _this5.$route.params.id } });
                     }
                 });
             } else {
@@ -68864,32 +68874,50 @@ var render = function() {
                               )
                             : _vm._e(),
                           _vm._v(" "),
-                          _c("div", { staticClass: "col-2 pl-0" }, [
-                            _c("input", {
-                              directives: [
-                                {
-                                  name: "model",
-                                  rawName: "v-model",
-                                  value: _vm.room_markup,
-                                  expression: "room_markup"
-                                }
-                              ],
-                              staticClass: "form-control match-content",
-                              attrs: { type: "text", placeholder: "Наценка" },
-                              domProps: { value: _vm.room_markup },
-                              on: {
-                                change: function($event) {
-                                  _vm.updateRoomMarkup(_vm.room_markup)
-                                },
-                                input: function($event) {
-                                  if ($event.target.composing) {
-                                    return
+                          _c(
+                            "div",
+                            {
+                              staticClass: "col-2 pl-0 d-flex align-item-center"
+                            },
+                            [
+                              _c("input", {
+                                directives: [
+                                  {
+                                    name: "model",
+                                    rawName: "v-model",
+                                    value: _vm.room_markup,
+                                    expression: "room_markup"
                                   }
-                                  _vm.room_markup = $event.target.value
+                                ],
+                                staticClass: "form-control match-content",
+                                attrs: { type: "text", placeholder: "Наценка" },
+                                domProps: { value: _vm.room_markup },
+                                on: {
+                                  change: function($event) {
+                                    _vm.updateRoomMarkup(
+                                      _vm.room_markup,
+                                      _vm.room.id
+                                    )
+                                  },
+                                  input: function($event) {
+                                    if ($event.target.composing) {
+                                      return
+                                    }
+                                    _vm.room_markup = $event.target.value
+                                  }
                                 }
-                              }
-                            })
-                          ]),
+                              }),
+                              _vm._v(" "),
+                              _c(
+                                "span",
+                                {
+                                  staticClass: "form-control",
+                                  staticStyle: { border: "none" }
+                                },
+                                [_vm._v("%")]
+                              )
+                            ]
+                          ),
                           _vm._v(" "),
                           _vm.room_type_id === 1
                             ? [

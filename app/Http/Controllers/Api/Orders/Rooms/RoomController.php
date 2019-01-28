@@ -41,6 +41,13 @@ class RoomController extends Controller
         ]);
     }
 
+    public function updateMarkup(Order $order, Room $room, Request $request)
+    {
+        $room->update([
+            'markup' => $request->markup
+        ]);
+    }
+
     public function destroy(Order $order, Room $room, Request $request)
     {
         $room->delete();
