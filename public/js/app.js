@@ -66144,6 +66144,14 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -66170,6 +66178,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
             rooms: [],
             room_type_id: null,
             room_price: 0,
+
+            room_markup: null,
 
             width: null,
             length: null,
@@ -66697,8 +66707,19 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             var _this2 = this;
 
             return axios.get('/api/service_types').then(function (response) {
-                _this2.service_types = response.data;
-                _this2.service_type_id = _this2.service_types[0].id;
+                switch (parseInt(_this2.room.room_type_id)) {
+                    case parseInt(2):
+                        _this2.service_types = response.data.slice(4, 5);
+                        _this2.service_type_id = _this2.service_types[0].id;
+                        break;
+                    case parseInt(3):
+                        _this2.service_types = response.data.slice(3, 4);
+                        _this2.service_type_id = _this2.service_types[0].id;
+                        break;
+                    default:
+                        _this2.service_type_id = 1;
+                        _this2.service_types = response.data;
+                }
             });
         },
         getServices: function getServices() {
@@ -68772,7 +68793,7 @@ var render = function() {
                           _vm.room.room_type
                             ? _c(
                                 "div",
-                                { staticClass: "col-4 pl-0" },
+                                { staticClass: "col-2 pl-0" },
                                 [
                                   _vm.room_description
                                     ? [
@@ -68842,6 +68863,33 @@ var render = function() {
                                 2
                               )
                             : _vm._e(),
+                          _vm._v(" "),
+                          _c("div", { staticClass: "col-2 pl-0" }, [
+                            _c("input", {
+                              directives: [
+                                {
+                                  name: "model",
+                                  rawName: "v-model",
+                                  value: _vm.room_markup,
+                                  expression: "room_markup"
+                                }
+                              ],
+                              staticClass: "form-control match-content",
+                              attrs: { type: "text", placeholder: "Наценка" },
+                              domProps: { value: _vm.room_markup },
+                              on: {
+                                change: function($event) {
+                                  _vm.updateRoomMarkup(_vm.room_markup)
+                                },
+                                input: function($event) {
+                                  if ($event.target.composing) {
+                                    return
+                                  }
+                                  _vm.room_markup = $event.target.value
+                                }
+                              }
+                            })
+                          ]),
                           _vm._v(" "),
                           _vm.room_type_id === 1
                             ? [

@@ -11,7 +11,6 @@
 <body>
     @include('export.partials._header')
   <section class="print">
-        <span style="font-size: 12px; float: right;">Страница 1</span>
         <div class="container header-name">
             <div class="inline-block px-20">
                 <h2 class="main-caption">
@@ -24,8 +23,7 @@
                         <div class="main-info">Адрес: </div>
 
                         <div class="main-info">Заказчик: </div>
-                        <div class="main-info">Телефон: </div>
-                        <div class="main-info">Почта: </div>
+
                         <div class="main-info">Менеджер: </div>
                         <div class="main-info">Приложение к договору № </div>
                     </div>
@@ -40,17 +38,6 @@
                             <div>&nbsp;</div>
                         @endif
 
-                        @if ($order->user->phone)
-                            <div> {{ $order->user->phone }} </div>
-                        @else
-                            <div>&nbsp;</div>
-                        @endif
-
-                        @if ($order->user->email)
-                            <div> {{ $order->user->email }} </div>
-                        @else
-                            <div>&nbsp;</div>
-                        @endif
 
                         @if ($order->manager)
                             <div>{{ $order->manager->name }} {{ $order->manager->phone }}</div>
@@ -105,9 +92,6 @@
                                 </td>
                             </tr>
                         </table>
-                    </div>
-                    <div class="page-break" style="float: right;">
-                        <span style="font-size: 12px;">Страница {{ $index + 2 }}</span>
                     </div>
                 @endforeach
             @endif

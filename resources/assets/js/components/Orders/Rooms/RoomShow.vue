@@ -51,7 +51,6 @@
                                                                 </router-link>
                                                             </slide>
                                                 </carousel>
-
                                         </div>
 
                                     </div>
@@ -72,7 +71,7 @@
 
 
                                 <div class="row align-items-center py-5 bg-white rounded px-15">
-                                    <div class="col-4 pl-0" v-if="room.room_type">
+                                    <div class="col-2 pl-0" v-if="room.room_type">
                                         <template v-if="room_description">
                                             <input type="text"
                                                    class="form-control match-content"
@@ -88,6 +87,15 @@
                                                    @change="updateDescription(room.id)"
                                                    >
                                         </template>
+                                    </div>
+
+                                    <div class="col-2 pl-0">
+                                        <input type="text"
+                                               placeholder="Наценка"
+                                               class="form-control match-content"
+                                               v-model="room_markup"
+                                               @change="updateRoomMarkup(room_markup)"
+                                               >
                                     </div>
 
                                     <template v-if="room_type_id === 1">
@@ -216,6 +224,8 @@
                 rooms: [],
                 room_type_id: null,
                 room_price: 0,
+
+                room_markup: null,
 
                 width: null,
                 length: null,

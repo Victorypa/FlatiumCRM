@@ -134,6 +134,7 @@ class AmoDataFetch extends Command
         if (json_decode($response->getBody()) === null) {
             return null;
         } else {
+            // dump(json_decode($response->getBody())->_embedded->items);
             return json_decode($response->getBody())->_embedded->items;
         }
     }
