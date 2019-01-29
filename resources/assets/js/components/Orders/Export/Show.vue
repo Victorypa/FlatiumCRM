@@ -342,7 +342,7 @@
                                         )
                                     })
 
-                                    this.square += parseInt(room.area)
+                                    this.square += parseFloat(room.area).toFixed(2)
                                     let data = _.groupBy(room.room_services, 'room_id')
                                     this.room_service_ids.push(Object.entries(data)[0])
                                 })
