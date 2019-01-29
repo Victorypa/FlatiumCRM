@@ -13,7 +13,7 @@ trait RoomPriceCalculationTrait
         $total_room_price = 0;
 
         foreach ($room->room_services()->get() as $room_service) {
-            $total_room_price += (float) $room_service->price;
+            $total_room_price += (float) $room_service->original_price ? $room_service->original_price : $room_service->price;
             $original_room_price += (float) Service::where('id', $room_service->service_id)->first()->price * $room_service->quantity;
         }
 

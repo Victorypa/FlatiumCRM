@@ -176,7 +176,7 @@ use Illuminate\Http\Request;
             Route::get('/{order}/rooms/{room}', 'RoomController@show');
             Route::post('/{order}/rooms/create', 'RoomController@store');
             Route::patch('/{order}/rooms/{room}/update', 'RoomController@update');
-            Route::patch('/{order}/rooms/{room}/update_markup', 'RoomController@updateMarkup');
+            Route::patch('/{order}/rooms/{room}/update_description', 'RoomController@updateDescription');
             Route::patch('/{order}/rooms/{room}/update_priority', 'RoomController@updatePriority');
             Route::delete('/{order}/rooms/{room}/destroy', 'RoomController@destroy');
 

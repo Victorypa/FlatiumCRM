@@ -32,8 +32,16 @@
                 <td>{{ number_format($room_service->quantity * \App\Models\Services\Service::where('id', $room_service->service_id)->first()->price * (1 + $order->markup/100), 2, ',', ' ') }} Р</td>
             @endif
             @if ($order->discount === null && $order->markup === null)
-                <td>{{ \App\Models\Services\Service::where('id', $room_service->service_id)->first()->price }} Р/{{ $room_service->unit->name }}</td>
-                <td>{{ number_format($room_service->quantity * \App\Models\Services\Service::where('id', $room_service->service_id)->first()->price, 2, ',', ' ') }} Р</td>
+                @if ($room_service->markup === null)
+                    <td>{{ \App\Models\Services\Service::where('id', $room_service->service_id)->first()->price }} Р/{{ $room_service->unit->name }}</td>
+                    <td>{{ number_format($room_service->quantity * \App\Models\Services\Service::where('id', $room_service->service_id)->first()->price, 2, ',', ' ') }} Р</td>
+                @endif
+
+                @if ($room_service->markup !== null)
+                    <td>{{ (int) \App\Models\Services\Service::where('id', $room_service->service_id)->first()->price * (1 + (int)$room_service->markup/100) }} Р/{{ $room_service->unit->name }}</td>
+                    <td>{{ number_format($room_service->original_price, 2, ',', ' ') }}</td>
+                    {{-- <td>{{ number_format($room_service->quantity * \App\Models\Services\Service::where('id', $room_service->service_id)->first()->price, 2, ',', ' ') }} Р</td> --}}
+                @endif
             @endif
         </tr>
     @endforeach
