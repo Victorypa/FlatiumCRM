@@ -22,6 +22,27 @@ class UserTableSeeder extends Seeder
             'isAdmin' => true
         ]);
 
+        $user3 = User::create([
+            'name' => 'Павел Старинцев',
+            'email' => 'Pavel.Starintcev@flatium.ru',
+            'password' => bcrypt('secret1'),
+            'isAdmin' => false
+        ]);
+
+        $user4 = User::create([
+            'name' => 'Дмитрий Юрин',
+            'email' => 'dmitry.yurin@flatium.ru',
+            'password' => bcrypt('secret2'),
+            'isAdmin' => false
+        ]);
+
+        $user5 = User::create([
+            'name' => 'Дмитрий Березин',
+            'email' => 'berezin.super@yandex.ru',
+            'password' => bcrypt('secret3'),
+            'isAdmin' => false
+        ]);
+
         $user1->roles()->syncWithoutDetaching([1]);
         $user2->roles()->syncWithoutDetaching([1]);
     }

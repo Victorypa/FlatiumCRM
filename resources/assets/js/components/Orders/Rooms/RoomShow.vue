@@ -91,12 +91,11 @@
 
                                     <div class="col-2 pl-0 d-flex align-item-center">
                                         <input type="text"
-                                               placeholder="Наценка"
+                                               placeholder="Приоритет(Число)"
                                                class="form-control match-content"
-                                               v-model="room_markup"
-                                               @change="updateRoomMarkup(room_markup, room.id)"
+                                               v-model="room_priority"
+                                               @change="updateRoomPriority(room_priority, room.id)"
                                                >
-                                               <span class="form-control" style="border: none;">%</span>
                                     </div>
 
                                     <template v-if="room_type_id === 1">
@@ -226,7 +225,7 @@
                 room_type_id: null,
                 room_price: 0,
 
-                room_markup: null,
+                room_priority: null,
 
                 width: null,
                 length: null,
@@ -264,7 +263,7 @@
                                 this.room = response.data
                                 this.room_price = this.room.price
                                 this.room_description = this.room.description
-                                this.room_markup = this.room.markup
+                                this.room_priority = this.room.priority
 
                                 this.order = this.room.order
                                 this.order_price = this.order.price
@@ -319,9 +318,9 @@
                })
             },
 
-            updateRoomMarkup (room_markup, id) {
-                axios.patch(`/api/orders/${this.$route.params.id}/rooms/${id}/update_markup`, {
-                    'markup': this.room_markup
+            updateRoomPriority (room_priority, id) {
+                axios.patch(`/api/orders/${this.$route.params.id}/rooms/${id}/update_priority`, {
+                    'priority': this.room_priority
                 }).then(response => {
                     this.getRoom()
                 })

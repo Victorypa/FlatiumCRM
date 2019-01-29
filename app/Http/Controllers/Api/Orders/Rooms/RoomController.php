@@ -41,10 +41,10 @@ class RoomController extends Controller
         ]);
     }
 
-    public function updateMarkup(Order $order, Room $room, Request $request)
+    public function updatePriority(Order $order, Room $room, Request $request)
     {
         $room->update([
-            'markup' => $request->markup
+            'priority' => $request->priority
         ]);
     }
 
