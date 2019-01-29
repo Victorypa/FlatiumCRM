@@ -1,6 +1,20 @@
 <style>
-.page-break {
-    page-break-before: always;
+#header,
+#footer {
+    position: fixed;
+	color: black;
+	font-size: 0.9em;
+    float: right;
+}
+#header {
+  top: -30px;
+  right: 15px;
+}
+#footer {
+  bottom: 0;
+}
+.page-number:before {
+  content: "Лист " counter(page);
 }
 
 * {
@@ -8,7 +22,7 @@
 }
 
 @page {
-    margin: 0;
+    margin: 80px 0;
 }
 
 html,
@@ -99,6 +113,7 @@ header {
   width: 90px;
   margin-left: 20px;
   padding: 10px 0;
+  margin-top: -80px;
 }
 
 .logo-block-image {
