@@ -174,53 +174,53 @@
                                         </div>
                                     </template>
 
-                                        <template v-for="(services, service_type_id) in groupByServiceType(room_service[1])">
-                                            <div class="row bg px-15">
+                                    <template v-for="(services, service_type_id) in groupByServiceType(room_service[1])">
+                                        <div class="row bg px-15">
 
-                                                <div class="main-subtitle main-subtitle--fz col-12 pt-4">
-                                                    {{ getServiceTypeName(service_type_id) }}
-                                                </div>
+                                            <div class="main-subtitle main-subtitle--fz col-12 pt-4">
+                                                {{ getServiceTypeName(service_type_id) }}
+                                            </div>
 
-                                                <div class="col-12 px-0">
+                                            <div class="col-12 px-0">
+                                                <table class="table table-hover">
+                                                    <tbody>
+                                                        <tr v-for="room_service in sortServicesByCreatedAt(services)" :key="room_service.id">
+                                                            <th scope="row" class="w-50">
+                                                                {{ getServiceDetails(room_service.service_id, 'name') }}
+                                                            </th>
+                                                            <td>{{ parseFloat(room_service.quantity).toFixed(2) }}  {{ room_service.unit.name }}</td>
 
-                                                    <table class="table table-hover">
-
-                                                        <tbody>
-                                                            <tr v-for="room_service in sortServicesByCreatedAt(services)">
-                                                                <th scope="row" class="w-50">
-                                                                    {{ getServiceDetails(room_service.service_id, 'name') }}
-                                                                </th>
-                                                                <td>{{ parseFloat(room_service.quantity).toFixed(2) }}  {{ room_service.unit.name }}</td>
-
-                                                                <template v-if="order.discount">
-                                                                    <template v-if="getServiceDetails(room_service.service_id, 'can_be_discounted')">
-                                                                        <td>{{ getServiceDetails(room_service.service_id, 'price') * (1 - parseInt(order.discount)/100) }} Р/{{ room_service.unit.name }}</td>
-                                                                        <td>{{ priceCount(room_service.quantity, getServiceDetails(room_service.service_id, 'price') * (1 - parseFloat(order.discount)/100)) }} Р</td>
-                                                                    </template>
-                                                                    <template v-else>
-                                                                        <td>{{ getServiceDetails(room_service.service_id, 'price') }} Р/{{ room_service.unit.name }}</td>
-                                                                        <td>{{ priceCount(room_service.quantity, getServiceDetails(room_service.service_id, 'price')) }} Р</td>
-                                                                    </template>
+                                                            <template v-if="order.discount">
+                                                                <template v-if="getServiceDetails(room_service.service_id, 'can_be_discounted')">
+                                                                    <td>{{ getServiceDetails(room_service.service_id, 'price') * (1 - parseInt(order.discount)/100) }} Р/{{ room_service.unit.name }}</td>
+                                                                    <td>{{ priceCount(room_service.quantity, getServiceDetails(room_service.service_id, 'price') * (1 - parseFloat(order.discount)/100)) }} Р</td>
                                                                 </template>
-                                                                <template v-if="order.markup">
-                                                                    <td>{{ getServiceDetails(room_service.service_id, 'price') * (1 + parseInt(order.markup)/100) }} Р/{{ room_service.unit.name }}</td>
-                                                                    <td>{{ priceCount(room_service.quantity, getServiceDetails(room_service.service_id, 'price') * (1 + parseFloat(order.markup)/100)) }} Р</td>
-                                                                </template>
-                                                                <template v-if="order.discount === null && order.markup === null">
+                                                                <template v-else>
                                                                     <td>{{ getServiceDetails(room_service.service_id, 'price') }} Р/{{ room_service.unit.name }}</td>
                                                                     <td>{{ priceCount(room_service.quantity, getServiceDetails(room_service.service_id, 'price')) }} Р</td>
                                                                 </template>
-                                                            </tr>
-                                                        </tbody>
-                                                    </table>
-
-                                                </div>
+                                                            </template>
+                                                            <template v-if="order.markup">
+                                                                <td>{{ getServiceDetails(room_service.service_id, 'price') * (1 + parseInt(order.markup)/100) }} Р/{{ room_service.unit.name }}</td>
+                                                                <td>{{ priceCount(room_service.quantity, getServiceDetails(room_service.service_id, 'price') * (1 + parseFloat(order.markup)/100)) }} Р</td>
+                                                            </template>
+                                                            <template v-if="order.discount === null && order.markup === null">
+                                                                <td>{{ getServiceDetails(room_service.service_id, 'price') }} Р/{{ room_service.unit.name }}</td>
+                                                                <td>{{ priceCount(room_service.quantity, getServiceDetails(room_service.service_id, 'price')) }} Р</td>
+                                                            </template>
+                                                            <td>
+                                                                <i class="fa fa-arrow-down"
+                                                                   @click="down(room_service)"></i>
+                                                                &nbsp;
+                                                                <i class="fa fa-arrow-up"
+                                                                   @click="up(room_service)"></i>
+                                                            </td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
                                             </div>
-                                        </template>
-
-
-
-
+                                        </div>
+                                    </template>
                                 </div>
                             </template>
 
@@ -296,7 +296,7 @@
 
                 room_service_ids: [],
                 room_service_booleans: [],
-                rooms: [],
+                rooms: []
 
             }
         },
@@ -342,7 +342,7 @@
                                         )
                                     })
 
-                                    this.square += parseFloat(room.area).toFixed(2)
+                                    this.square += parseInt(room.area)
                                     let data = _.groupBy(room.room_services, 'room_id')
                                     this.room_service_ids.push(Object.entries(data)[0])
                                 })
@@ -386,6 +386,14 @@
                    })
                }
 
+           },
+
+           down (room_service) {
+               console.log(room_service);
+           },
+
+           up (room_service) {
+               console.log(room_service);
            },
 
            changeRoomName (id) {
@@ -459,6 +467,21 @@
                transition-duration: 0.3s;
            }
        }
+        }
+    }
+    .fa-arrow-down, .fa-arrow-up {
+        opacity: 0;
+        cursor: pointer;
+        &:hover {
+            color: $main-color;
+        }
+    }
+
+    tr {
+        &:hover {
+            .fa-arrow-down, .fa-arrow-up {
+                opacity: 1;
+            }
         }
     }
 

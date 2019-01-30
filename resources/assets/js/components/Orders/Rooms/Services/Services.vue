@@ -89,7 +89,7 @@
 
                 <template v-if="room_service_types[room_service_id] === service_type_id">
                   <div class="row align-items-center">
-                      <label class="col-md-4 mb-0">
+                      <label class="col-md-4 mb-0 d-flex align-items-center">
                           <div class="form-check custom-control d-flex edit-show">
                               <input class="form-check-input"
                                      type="checkbox"

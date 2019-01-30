@@ -193,6 +193,16 @@
                                   </td>
                               </tr>
                           </table>
+
+                          {{-- <div class="container">
+                            <table class="border-free">
+                                <tr class="border-free">
+                                    <th class="table-caption border-free background-free"></th>
+                                    <td class="py-25 table-caption border-free ml-20"><strong><b>ИТОГО ПО РЕКОМЕНДУЕМЫМ РАБОТАМ:</b></strong></td>
+                                    <td class="table-caption border-free ml-15 font-size-fix" colspan="2"><strong><b>{{ number_format($room->price, 0, ',', ' ') }} Р</b></strong></td>
+                                </tr>
+                            </table>
+                          </div> --}}
                       </div>
                   @endforeach
               @endif
