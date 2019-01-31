@@ -35,7 +35,6 @@
                                    placeholder="Название"
                                    v-model="newService.name"
                                    >
-                                   <i class="fa fa-search"></i>
                         </div>
                     </div>
 
@@ -453,10 +452,6 @@
         computed: {
             filteredServices () {
                 let data = this.services
-
-                if (this.newServices.length) {
-                    this.newServices = []
-                }
 
                 data = data.filter(row => {
                     return row.service_type_id === this.service_type_id

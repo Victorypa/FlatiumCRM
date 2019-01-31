@@ -148,7 +148,6 @@
                             </div>
                           </div>
                         </div>
-
                     </form>
 
                     <div class="row col-12 pl-0">

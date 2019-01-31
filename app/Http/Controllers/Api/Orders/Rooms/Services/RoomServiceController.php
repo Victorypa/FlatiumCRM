@@ -154,4 +154,22 @@ class RoomServiceController extends Controller
         }
         $room->calculateRoomPrice($room);
     }
+
+    public function updateCreatedAt(Order $order, Room $room, Request $request)
+    {
+        $current_room_service = $request->room_service;
+
+        $room_services = $room->room_services()->get();
+
+        foreach($room_services->toArray() as $index => $room_service) {
+            if ($current_room_service === $room_service) {
+                dump($index, $room_service);
+            }
+        }
+
+        // $prev = $room->room_services()->where('id', $room_service->id - 1)->first();
+        // $next = $room->room_services()->where('id', $room_service->id + 1)->first();
+        // dd($prev, $next);
+
+    }
 }

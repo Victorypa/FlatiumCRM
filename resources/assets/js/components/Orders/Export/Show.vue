@@ -210,10 +210,13 @@
                                                             </template>
                                                             <td>
                                                                 <i class="fa fa-arrow-down"
-                                                                   @click="down(room_service)"></i>
+                                                                   v-if="!checkElement(room_service, sortServicesByCreatedAt(services), 'last')"
+                                                                   @click="move(room_service, 'down')"
+                                                                   ></i>
                                                                 &nbsp;
                                                                 <i class="fa fa-arrow-up"
-                                                                   @click="up(room_service)"></i>
+                                                                   v-if="!checkElement(room_service, sortServicesByCreatedAt(services), 'first')"
+                                                                   @click="move(room_service, 'up')"></i>
                                                             </td>
                                                         </tr>
                                                     </tbody>
@@ -388,12 +391,20 @@
 
            },
 
-           down (room_service) {
-               console.log(room_service);
+           move (room_service, type) {
+               axios.patch(`/api/orders/${this.$route.params.id}/rooms/${room_service.room_id}/services/update_created_at`, {
+                   'room_service': room_service
+               })
            },
 
-           up (room_service) {
-               console.log(room_service);
+           checkElement (element, data, type) {
+               if (type === 'last') {
+                   return element === data[data.length - 1]
+               }
+
+               if (type === 'first') {
+                   return element === data[0]
+               }
            },
 
            changeRoomName (id) {

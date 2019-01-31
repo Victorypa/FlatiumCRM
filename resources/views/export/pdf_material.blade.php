@@ -241,10 +241,8 @@
                           </div>
                       @endforeach
                   @endif
+                  @include('export.partials._comment', [$order])
                 </div>
-
-
-            @include('export.partials._comment', [$order])
 
     </section>
 
