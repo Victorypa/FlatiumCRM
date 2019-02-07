@@ -146,13 +146,19 @@
 
                 @if ($order->discount === null && $order->markup === null)
                   <div class="container">
-                    <table class="border-free">
+                      <div class="row">
+                          <strong><b>
+                              ИТОГО ПО ВЕДОМОСТИ И СТОИМОСТИ РАБОТ:
+                              {{ number_format($order->price, 0, '', ' ') }} Р
+                          </b></strong>
+                      </div>
+                    {{-- <table class="border-free">
                         <tr class="border-free">
                             <th class="table-caption border-free background-free"></th>
-                            <td class="py-25 table-caption border-free ml-20"><strong><b>ИТОГО:</b></strong></td>
+                            <td class="py-25 table-caption border-free"><strong><b>ИТОГО ПО ВЕДОМОСТИ И СТОИМОСТИ РАБОТ:</b></strong></td>
                             <td class="table-caption border-free ml-15 font-size-fix" colspan="2"><strong><b>{{ number_format($order->price, 0, '', ' ') }} Р</b></strong></td>
                         </tr>
-                    </table>
+                    </table> --}}
                   </div>
                 @endif
             </div>
@@ -208,7 +214,7 @@
               @endif
 
               @include('export.partials._comment', [$order])
-              
+
             </div>
     </section>
 </body>

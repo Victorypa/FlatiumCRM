@@ -28,6 +28,7 @@ class RoomController extends Controller
         $room->update([
           'width' => $request->width,
           'length' => $request->length,
+          'height' => $request->height,
           'area' => $request->area,
           'wall_area' => $request->wall_area,
           'perimeter' => $request->perimeter
