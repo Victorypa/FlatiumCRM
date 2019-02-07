@@ -32,9 +32,14 @@
               </div>
 
               <div class="row pt-4 justify-content-end">
-
                 <div class="px-30">
-                  &nbsp;
+                    <label>
+                        <input type="checkbox"
+                               :checked="sortByStatus"
+                               v-model="sortByStatus"
+                               >
+                               <span>в работе</span>
+                    </label>
                 </div>
               </div>
             </div>
@@ -43,11 +48,15 @@
               <table class="table table-hover">
                 <thead>
                   <tr>
+                      <th>
+                          <label>
+                              В Работе
+                          </label>
+                      </th>
                     <th>
-                      <div class="form-check custom-control checkbox">
-                        <input class="form-check-input check" id="checkAll" type="checkbox">
-                        <label class="form-check-label" for="checkAll">
-                          Выбрать все
+                      <div class="form-check custom-control">
+                        <label>
+                            Название
                         </label>
                       </div>
                     </th>
@@ -64,13 +73,16 @@
                 <tbody v-if="orders.length">
                     <template v-for="order in filteredOrders">
                         <tr>
+                            <td>
+                                <input type="checkbox"
+                                       :checked="order.processing"
+                                       @click="updateStatus(order)"
+                                       >
+                            </td>
                           <td>
                             <div class="form-check custom-control checkbox">
-                              <input class="form-check-input check"
-                                     :id="'order-' + order.id"
-                                     type="checkbox">
-                              <label class="form-check-label" :for="'order-' + order.id">
 
+                              <label :for="'order-' + order.id">
                                   <template v-if="order.rooms.length">
                                       <router-link :to="{ name: 'room-show', params: { id: order.id, room_id: order.rooms[order.rooms.length - 1].id } }">
                                           {{ filteredOrderName(order) }}
@@ -94,6 +106,7 @@
                             </div>
                           </td>
 
+
                           <td class="d-flex justify-content-end">
                               <div class="pr-30">
                                    {{ dateFormatter(order.created_at) }}
@@ -104,8 +117,6 @@
                                     title="Действия">
                                     <img src="/img/dropdown-toggle.svg" alt="export">
                                   </a>
-
-
                               <div class="dropdown-menu dropdown-menu-right">
                                   <a class="dropdown-item text-color"
                                     @click="createFinishedOrderAct(order.id)">
@@ -238,6 +249,7 @@ export default {
       orders: [],
       sortByDate: false,
       quickSearchQuery: "",
+      sortByStatus: false
     };
   },
 
@@ -259,6 +271,12 @@ export default {
                      this.getOrders()
                  })
         }
+    },
+
+    updateStatus (order) {
+        axios.patch(`/api/orders/${order.id}/update_status`, {
+            'processing': !order.process
+        })
     },
 
     createFinishedOrderAct (id) {
@@ -332,11 +350,16 @@ export default {
         });
       });
 
+      if (this.sortByStatus) {
+          data = data.filter(row => row.processing)
+      }
+
       if (!this.sortByDate) {
             data = _.orderBy(data, ['created_at'], ['desc'])
       } else {
             data = _.orderBy(data, ['created_at'], ['asc'])
       }
+
 
       return data;
     }

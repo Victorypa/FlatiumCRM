@@ -25,6 +25,7 @@ use Illuminate\Http\Request;
         Route::get('/{order}', 'OrderController@show');
         Route::get('/{order}/copy', 'OrderController@copy');
         Route::patch('/{order}/update', 'OrderController@update');
+        Route::patch('/{order}/update_status', 'OrderController@updateStatus');
         Route::delete('/{order}/destroy', 'OrderController@destroy');
         Route::patch('/{order}/discount_or_markup/update', 'OrderController@updateOrderDiscountOrMarkup');
 

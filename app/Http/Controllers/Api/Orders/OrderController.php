@@ -84,6 +84,13 @@ class OrderController extends Controller
         $order->recalculateAfterDiscountOrMarkup();
     }
 
+    public function updateStatus(Order $order, Request $request)
+    {
+        $order->update([
+            'processing' => $request->processing
+        ]);
+    }
+
     public function exportPdfWithoutMaterials(Order $order)
     {
         return $this->export(
