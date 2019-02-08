@@ -275,7 +275,7 @@ export default {
 
     updateStatus (order) {
         axios.patch(`/api/orders/${order.id}/update_status`, {
-            'processing': !order.process
+            'processing': !order.processing
         })
     },
 
@@ -350,16 +350,15 @@ export default {
         });
       });
 
-      if (this.sortByStatus) {
-          data = data.filter(row => row.processing)
-      }
-
       if (!this.sortByDate) {
             data = _.orderBy(data, ['created_at'], ['desc'])
       } else {
             data = _.orderBy(data, ['created_at'], ['asc'])
       }
 
+      if (this.sortByStatus) {
+          data = data.filter(row => row.processing)
+      }
 
       return data;
     }

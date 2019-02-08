@@ -28,28 +28,28 @@
                                                           navigationPrevLabel="<i class='fa fa-angle-left'></i>"
                                                           navigationNextLabel="<i class='fa fa-angle-right'></i>"
                                                           >
-                                                            <slide v-for="(room, index) in rooms" :key="room.id" >
-                                                                <router-link @click.native="getRoom()"
-                                                                             :to="{ name: 'room-show', params: { id: order.id, room_id: room.id } }"
-                                                                             class="create__features justify-content-center"
-                                                                             >
-                                                                    <div class="create__features__name col-auto px-0 mx-2"
-                                                                            :class="{ 'active': path === '/orders/' + order.id + '/rooms/' + room.id }"
-                                                                            >
-                                                                            <template v-if="room.description">
-                                                                                <span v-if="room.description.length > 13">
-                                                                                    {{ room.description.substring(0, 13) + '...' }}
-                                                                                </span>
-                                                                                <span v-else>
-                                                                                    {{ room.description }}
-                                                                                </span>
-                                                                            </template>
-                                                                            <template v-else>
-                                                                                {{ room.room_type.type }}
-                                                                            </template>
-                                                                    </div>
-                                                                </router-link>
-                                                            </slide>
+                                                          <slide v-for="(room, index) in rooms" :key="room.id" >
+                                                              <router-link @click.native="getRoom()"
+                                                                           :to="{ name: 'room-show', params: { id: order.id, room_id: room.id } }"
+                                                                           class="create__features justify-content-center"
+                                                                           >
+                                                                  <div class="create__features__name col-auto px-0 mx-2"
+                                                                          :class="{ 'active': path === '/orders/' + order.id + '/rooms/' + room.id }"
+                                                                          >
+                                                                          <template v-if="room.description">
+                                                                              <span v-if="room.description.length > 13">
+                                                                                  {{ room.description.substring(0, 13) + '...' }}
+                                                                              </span>
+                                                                              <span v-else>
+                                                                                  {{ room.description }}
+                                                                              </span>
+                                                                          </template>
+                                                                          <template v-else>
+                                                                              {{ room.room_type.type }}
+                                                                          </template>
+                                                                  </div>
+                                                              </router-link>
+                                                          </slide>
                                                 </carousel>
                                         </div>
 
