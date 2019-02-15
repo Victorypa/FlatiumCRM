@@ -6,22 +6,18 @@
            >
            <div class="row">
                <div class="col-3">
-                   <h5>
-                       {{ service.name }}
-                   </h5>
+                   <h5>{{ service.name }}</h5>
                </div>
 
                <div class="col-2">
-                   <strong>
-                       {{ filterServicePrice }}
-                   </strong>
+                   <strong>{{ filterServicePrice }}</strong>
                </div>
 
                <div class="col-2">
                     <span v-if="service.can_be_discounted">
                         Есть скидка
                     </span>
-                    <span v-else>
+                    <span class="red" v-else>
                         Нет скидки
                     </span>
                </div>
@@ -29,6 +25,7 @@
                <div class="col-1">
                     <button class="btn btn-sm btn-warning"
                             v-if="service.can_be_deleted"
+                            @click="deleteService(service.id)"
                             >
                         Удалить
                     </button>
@@ -55,16 +52,16 @@
            class="col-12"
            >
            <div class="row">
-               <div class="col-4">
-                   type
+               <div class="col-3">
+                   <input v-model="service.name" />
                </div>
-               <div class="col-4">
-                   name
-               </div>
-               <div class="col-4">
-                   unit
-               </div>
-               <div class="col-4">
+               <select class="form-control col-md-2" v-model="service.unit_id">
+                   <option v-for="unit in units" :value="unit.id" >
+                       {{ unit.name }}
+                   </option>
+               </select>
+
+               <div class="col-2">
                    price
                </div>
            </div>
@@ -73,7 +70,11 @@
 </template>
 
 <script>
+    import ServiceCollection from './../mixins/ServiceCollection'
+
     export default {
+        mixins: [ServiceCollection],
+
         props: ['service'],
 
         data () {
@@ -89,3 +90,9 @@
         }
     }
 </script>
+
+<style scoped>
+    .red {
+        color: red;
+    }
+</style>

@@ -73975,7 +73975,7 @@ exports = module.exports = __webpack_require__(2)(false);
 
 
 // module
-exports.push([module.i, "\na[data-v-1135c330] {\n  color: #212529;\n}\n.sidebar[data-v-1135c330] {\n  min-height: 100vh;\n}\n.fixed-part[data-v-1135c330] {\n  position: fixed;\n  padding-top: 85px;\n  padding-bottom: 35px;\n  background-color: #fff;\n  z-index: 999;\n}\n.create-floor-work__content[data-v-1135c330] {\n  padding-top: 200px;\n}\n.create-floor-work .form-check-label[data-v-1135c330]:hover {\n  color: #00A4D1;\n}\n.create-floor-work .form-check-label[data-v-1135c330],\n.create-floor-work .total-sum[data-v-1135c330] {\n  color: #666;\n}\n.create-floor-work label[data-v-1135c330] {\n  margin-bottom: 0;\n}\n.fa-search[data-v-1135c330] {\n  color: #00A4D1;\n}\n.fa-search[data-v-1135c330]::before {\n    position: absolute;\n    top: 10px;\n    right: 15px;\n    z-index: 2;\n}\n.form-check-label[data-v-1135c330] {\n  cursor: pointer;\n}\n.form-check-label[data-v-1135c330]:before {\n    border: 1px solid #CCCCCC;\n    border-radius: 0;\n}\n.form-check-label[data-v-1135c330]::after {\n    position: absolute;\n    left: -18px;\n    top: 2px;\n    padding-left: 3px;\n    font-size: 11px;\n    color: #00A4D1;\n}\n.form-check-label[data-v-1135c330]:hover {\n    color: #03B8E9;\n}\n.form-check input[type=\"checkbox\"]:checked + label[data-v-1135c330]::after {\n  font-family: \"FontAwesome\";\n  content: \"\\F00C\";\n}\n.subtitle-list__item[data-v-1135c330] {\n  font-size: 0.85rem;\n}\n", ""]);
+exports.push([module.i, "\n.fixed-part[data-v-1135c330] {\n  position: fixed;\n  padding-top: 85px;\n  padding-bottom: 35px;\n  background-color: #fff;\n  z-index: 999;\n}\n", ""]);
 
 // exports
 
@@ -73990,7 +73990,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__partials_Service___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__partials_Service__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__partials_AddService__ = __webpack_require__(309);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__partials_AddService___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__partials_AddService__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__mixins_ServiceCollection__ = __webpack_require__(5);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__mixins_ServiceCollection__ = __webpack_require__(335);
+//
 //
 //
 //
@@ -74060,7 +74061,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     data: function data() {
         return {
             service_type_id: 1,
-            quickSearchQuery: ""
+            quickSearchQuery: "",
+            services: []
         };
     },
 
@@ -74069,22 +74071,36 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         Service: __WEBPACK_IMPORTED_MODULE_0__partials_Service___default.a, AddService: __WEBPACK_IMPORTED_MODULE_1__partials_AddService___default.a
     },
 
+    created: function created() {
+        this.getServices();
+    },
+
+
+    methods: {
+        getServices: function getServices() {
+            var _this = this;
+
+            return axios.get('/api/services').then(function (response) {
+                _this.services = response.data;
+            });
+        }
+    },
+
     computed: {
         filteredServices: function filteredServices() {
-            var _this = this;
+            var _this2 = this;
 
             var data = this.services;
 
             data = data.filter(function (row) {
-                return row.service_type_id === _this.service_type_id;
+                return row.service_type_id === _this2.service_type_id;
             });
 
             data = data.filter(function (row) {
                 return Object.keys(row).some(function (key) {
-                    return String(row[key]).toLowerCase().indexOf(_this.quickSearchQuery.toLowerCase()) > -1;
+                    return String(row[key]).toLowerCase().indexOf(_this2.quickSearchQuery.toLowerCase()) > -1;
                 });
             });
-
             return data;
         }
     }
@@ -74095,17 +74111,21 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
+function injectStyle (ssrContext) {
+  if (disposed) return
+  __webpack_require__(332)
+}
 var normalizeComponent = __webpack_require__(1)
 /* script */
 var __vue_script__ = __webpack_require__(307)
 /* template */
-var __vue_template__ = __webpack_require__(308)
+var __vue_template__ = __webpack_require__(334)
 /* template functional */
 var __vue_template_functional__ = false
 /* styles */
-var __vue_styles__ = null
+var __vue_styles__ = injectStyle
 /* scopeId */
-var __vue_scopeId__ = null
+var __vue_scopeId__ = "data-v-14046b82"
 /* moduleIdentifier (server only) */
 var __vue_module_identifier__ = null
 var Component = normalizeComponent(
@@ -74143,9 +74163,7 @@ module.exports = Component.exports
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-//
-//
-//
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__mixins_ServiceCollection__ = __webpack_require__(335);
 //
 //
 //
@@ -74218,7 +74236,11 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 
+
+
 /* harmony default export */ __webpack_exports__["default"] = ({
+    mixins: [__WEBPACK_IMPORTED_MODULE_0__mixins_ServiceCollection__["a" /* default */]],
+
     props: ['service'],
 
     data: function data() {
@@ -74236,147 +74258,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 });
 
 /***/ }),
-/* 308 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var render = function() {
-  var _vm = this
-  var _h = _vm.$createElement
-  var _c = _vm._self._c || _h
-  return _c(
-    "div",
-    {
-      staticClass: "row justify-content-between align-items-center col-12 py-2"
-    },
-    [
-      _vm.show
-        ? _c("div", { staticClass: "col-12" }, [
-            _c("div", { staticClass: "row" }, [
-              _c("div", { staticClass: "col-3" }, [
-                _c("h5", [
-                  _vm._v(
-                    "\n                   " +
-                      _vm._s(_vm.service.name) +
-                      "\n               "
-                  )
-                ])
-              ]),
-              _vm._v(" "),
-              _c("div", { staticClass: "col-2" }, [
-                _c("strong", [
-                  _vm._v(
-                    "\n                   " +
-                      _vm._s(_vm.filterServicePrice) +
-                      "\n               "
-                  )
-                ])
-              ]),
-              _vm._v(" "),
-              _c("div", { staticClass: "col-2" }, [
-                _vm.service.can_be_discounted
-                  ? _c("span", [
-                      _vm._v(
-                        "\n                    Есть скидка\n                "
-                      )
-                    ])
-                  : _c("span", [
-                      _vm._v(
-                        "\n                    Нет скидки\n                "
-                      )
-                    ])
-              ]),
-              _vm._v(" "),
-              _c("div", { staticClass: "col-1" }, [
-                _vm.service.can_be_deleted
-                  ? _c("button", { staticClass: "btn btn-sm btn-warning" }, [
-                      _vm._v("\n                    Удалить\n                ")
-                    ])
-                  : _vm._e()
-              ]),
-              _vm._v(" "),
-              _c(
-                "div",
-                { staticClass: "col-2" },
-                [
-                  _c(
-                    "router-link",
-                    {
-                      staticClass: "btn btn-link btn-sm",
-                      attrs: {
-                        to: {
-                          name: "service-material",
-                          params: { service_id: _vm.service.id }
-                        }
-                      }
-                    },
-                    [
-                      _vm._v(
-                        "\n                    Добавить материалы\n               "
-                      )
-                    ]
-                  )
-                ],
-                1
-              ),
-              _vm._v(" "),
-              _c("div", { staticClass: "col-2" }, [
-                _c(
-                  "button",
-                  {
-                    staticClass: "btn btn-link btn-sm",
-                    on: {
-                      click: function($event) {
-                        _vm.show = !_vm.show
-                      }
-                    }
-                  },
-                  [
-                    _vm._v(
-                      "\n                      Редактировать\n               "
-                    )
-                  ]
-                )
-              ])
-            ])
-          ])
-        : _c("div", { staticClass: "col-12" }, [_vm._m(0)])
-    ]
-  )
-}
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "row" }, [
-      _c("div", { staticClass: "col-4" }, [
-        _vm._v("\n               type\n           ")
-      ]),
-      _vm._v(" "),
-      _c("div", { staticClass: "col-4" }, [
-        _vm._v("\n               name\n           ")
-      ]),
-      _vm._v(" "),
-      _c("div", { staticClass: "col-4" }, [
-        _vm._v("\n               unit\n           ")
-      ]),
-      _vm._v(" "),
-      _c("div", { staticClass: "col-4" }, [
-        _vm._v("\n               price\n           ")
-      ])
-    ])
-  }
-]
-render._withStripped = true
-module.exports = { render: render, staticRenderFns: staticRenderFns }
-if (false) {
-  module.hot.accept()
-  if (module.hot.data) {
-    require("vue-hot-reload-api")      .rerender("data-v-14046b82", module.exports)
-  }
-}
-
-/***/ }),
+/* 308 */,
 /* 309 */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -74429,8 +74311,7 @@ module.exports = Component.exports
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-//
-//
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__mixins_ServiceCollection__ = __webpack_require__(335);
 //
 //
 //
@@ -74485,7 +74366,13 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 
-/* harmony default export */ __webpack_exports__["default"] = ({});
+
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+    mixins: [__WEBPACK_IMPORTED_MODULE_0__mixins_ServiceCollection__["a" /* default */]],
+
+    props: ['service_type_id']
+});
 
 /***/ }),
 /* 311 */
@@ -74506,168 +74393,177 @@ var render = function() {
           }
         }
       },
-      _vm._l(_vm.newServices, function(newService, index) {
-        return _c("div", { staticClass: "row px-3 pt-3 pb-1" }, [
-          _c("div", { staticClass: "col-md-8" }, [
-            _c("input", {
-              directives: [
-                {
-                  name: "model",
-                  rawName: "v-model",
-                  value: newService.name,
-                  expression: "newService.name"
-                }
-              ],
-              staticClass: "form-control",
-              attrs: { type: "text", placeholder: "Название" },
-              domProps: { value: newService.name },
-              on: {
-                input: function($event) {
-                  if ($event.target.composing) {
-                    return
-                  }
-                  _vm.$set(newService, "name", $event.target.value)
-                }
-              }
-            }),
-            _vm._v(" "),
-            _c("i", { staticClass: "fa fa-search" })
-          ]),
-          _vm._v(" "),
-          _c("div", { staticClass: "col-md-2" }, [
-            _c("div", { staticClass: "d-flex align-items-center" }, [
-              _c(
-                "select",
-                {
-                  directives: [
-                    {
-                      name: "model",
-                      rawName: "v-model",
-                      value: newService.unit_id,
-                      expression: "newService.unit_id"
-                    }
-                  ],
-                  staticClass: "form-control col-md-6",
-                  on: {
-                    change: function($event) {
-                      var $$selectedVal = Array.prototype.filter
-                        .call($event.target.options, function(o) {
-                          return o.selected
-                        })
-                        .map(function(o) {
-                          var val = "_value" in o ? o._value : o.value
-                          return val
-                        })
-                      _vm.$set(
-                        newService,
-                        "unit_id",
-                        $event.target.multiple
-                          ? $$selectedVal
-                          : $$selectedVal[0]
-                      )
-                    }
-                  }
-                },
-                _vm._l(_vm.units, function(unit) {
-                  return _c("option", { domProps: { value: unit.id } }, [
-                    _vm._v(
-                      "\n                          " +
-                        _vm._s(unit.name) +
-                        "\n                      "
-                    )
-                  ])
-                })
-              ),
-              _vm._v(" "),
+      [
+        _vm._l(_vm.newServices, function(newService, index) {
+          return _c("div", { staticClass: "row px-3 pt-3 pb-1" }, [
+            _c("div", { staticClass: "col-md-8" }, [
               _c("input", {
                 directives: [
                   {
                     name: "model",
                     rawName: "v-model",
-                    value: newService.price,
-                    expression: "newService.price"
+                    value: newService.name,
+                    expression: "newService.name"
                   }
                 ],
-                staticClass:
-                  "form-control col-md-6 form-group__parametres ml-3",
-                attrs: { type: "number", placeholder: "цена за ед. измерения" },
-                domProps: { value: newService.price },
+                staticClass: "form-control",
+                attrs: { type: "text", placeholder: "Название" },
+                domProps: { value: newService.name },
                 on: {
                   input: function($event) {
                     if ($event.target.composing) {
                       return
                     }
-                    _vm.$set(newService, "price", $event.target.value)
+                    _vm.$set(newService, "name", $event.target.value)
                   }
                 }
               })
-            ])
-          ]),
-          _vm._v(" "),
-          _c("div", { staticClass: "col-2 py-2" }, [
-            _c("div", { staticClass: "form-check custom-control checkbox" }, [
-              _c("input", {
-                directives: [
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "col-md-2" }, [
+              _c("div", { staticClass: "d-flex align-items-center" }, [
+                _c(
+                  "select",
                   {
-                    name: "model",
-                    rawName: "v-model",
-                    value: newService.can_be_discounted,
-                    expression: "newService.can_be_discounted"
-                  }
-                ],
-                staticClass: "form-check-input check",
-                attrs: { type: "checkbox", id: "service-" + index },
-                domProps: {
-                  checked: Array.isArray(newService.can_be_discounted)
-                    ? _vm._i(newService.can_be_discounted, null) > -1
-                    : newService.can_be_discounted
-                },
-                on: {
-                  change: function($event) {
-                    var $$a = newService.can_be_discounted,
-                      $$el = $event.target,
-                      $$c = $$el.checked ? true : false
-                    if (Array.isArray($$a)) {
-                      var $$v = null,
-                        $$i = _vm._i($$a, $$v)
-                      if ($$el.checked) {
-                        $$i < 0 &&
-                          _vm.$set(
-                            newService,
-                            "can_be_discounted",
-                            $$a.concat([$$v])
-                          )
-                      } else {
-                        $$i > -1 &&
-                          _vm.$set(
-                            newService,
-                            "can_be_discounted",
-                            $$a.slice(0, $$i).concat($$a.slice($$i + 1))
-                          )
+                    directives: [
+                      {
+                        name: "model",
+                        rawName: "v-model",
+                        value: newService.unit_id,
+                        expression: "newService.unit_id"
                       }
-                    } else {
-                      _vm.$set(newService, "can_be_discounted", $$c)
+                    ],
+                    staticClass: "form-control col-md-6",
+                    on: {
+                      change: function($event) {
+                        var $$selectedVal = Array.prototype.filter
+                          .call($event.target.options, function(o) {
+                            return o.selected
+                          })
+                          .map(function(o) {
+                            var val = "_value" in o ? o._value : o.value
+                            return val
+                          })
+                        _vm.$set(
+                          newService,
+                          "unit_id",
+                          $event.target.multiple
+                            ? $$selectedVal
+                            : $$selectedVal[0]
+                        )
+                      }
+                    }
+                  },
+                  _vm._l(_vm.units, function(unit) {
+                    return _c("option", { domProps: { value: unit.id } }, [
+                      _vm._v(
+                        "\n                          " +
+                          _vm._s(unit.name) +
+                          "\n                      "
+                      )
+                    ])
+                  })
+                ),
+                _vm._v(" "),
+                _c("input", {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: newService.price,
+                      expression: "newService.price"
+                    }
+                  ],
+                  staticClass:
+                    "form-control col-md-6 form-group__parametres ml-3",
+                  attrs: {
+                    type: "number",
+                    placeholder: "цена за ед. измерения"
+                  },
+                  domProps: { value: newService.price },
+                  on: {
+                    input: function($event) {
+                      if ($event.target.composing) {
+                        return
+                      }
+                      _vm.$set(newService, "price", $event.target.value)
                     }
                   }
-                }
-              }),
-              _vm._v(" "),
-              _c(
-                "label",
-                {
-                  staticClass: "form-check-label d-block",
-                  attrs: { for: "service-" + index }
-                },
-                [
-                  _vm._v(
-                    "\n                      Скидка возможна\n                  "
-                  )
-                ]
-              )
+                })
+              ])
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "col-2 py-2" }, [
+              _c("div", { staticClass: "form-check custom-control checkbox" }, [
+                _c("input", {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: newService.can_be_discounted,
+                      expression: "newService.can_be_discounted"
+                    }
+                  ],
+                  staticClass: "form-check-input check",
+                  attrs: { type: "checkbox", id: "service-" + index },
+                  domProps: {
+                    checked: Array.isArray(newService.can_be_discounted)
+                      ? _vm._i(newService.can_be_discounted, null) > -1
+                      : newService.can_be_discounted
+                  },
+                  on: {
+                    change: function($event) {
+                      var $$a = newService.can_be_discounted,
+                        $$el = $event.target,
+                        $$c = $$el.checked ? true : false
+                      if (Array.isArray($$a)) {
+                        var $$v = null,
+                          $$i = _vm._i($$a, $$v)
+                        if ($$el.checked) {
+                          $$i < 0 &&
+                            _vm.$set(
+                              newService,
+                              "can_be_discounted",
+                              $$a.concat([$$v])
+                            )
+                        } else {
+                          $$i > -1 &&
+                            _vm.$set(
+                              newService,
+                              "can_be_discounted",
+                              $$a.slice(0, $$i).concat($$a.slice($$i + 1))
+                            )
+                        }
+                      } else {
+                        _vm.$set(newService, "can_be_discounted", $$c)
+                      }
+                    }
+                  }
+                }),
+                _vm._v(" "),
+                _c(
+                  "label",
+                  {
+                    staticClass: "form-check-label d-block",
+                    attrs: { for: "service-" + index }
+                  },
+                  [
+                    _vm._v(
+                      "\n                      Скидка возможна\n                  "
+                    )
+                  ]
+                )
+              ])
             ])
           ])
-        ])
-      })
+        }),
+        _vm._v(" "),
+        _c("button", {
+          staticStyle: { display: "none" },
+          attrs: { type: "submit" }
+        })
+      ],
+      2
     ),
     _vm._v(" "),
     _c("div", { staticClass: "row mt-2" }, [
@@ -74802,7 +74698,14 @@ var render = function() {
                     ]
                   ),
                   _vm._v(" "),
-                  _c("AddService"),
+                  _c("AddService", {
+                    attrs: { service_type_id: _vm.service_type_id },
+                    on: {
+                      "created-service": function($event) {
+                        _vm.getServices()
+                      }
+                    }
+                  }),
                   _vm._v(" "),
                   _c(
                     "div",
@@ -74811,7 +74714,12 @@ var render = function() {
                       return _vm.filteredServices.length
                         ? _c("Service", {
                             key: service.id,
-                            attrs: { service: service }
+                            attrs: { service: service },
+                            on: {
+                              "deleted-service": function($event) {
+                                _vm.getServices()
+                              }
+                            }
                           })
                         : _vm._e()
                     })
@@ -96461,6 +96369,318 @@ $(window).scroll(function () {
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
+
+/***/ }),
+/* 331 */,
+/* 332 */
+/***/ (function(module, exports, __webpack_require__) {
+
+// style-loader: Adds some css to the DOM by adding a <style> tag
+
+// load the styles
+var content = __webpack_require__(333);
+if(typeof content === 'string') content = [[module.i, content, '']];
+if(content.locals) module.exports = content.locals;
+// add the styles to the DOM
+var update = __webpack_require__(3)("7934ccdd", content, false, {});
+// Hot Module Replacement
+if(false) {
+ // When the styles change, update the <style> tags
+ if(!content.locals) {
+   module.hot.accept("!!../../../../../../node_modules/css-loader/index.js!../../../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-14046b82\",\"scoped\":true,\"hasInlineConfig\":true}!../../../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./Service.vue", function() {
+     var newContent = require("!!../../../../../../node_modules/css-loader/index.js!../../../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-14046b82\",\"scoped\":true,\"hasInlineConfig\":true}!../../../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./Service.vue");
+     if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+     update(newContent);
+   });
+ }
+ // When the module is disposed, remove the <style> tags
+ module.hot.dispose(function() { update(); });
+}
+
+/***/ }),
+/* 333 */
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(2)(false);
+// imports
+
+
+// module
+exports.push([module.i, "\n.red[data-v-14046b82] {\n    color: red;\n}\n", ""]);
+
+// exports
+
+
+/***/ }),
+/* 334 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c(
+    "div",
+    {
+      staticClass: "row justify-content-between align-items-center col-12 py-2"
+    },
+    [
+      _vm.show
+        ? _c("div", { staticClass: "col-12" }, [
+            _c("div", { staticClass: "row" }, [
+              _c("div", { staticClass: "col-3" }, [
+                _c("h5", [_vm._v(_vm._s(_vm.service.name))])
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "col-2" }, [
+                _c("strong", [_vm._v(_vm._s(_vm.filterServicePrice))])
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "col-2" }, [
+                _vm.service.can_be_discounted
+                  ? _c("span", [
+                      _vm._v(
+                        "\n                    Есть скидка\n                "
+                      )
+                    ])
+                  : _c("span", { staticClass: "red" }, [
+                      _vm._v(
+                        "\n                    Нет скидки\n                "
+                      )
+                    ])
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "col-1" }, [
+                _vm.service.can_be_deleted
+                  ? _c(
+                      "button",
+                      {
+                        staticClass: "btn btn-sm btn-warning",
+                        on: {
+                          click: function($event) {
+                            _vm.deleteService(_vm.service.id)
+                          }
+                        }
+                      },
+                      [
+                        _vm._v(
+                          "\n                    Удалить\n                "
+                        )
+                      ]
+                    )
+                  : _vm._e()
+              ]),
+              _vm._v(" "),
+              _c(
+                "div",
+                { staticClass: "col-2" },
+                [
+                  _c(
+                    "router-link",
+                    {
+                      staticClass: "btn btn-link btn-sm",
+                      attrs: {
+                        to: {
+                          name: "service-material",
+                          params: { service_id: _vm.service.id }
+                        }
+                      }
+                    },
+                    [
+                      _vm._v(
+                        "\n                    Добавить материалы\n               "
+                      )
+                    ]
+                  )
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _c("div", { staticClass: "col-2" }, [
+                _c(
+                  "button",
+                  {
+                    staticClass: "btn btn-link btn-sm",
+                    on: {
+                      click: function($event) {
+                        _vm.show = !_vm.show
+                      }
+                    }
+                  },
+                  [
+                    _vm._v(
+                      "\n                      Редактировать\n               "
+                    )
+                  ]
+                )
+              ])
+            ])
+          ])
+        : _c("div", { staticClass: "col-12" }, [
+            _c("div", { staticClass: "row" }, [
+              _c("div", { staticClass: "col-3" }, [
+                _c("input", {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.service.name,
+                      expression: "service.name"
+                    }
+                  ],
+                  domProps: { value: _vm.service.name },
+                  on: {
+                    input: function($event) {
+                      if ($event.target.composing) {
+                        return
+                      }
+                      _vm.$set(_vm.service, "name", $event.target.value)
+                    }
+                  }
+                })
+              ]),
+              _vm._v(" "),
+              _c(
+                "select",
+                {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.service.unit_id,
+                      expression: "service.unit_id"
+                    }
+                  ],
+                  staticClass: "form-control col-md-2",
+                  on: {
+                    change: function($event) {
+                      var $$selectedVal = Array.prototype.filter
+                        .call($event.target.options, function(o) {
+                          return o.selected
+                        })
+                        .map(function(o) {
+                          var val = "_value" in o ? o._value : o.value
+                          return val
+                        })
+                      _vm.$set(
+                        _vm.service,
+                        "unit_id",
+                        $event.target.multiple
+                          ? $$selectedVal
+                          : $$selectedVal[0]
+                      )
+                    }
+                  }
+                },
+                _vm._l(_vm.units, function(unit) {
+                  return _c("option", { domProps: { value: unit.id } }, [
+                    _vm._v(
+                      "\n                   " +
+                        _vm._s(unit.name) +
+                        "\n               "
+                    )
+                  ])
+                })
+              ),
+              _vm._v(" "),
+              _c("div", { staticClass: "col-2" }, [
+                _vm._v("\n               price\n           ")
+              ])
+            ])
+          ])
+    ]
+  )
+}
+var staticRenderFns = []
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-14046b82", module.exports)
+  }
+}
+
+/***/ }),
+/* 335 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony default export */ __webpack_exports__["a"] = ({
+    data: function data() {
+        return {
+            units: [],
+            service_types: [],
+            newServices: []
+        };
+    },
+    created: function created() {
+        this.getServiceUnits();
+        this.getServiceTypes();
+    },
+
+
+    methods: {
+        addService: function addService() {
+            this.newServices.push({
+                unit_id: 1,
+                service_type_id: this.service_type_id,
+                name: null,
+                price: null,
+                can_be_discounted: false
+            });
+        },
+        saveNewService: function saveNewService() {
+            var _this = this;
+
+            this.newServices.forEach(function (item) {
+                axios.post('/api/services/store', {
+                    'service_type_id': _this.service_type_id,
+                    'name': item.name,
+                    'unit_id': item.unit_id,
+                    'price': item.price,
+                    'can_be_discounted': item.can_be_discounted
+                }).then(function (response) {
+                    _this.newServices = [];
+                    _this.$emit('created-service');
+                });
+            });
+        },
+        deleteService: function deleteService(id) {
+            var _this2 = this;
+
+            if (confirm('Удалить ?')) {
+                axios.delete('/api/services/' + id + '/destroy').then(function (response) {
+                    _this2.$emit('deleted-service');
+                });
+            }
+        },
+        getServiceUnits: function getServiceUnits() {
+            var _this3 = this;
+
+            if (localStorage.getItem('units')) {
+                this.units = JSON.parse(localStorage.getItem('units'));
+            } else {
+                return axios.get('/api/units').then(function (response) {
+                    _this3.units = response.data;
+                    localStorage.setItem('units', JSON.stringify(_this3.units));
+                });
+            }
+        },
+        getServiceTypes: function getServiceTypes() {
+            var _this4 = this;
+
+            if (localStorage.getItem('service_types')) {
+                this.service_types = JSON.parse(localStorage.getItem('service_types'));
+            } else {
+                return axios.get('/api/service_types').then(function (response) {
+                    _this4.service_types = response.data;
+                    localStorage.setItem('service_types', JSON.stringify(_this4.service_types));
+                });
+            }
+        }
+    }
+});
 
 /***/ })
 /******/ ]);

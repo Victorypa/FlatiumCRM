@@ -46,6 +46,10 @@ class ServiceController extends Controller
     {
         if ($service->can_be_deleted) {
             $service->delete();
+
+            return response()->json([
+                'message' => 'you have deleted '
+            ]);
         } else {
             return response()->json([
                 'message' => 'you cannot delete it '

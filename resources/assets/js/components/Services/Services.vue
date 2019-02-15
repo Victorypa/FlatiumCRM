@@ -36,14 +36,15 @@
                 </div>
 
 
-                <AddService />
+                <AddService :service_type_id="service_type_id"
+                            @created-service="getServices()"
+                            />
 
                 <div class="row col-12 px-0 py-3">
-
-
                   <Service v-if="filteredServices.length"
                            v-for="service in filteredServices"
                            :service="service"
+                           @deleted-service="getServices()"
                            :key="service.id"
                            />
                 </div>
@@ -59,7 +60,7 @@
 <script>
     import Service from './partials/Service'
     import AddService from './partials/AddService'
-    import ServiceCollection from '../../mixins/ServiceCollection'
+    import ServiceCollection from './mixins/ServiceCollection'
 
     export default {
         mixins: [ServiceCollection],
@@ -67,12 +68,25 @@
         data () {
             return {
                 service_type_id: 1,
-                quickSearchQuery: ""
+                quickSearchQuery: "",
+                services: []
             }
         },
 
         components: {
             Service, AddService
+        },
+
+        created () {
+            this.getServices()
+        },
+
+        methods: {
+            getServices () {
+                return axios.get('/api/services').then(response => {
+                    this.services = response.data
+                })
+            }
         },
 
        computed: {
@@ -92,107 +106,20 @@
                    )
                  })
                })
-
                return data
-
            }
        }
     }
 </script>
 
 <style lang="scss" scoped>
-$white: #fff;
-$main-color: #00A4D1;
-$ccc: #CCCCCC;
-$button-hover:#03B8E9;
-
-a {
-    color: #212529;
-}
-
-.sidebar {
-  min-height: 100vh;
-}
-
 .fixed-part {
   position: fixed;
 
   padding-top: 85px;
   padding-bottom: 35px;
 
-  background-color: $white;
+  background-color: #fff;
   z-index: 999;
 }
-
-.create-floor-work {
-  &__content {
-    padding-top: 200px;
-  }
-
-  .form-check-label {
-    &:hover {
-      color: $main-color;
-    }
-  }
-
-  .form-check-label,
-  .total-sum {
-    color: #666;
-  }
-
-  label {
-    margin-bottom: 0;
-  }
-}
-
-.fa-search {
-  color: $main-color;
-
-  &::before {
-    position: absolute;
-    top: 10px;
-    right: 15px;
-    z-index: 2;
-  }
-}
-
-.form-check {
-  &-label {
-    cursor: pointer;
-
-    &:before {
-      border: 1px solid $ccc;
-      border-radius: 0;
-    }
-
-    &::after {
-      position: absolute;
-      left: -18px;
-      top: 2px;
-      padding-left: 3px;
-      font-size: 11px;
-      color: $main-color;
-    }
-
-    &:hover {
-      color: $button-hover;
-    }
-  }
-
-  input[type="checkbox"]:checked + label::after {
-    font-family: "FontAwesome";
-    content: "\f00c";
-  }
-
-
-}
-
-
-
-.subtitle-list {
-  &__item {
-    font-size: 0.85rem;
-  }
-}
-
 </style>

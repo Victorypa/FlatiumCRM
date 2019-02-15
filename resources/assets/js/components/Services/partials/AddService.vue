@@ -8,12 +8,10 @@
                        class="form-control"
                        v-model="newService.name"
                        >
-                    <i class="fa fa-search"></i>
               </div>
 
               <div class="col-md-2">
                 <div class="d-flex align-items-center">
-
                       <select class="form-control col-md-6" v-model="newService.unit_id">
                           <option v-for="unit in units" :value="unit.id" >
                               {{ unit.name }}
@@ -40,8 +38,8 @@
                       </label>
                   </div>
               </div>
-
             </div>
+            <button type="submit" style="display: none;"></button>
         </form>
 
         <div class="row mt-2">
@@ -54,7 +52,11 @@
 </template>
 
 <script>
-    export default {
+    import ServiceCollection from './../mixins/ServiceCollection'
 
+    export default {
+        mixins: [ServiceCollection],
+
+        props: ['service_type_id']
     }
 </script>
