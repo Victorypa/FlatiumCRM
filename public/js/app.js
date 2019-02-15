@@ -74235,6 +74235,41 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -96519,79 +96554,190 @@ var render = function() {
         : _c("div", { staticClass: "col-12" }, [
             _c("div", { staticClass: "row" }, [
               _c("div", { staticClass: "col-3" }, [
-                _c("input", {
-                  directives: [
-                    {
-                      name: "model",
-                      rawName: "v-model",
-                      value: _vm.service.name,
-                      expression: "service.name"
-                    }
-                  ],
-                  domProps: { value: _vm.service.name },
-                  on: {
-                    input: function($event) {
-                      if ($event.target.composing) {
-                        return
+                _c("div", { staticClass: "form-group" }, [
+                  _c("input", {
+                    directives: [
+                      {
+                        name: "model",
+                        rawName: "v-model",
+                        value: _vm.service.name,
+                        expression: "service.name"
                       }
-                      _vm.$set(_vm.service, "name", $event.target.value)
+                    ],
+                    staticClass: "form-control",
+                    attrs: { type: "text" },
+                    domProps: { value: _vm.service.name },
+                    on: {
+                      input: function($event) {
+                        if ($event.target.composing) {
+                          return
+                        }
+                        _vm.$set(_vm.service, "name", $event.target.value)
+                      }
                     }
-                  }
-                })
+                  })
+                ])
               ]),
               _vm._v(" "),
-              _c(
-                "select",
-                {
-                  directives: [
+              _c("div", { staticClass: "col-1" }, [
+                _c("div", { staticClass: "form-group" }, [
+                  _c(
+                    "select",
                     {
-                      name: "model",
-                      rawName: "v-model",
-                      value: _vm.service.unit_id,
-                      expression: "service.unit_id"
-                    }
-                  ],
-                  staticClass: "form-control col-md-2",
-                  on: {
-                    change: function($event) {
-                      var $$selectedVal = Array.prototype.filter
-                        .call($event.target.options, function(o) {
-                          return o.selected
-                        })
-                        .map(function(o) {
-                          var val = "_value" in o ? o._value : o.value
-                          return val
-                        })
-                      _vm.$set(
-                        _vm.service,
-                        "unit_id",
-                        $event.target.multiple
-                          ? $$selectedVal
-                          : $$selectedVal[0]
-                      )
-                    }
-                  }
-                },
-                _vm._l(_vm.units, function(unit) {
-                  return _c("option", { domProps: { value: unit.id } }, [
-                    _vm._v(
-                      "\n                   " +
-                        _vm._s(unit.name) +
-                        "\n               "
-                    )
-                  ])
-                })
-              ),
+                      directives: [
+                        {
+                          name: "model",
+                          rawName: "v-model",
+                          value: _vm.service.unit_id,
+                          expression: "service.unit_id"
+                        }
+                      ],
+                      staticClass: "form-control",
+                      on: {
+                        change: function($event) {
+                          var $$selectedVal = Array.prototype.filter
+                            .call($event.target.options, function(o) {
+                              return o.selected
+                            })
+                            .map(function(o) {
+                              var val = "_value" in o ? o._value : o.value
+                              return val
+                            })
+                          _vm.$set(
+                            _vm.service,
+                            "unit_id",
+                            $event.target.multiple
+                              ? $$selectedVal
+                              : $$selectedVal[0]
+                          )
+                        }
+                      }
+                    },
+                    _vm._l(_vm.units, function(unit) {
+                      return _c("option", { domProps: { value: unit.id } }, [
+                        _vm._v(
+                          "\n                           " +
+                            _vm._s(unit.name) +
+                            "\n                       "
+                        )
+                      ])
+                    })
+                  )
+                ])
+              ]),
               _vm._v(" "),
               _c("div", { staticClass: "col-2" }, [
-                _vm._v("\n               price\n           ")
-              ])
+                _c("div", { staticClass: "form-group" }, [
+                  _c("input", {
+                    directives: [
+                      {
+                        name: "model",
+                        rawName: "v-model",
+                        value: _vm.service.price,
+                        expression: "service.price"
+                      }
+                    ],
+                    staticClass: "form-control",
+                    attrs: { type: "text" },
+                    domProps: { value: _vm.service.price },
+                    on: {
+                      input: function($event) {
+                        if ($event.target.composing) {
+                          return
+                        }
+                        _vm.$set(_vm.service, "price", $event.target.value)
+                      }
+                    }
+                  })
+                ])
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "col-3" }, [
+                _c(
+                  "div",
+                  { staticClass: "form-check custom-control checkbox mt-2" },
+                  [
+                    _c("input", {
+                      directives: [
+                        {
+                          name: "model",
+                          rawName: "v-model",
+                          value: _vm.service.can_be_discounted,
+                          expression: "service.can_be_discounted"
+                        }
+                      ],
+                      staticClass: "form-check-input check",
+                      attrs: { type: "checkbox", id: "cb-" + _vm.service.id },
+                      domProps: {
+                        checked: _vm.service.can_be_discounted,
+                        checked: Array.isArray(_vm.service.can_be_discounted)
+                          ? _vm._i(_vm.service.can_be_discounted, null) > -1
+                          : _vm.service.can_be_discounted
+                      },
+                      on: {
+                        change: function($event) {
+                          var $$a = _vm.service.can_be_discounted,
+                            $$el = $event.target,
+                            $$c = $$el.checked ? true : false
+                          if (Array.isArray($$a)) {
+                            var $$v = null,
+                              $$i = _vm._i($$a, $$v)
+                            if ($$el.checked) {
+                              $$i < 0 &&
+                                _vm.$set(
+                                  _vm.service,
+                                  "can_be_discounted",
+                                  $$a.concat([$$v])
+                                )
+                            } else {
+                              $$i > -1 &&
+                                _vm.$set(
+                                  _vm.service,
+                                  "can_be_discounted",
+                                  $$a.slice(0, $$i).concat($$a.slice($$i + 1))
+                                )
+                            }
+                          } else {
+                            _vm.$set(_vm.service, "can_be_discounted", $$c)
+                          }
+                        }
+                      }
+                    }),
+                    _vm._v(" "),
+                    _c(
+                      "label",
+                      {
+                        staticClass: "form-check-label d-block",
+                        attrs: { for: "cb-" + _vm.service.id }
+                      },
+                      [
+                        _vm._v(
+                          "\n                       Скидка возможна\n                   "
+                        )
+                      ]
+                    )
+                  ]
+                )
+              ]),
+              _vm._v(" "),
+              _vm._m(0)
             ])
           ])
     ]
   )
 }
-var staticRenderFns = []
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "col-2" }, [
+      _c("button", { staticClass: "btn btn-dark btn-md" }, [
+        _vm._v("\n                   Сохранить\n               ")
+      ])
+    ])
+  }
+]
 render._withStripped = true
 module.exports = { render: render, staticRenderFns: staticRenderFns }
 if (false) {

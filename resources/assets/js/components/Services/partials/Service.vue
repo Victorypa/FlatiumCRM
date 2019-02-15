@@ -53,16 +53,51 @@
            >
            <div class="row">
                <div class="col-3">
-                   <input v-model="service.name" />
+                   <div class="form-group">
+                       <input type="text"
+                              class="form-control"
+                              v-model="service.name"
+                              />
+                   </div>
                </div>
-               <select class="form-control col-md-2" v-model="service.unit_id">
-                   <option v-for="unit in units" :value="unit.id" >
-                       {{ unit.name }}
-                   </option>
-               </select>
+               <div class="col-1">
+                   <div class="form-group">
+                       <select class="form-control" v-model="service.unit_id">
+                           <option v-for="unit in units" :value="unit.id" >
+                               {{ unit.name }}
+                           </option>
+                       </select>
+                   </div>
+               </div>
 
                <div class="col-2">
-                   price
+                   <div class="form-group">
+                       <input type="text"
+                              class="form-control"
+                              v-model="service.price"
+                              />
+                   </div>
+               </div>
+
+               <div class="col-3">
+                   <div class="form-check custom-control checkbox mt-2">
+                       <input type="checkbox"
+                              class="form-check-input check"
+                              :id="'cb-' + service.id"
+                              v-model="service.can_be_discounted"
+                              :checked="service.can_be_discounted"
+                              >
+                       <label class="form-check-label d-block" :for="'cb-' + service.id">
+                           Скидка возможна
+                       </label>
+                   </div>
+
+               </div>
+
+               <div class="col-2">
+                   <button class="btn btn-dark btn-md">
+                       Сохранить
+                   </button>
                </div>
            </div>
       </div>
