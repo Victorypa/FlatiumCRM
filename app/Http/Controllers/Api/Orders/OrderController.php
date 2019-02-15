@@ -52,6 +52,8 @@ class OrderController extends Controller
 
     public function show(Order $order)
     {
+        $order->recalculateAfterDiscountOrMarkup();
+
         $with = [
             'rooms', 'manager', 'finished_order_acts',
             'rooms.finished_room', 'extra_order_acts',
