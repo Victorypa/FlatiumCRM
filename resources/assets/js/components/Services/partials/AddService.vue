@@ -1,5 +1,11 @@
 <template>
     <div>
+        <div class="row mt-2">
+            <div class="add-work" @click="addService()">
+              +Добавить работу
+            </div>
+        </div>
+
         <form @submit.prevent="saveNewService()">
             <div class="row px-3 pt-3 pb-1" v-for="(newService, index) in newServices">
               <div class="col-md-8">
@@ -39,14 +45,18 @@
                   </div>
               </div>
             </div>
-            <button type="submit" style="display: none;"></button>
+
+            <div class="row px-3 ml-3 pt-3 pb-1 mt-2" v-if="newServices.length">
+                <button type="submit" class="btn btn-sm btn-dark">Сохранить</button>
+                <button type="button"
+                        class="btn btn-sm btn-danger ml-2"
+                        @click.prevent="newServices = []"
+                        >
+                        Отменить
+                </button>
+            </div>
         </form>
 
-        <div class="row mt-2">
-            <div class="add-work" @click="addService()">
-              +Добавить работу
-            </div>
-        </div>
     </div>
 
 </template>

@@ -74425,6 +74425,16 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -74443,6 +74453,21 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", [
+    _c("div", { staticClass: "row mt-2" }, [
+      _c(
+        "div",
+        {
+          staticClass: "add-work",
+          on: {
+            click: function($event) {
+              _vm.addService()
+            }
+          }
+        },
+        [_vm._v("\n          +Добавить работу\n        ")]
+      )
+    ]),
+    _vm._v(" "),
     _c(
       "form",
       {
@@ -74618,28 +74643,36 @@ var render = function() {
           ])
         }),
         _vm._v(" "),
-        _c("button", {
-          staticStyle: { display: "none" },
-          attrs: { type: "submit" }
-        })
+        _vm.newServices.length
+          ? _c("div", { staticClass: "row px-3 ml-3 pt-3 pb-1 mt-2" }, [
+              _c(
+                "button",
+                {
+                  staticClass: "btn btn-sm btn-dark",
+                  attrs: { type: "submit" }
+                },
+                [_vm._v("Сохранить")]
+              ),
+              _vm._v(" "),
+              _c(
+                "button",
+                {
+                  staticClass: "btn btn-sm btn-danger ml-2",
+                  attrs: { type: "button" },
+                  on: {
+                    click: function($event) {
+                      $event.preventDefault()
+                      _vm.newServices = []
+                    }
+                  }
+                },
+                [_vm._v("\n                    Отменить\n            ")]
+              )
+            ])
+          : _vm._e()
       ],
       2
-    ),
-    _vm._v(" "),
-    _c("div", { staticClass: "row mt-2" }, [
-      _c(
-        "div",
-        {
-          staticClass: "add-work",
-          on: {
-            click: function($event) {
-              _vm.addService()
-            }
-          }
-        },
-        [_vm._v("\n          +Добавить работу\n        ")]
-      )
-    ])
+    )
   ])
 }
 var staticRenderFns = []
