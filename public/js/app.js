@@ -74270,6 +74270,16 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -74284,6 +74294,21 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         };
     },
 
+
+    methods: {
+        updateService: function updateService() {
+            var _this = this;
+
+            axios.patch('/api/services/' + this.service.id + '/update', {
+                'name': this.service.name,
+                'price': this.service.price,
+                'can_be_discounted': this.service.can_be_discounted,
+                'unit_id': this.service.unit_id
+            }).then(function (response) {
+                _this.show = !_this.show;
+            });
+        }
+    },
 
     computed: {
         filterServicePrice: function filterServicePrice() {
@@ -96652,7 +96677,7 @@ var render = function() {
                 ])
               ]),
               _vm._v(" "),
-              _c("div", { staticClass: "col-3" }, [
+              _c("div", { staticClass: "col-2" }, [
                 _c(
                   "div",
                   { staticClass: "form-check custom-control checkbox mt-2" },
@@ -96720,24 +96745,47 @@ var render = function() {
                 )
               ]),
               _vm._v(" "),
-              _vm._m(0)
+              _c("div", { staticClass: "col-2" }, [
+                _c(
+                  "button",
+                  {
+                    staticClass: "btn btn-dark btn-md",
+                    on: {
+                      click: function($event) {
+                        $event.preventDefault()
+                        return _vm.updateService($event)
+                      }
+                    }
+                  },
+                  [
+                    _vm._v(
+                      "\n                       Сохранить\n               "
+                    )
+                  ]
+                )
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "col-2" }, [
+                _c(
+                  "button",
+                  {
+                    staticClass: "btn btn-danger btn-md",
+                    on: {
+                      click: function($event) {
+                        $event.preventDefault()
+                        _vm.show = !_vm.show
+                      }
+                    }
+                  },
+                  [_vm._v("\n                       Отменить\n               ")]
+                )
+              ])
             ])
           ])
     ]
   )
 }
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "col-2" }, [
-      _c("button", { staticClass: "btn btn-dark btn-md" }, [
-        _vm._v("\n                   Сохранить\n               ")
-      ])
-    ])
-  }
-]
+var staticRenderFns = []
 render._withStripped = true
 module.exports = { render: render, staticRenderFns: staticRenderFns }
 if (false) {

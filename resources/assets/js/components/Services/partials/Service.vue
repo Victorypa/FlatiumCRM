@@ -79,7 +79,7 @@
                    </div>
                </div>
 
-               <div class="col-3">
+               <div class="col-2">
                    <div class="form-check custom-control checkbox mt-2">
                        <input type="checkbox"
                               class="form-check-input check"
@@ -95,8 +95,18 @@
                </div>
 
                <div class="col-2">
-                   <button class="btn btn-dark btn-md">
-                       Сохранить
+                   <button class="btn btn-dark btn-md"
+                           @click.prevent="updateService"
+                           >
+                           Сохранить
+                   </button>
+               </div>
+
+               <div class="col-2">
+                   <button class="btn btn-danger btn-md"
+                           @click.prevent="show = !show"
+                           >
+                           Отменить
                    </button>
                </div>
            </div>
@@ -115,6 +125,19 @@
         data () {
             return {
                 show: true
+            }
+        },
+
+        methods: {
+            updateService () {
+                axios.patch(`/api/services/${this.service.id}/update`, {
+                    'name': this.service.name,
+                    'price': this.service.price,
+                    'can_be_discounted': this.service.can_be_discounted,
+                    'unit_id': this.service.unit_id
+                }).then(response => {
+                    this.show = !this.show
+               })
             }
         },
 

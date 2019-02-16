@@ -34,12 +34,9 @@ class ServiceController extends Controller
 
     public function update(Service $service, Request $request)
     {
-        $service->update([
-            'name' => $request->name,
-            'price' => $request->price
-        ]);
+        $service->update($request->all());
 
-        return $service;
+        return response('updated', 200);
     }
 
     public function destroy(Service $service)
