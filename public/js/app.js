@@ -72459,32 +72459,6 @@ exports.push([module.i, "\ninput[data-v-11eca642]:required:valid {\n  border-col
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__mixins_ServiceMaterialCollection__ = __webpack_require__(14);
-function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 //
 //
 //
@@ -72753,23 +72727,25 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     mixins: [__WEBPACK_IMPORTED_MODULE_0__mixins_ServiceMaterialCollection__["a" /* default */]],
 
     data: function data() {
-        var _ref;
-
-        return _ref = {
+        return {
             service_materials: [],
             service_material_ids: [],
             service_material_prices: [],
             service_material_rates: [],
             service_material_quantities: [],
-            show: false,
+            show: true,
             service_name: '',
             service_price: null,
 
             newMaterials: [],
             searchQuery: '',
-            materials: []
+            materials: [],
 
-        }, _defineProperty(_ref, 'show', true), _defineProperty(_ref, 'material_ids', []), _defineProperty(_ref, 'material_unit_id', null), _defineProperty(_ref, 'material_units', []), _ref;
+            material_ids: [],
+
+            material_unit_id: null,
+            material_units: []
+        };
     },
     mounted: function mounted() {
         this.getServiceMaterials();
@@ -72869,193 +72845,77 @@ var render = function() {
                   "div",
                   { staticClass: "create__fixed-top col-10 shadow-light" },
                   [
-                    _c(
-                      "div",
-                      { staticClass: "row align-items-center " },
-                      [
-                        !_vm.columnShow
-                          ? [
-                              _c(
-                                "div",
-                                {
-                                  staticClass:
-                                    "col-md-8 d-flex align-items-end",
-                                  on: {
-                                    click: function($event) {
-                                      _vm.showServiceInput()
-                                    }
-                                  }
-                                },
-                                [
-                                  _vm.service.name
-                                    ? _c(
-                                        "h2",
-                                        { staticClass: "main-caption col-8" },
-                                        [
-                                          _vm._v(
-                                            "\n                              " +
-                                              _vm._s(_vm.service.name) +
-                                              "\n                              "
-                                          ),
-                                          _c("img", {
-                                            attrs: {
-                                              src: "/img/edit.svg",
-                                              alt: "add-button",
-                                              title: "Редактировать"
-                                            }
-                                          })
-                                        ]
-                                      )
-                                    : _vm._e(),
-                                  _vm._v(" "),
-                                  _c(
-                                    "div",
-                                    { staticClass: "main-subtitle ml-5" },
-                                    [
-                                      _vm._v(
-                                        "\n                                Цена: " +
-                                          _vm._s(_vm.service.price) +
-                                          " Р\n                                "
-                                      ),
-                                      _c("img", {
-                                        attrs: {
-                                          src: "/img/edit.svg",
-                                          alt: "add-button",
-                                          title: "Редактировать"
-                                        }
-                                      })
-                                    ]
-                                  )
-                                ]
-                              )
-                            ]
-                          : [
-                              _vm.service_name
-                                ? _c(
-                                    "div",
-                                    {
-                                      staticClass:
-                                        "col-md-8 d-flex align-items-center",
-                                      on: {
-                                        mouseleave: function($event) {
-                                          _vm.showServiceInput()
-                                        }
-                                      }
-                                    },
-                                    [
-                                      _c(
-                                        "h2",
-                                        { staticClass: "main-caption col-8" },
-                                        [
-                                          _c("input", {
-                                            directives: [
-                                              {
-                                                name: "model",
-                                                rawName: "v-model",
-                                                value: _vm.service_name,
-                                                expression: "service_name"
-                                              }
-                                            ],
-                                            staticClass: "service-input w-100",
-                                            attrs: {
-                                              type: "text",
-                                              required: ""
-                                            },
-                                            domProps: {
-                                              value: _vm.service_name
-                                            },
-                                            on: {
-                                              change: function($event) {
-                                                _vm.updateService()
-                                              },
-                                              input: function($event) {
-                                                if ($event.target.composing) {
-                                                  return
-                                                }
-                                                _vm.service_name =
-                                                  $event.target.value
-                                              }
-                                            }
-                                          })
-                                        ]
-                                      ),
-                                      _vm._v(" "),
-                                      _c("input", {
-                                        directives: [
-                                          {
-                                            name: "model",
-                                            rawName: "v-model",
-                                            value: _vm.service_price,
-                                            expression: "service_price"
-                                          }
-                                        ],
-                                        staticClass:
-                                          "service-input service-input--height col-2",
-                                        attrs: { type: "number", required: "" },
-                                        domProps: { value: _vm.service_price },
-                                        on: {
-                                          change: function($event) {
-                                            _vm.updateService()
-                                          },
-                                          input: function($event) {
-                                            if ($event.target.composing) {
-                                              return
-                                            }
-                                            _vm.service_price =
-                                              $event.target.value
-                                          }
-                                        }
-                                      })
-                                    ]
-                                  )
-                                : _vm._e()
-                            ],
+                    _c("div", { staticClass: "row align-items-center " }, [
+                      _c(
+                        "div",
+                        {
+                          staticClass: "col-md-8 d-flex align-items-end",
+                          on: {
+                            click: function($event) {
+                              _vm.showServiceInput()
+                            }
+                          }
+                        },
+                        [
+                          _vm.service.name
+                            ? _c("h2", { staticClass: "main-caption col-8" }, [
+                                _vm._v(
+                                  "\n                          " +
+                                    _vm._s(_vm.service.name) +
+                                    "\n                        "
+                                )
+                              ])
+                            : _vm._e(),
+                          _vm._v(" "),
+                          _c("div", { staticClass: "main-subtitle ml-5" }, [
+                            _vm._v(
+                              "\n                            Цена: " +
+                                _vm._s(_vm.service.price) +
+                                " Р\n                        "
+                            )
+                          ])
+                        ]
+                      ),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "col-md-4 text-right d-flex" }, [
+                        _c(
+                          "button",
+                          {
+                            staticClass:
+                              "primary-button primary-button--outline col-6",
+                            attrs: { type: "button" },
+                            on: {
+                              click: function($event) {
+                                _vm.$router.go(-1)
+                              }
+                            }
+                          },
+                          [
+                            _vm._v(
+                              "\n                          Назад\n                        "
+                            )
+                          ]
+                        ),
                         _vm._v(" "),
                         _c(
-                          "div",
-                          { staticClass: "col-md-4 text-right d-flex" },
+                          "button",
+                          {
+                            staticClass: "primary-button col-6 ml-2",
+                            attrs: { type: "button" },
+                            on: {
+                              click: function($event) {
+                                _vm.saveServiceMaterial()
+                              }
+                            }
+                          },
                           [
-                            _c(
-                              "button",
-                              {
-                                staticClass:
-                                  "primary-button primary-button--outline col-6",
-                                attrs: { type: "button" },
-                                on: {
-                                  click: function($event) {
-                                    _vm.$router.go(-1)
-                                  }
-                                }
-                              },
-                              [
-                                _vm._v(
-                                  "\n                          Назад\n                        "
-                                )
-                              ]
-                            ),
-                            _vm._v(" "),
-                            _c(
-                              "button",
-                              {
-                                staticClass: "primary-button col-6 ml-2",
-                                attrs: { type: "button" },
-                                on: {
-                                  click: function($event) {
-                                    _vm.saveServiceMaterial()
-                                  }
-                                }
-                              },
-                              [
-                                _vm._v(
-                                  "\n                            Сохранить\n                        "
-                                )
-                              ]
+                            _vm._v(
+                              "\n                            Сохранить\n                        "
                             )
                           ]
                         )
-                      ],
-                      2
-                    )
+                      ])
+                    ])
                   ]
                 ),
                 _vm._v(" "),

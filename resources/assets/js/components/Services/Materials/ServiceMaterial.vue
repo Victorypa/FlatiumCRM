@@ -11,38 +11,14 @@
                     <div class="create__fixed-top col-10 shadow-light">
                       <div class="row align-items-center ">
 
-                          <template v-if="!columnShow">
-                              <div class="col-md-8 d-flex align-items-end" @click="showServiceInput()">
-                                <h2 class="main-caption col-8" v-if="service.name">
-                                  {{ service.name}}
-                                  <img src="/img/edit.svg" alt="add-button" title="Редактировать">
-                                </h2>
-                                <div class="main-subtitle ml-5">
-                                    Цена: {{ service.price  }} Р
-                                    <img src="/img/edit.svg" alt="add-button" title="Редактировать">
-                                </div>
-                              </div>
-                          </template>
-                          <template v-else>
-                              <div class="col-md-8 d-flex align-items-center" v-if="service_name" @mouseleave="showServiceInput()">
-                                  <h2 class="main-caption col-8">
-                                      <input type="text"
-                                             v-model="service_name"
-                                             class="service-input w-100"
-                                             @change="updateService()"
-                                             required
-                                             >
-                                  </h2>
-
-                                  <input type="number"
-                                         class="service-input service-input--height col-2"
-                                         v-model="service_price"
-                                         @change="updateService()"
-                                         required
-                                         />
-                              </div>
-                          </template>
-
+                          <div class="col-md-8 d-flex align-items-end" @click="showServiceInput()">
+                            <h2 class="main-caption col-8" v-if="service.name">
+                              {{ service.name}}
+                            </h2>
+                            <div class="main-subtitle ml-5">
+                                Цена: {{ service.price  }} Р
+                            </div>
+                          </div>
 
                         <div class="col-md-4 text-right d-flex">
                             <button type="button"
@@ -296,16 +272,14 @@
                 service_material_prices: [],
                 service_material_rates: [],
                 service_material_quantities: [],
-                show: false,
+                show: true,
                 service_name: '',
                 service_price: null,
 
                 newMaterials: [],
                 searchQuery: '',
                 materials: [],
-
-                show: true,
-
+                
                 material_ids: [],
 
                 material_unit_id: null,
