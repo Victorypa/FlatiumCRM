@@ -11,7 +11,10 @@
 
                     <div class="container-fluid px-0">
 
-                        <order-detail :order="order" @order-saved="orderSaved"></order-detail>
+                        <order-detail :order="order"
+                                      @order-saved="orderSaved"
+                                      >
+                        </order-detail>
 
                         <template v-if="show">
                             <div class="container-fluid create__carousel-wrapper px-0">
@@ -22,37 +25,38 @@
                                                 v-model="room_type_id"
                                                 @change="paramSave()"
                                                 >
-                                            <option v-for="room_type in room_types" name="room_type_id" :value="room_type.id">{{ room_type.type }}</option>
+                                            <option v-for="room_type in room_types"
+                                                    name="room_type_id"
+                                                    :value="room_type.id"
+                                                    >
+                                                    {{ room_type.type }}
+                                            </option>
                                         </select>
                                     </div>
 
-
-                                    <template v-if="room_type_id === 1">
-                                        <div class="col-6 d-flex align-items-center px-0">
-                                            <div class="placeholder-text col-4 pl-2" placeholder="Шир">
-                                                <input type="number"
-                                                       v-model="width"
-                                                       min="0"
-                                                       autofocus
-                                                       @change="paramSave()" />
-                                            </div>
-
-                                            <div class="placeholder-text col-4 pl-2" placeholder="Дли">
-                                                <input type="number"
-                                                       v-model="length"
-                                                       min="0"
-                                                       @change="paramSave()" />
-                                            </div>
-
-                                            <div class="placeholder-text col-4 pl-2" placeholder="Выс">
-                                                <input type="number"
-                                                       v-model="height"
-                                                       min="0"
-                                                       @change="paramSave()" />
-                                            </div>
+                                    <div class="col-6 d-flex align-items-center px-0" v-if="room_type_id === 1">
+                                        <div class="placeholder-text col-4 pl-2" placeholder="Шир">
+                                            <input type="number"
+                                                   v-model="width"
+                                                   min="0"
+                                                   autofocus
+                                                   @change="paramSave()" />
                                         </div>
-                                    </template>
 
+                                        <div class="placeholder-text col-4 pl-2" placeholder="Дли">
+                                            <input type="number"
+                                                   v-model="length"
+                                                   min="0"
+                                                   @change="paramSave()" />
+                                        </div>
+
+                                        <div class="placeholder-text col-4 pl-2" placeholder="Выс">
+                                            <input type="number"
+                                                   v-model="height"
+                                                   min="0"
+                                                   @change="paramSave()" />
+                                        </div>
+                                    </div>
                                 </div>
 
                             </div>

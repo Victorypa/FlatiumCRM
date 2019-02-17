@@ -2,23 +2,17 @@
     <div class="create__fixed-top col-10 px-0 shadow-light align-items-center pl-3">
         <div class="row align-items-center pb-3">
 
-            <template v-if="room">
                 <div class="col-md-6 d-flex justify-content-between align-items-center">
                     <h1 class="main-caption col-12 pl-0">
-                        <template v-if="order.address != null">
-                            {{ order.address }}
-                        </template>
-                        <template v-else>
-                            Создание сметы
-                        </template>
+                        {{ getOrderName }}
                     </h1>
                 </div>
 
-                <div class="col-md-6 d-flex px-0 align-items-center">
-                    <div class="col-4 create__sum pl-0" style="font-size: 16px;">
-                        <template v-if="order.price && order.price != 0">
-                            Итого: {{ new Intl.NumberFormat('ru-Ru').format(parseInt(order.price)) }} P
-                        </template>
+                <div class="col-md-6 d-flex px-0 align-items-center" v-if="room">
+                    <div class="col-4 create__sum pl-0"
+                         style="font-size: 16px;"
+                         >
+                        Итого: {{ getOrderPrice }} P
                     </div>
 
                     <div class="col-4 pl-0">
@@ -35,31 +29,6 @@
                         </button>
                     </div>
                 </div>
-            </template>
-
-            <template v-else>
-                <div class="col-md-6 d-flex justify-content-between align-items-center pl-3">
-                    <h1 class="main-caption col-12 pl-0">
-                        <template v-if="order.address != null">
-                            {{ order.address }}
-                        </template>
-                        <template v-else>
-                            Создание сметы
-                        </template>
-                    </h1>
-                </div>
-
-                <div class="col-md-6 d-flex px-0 align-items-center">
-                    <template v-if="order.price != null">
-                        <div class="col-4 create__sum pl-0" style="font-size: 16px;">
-                            Итого: {{ new Intl.NumberFormat('ru-Ru').format(order.price) }}P
-                        </div>
-                    </template>
-                    <template v-else>
-                        Итого: 0
-                    </template>
-                </div>
-            </template>
 
 
         </div>
@@ -71,8 +40,8 @@
                     <input type="text"
                            class="form-control"
                            placeholder="Адрес объекта"
-                           v-model="address"
-                           @change="orderSave()"
+                           v-model="order.address"
+                           @change="orderAddressUpdate()"
                            >
                 </div>
             </div>
@@ -85,33 +54,15 @@
 export default {
   props: ["order", "room"],
 
-  data() {
-    return {
-      address: null
-    };
-  },
-
-  mounted() {
-    this.orderInit()
-  },
-
   methods: {
-    orderInit() {
-      this.address = this.order.address
-    },
+    orderAddressUpdate () {
+      if (this.order.address != null) {
+        axios .patch(`/api/orders/${this.order.id}/update`, {
+           address: this.order.address
+         }).then(response => {
+           this.$emit("order-saved");
+         })
 
-    orderSave() {
-      if (this.address != null) {
-        axios
-          .patch(`/api/orders/${this.order.id}/update`, {
-            address: this.address
-          })
-          .then(response => {
-            this.$emit("order-saved");
-          })
-          .catch(function(error) {
-            console.log(error);
-          });
       }
   },
 
@@ -124,6 +75,16 @@ export default {
                this.$router.push({ name: 'room-show', params: { id: response.data[0].id, room_id: response.data[1].id } })
            })
        }
+  },
+
+  computed: {
+      getOrderName () {
+          return this.order.address != null ? this.order.address : 'Создание сметы'
+      },
+
+      getOrderPrice () {
+          return this.order.price ? new Intl.NumberFormat('ru-Ru').format(parseInt(this.order.price)) : 0
+      }
   }
 };
 </script>

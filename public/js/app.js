@@ -51024,6 +51024,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
 
 
 
@@ -51166,78 +51170,41 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-  props: ["order", "room"],
+    props: ["order", "room"],
 
-  data: function data() {
-    return {
-      address: null
-    };
-  },
-  mounted: function mounted() {
-    this.orderInit();
-  },
+    methods: {
+        orderAddressUpdate: function orderAddressUpdate() {
+            var _this = this;
 
+            if (this.order.address != null) {
+                axios.patch("/api/orders/" + this.order.id + "/update", {
+                    address: this.order.address
+                }).then(function (response) {
+                    _this.$emit("order-saved");
+                });
+            }
+        },
+        copyOrder: function copyOrder(id) {
+            var _this2 = this;
 
-  methods: {
-    orderInit: function orderInit() {
-      this.address = this.order.address;
+            var option = prompt("Полностью (1) или Только Помещения (2)", "2");
+
+            axios.get("/api/orders/" + id + "/copy?option=" + option).then(function (response) {
+                _this2.$router.push({ name: 'room-show', params: { id: response.data[0].id, room_id: response.data[1].id } });
+            });
+        }
     },
-    orderSave: function orderSave() {
-      var _this = this;
 
-      if (this.address != null) {
-        axios.patch("/api/orders/" + this.order.id + "/update", {
-          address: this.address
-        }).then(function (response) {
-          _this.$emit("order-saved");
-        }).catch(function (error) {
-          console.log(error);
-        });
-      }
-    },
-    copyOrder: function copyOrder(id) {
-      var _this2 = this;
-
-      var option = prompt("Полностью (1) или Только Помещения (2)", "2");
-
-      axios.get("/api/orders/" + id + "/copy?option=" + option).then(function (response) {
-        _this2.$router.push({ name: 'room-show', params: { id: response.data[0].id, room_id: response.data[1].id } });
-      });
+    computed: {
+        getOrderName: function getOrderName() {
+            return this.order.address != null ? this.order.address : 'Создание сметы';
+        },
+        getOrderPrice: function getOrderPrice() {
+            return this.order.price ? new Intl.NumberFormat('ru-Ru').format(parseInt(this.order.price)) : 0;
+        }
     }
-  }
 });
 
 /***/ }),
@@ -51255,193 +51222,100 @@ var render = function() {
         "create__fixed-top col-10 px-0 shadow-light align-items-center pl-3"
     },
     [
-      _c(
-        "div",
-        { staticClass: "row align-items-center pb-3" },
-        [
-          _vm.room
-            ? [
+      _c("div", { staticClass: "row align-items-center pb-3" }, [
+        _c(
+          "div",
+          {
+            staticClass:
+              "col-md-6 d-flex justify-content-between align-items-center"
+          },
+          [
+            _c("h1", { staticClass: "main-caption col-12 pl-0" }, [
+              _vm._v(
+                "\n                    " +
+                  _vm._s(_vm.getOrderName) +
+                  "\n                "
+              )
+            ])
+          ]
+        ),
+        _vm._v(" "),
+        _vm.room
+          ? _c(
+              "div",
+              { staticClass: "col-md-6 d-flex px-0 align-items-center" },
+              [
                 _c(
                   "div",
                   {
-                    staticClass:
-                      "col-md-6 d-flex justify-content-between align-items-center"
+                    staticClass: "col-4 create__sum pl-0",
+                    staticStyle: { "font-size": "16px" }
                   },
                   [
-                    _c(
-                      "h1",
-                      { staticClass: "main-caption col-12 pl-0" },
-                      [
-                        _vm.order.address != null
-                          ? [
-                              _vm._v(
-                                "\n                        " +
-                                  _vm._s(_vm.order.address) +
-                                  "\n                    "
-                              )
-                            ]
-                          : [
-                              _vm._v(
-                                "\n                        Создание сметы\n                    "
-                              )
-                            ]
-                      ],
-                      2
+                    _vm._v(
+                      "\n                    Итого: " +
+                        _vm._s(_vm.getOrderPrice) +
+                        " P\n                "
                     )
                   ]
                 ),
                 _vm._v(" "),
                 _c(
                   "div",
-                  { staticClass: "col-md-6 d-flex px-0 align-items-center" },
+                  { staticClass: "col-4 pl-0" },
                   [
                     _c(
-                      "div",
+                      "router-link",
                       {
-                        staticClass: "col-4 create__sum pl-0",
-                        staticStyle: { "font-size": "16px" }
+                        attrs: {
+                          to: {
+                            name: "order-export-show",
+                            params: { id: _vm.order.id }
+                          }
+                        }
                       },
                       [
-                        _vm.order.price && _vm.order.price != 0
-                          ? [
-                              _vm._v(
-                                "\n                        Итого: " +
-                                  _vm._s(
-                                    new Intl.NumberFormat("ru-Ru").format(
-                                      parseInt(_vm.order.price)
-                                    )
-                                  ) +
-                                  " P\n                    "
-                              )
-                            ]
-                          : _vm._e()
-                      ],
-                      2
-                    ),
-                    _vm._v(" "),
-                    _c(
-                      "div",
-                      { staticClass: "col-4 pl-0" },
-                      [
                         _c(
-                          "router-link",
+                          "button",
                           {
-                            attrs: {
-                              to: {
-                                name: "order-export-show",
-                                params: { id: _vm.order.id }
-                              }
-                            }
+                            staticClass: "primary-button w-100",
+                            attrs: { type: "button" }
                           },
                           [
-                            _c(
-                              "button",
-                              {
-                                staticClass: "primary-button w-100",
-                                attrs: { type: "button" }
-                              },
-                              [
-                                _vm._v(
-                                  "\n                            Экспорт\n                        "
-                                )
-                              ]
+                            _vm._v(
+                              "\n                            Экспорт\n                        "
                             )
                           ]
                         )
-                      ],
-                      1
-                    ),
-                    _vm._v(" "),
-                    _c("div", { staticClass: "col-4 pl-0" }, [
-                      _c(
-                        "button",
-                        {
-                          staticClass: "primary-button w-100",
-                          attrs: { type: "button" },
-                          on: {
-                            click: function($event) {
-                              _vm.copyOrder(_vm.order.id)
-                            }
-                          }
-                        },
-                        [
-                          _vm._v(
-                            "\n                        Копировать\n                    "
-                          )
-                        ]
-                      )
-                    ])
-                  ]
-                )
-              ]
-            : [
-                _c(
-                  "div",
-                  {
-                    staticClass:
-                      "col-md-6 d-flex justify-content-between align-items-center pl-3"
-                  },
-                  [
-                    _c(
-                      "h1",
-                      { staticClass: "main-caption col-12 pl-0" },
-                      [
-                        _vm.order.address != null
-                          ? [
-                              _vm._v(
-                                "\n                        " +
-                                  _vm._s(_vm.order.address) +
-                                  "\n                    "
-                              )
-                            ]
-                          : [
-                              _vm._v(
-                                "\n                        Создание сметы\n                    "
-                              )
-                            ]
-                      ],
-                      2
+                      ]
                     )
-                  ]
+                  ],
+                  1
                 ),
                 _vm._v(" "),
-                _c(
-                  "div",
-                  { staticClass: "col-md-6 d-flex px-0 align-items-center" },
-                  [
-                    _vm.order.price != null
-                      ? [
-                          _c(
-                            "div",
-                            {
-                              staticClass: "col-4 create__sum pl-0",
-                              staticStyle: { "font-size": "16px" }
-                            },
-                            [
-                              _vm._v(
-                                "\n                        Итого: " +
-                                  _vm._s(
-                                    new Intl.NumberFormat("ru-Ru").format(
-                                      _vm.order.price
-                                    )
-                                  ) +
-                                  "P\n                    "
-                              )
-                            ]
-                          )
-                        ]
-                      : [
-                          _vm._v(
-                            "\n                    Итого: 0\n                "
-                          )
-                        ]
-                  ],
-                  2
-                )
+                _c("div", { staticClass: "col-4 pl-0" }, [
+                  _c(
+                    "button",
+                    {
+                      staticClass: "primary-button w-100",
+                      attrs: { type: "button" },
+                      on: {
+                        click: function($event) {
+                          _vm.copyOrder(_vm.order.id)
+                        }
+                      }
+                    },
+                    [
+                      _vm._v(
+                        "\n                        Копировать\n                    "
+                      )
+                    ]
+                  )
+                ])
               ]
-        ],
-        2
-      ),
+            )
+          : _vm._e()
+      ]),
       _vm._v(" "),
       _c(
         "div",
@@ -51454,22 +51328,22 @@ var render = function() {
                   {
                     name: "model",
                     rawName: "v-model",
-                    value: _vm.address,
-                    expression: "address"
+                    value: _vm.order.address,
+                    expression: "order.address"
                   }
                 ],
                 staticClass: "form-control",
                 attrs: { type: "text", placeholder: "Адрес объекта" },
-                domProps: { value: _vm.address },
+                domProps: { value: _vm.order.address },
                 on: {
                   change: function($event) {
-                    _vm.orderSave()
+                    _vm.orderAddressUpdate()
                   },
                   input: function($event) {
                     if ($event.target.composing) {
                       return
                     }
-                    _vm.address = $event.target.value
+                    _vm.$set(_vm.order, "address", $event.target.value)
                   }
                 }
               })
@@ -51586,147 +51460,144 @@ var render = function() {
                                           attrs: { name: "room_type_id" },
                                           domProps: { value: room_type.id }
                                         },
-                                        [_vm._v(_vm._s(room_type.type))]
+                                        [
+                                          _vm._v(
+                                            "\n                                                " +
+                                              _vm._s(room_type.type) +
+                                              "\n                                        "
+                                          )
+                                        ]
                                       )
                                     })
                                   )
                                 ]),
                                 _vm._v(" "),
                                 _vm.room_type_id === 1
-                                  ? [
-                                      _c(
-                                        "div",
-                                        {
-                                          staticClass:
-                                            "col-6 d-flex align-items-center px-0"
-                                        },
-                                        [
-                                          _c(
-                                            "div",
-                                            {
-                                              staticClass:
-                                                "placeholder-text col-4 pl-2",
-                                              attrs: { placeholder: "Шир" }
-                                            },
-                                            [
-                                              _c("input", {
-                                                directives: [
-                                                  {
-                                                    name: "model",
-                                                    rawName: "v-model",
-                                                    value: _vm.width,
-                                                    expression: "width"
-                                                  }
-                                                ],
-                                                attrs: {
-                                                  type: "number",
-                                                  min: "0",
-                                                  autofocus: ""
-                                                },
-                                                domProps: { value: _vm.width },
-                                                on: {
-                                                  change: function($event) {
-                                                    _vm.paramSave()
-                                                  },
-                                                  input: function($event) {
-                                                    if (
-                                                      $event.target.composing
-                                                    ) {
-                                                      return
-                                                    }
-                                                    _vm.width =
-                                                      $event.target.value
-                                                  }
+                                  ? _c(
+                                      "div",
+                                      {
+                                        staticClass:
+                                          "col-6 d-flex align-items-center px-0"
+                                      },
+                                      [
+                                        _c(
+                                          "div",
+                                          {
+                                            staticClass:
+                                              "placeholder-text col-4 pl-2",
+                                            attrs: { placeholder: "Шир" }
+                                          },
+                                          [
+                                            _c("input", {
+                                              directives: [
+                                                {
+                                                  name: "model",
+                                                  rawName: "v-model",
+                                                  value: _vm.width,
+                                                  expression: "width"
                                                 }
-                                              })
-                                            ]
-                                          ),
-                                          _vm._v(" "),
-                                          _c(
-                                            "div",
-                                            {
-                                              staticClass:
-                                                "placeholder-text col-4 pl-2",
-                                              attrs: { placeholder: "Дли" }
-                                            },
-                                            [
-                                              _c("input", {
-                                                directives: [
-                                                  {
-                                                    name: "model",
-                                                    rawName: "v-model",
-                                                    value: _vm.length,
-                                                    expression: "length"
-                                                  }
-                                                ],
-                                                attrs: {
-                                                  type: "number",
-                                                  min: "0"
+                                              ],
+                                              attrs: {
+                                                type: "number",
+                                                min: "0",
+                                                autofocus: ""
+                                              },
+                                              domProps: { value: _vm.width },
+                                              on: {
+                                                change: function($event) {
+                                                  _vm.paramSave()
                                                 },
-                                                domProps: { value: _vm.length },
-                                                on: {
-                                                  change: function($event) {
-                                                    _vm.paramSave()
-                                                  },
-                                                  input: function($event) {
-                                                    if (
-                                                      $event.target.composing
-                                                    ) {
-                                                      return
-                                                    }
-                                                    _vm.length =
-                                                      $event.target.value
+                                                input: function($event) {
+                                                  if ($event.target.composing) {
+                                                    return
                                                   }
+                                                  _vm.width =
+                                                    $event.target.value
                                                 }
-                                              })
-                                            ]
-                                          ),
-                                          _vm._v(" "),
-                                          _c(
-                                            "div",
-                                            {
-                                              staticClass:
-                                                "placeholder-text col-4 pl-2",
-                                              attrs: { placeholder: "Выс" }
-                                            },
-                                            [
-                                              _c("input", {
-                                                directives: [
-                                                  {
-                                                    name: "model",
-                                                    rawName: "v-model",
-                                                    value: _vm.height,
-                                                    expression: "height"
-                                                  }
-                                                ],
-                                                attrs: {
-                                                  type: "number",
-                                                  min: "0"
+                                              }
+                                            })
+                                          ]
+                                        ),
+                                        _vm._v(" "),
+                                        _c(
+                                          "div",
+                                          {
+                                            staticClass:
+                                              "placeholder-text col-4 pl-2",
+                                            attrs: { placeholder: "Дли" }
+                                          },
+                                          [
+                                            _c("input", {
+                                              directives: [
+                                                {
+                                                  name: "model",
+                                                  rawName: "v-model",
+                                                  value: _vm.length,
+                                                  expression: "length"
+                                                }
+                                              ],
+                                              attrs: {
+                                                type: "number",
+                                                min: "0"
+                                              },
+                                              domProps: { value: _vm.length },
+                                              on: {
+                                                change: function($event) {
+                                                  _vm.paramSave()
                                                 },
-                                                domProps: { value: _vm.height },
-                                                on: {
-                                                  change: function($event) {
-                                                    _vm.paramSave()
-                                                  },
-                                                  input: function($event) {
-                                                    if (
-                                                      $event.target.composing
-                                                    ) {
-                                                      return
-                                                    }
-                                                    _vm.height =
-                                                      $event.target.value
+                                                input: function($event) {
+                                                  if ($event.target.composing) {
+                                                    return
                                                   }
+                                                  _vm.length =
+                                                    $event.target.value
                                                 }
-                                              })
-                                            ]
-                                          )
-                                        ]
-                                      )
-                                    ]
+                                              }
+                                            })
+                                          ]
+                                        ),
+                                        _vm._v(" "),
+                                        _c(
+                                          "div",
+                                          {
+                                            staticClass:
+                                              "placeholder-text col-4 pl-2",
+                                            attrs: { placeholder: "Выс" }
+                                          },
+                                          [
+                                            _c("input", {
+                                              directives: [
+                                                {
+                                                  name: "model",
+                                                  rawName: "v-model",
+                                                  value: _vm.height,
+                                                  expression: "height"
+                                                }
+                                              ],
+                                              attrs: {
+                                                type: "number",
+                                                min: "0"
+                                              },
+                                              domProps: { value: _vm.height },
+                                              on: {
+                                                change: function($event) {
+                                                  _vm.paramSave()
+                                                },
+                                                input: function($event) {
+                                                  if ($event.target.composing) {
+                                                    return
+                                                  }
+                                                  _vm.height =
+                                                    $event.target.value
+                                                }
+                                              }
+                                            })
+                                          ]
+                                        )
+                                      ]
+                                    )
                                   : _vm._e()
-                              ],
-                              2
+                              ]
                             )
                           ]
                         )
