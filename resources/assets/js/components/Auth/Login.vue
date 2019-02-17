@@ -58,80 +58,13 @@
         },
 
         created () {
-            this.clear()
             others.all()
         },
 
         methods: {
             ...mapActions({
                 login: 'auth/login'
-            }),
-
-            clear () {
-                if (!this._securityOrigin)
-                {
-                  return;
-                }
-
-                const storageTypes = [];
-                for (const type of this._settings.keys()) {
-                  if (this._settings.get(type).get())
-                    storageTypes.push(type);
-                }
-
-                this._target.storageAgent().clearDataForOrigin(this._securityOrigin, storageTypes.join(','));
-
-                const set = new Set(storageTypes);
-                const hasAll = set.has(Protocol.Storage.StorageType.All);
-                if (set.has(Protocol.Storage.StorageType.Cookies) || hasAll) {
-                  const cookieModel = this._target.model(SDK.CookieModel);
-                  if (cookieModel)
-                    cookieModel.clear();
-                }
-
-                if (set.has(Protocol.Storage.StorageType.Indexeddb) || hasAll) {
-                  for (const target of SDK.targetManager.targets()) {
-                    const indexedDBModel = target.model(Resources.IndexedDBModel);
-                    if (indexedDBModel)
-                      indexedDBModel.clearForOrigin(this._securityOrigin);
-                  }
-                }
-
-                if (set.has(Protocol.Storage.StorageType.Local_storage) || hasAll) {
-                    const storageModel = this._target.model(Resources.DOMStorageModel);
-                    if (storageModel)
-                      storageModel.clearForOrigin(this._securityOrigin);
-                }
-
-                if (set.has(Protocol.Storage.StorageType.Websql) || hasAll) {
-                  const databaseModel = this._target.model(Resources.DatabaseModel);
-                  if (databaseModel) {
-                    databaseModel.disable();
-                    databaseModel.enable();
-                  }
-                }
-
-                if (set.has(Protocol.Storage.StorageType.Cache_storage) || hasAll) {
-                    const target = SDK.targetManager.mainTarget();
-                    const model = target && target.model(SDK.ServiceWorkerCacheModel);
-                    if (model)
-                      model.clearForOrigin(this._securityOrigin);
-                    }
-
-                if (set.has(Protocol.Storage.StorageType.Appcache) || hasAll) {
-                  const appcacheModel = this._target.model(Resources.ApplicationCacheModel);
-                  if (appcacheModel)
-                    appcacheModel.reset();
-                }
-
-                this._clearButton.disabled = true;
-                const label = this._clearButton.textContent;
-                this._clearButton.textContent = Common.UIString('Clearing...');
-                setTimeout(() => {
-                  this._clearButton.disabled = false;
-                  this._clearButton.textContent = label;
-                }, 500);
-            }
+            })
         }
 
     }

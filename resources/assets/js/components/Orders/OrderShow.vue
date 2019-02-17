@@ -12,7 +12,7 @@
                     <div class="container-fluid px-0">
 
                         <order-detail :order="order"
-                                      @order-saved="orderSaved"
+                                      @order-saved="show = true"
                                       >
                         </order-detail>
 
@@ -84,16 +84,13 @@
                 room_type_id: 1,
                 width: null,
                 length: null,
-                height: null,
-                path: window.location.pathname
+                height: null
             }
         },
 
 
         components: {
-            OrderDetail,
-            Carousel,
-            Slide
+            OrderDetail
         },
 
         created () {
@@ -115,14 +112,16 @@
             },
 
             getRoomTypes () {
-                return axios.get(`/api/room_types`).then(response => {
-                    this.room_types = response.data
-                })
+                if (localStorage.getItem('room_types')) {
+                    this.room_types = JSON.parse(localStorage.getItem('room_types'))
+                } else {
+                    return axios.get(`/api/room_types`).then(response => {
+                        localStorage.setItem('room_types', JSON.stringify(response.data))
+                        this.room_types = response.data
+                    })
+                }
             },
 
-            orderSaved (value) {
-                this.show = true
-            },
 
             paramSave () {
                     if (this.width != null && this.height != null && this.length != null) {
@@ -133,8 +132,6 @@
                             'height': this.height
                         }).then((response) => {
                             this.$router.push({ name: 'room-show', params: { id: this.order.id, room_id: response.data.id } })
-                        }).catch((err) => {
-                            console.log(err)
                         })
                     }
 
@@ -143,8 +140,6 @@
                             'room_type_id': this.room_type_id
                         }).then(response => {
                             this.$router.push({ name: 'room-show', params: { id: this.order.id, room_id: response.data.id } })
-                        }).catch(err => {
-                            console.log(err)
                         })
                     }
             }
@@ -157,15 +152,5 @@
       &::after {
         left: 20px;
       }
-    }
-
-    .form-control {
-        box-shadow: none;
-        border-radius: 0;
-        &:focus {
-          box-shadow: none;
-          border-radius: 0;
-          border:1px solid #000;
-        }
     }
 </style>

@@ -47425,117 +47425,13 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
     },
 
     created: function created() {
-        this.clear();
         __WEBPACK_IMPORTED_MODULE_1__services_others__["a" /* default */].all();
     },
 
 
     methods: _extends({}, Object(__WEBPACK_IMPORTED_MODULE_0_vuex__["b" /* mapActions */])({
         login: 'auth/login'
-    }), {
-        clear: function clear() {
-            var _this = this;
-
-            if (!this._securityOrigin) {
-                return;
-            }
-
-            var storageTypes = [];
-            var _iteratorNormalCompletion = true;
-            var _didIteratorError = false;
-            var _iteratorError = undefined;
-
-            try {
-                for (var _iterator = this._settings.keys()[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
-                    var type = _step.value;
-
-                    if (this._settings.get(type).get()) storageTypes.push(type);
-                }
-            } catch (err) {
-                _didIteratorError = true;
-                _iteratorError = err;
-            } finally {
-                try {
-                    if (!_iteratorNormalCompletion && _iterator.return) {
-                        _iterator.return();
-                    }
-                } finally {
-                    if (_didIteratorError) {
-                        throw _iteratorError;
-                    }
-                }
-            }
-
-            this._target.storageAgent().clearDataForOrigin(this._securityOrigin, storageTypes.join(','));
-
-            var set = new Set(storageTypes);
-            var hasAll = set.has(Protocol.Storage.StorageType.All);
-            if (set.has(Protocol.Storage.StorageType.Cookies) || hasAll) {
-                var cookieModel = this._target.model(SDK.CookieModel);
-                if (cookieModel) cookieModel.clear();
-            }
-
-            if (set.has(Protocol.Storage.StorageType.Indexeddb) || hasAll) {
-                var _iteratorNormalCompletion2 = true;
-                var _didIteratorError2 = false;
-                var _iteratorError2 = undefined;
-
-                try {
-                    for (var _iterator2 = SDK.targetManager.targets()[Symbol.iterator](), _step2; !(_iteratorNormalCompletion2 = (_step2 = _iterator2.next()).done); _iteratorNormalCompletion2 = true) {
-                        var target = _step2.value;
-
-                        var indexedDBModel = target.model(Resources.IndexedDBModel);
-                        if (indexedDBModel) indexedDBModel.clearForOrigin(this._securityOrigin);
-                    }
-                } catch (err) {
-                    _didIteratorError2 = true;
-                    _iteratorError2 = err;
-                } finally {
-                    try {
-                        if (!_iteratorNormalCompletion2 && _iterator2.return) {
-                            _iterator2.return();
-                        }
-                    } finally {
-                        if (_didIteratorError2) {
-                            throw _iteratorError2;
-                        }
-                    }
-                }
-            }
-
-            if (set.has(Protocol.Storage.StorageType.Local_storage) || hasAll) {
-                var storageModel = this._target.model(Resources.DOMStorageModel);
-                if (storageModel) storageModel.clearForOrigin(this._securityOrigin);
-            }
-
-            if (set.has(Protocol.Storage.StorageType.Websql) || hasAll) {
-                var databaseModel = this._target.model(Resources.DatabaseModel);
-                if (databaseModel) {
-                    databaseModel.disable();
-                    databaseModel.enable();
-                }
-            }
-
-            if (set.has(Protocol.Storage.StorageType.Cache_storage) || hasAll) {
-                var _target = SDK.targetManager.mainTarget();
-                var model = _target && _target.model(SDK.ServiceWorkerCacheModel);
-                if (model) model.clearForOrigin(this._securityOrigin);
-            }
-
-            if (set.has(Protocol.Storage.StorageType.Appcache) || hasAll) {
-                var appcacheModel = this._target.model(Resources.ApplicationCacheModel);
-                if (appcacheModel) appcacheModel.reset();
-            }
-
-            this._clearButton.disabled = true;
-            var label = this._clearButton.textContent;
-            this._clearButton.textContent = Common.UIString('Clearing...');
-            setTimeout(function () {
-                _this._clearButton.disabled = false;
-                _this._clearButton.textContent = label;
-            }, 500);
-        }
-    })
+    }))
 
 });
 
@@ -50941,7 +50837,7 @@ exports = module.exports = __webpack_require__(2)(false);
 
 
 // module
-exports.push([module.i, "\n.placeholder-text[data-v-0bb54350]::after {\n  left: 20px;\n}\n.form-control[data-v-0bb54350] {\n  -webkit-box-shadow: none;\n          box-shadow: none;\n  border-radius: 0;\n}\n.form-control[data-v-0bb54350]:focus {\n    -webkit-box-shadow: none;\n            box-shadow: none;\n    border-radius: 0;\n    border: 1px solid #000;\n}\n", ""]);
+exports.push([module.i, "\n.placeholder-text[data-v-0bb54350]::after {\n  left: 20px;\n}\n", ""]);
 
 // exports
 
@@ -51042,16 +50938,13 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             room_type_id: 1,
             width: null,
             length: null,
-            height: null,
-            path: window.location.pathname
+            height: null
         };
     },
 
 
     components: {
-        OrderDetail: __WEBPACK_IMPORTED_MODULE_1__Partials_OrderDetail___default.a,
-        Carousel: __WEBPACK_IMPORTED_MODULE_0_vue_carousel__["Carousel"],
-        Slide: __WEBPACK_IMPORTED_MODULE_0_vue_carousel__["Slide"]
+        OrderDetail: __WEBPACK_IMPORTED_MODULE_1__Partials_OrderDetail___default.a
     },
 
     created: function created() {
@@ -51076,12 +50969,14 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         getRoomTypes: function getRoomTypes() {
             var _this2 = this;
 
-            return axios.get('/api/room_types').then(function (response) {
-                _this2.room_types = response.data;
-            });
-        },
-        orderSaved: function orderSaved(value) {
-            this.show = true;
+            if (localStorage.getItem('room_types')) {
+                this.room_types = JSON.parse(localStorage.getItem('room_types'));
+            } else {
+                return axios.get('/api/room_types').then(function (response) {
+                    localStorage.setItem('room_types', JSON.stringify(response.data));
+                    _this2.room_types = response.data;
+                });
+            }
         },
         paramSave: function paramSave() {
             var _this3 = this;
@@ -51094,8 +50989,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                     'height': this.height
                 }).then(function (response) {
                     _this3.$router.push({ name: 'room-show', params: { id: _this3.order.id, room_id: response.data.id } });
-                }).catch(function (err) {
-                    console.log(err);
                 });
             }
 
@@ -51104,8 +50997,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                     'room_type_id': this.room_type_id
                 }).then(function (response) {
                     _this3.$router.push({ name: 'room-show', params: { id: _this3.order.id, room_id: response.data.id } });
-                }).catch(function (err) {
-                    console.log(err);
                 });
             }
         }
@@ -51392,7 +51283,11 @@ var render = function() {
                 [
                   _c("order-detail", {
                     attrs: { order: _vm.order },
-                    on: { "order-saved": _vm.orderSaved }
+                    on: {
+                      "order-saved": function($event) {
+                        _vm.show = true
+                      }
+                    }
                   }),
                   _vm._v(" "),
                   _vm.show
