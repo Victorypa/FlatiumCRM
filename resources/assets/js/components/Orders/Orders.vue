@@ -19,8 +19,6 @@
               </div>
 
               <div class="col-md-12 pt-4">
-                <form>
-
                   <div class="input-group">
                     <input class="form-control py-2"
                            type="search" placeholder="Введите адрес"
@@ -28,7 +26,6 @@
                            >
                     <i class="fa fa-search"></i>
                   </div>
-                </form>
               </div>
 
               <div class="row pt-4 justify-content-end">
@@ -71,8 +68,13 @@
                 </thead>
 
                 <tbody v-if="orders.length">
-                    <template v-for="order in filteredOrders">
-                        <tr>
+
+                        <Order v-if="filteredOrders.length"
+                               v-for="order in filteredOrders"
+                               :order="order"
+                               :key="order.id"
+                               />
+                        <!-- <tr>
                             <td>
                                 <input type="checkbox"
                                        :checked="order.processing"
@@ -141,9 +143,9 @@
                               </div>
                             </div>
                           </td>
-                        </tr>
+                        </tr> -->
 
-                        <template v-if="order.finished_order_acts.length" v-for="(finished_order_act, index) in order.finished_order_acts">
+                        <!-- <template v-if="order.finished_order_acts.length" v-for="(finished_order_act, index) in order.finished_order_acts">
                                 <tr class="small-case">
                                     <td>
                                         <router-link :to="{ name: 'order-finished-services-export-show', params: { id: order.id, finished_act_id: finished_order_act.id } }">
@@ -185,10 +187,10 @@
 
                                     </td>
                                 </tr>
-                        </template>
+                        </template> -->
 
 
-                        <template v-if="order.extra_order_acts.length" v-for="(extra_order_act, index) in order.extra_order_acts">
+                        <!-- <template v-if="order.extra_order_acts.length" v-for="(extra_order_act, index) in order.extra_order_acts">
                                 <tr class="small-case">
                                     <td>
                                         <router-link :to="{ name: 'order-extra-services-export-show', params: { id: order.id, extra_order_act_id: extra_order_act.id } }">
@@ -230,8 +232,8 @@
                                         </template>
                                     </td>
                                 </tr>
-                        </template>
-                    </template>
+                        </template> -->
+
                 </tbody>
               </table>
             </div>
@@ -243,6 +245,8 @@
 </template>
 
 <script>
+import Order from './Partials/Order'
+
 export default {
   data() {
     return {
@@ -253,7 +257,11 @@ export default {
     };
   },
 
-  mounted() {
+  components: {
+      Order
+  },
+
+  created () {
     this.getOrders();
   },
 
@@ -261,21 +269,6 @@ export default {
     getOrders() {
         return axios.get(`/api/orders`).then(response => {
           this.orders = response.data
-        })
-    },
-
-    deleteOrder (order) {
-        if (confirm('Удалить ?')) {
-            axios.delete(`/api/orders/${order.id}/destroy`)
-                 .then(response => {
-                     this.getOrders()
-                 })
-        }
-    },
-
-    updateStatus (order) {
-        axios.patch(`/api/orders/${order.id}/update_status`, {
-            'processing': !order.processing
         })
     },
 
@@ -299,18 +292,6 @@ export default {
 
     sortByDateStart() {
       this.sortByDate = !this.sortByDate;
-    },
-
-    dateFormatter(dateString) {
-      return moment(new Date(dateString)).format("DD-MM-YYYY")
-    },
-
-    filteredOrderName(order) {
-          if (order.address != null) {
-            return order.address;
-          } else {
-            return order.order_name.substring(0, 25);
-          }
     },
 
     checkIfLastElement (element, data) {
@@ -365,92 +346,3 @@ export default {
   }
 };
 </script>
-
-<style scoped lang="scss">
-a {
-  color: #666666;
-  &:hover {
-    text-decoration: none;
-    color: #00a4d1;
-  }
-}
-
-table {
-  th{
-    border-top: none;
-  }
-  tr:hover {
-  .estimates__dropdown-img--rotate {
-      opacity: 1;
-  }
-   .show-button {
-     opacity:1;
-   }
-   .add-button {
-     opacity: 1;
-   }
-  }
-  .add-button {
-    opacity: 0;
-  }
-  .form-check-label {
-    display: flex;
-  }
-}
- .estimates__dropdown-img--rotate {
-   opacity: 0;
-   img {
-    transform: none;
-   }
- }
- .show-button {
-   opacity:0;
- }
- .add-button img {
-   width: 11px;
-   cursor: pointer;
- }
-
- .small-case {
-  font-size: 0.9rem;
-  td {
-    &:first-child {
-      padding-left: 35px;
-    }
-  }
-  &__date {
-    margin-right: 75px;
-  }
-}
-.text-color {
-  color: #666 !important;
-  &:hover {
-    color: #00a4d1 !important;
-  }
-  cursor: pointer;
-  &:active {
-      background-color: transparent;
-  }
-}
-
-.pl-35 {
-  padding-left: 35px;
-}
-
-.pr-30 {
-  padding-right: 30px;
-}
-
-.mr--76 {
-  margin-right: -76px;
-}
-
-.mr-78 {
-  margin-right: 78px;
-}
-
-.mr-80 {
-  margin-right: 80px;
-}
-
-</style>

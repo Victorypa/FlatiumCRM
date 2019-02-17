@@ -48725,21 +48725,17 @@ if (false) {
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
-function injectStyle (ssrContext) {
-  if (disposed) return
-  __webpack_require__(185)
-}
 var normalizeComponent = __webpack_require__(1)
 /* script */
 var __vue_script__ = __webpack_require__(188)
 /* template */
-var __vue_template__ = __webpack_require__(189)
+var __vue_template__ = __webpack_require__(342)
 /* template functional */
 var __vue_template_functional__ = false
 /* styles */
-var __vue_styles__ = injectStyle
+var __vue_styles__ = null
 /* scopeId */
-var __vue_scopeId__ = "data-v-033f9948"
+var __vue_scopeId__ = null
 /* moduleIdentifier (server only) */
 var __vue_module_identifier__ = null
 var Component = normalizeComponent(
@@ -48772,46 +48768,8 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 185 */
-/***/ (function(module, exports, __webpack_require__) {
-
-// style-loader: Adds some css to the DOM by adding a <style> tag
-
-// load the styles
-var content = __webpack_require__(186);
-if(typeof content === 'string') content = [[module.i, content, '']];
-if(content.locals) module.exports = content.locals;
-// add the styles to the DOM
-var update = __webpack_require__(3)("21414253", content, false, {});
-// Hot Module Replacement
-if(false) {
- // When the styles change, update the <style> tags
- if(!content.locals) {
-   module.hot.accept("!!../../../../../node_modules/css-loader/index.js!../../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-033f9948\",\"scoped\":true,\"hasInlineConfig\":true}!../../../../../node_modules/sass-loader/lib/loader.js!../../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./Orders.vue", function() {
-     var newContent = require("!!../../../../../node_modules/css-loader/index.js!../../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-033f9948\",\"scoped\":true,\"hasInlineConfig\":true}!../../../../../node_modules/sass-loader/lib/loader.js!../../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./Orders.vue");
-     if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
-     update(newContent);
-   });
- }
- // When the module is disposed, remove the <style> tags
- module.hot.dispose(function() { update(); });
-}
-
-/***/ }),
-/* 186 */
-/***/ (function(module, exports, __webpack_require__) {
-
-exports = module.exports = __webpack_require__(2)(false);
-// imports
-
-
-// module
-exports.push([module.i, "\na[data-v-033f9948] {\n  color: #666666;\n}\na[data-v-033f9948]:hover {\n    text-decoration: none;\n    color: #00a4d1;\n}\ntable th[data-v-033f9948] {\n  border-top: none;\n}\ntable tr:hover .estimates__dropdown-img--rotate[data-v-033f9948] {\n  opacity: 1;\n}\ntable tr:hover .show-button[data-v-033f9948] {\n  opacity: 1;\n}\ntable tr:hover .add-button[data-v-033f9948] {\n  opacity: 1;\n}\ntable .add-button[data-v-033f9948] {\n  opacity: 0;\n}\ntable .form-check-label[data-v-033f9948] {\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n}\n.estimates__dropdown-img--rotate[data-v-033f9948] {\n  opacity: 0;\n}\n.estimates__dropdown-img--rotate img[data-v-033f9948] {\n    -webkit-transform: none;\n            transform: none;\n}\n.show-button[data-v-033f9948] {\n  opacity: 0;\n}\n.add-button img[data-v-033f9948] {\n  width: 11px;\n  cursor: pointer;\n}\n.small-case[data-v-033f9948] {\n  font-size: 0.9rem;\n}\n.small-case td[data-v-033f9948]:first-child {\n    padding-left: 35px;\n}\n.small-case__date[data-v-033f9948] {\n    margin-right: 75px;\n}\n.text-color[data-v-033f9948] {\n  color: #666 !important;\n  cursor: pointer;\n}\n.text-color[data-v-033f9948]:hover {\n    color: #00a4d1 !important;\n}\n.text-color[data-v-033f9948]:active {\n    background-color: transparent;\n}\n.pl-35[data-v-033f9948] {\n  padding-left: 35px;\n}\n.pr-30[data-v-033f9948] {\n  padding-right: 30px;\n}\n.mr--76[data-v-033f9948] {\n  margin-right: -76px;\n}\n.mr-78[data-v-033f9948] {\n  margin-right: 78px;\n}\n.mr-80[data-v-033f9948] {\n  margin-right: 80px;\n}\n", ""]);
-
-// exports
-
-
-/***/ }),
+/* 185 */,
+/* 186 */,
 /* 187 */
 /***/ (function(module, exports) {
 
@@ -48850,6 +48808,10 @@ module.exports = function listToStyles (parentId, list) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__Partials_Order__ = __webpack_require__(336);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__Partials_Order___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__Partials_Order__);
+//
+//
 //
 //
 //
@@ -49095,6 +49057,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 
+
+
 /* harmony default export */ __webpack_exports__["default"] = ({
     data: function data() {
         return {
@@ -49104,7 +49068,13 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             sortByStatus: false
         };
     },
-    mounted: function mounted() {
+
+
+    components: {
+        Order: __WEBPACK_IMPORTED_MODULE_0__Partials_Order___default.a
+    },
+
+    created: function created() {
         this.getOrders();
     },
 
@@ -49117,71 +49087,47 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 _this.orders = response.data;
             });
         },
-        deleteOrder: function deleteOrder(order) {
-            var _this2 = this;
-
-            if (confirm('Удалить ?')) {
-                axios.delete('/api/orders/' + order.id + '/destroy').then(function (response) {
-                    _this2.getOrders();
-                });
-            }
-        },
-        updateStatus: function updateStatus(order) {
-            axios.patch('/api/orders/' + order.id + '/update_status', {
-                'processing': !order.processing
-            });
-        },
         createFinishedOrderAct: function createFinishedOrderAct(id) {
-            var _this3 = this;
+            var _this2 = this;
 
             axios.post('/api/orders/' + id + '/finished_order_act/store', {
                 'order_id': id,
                 'name': '\u0410\u043A\u0442 \u0432\u044B\u043F\u043E\u043B\u043D\u0435\u043D\u043D\u044B\u0445 \u0440\u0430\u0431\u043E\u0442'
             }).then(function (response) {
-                _this3.$router.push({ name: 'order-finished-services', params: { id: id, finished_act_id: response.data.id } });
+                _this2.$router.push({ name: 'order-finished-services', params: { id: id, finished_act_id: response.data.id } });
             });
         },
         createExtraOrderAct: function createExtraOrderAct(id) {
-            var _this4 = this;
+            var _this3 = this;
 
             axios.post('/api/orders/' + id + '/extra_order_act/store', {
                 'order_id': id,
                 'name': '\u0410\u043A\u0442 \u0434\u043E\u043F\u043E\u043B\u043D\u0438\u0442\u0435\u043B\u044C\u043D\u044B\u0445 \u0440\u0430\u0431\u043E\u0442'
             }).then(function (response) {
-                _this4.$router.push({ name: 'order-extra-services-rooms-show', params: { id: id, extra_order_act_id: response.data.id, extra_room_id: response.data.extra_rooms[0].id } });
+                _this3.$router.push({ name: 'order-extra-services-rooms-show', params: { id: id, extra_order_act_id: response.data.id, extra_room_id: response.data.extra_rooms[0].id } });
             });
         },
         sortByDateStart: function sortByDateStart() {
             this.sortByDate = !this.sortByDate;
         },
-        dateFormatter: function dateFormatter(dateString) {
-            return moment(new Date(dateString)).format("DD-MM-YYYY");
-        },
-        filteredOrderName: function filteredOrderName(order) {
-            if (order.address != null) {
-                return order.address;
-            } else {
-                return order.order_name.substring(0, 25);
-            }
-        },
         checkIfLastElement: function checkIfLastElement(element, data) {
             return element === data[data.length - 1];
         },
         deleteFinishedOrderAct: function deleteFinishedOrderAct(order_id, finished_order_act_id) {
-            var _this5 = this;
+            var _this4 = this;
 
             if (confirm('Удалить?')) {
                 axios.delete('/api/orders/' + order_id + '/finished_order_act/' + finished_order_act_id + '/destroy').then(function (response) {
-                    _this5.getOrders();
+                    _this4.getOrders();
                 });
             }
         },
         deleteExtraOrderAct: function deleteExtraOrderAct(order_id, extra_order_act_id) {
-            var _this6 = this;
+            var _this5 = this;
 
             if (confirm('Удалить?')) {
                 axios.delete('/api/orders/' + order_id + '/extra_order_act/' + extra_order_act_id + '/destroy').then(function (response) {
-                    _this6.getOrders();
+                    _this5.getOrders();
                 });
             }
         }
@@ -49189,13 +49135,13 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
     computed: {
         filteredOrders: function filteredOrders() {
-            var _this7 = this;
+            var _this6 = this;
 
             var data = this.orders;
 
             data = data.filter(function (row) {
                 return Object.keys(row).some(function (key) {
-                    return String(row[key]).toLowerCase().indexOf(_this7.quickSearchQuery.toLowerCase()) > -1;
+                    return String(row[key]).toLowerCase().indexOf(_this6.quickSearchQuery.toLowerCase()) > -1;
                 });
             });
 
@@ -49217,892 +49163,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 });
 
 /***/ }),
-/* 189 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var render = function() {
-  var _vm = this
-  var _h = _vm.$createElement
-  var _c = _vm._self._c || _h
-  return _c(
-    "section",
-    { staticClass: "estimates" },
-    [
-      _c("basic-header"),
-      _vm._v(" "),
-      _c("div", { staticClass: "container-fluid " }, [
-        _c(
-          "div",
-          { staticClass: "row" },
-          [
-            _c("navigation"),
-            _vm._v(" "),
-            _c("div", { staticClass: "col-md-10 px-0" }, [
-              _c(
-                "div",
-                { staticClass: "create__fixed-top col-10 shadow-light" },
-                [
-                  _vm._m(0),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "col-md-12 pt-4" }, [
-                    _c("form", [
-                      _c("div", { staticClass: "input-group" }, [
-                        _c("input", {
-                          directives: [
-                            {
-                              name: "model",
-                              rawName: "v-model",
-                              value: _vm.quickSearchQuery,
-                              expression: "quickSearchQuery"
-                            }
-                          ],
-                          staticClass: "form-control py-2",
-                          attrs: {
-                            type: "search",
-                            placeholder: "Введите адрес"
-                          },
-                          domProps: { value: _vm.quickSearchQuery },
-                          on: {
-                            input: function($event) {
-                              if ($event.target.composing) {
-                                return
-                              }
-                              _vm.quickSearchQuery = $event.target.value
-                            }
-                          }
-                        }),
-                        _vm._v(" "),
-                        _c("i", { staticClass: "fa fa-search" })
-                      ])
-                    ])
-                  ]),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "row pt-4 justify-content-end" }, [
-                    _c("div", { staticClass: "px-30" }, [
-                      _c("label", [
-                        _c("input", {
-                          directives: [
-                            {
-                              name: "model",
-                              rawName: "v-model",
-                              value: _vm.sortByStatus,
-                              expression: "sortByStatus"
-                            }
-                          ],
-                          attrs: { type: "checkbox" },
-                          domProps: {
-                            checked: _vm.sortByStatus,
-                            checked: Array.isArray(_vm.sortByStatus)
-                              ? _vm._i(_vm.sortByStatus, null) > -1
-                              : _vm.sortByStatus
-                          },
-                          on: {
-                            change: function($event) {
-                              var $$a = _vm.sortByStatus,
-                                $$el = $event.target,
-                                $$c = $$el.checked ? true : false
-                              if (Array.isArray($$a)) {
-                                var $$v = null,
-                                  $$i = _vm._i($$a, $$v)
-                                if ($$el.checked) {
-                                  $$i < 0 &&
-                                    (_vm.sortByStatus = $$a.concat([$$v]))
-                                } else {
-                                  $$i > -1 &&
-                                    (_vm.sortByStatus = $$a
-                                      .slice(0, $$i)
-                                      .concat($$a.slice($$i + 1)))
-                                }
-                              } else {
-                                _vm.sortByStatus = $$c
-                              }
-                            }
-                          }
-                        }),
-                        _vm._v(" "),
-                        _c("span", [_vm._v("в работе")])
-                      ])
-                    ])
-                  ])
-                ]
-              ),
-              _vm._v(" "),
-              _c("div", { staticClass: "col-12" }, [
-                _c("table", { staticClass: "table table-hover" }, [
-                  _c("thead", [
-                    _c("tr", [
-                      _vm._m(1),
-                      _vm._v(" "),
-                      _vm._m(2),
-                      _vm._v(" "),
-                      _c(
-                        "th",
-                        {
-                          staticClass: "d-flex justify-content-end",
-                          on: {
-                            click: function($event) {
-                              _vm.sortByDateStart()
-                            }
-                          }
-                        },
-                        [_vm._m(3)]
-                      )
-                    ])
-                  ]),
-                  _vm._v(" "),
-                  _vm.orders.length
-                    ? _c(
-                        "tbody",
-                        [
-                          _vm._l(_vm.filteredOrders, function(order) {
-                            return [
-                              _c("tr", [
-                                _c("td", [
-                                  _c("input", {
-                                    attrs: { type: "checkbox" },
-                                    domProps: { checked: order.processing },
-                                    on: {
-                                      click: function($event) {
-                                        _vm.updateStatus(order)
-                                      }
-                                    }
-                                  })
-                                ]),
-                                _vm._v(" "),
-                                _c("td", [
-                                  _c(
-                                    "div",
-                                    {
-                                      staticClass:
-                                        "form-check custom-control checkbox"
-                                    },
-                                    [
-                                      _c(
-                                        "label",
-                                        { attrs: { for: "order-" + order.id } },
-                                        [
-                                          order.rooms.length
-                                            ? [
-                                                _c(
-                                                  "router-link",
-                                                  {
-                                                    attrs: {
-                                                      to: {
-                                                        name: "room-show",
-                                                        params: {
-                                                          id: order.id,
-                                                          room_id:
-                                                            order.rooms[
-                                                              order.rooms
-                                                                .length - 1
-                                                            ].id
-                                                        }
-                                                      }
-                                                    }
-                                                  },
-                                                  [
-                                                    _vm._v(
-                                                      "\n                                          " +
-                                                        _vm._s(
-                                                          _vm.filteredOrderName(
-                                                            order
-                                                          )
-                                                        ) +
-                                                        "\n                                      "
-                                                    )
-                                                  ]
-                                                ),
-                                                _vm._v(" "),
-                                                order.isCopy
-                                                  ? [
-                                                      _c(
-                                                        "button",
-                                                        {
-                                                          staticClass:
-                                                            "add-button add-button--remove d-flex align-items-center",
-                                                          on: {
-                                                            click: function(
-                                                              $event
-                                                            ) {
-                                                              _vm.deleteOrder(
-                                                                order
-                                                              )
-                                                            }
-                                                          }
-                                                        },
-                                                        [
-                                                          _c("img", {
-                                                            attrs: {
-                                                              src:
-                                                                "/img/del.svg",
-                                                              alt: "add-button"
-                                                            }
-                                                          })
-                                                        ]
-                                                      )
-                                                    ]
-                                                  : _vm._e()
-                                              ]
-                                            : [
-                                                _c(
-                                                  "router-link",
-                                                  {
-                                                    attrs: {
-                                                      to: {
-                                                        name: "order-show",
-                                                        params: { id: order.id }
-                                                      }
-                                                    }
-                                                  },
-                                                  [
-                                                    _vm._v(
-                                                      "\n                                          " +
-                                                        _vm._s(
-                                                          _vm.filteredOrderName(
-                                                            order
-                                                          )
-                                                        ) +
-                                                        "\n                                      "
-                                                    )
-                                                  ]
-                                                )
-                                              ]
-                                        ],
-                                        2
-                                      )
-                                    ]
-                                  )
-                                ]),
-                                _vm._v(" "),
-                                _c(
-                                  "td",
-                                  { staticClass: "d-flex justify-content-end" },
-                                  [
-                                    _c("div", { staticClass: "pr-30" }, [
-                                      _vm._v(
-                                        "\n                                   " +
-                                          _vm._s(
-                                            _vm.dateFormatter(order.created_at)
-                                          ) +
-                                          "\n                              "
-                                      )
-                                    ]),
-                                    _vm._v(" "),
-                                    _c("div", { staticClass: "pl-30" }, [
-                                      _vm._m(4, true),
-                                      _vm._v(" "),
-                                      _c(
-                                        "div",
-                                        {
-                                          staticClass:
-                                            "dropdown-menu dropdown-menu-right"
-                                        },
-                                        [
-                                          _c(
-                                            "a",
-                                            {
-                                              staticClass:
-                                                "dropdown-item text-color",
-                                              on: {
-                                                click: function($event) {
-                                                  _vm.createFinishedOrderAct(
-                                                    order.id
-                                                  )
-                                                }
-                                              }
-                                            },
-                                            [
-                                              _vm._v(
-                                                "\n                                    Создать акт\n                                "
-                                              )
-                                            ]
-                                          ),
-                                          _vm._v(" "),
-                                          _c(
-                                            "a",
-                                            {
-                                              staticClass:
-                                                "dropdown-item text-color",
-                                              on: {
-                                                click: function($event) {
-                                                  _vm.createExtraOrderAct(
-                                                    order.id
-                                                  )
-                                                }
-                                              }
-                                            },
-                                            [
-                                              _vm._v(
-                                                "\n                                      Создать доп.ведомость\n                                  "
-                                              )
-                                            ]
-                                          ),
-                                          _vm._v(" "),
-                                          _c(
-                                            "router-link",
-                                            {
-                                              staticClass:
-                                                "dropdown-item text-color",
-                                              attrs: {
-                                                to: {
-                                                  name: "order-finance",
-                                                  params: { id: order.id }
-                                                }
-                                              }
-                                            },
-                                            [
-                                              _vm._v(
-                                                "\n                                      Баланс\n                                  "
-                                              )
-                                            ]
-                                          ),
-                                          _vm._v(" "),
-                                          _c(
-                                            "router-link",
-                                            {
-                                              staticClass:
-                                                "dropdown-item text-color",
-                                              attrs: {
-                                                to: {
-                                                  name: "order-step",
-                                                  params: { id: order.id }
-                                                }
-                                              }
-                                            },
-                                            [
-                                              _vm._v(
-                                                "\n                                      График работ\n                                  "
-                                              )
-                                            ]
-                                          ),
-                                          _vm._v(" "),
-                                          _c(
-                                            "router-link",
-                                            {
-                                              staticClass:
-                                                "dropdown-item text-color",
-                                              attrs: {
-                                                to: {
-                                                  name: "order-upload",
-                                                  params: { id: order.id }
-                                                }
-                                              }
-                                            },
-                                            [
-                                              _vm._v(
-                                                "\n                                      Загрузить файлы\n                                  "
-                                              )
-                                            ]
-                                          )
-                                        ],
-                                        1
-                                      )
-                                    ])
-                                  ]
-                                )
-                              ]),
-                              _vm._v(" "),
-                              _vm._l(order.finished_order_acts, function(
-                                finished_order_act,
-                                index
-                              ) {
-                                return order.finished_order_acts.length
-                                  ? [
-                                      _c("tr", { staticClass: "small-case" }, [
-                                        _c(
-                                          "td",
-                                          [
-                                            _c(
-                                              "router-link",
-                                              {
-                                                attrs: {
-                                                  to: {
-                                                    name:
-                                                      "order-finished-services-export-show",
-                                                    params: {
-                                                      id: order.id,
-                                                      finished_act_id:
-                                                        finished_order_act.id
-                                                    }
-                                                  }
-                                                }
-                                              },
-                                              [
-                                                _c(
-                                                  "div",
-                                                  { staticClass: "d-flex" },
-                                                  [
-                                                    _c(
-                                                      "div",
-                                                      { staticClass: "col-9" },
-                                                      [
-                                                        finished_order_act.description
-                                                          ? [
-                                                              _vm._v(
-                                                                "\n                                                        " +
-                                                                  _vm._s(
-                                                                    finished_order_act.description
-                                                                  ) +
-                                                                  "(" +
-                                                                  _vm._s(
-                                                                    index +
-                                                                      parseInt(
-                                                                        1
-                                                                      )
-                                                                  ) +
-                                                                  ")\n                                                    "
-                                                              )
-                                                            ]
-                                                          : [
-                                                              _vm._v(
-                                                                "\n                                                        " +
-                                                                  _vm._s(
-                                                                    finished_order_act.name
-                                                                  ) +
-                                                                  "(" +
-                                                                  _vm._s(
-                                                                    index +
-                                                                      parseInt(
-                                                                        1
-                                                                      )
-                                                                  ) +
-                                                                  ")\n                                                    "
-                                                              )
-                                                            ]
-                                                      ],
-                                                      2
-                                                    )
-                                                  ]
-                                                )
-                                              ]
-                                            )
-                                          ],
-                                          1
-                                        ),
-                                        _vm._v(" "),
-                                        _c(
-                                          "td",
-                                          {
-                                            staticClass:
-                                              "d-flex justify-content-end"
-                                          },
-                                          [
-                                            _c(
-                                              "div",
-                                              { staticClass: "col-auto" },
-                                              [
-                                                _vm._v(
-                                                  "\n                                            " +
-                                                    _vm._s(
-                                                      _vm.dateFormatter(
-                                                        finished_order_act.created_at
-                                                      )
-                                                    ) +
-                                                    "\n                                        "
-                                                )
-                                              ]
-                                            ),
-                                            _vm._v(" "),
-                                            _vm.checkIfLastElement(
-                                              finished_order_act,
-                                              order.finished_order_acts
-                                            )
-                                              ? [
-                                                  _c(
-                                                    "div",
-                                                    {
-                                                      staticClass:
-                                                        "d-flex align-items-center show-button pl-35"
-                                                    },
-                                                    [
-                                                      _c(
-                                                        "router-link",
-                                                        {
-                                                          attrs: {
-                                                            to: {
-                                                              name:
-                                                                "order-finished-services",
-                                                              params: {
-                                                                id: order.id,
-                                                                finished_act_id:
-                                                                  finished_order_act.id
-                                                              }
-                                                            }
-                                                          }
-                                                        },
-                                                        [
-                                                          _c(
-                                                            "button",
-                                                            {
-                                                              staticClass:
-                                                                "add-button add-button--remove d-flex align-items-center last-elem"
-                                                            },
-                                                            [
-                                                              _c("img", {
-                                                                attrs: {
-                                                                  src:
-                                                                    "/img/edit.svg",
-                                                                  alt:
-                                                                    "add-button"
-                                                                }
-                                                              })
-                                                            ]
-                                                          )
-                                                        ]
-                                                      ),
-                                                      _vm._v(" "),
-                                                      _c(
-                                                        "button",
-                                                        {
-                                                          staticClass:
-                                                            "add-button add-button--remove d-flex align-items-center",
-                                                          on: {
-                                                            click: function(
-                                                              $event
-                                                            ) {
-                                                              _vm.deleteFinishedOrderAct(
-                                                                order.id,
-                                                                finished_order_act.id
-                                                              )
-                                                            }
-                                                          }
-                                                        },
-                                                        [
-                                                          _c("img", {
-                                                            attrs: {
-                                                              src:
-                                                                "/img/del.svg",
-                                                              alt: "add-button"
-                                                            }
-                                                          })
-                                                        ]
-                                                      )
-                                                    ],
-                                                    1
-                                                  )
-                                                ]
-                                              : [
-                                                  _c(
-                                                    "div",
-                                                    {
-                                                      staticClass:
-                                                        "d-flex align-items-center pl-50 show-button mr-78"
-                                                    },
-                                                    [
-                                                      _vm._v(
-                                                        "\n                                                 \n                                            "
-                                                      )
-                                                    ]
-                                                  )
-                                                ]
-                                          ],
-                                          2
-                                        )
-                                      ])
-                                    ]
-                                  : _vm._e()
-                              }),
-                              _vm._v(" "),
-                              _vm._l(order.extra_order_acts, function(
-                                extra_order_act,
-                                index
-                              ) {
-                                return order.extra_order_acts.length
-                                  ? [
-                                      _c("tr", { staticClass: "small-case" }, [
-                                        _c(
-                                          "td",
-                                          [
-                                            _c(
-                                              "router-link",
-                                              {
-                                                attrs: {
-                                                  to: {
-                                                    name:
-                                                      "order-extra-services-export-show",
-                                                    params: {
-                                                      id: order.id,
-                                                      extra_order_act_id:
-                                                        extra_order_act.id
-                                                    }
-                                                  }
-                                                }
-                                              },
-                                              [
-                                                _c(
-                                                  "div",
-                                                  { staticClass: "d-flex" },
-                                                  [
-                                                    _c(
-                                                      "div",
-                                                      { staticClass: "col-9" },
-                                                      [
-                                                        extra_order_act.description
-                                                          ? [
-                                                              _vm._v(
-                                                                "\n                                                        " +
-                                                                  _vm._s(
-                                                                    extra_order_act.description
-                                                                  ) +
-                                                                  "(" +
-                                                                  _vm._s(
-                                                                    index +
-                                                                      parseInt(
-                                                                        1
-                                                                      )
-                                                                  ) +
-                                                                  ")\n                                                    "
-                                                              )
-                                                            ]
-                                                          : [
-                                                              _vm._v(
-                                                                "\n                                                        " +
-                                                                  _vm._s(
-                                                                    extra_order_act.name
-                                                                  ) +
-                                                                  "(" +
-                                                                  _vm._s(
-                                                                    index +
-                                                                      parseInt(
-                                                                        1
-                                                                      )
-                                                                  ) +
-                                                                  ")\n                                                    "
-                                                              )
-                                                            ]
-                                                      ],
-                                                      2
-                                                    )
-                                                  ]
-                                                )
-                                              ]
-                                            )
-                                          ],
-                                          1
-                                        ),
-                                        _vm._v(" "),
-                                        _c(
-                                          "td",
-                                          {
-                                            staticClass:
-                                              "d-flex justify-content-end"
-                                          },
-                                          [
-                                            _c(
-                                              "div",
-                                              { staticClass: "col-auto" },
-                                              [
-                                                _vm._v(
-                                                  "\n                                            " +
-                                                    _vm._s(
-                                                      _vm.dateFormatter(
-                                                        extra_order_act.created_at
-                                                      )
-                                                    ) +
-                                                    "\n\n                                        "
-                                                )
-                                              ]
-                                            ),
-                                            _vm._v(" "),
-                                            _c("div", { staticClass: "mr-80" }),
-                                            _vm._v(" "),
-                                            _vm.checkIfLastElement(
-                                              extra_order_act,
-                                              order.extra_order_acts
-                                            )
-                                              ? [
-                                                  _c("div", {
-                                                    staticClass: "mr--76"
-                                                  }),
-                                                  _vm._v(" "),
-                                                  _c(
-                                                    "div",
-                                                    {
-                                                      staticClass:
-                                                        "d-flex align-items-center pl-30 show-button"
-                                                    },
-                                                    [
-                                                      _c(
-                                                        "router-link",
-                                                        {
-                                                          attrs: {
-                                                            to: {
-                                                              name:
-                                                                "order-extra-services-rooms-show",
-                                                              params: {
-                                                                id: order.id,
-                                                                extra_order_act_id:
-                                                                  extra_order_act.id,
-                                                                extra_room_id:
-                                                                  extra_order_act
-                                                                    .extra_rooms[0]
-                                                                    .id
-                                                              }
-                                                            }
-                                                          }
-                                                        },
-                                                        [
-                                                          _c(
-                                                            "button",
-                                                            {
-                                                              staticClass:
-                                                                "add-button add-button--remove d-flex align-items-center",
-                                                              attrs: {
-                                                                title:
-                                                                  "Редактировать"
-                                                              }
-                                                            },
-                                                            [
-                                                              _c("img", {
-                                                                attrs: {
-                                                                  src:
-                                                                    "/img/edit.svg",
-                                                                  alt:
-                                                                    "add-button"
-                                                                }
-                                                              })
-                                                            ]
-                                                          )
-                                                        ]
-                                                      ),
-                                                      _vm._v(" "),
-                                                      _c(
-                                                        "button",
-                                                        {
-                                                          staticClass:
-                                                            "add-button add-button--remove d-flex align-items-center",
-                                                          on: {
-                                                            click: function(
-                                                              $event
-                                                            ) {
-                                                              _vm.deleteExtraOrderAct(
-                                                                order.id,
-                                                                extra_order_act.id
-                                                              )
-                                                            }
-                                                          }
-                                                        },
-                                                        [
-                                                          _c("img", {
-                                                            attrs: {
-                                                              src:
-                                                                "/img/del.svg",
-                                                              alt: "add-button"
-                                                            }
-                                                          })
-                                                        ]
-                                                      )
-                                                    ],
-                                                    1
-                                                  )
-                                                ]
-                                              : _vm._e()
-                                          ],
-                                          2
-                                        )
-                                      ])
-                                    ]
-                                  : _vm._e()
-                              })
-                            ]
-                          })
-                        ],
-                        2
-                      )
-                    : _vm._e()
-                ])
-              ])
-            ])
-          ],
-          1
-        )
-      ])
-    ],
-    1
-  )
-}
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "row align-items-center px-15" }, [
-      _c("div", { staticClass: "col-md-10" }, [
-        _c("h1", { staticClass: "main-caption" }, [
-          _vm._v("\n                    Все сметы\n                  ")
-        ])
-      ])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("th", [
-      _c("label", [
-        _vm._v(
-          "\n                              В Работе\n                          "
-        )
-      ])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("th", [
-      _c("div", { staticClass: "form-check custom-control" }, [
-        _c("label", [
-          _vm._v(
-            "\n                            Название\n                        "
-          )
-        ])
-      ])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("span", { staticClass: "arrow-sort" }, [
-      _vm._v(
-        "\n                          Сортировка по дате\n                          "
-      ),
-      _c("img", {
-        staticClass: "arrow-icon",
-        attrs: { src: "/img/arrow_down.svg", alt: "up" }
-      })
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c(
-      "a",
-      {
-        staticClass: "estimates__dropdown-img estimates__dropdown-img--rotate",
-        attrs: {
-          href: ".",
-          "data-toggle": "dropdown",
-          "data-html": "true",
-          title: "Действия"
-        }
-      },
-      [_c("img", { attrs: { src: "/img/dropdown-toggle.svg", alt: "export" } })]
-    )
-  }
-]
-render._withStripped = true
-module.exports = { render: render, staticRenderFns: staticRenderFns }
-if (false) {
-  module.hot.accept()
-  if (module.hot.data) {
-    require("vue-hot-reload-api")      .rerender("data-v-033f9948", module.exports)
-  }
-}
-
-/***/ }),
+/* 189 */,
 /* 190 */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -96768,6 +95829,525 @@ if (false) {
         }
     }
 });
+
+/***/ }),
+/* 336 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+function injectStyle (ssrContext) {
+  if (disposed) return
+  __webpack_require__(339)
+}
+var normalizeComponent = __webpack_require__(1)
+/* script */
+var __vue_script__ = __webpack_require__(337)
+/* template */
+var __vue_template__ = __webpack_require__(341)
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = injectStyle
+/* scopeId */
+var __vue_scopeId__ = "data-v-6e400354"
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources/assets/js/components/Orders/Partials/Order.vue"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-6e400354", Component.options)
+  } else {
+    hotAPI.reload("data-v-6e400354", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 337 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+    props: ['order'],
+
+    methods: {
+        deleteOrder: function deleteOrder(order) {
+            var _this = this;
+
+            if (confirm('Удалить ?')) {
+                axios.delete('/api/orders/' + this.order.id + '/destroy').then(function (response) {
+                    _this.$emit('deleted-copy');
+                });
+            }
+        },
+        dateFormatter: function dateFormatter(dateString) {
+            return moment(new Date(dateString)).format("DD-MM-YYYY");
+        }
+    },
+
+    computed: {
+        orderName: function orderName() {
+            return this.order.address != null ? this.order.address : this.order.order_name.substring(0, 25);
+        },
+        getFirstRoomId: function getFirstRoomId() {
+            return this.order.rooms.length != 0 ? this.order.rooms[this.order.rooms.length - 1].id : null;
+        },
+        humanDate: function humanDate() {
+            return moment(new Date(this.order.created_at)).format("DD-MM-YYYY");
+        }
+    }
+});
+
+/***/ }),
+/* 338 */,
+/* 339 */
+/***/ (function(module, exports, __webpack_require__) {
+
+// style-loader: Adds some css to the DOM by adding a <style> tag
+
+// load the styles
+var content = __webpack_require__(340);
+if(typeof content === 'string') content = [[module.i, content, '']];
+if(content.locals) module.exports = content.locals;
+// add the styles to the DOM
+var update = __webpack_require__(3)("68202ae5", content, false, {});
+// Hot Module Replacement
+if(false) {
+ // When the styles change, update the <style> tags
+ if(!content.locals) {
+   module.hot.accept("!!../../../../../../node_modules/css-loader/index.js!../../../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-6e400354\",\"scoped\":true,\"hasInlineConfig\":true}!../../../../../../node_modules/sass-loader/lib/loader.js!../../../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./Order.vue", function() {
+     var newContent = require("!!../../../../../../node_modules/css-loader/index.js!../../../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-6e400354\",\"scoped\":true,\"hasInlineConfig\":true}!../../../../../../node_modules/sass-loader/lib/loader.js!../../../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./Order.vue");
+     if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+     update(newContent);
+   });
+ }
+ // When the module is disposed, remove the <style> tags
+ module.hot.dispose(function() { update(); });
+}
+
+/***/ }),
+/* 340 */
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(2)(false);
+// imports
+
+
+// module
+exports.push([module.i, "\ntable tr:hover .show-button[data-v-6e400354] {\n  opacity: 1;\n}\ntable tr:hover .add-button[data-v-6e400354] {\n  opacity: 1;\n}\ntable .add-button[data-v-6e400354] {\n  opacity: 0;\n}\ntable .form-check-label[data-v-6e400354] {\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n}\n.add-button img[data-v-6e400354] {\n  width: 11px;\n  cursor: pointer;\n}\n", ""]);
+
+// exports
+
+
+/***/ }),
+/* 341 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("tr", [
+    _c("td", [
+      _c("input", {
+        attrs: { type: "checkbox" },
+        domProps: { checked: _vm.order.processing },
+        on: {
+          click: function($event) {
+            _vm.updateStatus(_vm.order)
+          }
+        }
+      })
+    ]),
+    _vm._v(" "),
+    _c("td", [
+      _c("div", { staticClass: "form-check custom-control checkbox" }, [
+        _c(
+          "label",
+          { attrs: { for: "order-" + this.order.id } },
+          [
+            _vm.order.rooms.length
+              ? _c(
+                  "router-link",
+                  {
+                    attrs: {
+                      to: {
+                        name: "room-show",
+                        params: {
+                          id: _vm.order.id,
+                          room_id: _vm.getFirstRoomId
+                        }
+                      }
+                    }
+                  },
+                  [
+                    _vm._v(
+                      "\n              " +
+                        _vm._s(_vm.orderName) +
+                        "\n          "
+                    )
+                  ]
+                )
+              : _c(
+                  "router-link",
+                  {
+                    attrs: {
+                      to: { name: "order-show", params: { id: _vm.order.id } }
+                    }
+                  },
+                  [
+                    _vm._v(
+                      "\n              " +
+                        _vm._s(_vm.orderName) +
+                        "\n          "
+                    )
+                  ]
+                ),
+            _vm._v(" "),
+            _vm.order.isCopy
+              ? _c(
+                  "button",
+                  {
+                    staticClass:
+                      "add-button add-button--remove d-flex align-items-center",
+                    on: {
+                      click: function($event) {
+                        _vm.deleteOrder(_vm.order)
+                      }
+                    }
+                  },
+                  [
+                    _c("img", {
+                      attrs: { src: "/img/del.svg", alt: "add-button" }
+                    })
+                  ]
+                )
+              : _vm._e()
+          ],
+          1
+        )
+      ])
+    ]),
+    _vm._v(" "),
+    _c("td", { staticClass: "d-flex justify-content-end" }, [
+      _c("div", { staticClass: "pr-30" }, [
+        _vm._v("\n           " + _vm._s(_vm.humanDate) + "\n      ")
+      ])
+    ])
+  ])
+}
+var staticRenderFns = []
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-6e400354", module.exports)
+  }
+}
+
+/***/ }),
+/* 342 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c(
+    "section",
+    { staticClass: "estimates" },
+    [
+      _c("basic-header"),
+      _vm._v(" "),
+      _c("div", { staticClass: "container-fluid " }, [
+        _c(
+          "div",
+          { staticClass: "row" },
+          [
+            _c("navigation"),
+            _vm._v(" "),
+            _c("div", { staticClass: "col-md-10 px-0" }, [
+              _c(
+                "div",
+                { staticClass: "create__fixed-top col-10 shadow-light" },
+                [
+                  _vm._m(0),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "col-md-12 pt-4" }, [
+                    _c("div", { staticClass: "input-group" }, [
+                      _c("input", {
+                        directives: [
+                          {
+                            name: "model",
+                            rawName: "v-model",
+                            value: _vm.quickSearchQuery,
+                            expression: "quickSearchQuery"
+                          }
+                        ],
+                        staticClass: "form-control py-2",
+                        attrs: { type: "search", placeholder: "Введите адрес" },
+                        domProps: { value: _vm.quickSearchQuery },
+                        on: {
+                          input: function($event) {
+                            if ($event.target.composing) {
+                              return
+                            }
+                            _vm.quickSearchQuery = $event.target.value
+                          }
+                        }
+                      }),
+                      _vm._v(" "),
+                      _c("i", { staticClass: "fa fa-search" })
+                    ])
+                  ]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "row pt-4 justify-content-end" }, [
+                    _c("div", { staticClass: "px-30" }, [
+                      _c("label", [
+                        _c("input", {
+                          directives: [
+                            {
+                              name: "model",
+                              rawName: "v-model",
+                              value: _vm.sortByStatus,
+                              expression: "sortByStatus"
+                            }
+                          ],
+                          attrs: { type: "checkbox" },
+                          domProps: {
+                            checked: _vm.sortByStatus,
+                            checked: Array.isArray(_vm.sortByStatus)
+                              ? _vm._i(_vm.sortByStatus, null) > -1
+                              : _vm.sortByStatus
+                          },
+                          on: {
+                            change: function($event) {
+                              var $$a = _vm.sortByStatus,
+                                $$el = $event.target,
+                                $$c = $$el.checked ? true : false
+                              if (Array.isArray($$a)) {
+                                var $$v = null,
+                                  $$i = _vm._i($$a, $$v)
+                                if ($$el.checked) {
+                                  $$i < 0 &&
+                                    (_vm.sortByStatus = $$a.concat([$$v]))
+                                } else {
+                                  $$i > -1 &&
+                                    (_vm.sortByStatus = $$a
+                                      .slice(0, $$i)
+                                      .concat($$a.slice($$i + 1)))
+                                }
+                              } else {
+                                _vm.sortByStatus = $$c
+                              }
+                            }
+                          }
+                        }),
+                        _vm._v(" "),
+                        _c("span", [_vm._v("в работе")])
+                      ])
+                    ])
+                  ])
+                ]
+              ),
+              _vm._v(" "),
+              _c("div", { staticClass: "col-12" }, [
+                _c("table", { staticClass: "table table-hover" }, [
+                  _c("thead", [
+                    _c("tr", [
+                      _vm._m(1),
+                      _vm._v(" "),
+                      _vm._m(2),
+                      _vm._v(" "),
+                      _c(
+                        "th",
+                        {
+                          staticClass: "d-flex justify-content-end",
+                          on: {
+                            click: function($event) {
+                              _vm.sortByDateStart()
+                            }
+                          }
+                        },
+                        [_vm._m(3)]
+                      )
+                    ])
+                  ]),
+                  _vm._v(" "),
+                  _vm.orders.length
+                    ? _c(
+                        "tbody",
+                        _vm._l(_vm.filteredOrders, function(order) {
+                          return _vm.filteredOrders.length
+                            ? _c("Order", {
+                                key: order.id,
+                                attrs: { order: order }
+                              })
+                            : _vm._e()
+                        })
+                      )
+                    : _vm._e()
+                ])
+              ])
+            ])
+          ],
+          1
+        )
+      ])
+    ],
+    1
+  )
+}
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "row align-items-center px-15" }, [
+      _c("div", { staticClass: "col-md-10" }, [
+        _c("h1", { staticClass: "main-caption" }, [
+          _vm._v("\n                    Все сметы\n                  ")
+        ])
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("th", [
+      _c("label", [
+        _vm._v(
+          "\n                              В Работе\n                          "
+        )
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("th", [
+      _c("div", { staticClass: "form-check custom-control" }, [
+        _c("label", [
+          _vm._v(
+            "\n                            Название\n                        "
+          )
+        ])
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("span", { staticClass: "arrow-sort" }, [
+      _vm._v(
+        "\n                          Сортировка по дате\n                          "
+      ),
+      _c("img", {
+        staticClass: "arrow-icon",
+        attrs: { src: "/img/arrow_down.svg", alt: "up" }
+      })
+    ])
+  }
+]
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-033f9948", module.exports)
+  }
+}
 
 /***/ })
 /******/ ]);
