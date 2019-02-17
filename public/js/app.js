@@ -96057,11 +96057,52 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
+    data: function data() {
+        return {
+            order: []
+        };
+    },
+    created: function created() {
+        this.getOrder();
+    },
+
+
+    methods: {
+        getOrder: function getOrder() {
+            var _this = this;
+
+            return axios.get('/api/orders/' + this.$route.params.id).then(function (response) {
+                _this.order = response.data;
+            });
+        }
+    },
+
     computed: {
         panelClass: function panelClass() {
             return 'card col-3 mt-5 ml-5 clickable';
+        },
+        getFirstRoomId: function getFirstRoomId() {
+            return this.order.rooms.length != 0 ? this.order.rooms[this.order.rooms.length - 1].id : null;
+        },
+        path: function path() {
+            if (this.order.length !== 0) {
+                var data = this.order;
+                if (this.order.rooms.length !== 0) {
+                    return {
+                        name: 'room-show',
+                        params: { id: this.order.id, room_id: this.getFirstRoomId }
+                    };
+                } else {
+                    return {
+                        name: 'order-show',
+                        params: { id: this.order.id }
+                    };
+                }
+            }
         }
     }
 });
@@ -96137,15 +96178,19 @@ var render = function() {
                     "div",
                     { staticClass: "row ml-5" },
                     [
-                      _c("router-link", [
-                        _c("div", { class: _vm.panelClass }, [
-                          _c("div", { staticClass: "card-body" }, [
-                            _c("h5", { staticClass: "card-title" }, [
-                              _vm._v("Смета")
-                            ])
-                          ])
-                        ])
-                      ]),
+                      _vm.path
+                        ? _c(
+                            "router-link",
+                            { class: _vm.panelClass, attrs: { to: _vm.path } },
+                            [
+                              _c("div", { staticClass: "card-body" }, [
+                                _c("h5", { staticClass: "card-title" }, [
+                                  _vm._v("Смета")
+                                ])
+                              ])
+                            ]
+                          )
+                        : _vm._e(),
                       _vm._v(" "),
                       _c("div", { class: _vm.panelClass }, [_vm._m(0)]),
                       _vm._v(" "),
@@ -96165,7 +96210,8 @@ var render = function() {
           ],
           1
         )
-      ])
+      ]),
+      _vm._v("\n    " + _vm._s(_vm.path) + "\n")
     ],
     1
   )
