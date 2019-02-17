@@ -48896,166 +48896,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 
 
 
@@ -95967,8 +95807,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 });
             }
         },
-        dateFormatter: function dateFormatter(dateString) {
-            return moment(new Date(dateString)).format("DD-MM-YYYY");
+        updateStatus: function updateStatus(order) {
+            axios.patch('/api/orders/' + this.order.id + '/update_status', {
+                'processing': !this.order.processing
+            });
         }
     },
 
@@ -96269,7 +96111,12 @@ var render = function() {
                           return _vm.filteredOrders.length
                             ? _c("Order", {
                                 key: order.id,
-                                attrs: { order: order }
+                                attrs: { order: order },
+                                on: {
+                                  "deleted-copy": function($event) {
+                                    _vm.getOrders()
+                                  }
+                                }
                               })
                             : _vm._e()
                         })

@@ -78,9 +78,11 @@
                 }
             },
 
-            dateFormatter(dateString) {
-              return moment(new Date(dateString)).format("DD-MM-YYYY")
-            },
+            updateStatus (order) {
+                axios.patch(`/api/orders/${this.order.id}/update_status`, {
+                    'processing': !this.order.processing
+                })
+            }
         },
 
         computed: {
