@@ -68,25 +68,12 @@
         data () {
             return {
                 service_type_id: 1,
-                quickSearchQuery: "",
-                services: []
+                quickSearchQuery: ""
             }
         },
 
         components: {
             Service, AddService
-        },
-
-        created () {
-            this.getServices()
-        },
-
-        methods: {
-            getServices () {
-                return axios.get('/api/services').then(response => {
-                    this.services = response.data
-                })
-            }
         },
 
        computed: {

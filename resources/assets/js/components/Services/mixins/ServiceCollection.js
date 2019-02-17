@@ -3,16 +3,24 @@ export default {
         return {
             units: [],
             service_types: [],
-            newServices: []
+            newServices: [],
+            services: []
         }
     },
 
     created () {
         this.getServiceUnits()
         this.getServiceTypes()
+        this.getServices()
     },
 
     methods: {
+        getServices () {
+            return axios.get('/api/services').then(response => {
+                this.services = response.data
+            })
+        },
+
         addService () {
             this.newServices.push({
                 unit_id: 1,

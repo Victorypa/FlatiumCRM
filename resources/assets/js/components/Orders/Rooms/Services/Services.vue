@@ -1,5 +1,4 @@
 <template>
-
     <div class="row align-items-center col-12 py-4 pl-5  fixed-search bg">
         <div class="col-2 pb-2">
                 <select class="form-control" v-model="service_type_id">
@@ -16,72 +15,19 @@
                        v-model="searchQuery"
                        autofocus
                        >
-                       <i class="fa fa-search"></i>
-                    </div>
+            </div>
         </div>
 
-
-            <template v-for="(newService, index) in newServices">
-
-                <form class="row w-100" @submit.prevent="saveNewService()">
-                    <div class="col-2 py-1">
-                        &nbsp;
-                    </div>
-
-                    <div class="col-5 py-1">
-                        <div class="form-group d-flex align-items-center">
-                            <input type="text"
-                                   class="form-control"
-                                   placeholder="Название"
-                                   v-model="newService.name"
-                                   >
-                        </div>
-                    </div>
-
-                    <div class="col-auto d-flex align-items-center">
-                        <select class="form-control w-85" v-model="newService.unit_id">
-                              <option v-for="unit in units" :value="unit.id">
-                                  {{ unit.name }}
-                              </option>
-                        </select>
-                            <div class="form-group w-85 ml-4">
-                            <input type="number"
-                            min="0"
-                            class="form-control"
-                            placeholder="Цена за ед. изм."
-                            v-model="newService.price"
-                            >
-                        </div>
-
-                        <div class="col-auto py-1">
-                            <div class="form-check custom-control checkbox">
-                                <input type="checkbox"
-                                       class="form-check-input check"
-                                       :id="'service-' + index"
-                                       v-model="newService.can_be_discounted"
-                                       >
-                                <label class="form-check-label d-block" :for="'service-' + index">
-                                    Скидка возможна
-                                </label>
-                            </div>
-                        </div>
-                    </div>
-                    <button type="submit" style="display:none;"></button>
-                </form>
-            </template>
-
-
-
-        <div class="col-12 py-3 pl-0">
-            <div class="col-12">
-                <button class="add-space-button" @click="addService()">+ Добавить работу</button>
-            </div>
+        <div class="col-12">
+            <AddService :service_type_id="service_type_id"
+                        @created-service="getServices()"
+                        />
         </div>
 
         <template v-if="service_type_id !== 0">
             <div class="col-12 pr-0" style="margin-bottom: 5em;">
               <div class="main-subtitle main-subtitle--fz pt-3 pb-2">
-                  {{ getServiceTypeName(service_type_id) }}
+                  <!-- {{ getServiceTypeName(service_type_id) }} -->
               </div>
 
               <div class="col-md-12 px-0 all-items" v-for="room_service_id in room_service_ids" :key="room_service_id">
@@ -268,11 +214,11 @@
         </template>
 
     </div>
-
 </template>
 
 <script>
-    import ServiceCollection from '../../../../mixins/ServiceCollection'
+    import ServiceCollection from '@/components/Services/mixins/ServiceCollection'
+    import AddService from '@/components/Services/partials/AddService'
 
     export default {
         props: ['room', 'order'],
@@ -303,6 +249,10 @@
                 service_prices: [],
 
             }
+        },
+
+        components: {
+            AddService
         },
 
         mounted () {

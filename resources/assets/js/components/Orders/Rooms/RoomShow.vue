@@ -323,8 +323,6 @@
                                  this.$router.push({ name: 'order-show', params: { id: this.$route.params.id } })
                              }
                          })
-                } else {
-                    window.location.reload(true)
                 }
 
             },
