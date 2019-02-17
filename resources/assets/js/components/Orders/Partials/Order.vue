@@ -10,10 +10,7 @@
         <div class="form-check custom-control checkbox">
 
           <label :for="'order-' + this.order.id">
-              <router-link v-if="order.rooms.length" :to="{ name: 'room-show', params: { id: order.id, room_id: getFirstRoomId } }">
-                  {{ orderName }}
-              </router-link>
-              <router-link v-else :to="{ name: 'order-show', params: { id: order.id } }">
+              <router-link :to="{ name: 'order-panel', params: { id: order.id } }">
                   {{ orderName }}
               </router-link>
               <button class="add-button add-button--remove d-flex align-items-center"

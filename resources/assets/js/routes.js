@@ -19,13 +19,6 @@ let routes = [
     },
 
     {
-        name: 'panel',
-    	path: '/panel',
-    	component: require('./components/Orders/Panel/Panel'),
-        meta: { requiresAuth: true }
-    },
-
-    {
         name: 'report',
         path: '/reports',
         component: require('./components/Reports/Report'),
@@ -45,6 +38,13 @@ let routes = [
     	component: require('./components/Orders/OrderShow'),
         meta: { requiresAuth: true },
         props: true
+    },
+
+    {
+        name: 'order-panel',
+    	path: '/orders/:id?/panel',
+    	component: require('./components/Orders/Panel/Panel'),
+        meta: { requiresAuth: true }
     },
 
     {

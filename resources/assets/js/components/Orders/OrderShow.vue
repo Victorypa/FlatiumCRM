@@ -13,8 +13,7 @@
 
                         <order-detail :order="order"
                                       @order-saved="show = true"
-                                      >
-                        </order-detail>
+                                      />
 
                         <template v-if="show">
                             <div class="container-fluid create__carousel-wrapper px-0">

@@ -19560,11 +19560,6 @@ var routes = [{
     component: __webpack_require__(184),
     meta: { requiresAuth: true }
 }, {
-    name: 'panel',
-    path: '/panel',
-    component: __webpack_require__(344),
-    meta: { requiresAuth: true }
-}, {
     name: 'report',
     path: '/reports',
     component: __webpack_require__(190),
@@ -19580,6 +19575,11 @@ var routes = [{
     component: __webpack_require__(204),
     meta: { requiresAuth: true },
     props: true
+}, {
+    name: 'order-panel',
+    path: '/orders/:id?/panel',
+    component: __webpack_require__(344),
+    meta: { requiresAuth: true }
 }, {
     name: 'order-finance',
     path: '/orders/:id?/finance',
@@ -50857,7 +50857,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue_carousel___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_vue_carousel__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__Partials_OrderDetail__ = __webpack_require__(150);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__Partials_OrderDetail___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__Partials_OrderDetail__);
-//
 //
 //
 //
@@ -95561,9 +95560,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
-//
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     props: ['order'],
@@ -95666,43 +95662,19 @@ var render = function() {
           "label",
           { attrs: { for: "order-" + this.order.id } },
           [
-            _vm.order.rooms.length
-              ? _c(
-                  "router-link",
-                  {
-                    attrs: {
-                      to: {
-                        name: "room-show",
-                        params: {
-                          id: _vm.order.id,
-                          room_id: _vm.getFirstRoomId
-                        }
-                      }
-                    }
-                  },
-                  [
-                    _vm._v(
-                      "\n              " +
-                        _vm._s(_vm.orderName) +
-                        "\n          "
-                    )
-                  ]
+            _c(
+              "router-link",
+              {
+                attrs: {
+                  to: { name: "order-panel", params: { id: _vm.order.id } }
+                }
+              },
+              [
+                _vm._v(
+                  "\n              " + _vm._s(_vm.orderName) + "\n          "
                 )
-              : _c(
-                  "router-link",
-                  {
-                    attrs: {
-                      to: { name: "order-show", params: { id: _vm.order.id } }
-                    }
-                  },
-                  [
-                    _vm._v(
-                      "\n              " +
-                        _vm._s(_vm.orderName) +
-                        "\n          "
-                    )
-                  ]
-                ),
+              ]
+            ),
             _vm._v(" "),
             _vm.order.isCopy
               ? _c(
@@ -95973,17 +95945,21 @@ if (false) {
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
+function injectStyle (ssrContext) {
+  if (disposed) return
+  __webpack_require__(347)
+}
 var normalizeComponent = __webpack_require__(1)
 /* script */
 var __vue_script__ = __webpack_require__(345)
 /* template */
-var __vue_template__ = __webpack_require__(346)
+var __vue_template__ = __webpack_require__(349)
 /* template functional */
 var __vue_template_functional__ = false
 /* styles */
-var __vue_styles__ = null
+var __vue_styles__ = injectStyle
 /* scopeId */
-var __vue_scopeId__ = null
+var __vue_scopeId__ = "data-v-739de674"
 /* moduleIdentifier (server only) */
 var __vue_module_identifier__ = null
 var Component = normalizeComponent(
@@ -96035,11 +96011,104 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
-/* harmony default export */ __webpack_exports__["default"] = ({});
+/* harmony default export */ __webpack_exports__["default"] = ({
+    computed: {
+        panelClass: function panelClass() {
+            return 'card col-3 mt-5 ml-5 clickable';
+        }
+    }
+});
 
 /***/ }),
-/* 346 */
+/* 346 */,
+/* 347 */
+/***/ (function(module, exports, __webpack_require__) {
+
+// style-loader: Adds some css to the DOM by adding a <style> tag
+
+// load the styles
+var content = __webpack_require__(348);
+if(typeof content === 'string') content = [[module.i, content, '']];
+if(content.locals) module.exports = content.locals;
+// add the styles to the DOM
+var update = __webpack_require__(3)("ec3b83fc", content, false, {});
+// Hot Module Replacement
+if(false) {
+ // When the styles change, update the <style> tags
+ if(!content.locals) {
+   module.hot.accept("!!../../../../../../node_modules/css-loader/index.js!../../../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-739de674\",\"scoped\":true,\"hasInlineConfig\":true}!../../../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./Panel.vue", function() {
+     var newContent = require("!!../../../../../../node_modules/css-loader/index.js!../../../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-739de674\",\"scoped\":true,\"hasInlineConfig\":true}!../../../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./Panel.vue");
+     if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+     update(newContent);
+   });
+ }
+ // When the module is disposed, remove the <style> tags
+ module.hot.dispose(function() { update(); });
+}
+
+/***/ }),
+/* 348 */
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(2)(false);
+// imports
+
+
+// module
+exports.push([module.i, "\n.clickable[data-v-739de674] {\n    height: 6em;\n    cursor: pointer;\n}\n", ""]);
+
+// exports
+
+
+/***/ }),
+/* 349 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var render = function() {
@@ -96053,13 +96122,100 @@ var render = function() {
       _c("basic-header"),
       _vm._v(" "),
       _c("div", { staticClass: "container-fluid" }, [
-        _c("div", { staticClass: "row" }, [_c("navigation")], 1)
+        _c(
+          "div",
+          { staticClass: "row" },
+          [
+            _c("navigation"),
+            _vm._v(" "),
+            _c(
+              "div",
+              { staticClass: "col-md-10 estimates__content px-0 mt-5" },
+              [
+                _c("div", { staticClass: "container-fluid px-0 mt-5 ml-5" }, [
+                  _c(
+                    "div",
+                    { staticClass: "row ml-5" },
+                    [
+                      _c("router-link", [
+                        _c("div", { class: _vm.panelClass }, [
+                          _c("div", { staticClass: "card-body" }, [
+                            _c("h5", { staticClass: "card-title" }, [
+                              _vm._v("Смета")
+                            ])
+                          ])
+                        ])
+                      ]),
+                      _vm._v(" "),
+                      _c("div", { class: _vm.panelClass }, [_vm._m(0)]),
+                      _vm._v(" "),
+                      _c("div", { class: _vm.panelClass }, [_vm._m(1)]),
+                      _vm._v(" "),
+                      _c("div", { class: _vm.panelClass }, [_vm._m(2)]),
+                      _vm._v(" "),
+                      _c("div", { class: _vm.panelClass }, [_vm._m(3)]),
+                      _vm._v(" "),
+                      _c("div", { class: _vm.panelClass }, [_vm._m(4)])
+                    ],
+                    1
+                  )
+                ])
+              ]
+            )
+          ],
+          1
+        )
       ])
     ],
     1
   )
 }
-var staticRenderFns = []
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "card-body" }, [
+      _c("h5", { staticClass: "card-title" }, [
+        _vm._v("Акты выполненных работ")
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "card-body" }, [
+      _c("h5", { staticClass: "card-title" }, [
+        _vm._v("Акты дополнительных работ")
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "card-body" }, [
+      _c("h5", { staticClass: "card-title" }, [_vm._v("Баланс")])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "card-body" }, [
+      _c("h5", { staticClass: "card-title" }, [_vm._v("График работ")])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "card-body" }, [
+      _c("h5", { staticClass: "card-title" }, [_vm._v("Загрузить файлы")])
+    ])
+  }
+]
 render._withStripped = true
 module.exports = { render: render, staticRenderFns: staticRenderFns }
 if (false) {
