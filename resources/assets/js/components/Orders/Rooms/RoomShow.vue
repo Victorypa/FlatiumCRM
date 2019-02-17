@@ -21,7 +21,6 @@
                                     <div class="col-8 owl-carousel-wrapper pl-2">
 
                                         <div class="carousel-item active">
-
                                                 <carousel class="my-carousel carousel-arrows"
                                                           :perPage="5" :navigationEnabled="true"
                                                           :pagination-enabled="false"
@@ -159,25 +158,18 @@
                                 <div class="col-md-12 px-5 bg pt-5">
 
                                     <div class="row align-items-center justify-content-between">
-
-                                        <template v-if="room_type_id != 4">
-                                            <div class="col-6">
-                                                <template v-if="room_price">
-                                                    <div class="create__sum" style="font-size: 16px;">
-                                                        ИТОГО В ТЕКУЩЕЙ ВКЛАДКЕ: {{ new Intl.NumberFormat('ru-Ru').format(parseInt(room_price)) }} P
-                                                    </div>
-                                                </template>
-                                                <template v-else>
-                                                    <div class="create__sum" style="font-size: 16px;">
-                                                        ИТОГО В ТЕКУЩЕЙ ВКЛАДКЕ: 0 Р
-                                                    </div>
-                                                </template>
-                                            </div>
-                                        </template>
-
-                                        <template v-else>
-                                            &nbsp;
-                                        </template>
+                                        <div class="col-6" v-if="room_type_id != 4">
+                                            <template v-if="room_price">
+                                                <div class="create__sum" style="font-size: 16px;">
+                                                    ИТОГО В ТЕКУЩЕЙ ВКЛАДКЕ: {{ new Intl.NumberFormat('ru-Ru').format(parseInt(room_price)) }} P
+                                                </div>
+                                            </template>
+                                            <template v-else>
+                                                <div class="create__sum" style="font-size: 16px;">
+                                                    ИТОГО В ТЕКУЩЕЙ ВКЛАДКЕ: 0 Р
+                                                </div>
+                                            </template>
+                                        </div>
 
                                     </div>
 
@@ -231,19 +223,14 @@
                 length: null,
                 height: null,
                 area: null,
+                perimeter: null,
                 wall_area: null,
                 room_type_id: null,
-                errors: [],
-                room_type: null,
-
-                perimeter: null,
 
                 order_price: 0,
-                room_price: 0,
 
                 room_windows: [],
                 room_window_area: 0,
-
 
                 units: [],
 

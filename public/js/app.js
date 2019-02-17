@@ -64880,14 +64880,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
 
 
 
@@ -64921,8 +64913,9 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
             length: null,
             height: null,
             area: null,
+            perimeter: null,
             wall_area: null
-        }, _defineProperty(_ref, 'room_type_id', null), _defineProperty(_ref, 'errors', []), _defineProperty(_ref, 'room_type', null), _defineProperty(_ref, 'perimeter', null), _defineProperty(_ref, 'order_price', 0), _defineProperty(_ref, 'room_price', 0), _defineProperty(_ref, 'room_windows', []), _defineProperty(_ref, 'room_window_area', 0), _defineProperty(_ref, 'units', []), _defineProperty(_ref, 'path', this.$router.history.current.path), _ref;
+        }, _defineProperty(_ref, 'room_type_id', null), _defineProperty(_ref, 'order_price', 0), _defineProperty(_ref, 'room_windows', []), _defineProperty(_ref, 'room_window_area', 0), _defineProperty(_ref, 'units', []), _defineProperty(_ref, 'path', this.$router.history.current.path), _ref;
     },
     mounted: function mounted() {
         this.getRoom();
@@ -67971,63 +67964,56 @@ var render = function() {
                           },
                           [
                             _vm.room_type_id != 4
-                              ? [
-                                  _c(
-                                    "div",
-                                    { staticClass: "col-6" },
-                                    [
-                                      _vm.room_price
-                                        ? [
-                                            _c(
-                                              "div",
-                                              {
-                                                staticClass: "create__sum",
-                                                staticStyle: {
-                                                  "font-size": "16px"
-                                                }
-                                              },
-                                              [
-                                                _vm._v(
-                                                  "\n                                                    ИТОГО В ТЕКУЩЕЙ ВКЛАДКЕ: " +
-                                                    _vm._s(
-                                                      new Intl.NumberFormat(
-                                                        "ru-Ru"
-                                                      ).format(
-                                                        parseInt(_vm.room_price)
-                                                      )
-                                                    ) +
-                                                    " P\n                                                "
-                                                )
-                                              ]
-                                            )
-                                          ]
-                                        : [
-                                            _c(
-                                              "div",
-                                              {
-                                                staticClass: "create__sum",
-                                                staticStyle: {
-                                                  "font-size": "16px"
-                                                }
-                                              },
-                                              [
-                                                _vm._v(
-                                                  "\n                                                    ИТОГО В ТЕКУЩЕЙ ВКЛАДКЕ: 0 Р\n                                                "
-                                                )
-                                              ]
-                                            )
-                                          ]
-                                    ],
-                                    2
-                                  )
-                                ]
-                              : [
-                                  _vm._v(
-                                    "\n                                         \n                                    "
-                                  )
-                                ]
-                          ],
-                          2
+                              ? _c(
+                                  "div",
+                                  { staticClass: "col-6" },
+                                  [
+                                    _vm.room_price
+                                      ? [
+                                          _c(
+                                            "div",
+                                            {
+                                              staticClass: "create__sum",
+                                              staticStyle: {
+                                                "font-size": "16px"
+                                              }
+                                            },
+                                            [
+                                              _vm._v(
+                                                "\n                                                ИТОГО В ТЕКУЩЕЙ ВКЛАДКЕ: " +
+                                                  _vm._s(
+                                                    new Intl.NumberFormat(
+                                                      "ru-Ru"
+                                                    ).format(
+                                                      parseInt(_vm.room_price)
+                                                    )
+                                                  ) +
+                                                  " P\n                                            "
+                                              )
+                                            ]
+                                          )
+                                        ]
+                                      : [
+                                          _c(
+                                            "div",
+                                            {
+                                              staticClass: "create__sum",
+                                              staticStyle: {
+                                                "font-size": "16px"
+                                              }
+                                            },
+                                            [
+                                              _vm._v(
+                                                "\n                                                ИТОГО В ТЕКУЩЕЙ ВКЛАДКЕ: 0 Р\n                                            "
+                                              )
+                                            ]
+                                          )
+                                        ]
+                                  ],
+                                  2
+                                )
+                              : _vm._e()
+                          ]
                         ),
                         _vm._v(" "),
                         _vm.room.windows && _vm.room_type_id === 1
