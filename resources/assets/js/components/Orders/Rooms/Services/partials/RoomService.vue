@@ -63,6 +63,7 @@
 
               <div class="col-md-2">
                   <input type="number"
+                         v-if="checkMarkup"
                          class="form-control w-85"
                          min="0"
                          placeholder="Наценка"
@@ -109,16 +110,20 @@
 </template>
 
 <script>
+    import { EventBus } from '@/bus'
+
     export default {
-        props: ['room_service'],
+        props: ['room_service', 'room'],
 
         methods: {
             removeService () {
                 axios.delete(`/api/orders/${this.$route.params.id}/rooms/${this.$route.params.room_id}/services/${this.room_service.service_id}/destroy`)
                      .then(response => {
+                         EventBus.$emit('updated-room-price')
                          this.$emit('removed-service')
                      })
             },
+
 
             updateQuantity () {
                 axios.patch(`/api/orders/${this.$route.params.id}/rooms/${this.$route.params.room_id}/services/${this.room_service.service_id}/update`, {
@@ -149,7 +154,11 @@
         computed: {
             servicePrice () {
                 return this.room_service.quantity !== 0 ? new Intl.NumberFormat('ru-Ru').format(parseInt(this.room_service.service.price * this.room_service.quantity)) : 0
-            }
+            },
+
+            checkMarkup () {
+                return this.room.order.markup !== 0 && this.room.order.markup && this.room.order.discount !== 0 && this.room.order.discount
+            },
         }
     }
 </script>

@@ -35,6 +35,7 @@
                        v-for="room_service in filteredRoomServices"
                        >
                           <RoomService :room_service="room_service"
+                                       :room="room"
                                        :key="room_service.service_id"
                                        @removed-service="getRoomServices()"
                                        @deleted-service="handleDeletedService()"
@@ -49,7 +50,6 @@
                                 :room="room"
                                 :key="service.id"
                                 @added-service="getRoomServices()"
-                                
                                 />
                   </div>
                 </div>

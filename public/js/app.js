@@ -66707,6 +66707,8 @@ exports.push([module.i, "\n.edit-show:hover .edit[data-v-2e30a2f8] {\n  -webkit-
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__bus__ = __webpack_require__(353);
+//
 //
 //
 //
@@ -66818,14 +66820,17 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 
+
+
 /* harmony default export */ __webpack_exports__["default"] = ({
-    props: ['room_service'],
+    props: ['room_service', 'room'],
 
     methods: {
         removeService: function removeService() {
             var _this = this;
 
             axios.delete('/api/orders/' + this.$route.params.id + '/rooms/' + this.$route.params.room_id + '/services/' + this.room_service.service_id + '/destroy').then(function (response) {
+                __WEBPACK_IMPORTED_MODULE_0__bus__["a" /* EventBus */].$emit('updated-room-price');
                 _this.$emit('removed-service');
             });
         },
@@ -66855,6 +66860,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     computed: {
         servicePrice: function servicePrice() {
             return this.room_service.quantity !== 0 ? new Intl.NumberFormat('ru-Ru').format(parseInt(this.room_service.service.price * this.room_service.quantity)) : 0;
+        },
+        checkMarkup: function checkMarkup() {
+            return this.room.order.markup !== 0 && this.room.order.markup && this.room.order.discount !== 0 && this.room.order.discount;
         }
     }
 });
@@ -67008,30 +67016,36 @@ var render = function() {
             ]),
             _vm._v(" "),
             _c("div", { staticClass: "col-md-2" }, [
-              _c("input", {
-                directives: [
-                  {
-                    name: "model",
-                    rawName: "v-model",
-                    value: _vm.room_service.markup,
-                    expression: "room_service.markup"
-                  }
-                ],
-                staticClass: "form-control w-85",
-                attrs: { type: "number", min: "0", placeholder: "Наценка" },
-                domProps: { value: _vm.room_service.markup },
-                on: {
-                  change: function($event) {
-                    _vm.updateMarkup()
-                  },
-                  input: function($event) {
-                    if ($event.target.composing) {
-                      return
+              _vm.checkMarkup
+                ? _c("input", {
+                    directives: [
+                      {
+                        name: "model",
+                        rawName: "v-model",
+                        value: _vm.room_service.markup,
+                        expression: "room_service.markup"
+                      }
+                    ],
+                    staticClass: "form-control w-85",
+                    attrs: { type: "number", min: "0", placeholder: "Наценка" },
+                    domProps: { value: _vm.room_service.markup },
+                    on: {
+                      change: function($event) {
+                        _vm.updateMarkup()
+                      },
+                      input: function($event) {
+                        if ($event.target.composing) {
+                          return
+                        }
+                        _vm.$set(
+                          _vm.room_service,
+                          "markup",
+                          $event.target.value
+                        )
+                      }
                     }
-                    _vm.$set(_vm.room_service, "markup", $event.target.value)
-                  }
-                }
-              })
+                  })
+                : _vm._e()
             ]),
             _vm._v(" "),
             _c(
@@ -67606,7 +67620,7 @@ var render = function() {
                     [
                       _c("RoomService", {
                         key: room_service.service_id,
-                        attrs: { room_service: room_service },
+                        attrs: { room_service: room_service, room: _vm.room },
                         on: {
                           "removed-service": function($event) {
                             _vm.getRoomServices()
