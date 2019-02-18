@@ -3,7 +3,12 @@
         <div class="projects__information" v-for="room in filteredRooms" :key="'room-' + room.id">
             <div class="px-15 pb-3">
                 <h2 class="main-subtitle main-subtitle--room">
-                    {{ room.description ? room.description : room.room_type.type }}
+                    <span>
+                        {{ room.description ? room.description : room.room_type.type }}
+                    </span>
+                    <span class="float-right">
+                        {{ new Intl.NumberFormat('ru-Ru').format(parseInt(room.price)) }} Р
+                    </span>
                 </h2>
             </div>
 

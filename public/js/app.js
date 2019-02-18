@@ -95459,6 +95459,11 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
 
 
 
@@ -95510,13 +95515,27 @@ var render = function() {
         [
           _c("div", { staticClass: "px-15 pb-3" }, [
             _c("h2", { staticClass: "main-subtitle main-subtitle--room" }, [
-              _vm._v(
-                "\n                " +
-                  _vm._s(
-                    room.description ? room.description : room.room_type.type
-                  ) +
-                  "\n            "
-              )
+              _c("span", [
+                _vm._v(
+                  "\n                    " +
+                    _vm._s(
+                      room.description ? room.description : room.room_type.type
+                    ) +
+                    "\n                "
+                )
+              ]),
+              _vm._v(" "),
+              _c("span", { staticClass: "float-right" }, [
+                _vm._v(
+                  "\n                    " +
+                    _vm._s(
+                      new Intl.NumberFormat("ru-Ru").format(
+                        parseInt(room.price)
+                      )
+                    ) +
+                    " Р\n                "
+                )
+              ])
             ])
           ]),
           _vm._v(" "),
