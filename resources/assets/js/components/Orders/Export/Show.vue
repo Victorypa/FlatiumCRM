@@ -138,7 +138,7 @@
                             </div>
 
 
-                            <RoomService v-if="rooms.length !== 0"
+                            <RoomServices v-if="rooms.length !== 0"
                                          :rooms="rooms"
                                          />
 
@@ -189,7 +189,7 @@
 </template>
 
 <script>
-    import RoomService from './Partials/RoomService'
+    import RoomServices from './Partials/RoomServices'
     import OrderExportCollection from '../../../mixins/OrderExportCollection'
     import ServiceCollection from '../../../mixins/ServiceCollection'
 
@@ -197,9 +197,9 @@
         mixins: [OrderExportCollection, ServiceCollection],
 
         components: {
-            RoomService
+            RoomServices
         },
-        
+
         data () {
             return {
                 order: [],

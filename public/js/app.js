@@ -70237,8 +70237,8 @@ exports.push([module.i, "\n.create__features[data-v-861bc876] {\n  display: -web
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__Partials_RoomService__ = __webpack_require__(354);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__Partials_RoomService___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__Partials_RoomService__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__Partials_RoomServices__ = __webpack_require__(357);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__Partials_RoomServices___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__Partials_RoomServices__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__mixins_OrderExportCollection__ = __webpack_require__(7);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__mixins_ServiceCollection__ = __webpack_require__(11);
 //
@@ -70440,7 +70440,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     mixins: [__WEBPACK_IMPORTED_MODULE_1__mixins_OrderExportCollection__["a" /* default */], __WEBPACK_IMPORTED_MODULE_2__mixins_ServiceCollection__["a" /* default */]],
 
     components: {
-        RoomService: __WEBPACK_IMPORTED_MODULE_0__Partials_RoomService___default.a
+        RoomServices: __WEBPACK_IMPORTED_MODULE_0__Partials_RoomServices___default.a
     },
 
     data: function data() {
@@ -71050,7 +71050,7 @@ var render = function() {
                   ]),
                   _vm._v(" "),
                   _vm.rooms.length !== 0
-                    ? _c("RoomService", { attrs: { rooms: _vm.rooms } })
+                    ? _c("RoomServices", { attrs: { rooms: _vm.rooms } })
                     : _vm._e(),
                   _vm._v(" "),
                   _c("div", { staticClass: "row bg py-4" }, [
@@ -95150,15 +95150,18 @@ $(window).scroll(function () {
 
 /***/ }),
 /* 353 */,
-/* 354 */
+/* 354 */,
+/* 355 */,
+/* 356 */,
+/* 357 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 var normalizeComponent = __webpack_require__(1)
 /* script */
-var __vue_script__ = __webpack_require__(355)
+var __vue_script__ = __webpack_require__(358)
 /* template */
-var __vue_template__ = __webpack_require__(356)
+var __vue_template__ = __webpack_require__(359)
 /* template functional */
 var __vue_template_functional__ = false
 /* styles */
@@ -95175,7 +95178,7 @@ var Component = normalizeComponent(
   __vue_scopeId__,
   __vue_module_identifier__
 )
-Component.options.__file = "resources/assets/js/components/Orders/Export/Partials/RoomService.vue"
+Component.options.__file = "resources/assets/js/components/Orders/Export/Partials/RoomServices.vue"
 
 /* hot reload */
 if (false) {(function () {
@@ -95184,9 +95187,9 @@ if (false) {(function () {
   if (!hotAPI.compatible) return
   module.hot.accept()
   if (!module.hot.data) {
-    hotAPI.createRecord("data-v-61e9baf6", Component.options)
+    hotAPI.createRecord("data-v-1604cf3e", Component.options)
   } else {
-    hotAPI.reload("data-v-61e9baf6", Component.options)
+    hotAPI.reload("data-v-1604cf3e", Component.options)
   }
   module.hot.dispose(function (data) {
     disposed = true
@@ -95197,7 +95200,7 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 355 */
+/* 358 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -95274,31 +95277,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     props: ['rooms'],
 
-    data: function data() {
-        return {};
-    },
     created: function created() {
         console.log(this.rooms);
     },
@@ -95311,19 +95293,292 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                     return row.id === parseInt(service_type_id);
                 })[0].name;
             }
+        },
+        servicesGroupBy: function servicesGroupBy(room_services) {
+            return _.groupBy(room_services, 'service_type.name');
+        }
+    },
+
+    computed: {
+        filteredRooms: function filteredRooms() {
+            var data = this.rooms;
+
+            data = _.orderBy(data, ['priority'], ['asc']);
+
+            return data;
         }
     }
 });
 
 /***/ }),
-/* 356 */
+/* 359 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div")
+  return _c(
+    "div",
+    _vm._l(_vm.filteredRooms, function(room) {
+      return _c(
+        "div",
+        { key: "room-" + room.id, staticClass: "projects__information" },
+        [
+          _c("div", { staticClass: "px-15 pb-3" }, [
+            _c("h2", { staticClass: "main-subtitle main-subtitle--room" }, [
+              _vm._v(
+                "\n                " +
+                  _vm._s(
+                    room.description ? room.description : room.room_type.type
+                  ) +
+                  "\n            "
+              )
+            ])
+          ]),
+          _vm._v(" "),
+          room.room_type_id === 1
+            ? _c(
+                "div",
+                {
+                  staticClass:
+                    "projects__desc col-8 d-flex justify-content-between align-items-center pt-3"
+                },
+                [
+                  _c("div", { staticClass: "projects__desc-item" }, [
+                    _vm._v(
+                      "\n                Общая площадь: " +
+                        _vm._s(room.area) +
+                        " м"
+                    ),
+                    _c("sup", [_vm._v("2")])
+                  ]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "projects__desc-item" }, [
+                    _vm._v(
+                      "\n                Высота потолка: " +
+                        _vm._s(room.height) +
+                        " м\n            "
+                    )
+                  ]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "projects__desc-item" }, [
+                    _vm._v(
+                      "\n                Площадь стен: " +
+                        _vm._s(room.wall_area) +
+                        " м"
+                    ),
+                    _c("sup", [_vm._v("2")])
+                  ]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "projects__desc-item" }, [
+                    _vm._v(
+                      "\n                Периметр: " +
+                        _vm._s(room.perimeter) +
+                        "\n            "
+                    )
+                  ])
+                ]
+              )
+            : _vm._e(),
+          _vm._v(" "),
+          _vm._l(_vm.servicesGroupBy(room.room_services), function(
+            room_services,
+            service_type
+          ) {
+            return room.room_services.length !== 0
+              ? _c("div", { staticClass: "row bg px-15" }, [
+                  _c(
+                    "div",
+                    {
+                      staticClass: "main-subtitle main-subtitle--fz col-12 pt-4"
+                    },
+                    [
+                      _vm._v(
+                        "\n                " +
+                          _vm._s(service_type) +
+                          "\n            "
+                      )
+                    ]
+                  ),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "col-12 px-0" }, [
+                    _c("table", { staticClass: "table table-hover" }, [
+                      _c(
+                        "tbody",
+                        _vm._l(room_services, function(room_service) {
+                          return _c(
+                            "tr",
+                            { key: room_service.id },
+                            [
+                              _c(
+                                "th",
+                                {
+                                  staticClass: "w-50",
+                                  attrs: { scope: "row" }
+                                },
+                                [
+                                  _vm._v(
+                                    "\n                                " +
+                                      _vm._s(room_service.service.name) +
+                                      "\n                            "
+                                  )
+                                ]
+                              ),
+                              _vm._v(" "),
+                              _c("td", [
+                                _vm._v(
+                                  _vm._s(room_service.quantity) +
+                                    "  " +
+                                    _vm._s(room_service.unit.name)
+                                )
+                              ]),
+                              _vm._v(" "),
+                              room.order.discount
+                                ? [
+                                    room_service.service.can_be_discounted
+                                      ? [
+                                          _c("td", [
+                                            _vm._v(
+                                              _vm._s(
+                                                room_service.service.price *
+                                                  (1 -
+                                                    parseInt(
+                                                      room.order.discount
+                                                    ) /
+                                                      100)
+                                              ) +
+                                                " Р/" +
+                                                _vm._s(room_service.unit.name)
+                                            )
+                                          ]),
+                                          _vm._v(" "),
+                                          _c("td", [
+                                            _vm._v(
+                                              _vm._s(
+                                                _vm.priceCount(
+                                                  room_service.quantity,
+                                                  room_service.service.price *
+                                                    (1 -
+                                                      parseFloat(
+                                                        room.order.discount
+                                                      ) /
+                                                        100)
+                                                )
+                                              ) + " Р"
+                                            )
+                                          ])
+                                        ]
+                                      : [
+                                          _c("td", [
+                                            _vm._v(
+                                              _vm._s(
+                                                room_service.service.price
+                                              ) +
+                                                " Р/" +
+                                                _vm._s(room_service.unit.name)
+                                            )
+                                          ]),
+                                          _vm._v(" "),
+                                          _c("td", [
+                                            _vm._v(
+                                              _vm._s(
+                                                _vm.priceCount(
+                                                  room_service.quantity,
+                                                  _vm.getServiceDetails(
+                                                    room_service.service_id,
+                                                    "price"
+                                                  )
+                                                )
+                                              ) + " Р"
+                                            )
+                                          ])
+                                        ]
+                                  ]
+                                : _vm._e(),
+                              _vm._v(" "),
+                              _vm.order.markup
+                                ? [
+                                    _c("td", [
+                                      _vm._v(
+                                        _vm._s(
+                                          _vm.getServiceDetails(
+                                            room_service.service_id,
+                                            "price"
+                                          ) *
+                                            (1 +
+                                              parseInt(_vm.order.markup) / 100)
+                                        ) +
+                                          " Р/" +
+                                          _vm._s(room_service.unit.name)
+                                      )
+                                    ]),
+                                    _vm._v(" "),
+                                    _c("td", [
+                                      _vm._v(
+                                        _vm._s(
+                                          _vm.priceCount(
+                                            room_service.quantity,
+                                            _vm.getServiceDetails(
+                                              room_service.service_id,
+                                              "price"
+                                            ) *
+                                              (1 +
+                                                parseFloat(_vm.order.markup) /
+                                                  100)
+                                          )
+                                        ) + " Р"
+                                      )
+                                    ])
+                                  ]
+                                : _vm._e(),
+                              _vm._v(" "),
+                              _vm.order.discount === null &&
+                              _vm.order.markup === null
+                                ? [
+                                    _c("td", [
+                                      _vm._v(
+                                        _vm._s(
+                                          _vm.getServiceDetails(
+                                            room_service.service_id,
+                                            "price"
+                                          )
+                                        ) +
+                                          " Р/" +
+                                          _vm._s(room_service.unit.name)
+                                      )
+                                    ]),
+                                    _vm._v(" "),
+                                    _c("td", [
+                                      _vm._v(
+                                        _vm._s(
+                                          _vm.priceCount(
+                                            room_service.quantity,
+                                            _vm.getServiceDetails(
+                                              room_service.service_id,
+                                              "price"
+                                            )
+                                          )
+                                        ) + " Р"
+                                      )
+                                    ])
+                                  ]
+                                : _vm._e()
+                            ],
+                            2
+                          )
+                        })
+                      )
+                    ])
+                  ])
+                ])
+              : _vm._e()
+          })
+        ],
+        2
+      )
+    })
+  )
 }
 var staticRenderFns = []
 render._withStripped = true
@@ -95331,7 +95586,7 @@ module.exports = { render: render, staticRenderFns: staticRenderFns }
 if (false) {
   module.hot.accept()
   if (module.hot.data) {
-    require("vue-hot-reload-api")      .rerender("data-v-61e9baf6", module.exports)
+    require("vue-hot-reload-api")      .rerender("data-v-1604cf3e", module.exports)
   }
 }
 
