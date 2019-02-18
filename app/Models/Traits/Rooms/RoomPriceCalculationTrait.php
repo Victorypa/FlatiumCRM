@@ -22,7 +22,14 @@ trait RoomPriceCalculationTrait
             'original_price' => $original_room_price
         ]);
 
+        $this->calculateOrderPrice($room);
+
         return $room;
+    }
+
+    protected function calculateOrderPrice(Room $room)
+    {
+
     }
 
 }
