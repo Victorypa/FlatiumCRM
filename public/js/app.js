@@ -66825,6 +66825,11 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 console.log(response.data);
             });
         },
+        updateMarkup: function updateMarkup() {
+            axios.patch('/api/orders/' + this.$route.params.id + '/rooms/' + this.$route.params.room_id + '/services/' + this.room_service.service_id + '/update', {
+                'markup': this.room_service.markup
+            }).then(function (response) {});
+        },
         deleteService: function deleteService() {
             var _this2 = this;
 
@@ -67005,7 +67010,9 @@ var render = function() {
                 attrs: { type: "number", min: "0", placeholder: "Наценка" },
                 domProps: { value: _vm.room_service.markup },
                 on: {
-                  change: function($event) {},
+                  change: function($event) {
+                    _vm.updateMarkup()
+                  },
                   input: function($event) {
                     if ($event.target.composing) {
                       return

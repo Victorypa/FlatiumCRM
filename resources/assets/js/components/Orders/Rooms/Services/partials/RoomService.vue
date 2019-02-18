@@ -67,7 +67,7 @@
                          min="0"
                          placeholder="Наценка"
                          v-model="room_service.markup"
-                         @change=""
+                         @change="updateMarkup()"
                          >
               </div>
 
@@ -125,6 +125,14 @@
                     'quantity': this.room_service.quantity
                 }).then(response => {
                     console.log(response.data);
+                })
+            },
+
+            updateMarkup () {
+                axios.patch(`/api/orders/${this.$route.params.id}/rooms/${this.$route.params.room_id}/services/${this.room_service.service_id}/update`, {
+                    'markup': this.room_service.markup
+                }).then(response => {
+
                 })
             },
 
