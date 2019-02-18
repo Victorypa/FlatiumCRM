@@ -53,9 +53,9 @@
 
 
               <div class="col-md-1">
-                  <button @click=""
-                          class="add-button add-button--remove d-flex align-items-center"
+                  <button class="add-button add-button--remove d-flex align-items-center"
                           v-if="room_service.service.can_be_deleted"
+                          @click.prevent="deleteService()"
                           >
                       <img src="/img/del.svg" alt="add-button">
                   </button>
@@ -126,6 +126,15 @@
                 }).then(response => {
                     console.log(response.data);
                 })
+            },
+
+            deleteService () {
+                if (confirm('Удалить ?')) {
+                    axios.delete(`/api/services/${this.room_service.service_id}/destroy`)
+                         .then(response => {
+                             this.$emit('deleted-service')
+                         })
+                }
             }
         },
 

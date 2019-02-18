@@ -37,6 +37,7 @@
                           <RoomService :room_service="room_service"
                                        :key="room_service.service_id"
                                        @removed-service="getRoomServices()"
+                                       @deleted-service="handleDeletedService()"
                                        />
                   </div>
 
@@ -109,6 +110,11 @@
                                     this.service_types = response.data
                             }
                     })
+            },
+
+            handleDeletedService () {
+                this.getRoomServices()
+                this.getServices()
             },
 
             getServiceTypeName (service_type_id) {

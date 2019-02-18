@@ -66155,6 +66155,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
 
 
 
@@ -66210,6 +66211,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                         _this2.service_types = response.data;
                 }
             });
+        },
+        handleDeletedService: function handleDeletedService() {
+            this.getRoomServices();
+            this.getServices();
         },
         getServiceTypeName: function getServiceTypeName(service_type_id) {
             var _this3 = this;
@@ -66819,6 +66824,15 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             }).then(function (response) {
                 console.log(response.data);
             });
+        },
+        deleteService: function deleteService() {
+            var _this2 = this;
+
+            if (confirm('Удалить ?')) {
+                axios.delete('/api/services/' + this.room_service.service_id + '/destroy').then(function (response) {
+                    _this2.$emit('deleted-service');
+                });
+            }
         }
     },
 
@@ -66961,7 +66975,12 @@ var render = function() {
                     {
                       staticClass:
                         "add-button add-button--remove d-flex align-items-center",
-                      on: { click: function($event) {} }
+                      on: {
+                        click: function($event) {
+                          $event.preventDefault()
+                          _vm.deleteService()
+                        }
+                      }
                     },
                     [
                       _c("img", {
@@ -67569,6 +67588,9 @@ var render = function() {
                         on: {
                           "removed-service": function($event) {
                             _vm.getRoomServices()
+                          },
+                          "deleted-service": function($event) {
+                            _vm.handleDeletedService()
                           }
                         }
                       })
