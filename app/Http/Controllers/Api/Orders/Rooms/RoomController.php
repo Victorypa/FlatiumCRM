@@ -13,7 +13,6 @@ class RoomController extends Controller
     public function show(Order $order, Room $room)
     {
         $room->calculateRoomPrice($room);
-        // $room->calculateOrderPrice($room);
 
         return Room::where('id', $room->id)
                     ->with([

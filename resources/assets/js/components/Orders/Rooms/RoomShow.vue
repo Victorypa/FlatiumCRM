@@ -35,17 +35,12 @@
                                                                   <div class="create__features__name col-auto px-0 mx-2"
                                                                           :class="{ 'active': path === '/orders/' + order.id + '/rooms/' + room.id }"
                                                                           >
-                                                                          <template v-if="room.description">
-                                                                              <span v-if="room.description.length > 13">
-                                                                                  {{ room.description.substring(0, 13) + '...' }}
-                                                                              </span>
-                                                                              <span v-else>
-                                                                                  {{ room.description }}
-                                                                              </span>
-                                                                          </template>
-                                                                          <template v-else>
+                                                                          <span v-if="room.description">
+                                                                              {{ room.description.substring(0, 13) + '...' }}
+                                                                          </span>
+                                                                          <span v-else>
                                                                               {{ room.room_type.type }}
-                                                                          </template>
+                                                                          </span>
                                                                   </div>
                                                               </router-link>
                                                           </slide>
@@ -268,7 +263,7 @@
 
                                 this.room_type = this.room.room_type.type
 
-                                this.rooms = this.room.order.rooms
+                                this.rooms = _.orderBy(this.room.order.rooms, ['priority'], ['asc'])
                                 this.room_type_id = this.room.room_type_id
                                 this.room_windows = this.room.windows
                                 this.path = this.$router.history.current.path

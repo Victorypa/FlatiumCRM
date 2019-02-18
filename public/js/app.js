@@ -65855,11 +65855,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
-//
-//
-//
-//
-//
 
 
 
@@ -65927,7 +65922,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
                 _this.room_type = _this.room.room_type.type;
 
-                _this.rooms = _this.room.order.rooms;
+                _this.rooms = _.orderBy(_this.room.order.rooms, ['priority'], ['asc']);
                 _this.room_type_id = _this.room.room_type_id;
                 _this.room_windows = _this.room.windows;
                 _this.path = _this.$router.history.current.path;
@@ -68537,32 +68532,19 @@ var render = function() {
                                                 },
                                                 [
                                                   room.description
-                                                    ? [
-                                                        room.description
-                                                          .length > 13
-                                                          ? _c("span", [
-                                                              _vm._v(
-                                                                "\n                                                                              " +
-                                                                  _vm._s(
-                                                                    room.description.substring(
-                                                                      0,
-                                                                      13
-                                                                    ) + "..."
-                                                                  ) +
-                                                                  "\n                                                                          "
-                                                              )
-                                                            ])
-                                                          : _c("span", [
-                                                              _vm._v(
-                                                                "\n                                                                              " +
-                                                                  _vm._s(
-                                                                    room.description
-                                                                  ) +
-                                                                  "\n                                                                          "
-                                                              )
-                                                            ])
-                                                      ]
-                                                    : [
+                                                    ? _c("span", [
+                                                        _vm._v(
+                                                          "\n                                                                          " +
+                                                            _vm._s(
+                                                              room.description.substring(
+                                                                0,
+                                                                13
+                                                              ) + "..."
+                                                            ) +
+                                                            "\n                                                                      "
+                                                        )
+                                                      ])
+                                                    : _c("span", [
                                                         _vm._v(
                                                           "\n                                                                          " +
                                                             _vm._s(
@@ -68571,9 +68553,8 @@ var render = function() {
                                                             ) +
                                                             "\n                                                                      "
                                                         )
-                                                      ]
-                                                ],
-                                                2
+                                                      ])
+                                                ]
                                               )
                                             ]
                                           )

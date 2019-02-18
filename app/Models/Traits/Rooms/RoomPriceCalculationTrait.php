@@ -25,24 +25,4 @@ trait RoomPriceCalculationTrait
         return $room;
     }
 
-    public function calculateOrderPrice(Room $room)
-    {
-        $total_price = 0;
-        $original_price = 0;
-
-        $rooms = $room->order->rooms->where('room_type_id', '!=', 4);
-
-        foreach ($rooms as $new_room) {
-            $total_price += (float) $new_room->price;
-            $original_price += (float) $new_room->original_price;
-        }
-
-        $room->order->update([
-            'price' => $total_price,
-            'original_price' => $original_price
-        ]);
-
-        return $room->order->get();
-    }
-
 }

@@ -9,73 +9,45 @@ trait OrderCalculationTrait
 {
     public function recalculateAfterDiscountOrMarkup()
     {
-        $room_service_price = 0;
         $room_price = 0;
 
-        if ($this->discount !== null && $this->markup === null) {
-            foreach ($this->rooms()->get() as $room) {
-                foreach ($room->room_services()->get() as $room_service) {
-                    if ($this->getServiceDetails($room_service->service_id, 'can_be_discounted')) {
-                        $room_service_price += $this->getServiceDetails($room_service->service_id, 'price') * (1 - (float) $this->discount / 100) * (float) $room_service->quantity;
-                    }
+        foreach ($this->rooms()->get() as $room) {
+            foreach ($room->room_services()->get() as $room_service) {
 
-                    if (!$this->getServiceDetails($room_service->service_id, 'can_be_discounted')) {
-                        $room_service_price += $this->getServiceDetails($room_service->service_id, 'price') * (float) $room_service->quantity;
+                if ($this->discount !== null) {
+                    if ($room_service->service->can_be_deleted) {
+                        $room_price += $room_service->service->price * (1 - (float) $this->discount / 100) * (float) $room_service->quantity;
+                    } else {
+                        $room_price += $room_service->service->price * (float) $room_service->quantity;
                     }
                 }
-                $result = $room->update([
-                    'price' => (float) $room_service_price
-                ]);
-                if ($result) {
-                    $room_service_price = 0;
+
+                if ($this->markup !== null) {
+                    $room_price += $room_service->service->price * (1 + (float) $this->markup / 100) * (float) $room_service->quantity;
                 }
 
-                $room_price += (float) $room->price;
+                if ($this->markup === null && $this->discount === null) {
+                    $room_price += $room_service->service->price * (float) $room_service->quantity;
+                }
             }
 
-
-            $this->update([
-                'price' => (float) $room_price,
-                'markup' => null
+            $room->update([
+                'price' => (float) $room_price
             ]);
         }
 
-        if ($this->markup !== null && $this->discount === null) {
-            foreach ($this->rooms()->get() as $room) {
-                foreach ($room->room_services()->get() as $room_service) {
-                    $room_service_price += $this->getServiceDetails($room_service->service_id, 'price') * (1 + (float) $this->markup / 100) * (float) $room_service->quantity;
-                }
-                $result = $room->update([
-                    'price' => (float) $room_service_price
-                ]);
-                if ($result) {
-                    $room_service_price = 0;
-                }
+        $total_room_price = 0;
+        $original_room_price = 0;
 
-                $room_price += (float) $room->price;
-            }
-
-            $this->update([
-                'price' => (float) $room_price,
-                'discount' => null
-            ]);
+        foreach ($this->rooms()->get() as $room) {
+            $total_room_price += (float) $room->price;
+            $original_room_price += (float) $room->original_price;
         }
-    }
 
-    protected function getServiceDetails($service_id, $type)
-    {
-        $service = Service::where('id', $service_id)->first();
+        $this->update([
+            'price' => $total_room_price,
+            'original_price' => $original_room_price
+        ]);
 
-        switch ($type) {
-            case 'price':
-                return (float)$service->price;
-                break;
-            case 'can_be_discounted':
-                return $service->can_be_discounted;
-                break;
-            default:
-                return null;
-                break;
-        }
     }
 }
