@@ -29,16 +29,10 @@ class RoomServiceController extends Controller
         return $room->room_services()->create($request->all());
     }
 
-    public function update(Order $order, Room $room, Request $request)
+    public function update(Order $order, Room $room, Service $service, Request $request)
     {
-        foreach ($request->room_service_markups as $service_id => $markup) {
-            $room_service = $room->room_services()->where('service_id', $service_id)->first();
-            $room_service->markup = $markup;
-            if ($room_service->markup !== null && $room_service->markup !== 0) {
-                $room_service->original_price = $room_service->price * (1 + ((int)$markup/100));
-            }
-            $room_service->save();
-        }
+        $room->room_services()->where('service_id', $service->id)->update($request->all());
+
         $room->calculateRoomPrice($room);
     }
 

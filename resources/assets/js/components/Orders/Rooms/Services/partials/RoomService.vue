@@ -25,19 +25,19 @@
         <div class="col-md-9 pr-0">
           <div class="form-group form-group--margin d-flex align-items-center">
               <input type="number"
-                     class="form-control w-85 col-md-2"
+                     class="form-control w-85 col-md-1"
                      placeholder="Кол-во"
                      min="0"
                      v-model="room_service.quantity"
-                     @change=""
+                     @change="updateQuantity()"
                      >
 
-              <div class="inputs-caption col-md-2">
+              <div class="inputs-caption col-md-1">
                   {{ room_service.unit.name }}
               </div>
 
               <input  type="number"
-                      class="form-control w-85 col-md-2"
+                      class="form-control w-85 col-md-1"
                       min="0"
                       disabled
                       :value="room_service.service.price"
@@ -78,7 +78,6 @@
                       </button>
                   </router-link>
               </div>
-
           </div>
         </div>
 
@@ -119,6 +118,14 @@
                      .then(response => {
                          this.$emit('removed-service')
                      })
+            },
+
+            updateQuantity () {
+                axios.patch(`/api/orders/${this.$route.params.id}/rooms/${this.$route.params.room_id}/services/${this.room_service.service_id}/update`, {
+                    'quantity': this.room_service.quantity
+                }).then(response => {
+                    console.log(response.data);
+                })
             }
         },
 
