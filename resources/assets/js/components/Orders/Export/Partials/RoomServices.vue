@@ -35,34 +35,16 @@
                 <div class="col-12 px-0">
                     <table class="table table-hover">
                         <tbody>
-                            <tr v-for="room_service in room_services" :key="room_service.id">
-                                <th scope="row" class="w-50">
-                                    {{ room_service.service.name }}
-                                </th>
-                                <td>{{ room_service.quantity }}  {{ room_service.unit.name }}</td>
+                            <RoomService v-for="room_service in room_services"
+                                         :room_service="room_service"
+                                         :order="room.order"
+                                         :key="room_service.id"
+                                         />
 
-                                <template v-if="room.order.discount">
-                                    <template v-if="room_service.service.can_be_discounted">
-                                        <td>{{ room_service.service.price * (1 - parseInt(room.order.discount)/100) }} Р/{{ room_service.unit.name }}</td>
-                                        <td>{{ priceCount(room_service.quantity, room_service.service.price * (1 - parseFloat(room.order.discount)/100)) }} Р</td>
-                                    </template>
-                                    <template v-else>
-                                        <td>{{ room_service.service.price }} Р/{{ room_service.unit.name }}</td>
-                                        <td>{{ priceCount(room_service.quantity, getServiceDetails(room_service.service_id, 'price')) }} Р</td>
-                                    </template>
-                                </template>
-                                <template v-if="order.markup">
-                                    <td>{{ getServiceDetails(room_service.service_id, 'price') * (1 + parseInt(order.markup)/100) }} Р/{{ room_service.unit.name }}</td>
-                                    <td>{{ priceCount(room_service.quantity, getServiceDetails(room_service.service_id, 'price') * (1 + parseFloat(order.markup)/100)) }} Р</td>
-                                </template>
-                                <template v-if="order.discount === null && order.markup === null">
-                                    <td>{{ getServiceDetails(room_service.service_id, 'price') }} Р/{{ room_service.unit.name }}</td>
-                                    <td>{{ priceCount(room_service.quantity, getServiceDetails(room_service.service_id, 'price')) }} Р</td>
-                                </template>
-                            </tr>
                         </tbody>
                     </table>
                 </div>
+
             </div>
 
         </div>
@@ -71,11 +53,13 @@
 </template>
 
 <script>
+    import RoomService from './RoomService'
+
     export default {
         props: ['rooms'],
 
-        created () {
-            console.log(this.rooms);
+        components: {
+            RoomService
         },
 
         methods: {

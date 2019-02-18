@@ -298,12 +298,6 @@
 
            },
 
-           move (room_service, type) {
-               axios.patch(`/api/orders/${this.$route.params.id}/rooms/${room_service.room_id}/services/update_created_at`, {
-                   'room_service': room_service
-               })
-           },
-
            checkElement (element, data, type) {
                if (type === 'last') {
                    return element === data[data.length - 1]

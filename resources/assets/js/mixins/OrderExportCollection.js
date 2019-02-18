@@ -48,10 +48,6 @@ export default {
             return _.groupBy(services, 'service_type_id')
         },
 
-        priceCount (quantity, price) {
-            return new Intl.NumberFormat('ru-Ru').format(parseInt(quantity * price))
-        },
-
         getServices () {
             return axios.get('/api/services').then(response => {
                 this.services = response.data
