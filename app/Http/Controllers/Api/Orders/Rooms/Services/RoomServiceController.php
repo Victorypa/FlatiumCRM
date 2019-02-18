@@ -44,6 +44,10 @@ class RoomServiceController extends Controller
 
     public function destroy(Order $order, Room $room, Service $service)
     {
-        return $room->room_services()->where('service_id', $service->id)->delete();
+        $room_service = $room->room_services()->where('service_id', $service->id)->delete();
+
+        if ($room_service) {
+            return response('deleted service', 200);
+        }
     }
 }

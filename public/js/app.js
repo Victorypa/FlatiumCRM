@@ -66107,6 +66107,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
 
 
 
@@ -66357,7 +66358,12 @@ var render = function() {
                     [
                       _c("RoomService", {
                         key: room_service.service_id,
-                        attrs: { room_service: room_service }
+                        attrs: { room_service: room_service },
+                        on: {
+                          "removed-service": function($event) {
+                            _vm.getRoomServices()
+                          }
+                        }
                       })
                     ],
                     1
@@ -95649,7 +95655,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         removeService: function removeService() {
             var _this = this;
 
-            axios.delete('/api/orders/' + this.$route.params.id + '/rooms/' + this.$route.params.room_id + '/services/' + this.room_service.id + '/destroy').then(function (response) {
+            axios.delete('/api/orders/' + this.$route.params.id + '/rooms/' + this.$route.params.room_id + '/services/' + this.room_service.service_id + '/destroy').then(function (response) {
                 _this.$emit('removed-service');
             });
         }
@@ -95718,15 +95724,7 @@ var render = function() {
       _c("label", { staticClass: "col-md-3 mb-0 d-flex align-items-center" }, [
         _c(
           "div",
-          {
-            staticClass: "form-check custom-control d-flex edit-show",
-            on: {
-              click: function($event) {
-                $event.preventDefault()
-                _vm.removeService()
-              }
-            }
-          },
+          { staticClass: "form-check custom-control d-flex edit-show" },
           [
             _c("input", {
               staticClass: "form-check-input",
@@ -95734,14 +95732,19 @@ var render = function() {
                 type: "checkbox",
                 id: "room-service-" + _vm.room_service.id
               },
-              domProps: { checked: true }
+              domProps: { checked: true },
+              on: {
+                click: function($event) {
+                  _vm.removeService()
+                }
+              }
             }),
             _vm._v(" "),
             _c(
               "label",
               {
                 staticClass: "form-check-label",
-                attrs: { for: "service-" + _vm.room_service.id }
+                attrs: { for: "room-service-" + _vm.room_service.id }
               },
               [
                 _vm._v(

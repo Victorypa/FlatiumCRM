@@ -36,6 +36,7 @@
                        >
                           <RoomService :room_service="room_service"
                                        :key="room_service.service_id"
+                                       @removed-service="getRoomServices()"
                                        />
                   </div>
 

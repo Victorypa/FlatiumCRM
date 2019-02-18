@@ -2,16 +2,16 @@
     <div class="row align-items-center">
         <label class="col-md-3 mb-0 d-flex align-items-center">
             <div class="form-check custom-control d-flex edit-show"
-                 @click.prevent="removeService()"
                  >
                 <input class="form-check-input"
                        type="checkbox"
                        :id="'room-service-' + room_service.id"
                        :checked="true"
+                       @click="removeService()"
                        >
 
                 <label class="form-check-label"
-                       :for="'service-' + room_service.id"
+                       :for="'room-service-' + room_service.id"
                        >
                        {{ room_service.service.name }}
                 </label>
@@ -115,7 +115,7 @@
 
         methods: {
             removeService () {
-                axios.delete(`/api/orders/${this.$route.params.id}/rooms/${this.$route.params.room_id}/services/${this.room_service.id}/destroy`)
+                axios.delete(`/api/orders/${this.$route.params.id}/rooms/${this.$route.params.room_id}/services/${this.room_service.service_id}/destroy`)
                      .then(response => {
                          this.$emit('removed-service')
                      })
