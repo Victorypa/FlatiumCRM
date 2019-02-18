@@ -27,7 +27,6 @@
                placeholder="Кол-во"
                min="0"
                v-model="quantity"
-               @change=""
                >
 
         <div class="inputs-caption col-md-2">
@@ -100,7 +99,8 @@
                 axios.post(`/api/orders/${this.$route.params.id}/rooms/${this.$route.params.room_id}/services/store`, {
                     'service_id': this.service.id,
                     'service_type_id': this.service.service_type_id,
-                    'price': this.service.price * this.quantity,
+                    'price': parseInt(this.service.price) * this.quantity,
+                    'original_price': parseInt(this.service.price) * this.quantity,
                     'service_unit_id': this.service.unit_id,
                     'quantity': this.quantity
                 }).then(response => {

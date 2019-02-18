@@ -63,7 +63,6 @@
 
               <div class="col-md-2">
                   <input type="number"
-                         v-if="checkMarkup"
                          class="form-control w-85"
                          min="0"
                          placeholder="Наценка"
@@ -127,9 +126,11 @@
 
             updateQuantity () {
                 axios.patch(`/api/orders/${this.$route.params.id}/rooms/${this.$route.params.room_id}/services/${this.room_service.service_id}/update`, {
-                    'quantity': this.room_service.quantity
+                    'quantity': this.room_service.quantity,
+                    'price': this.room_service.quantity * this.room_service.service.price,
+                    'original_price': this.room_service.quantity * this.room_service.service.price
                 }).then(response => {
-                    console.log(response.data);
+                    EventBus.$emit('updated-room-price')
                 })
             },
 
@@ -137,7 +138,7 @@
                 axios.patch(`/api/orders/${this.$route.params.id}/rooms/${this.$route.params.room_id}/services/${this.room_service.service_id}/update`, {
                     'markup': this.room_service.markup
                 }).then(response => {
-
+                    EventBus.$emit('updated-room-price')
                 })
             },
 
@@ -145,6 +146,7 @@
                 if (confirm('Удалить ?')) {
                     axios.delete(`/api/services/${this.room_service.service_id}/destroy`)
                          .then(response => {
+                             EventBus.$emit('updated-room-price')
                              this.$emit('deleted-service')
                          })
                 }
@@ -154,11 +156,7 @@
         computed: {
             servicePrice () {
                 return this.room_service.quantity !== 0 ? new Intl.NumberFormat('ru-Ru').format(parseInt(this.room_service.service.price * this.room_service.quantity)) : 0
-            },
-
-            checkMarkup () {
-                return this.room.order.markup !== 0 && this.room.order.markup && this.room.order.discount !== 0 && this.room.order.discount
-            },
+            }
         }
     }
 </script>
