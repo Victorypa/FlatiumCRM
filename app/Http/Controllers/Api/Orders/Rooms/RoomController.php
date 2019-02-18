@@ -18,7 +18,7 @@ class RoomController extends Controller
         return Room::where('id', $room->id)
                     ->with([
                         'windows', 'order.rooms', 'room_services',
-                        'room_services.materials'
+                        'room_services.materials', 'room_services.room'
                     ])->first();
     }
 

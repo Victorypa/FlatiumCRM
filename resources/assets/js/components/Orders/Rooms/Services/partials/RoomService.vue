@@ -71,35 +71,39 @@
               </div>
 
               <div class="col-md-auto">
-                  <!-- <router-link :to="{ name: 'actual-material', params: { id: room.order.id, room_id: room.id, service_id: room_service_id }}"> -->
+                  <router-link :to="{ name: 'actual-material', params: { id: room_service.room.order_id, room_id: room_service.room_id, service_id: room_service.id }}">
                       <button class="add-button " title="Добавить материалы">
                           <img src="/img/plus-circle.svg" alt="add-button">
                       </button>
-                  <!-- </router-link> -->
+                  </router-link>
               </div>
 
           </div>
         </div>
 
-      <!-- <div class="row col-12" v-for="(material) in room_service_materials[room_service_id]">
-        <div class="col-4 pl-5 mb-3">
-          <div class="subtitle-list">
-            <div class="subtitle-list__item">
-                {{ material.name }}
+      <div class="row col-12"
+           v-if="room_service.materials.length !== 0"
+           v-for="material in room_service.materials"
+           :key="material.id"
+           >
+            <div class="col-4 pl-5 mb-3">
+              <div class="subtitle-list">
+                <div class="subtitle-list__item">
+                    {{ material.name }}
+                </div>
+              </div>
             </div>
-          </div>
-        </div>
         <template v-if="material.pivot.rate">
             <div class="col-8">
               <div class="d-flex align-items-center">
                 <div class="col-4" style="margin-left:163px"></div>
                 <div class="form-group__calc col-md-2">
-                    {{ getMaterialSummary(material.pivot.rate, material.quantity, material.price, service_quantities[room_service_id]) }} Р
+                    <!-- {{ getMaterialSummary(material.pivot.rate, material.quantity, material.price, service_quantities[room_service_id]) }} Р -->
                 </div>
               </div>
             </div>
         </template>
-      </div> -->
+      </div>
 
     </div>
 </template>
@@ -108,9 +112,9 @@
     export default {
         props: ['service_type_id', 'room_service'],
 
-        created () {
-            console.log(this.room_service.service);
-        },
+        // created () {
+        //     console.log(this.room_service);
+        // },
 
         computed: {
             servicePrice () {
