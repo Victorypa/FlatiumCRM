@@ -37,10 +37,17 @@ class RoomServiceController extends Controller
 
     public function update(Order $order, Room $room, Service $service, Request $request)
     {
-        $room_service = $room->room_services()->where('service_id', $service->id)->update($request->all());
-
         if ($request->has('markup')) {
-            return response("markup exists", 200);
+            $room->room_services()
+                 ->where('service_id', $service->id)
+                 ->update([
+                     'markup' => $request->markup,
+                     'price' => $request->original_price * (1 + ((int) $request->markup / 100))
+                 ]);
+        } else {
+            $room->room_services()
+                 ->where('service_id', $service->id)
+                 ->update($request->all());
         }
 
         $room->calculateRoomPrice($room);

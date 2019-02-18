@@ -66852,7 +66852,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         },
         updateMarkup: function updateMarkup() {
             axios.patch('/api/orders/' + this.$route.params.id + '/rooms/' + this.$route.params.room_id + '/services/' + this.room_service.service_id + '/update', {
-                'markup': this.room_service.markup
+                'markup': this.room_service.markup,
+                'original_price': this.room_service.quantity * this.room_service.service.price
             }).then(function (response) {
                 __WEBPACK_IMPORTED_MODULE_0__bus__["a" /* EventBus */].$emit('updated-room-price');
             });
@@ -66871,7 +66872,11 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
     computed: {
         servicePrice: function servicePrice() {
-            return this.room_service.quantity !== 0 ? new Intl.NumberFormat('ru-Ru').format(parseInt(this.room_service.service.price * this.room_service.quantity)) : 0;
+            if (this.room_service.markup) {
+                return new Intl.NumberFormat('ru-Ru').format(parseInt(this.room_service.service.price * this.room_service.quantity) * (1 + this.room_service.markup / 100));
+            } else {
+                return new Intl.NumberFormat('ru-Ru').format(parseInt(this.room_service.service.price * this.room_service.quantity));
+            }
         }
     }
 });
