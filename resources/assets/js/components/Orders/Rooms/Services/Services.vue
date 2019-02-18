@@ -43,7 +43,7 @@
                        v-for="service in filteredServices"
                        :key="service.id"
                        >
-                       <Service :service="service" />
+                       <Service :service="service" :room="room" />
                   </div>
                 </div>
 

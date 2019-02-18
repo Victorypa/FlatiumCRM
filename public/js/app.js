@@ -66470,7 +66470,11 @@ var render = function() {
                       key: service.id,
                       staticClass: "col-md-12 px-0 all-items"
                     },
-                    [_c("Service", { attrs: { service: service } })],
+                    [
+                      _c("Service", {
+                        attrs: { service: service, room: _vm.room }
+                      })
+                    ],
                     1
                   )
                 })
@@ -95335,14 +95339,42 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-    props: ['service'],
+    props: ['service', 'room'],
 
+    data: function data() {
+        return {
+            quantity: 0
+        };
+    },
     created: function created() {
-        // console.log(this.service);
+        this.serviceQuantityAutomation();
     },
 
 
-    computed: {}
+    methods: {
+        serviceQuantityAutomation: function serviceQuantityAutomation() {
+            switch (this.service.unit_id) {
+                case 1:
+                    if (this.service.service_type_id === 1) {
+                        this.quantity = this.room.area;
+                    }
+                    if (this.service.service_type_id === 2) {
+                        this.quantity = this.room.wall_area;
+                    }
+
+                    if (this.service.service_type_id === 3) {
+                        this.quantity = this.room.area;
+                    }
+                    break;
+                case 2:
+                    this.quantity = this.room.perimeter;
+                    break;
+                default:
+                    this.quantity = 1;
+            }
+        }
+    }
+
 });
 
 /***/ }),
@@ -95436,6 +95468,55 @@ var render = function() {
           )
         ],
         1
+      )
+    ]),
+    _vm._v(" "),
+    _c("div", { staticClass: "col-md-8 pr-0" }, [
+      _c(
+        "div",
+        {
+          staticClass: "form-group form-group--margin d-flex align-items-center"
+        },
+        [
+          _c("input", {
+            directives: [
+              {
+                name: "model",
+                rawName: "v-model",
+                value: _vm.quantity,
+                expression: "quantity"
+              }
+            ],
+            staticClass: "form-control w-85",
+            attrs: { type: "number", placeholder: "Кол-во", min: "0" },
+            domProps: { value: _vm.quantity },
+            on: {
+              change: function($event) {},
+              input: function($event) {
+                if ($event.target.composing) {
+                  return
+                }
+                _vm.quantity = $event.target.value
+              }
+            }
+          }),
+          _vm._v(" "),
+          _c("div", { staticClass: "inputs-caption col-md-2" }, [
+            _vm._v("\n        " + _vm._s(_vm.service.unit.name) + "\n    ")
+          ]),
+          _vm._v(" "),
+          _c("input", {
+            staticClass: "form-control w-85",
+            attrs: { type: "number", min: "0", disabled: "" },
+            domProps: { value: _vm.service.price }
+          }),
+          _vm._v(" "),
+          _c("div", { staticClass: "inputs-caption col-md-2" }, [
+            _vm._v("\n        Р/" + _vm._s(_vm.service.unit.name) + "\n    ")
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "form-group__calc w-85" })
+        ]
       )
     ])
   ])

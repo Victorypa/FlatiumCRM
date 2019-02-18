@@ -21,14 +21,14 @@
           </div>
       </label>
 
-    <!-- <div class="col-md-8 pr-0">
+    <div class="col-md-8 pr-0">
       <div class="form-group form-group--margin d-flex align-items-center">
         <input type="number"
                class="form-control w-85"
                placeholder="Кол-во"
                min="0"
-               v-model="service_quantities[service.id]"
-               @change="linkServicesToRoom()"
+               v-model="quantity"
+               @change=""
                >
 
         <div class="inputs-caption col-md-2">
@@ -39,7 +39,7 @@
                class="form-control w-85"
                min="0"
                disabled
-               :value="service_prices[service.id]"
+               :value="service.price"
                >
 
         <div class="inputs-caption col-md-2">
@@ -47,24 +47,51 @@
         </div>
 
         <div class="form-group__calc w-85">
-            {{ getServiceSummary(service.id) }} P
+            <!-- {{ getServiceSummary(service.id) }} P -->
         </div>
       </div>
-    </div> -->
+    </div>
     </div>
 </template>
 
 <script>
     export default {
-        props: ['service'],
+        props: ['service', 'room'],
 
-        created () {
-            // console.log(this.service);
+        data () {
+            return {
+                quantity: 0
+            }
         },
 
-        computed: {
+        created () {
+            this.serviceQuantityAutomation()
+        },
 
+        methods: {
+            serviceQuantityAutomation () {
+                switch (this.service.unit_id) {
+                    case 1:
+                        if (this.service.service_type_id === 1) {
+                            this.quantity = this.room.area
+                        }
+                        if (this.service.service_type_id === 2) {
+                            this.quantity = this.room.wall_area
+                        }
+
+                        if (this.service.service_type_id === 3) {
+                            this.quantity = this.room.area
+                        }
+                        break;
+                    case 2:
+                        this.quantity = this.room.perimeter
+                        break;
+                    default:
+                        this.quantity = 1
+                }
+            }
         }
+
     }
 </script>
 
