@@ -1,12 +1,11 @@
 <template>
     <div class="row align-items-center">
-
       <label class="col-md-4 mb-0">
           <div class="form-check custom-control d-flex edit-show">
               <input class="form-check-input"
                      type="checkbox"
                      :id="'service-' + service.id"
-                     @click=""
+                     @click.prevent="addService()"
                      >
 
               <label class="form-check-label"
@@ -46,8 +45,9 @@
             Р/{{ service.unit.name }}
         </div>
 
-        <div class="form-group__calc w-85">
-            <!-- {{ getServiceSummary(service.id) }} P -->
+
+        <div class="form-group__calc w-85 col-md-3">
+            {{ servicePrice }} P
         </div>
       </div>
     </div>
@@ -64,7 +64,7 @@
             }
         },
 
-        created () {
+        mounted () {
             this.serviceQuantityAutomation()
         },
 
@@ -89,6 +89,31 @@
                     default:
                         this.quantity = 1
                 }
+            },
+
+            addService () {
+                axios.post(`/api/orders/${this.$route.params.id}/rooms/${this.$route.params.room_id}/services/store`, {
+                    'service_id': this.service.id,
+                    'service_type_id': this.service.service_type_id,
+                    'price': this.service.price,
+                    'service_unit_id': this.service.unit_id,
+                    'quantity': this.quantity
+                }).then(response => {
+                    this.$emit('added-service')
+                })
+                // axios.post(`/api/orders/${this.$route.params.id}/rooms/${this.$route.params.room_id}/services/store`, {
+                //     'room_service_ids': this.removeEmptyElem(this.room_service_ids),
+                //     'service_quantities': this.removeEmptyElem(this.service_quantities),
+                //     'service_prices': this.service_prices
+                // }).then(response => {
+                //     this.$emit('price', parseInt(response.data.room.price))
+                // })
+            }
+        },
+
+        computed: {
+            servicePrice () {
+                return this.quantity !== 0 ? new Intl.NumberFormat('ru-Ru').format(parseInt(this.service.price * this.quantity)) : 0
             }
         }
 

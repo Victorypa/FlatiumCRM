@@ -66101,6 +66101,11 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
 
 
 
@@ -66123,24 +66128,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             service_types: [],
             service_type_id: 0,
 
-            searchQuery: "",
-
-            units: [],
-            services: [],
-
-            room_services: [],
-
-            room_service_ids: [],
-            room_service_types: [],
-            room_service_materials: [],
-            room_service_markups: [],
-
-            service_names: [],
-            service_units: [],
-            service_can_be_deleted: [],
-            service_quantities: [],
-            service_prices: []
-
+            searchQuery: ""
         };
     },
     mounted: function mounted() {
@@ -66182,60 +66170,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
             return axios.get('/api/services').then(function (response) {
                 _this3.services = response.data;
-
-                if (_this3.order.discount) {
-                    response.data.forEach(function (item) {
-                        if (item.can_be_discounted) {
-                            _this3.service_prices[item.id] = item.price * (1 - parseFloat(_this3.order.discount) / 100);
-                        }
-                        if (!item.can_be_discounted) {
-                            _this3.service_prices[item.id] = item.price;
-                        }
-                    });
-                }
-
-                if (_this3.order.markup) {
-                    response.data.forEach(function (item) {
-                        _this3.service_prices[item.id] = item.price * (1 + parseFloat(_this3.order.markup) / 100);
-                    });
-                }
-
-                if (_this3.order.discount === null && _this3.order.markup === null) {
-                    response.data.forEach(function (item) {
-                        _this3.service_prices[item.id] = item.price;
-                    });
-                }
-
-                response.data.forEach(function (item) {
-                    _this3.service_names[item.id] = item.name;
-                    _this3.service_units[item.id] = item.unit.name;
-                    _this3.service_can_be_deleted[item.id] = item.can_be_deleted;
-                    _this3.room_service_types[item.id] = item.service_type_id;
-
-                    if (!_this3.room_service_ids.includes(item.id)) {
-                        if (_this3.service_quantities[item.id] !== null) {
-                            switch (item.unit.id) {
-                                case 1:
-                                    if (item.service_type_id === 1) {
-                                        _this3.service_quantities[item.id] = _this3.room.area;
-                                    }
-                                    if (item.service_type_id === 2) {
-                                        _this3.service_quantities[item.id] = _this3.room.wall_area;
-                                    }
-
-                                    if (item.service_type_id === 3) {
-                                        _this3.service_quantities[item.id] = _this3.room.area;
-                                    }
-                                    break;
-                                case 2:
-                                    _this3.service_quantities[item.id] = _this3.room.perimeter;
-                                    break;
-                                default:
-                                    _this3.service_quantities[item.id] = 1;
-                            }
-                        }
-                    }
-                });
             });
         },
         addToRoomServiceId: function addToRoomServiceId(id) {
@@ -66449,12 +66383,10 @@ var render = function() {
                   return _vm.room.room_services.length !== 0
                     ? _c(
                         "div",
-                        {
-                          key: room_service.service_id,
-                          staticClass: "col-md-12 px-0 all-items"
-                        },
+                        { staticClass: "col-md-12 px-0 all-items" },
                         [
                           _c("RoomService", {
+                            key: room_service.service_id,
                             attrs: { room_service: room_service }
                           })
                         ],
@@ -66466,13 +66398,16 @@ var render = function() {
                 _vm._l(_vm.filteredServices, function(service) {
                   return _c(
                     "div",
-                    {
-                      key: service.id,
-                      staticClass: "col-md-12 px-0 all-items"
-                    },
+                    { staticClass: "col-md-12 px-0 all-items" },
                     [
                       _c("Service", {
-                        attrs: { service: service, room: _vm.room }
+                        key: service.id,
+                        attrs: { service: service, room: _vm.room },
+                        on: {
+                          "added-service": function($event) {
+                            _vm.getServices()
+                          }
+                        }
                       })
                     ],
                     1
@@ -95346,7 +95281,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             quantity: 0
         };
     },
-    created: function created() {
+    mounted: function mounted() {
         this.serviceQuantityAutomation();
     },
 
@@ -95372,6 +95307,32 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 default:
                     this.quantity = 1;
             }
+        },
+        addService: function addService() {
+            var _this = this;
+
+            axios.post('/api/orders/' + this.$route.params.id + '/rooms/' + this.$route.params.room_id + '/services/store', {
+                'service_id': this.service.id,
+                'service_type_id': this.service.service_type_id,
+                'price': this.service.price,
+                'service_unit_id': this.service.unit_id,
+                'quantity': this.quantity
+            }).then(function (response) {
+                _this.$emit('added-service');
+            });
+            // axios.post(`/api/orders/${this.$route.params.id}/rooms/${this.$route.params.room_id}/services/store`, {
+            //     'room_service_ids': this.removeEmptyElem(this.room_service_ids),
+            //     'service_quantities': this.removeEmptyElem(this.service_quantities),
+            //     'service_prices': this.service_prices
+            // }).then(response => {
+            //     this.$emit('price', parseInt(response.data.room.price))
+            // })
+        }
+    },
+
+    computed: {
+        servicePrice: function servicePrice() {
+            return this.quantity !== 0 ? new Intl.NumberFormat('ru-Ru').format(parseInt(this.service.price * this.quantity)) : 0;
         }
     }
 
@@ -95435,7 +95396,12 @@ var render = function() {
           _c("input", {
             staticClass: "form-check-input",
             attrs: { type: "checkbox", id: "service-" + _vm.service.id },
-            on: { click: function($event) {} }
+            on: {
+              click: function($event) {
+                $event.preventDefault()
+                _vm.addService()
+              }
+            }
           }),
           _vm._v(" "),
           _c(
@@ -95515,7 +95481,9 @@ var render = function() {
             _vm._v("\n        Р/" + _vm._s(_vm.service.unit.name) + "\n    ")
           ]),
           _vm._v(" "),
-          _c("div", { staticClass: "form-group__calc w-85" })
+          _c("div", { staticClass: "form-group__calc w-85 col-md-3" }, [
+            _vm._v("\n        " + _vm._s(_vm.servicePrice) + " P\n    ")
+          ])
         ]
       )
     ])

@@ -34,16 +34,21 @@
                   <div class="col-md-12 px-0 all-items"
                        v-if="room.room_services.length !== 0"
                        v-for="room_service in filteredRoomServices"
-                       :key="room_service.service_id"
                        >
-                          <RoomService :room_service="room_service" />
+                          <RoomService :room_service="room_service"
+                                       :key="room_service.service_id"
+                                       />
                   </div>
 
                   <div class="col-md-12 px-0 all-items"
                        v-for="service in filteredServices"
-                       :key="service.id"
                        >
-                       <Service :service="service" :room="room" />
+
+                       <Service :service="service"
+                                :room="room"
+                                :key="service.id"
+                                @added-service="getServices()"
+                                />
                   </div>
                 </div>
 
@@ -73,24 +78,7 @@
                 service_types: [],
                 service_type_id: 0,
 
-                searchQuery: "",
-
-                units: [],
-                services: [],
-
-                room_services: [],
-
-                room_service_ids: [],
-                room_service_types: [],
-                room_service_materials: [],
-                room_service_markups: [],
-
-                service_names: [],
-                service_units: [],
-                service_can_be_deleted: [],
-                service_quantities: [],
-                service_prices: [],
-
+                searchQuery: ""
             }
         },
 
@@ -128,61 +116,6 @@
             getServices () {
                 return axios.get('/api/services').then(response => {
                     this.services = response.data
-
-                    if (this.order.discount) {
-                        response.data.forEach(item => {
-                            if (item.can_be_discounted) {
-                                this.service_prices[item.id] = item.price * (1 - parseFloat(this.order.discount)/100)
-                            }
-                            if (!item.can_be_discounted) {
-                                this.service_prices[item.id] = item.price
-                            }
-                        })
-                    }
-
-                    if (this.order.markup) {
-                        response.data.forEach(item => {
-                            this.service_prices[item.id] = item.price * (1 + parseFloat(this.order.markup)/100)
-                        })
-                    }
-
-                    if (this.order.discount === null && this.order.markup === null) {
-                        response.data.forEach(item => {
-                            this.service_prices[item.id] = item.price
-                        })
-                    }
-
-                    response.data.forEach(item => {
-                        this.service_names[item.id] = item.name
-                        this.service_units[item.id] = item.unit.name
-                        this.service_can_be_deleted[item.id] = item.can_be_deleted
-                        this.room_service_types[item.id] = item.service_type_id
-
-                        if (!this.room_service_ids.includes(item.id)) {
-                            if (this.service_quantities[item.id] !== null) {
-                                switch (item.unit.id) {
-                                    case 1:
-                                        if (item.service_type_id === 1) {
-                                            this.service_quantities[item.id] = this.room.area
-                                        }
-                                        if (item.service_type_id === 2) {
-                                            this.service_quantities[item.id] = this.room.wall_area
-                                        }
-
-                                        if (item.service_type_id === 3) {
-                                            this.service_quantities[item.id] = this.room.area
-                                        }
-                                        break;
-                                    case 2:
-                                        this.service_quantities[item.id] = this.room.perimeter
-                                        break;
-                                    default:
-                                        this.service_quantities[item.id] = 1
-                                }
-                            }
-                        }
-
-                    })
                 })
             },
 
