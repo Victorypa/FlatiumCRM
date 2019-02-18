@@ -70533,25 +70533,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 });
             }
         },
-        checkElement: function checkElement(element, data, type) {
-            if (type === 'last') {
-                return element === data[data.length - 1];
-            }
-
-            if (type === 'first') {
-                return element === data[0];
-            }
-        },
-        changeRoomName: function changeRoomName(id) {
-            this.show = !this.show;
-        },
-        updateDescription: function updateDescription(id) {
-            axios.patch('/api/orders/' + this.$route.params.id + '/rooms/' + id + '/update_description', {
-                'description': this.descriptions[id]
-            }).then(function (response) {
-                window.location.reload(true);
-            });
-        },
         exportFile: function exportFile() {
             var answer = prompt("PDF (1) или Excel (2)", "1");
 
