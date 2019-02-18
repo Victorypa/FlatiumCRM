@@ -9,34 +9,14 @@
           <div class="col-md-10 bg px-0">
             <div class="container-fluid px-0">
                     <div class="create__fixed-top col-10 shadow-light">
-                      <div class="row align-items-center ">
+                      <div class="row align-items-center">
 
-                          <template v-if="!columnShow">
-                              <div class="col-md-8 d-flex align-items-end" @click="showServiceInput()">
-                                <h2 class="main-caption col-8" v-if="service.name">
-                                  {{ service.name}}
-                                </h2>
-                                <div class="main-subtitle ml-5">Цена: {{ service.price  }} Р</div>
-                              </div>
-                          </template>
-                          <template v-else>
-                              <div class="col-md-8 d-flex align-items-end" v-if="service_name" @mouseleave="showServiceInput()">
-                                  <h2 class="main-caption col-auto">
-                                      <input type="text"
-                                             v-model="service_name"
-                                             class="service-input"
-                                             @change="updateService()"
-                                             >
-                                  </h2>
-
-                                  <input type="number"
-                                         class="service-input"
-                                         v-model="service_price"
-                                         @change="updateService()"
-                                         />
-                              </div>
-                          </template>
-
+                          <div class="col-md-8 d-flex align-items-end">
+                            <h2 class="main-caption col-8" v-if="service.name">
+                              {{ service.name}}
+                            </h2>
+                            <div class="main-subtitle ml-5">Цена: {{ service.price  }} Р</div>
+                          </div>
 
                         <div class="col-md-4 d-flex">
                             <button type="button"
@@ -224,7 +204,7 @@
             }
         },
 
-        mounted () {
+        created () {
             this.getCurrentRoomService()
         },
 
@@ -237,7 +217,7 @@
                                 this.service_name = response.data.name
                                 this.service_price = response.data.price
 
-                                this.default_service_materials.forEach(material => {
+                                response.data.materials.forEach(material => {
                                     this.service_material_quantities[material.id] = material.quantity
                                     this.service_material_rates[material.id] = material.pivot.rate
                                 })
@@ -247,10 +227,11 @@
             getCurrentRoomService () {
                 return axios.get(`/api/orders/${this.$route.params.id}/rooms/${this.$route.params.room_id}/services/${this.$route.params.service_id}/show`)
                             .then(response => {
-                                this.currentRoomService = response.data
-                                this.currentRoomService.materials.forEach(material => {
-                                    this.room_service_material_ids.push(material.id)
-                                })
+
+                                // this.currentRoomService = response.data
+                                // response.data.materials.forEach(material => {
+                                //     this.room_service_material_ids.push(material.id)
+                                // })
                             })
             },
 

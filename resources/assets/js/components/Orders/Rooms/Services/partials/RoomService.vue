@@ -81,7 +81,7 @@
           </div>
         </div>
 
-      <div class="row col-12"
+      <!-- <div class="row col-12"
            v-if="room_service.materials.length !== 0"
            v-for="material in room_service.materials"
            :key="material.id"
@@ -98,12 +98,12 @@
               <div class="d-flex align-items-center">
                 <div class="col-4" style="margin-left:163px"></div>
                 <div class="form-group__calc col-md-2">
-                    <!-- {{ getMaterialSummary(material.pivot.rate, material.quantity, material.price, service_quantities[room_service_id]) }} Р -->
+                    {{ getMaterialSummary(material.pivot.rate, material.quantity, material.price, service_quantities[room_service_id]) }} Р
                 </div>
               </div>
             </div>
         </template>
-      </div>
+      </div> -->
 
     </div>
 </template>

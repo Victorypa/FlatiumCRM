@@ -66887,261 +66887,214 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c(
-    "div",
-    { staticClass: "row align-items-center" },
-    [
-      _c("label", { staticClass: "col-md-3 mb-0 d-flex align-items-center" }, [
-        _c(
-          "div",
-          { staticClass: "form-check custom-control d-flex edit-show" },
-          [
-            _c("input", {
-              staticClass: "form-check-input",
+  return _c("div", { staticClass: "row align-items-center" }, [
+    _c("label", { staticClass: "col-md-3 mb-0 d-flex align-items-center" }, [
+      _c(
+        "div",
+        { staticClass: "form-check custom-control d-flex edit-show" },
+        [
+          _c("input", {
+            staticClass: "form-check-input",
+            attrs: {
+              type: "checkbox",
+              id: "room-service-" + _vm.room_service.id
+            },
+            domProps: { checked: true },
+            on: {
+              click: function($event) {
+                _vm.removeService()
+              }
+            }
+          }),
+          _vm._v(" "),
+          _c(
+            "label",
+            {
+              staticClass: "form-check-label",
+              attrs: { for: "room-service-" + _vm.room_service.id }
+            },
+            [
+              _vm._v(
+                "\n                   " +
+                  _vm._s(_vm.room_service.service.name) +
+                  "\n            "
+              )
+            ]
+          ),
+          _vm._v(" "),
+          _c(
+            "router-link",
+            {
+              staticClass: "ml-auto edit",
               attrs: {
-                type: "checkbox",
-                id: "room-service-" + _vm.room_service.id
-              },
-              domProps: { checked: true },
-              on: {
-                click: function($event) {
-                  _vm.removeService()
+                to: {
+                  name: "service-material",
+                  params: { service_id: _vm.room_service.id }
                 }
               }
-            }),
-            _vm._v(" "),
-            _c(
-              "label",
+            },
+            [_vm._v("\n                    Ред.\n            ")]
+          )
+        ],
+        1
+      )
+    ]),
+    _vm._v(" "),
+    _c("div", { staticClass: "col-md-9 pr-0" }, [
+      _c(
+        "div",
+        {
+          staticClass: "form-group form-group--margin d-flex align-items-center"
+        },
+        [
+          _c("input", {
+            directives: [
               {
-                staticClass: "form-check-label",
-                attrs: { for: "room-service-" + _vm.room_service.id }
+                name: "model",
+                rawName: "v-model",
+                value: _vm.room_service.quantity,
+                expression: "room_service.quantity"
+              }
+            ],
+            staticClass: "form-control w-85 col-md-1",
+            attrs: { type: "number", placeholder: "Кол-во", min: "0" },
+            domProps: { value: _vm.room_service.quantity },
+            on: {
+              change: function($event) {
+                _vm.updateQuantity()
               },
-              [
-                _vm._v(
-                  "\n                   " +
-                    _vm._s(_vm.room_service.service.name) +
-                    "\n            "
-                )
-              ]
-            ),
-            _vm._v(" "),
-            _c(
-              "router-link",
-              {
-                staticClass: "ml-auto edit",
-                attrs: {
-                  to: {
-                    name: "service-material",
-                    params: { service_id: _vm.room_service.id }
-                  }
+              input: function($event) {
+                if ($event.target.composing) {
+                  return
                 }
-              },
-              [_vm._v("\n                    Ред.\n            ")]
+                _vm.$set(_vm.room_service, "quantity", $event.target.value)
+              }
+            }
+          }),
+          _vm._v(" "),
+          _c("div", { staticClass: "inputs-caption col-md-1" }, [
+            _vm._v(
+              "\n              " +
+                _vm._s(_vm.room_service.unit.name) +
+                "\n          "
             )
-          ],
-          1
-        )
-      ]),
-      _vm._v(" "),
-      _c("div", { staticClass: "col-md-9 pr-0" }, [
-        _c(
-          "div",
-          {
-            staticClass:
-              "form-group form-group--margin d-flex align-items-center"
-          },
-          [
+          ]),
+          _vm._v(" "),
+          _c("input", {
+            staticClass: "form-control w-85 col-md-1",
+            attrs: { type: "number", min: "0", disabled: "" },
+            domProps: { value: _vm.room_service.service.price }
+          }),
+          _vm._v(" "),
+          _c("div", { staticClass: "inputs-caption col-md-2" }, [
+            _vm._v(
+              "\n              Р/" +
+                _vm._s(_vm.room_service.unit.name) +
+                "\n          "
+            )
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "form-group__calc w-85 col-2" }, [
+            _vm._v(
+              "\n              " + _vm._s(_vm.servicePrice) + " Р\n          "
+            )
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "col-md-1" }, [
+            _vm.room_service.service.can_be_deleted
+              ? _c(
+                  "button",
+                  {
+                    staticClass:
+                      "add-button add-button--remove d-flex align-items-center",
+                    on: {
+                      click: function($event) {
+                        $event.preventDefault()
+                        _vm.deleteService()
+                      }
+                    }
+                  },
+                  [
+                    _c("img", {
+                      attrs: { src: "/img/del.svg", alt: "add-button" }
+                    })
+                  ]
+                )
+              : _vm._e()
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "col-md-2" }, [
             _c("input", {
               directives: [
                 {
                   name: "model",
                   rawName: "v-model",
-                  value: _vm.room_service.quantity,
-                  expression: "room_service.quantity"
+                  value: _vm.room_service.markup,
+                  expression: "room_service.markup"
                 }
               ],
-              staticClass: "form-control w-85 col-md-1",
-              attrs: { type: "number", placeholder: "Кол-во", min: "0" },
-              domProps: { value: _vm.room_service.quantity },
+              staticClass: "form-control w-85",
+              attrs: { type: "number", min: "0", placeholder: "Наценка" },
+              domProps: { value: _vm.room_service.markup },
               on: {
                 change: function($event) {
-                  _vm.updateQuantity()
+                  _vm.updateMarkup()
                 },
                 input: function($event) {
                   if ($event.target.composing) {
                     return
                   }
-                  _vm.$set(_vm.room_service, "quantity", $event.target.value)
+                  _vm.$set(_vm.room_service, "markup", $event.target.value)
                 }
               }
-            }),
-            _vm._v(" "),
-            _c("div", { staticClass: "inputs-caption col-md-1" }, [
-              _vm._v(
-                "\n              " +
-                  _vm._s(_vm.room_service.unit.name) +
-                  "\n          "
-              )
-            ]),
-            _vm._v(" "),
-            _c("input", {
-              staticClass: "form-control w-85 col-md-1",
-              attrs: { type: "number", min: "0", disabled: "" },
-              domProps: { value: _vm.room_service.service.price }
-            }),
-            _vm._v(" "),
-            _c("div", { staticClass: "inputs-caption col-md-2" }, [
-              _vm._v(
-                "\n              Р/" +
-                  _vm._s(_vm.room_service.unit.name) +
-                  "\n          "
-              )
-            ]),
-            _vm._v(" "),
-            _c("div", { staticClass: "form-group__calc w-85 col-2" }, [
-              _vm._v(
-                "\n              " + _vm._s(_vm.servicePrice) + " Р\n          "
-              )
-            ]),
-            _vm._v(" "),
-            _c("div", { staticClass: "col-md-1" }, [
-              _vm.room_service.service.can_be_deleted
-                ? _c(
+            })
+          ]),
+          _vm._v(" "),
+          _c(
+            "div",
+            { staticClass: "col-md-auto" },
+            [
+              _c(
+                "router-link",
+                {
+                  attrs: {
+                    to: {
+                      name: "actual-material",
+                      params: {
+                        id: _vm.room_service.room.order_id,
+                        room_id: _vm.room_service.room_id,
+                        service_id: _vm.room_service.id
+                      }
+                    }
+                  }
+                },
+                [
+                  _c(
                     "button",
                     {
-                      staticClass:
-                        "add-button add-button--remove d-flex align-items-center",
-                      on: {
-                        click: function($event) {
-                          $event.preventDefault()
-                          _vm.deleteService()
-                        }
-                      }
+                      staticClass: "add-button ",
+                      attrs: { title: "Добавить материалы" }
                     },
                     [
                       _c("img", {
-                        attrs: { src: "/img/del.svg", alt: "add-button" }
+                        attrs: {
+                          src: "/img/plus-circle.svg",
+                          alt: "add-button"
+                        }
                       })
                     ]
                   )
-                : _vm._e()
-            ]),
-            _vm._v(" "),
-            _c("div", { staticClass: "col-md-2" }, [
-              _c("input", {
-                directives: [
-                  {
-                    name: "model",
-                    rawName: "v-model",
-                    value: _vm.room_service.markup,
-                    expression: "room_service.markup"
-                  }
-                ],
-                staticClass: "form-control w-85",
-                attrs: { type: "number", min: "0", placeholder: "Наценка" },
-                domProps: { value: _vm.room_service.markup },
-                on: {
-                  change: function($event) {
-                    _vm.updateMarkup()
-                  },
-                  input: function($event) {
-                    if ($event.target.composing) {
-                      return
-                    }
-                    _vm.$set(_vm.room_service, "markup", $event.target.value)
-                  }
-                }
-              })
-            ]),
-            _vm._v(" "),
-            _c(
-              "div",
-              { staticClass: "col-md-auto" },
-              [
-                _c(
-                  "router-link",
-                  {
-                    attrs: {
-                      to: {
-                        name: "actual-material",
-                        params: {
-                          id: _vm.room_service.room.order_id,
-                          room_id: _vm.room_service.room_id,
-                          service_id: _vm.room_service.id
-                        }
-                      }
-                    }
-                  },
-                  [
-                    _c(
-                      "button",
-                      {
-                        staticClass: "add-button ",
-                        attrs: { title: "Добавить материалы" }
-                      },
-                      [
-                        _c("img", {
-                          attrs: {
-                            src: "/img/plus-circle.svg",
-                            alt: "add-button"
-                          }
-                        })
-                      ]
-                    )
-                  ]
-                )
-              ],
-              1
-            )
-          ]
-        )
-      ]),
-      _vm._v(" "),
-      _vm._l(_vm.room_service.materials, function(material) {
-        return _vm.room_service.materials.length !== 0
-          ? _c(
-              "div",
-              { key: material.id, staticClass: "row col-12" },
-              [
-                _c("div", { staticClass: "col-4 pl-5 mb-3" }, [
-                  _c("div", { staticClass: "subtitle-list" }, [
-                    _c("div", { staticClass: "subtitle-list__item" }, [
-                      _vm._v(
-                        "\n                " +
-                          _vm._s(material.name) +
-                          "\n            "
-                      )
-                    ])
-                  ])
-                ]),
-                _vm._v(" "),
-                material.pivot.rate ? [_vm._m(0, true)] : _vm._e()
-              ],
-              2
-            )
-          : _vm._e()
-      })
-    ],
-    2
-  )
-}
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "col-8" }, [
-      _c("div", { staticClass: "d-flex align-items-center" }, [
-        _c("div", {
-          staticClass: "col-4",
-          staticStyle: { "margin-left": "163px" }
-        }),
-        _vm._v(" "),
-        _c("div", { staticClass: "form-group__calc col-md-2" })
-      ])
+                ]
+              )
+            ],
+            1
+          )
+        ]
+      )
     ])
-  }
-]
+  ])
+}
+var staticRenderFns = []
 render._withStripped = true
 module.exports = { render: render, staticRenderFns: staticRenderFns }
 if (false) {
@@ -69425,26 +69378,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 
 
 
@@ -69464,7 +69397,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             material_ids: []
         };
     },
-    mounted: function mounted() {
+    created: function created() {
         this.getCurrentRoomService();
     },
 
@@ -69479,20 +69412,19 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 _this.service_name = response.data.name;
                 _this.service_price = response.data.price;
 
-                _this.default_service_materials.forEach(function (material) {
+                response.data.materials.forEach(function (material) {
                     _this.service_material_quantities[material.id] = material.quantity;
                     _this.service_material_rates[material.id] = material.pivot.rate;
                 });
             });
         },
         getCurrentRoomService: function getCurrentRoomService() {
-            var _this2 = this;
-
             return axios.get('/api/orders/' + this.$route.params.id + '/rooms/' + this.$route.params.room_id + '/services/' + this.$route.params.service_id + '/show').then(function (response) {
-                _this2.currentRoomService = response.data;
-                _this2.currentRoomService.materials.forEach(function (material) {
-                    _this2.room_service_material_ids.push(material.id);
-                });
+
+                // this.currentRoomService = response.data
+                // response.data.materials.forEach(material => {
+                //     this.room_service_material_ids.push(material.id)
+                // })
             });
         },
         addServiceMaterialId: function addServiceMaterialId(id) {
@@ -69523,13 +69455,13 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
     computed: {
         filteredMaterials: function filteredMaterials() {
-            var _this3 = this;
+            var _this2 = this;
 
             var data = this.default_service_materials;
 
             data = data.filter(function (row) {
                 return Object.keys(row).some(function (key) {
-                    return String(row[key]).toLowerCase().indexOf(_this3.searchQuery.toLowerCase()) > -1;
+                    return String(row[key]).toLowerCase().indexOf(_this2.searchQuery.toLowerCase()) > -1;
                 });
             });
 
@@ -69565,155 +69497,48 @@ var render = function() {
                   "div",
                   { staticClass: "create__fixed-top col-10 shadow-light" },
                   [
-                    _c(
-                      "div",
-                      { staticClass: "row align-items-center " },
-                      [
-                        !_vm.columnShow
-                          ? [
-                              _c(
-                                "div",
-                                {
-                                  staticClass:
-                                    "col-md-8 d-flex align-items-end",
-                                  on: {
-                                    click: function($event) {
-                                      _vm.showServiceInput()
-                                    }
-                                  }
-                                },
-                                [
-                                  _vm.service.name
-                                    ? _c(
-                                        "h2",
-                                        { staticClass: "main-caption col-8" },
-                                        [
-                                          _vm._v(
-                                            "\n                              " +
-                                              _vm._s(_vm.service.name) +
-                                              "\n                            "
-                                          )
-                                        ]
-                                      )
-                                    : _vm._e(),
-                                  _vm._v(" "),
-                                  _c(
-                                    "div",
-                                    { staticClass: "main-subtitle ml-5" },
-                                    [
-                                      _vm._v(
-                                        "Цена: " +
-                                          _vm._s(_vm.service.price) +
-                                          " Р"
-                                      )
-                                    ]
-                                  )
-                                ]
-                              )
-                            ]
-                          : [
-                              _vm.service_name
-                                ? _c(
-                                    "div",
-                                    {
-                                      staticClass:
-                                        "col-md-8 d-flex align-items-end",
-                                      on: {
-                                        mouseleave: function($event) {
-                                          _vm.showServiceInput()
-                                        }
-                                      }
-                                    },
-                                    [
-                                      _c(
-                                        "h2",
-                                        {
-                                          staticClass: "main-caption col-auto"
-                                        },
-                                        [
-                                          _c("input", {
-                                            directives: [
-                                              {
-                                                name: "model",
-                                                rawName: "v-model",
-                                                value: _vm.service_name,
-                                                expression: "service_name"
-                                              }
-                                            ],
-                                            staticClass: "service-input",
-                                            attrs: { type: "text" },
-                                            domProps: {
-                                              value: _vm.service_name
-                                            },
-                                            on: {
-                                              change: function($event) {
-                                                _vm.updateService()
-                                              },
-                                              input: function($event) {
-                                                if ($event.target.composing) {
-                                                  return
-                                                }
-                                                _vm.service_name =
-                                                  $event.target.value
-                                              }
-                                            }
-                                          })
-                                        ]
-                                      ),
-                                      _vm._v(" "),
-                                      _c("input", {
-                                        directives: [
-                                          {
-                                            name: "model",
-                                            rawName: "v-model",
-                                            value: _vm.service_price,
-                                            expression: "service_price"
-                                          }
-                                        ],
-                                        staticClass: "service-input",
-                                        attrs: { type: "number" },
-                                        domProps: { value: _vm.service_price },
-                                        on: {
-                                          change: function($event) {
-                                            _vm.updateService()
-                                          },
-                                          input: function($event) {
-                                            if ($event.target.composing) {
-                                              return
-                                            }
-                                            _vm.service_price =
-                                              $event.target.value
-                                          }
-                                        }
-                                      })
-                                    ]
-                                  )
-                                : _vm._e()
-                            ],
-                        _vm._v(" "),
-                        _c("div", { staticClass: "col-md-4 d-flex" }, [
-                          _c(
-                            "button",
-                            {
-                              staticClass:
-                                "primary-button primary-button--outline col-6 ml-auto",
-                              attrs: { type: "button" },
-                              on: {
-                                click: function($event) {
-                                  _vm.$router.go(-1)
-                                }
+                    _c("div", { staticClass: "row align-items-center" }, [
+                      _c(
+                        "div",
+                        { staticClass: "col-md-8 d-flex align-items-end" },
+                        [
+                          _vm.service.name
+                            ? _c("h2", { staticClass: "main-caption col-8" }, [
+                                _vm._v(
+                                  "\n                          " +
+                                    _vm._s(_vm.service.name) +
+                                    "\n                        "
+                                )
+                              ])
+                            : _vm._e(),
+                          _vm._v(" "),
+                          _c("div", { staticClass: "main-subtitle ml-5" }, [
+                            _vm._v("Цена: " + _vm._s(_vm.service.price) + " Р")
+                          ])
+                        ]
+                      ),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "col-md-4 d-flex" }, [
+                        _c(
+                          "button",
+                          {
+                            staticClass:
+                              "primary-button primary-button--outline col-6 ml-auto",
+                            attrs: { type: "button" },
+                            on: {
+                              click: function($event) {
+                                _vm.$router.go(-1)
                               }
-                            },
-                            [
-                              _vm._v(
-                                "\n                          Назад\n                        "
-                              )
-                            ]
-                          )
-                        ])
-                      ],
-                      2
-                    )
+                            }
+                          },
+                          [
+                            _vm._v(
+                              "\n                          Назад\n                        "
+                            )
+                          ]
+                        )
+                      ])
+                    ])
                   ]
                 ),
                 _vm._v(" "),
