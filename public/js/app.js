@@ -95357,7 +95357,7 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _vm.show
     ? _c("div", { staticClass: "row align-items-center" }, [
-        _c("label", { staticClass: "col-md-4 mb-0" }, [
+        _c("label", { staticClass: "col-md-3 mb-0" }, [
           _c(
             "div",
             { staticClass: "form-check custom-control d-flex edit-show" },
@@ -95406,7 +95406,7 @@ var render = function() {
           )
         ]),
         _vm._v(" "),
-        _c("div", { staticClass: "col-md-8 pr-0" }, [
+        _c("div", { staticClass: "col-md-9 pr-0" }, [
           _c(
             "div",
             {
@@ -95423,7 +95423,7 @@ var render = function() {
                     expression: "quantity"
                   }
                 ],
-                staticClass: "form-control w-85",
+                staticClass: "form-control w-85 col-md-2",
                 attrs: { type: "number", placeholder: "Кол-во", min: "0" },
                 domProps: { value: _vm.quantity },
                 on: {
@@ -95442,7 +95442,7 @@ var render = function() {
               ]),
               _vm._v(" "),
               _c("input", {
-                staticClass: "form-control w-85",
+                staticClass: "form-control w-85 col-md-2",
                 attrs: { type: "number", min: "0", disabled: "" },
                 domProps: { value: _vm.service.price }
               }),
@@ -95453,7 +95453,7 @@ var render = function() {
                 )
               ]),
               _vm._v(" "),
-              _c("div", { staticClass: "form-group__calc w-85 col-md-3" }, [
+              _c("div", { staticClass: "form-group__calc w-85 col-md-2" }, [
                 _vm._v("\n        " + _vm._s(_vm.servicePrice) + " P\n    ")
               ])
             ]
@@ -95640,9 +95640,20 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     props: ['room_service'],
+
+    methods: {
+        removeService: function removeService() {
+            var _this = this;
+
+            axios.delete('/api/orders/' + this.$route.params.id + '/rooms/' + this.$route.params.room_id + '/services/' + this.room_service.id + '/destroy').then(function (response) {
+                _this.$emit('removed-service');
+            });
+        }
+    },
 
     computed: {
         servicePrice: function servicePrice() {
@@ -95704,10 +95715,18 @@ var render = function() {
     "div",
     { staticClass: "row align-items-center" },
     [
-      _c("label", { staticClass: "col-md-4 mb-0 d-flex align-items-center" }, [
+      _c("label", { staticClass: "col-md-3 mb-0 d-flex align-items-center" }, [
         _c(
           "div",
-          { staticClass: "form-check custom-control d-flex edit-show" },
+          {
+            staticClass: "form-check custom-control d-flex edit-show",
+            on: {
+              click: function($event) {
+                $event.preventDefault()
+                _vm.removeService()
+              }
+            }
+          },
           [
             _c("input", {
               staticClass: "form-check-input",
@@ -95715,8 +95734,7 @@ var render = function() {
                 type: "checkbox",
                 id: "room-service-" + _vm.room_service.id
               },
-              domProps: { checked: true },
-              on: { click: function($event) {} }
+              domProps: { checked: true }
             }),
             _vm._v(" "),
             _c(
@@ -95752,7 +95770,7 @@ var render = function() {
         )
       ]),
       _vm._v(" "),
-      _c("div", { staticClass: "col-md-8 pr-0" }, [
+      _c("div", { staticClass: "col-md-9 pr-0" }, [
         _c(
           "div",
           {
@@ -95769,7 +95787,7 @@ var render = function() {
                   expression: "room_service.quantity"
                 }
               ],
-              staticClass: "form-control w-85",
+              staticClass: "form-control w-85 col-md-2",
               attrs: { type: "number", placeholder: "Кол-во", min: "0" },
               domProps: { value: _vm.room_service.quantity },
               on: {
@@ -95792,7 +95810,7 @@ var render = function() {
             ]),
             _vm._v(" "),
             _c("input", {
-              staticClass: "form-control w-85 col-md-1",
+              staticClass: "form-control w-85 col-md-2",
               attrs: { type: "number", min: "0", disabled: "" },
               domProps: { value: _vm.room_service.service.price }
             }),

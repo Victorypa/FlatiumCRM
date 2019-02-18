@@ -1,6 +1,6 @@
 <template>
     <div class="row align-items-center" v-if="show">
-      <label class="col-md-4 mb-0">
+      <label class="col-md-3 mb-0">
           <div class="form-check custom-control d-flex edit-show">
               <input class="form-check-input"
                      type="checkbox"
@@ -20,10 +20,10 @@
           </div>
       </label>
 
-    <div class="col-md-8 pr-0">
+    <div class="col-md-9 pr-0">
       <div class="form-group form-group--margin d-flex align-items-center">
         <input type="number"
-               class="form-control w-85"
+               class="form-control w-85 col-md-2"
                placeholder="Кол-во"
                min="0"
                v-model="quantity"
@@ -35,7 +35,7 @@
         </div>
 
         <input type="number"
-               class="form-control w-85"
+               class="form-control w-85 col-md-2"
                min="0"
                disabled
                :value="service.price"
@@ -46,7 +46,7 @@
         </div>
 
 
-        <div class="form-group__calc w-85 col-md-3">
+        <div class="form-group__calc w-85 col-md-2">
             {{ servicePrice }} P
         </div>
       </div>
@@ -94,7 +94,7 @@
 
             addService () {
                 this.show = !this.show
-                
+
                 axios.post(`/api/orders/${this.$route.params.id}/rooms/${this.$route.params.room_id}/services/store`, {
                     'service_id': this.service.id,
                     'service_type_id': this.service.service_type_id,

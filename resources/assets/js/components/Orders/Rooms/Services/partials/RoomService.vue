@@ -1,12 +1,13 @@
 <template>
     <div class="row align-items-center">
-        <label class="col-md-4 mb-0 d-flex align-items-center">
-            <div class="form-check custom-control d-flex edit-show">
+        <label class="col-md-3 mb-0 d-flex align-items-center">
+            <div class="form-check custom-control d-flex edit-show"
+                 @click.prevent="removeService()"
+                 >
                 <input class="form-check-input"
                        type="checkbox"
                        :id="'room-service-' + room_service.id"
                        :checked="true"
-                       @click=""
                        >
 
                 <label class="form-check-label"
@@ -21,10 +22,10 @@
             </div>
         </label>
 
-        <div class="col-md-8 pr-0">
+        <div class="col-md-9 pr-0">
           <div class="form-group form-group--margin d-flex align-items-center">
               <input type="number"
-                     class="form-control w-85"
+                     class="form-control w-85 col-md-2"
                      placeholder="Кол-во"
                      min="0"
                      v-model="room_service.quantity"
@@ -36,7 +37,7 @@
               </div>
 
               <input  type="number"
-                      class="form-control w-85 col-md-1"
+                      class="form-control w-85 col-md-2"
                       min="0"
                       disabled
                       :value="room_service.service.price"
@@ -111,6 +112,15 @@
 <script>
     export default {
         props: ['room_service'],
+
+        methods: {
+            removeService () {
+                axios.delete(`/api/orders/${this.$route.params.id}/rooms/${this.$route.params.room_id}/services/${this.room_service.id}/destroy`)
+                     .then(response => {
+                         this.$emit('removed-service')
+                     })
+            }
+        },
 
         computed: {
             servicePrice () {
