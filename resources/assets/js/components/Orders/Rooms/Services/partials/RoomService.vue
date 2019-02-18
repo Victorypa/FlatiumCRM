@@ -110,11 +110,7 @@
 
 <script>
     export default {
-        props: ['service_type_id', 'room_service'],
-
-        // created () {
-        //     console.log(this.room_service);
-        // },
+        props: ['room_service'],
 
         computed: {
             servicePrice () {

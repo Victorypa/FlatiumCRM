@@ -66046,6 +66046,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__components_Services_partials_AddService___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__components_Services_partials_AddService__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__partials_RoomService__ = __webpack_require__(353);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__partials_RoomService___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2__partials_RoomService__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__partials_Service__ = __webpack_require__(346);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__partials_Service___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3__partials_Service__);
 //
 //
 //
@@ -66099,59 +66101,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
+
 
 
 
@@ -66161,6 +66111,12 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     props: ['room', 'order'],
 
     mixins: [__WEBPACK_IMPORTED_MODULE_0__components_Services_mixins_ServiceCollection__["a" /* default */]],
+
+    components: {
+        AddService: __WEBPACK_IMPORTED_MODULE_1__components_Services_partials_AddService___default.a,
+        RoomService: __WEBPACK_IMPORTED_MODULE_2__partials_RoomService___default.a,
+        Service: __WEBPACK_IMPORTED_MODULE_3__partials_Service___default.a
+    },
 
     data: function data() {
         return {
@@ -66187,41 +66143,12 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
         };
     },
-
-
-    components: {
-        AddService: __WEBPACK_IMPORTED_MODULE_1__components_Services_partials_AddService___default.a,
-        RoomService: __WEBPACK_IMPORTED_MODULE_2__partials_RoomService___default.a
-    },
-
     mounted: function mounted() {
         this.getServices();
-        this.getRoomServices();
     },
 
 
     methods: {
-        getRoomServices: function getRoomServices() {
-            return axios.get('/api/orders/' + this.$route.params.id + '/rooms/' + this.$route.params.room_id).then(function (response) {
-                response.data.room_services.forEach(function (item) {
-                    // this.room_service_ids.push(item.service_id)
-                    // this.room_service_materials[item.service_id] = item.materials
-                    //
-                    // this.room_service_markups[item.service_id] = item.markup
-                    //
-                    // this.room_services.push({
-                    //     service_id: item.service_id,
-                    //     service_type_id: item.service_type_id
-                    // })
-                    //
-                    // if (item.quantity != null) {
-                    //     this.service_quantities[item.service_id] = item.quantity
-                    // } else {
-                    //     this.service_quantities[item.service_id] = 1
-                    // }
-                });
-            });
-        },
         getServiceTypes: function getServiceTypes() {
             var _this = this;
 
@@ -66354,19 +66281,31 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         filteredServices: function filteredServices() {
             var _this6 = this;
 
-            var data = this.services;
+            if (this.services.length !== 0) {
+                var data = this.services;
 
-            data = data.filter(function (row) {
-                return row.service_type_id === _this6.service_type_id;
-            });
+                var room_service_ids = [];
 
-            data = data.filter(function (row) {
-                return Object.keys(row).some(function (key) {
-                    return String(row[key]).toLowerCase().indexOf(_this6.searchQuery.toLowerCase()) > -1;
+                this.room.room_services.forEach(function (room_service) {
+                    room_service_ids.push(room_service.service_id);
                 });
-            });
 
-            return data;
+                data = data.filter(function (row) {
+                    return room_service_ids.indexOf(row.id) < 0;
+                });
+
+                data = data.filter(function (row) {
+                    return row.service_type_id === _this6.service_type_id;
+                });
+
+                data = data.filter(function (row) {
+                    return Object.keys(row).some(function (key) {
+                        return String(row[key]).toLowerCase().indexOf(_this6.searchQuery.toLowerCase()) > -1;
+                    });
+                });
+
+                return data;
+            }
         },
         filteredRoomServices: function filteredRoomServices() {
             var _this7 = this;
@@ -66511,20 +66450,29 @@ var render = function() {
                     ? _c(
                         "div",
                         {
-                          key: room_service.id,
+                          key: room_service.service_id,
                           staticClass: "col-md-12 px-0 all-items"
                         },
                         [
                           _c("RoomService", {
-                            attrs: {
-                              room_service: room_service,
-                              service_type_id: _vm.service_type_id
-                            }
+                            attrs: { room_service: room_service }
                           })
                         ],
                         1
                       )
                     : _vm._e()
+                }),
+                _vm._v(" "),
+                _vm._l(_vm.filteredServices, function(service) {
+                  return _c(
+                    "div",
+                    {
+                      key: service.id,
+                      staticClass: "col-md-12 px-0 all-items"
+                    },
+                    [_c("Service", { attrs: { service: service } })],
+                    1
+                  )
                 })
               ],
               2
@@ -95273,12 +95221,236 @@ $(window).scroll(function () {
 /* 343 */,
 /* 344 */,
 /* 345 */,
-/* 346 */,
-/* 347 */,
+/* 346 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+function injectStyle (ssrContext) {
+  if (disposed) return
+  __webpack_require__(349)
+}
+var normalizeComponent = __webpack_require__(1)
+/* script */
+var __vue_script__ = __webpack_require__(347)
+/* template */
+var __vue_template__ = __webpack_require__(351)
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = injectStyle
+/* scopeId */
+var __vue_scopeId__ = "data-v-1969a75f"
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources/assets/js/components/Orders/Rooms/Services/partials/Service.vue"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-1969a75f", Component.options)
+  } else {
+    hotAPI.reload("data-v-1969a75f", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 347 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+    props: ['service'],
+
+    created: function created() {
+        // console.log(this.service);
+    },
+
+
+    computed: {}
+});
+
+/***/ }),
 /* 348 */,
-/* 349 */,
-/* 350 */,
-/* 351 */,
+/* 349 */
+/***/ (function(module, exports, __webpack_require__) {
+
+// style-loader: Adds some css to the DOM by adding a <style> tag
+
+// load the styles
+var content = __webpack_require__(350);
+if(typeof content === 'string') content = [[module.i, content, '']];
+if(content.locals) module.exports = content.locals;
+// add the styles to the DOM
+var update = __webpack_require__(3)("0b987ee0", content, false, {});
+// Hot Module Replacement
+if(false) {
+ // When the styles change, update the <style> tags
+ if(!content.locals) {
+   module.hot.accept("!!../../../../../../../../node_modules/css-loader/index.js!../../../../../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-1969a75f\",\"scoped\":true,\"hasInlineConfig\":true}!../../../../../../../../node_modules/sass-loader/lib/loader.js!../../../../../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./Service.vue", function() {
+     var newContent = require("!!../../../../../../../../node_modules/css-loader/index.js!../../../../../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-1969a75f\",\"scoped\":true,\"hasInlineConfig\":true}!../../../../../../../../node_modules/sass-loader/lib/loader.js!../../../../../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./Service.vue");
+     if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+     update(newContent);
+   });
+ }
+ // When the module is disposed, remove the <style> tags
+ module.hot.dispose(function() { update(); });
+}
+
+/***/ }),
+/* 350 */
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(2)(false);
+// imports
+
+
+// module
+exports.push([module.i, "\n.edit-show:hover .edit[data-v-1969a75f] {\n  -webkit-transition: 0.5s;\n  transition: 0.5s;\n  opacity: 1;\n}\n.edit[data-v-1969a75f] {\n  opacity: 0;\n  color: #00A4D1;\n}\n.edit[data-v-1969a75f]:hover {\n    cursor: pointer;\n}\n", ""]);
+
+// exports
+
+
+/***/ }),
+/* 351 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", { staticClass: "row align-items-center" }, [
+    _c("label", { staticClass: "col-md-4 mb-0" }, [
+      _c(
+        "div",
+        { staticClass: "form-check custom-control d-flex edit-show" },
+        [
+          _c("input", {
+            staticClass: "form-check-input",
+            attrs: { type: "checkbox", id: "service-" + _vm.service.id },
+            on: { click: function($event) {} }
+          }),
+          _vm._v(" "),
+          _c(
+            "label",
+            {
+              staticClass: "form-check-label",
+              attrs: { for: "service-" + _vm.service.id }
+            },
+            [
+              _vm._v(
+                "\n                 " +
+                  _vm._s(_vm.service.name) +
+                  "\n          "
+              )
+            ]
+          ),
+          _vm._v(" "),
+          _c(
+            "router-link",
+            {
+              staticClass: "ml-auto edit",
+              attrs: {
+                to: {
+                  name: "service-material",
+                  params: { service_id: _vm.service.id }
+                }
+              }
+            },
+            [_vm._v("\n                  Ред.\n          ")]
+          )
+        ],
+        1
+      )
+    ])
+  ])
+}
+var staticRenderFns = []
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-1969a75f", module.exports)
+  }
+}
+
+/***/ }),
 /* 352 */,
 /* 353 */
 /***/ (function(module, exports, __webpack_require__) {
@@ -95448,11 +95620,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-    props: ['service_type_id', 'room_service'],
-
-    // created () {
-    //     console.log(this.room_service);
-    // },
+    props: ['room_service'],
 
     computed: {
         servicePrice: function servicePrice() {

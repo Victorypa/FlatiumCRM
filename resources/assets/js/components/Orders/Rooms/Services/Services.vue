@@ -34,72 +34,19 @@
                   <div class="col-md-12 px-0 all-items"
                        v-if="room.room_services.length !== 0"
                        v-for="room_service in filteredRoomServices"
-                       :key="room_service.id"
+                       :key="room_service.service_id"
                        >
-                          <RoomService :room_service="room_service"
-                                       :service_type_id="service_type_id"
-                                       />
+                          <RoomService :room_service="room_service" />
                   </div>
 
-                  <!-- <div class="col-md-12 px-0 all-items" v-for="service in filteredServices" v-if="!room_service_ids.includes(service.id)" :key="service.id">
-
-                    <div class="row align-items-center">
-
-                      <label class="col-md-4 mb-0">
-                          <div class="form-check custom-control d-flex edit-show">
-                              <input class="form-check-input"
-                                     type="checkbox"
-                                     :id="'service-' + service.id"
-                                     :checked="room_service_ids.includes(service.id)"
-                                     @click="addToRoomServiceId(service.id)"
-                                     >
-
-                              <label class="form-check-label"
-                                     :for="'service-' + service.id"
-                                     >
-                                     {{ service.name }}
-                              </label>
-
-                              <router-link class="ml-auto edit" :to="{ name: 'service-material', params: { service_id: service.id } }">
-                                      Ред.
-                              </router-link>
-                          </div>
-                      </label>
-
-                    <div class="col-md-8 pr-0">
-                      <div class="form-group form-group--margin d-flex align-items-center">
-                        <input type="number"
-                               class="form-control w-85"
-                               placeholder="Кол-во"
-                               min="0"
-                               v-model="service_quantities[service.id]"
-                               @change="linkServicesToRoom()"
-                               >
-
-                        <div class="inputs-caption col-md-2">
-                            {{ service.unit.name }}
-                        </div>
-
-                        <input type="number"
-                               class="form-control w-85"
-                               min="0"
-                               disabled
-                               :value="service_prices[service.id]"
-                               >
-
-                        <div class="inputs-caption col-md-2">
-                            Р/{{ service.unit.name }}
-                        </div>
-
-                        <div class="form-group__calc w-85">
-                            {{ getServiceSummary(service.id) }} P
-                        </div>
-                      </div>
-                    </div>
-                    </div>
-                  </div> -->
-
+                  <div class="col-md-12 px-0 all-items"
+                       v-for="service in filteredServices"
+                       :key="service.id"
+                       >
+                       <Service :service="service" />
+                  </div>
                 </div>
+
             </template>
         </div>
 </template>
@@ -108,11 +55,18 @@
     import ServiceCollection from '@/components/Services/mixins/ServiceCollection'
     import AddService from '@/components/Services/partials/AddService'
     import RoomService from './partials/RoomService'
+    import Service from './partials/Service'
 
     export default {
         props: ['room', 'order'],
 
         mixins: [ServiceCollection],
+
+        components: {
+            AddService,
+            RoomService,
+            Service
+        },
 
         data () {
             return {
@@ -140,40 +94,11 @@
             }
         },
 
-        components: {
-            AddService,
-            RoomService
-        },
-
         mounted () {
             this.getServices()
-            this.getRoomServices()
         },
 
         methods: {
-            getRoomServices() {
-                return axios.get(`/api/orders/${this.$route.params.id}/rooms/${this.$route.params.room_id}`)
-                            .then(response => {
-                                response.data.room_services.forEach(item => {
-                                    // this.room_service_ids.push(item.service_id)
-                                    // this.room_service_materials[item.service_id] = item.materials
-                                    //
-                                    // this.room_service_markups[item.service_id] = item.markup
-                                    //
-                                    // this.room_services.push({
-                                    //     service_id: item.service_id,
-                                    //     service_type_id: item.service_type_id
-                                    // })
-                                    //
-                                    // if (item.quantity != null) {
-                                    //     this.service_quantities[item.service_id] = item.quantity
-                                    // } else {
-                                    //     this.service_quantities[item.service_id] = 1
-                                    // }
-                                })
-                            })
-            },
-
             getServiceTypes () {
                     return axios.get(`/api/service_types`).then(response => {
                         switch (parseInt(this.room.room_type_id)) {
@@ -303,23 +228,35 @@
 
         computed: {
             filteredServices () {
-                let data = this.services
+                if (this.services.length !== 0) {
+                    let data = this.services
 
-                data = data.filter(row => {
-                    return row.service_type_id === this.service_type_id
-                })
+                    let room_service_ids = []
 
-                data = data.filter(row => {
-                  return Object.keys(row).some(key => {
-                    return (
-                      String(row[key])
-                        .toLowerCase()
-                        .indexOf(this.searchQuery.toLowerCase()) > -1
-                    )
-                  })
-                })
+                    this.room.room_services.forEach(room_service => {
+                        room_service_ids.push(room_service.service_id)
+                    })
 
-                return data
+                    data = data.filter(row => {
+                        return room_service_ids.indexOf(row.id) < 0
+                    })
+
+                    data = data.filter(row => {
+                        return row.service_type_id === this.service_type_id
+                    })
+
+                    data = data.filter(row => {
+                      return Object.keys(row).some(key => {
+                        return (
+                          String(row[key])
+                            .toLowerCase()
+                            .indexOf(this.searchQuery.toLowerCase()) > -1
+                        )
+                      })
+                    })
+
+                    return data
+                }
             },
 
             filteredRoomServices () {
@@ -330,7 +267,7 @@
                 })
 
                 return data
-            }
+            },
         }
     }
 </script>
