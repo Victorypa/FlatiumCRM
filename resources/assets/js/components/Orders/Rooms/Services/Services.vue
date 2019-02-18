@@ -49,6 +49,7 @@
                                 :room="room"
                                 :key="service.id"
                                 @added-service="getRoomServices()"
+                                
                                 />
                   </div>
                 </div>

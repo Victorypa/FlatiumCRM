@@ -65653,6 +65653,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_vue_carousel___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_vue_carousel__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__Partials_OrderDetail__ = __webpack_require__(151);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__Partials_OrderDetail___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3__Partials_OrderDetail__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__bus__ = __webpack_require__(353);
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
 //
@@ -65857,6 +65858,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
 
 
+
 /* harmony default export */ __webpack_exports__["default"] = ({
     components: {
         OrderDetail: __WEBPACK_IMPORTED_MODULE_3__Partials_OrderDetail___default.a,
@@ -65891,6 +65893,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     mounted: function mounted() {
         this.getRoom();
         this.getUnits();
+        this.eventListeners();
     },
 
 
@@ -65955,24 +65958,31 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
                 _this3.getRoom();
             });
         },
-        updateRoomPriority: function updateRoomPriority(room_priority, id) {
+        eventListeners: function eventListeners() {
             var _this4 = this;
+
+            __WEBPACK_IMPORTED_MODULE_4__bus__["a" /* EventBus */].$on('updated-room-price', function () {
+                _this4.getRoom();
+            });
+        },
+        updateRoomPriority: function updateRoomPriority(room_priority, id) {
+            var _this5 = this;
 
             axios.patch('/api/orders/' + this.$route.params.id + '/rooms/' + id + '/update_priority', {
                 'priority': this.room_priority
             }).then(function (response) {
-                _this4.getRoom();
+                _this5.getRoom();
             });
         },
         deleteRoom: function deleteRoom() {
-            var _this5 = this;
+            var _this6 = this;
 
             if (confirm('Удалить?')) {
                 axios.delete('/api/orders/' + this.$route.params.id + '/rooms/' + this.room.id + '/destroy').then(function (response) {
                     if (response.data.id) {
-                        _this5.$router.push({ name: 'room-show', params: { id: _this5.$route.params.id, room_id: response.data.id } });
+                        _this6.$router.push({ name: 'room-show', params: { id: _this6.$route.params.id, room_id: response.data.id } });
                     } else {
-                        _this5.$router.push({ name: 'order-show', params: { id: _this5.$route.params.id } });
+                        _this6.$router.push({ name: 'order-show', params: { id: _this6.$route.params.id } });
                     }
                 });
             }
@@ -66097,6 +66107,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__partials_RoomService___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2__partials_RoomService__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__partials_Service__ = __webpack_require__(294);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__partials_Service___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3__partials_Service__);
+//
 //
 //
 //
@@ -67217,6 +67228,7 @@ exports.push([module.i, "\n.edit-show:hover .edit[data-v-1969a75f] {\n  -webkit-
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__bus__ = __webpack_require__(353);
 //
 //
 //
@@ -67273,6 +67285,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+
+
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     props: ['service', 'room'],
@@ -67322,6 +67336,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 'service_unit_id': this.service.unit_id,
                 'quantity': this.quantity
             }).then(function (response) {
+                __WEBPACK_IMPORTED_MODULE_0__bus__["a" /* EventBus */].$emit('updated-room-price');
                 _this.$emit('added-service');
             });
         }
@@ -96001,6 +96016,18 @@ $(window).scroll(function () {
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
+
+/***/ }),
+/* 352 */,
+/* 353 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return EventBus; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue__ = __webpack_require__(7);
+
+
+var EventBus = new __WEBPACK_IMPORTED_MODULE_0_vue__["default"]();
 
 /***/ })
 /******/ ]);

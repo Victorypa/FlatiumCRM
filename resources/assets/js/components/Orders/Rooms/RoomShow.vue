@@ -199,6 +199,7 @@
     import RoomWindow from './Windows/RoomWindow'
     import { Carousel, Slide } from 'vue-carousel'
     import OrderDetail from './../Partials/OrderDetail'
+    import { EventBus } from '@/bus'
 
     export default {
         components: {
@@ -243,6 +244,7 @@
         mounted () {
             this.getRoom()
             this.getUnits()
+            this.eventListeners()
         },
 
         methods: {
@@ -307,6 +309,12 @@
                })
             },
 
+            eventListeners () {
+                EventBus.$on('updated-room-price', () => {
+                    this.getRoom()
+                })
+            },
+
             updateRoomPriority (room_priority, id) {
                 axios.patch(`/api/orders/${this.$route.params.id}/rooms/${id}/update_priority`, {
                     'priority': this.room_priority
@@ -326,7 +334,6 @@
                              }
                          })
                 }
-
             },
 
             getPrice (value) {

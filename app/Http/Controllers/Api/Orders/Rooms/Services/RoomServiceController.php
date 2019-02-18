@@ -26,12 +26,22 @@ class RoomServiceController extends Controller
 
     public function store(Order $order, Room $room, Request $request)
     {
-        return $room->room_services()->create($request->all());
+        $room->room_services()->create($request->all());
+
+        $room->calculateRoomPrice($room);
+
+        return response()->json([
+            $room
+        ]);
     }
 
     public function update(Order $order, Room $room, Service $service, Request $request)
     {
-        $room->room_services()->where('service_id', $service->id)->update($request->all());
+        $room_service = $room->room_services()->where('service_id', $service->id)->update($request->all());
+
+        if ($request->has('markup')) {
+            return response("markup exists", 200);
+        }
 
         $room->calculateRoomPrice($room);
     }

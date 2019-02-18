@@ -55,6 +55,8 @@
 </template>
 
 <script>
+    import { EventBus } from '@/bus'
+
     export default {
         props: ['service', 'room'],
 
@@ -102,6 +104,7 @@
                     'service_unit_id': this.service.unit_id,
                     'quantity': this.quantity
                 }).then(response => {
+                    EventBus.$emit('updated-room-price')
                     this.$emit('added-service')
                 })
             }
