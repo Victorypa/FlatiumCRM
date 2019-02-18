@@ -32,7 +32,6 @@
                   </div>
 
                   <div class="col-md-12 px-0 all-items"
-                       v-if="room.room_services.length !== 0"
                        v-for="room_service in filteredRoomServices"
                        >
                           <RoomService :room_service="room_service"
@@ -47,7 +46,7 @@
                        <Service :service="service"
                                 :room="room"
                                 :key="service.id"
-                                @added-service="getServices()"
+                                @added-service="getRoomServices()"
                                 />
                   </div>
                 </div>
@@ -63,8 +62,6 @@
     import Service from './partials/Service'
 
     export default {
-        props: ['room', 'order'],
-
         mixins: [ServiceCollection],
 
         components: {
@@ -75,6 +72,7 @@
 
         data () {
             return {
+                room: [],
                 service_types: [],
                 service_type_id: 0,
 
@@ -82,11 +80,18 @@
             }
         },
 
-        mounted () {
-            this.getServices()
+        created () {
+            this.getRoomServices()
         },
 
         methods: {
+            getRoomServices () {
+                axios.get(`/api/orders/${this.$route.params.id}/rooms/${this.$route.params.room_id}`)
+                     .then(response => {
+                         this.room = response.data
+                     })
+            },
+
             getServiceTypes () {
                     return axios.get(`/api/service_types`).then(response => {
                         switch (parseInt(this.room.room_type_id)) {
@@ -113,43 +118,6 @@
                 }
             },
 
-            getServices () {
-                return axios.get('/api/services').then(response => {
-                    this.services = response.data
-                })
-            },
-
-            addToRoomServiceId (id) {
-                if (!this.room_service_ids.includes(id)) {
-                  this.room_service_ids.push(id);
-                } else {
-                  let index = this.room_service_ids.indexOf(id);
-                  if (index > -1) {
-                    this.room_service_ids.splice(index, 1);
-                  }
-                }
-                this.linkServicesToRoom()
-            },
-
-            linkServicesToRoom () {
-                axios.post(`/api/orders/${this.$route.params.id}/rooms/${this.$route.params.room_id}/services/store`, {
-                    'room_service_ids': this.removeEmptyElem(this.room_service_ids),
-                    'service_quantities': this.removeEmptyElem(this.service_quantities),
-                    'service_prices': this.service_prices
-                }).then(response => {
-                    this.$emit('price', parseInt(response.data.room.price))
-                })
-            },
-
-            updateRoomServiceMarkup () {
-                axios.patch(`/api/orders/${this.$route.params.id}/rooms/${this.$route.params.room_id}/services/update`, {
-                    'room_service_markups': this.removeEmptyElem(this.room_service_markups)
-                })
-                .then(response => {
-                    this.$emit('price', parseInt(response.data.room.price))
-                })
-            },
-
             getServiceSummary (id) {
                 return new Intl.NumberFormat('ru-Ru').format(parseInt(this.service_prices[id] * this.service_quantities[id]))
             },
@@ -161,7 +129,7 @@
 
         computed: {
             filteredServices () {
-                if (this.services.length !== 0) {
+                if (this.services.length !== 0 && this.room.length !== 0) {
                     let data = this.services
 
                     let room_service_ids = []
@@ -193,13 +161,15 @@
             },
 
             filteredRoomServices () {
-                let data = this.room.room_services
+                if (this.room.length !== 0) {
+                    let data = this.room.room_services
 
-                data = data.filter(row => {
-                    return row.service_type_id === this.service_type_id
-                })
+                    data = data.filter(row => {
+                        return row.service_type_id === this.service_type_id
+                    })
 
-                return data
+                    return data
+                }
             },
         }
     }

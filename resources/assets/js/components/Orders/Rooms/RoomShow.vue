@@ -180,7 +180,9 @@
                             </div>
 
                             <template v-if="room.room_type_id">
-                                <services :room="room" :order="order" :key="'room' + room.id" @price="getPrice"></services>
+                                <Services :key="room.id"
+                                          @added-service="getRoom()"
+                                          />
                             </template>
 
 

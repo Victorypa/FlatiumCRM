@@ -65802,6 +65802,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
 
 
 
@@ -66105,7 +66107,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
 
 
 
@@ -66113,8 +66114,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-    props: ['room', 'order'],
-
     mixins: [__WEBPACK_IMPORTED_MODULE_0__components_Services_mixins_ServiceCollection__["a" /* default */]],
 
     components: {
@@ -66125,83 +66124,53 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
     data: function data() {
         return {
+            room: [],
             service_types: [],
             service_type_id: 0,
 
             searchQuery: ""
         };
     },
-    mounted: function mounted() {
-        this.getServices();
+    created: function created() {
+        this.getRoomServices();
     },
 
 
     methods: {
-        getServiceTypes: function getServiceTypes() {
+        getRoomServices: function getRoomServices() {
             var _this = this;
 
+            axios.get('/api/orders/' + this.$route.params.id + '/rooms/' + this.$route.params.room_id).then(function (response) {
+                _this.room = response.data;
+            });
+        },
+        getServiceTypes: function getServiceTypes() {
+            var _this2 = this;
+
             return axios.get('/api/service_types').then(function (response) {
-                switch (parseInt(_this.room.room_type_id)) {
+                switch (parseInt(_this2.room.room_type_id)) {
                     case parseInt(2):
-                        _this.service_types = response.data.slice(4, 5);
-                        _this.service_type_id = _this.service_types[0].id;
+                        _this2.service_types = response.data.slice(4, 5);
+                        _this2.service_type_id = _this2.service_types[0].id;
                         break;
                     case parseInt(3):
-                        _this.service_types = response.data.slice(3, 4);
-                        _this.service_type_id = _this.service_types[0].id;
+                        _this2.service_types = response.data.slice(3, 4);
+                        _this2.service_type_id = _this2.service_types[0].id;
                         break;
                     default:
-                        _this.service_type_id = 1;
-                        _this.service_types = response.data;
+                        _this2.service_type_id = 1;
+                        _this2.service_types = response.data;
                 }
             });
         },
         getServiceTypeName: function getServiceTypeName(service_type_id) {
-            var _this2 = this;
+            var _this3 = this;
 
             if (this.service_types.length) {
                 return this.service_types.filter(function (row) {
-                    return row.id === _this2.service_type_id;
+                    return row.id === _this3.service_type_id;
                 })[0].name;
             }
-        },
-        getServices: function getServices() {
-            var _this3 = this;
-
-            return axios.get('/api/services').then(function (response) {
-                _this3.services = response.data;
-            });
-        },
-        addToRoomServiceId: function addToRoomServiceId(id) {
-            if (!this.room_service_ids.includes(id)) {
-                this.room_service_ids.push(id);
-            } else {
-                var index = this.room_service_ids.indexOf(id);
-                if (index > -1) {
-                    this.room_service_ids.splice(index, 1);
-                }
-            }
-            this.linkServicesToRoom();
-        },
-        linkServicesToRoom: function linkServicesToRoom() {
-            var _this4 = this;
-
-            axios.post('/api/orders/' + this.$route.params.id + '/rooms/' + this.$route.params.room_id + '/services/store', {
-                'room_service_ids': this.removeEmptyElem(this.room_service_ids),
-                'service_quantities': this.removeEmptyElem(this.service_quantities),
-                'service_prices': this.service_prices
-            }).then(function (response) {
-                _this4.$emit('price', parseInt(response.data.room.price));
-            });
-        },
-        updateRoomServiceMarkup: function updateRoomServiceMarkup() {
-            var _this5 = this;
-
-            axios.patch('/api/orders/' + this.$route.params.id + '/rooms/' + this.$route.params.room_id + '/services/update', {
-                'room_service_markups': this.removeEmptyElem(this.room_service_markups)
-            }).then(function (response) {
-                _this5.$emit('price', parseInt(response.data.room.price));
-            });
         },
         getServiceSummary: function getServiceSummary(id) {
             return new Intl.NumberFormat('ru-Ru').format(parseInt(this.service_prices[id] * this.service_quantities[id]));
@@ -66213,9 +66182,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
     computed: {
         filteredServices: function filteredServices() {
-            var _this6 = this;
+            var _this4 = this;
 
-            if (this.services.length !== 0) {
+            if (this.services.length !== 0 && this.room.length !== 0) {
                 var data = this.services;
 
                 var room_service_ids = [];
@@ -66229,12 +66198,12 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 });
 
                 data = data.filter(function (row) {
-                    return row.service_type_id === _this6.service_type_id;
+                    return row.service_type_id === _this4.service_type_id;
                 });
 
                 data = data.filter(function (row) {
                     return Object.keys(row).some(function (key) {
-                        return String(row[key]).toLowerCase().indexOf(_this6.searchQuery.toLowerCase()) > -1;
+                        return String(row[key]).toLowerCase().indexOf(_this4.searchQuery.toLowerCase()) > -1;
                     });
                 });
 
@@ -66242,15 +66211,17 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             }
         },
         filteredRoomServices: function filteredRoomServices() {
-            var _this7 = this;
+            var _this5 = this;
 
-            var data = this.room.room_services;
+            if (this.room.length !== 0) {
+                var data = this.room.room_services;
 
-            data = data.filter(function (row) {
-                return row.service_type_id === _this7.service_type_id;
-            });
+                data = data.filter(function (row) {
+                    return row.service_type_id === _this5.service_type_id;
+                });
 
-            return data;
+                return data;
+            }
         }
     }
 });
@@ -66380,19 +66351,17 @@ var render = function() {
                 ),
                 _vm._v(" "),
                 _vm._l(_vm.filteredRoomServices, function(room_service) {
-                  return _vm.room.room_services.length !== 0
-                    ? _c(
-                        "div",
-                        { staticClass: "col-md-12 px-0 all-items" },
-                        [
-                          _c("RoomService", {
-                            key: room_service.service_id,
-                            attrs: { room_service: room_service }
-                          })
-                        ],
-                        1
-                      )
-                    : _vm._e()
+                  return _c(
+                    "div",
+                    { staticClass: "col-md-12 px-0 all-items" },
+                    [
+                      _c("RoomService", {
+                        key: room_service.service_id,
+                        attrs: { room_service: room_service }
+                      })
+                    ],
+                    1
+                  )
                 }),
                 _vm._v(" "),
                 _vm._l(_vm.filteredServices, function(service) {
@@ -66405,7 +66374,7 @@ var render = function() {
                         attrs: { service: service, room: _vm.room },
                         on: {
                           "added-service": function($event) {
-                            _vm.getServices()
+                            _vm.getRoomServices()
                           }
                         }
                       })
@@ -67864,10 +67833,13 @@ var render = function() {
                   _vm._v(" "),
                   _vm.room.room_type_id
                     ? [
-                        _c("services", {
-                          key: "room" + _vm.room.id,
-                          attrs: { room: _vm.room, order: _vm.order },
-                          on: { price: _vm.getPrice }
+                        _c("Services", {
+                          key: _vm.room.id,
+                          on: {
+                            "added-service": function($event) {
+                              _vm.getRoom()
+                            }
+                          }
                         })
                       ]
                     : _vm._e()
@@ -95278,7 +95250,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
     data: function data() {
         return {
-            quantity: 0
+            quantity: 0,
+            show: true
         };
     },
     mounted: function mounted() {
@@ -95311,22 +95284,17 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         addService: function addService() {
             var _this = this;
 
+            this.show = !this.show;
+
             axios.post('/api/orders/' + this.$route.params.id + '/rooms/' + this.$route.params.room_id + '/services/store', {
                 'service_id': this.service.id,
                 'service_type_id': this.service.service_type_id,
-                'price': this.service.price,
+                'price': this.service.price * this.quantity,
                 'service_unit_id': this.service.unit_id,
                 'quantity': this.quantity
             }).then(function (response) {
                 _this.$emit('added-service');
             });
-            // axios.post(`/api/orders/${this.$route.params.id}/rooms/${this.$route.params.room_id}/services/store`, {
-            //     'room_service_ids': this.removeEmptyElem(this.room_service_ids),
-            //     'service_quantities': this.removeEmptyElem(this.service_quantities),
-            //     'service_prices': this.service_prices
-            // }).then(response => {
-            //     this.$emit('price', parseInt(response.data.room.price))
-            // })
         }
     },
 
@@ -95387,107 +95355,112 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "row align-items-center" }, [
-    _c("label", { staticClass: "col-md-4 mb-0" }, [
-      _c(
-        "div",
-        { staticClass: "form-check custom-control d-flex edit-show" },
-        [
-          _c("input", {
-            staticClass: "form-check-input",
-            attrs: { type: "checkbox", id: "service-" + _vm.service.id },
-            on: {
-              click: function($event) {
-                $event.preventDefault()
-                _vm.addService()
-              }
-            }
-          }),
-          _vm._v(" "),
+  return _vm.show
+    ? _c("div", { staticClass: "row align-items-center" }, [
+        _c("label", { staticClass: "col-md-4 mb-0" }, [
           _c(
-            "label",
+            "div",
+            { staticClass: "form-check custom-control d-flex edit-show" },
+            [
+              _c("input", {
+                staticClass: "form-check-input",
+                attrs: { type: "checkbox", id: "service-" + _vm.service.id },
+                on: {
+                  click: function($event) {
+                    $event.preventDefault()
+                    _vm.addService()
+                  }
+                }
+              }),
+              _vm._v(" "),
+              _c(
+                "label",
+                {
+                  staticClass: "form-check-label",
+                  attrs: { for: "service-" + _vm.service.id }
+                },
+                [
+                  _vm._v(
+                    "\n                 " +
+                      _vm._s(_vm.service.name) +
+                      "\n          "
+                  )
+                ]
+              ),
+              _vm._v(" "),
+              _c(
+                "router-link",
+                {
+                  staticClass: "ml-auto edit",
+                  attrs: {
+                    to: {
+                      name: "service-material",
+                      params: { service_id: _vm.service.id }
+                    }
+                  }
+                },
+                [_vm._v("\n                  Ред.\n          ")]
+              )
+            ],
+            1
+          )
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "col-md-8 pr-0" }, [
+          _c(
+            "div",
             {
-              staticClass: "form-check-label",
-              attrs: { for: "service-" + _vm.service.id }
+              staticClass:
+                "form-group form-group--margin d-flex align-items-center"
             },
             [
-              _vm._v(
-                "\n                 " +
-                  _vm._s(_vm.service.name) +
-                  "\n          "
-              )
+              _c("input", {
+                directives: [
+                  {
+                    name: "model",
+                    rawName: "v-model",
+                    value: _vm.quantity,
+                    expression: "quantity"
+                  }
+                ],
+                staticClass: "form-control w-85",
+                attrs: { type: "number", placeholder: "Кол-во", min: "0" },
+                domProps: { value: _vm.quantity },
+                on: {
+                  change: function($event) {},
+                  input: function($event) {
+                    if ($event.target.composing) {
+                      return
+                    }
+                    _vm.quantity = $event.target.value
+                  }
+                }
+              }),
+              _vm._v(" "),
+              _c("div", { staticClass: "inputs-caption col-md-2" }, [
+                _vm._v("\n        " + _vm._s(_vm.service.unit.name) + "\n    ")
+              ]),
+              _vm._v(" "),
+              _c("input", {
+                staticClass: "form-control w-85",
+                attrs: { type: "number", min: "0", disabled: "" },
+                domProps: { value: _vm.service.price }
+              }),
+              _vm._v(" "),
+              _c("div", { staticClass: "inputs-caption col-md-2" }, [
+                _vm._v(
+                  "\n        Р/" + _vm._s(_vm.service.unit.name) + "\n    "
+                )
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "form-group__calc w-85 col-md-3" }, [
+                _vm._v("\n        " + _vm._s(_vm.servicePrice) + " P\n    ")
+              ])
             ]
-          ),
-          _vm._v(" "),
-          _c(
-            "router-link",
-            {
-              staticClass: "ml-auto edit",
-              attrs: {
-                to: {
-                  name: "service-material",
-                  params: { service_id: _vm.service.id }
-                }
-              }
-            },
-            [_vm._v("\n                  Ред.\n          ")]
           )
-        ],
-        1
-      )
-    ]),
-    _vm._v(" "),
-    _c("div", { staticClass: "col-md-8 pr-0" }, [
-      _c(
-        "div",
-        {
-          staticClass: "form-group form-group--margin d-flex align-items-center"
-        },
-        [
-          _c("input", {
-            directives: [
-              {
-                name: "model",
-                rawName: "v-model",
-                value: _vm.quantity,
-                expression: "quantity"
-              }
-            ],
-            staticClass: "form-control w-85",
-            attrs: { type: "number", placeholder: "Кол-во", min: "0" },
-            domProps: { value: _vm.quantity },
-            on: {
-              change: function($event) {},
-              input: function($event) {
-                if ($event.target.composing) {
-                  return
-                }
-                _vm.quantity = $event.target.value
-              }
-            }
-          }),
-          _vm._v(" "),
-          _c("div", { staticClass: "inputs-caption col-md-2" }, [
-            _vm._v("\n        " + _vm._s(_vm.service.unit.name) + "\n    ")
-          ]),
-          _vm._v(" "),
-          _c("input", {
-            staticClass: "form-control w-85",
-            attrs: { type: "number", min: "0", disabled: "" },
-            domProps: { value: _vm.service.price }
-          }),
-          _vm._v(" "),
-          _c("div", { staticClass: "inputs-caption col-md-2" }, [
-            _vm._v("\n        Р/" + _vm._s(_vm.service.unit.name) + "\n    ")
-          ]),
-          _vm._v(" "),
-          _c("div", { staticClass: "form-group__calc w-85 col-md-3" }, [
-            _vm._v("\n        " + _vm._s(_vm.servicePrice) + " P\n    ")
-          ])
-        ]
-      )
-    ])
-  ])
+        ])
+      ])
+    : _vm._e()
 }
 var staticRenderFns = []
 render._withStripped = true
@@ -95738,7 +95711,10 @@ var render = function() {
           [
             _c("input", {
               staticClass: "form-check-input",
-              attrs: { type: "checkbox", id: "service-" + _vm.room_service.id },
+              attrs: {
+                type: "checkbox",
+                id: "room-service-" + _vm.room_service.id
+              },
               domProps: { checked: true },
               on: { click: function($event) {} }
             }),
@@ -95816,7 +95792,7 @@ var render = function() {
             ]),
             _vm._v(" "),
             _c("input", {
-              staticClass: "form-control w-85",
+              staticClass: "form-control w-85 col-md-1",
               attrs: { type: "number", min: "0", disabled: "" },
               domProps: { value: _vm.room_service.service.price }
             }),
@@ -95829,7 +95805,7 @@ var render = function() {
               )
             ]),
             _vm._v(" "),
-            _c("div", { staticClass: "form-group__calc w-85" }, [
+            _c("div", { staticClass: "form-group__calc w-85 col-2" }, [
               _vm._v(
                 "\n              " + _vm._s(_vm.servicePrice) + " Р\n          "
               )

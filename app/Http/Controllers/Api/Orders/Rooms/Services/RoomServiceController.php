@@ -11,6 +11,11 @@ use App\Models\Orders\Rooms\Services\RoomService;
 
 class RoomServiceController extends Controller
 {
+    public function index(Order $order, Room $room, Request $request)
+    {
+        return RoomService::where('room_id', $room->id)->get();
+    }
+
     public function show(Order $order, Room $room, Service $service, Request $request)
     {
         return RoomService::where([
@@ -21,8 +26,12 @@ class RoomServiceController extends Controller
 
     public function store(Order $order, Room $room, Request $request)
     {
-        $room_servie = $room->room_services()->create($request->all());
-        return $room_servie;
+        return $room->room_services()->create($request->all());
+    }
+
+    public function destroy()
+    {
+
     }
 
     // public function store(Order $order, Room $room, Request $request)

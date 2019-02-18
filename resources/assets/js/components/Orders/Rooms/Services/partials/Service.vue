@@ -1,5 +1,5 @@
 <template>
-    <div class="row align-items-center">
+    <div class="row align-items-center" v-if="show">
       <label class="col-md-4 mb-0">
           <div class="form-check custom-control d-flex edit-show">
               <input class="form-check-input"
@@ -60,7 +60,8 @@
 
         data () {
             return {
-                quantity: 0
+                quantity: 0,
+                show: true
             }
         },
 
@@ -92,22 +93,17 @@
             },
 
             addService () {
+                this.show = !this.show
+                
                 axios.post(`/api/orders/${this.$route.params.id}/rooms/${this.$route.params.room_id}/services/store`, {
                     'service_id': this.service.id,
                     'service_type_id': this.service.service_type_id,
-                    'price': this.service.price,
+                    'price': this.service.price * this.quantity,
                     'service_unit_id': this.service.unit_id,
                     'quantity': this.quantity
                 }).then(response => {
                     this.$emit('added-service')
                 })
-                // axios.post(`/api/orders/${this.$route.params.id}/rooms/${this.$route.params.room_id}/services/store`, {
-                //     'room_service_ids': this.removeEmptyElem(this.room_service_ids),
-                //     'service_quantities': this.removeEmptyElem(this.service_quantities),
-                //     'service_prices': this.service_prices
-                // }).then(response => {
-                //     this.$emit('price', parseInt(response.data.room.price))
-                // })
             }
         },
 

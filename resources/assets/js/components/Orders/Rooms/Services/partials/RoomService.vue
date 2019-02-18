@@ -4,7 +4,7 @@
             <div class="form-check custom-control d-flex edit-show">
                 <input class="form-check-input"
                        type="checkbox"
-                       :id="'service-' + room_service.id"
+                       :id="'room-service-' + room_service.id"
                        :checked="true"
                        @click=""
                        >
@@ -36,7 +36,7 @@
               </div>
 
               <input  type="number"
-                      class="form-control w-85"
+                      class="form-control w-85 col-md-1"
                       min="0"
                       disabled
                       :value="room_service.service.price"
@@ -46,7 +46,7 @@
                   Р/{{ room_service.unit.name }}
               </div>
 
-              <div class="form-group__calc w-85">
+              <div class="form-group__calc w-85 col-2">
                   {{ servicePrice }} Р
               </div>
 
