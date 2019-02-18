@@ -23,73 +23,60 @@
 
         <div class="col-md-8 pr-0">
           <div class="form-group form-group--margin d-flex align-items-center">
-              <!-- <input type="number"
+              <input type="number"
                      class="form-control w-85"
                      placeholder="Кол-во"
                      min="0"
-                     v-model="service_quantities[room_service_id]"
-                     @change="linkServicesToRoom()"
-                     > -->
+                     v-model="room_service.quantity"
+                     @change=""
+                     >
 
-              <!-- <div class="inputs-caption col-md-2">
-                  {{ service_units[room_service_id] }}
-              </div> -->
+              <div class="inputs-caption col-md-2">
+                  {{ room_service.unit.name }}
+              </div>
 
-              <!-- <input  type="number"
+              <input  type="number"
                       class="form-control w-85"
                       min="0"
                       disabled
-                      :value="service_prices[room_service_id]"
-                      > -->
+                      :value="room_service.service.price"
+                      >
 
-              <!-- <div class="inputs-caption col-md-2">
-                  Р/{{ service_units[room_service_id] }}
-              </div> -->
+              <div class="inputs-caption col-md-2">
+                  Р/{{ room_service.unit.name }}
+              </div>
 
-              <!-- <template v-if="room_service_markups[room_service_id]">
-                  <div class="form-group__calc w-85">
-                      {{ parseInt(service_prices[room_service_id] * service_quantities[room_service_id] * (1 + (parseInt(room_service_markups[room_service_id])/100))) }} P
-                  </div>
-              </template>
-              <template v-else>
-                  <div class="form-group__calc w-85">
-                      {{ getServiceSummary(room_service_id) }} P
-                  </div>
-              </template> -->
+              <div class="form-group__calc w-85">
+                  {{ servicePrice }} Р
+              </div>
 
 
-              <!-- <template v-if="service_can_be_deleted[room_service_id]">
-                  <div class="col-md-1">
-                      <button @click="deleteService(room_service_id)" class="add-button add-button--remove d-flex align-items-center" title="Удалить материал">
-                          <img src="/img/del.svg" alt="add-button">
-                      </button>
-                  </div>
-              </template>
-              <template v-else>
-                  <div class="col-md-1">
-                      &nbsp;
-                  </div>
-              </template> -->
+              <div class="col-md-1">
+                  <button @click=""
+                          class="add-button add-button--remove d-flex align-items-center"
+                          v-if="room_service.service.can_be_deleted"
+                          >
+                      <img src="/img/del.svg" alt="add-button">
+                  </button>
+              </div>
 
-              <!-- <div class="col-md-2">
+              <div class="col-md-2">
                   <input type="number"
                          class="form-control w-85"
                          min="0"
                          placeholder="Наценка"
-                         v-model="room_service_markups[room_service_id]"
-                         @change="updateRoomServiceMarkup()"
+                         v-model="room_service.markup"
+                         @change=""
                          >
-              </div> -->
+              </div>
 
-              <!-- <div class="col-md-auto">
-                  <template v-if="room.order">
-                      <router-link :to="{ name: 'actual-material', params: { id: room.order.id, room_id: room.id, service_id: room_service_id }}">
-                          <button class="add-button " title="Добавить материалы">
-                              <img src="/img/plus-circle.svg" alt="add-button">
-                          </button>
-                      </router-link>
-                  </template>
-              </div> -->
+              <div class="col-md-auto">
+                  <!-- <router-link :to="{ name: 'actual-material', params: { id: room.order.id, room_id: room.id, service_id: room_service_id }}"> -->
+                      <button class="add-button " title="Добавить материалы">
+                          <img src="/img/plus-circle.svg" alt="add-button">
+                      </button>
+                  <!-- </router-link> -->
+              </div>
 
           </div>
         </div>
@@ -122,7 +109,13 @@
         props: ['service_type_id', 'room_service'],
 
         created () {
-            // console.log(this.room_service);
+            console.log(this.room_service.service);
+        },
+
+        computed: {
+            servicePrice () {
+                return this.room_service.quantity !== 0 ? new Intl.NumberFormat('ru-Ru').format(parseInt(this.room_service.service.price * this.room_service.quantity)) : 0
+            }
         }
     }
 </script>

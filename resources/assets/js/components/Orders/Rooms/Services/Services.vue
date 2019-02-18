@@ -33,7 +33,8 @@
 
                   <div class="col-md-12 px-0 all-items"
                        v-if="room.room_services.length !== 0"
-                       v-for="room_service in filteredRoomServices" :key="room_service.id"
+                       v-for="room_service in filteredRoomServices"
+                       :key="room_service.id"
                        >
                           <RoomService :room_service="room_service"
                                        :service_type_id="service_type_id"

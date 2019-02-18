@@ -66151,6 +66151,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
 
 
 
@@ -95441,25 +95442,19 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     props: ['service_type_id', 'room_service'],
 
     created: function created() {
-        // console.log(this.room_service);
+        console.log(this.room_service.service);
+    },
+
+
+    computed: {
+        servicePrice: function servicePrice() {
+            return this.room_service.quantity !== 0 ? new Intl.NumberFormat('ru-Ru').format(parseInt(this.room_service.service.price * this.room_service.quantity)) : 0;
+        }
     }
 });
 
@@ -95558,7 +95553,111 @@ var render = function() {
       )
     ]),
     _vm._v(" "),
-    _vm._m(0)
+    _c("div", { staticClass: "col-md-8 pr-0" }, [
+      _c(
+        "div",
+        {
+          staticClass: "form-group form-group--margin d-flex align-items-center"
+        },
+        [
+          _c("input", {
+            directives: [
+              {
+                name: "model",
+                rawName: "v-model",
+                value: _vm.room_service.quantity,
+                expression: "room_service.quantity"
+              }
+            ],
+            staticClass: "form-control w-85",
+            attrs: { type: "number", placeholder: "Кол-во", min: "0" },
+            domProps: { value: _vm.room_service.quantity },
+            on: {
+              change: function($event) {},
+              input: function($event) {
+                if ($event.target.composing) {
+                  return
+                }
+                _vm.$set(_vm.room_service, "quantity", $event.target.value)
+              }
+            }
+          }),
+          _vm._v(" "),
+          _c("div", { staticClass: "inputs-caption col-md-2" }, [
+            _vm._v(
+              "\n              " +
+                _vm._s(_vm.room_service.unit.name) +
+                "\n          "
+            )
+          ]),
+          _vm._v(" "),
+          _c("input", {
+            staticClass: "form-control w-85",
+            attrs: { type: "number", min: "0", disabled: "" },
+            domProps: { value: _vm.room_service.service.price }
+          }),
+          _vm._v(" "),
+          _c("div", { staticClass: "inputs-caption col-md-2" }, [
+            _vm._v(
+              "\n              Р/" +
+                _vm._s(_vm.room_service.unit.name) +
+                "\n          "
+            )
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "form-group__calc w-85" }, [
+            _vm._v(
+              "\n              " + _vm._s(_vm.servicePrice) + " Р\n          "
+            )
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "col-md-1" }, [
+            _vm.room_service.service.can_be_deleted
+              ? _c(
+                  "button",
+                  {
+                    staticClass:
+                      "add-button add-button--remove d-flex align-items-center",
+                    on: { click: function($event) {} }
+                  },
+                  [
+                    _c("img", {
+                      attrs: { src: "/img/del.svg", alt: "add-button" }
+                    })
+                  ]
+                )
+              : _vm._e()
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "col-md-2" }, [
+            _c("input", {
+              directives: [
+                {
+                  name: "model",
+                  rawName: "v-model",
+                  value: _vm.room_service.markup,
+                  expression: "room_service.markup"
+                }
+              ],
+              staticClass: "form-control w-85",
+              attrs: { type: "number", min: "0", placeholder: "Наценка" },
+              domProps: { value: _vm.room_service.markup },
+              on: {
+                change: function($event) {},
+                input: function($event) {
+                  if ($event.target.composing) {
+                    return
+                  }
+                  _vm.$set(_vm.room_service, "markup", $event.target.value)
+                }
+              }
+            })
+          ]),
+          _vm._v(" "),
+          _vm._m(0)
+        ]
+      )
+    ])
   ])
 }
 var staticRenderFns = [
@@ -95566,10 +95665,16 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "col-md-8 pr-0" }, [
-      _c("div", {
-        staticClass: "form-group form-group--margin d-flex align-items-center"
-      })
+    return _c("div", { staticClass: "col-md-auto" }, [
+      _c(
+        "button",
+        { staticClass: "add-button ", attrs: { title: "Добавить материалы" } },
+        [
+          _c("img", {
+            attrs: { src: "/img/plus-circle.svg", alt: "add-button" }
+          })
+        ]
+      )
     ])
   }
 ]
