@@ -31255,6 +31255,17 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
                     localStorage.setItem('service_types', JSON.stringify(_this5.service_types));
                 });
             }
+        },
+        removeEmptyElem: function removeEmptyElem(obj) {
+            var newObj = {};
+
+            Object.keys(obj).forEach(function (prop) {
+                if (obj[prop]) {
+                    newObj[prop] = obj[prop];
+                }
+            });
+
+            return newObj;
         }
     }
 });
@@ -66019,7 +66030,7 @@ exports = module.exports = __webpack_require__(2)(false);
 
 
 // module
-exports.push([module.i, "\n.form-control[data-v-799e8745] {\n  border-radius: 0;\n}\n.form-control[data-v-799e8745]::-webkit-input-placeholder {\n    opacity: 0.3;\n}\n.form-control[data-v-799e8745]:-ms-input-placeholder {\n    opacity: 0.3;\n}\n.form-control[data-v-799e8745]::-ms-input-placeholder {\n    opacity: 0.3;\n}\n.form-control[data-v-799e8745]::placeholder {\n    opacity: 0.3;\n}\n.form-control[data-v-799e8745]:focus, .form-control[data-v-799e8745]:hover {\n    -webkit-box-shadow: none;\n            box-shadow: none;\n    border-color: #000;\n}\n.form-group .form-control[data-v-799e8745] {\n  border-radius: 0;\n  font-size: 0.875rem;\n}\n.form-group .form-control[data-v-799e8745]:focus {\n    border-color: #000;\n    -webkit-box-shadow: none;\n            box-shadow: none;\n}\n.w-85[data-v-799e8745] {\n  width: 85px;\n}\n.edit-show:hover .edit[data-v-799e8745] {\n  -webkit-transition: 0.5s;\n  transition: 0.5s;\n  opacity: 1;\n}\n.edit[data-v-799e8745] {\n  opacity: 0;\n  color: #00A4D1;\n}\n.edit[data-v-799e8745]:hover {\n    cursor: pointer;\n}\n.fa-search[data-v-799e8745]::before {\n  right: 25px;\n}\n", ""]);
+exports.push([module.i, "\n.form-control[data-v-799e8745] {\n  border-radius: 0;\n}\n.form-control[data-v-799e8745]::-webkit-input-placeholder {\n    opacity: 0.3;\n}\n.form-control[data-v-799e8745]:-ms-input-placeholder {\n    opacity: 0.3;\n}\n.form-control[data-v-799e8745]::-ms-input-placeholder {\n    opacity: 0.3;\n}\n.form-control[data-v-799e8745]::placeholder {\n    opacity: 0.3;\n}\n.form-control[data-v-799e8745]:focus, .form-control[data-v-799e8745]:hover {\n    -webkit-box-shadow: none;\n            box-shadow: none;\n    border-color: #000;\n}\n.form-group .form-control[data-v-799e8745] {\n  border-radius: 0;\n  font-size: 0.875rem;\n}\n.form-group .form-control[data-v-799e8745]:focus {\n    border-color: #000;\n    -webkit-box-shadow: none;\n            box-shadow: none;\n}\n.w-85[data-v-799e8745] {\n  width: 85px;\n}\n.fa-search[data-v-799e8745]::before {\n  right: 25px;\n}\n", ""]);
 
 // exports
 
@@ -66033,6 +66044,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__components_Services_mixins_ServiceCollection__ = __webpack_require__(138);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__components_Services_partials_AddService__ = __webpack_require__(320);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__components_Services_partials_AddService___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__components_Services_partials_AddService__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__partials_RoomService__ = __webpack_require__(353);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__partials_RoomService___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2__partials_RoomService__);
 //
 //
 //
@@ -66138,123 +66151,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
+
 
 
 
@@ -66292,7 +66189,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 
     components: {
-        AddService: __WEBPACK_IMPORTED_MODULE_1__components_Services_partials_AddService___default.a
+        AddService: __WEBPACK_IMPORTED_MODULE_1__components_Services_partials_AddService___default.a,
+        RoomService: __WEBPACK_IMPORTED_MODULE_2__partials_RoomService___default.a
     },
 
     mounted: function mounted() {
@@ -66303,111 +66201,109 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
     methods: {
         getRoomServices: function getRoomServices() {
-            var _this = this;
-
             return axios.get('/api/orders/' + this.$route.params.id + '/rooms/' + this.$route.params.room_id).then(function (response) {
                 response.data.room_services.forEach(function (item) {
-                    _this.room_service_ids.push(item.service_id);
-                    _this.room_service_materials[item.service_id] = item.materials;
-
-                    _this.room_service_markups[item.service_id] = item.markup;
-
-                    _this.room_services.push({
-                        service_id: item.service_id,
-                        service_type_id: item.service_type_id
-                    });
-
-                    if (item.quantity != null) {
-                        _this.service_quantities[item.service_id] = item.quantity;
-                    } else {
-                        _this.service_quantities[item.service_id] = 1;
-                    }
+                    // this.room_service_ids.push(item.service_id)
+                    // this.room_service_materials[item.service_id] = item.materials
+                    //
+                    // this.room_service_markups[item.service_id] = item.markup
+                    //
+                    // this.room_services.push({
+                    //     service_id: item.service_id,
+                    //     service_type_id: item.service_type_id
+                    // })
+                    //
+                    // if (item.quantity != null) {
+                    //     this.service_quantities[item.service_id] = item.quantity
+                    // } else {
+                    //     this.service_quantities[item.service_id] = 1
+                    // }
                 });
             });
         },
         getServiceTypes: function getServiceTypes() {
-            var _this2 = this;
+            var _this = this;
 
             return axios.get('/api/service_types').then(function (response) {
-                switch (parseInt(_this2.room.room_type_id)) {
+                switch (parseInt(_this.room.room_type_id)) {
                     case parseInt(2):
-                        _this2.service_types = response.data.slice(4, 5);
-                        _this2.service_type_id = _this2.service_types[0].id;
+                        _this.service_types = response.data.slice(4, 5);
+                        _this.service_type_id = _this.service_types[0].id;
                         break;
                     case parseInt(3):
-                        _this2.service_types = response.data.slice(3, 4);
-                        _this2.service_type_id = _this2.service_types[0].id;
+                        _this.service_types = response.data.slice(3, 4);
+                        _this.service_type_id = _this.service_types[0].id;
                         break;
                     default:
-                        _this2.service_type_id = 1;
-                        _this2.service_types = response.data;
+                        _this.service_type_id = 1;
+                        _this.service_types = response.data;
                 }
             });
         },
         getServiceTypeName: function getServiceTypeName(service_type_id) {
-            var _this3 = this;
+            var _this2 = this;
 
             if (this.service_types.length) {
                 return this.service_types.filter(function (row) {
-                    return row.id === _this3.service_type_id;
+                    return row.id === _this2.service_type_id;
                 })[0].name;
             }
         },
         getServices: function getServices() {
-            var _this4 = this;
+            var _this3 = this;
 
             return axios.get('/api/services').then(function (response) {
-                _this4.services = response.data;
+                _this3.services = response.data;
 
-                if (_this4.order.discount) {
+                if (_this3.order.discount) {
                     response.data.forEach(function (item) {
                         if (item.can_be_discounted) {
-                            _this4.service_prices[item.id] = item.price * (1 - parseFloat(_this4.order.discount) / 100);
+                            _this3.service_prices[item.id] = item.price * (1 - parseFloat(_this3.order.discount) / 100);
                         }
                         if (!item.can_be_discounted) {
-                            _this4.service_prices[item.id] = item.price;
+                            _this3.service_prices[item.id] = item.price;
                         }
                     });
                 }
 
-                if (_this4.order.markup) {
+                if (_this3.order.markup) {
                     response.data.forEach(function (item) {
-                        _this4.service_prices[item.id] = item.price * (1 + parseFloat(_this4.order.markup) / 100);
+                        _this3.service_prices[item.id] = item.price * (1 + parseFloat(_this3.order.markup) / 100);
                     });
                 }
 
-                if (_this4.order.discount === null && _this4.order.markup === null) {
+                if (_this3.order.discount === null && _this3.order.markup === null) {
                     response.data.forEach(function (item) {
-                        _this4.service_prices[item.id] = item.price;
+                        _this3.service_prices[item.id] = item.price;
                     });
                 }
 
                 response.data.forEach(function (item) {
-                    _this4.service_names[item.id] = item.name;
-                    _this4.service_units[item.id] = item.unit.name;
-                    _this4.service_can_be_deleted[item.id] = item.can_be_deleted;
-                    _this4.room_service_types[item.id] = item.service_type_id;
+                    _this3.service_names[item.id] = item.name;
+                    _this3.service_units[item.id] = item.unit.name;
+                    _this3.service_can_be_deleted[item.id] = item.can_be_deleted;
+                    _this3.room_service_types[item.id] = item.service_type_id;
 
-                    if (!_this4.room_service_ids.includes(item.id)) {
-                        if (_this4.service_quantities[item.id] !== null) {
+                    if (!_this3.room_service_ids.includes(item.id)) {
+                        if (_this3.service_quantities[item.id] !== null) {
                             switch (item.unit.id) {
                                 case 1:
                                     if (item.service_type_id === 1) {
-                                        _this4.service_quantities[item.id] = _this4.room.area;
+                                        _this3.service_quantities[item.id] = _this3.room.area;
                                     }
                                     if (item.service_type_id === 2) {
-                                        _this4.service_quantities[item.id] = _this4.room.wall_area;
+                                        _this3.service_quantities[item.id] = _this3.room.wall_area;
                                     }
 
                                     if (item.service_type_id === 3) {
-                                        _this4.service_quantities[item.id] = _this4.room.area;
+                                        _this3.service_quantities[item.id] = _this3.room.area;
                                     }
                                     break;
                                 case 2:
-                                    _this4.service_quantities[item.id] = _this4.room.perimeter;
+                                    _this3.service_quantities[item.id] = _this3.room.perimeter;
                                     break;
                                 default:
-                                    _this4.service_quantities[item.id] = 1;
+                                    _this3.service_quantities[item.id] = 1;
                             }
                         }
                     }
@@ -66426,24 +66322,27 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             this.linkServicesToRoom();
         },
         linkServicesToRoom: function linkServicesToRoom() {
-            var _this5 = this;
+            var _this4 = this;
 
             axios.post('/api/orders/' + this.$route.params.id + '/rooms/' + this.$route.params.room_id + '/services/store', {
                 'room_service_ids': this.removeEmptyElem(this.room_service_ids),
                 'service_quantities': this.removeEmptyElem(this.service_quantities),
                 'service_prices': this.service_prices
             }).then(function (response) {
-                _this5.$emit('price', parseInt(response.data.room.price));
+                _this4.$emit('price', parseInt(response.data.room.price));
             });
         },
         updateRoomServiceMarkup: function updateRoomServiceMarkup() {
-            var _this6 = this;
+            var _this5 = this;
 
             axios.patch('/api/orders/' + this.$route.params.id + '/rooms/' + this.$route.params.room_id + '/services/update', {
                 'room_service_markups': this.removeEmptyElem(this.room_service_markups)
             }).then(function (response) {
-                _this6.$emit('price', parseInt(response.data.room.price));
+                _this5.$emit('price', parseInt(response.data.room.price));
             });
+        },
+        getServiceSummary: function getServiceSummary(id) {
+            return new Intl.NumberFormat('ru-Ru').format(parseInt(this.service_prices[id] * this.service_quantities[id]));
         },
         getMaterialSummary: function getMaterialSummary(rate, quantity, price, room_service_quantity) {
             return new Intl.NumberFormat('ru-Ru').format(parseInt(Math.ceil(rate * room_service_quantity / quantity) * price));
@@ -66452,18 +66351,29 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
     computed: {
         filteredServices: function filteredServices() {
-            var _this7 = this;
+            var _this6 = this;
 
             var data = this.services;
 
             data = data.filter(function (row) {
-                return row.service_type_id === _this7.service_type_id;
+                return row.service_type_id === _this6.service_type_id;
             });
 
             data = data.filter(function (row) {
                 return Object.keys(row).some(function (key) {
-                    return String(row[key]).toLowerCase().indexOf(_this7.searchQuery.toLowerCase()) > -1;
+                    return String(row[key]).toLowerCase().indexOf(_this6.searchQuery.toLowerCase()) > -1;
                 });
+            });
+
+            return data;
+        },
+        filteredRoomServices: function filteredRoomServices() {
+            var _this7 = this;
+
+            var data = this.room.room_services;
+
+            data = data.filter(function (row) {
+                return row.service_type_id === _this7.service_type_id;
             });
 
             return data;
@@ -66595,495 +66505,25 @@ var render = function() {
                   ]
                 ),
                 _vm._v(" "),
-                _vm._l(_vm.room_service_ids, function(room_service_id) {
-                  return _c(
-                    "div",
-                    {
-                      key: room_service_id,
-                      staticClass: "col-md-12 px-0 all-items"
-                    },
-                    [
-                      _vm.room_service_types[room_service_id] ===
-                      _vm.service_type_id
-                        ? [
-                            _c(
-                              "div",
-                              { staticClass: "row align-items-center" },
-                              [
-                                _c(
-                                  "label",
-                                  {
-                                    staticClass:
-                                      "col-md-4 mb-0 d-flex align-items-center"
-                                  },
-                                  [
-                                    _c(
-                                      "div",
-                                      {
-                                        staticClass:
-                                          "form-check custom-control d-flex edit-show"
-                                      },
-                                      [
-                                        _c("input", {
-                                          staticClass: "form-check-input",
-                                          attrs: {
-                                            type: "checkbox",
-                                            id: "service-" + room_service_id
-                                          },
-                                          domProps: { checked: true },
-                                          on: {
-                                            click: function($event) {
-                                              _vm.addToRoomServiceId(
-                                                room_service_id
-                                              )
-                                            }
-                                          }
-                                        }),
-                                        _vm._v(" "),
-                                        _c(
-                                          "label",
-                                          {
-                                            staticClass: "form-check-label",
-                                            attrs: {
-                                              for: "service-" + room_service_id
-                                            }
-                                          },
-                                          [
-                                            _vm._v(
-                                              "\n                                 " +
-                                                _vm._s(
-                                                  _vm.service_names[
-                                                    room_service_id
-                                                  ]
-                                                ) +
-                                                "\n                          "
-                                            )
-                                          ]
-                                        ),
-                                        _vm._v(" "),
-                                        _c(
-                                          "router-link",
-                                          {
-                                            staticClass: "ml-auto edit",
-                                            attrs: {
-                                              to: {
-                                                name: "service-material",
-                                                params: {
-                                                  service_id: room_service_id
-                                                }
-                                              }
-                                            }
-                                          },
-                                          [
-                                            _vm._v(
-                                              "\n                                  Ред.\n                          "
-                                            )
-                                          ]
-                                        )
-                                      ],
-                                      1
-                                    )
-                                  ]
-                                ),
-                                _vm._v(" "),
-                                _c("div", { staticClass: "col-md-8 pr-0" }, [
-                                  _c(
-                                    "div",
-                                    {
-                                      staticClass:
-                                        "form-group form-group--margin d-flex align-items-center"
-                                    },
-                                    [
-                                      _c("input", {
-                                        directives: [
-                                          {
-                                            name: "model",
-                                            rawName: "v-model",
-                                            value:
-                                              _vm.service_quantities[
-                                                room_service_id
-                                              ],
-                                            expression:
-                                              "service_quantities[room_service_id]"
-                                          }
-                                        ],
-                                        staticClass: "form-control w-85",
-                                        attrs: {
-                                          type: "number",
-                                          placeholder: "Кол-во",
-                                          min: "0"
-                                        },
-                                        domProps: {
-                                          value:
-                                            _vm.service_quantities[
-                                              room_service_id
-                                            ]
-                                        },
-                                        on: {
-                                          change: function($event) {
-                                            _vm.linkServicesToRoom()
-                                          },
-                                          input: function($event) {
-                                            if ($event.target.composing) {
-                                              return
-                                            }
-                                            _vm.$set(
-                                              _vm.service_quantities,
-                                              room_service_id,
-                                              $event.target.value
-                                            )
-                                          }
-                                        }
-                                      }),
-                                      _vm._v(" "),
-                                      _c(
-                                        "div",
-                                        {
-                                          staticClass: "inputs-caption col-md-2"
-                                        },
-                                        [
-                                          _vm._v(
-                                            "\n                            " +
-                                              _vm._s(
-                                                _vm.service_units[
-                                                  room_service_id
-                                                ]
-                                              ) +
-                                              "\n                        "
-                                          )
-                                        ]
-                                      ),
-                                      _vm._v(" "),
-                                      _c("input", {
-                                        staticClass: "form-control w-85",
-                                        attrs: {
-                                          type: "number",
-                                          min: "0",
-                                          disabled: ""
-                                        },
-                                        domProps: {
-                                          value:
-                                            _vm.service_prices[room_service_id]
-                                        }
-                                      }),
-                                      _vm._v(" "),
-                                      _c(
-                                        "div",
-                                        {
-                                          staticClass: "inputs-caption col-md-2"
-                                        },
-                                        [
-                                          _vm._v(
-                                            "\n                            Р/" +
-                                              _vm._s(
-                                                _vm.service_units[
-                                                  room_service_id
-                                                ]
-                                              ) +
-                                              "\n                        "
-                                          )
-                                        ]
-                                      ),
-                                      _vm._v(" "),
-                                      _vm.room_service_markups[room_service_id]
-                                        ? [
-                                            _c(
-                                              "div",
-                                              {
-                                                staticClass:
-                                                  "form-group__calc w-85"
-                                              },
-                                              [
-                                                _vm._v(
-                                                  "\n                                " +
-                                                    _vm._s(
-                                                      parseInt(
-                                                        _vm.service_prices[
-                                                          room_service_id
-                                                        ] *
-                                                          _vm
-                                                            .service_quantities[
-                                                            room_service_id
-                                                          ] *
-                                                          (1 +
-                                                            parseInt(
-                                                              _vm
-                                                                .room_service_markups[
-                                                                room_service_id
-                                                              ]
-                                                            ) /
-                                                              100)
-                                                      )
-                                                    ) +
-                                                    " P\n                            "
-                                                )
-                                              ]
-                                            )
-                                          ]
-                                        : [
-                                            _c(
-                                              "div",
-                                              {
-                                                staticClass:
-                                                  "form-group__calc w-85"
-                                              },
-                                              [
-                                                _vm._v(
-                                                  "\n                                " +
-                                                    _vm._s(
-                                                      _vm.getServiceSummary(
-                                                        room_service_id
-                                                      )
-                                                    ) +
-                                                    " P\n                            "
-                                                )
-                                              ]
-                                            )
-                                          ],
-                                      _vm._v(" "),
-                                      _vm.service_can_be_deleted[
-                                        room_service_id
-                                      ]
-                                        ? [
-                                            _c(
-                                              "div",
-                                              { staticClass: "col-md-1" },
-                                              [
-                                                _c(
-                                                  "button",
-                                                  {
-                                                    staticClass:
-                                                      "add-button add-button--remove d-flex align-items-center",
-                                                    attrs: {
-                                                      title: "Удалить материал"
-                                                    },
-                                                    on: {
-                                                      click: function($event) {
-                                                        _vm.deleteService(
-                                                          room_service_id
-                                                        )
-                                                      }
-                                                    }
-                                                  },
-                                                  [
-                                                    _c("img", {
-                                                      attrs: {
-                                                        src: "/img/del.svg",
-                                                        alt: "add-button"
-                                                      }
-                                                    })
-                                                  ]
-                                                )
-                                              ]
-                                            )
-                                          ]
-                                        : [
-                                            _c(
-                                              "div",
-                                              { staticClass: "col-md-1" },
-                                              [
-                                                _vm._v(
-                                                  "\n                                 \n                            "
-                                                )
-                                              ]
-                                            )
-                                          ],
-                                      _vm._v(" "),
-                                      _c("div", { staticClass: "col-md-2" }, [
-                                        _c("input", {
-                                          directives: [
-                                            {
-                                              name: "model",
-                                              rawName: "v-model",
-                                              value:
-                                                _vm.room_service_markups[
-                                                  room_service_id
-                                                ],
-                                              expression:
-                                                "room_service_markups[room_service_id]"
-                                            }
-                                          ],
-                                          staticClass: "form-control w-85",
-                                          attrs: {
-                                            type: "number",
-                                            min: "0",
-                                            placeholder: "Наценка"
-                                          },
-                                          domProps: {
-                                            value:
-                                              _vm.room_service_markups[
-                                                room_service_id
-                                              ]
-                                          },
-                                          on: {
-                                            change: function($event) {
-                                              _vm.updateRoomServiceMarkup()
-                                            },
-                                            input: function($event) {
-                                              if ($event.target.composing) {
-                                                return
-                                              }
-                                              _vm.$set(
-                                                _vm.room_service_markups,
-                                                room_service_id,
-                                                $event.target.value
-                                              )
-                                            }
-                                          }
-                                        })
-                                      ]),
-                                      _vm._v(" "),
-                                      _c(
-                                        "div",
-                                        { staticClass: "col-md-auto" },
-                                        [
-                                          _vm.room.order
-                                            ? [
-                                                _c(
-                                                  "router-link",
-                                                  {
-                                                    attrs: {
-                                                      to: {
-                                                        name: "actual-material",
-                                                        params: {
-                                                          id: _vm.room.order.id,
-                                                          room_id: _vm.room.id,
-                                                          service_id: room_service_id
-                                                        }
-                                                      }
-                                                    }
-                                                  },
-                                                  [
-                                                    _c(
-                                                      "button",
-                                                      {
-                                                        staticClass:
-                                                          "add-button ",
-                                                        attrs: {
-                                                          title:
-                                                            "Добавить материалы"
-                                                        }
-                                                      },
-                                                      [
-                                                        _c("img", {
-                                                          attrs: {
-                                                            src:
-                                                              "/img/plus-circle.svg",
-                                                            alt: "add-button"
-                                                          }
-                                                        })
-                                                      ]
-                                                    )
-                                                  ]
-                                                )
-                                              ]
-                                            : _vm._e()
-                                        ],
-                                        2
-                                      )
-                                    ],
-                                    2
-                                  )
-                                ]),
-                                _vm._v(" "),
-                                _vm._l(
-                                  _vm.room_service_materials[room_service_id],
-                                  function(material) {
-                                    return _c(
-                                      "div",
-                                      { staticClass: "row col-12" },
-                                      [
-                                        _c(
-                                          "div",
-                                          { staticClass: "col-4 pl-5 mb-3" },
-                                          [
-                                            _c(
-                                              "div",
-                                              { staticClass: "subtitle-list" },
-                                              [
-                                                _c(
-                                                  "div",
-                                                  {
-                                                    staticClass:
-                                                      "subtitle-list__item"
-                                                  },
-                                                  [
-                                                    _vm._v(
-                                                      "\n                          " +
-                                                        _vm._s(material.name) +
-                                                        "\n                      "
-                                                    )
-                                                  ]
-                                                )
-                                              ]
-                                            )
-                                          ]
-                                        ),
-                                        _vm._v(" "),
-                                        material.pivot.rate
-                                          ? [
-                                              _c(
-                                                "div",
-                                                { staticClass: "col-8" },
-                                                [
-                                                  _c(
-                                                    "div",
-                                                    {
-                                                      staticClass:
-                                                        "d-flex align-items-center"
-                                                    },
-                                                    [
-                                                      _c("div", {
-                                                        staticClass: "col-4",
-                                                        staticStyle: {
-                                                          "margin-left": "163px"
-                                                        }
-                                                      }),
-                                                      _vm._v(" "),
-                                                      _c(
-                                                        "div",
-                                                        {
-                                                          staticClass:
-                                                            "form-group__calc col-md-2"
-                                                        },
-                                                        [
-                                                          _vm._v(
-                                                            "\n                              " +
-                                                              _vm._s(
-                                                                _vm.getMaterialSummary(
-                                                                  material.pivot
-                                                                    .rate,
-                                                                  material.quantity,
-                                                                  material.price,
-                                                                  _vm
-                                                                    .service_quantities[
-                                                                    room_service_id
-                                                                  ]
-                                                                )
-                                                              ) +
-                                                              " Р\n                          "
-                                                          )
-                                                        ]
-                                                      )
-                                                    ]
-                                                  )
-                                                ]
-                                              )
-                                            ]
-                                          : _vm._e()
-                                      ],
-                                      2
-                                    )
-                                  }
-                                )
-                              ],
-                              2
-                            )
-                          ]
-                        : _vm._e()
-                    ],
-                    2
-                  )
+                _vm._l(_vm.filteredRoomServices, function(room_service) {
+                  return _vm.room.room_services.length !== 0
+                    ? _c(
+                        "div",
+                        {
+                          key: room_service.id,
+                          staticClass: "col-md-12 px-0 all-items"
+                        },
+                        [
+                          _c("RoomService", {
+                            attrs: {
+                              room_service: room_service,
+                              service_type_id: _vm.service_type_id
+                            }
+                          })
+                        ],
+                        1
+                      )
+                    : _vm._e()
                 })
               ],
               2
@@ -95826,6 +95266,321 @@ $(window).scroll(function () {
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
+
+/***/ }),
+/* 342 */,
+/* 343 */,
+/* 344 */,
+/* 345 */,
+/* 346 */,
+/* 347 */,
+/* 348 */,
+/* 349 */,
+/* 350 */,
+/* 351 */,
+/* 352 */,
+/* 353 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+function injectStyle (ssrContext) {
+  if (disposed) return
+  __webpack_require__(356)
+}
+var normalizeComponent = __webpack_require__(1)
+/* script */
+var __vue_script__ = __webpack_require__(354)
+/* template */
+var __vue_template__ = __webpack_require__(358)
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = injectStyle
+/* scopeId */
+var __vue_scopeId__ = "data-v-2e30a2f8"
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources/assets/js/components/Orders/Rooms/Services/partials/RoomService.vue"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-2e30a2f8", Component.options)
+  } else {
+    hotAPI.reload("data-v-2e30a2f8", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 354 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+    props: ['service_type_id', 'room_service'],
+
+    created: function created() {
+        // console.log(this.room_service);
+    }
+});
+
+/***/ }),
+/* 355 */,
+/* 356 */
+/***/ (function(module, exports, __webpack_require__) {
+
+// style-loader: Adds some css to the DOM by adding a <style> tag
+
+// load the styles
+var content = __webpack_require__(357);
+if(typeof content === 'string') content = [[module.i, content, '']];
+if(content.locals) module.exports = content.locals;
+// add the styles to the DOM
+var update = __webpack_require__(3)("5ecf1c4e", content, false, {});
+// Hot Module Replacement
+if(false) {
+ // When the styles change, update the <style> tags
+ if(!content.locals) {
+   module.hot.accept("!!../../../../../../../../node_modules/css-loader/index.js!../../../../../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-2e30a2f8\",\"scoped\":true,\"hasInlineConfig\":true}!../../../../../../../../node_modules/sass-loader/lib/loader.js!../../../../../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./RoomService.vue", function() {
+     var newContent = require("!!../../../../../../../../node_modules/css-loader/index.js!../../../../../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-2e30a2f8\",\"scoped\":true,\"hasInlineConfig\":true}!../../../../../../../../node_modules/sass-loader/lib/loader.js!../../../../../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./RoomService.vue");
+     if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+     update(newContent);
+   });
+ }
+ // When the module is disposed, remove the <style> tags
+ module.hot.dispose(function() { update(); });
+}
+
+/***/ }),
+/* 357 */
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(2)(false);
+// imports
+
+
+// module
+exports.push([module.i, "\n.edit-show:hover .edit[data-v-2e30a2f8] {\n  -webkit-transition: 0.5s;\n  transition: 0.5s;\n  opacity: 1;\n}\n.edit[data-v-2e30a2f8] {\n  opacity: 0;\n  color: #00A4D1;\n}\n.edit[data-v-2e30a2f8]:hover {\n    cursor: pointer;\n}\n", ""]);
+
+// exports
+
+
+/***/ }),
+/* 358 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", { staticClass: "row align-items-center" }, [
+    _c("label", { staticClass: "col-md-4 mb-0 d-flex align-items-center" }, [
+      _c(
+        "div",
+        { staticClass: "form-check custom-control d-flex edit-show" },
+        [
+          _c("input", {
+            staticClass: "form-check-input",
+            attrs: { type: "checkbox", id: "service-" + _vm.room_service.id },
+            domProps: { checked: true },
+            on: { click: function($event) {} }
+          }),
+          _vm._v(" "),
+          _c(
+            "label",
+            {
+              staticClass: "form-check-label",
+              attrs: { for: "service-" + _vm.room_service.id }
+            },
+            [
+              _vm._v(
+                "\n                   " +
+                  _vm._s(_vm.room_service.service.name) +
+                  "\n            "
+              )
+            ]
+          ),
+          _vm._v(" "),
+          _c(
+            "router-link",
+            {
+              staticClass: "ml-auto edit",
+              attrs: {
+                to: {
+                  name: "service-material",
+                  params: { service_id: _vm.room_service.id }
+                }
+              }
+            },
+            [_vm._v("\n                    Ред.\n            ")]
+          )
+        ],
+        1
+      )
+    ]),
+    _vm._v(" "),
+    _vm._m(0)
+  ])
+}
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "col-md-8 pr-0" }, [
+      _c("div", {
+        staticClass: "form-group form-group--margin d-flex align-items-center"
+      })
+    ])
+  }
+]
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-2e30a2f8", module.exports)
+  }
+}
 
 /***/ })
 /******/ ]);
