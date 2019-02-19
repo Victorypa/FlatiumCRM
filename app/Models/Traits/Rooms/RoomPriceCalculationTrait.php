@@ -29,7 +29,18 @@ trait RoomPriceCalculationTrait
 
     protected function calculateOrderPrice(Room $room)
     {
+        $original_room_price = 0;
+        $total_room_price = 0;
 
+        foreach ($room->order->rooms()->get() as $room) {
+            $original_room_price += $room->original_price;
+            $total_room_price += $room->price;
+        }
+
+        $room->order()->update([
+            'price' => $total_room_price,
+            'original_price' => $original_room_price
+        ]);
     }
 
 }

@@ -14,7 +14,7 @@ trait OrderCalculationTrait
         foreach ($this->rooms()->get() as $room) {
             foreach ($room->room_services()->get() as $room_service) {
 
-                if ($this->discount !== null) {
+                if ($this->discount) {
                     if ($room_service->service->can_be_deleted) {
                         $room_price += $room_service->service->price * (1 - (float) $this->discount / 100) * (float) $room_service->quantity;
                     } else {
