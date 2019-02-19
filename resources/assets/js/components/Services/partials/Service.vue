@@ -4,7 +4,7 @@
       <div class="col-12"
            v-if="show"
            >
-           <div class="row">
+           <div class="row" v-if="!deleted">
                <div class="col-3">
                    <h5>{{ service.name }}</h5>
                </div>

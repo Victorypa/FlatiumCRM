@@ -4,7 +4,8 @@ export default {
             units: [],
             service_types: [],
             newServices: [],
-            services: []
+            services: [],
+            deleted: false
         }
     },
 
@@ -50,7 +51,8 @@ export default {
             if (confirm('Удалить ?')) {
                 axios.delete(`/api/services/${id}/destroy`)
                      .then(response => {
-                         this.$emit('deleted-service')
+                         this.deleted = !this.deleted
+                         // this.$emit('deleted-service')
                      })
             }
         },
