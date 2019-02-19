@@ -31549,7 +31549,15 @@ var routes = [{
     component: __webpack_require__(232),
     meta: { requiresAuth: true },
     props: true
-}, {
+},
+
+// {
+//     name: 'order-finished-services',
+//     path: '/orders/:id?/order_finished_services',
+//     component: require('./components/Orders/Services/Finished/FinishedServices'),
+// },
+
+{
     name: 'order-finished-services',
     path: '/orders/:id?/order_finished_services/:finished_act_id?',
     component: __webpack_require__(245),
@@ -52329,7 +52337,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     data: function data() {
@@ -52359,7 +52366,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         getFirstRoomId: function getFirstRoomId() {
             return this.order.rooms.length != 0 ? this.order.rooms[this.order.rooms.length - 1].id : null;
         },
-        path: function path() {
+        orderPath: function orderPath() {
             if (this.order.length !== 0) {
                 var data = this.order;
                 if (this.order.rooms.length !== 0) {
@@ -52408,10 +52415,13 @@ var render = function() {
                     "div",
                     { staticClass: "row ml-5" },
                     [
-                      _vm.path
+                      _vm.orderPath
                         ? _c(
                             "router-link",
-                            { class: _vm.panelClass, attrs: { to: _vm.path } },
+                            {
+                              class: _vm.panelClass,
+                              attrs: { to: _vm.orderPath }
+                            },
                             [
                               _c("div", { staticClass: "card-body" }, [
                                 _c("h5", { staticClass: "card-title" }, [
@@ -52440,8 +52450,7 @@ var render = function() {
           ],
           1
         )
-      ]),
-      _vm._v("\n    " + _vm._s(_vm.path) + "\n")
+      ])
     ],
     1
   )
@@ -71582,114 +71591,110 @@ var render = function() {
                     ? _c("RoomServices", { attrs: { rooms: _vm.rooms } })
                     : _vm._e(),
                   _vm._v(" "),
-                  _vm.checkServiceMarkup
-                    ? _c("div", { staticClass: "row bg py-4" }, [
-                        _c(
-                          "div",
-                          {
-                            staticClass:
-                              "col-12 d-flex align-items-center justify-content-end"
-                          },
-                          [
-                            _c("div", { staticClass: "col-2" }, [
-                              _c(
-                                "select",
+                  _c("div", { staticClass: "row bg py-4" }, [
+                    _c(
+                      "div",
+                      {
+                        staticClass:
+                          "col-12 d-flex align-items-center justify-content-end"
+                      },
+                      [
+                        _c("div", { staticClass: "col-2" }, [
+                          _c(
+                            "select",
+                            {
+                              directives: [
                                 {
-                                  directives: [
-                                    {
-                                      name: "model",
-                                      rawName: "v-model",
-                                      value: _vm.selected_id,
-                                      expression: "selected_id"
-                                    }
-                                  ],
-                                  staticClass: "form-control",
-                                  on: {
-                                    change: [
-                                      function($event) {
-                                        var $$selectedVal = Array.prototype.filter
-                                          .call($event.target.options, function(
-                                            o
-                                          ) {
-                                            return o.selected
-                                          })
-                                          .map(function(o) {
-                                            var val =
-                                              "_value" in o ? o._value : o.value
-                                            return val
-                                          })
-                                        _vm.selected_id = $event.target.multiple
-                                          ? $$selectedVal
-                                          : $$selectedVal[0]
-                                      },
-                                      function($event) {
-                                        _vm.percentage = null
-                                      }
-                                    ]
-                                  }
-                                },
-                                [
-                                  _c("option", { attrs: { value: "null" } }, [
-                                    _vm._v("Выберите")
-                                  ]),
-                                  _vm._v(" "),
-                                  _c("option", { attrs: { value: "1" } }, [
-                                    _vm._v("Скидка")
-                                  ]),
-                                  _vm._v(" "),
-                                  _c("option", { attrs: { value: "2" } }, [
-                                    _vm._v("Наценка")
-                                  ])
-                                ]
-                              )
-                            ]),
-                            _vm._v(" "),
-                            _c("div", { staticClass: "col-1" }, [
-                              _c("input", {
-                                directives: [
-                                  {
-                                    name: "model",
-                                    rawName: "v-model",
-                                    value: _vm.percentage,
-                                    expression: "percentage"
-                                  }
-                                ],
-                                staticClass: "form-control",
-                                attrs: {
-                                  type: "number",
-                                  placeholder: "%",
-                                  min: "0"
-                                },
-                                domProps: { value: _vm.percentage },
-                                on: {
-                                  change: function($event) {
-                                    _vm.updateOrderDiscountOrMarkup()
-                                  },
-                                  input: function($event) {
-                                    if ($event.target.composing) {
-                                      return
-                                    }
-                                    _vm.percentage = $event.target.value
-                                  }
+                                  name: "model",
+                                  rawName: "v-model",
+                                  value: _vm.selected_id,
+                                  expression: "selected_id"
                                 }
-                              })
-                            ]),
-                            _vm._v(" "),
-                            _c("h2", { staticClass: "main-subtitle px-15" }, [
-                              _vm._v(
-                                "\n                                    Итого: " +
-                                  _vm._s(
-                                    new Intl.NumberFormat("ru-Ru").format(
-                                      _vm.order.price
-                                    )
-                                  ) +
-                                  " Р\n                                "
-                              )
-                            ])
-                          ]
-                        )
-                      ])
-                    : _vm._e(),
+                              ],
+                              staticClass: "form-control",
+                              on: {
+                                change: [
+                                  function($event) {
+                                    var $$selectedVal = Array.prototype.filter
+                                      .call($event.target.options, function(o) {
+                                        return o.selected
+                                      })
+                                      .map(function(o) {
+                                        var val =
+                                          "_value" in o ? o._value : o.value
+                                        return val
+                                      })
+                                    _vm.selected_id = $event.target.multiple
+                                      ? $$selectedVal
+                                      : $$selectedVal[0]
+                                  },
+                                  function($event) {
+                                    _vm.percentage = null
+                                  }
+                                ]
+                              }
+                            },
+                            [
+                              _c("option", { attrs: { value: "null" } }, [
+                                _vm._v("Выберите")
+                              ]),
+                              _vm._v(" "),
+                              _c("option", { attrs: { value: "1" } }, [
+                                _vm._v("Скидка")
+                              ]),
+                              _vm._v(" "),
+                              _c("option", { attrs: { value: "2" } }, [
+                                _vm._v("Наценка")
+                              ])
+                            ]
+                          )
+                        ]),
+                        _vm._v(" "),
+                        _c("div", { staticClass: "col-1" }, [
+                          _c("input", {
+                            directives: [
+                              {
+                                name: "model",
+                                rawName: "v-model",
+                                value: _vm.percentage,
+                                expression: "percentage"
+                              }
+                            ],
+                            staticClass: "form-control",
+                            attrs: {
+                              type: "number",
+                              placeholder: "%",
+                              min: "0"
+                            },
+                            domProps: { value: _vm.percentage },
+                            on: {
+                              change: function($event) {
+                                _vm.updateOrderDiscountOrMarkup()
+                              },
+                              input: function($event) {
+                                if ($event.target.composing) {
+                                  return
+                                }
+                                _vm.percentage = $event.target.value
+                              }
+                            }
+                          })
+                        ]),
+                        _vm._v(" "),
+                        _c("h2", { staticClass: "main-subtitle px-15" }, [
+                          _vm._v(
+                            "\n                                    Итого: " +
+                              _vm._s(
+                                new Intl.NumberFormat("ru-Ru").format(
+                                  _vm.order.price
+                                )
+                              ) +
+                              " Р\n                                "
+                          )
+                        ])
+                      ]
+                    )
+                  ]),
                   _vm._v(" "),
                   _c("div", { staticClass: "row ml-3 my-4" }, [
                     _c("textarea", {

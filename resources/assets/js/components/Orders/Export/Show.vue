@@ -142,7 +142,7 @@
                                          :rooms="rooms"
                                          />
 
-                            <div class="row bg py-4" v-if="checkServiceMarkup">
+                            <div class="row bg py-4">
                                 <div class="col-12 d-flex align-items-center justify-content-end">
                                      <div class="col-2">
                                         <select class="form-control"

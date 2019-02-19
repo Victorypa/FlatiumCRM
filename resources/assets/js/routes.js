@@ -71,6 +71,12 @@ let routes = [
         props: true
     },
 
+    // {
+    //     name: 'order-finished-services',
+    //     path: '/orders/:id?/order_finished_services',
+    //     component: require('./components/Orders/Services/Finished/FinishedServices'),
+    // },
+
     {
         name: 'order-finished-services',
     	path: '/orders/:id?/order_finished_services/:finished_act_id?',

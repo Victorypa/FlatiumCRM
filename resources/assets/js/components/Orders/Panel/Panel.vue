@@ -11,8 +11,8 @@
 
                     <div class="container-fluid px-0 mt-5 ml-5">
                         <div class="row ml-5">
-                            <router-link v-if="path" :class="panelClass"
-                                         :to="path"
+                            <router-link v-if="orderPath" :class="panelClass"
+                                         :to="orderPath"
                                          >
                                         <div class="card-body">
                                           <h5 class="card-title">Смета</h5>
@@ -55,7 +55,6 @@
                 </div>
             </div>
         </div>
-        {{ path }}
     </section>
 
 </template>
@@ -90,7 +89,7 @@
                 return this.order.rooms.length != 0 ? this.order.rooms[this.order.rooms.length - 1].id : null
             },
 
-            path () {
+            orderPath () {
                 if (this.order.length !== 0) {
                     let data = this.order
                     if (this.order.rooms.length !== 0) {
@@ -105,7 +104,13 @@
                         }
                     }
                 }
-            }
+            },
+
+            // finishedOrderActPath () {
+            //     return {
+            //         name: ''
+            //     }
+            // }
         }
     }
 </script>
