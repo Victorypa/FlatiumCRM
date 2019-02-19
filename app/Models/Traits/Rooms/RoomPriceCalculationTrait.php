@@ -15,19 +15,31 @@ trait RoomPriceCalculationTrait
         // Calculate room_services
         foreach ($room->room_services()->get() as $room_service) {
             if ($room->order->discount) {
-                
+                $room_service->update([
+                    'original_price' => (float) $room_service->quantity * (int) $room_service->service->price,
+                    'price' => (float) $room_service->quantity * (int) $room_service->service->price * (1 - ((float) $room->order->discount/100))
+                ]);
             }
 
             if ($room->order->markup) {
-                
+                $room_service->update([
+                    'original_price' => (float) $room_service->quantity * (int) $room_service->service->price,
+                    'price' => (float) $room_service->quantity * (int) $room_service->service->price * (1 + ((float) $room->order->markup/100))
+                ]);
             }
 
             if (!$room->order->discount && !$room->order->markup) {
                 if ($room_service->markup) {
-                    
+                    $room_service->update([
+                        'original_price' => (float) $room_service->quantity * (int) $room_service->service->price,
+                        'price' => (float) $room_service->quantity * (int) $room_service->service->price * (1 + ((float) $room_service->markup/100))
+                    ]);
                 }
                 if (!$room_service->markup) {
-                    
+                    $room_service->update([
+                        'original_price' => (float) $room_service->quantity * (int) $room_service->service->price,
+                        'price' => (float) $room_service->quantity * (int) $room_service->service->price
+                    ]);
                 }
             }
         }
