@@ -14,7 +14,7 @@ trait OrderExportTrait
         $total_area = 0;
 
         foreach ($filteredOrder->rooms as $room) {
-            $total_area += (float)$room->area;
+            $total_area += (float) $room->area;
         }
 
         $name = $filteredOrder->address;

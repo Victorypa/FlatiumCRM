@@ -12,6 +12,26 @@ trait RoomPriceCalculationTrait
         $original_room_price = 0;
         $total_room_price = 0;
 
+        // Calculate room_services
+        foreach ($room->room_services()->get() as $room_service) {
+            if ($room->order->discount) {
+                
+            }
+
+            if ($room->order->markup) {
+                
+            }
+
+            if (!$room->order->discount && !$room->order->markup) {
+                if ($room_service->markup) {
+                    
+                }
+                if (!$room_service->markup) {
+                    
+                }
+            }
+        }
+
         foreach ($room->room_services()->get() as $room_service) {
             $total_room_price += (float) $room_service->price;
             $original_room_price += (float) $room_service->original_price;
