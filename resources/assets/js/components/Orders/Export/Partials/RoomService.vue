@@ -20,8 +20,14 @@
             <td>{{ priceCount(room_service.quantity, room_service.service.price * (1 + parseFloat(order.markup)/100)) }} Р</td>
         </template>
         <template v-if="order.discount === null && order.markup === null">
-            <td>{{ room_service.service.price }} Р/{{ room_service.unit.name }}</td>
-            <td>{{ priceCount(room_service.quantity, room_service.service.price) }} Р</td>
+            <template v-if="room_service.markup">
+                <td>{{ room_service.service.price * (1 + parseInt(room_service.markup)/100) }} Р/{{ room_service.unit.name }}</td>
+                <td>{{ priceCount(room_service.quantity, room_service.service.price * (1 + parseInt(room_service.markup)/100)) }} Р</td>
+            </template>
+            <template v-else>
+                <td>{{ room_service.service.price }} Р/{{ room_service.unit.name }}</td>
+                <td>{{ priceCount(room_service.quantity, room_service.service.price) }} Р</td>
+            </template>
         </template>
     </tr>
 </template>

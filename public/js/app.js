@@ -70801,6 +70801,12 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     props: ['order', 'room_service'],
@@ -70914,24 +70920,51 @@ var render = function() {
       _vm._v(" "),
       _vm.order.discount === null && _vm.order.markup === null
         ? [
-            _c("td", [
-              _vm._v(
-                _vm._s(_vm.room_service.service.price) +
-                  " Р/" +
-                  _vm._s(_vm.room_service.unit.name)
-              )
-            ]),
-            _vm._v(" "),
-            _c("td", [
-              _vm._v(
-                _vm._s(
-                  _vm.priceCount(
-                    _vm.room_service.quantity,
-                    _vm.room_service.service.price
-                  )
-                ) + " Р"
-              )
-            ])
+            _vm.room_service.markup
+              ? [
+                  _c("td", [
+                    _vm._v(
+                      _vm._s(
+                        _vm.room_service.service.price *
+                          (1 + parseInt(_vm.room_service.markup) / 100)
+                      ) +
+                        " Р/" +
+                        _vm._s(_vm.room_service.unit.name)
+                    )
+                  ]),
+                  _vm._v(" "),
+                  _c("td", [
+                    _vm._v(
+                      _vm._s(
+                        _vm.priceCount(
+                          _vm.room_service.quantity,
+                          _vm.room_service.service.price *
+                            (1 + parseInt(_vm.room_service.markup) / 100)
+                        )
+                      ) + " Р"
+                    )
+                  ])
+                ]
+              : [
+                  _c("td", [
+                    _vm._v(
+                      _vm._s(_vm.room_service.service.price) +
+                        " Р/" +
+                        _vm._s(_vm.room_service.unit.name)
+                    )
+                  ]),
+                  _vm._v(" "),
+                  _c("td", [
+                    _vm._v(
+                      _vm._s(
+                        _vm.priceCount(
+                          _vm.room_service.quantity,
+                          _vm.room_service.service.price
+                        )
+                      ) + " Р"
+                    )
+                  ])
+                ]
           ]
         : _vm._e()
     ],
