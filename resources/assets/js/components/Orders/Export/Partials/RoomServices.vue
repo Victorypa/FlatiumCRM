@@ -77,7 +77,9 @@
             },
 
             servicesGroupBy (room_services) {
-                return _.groupBy(room_services, 'service_type.name')
+                let data = room_services
+                data = _.orderBy(data, ['priority'], ['asc'])
+                return _.groupBy(data, 'service_type.name')
             }
         },
 

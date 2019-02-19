@@ -112,23 +112,6 @@ export default {
         })
     },
 
-    createFinishedOrderAct (id) {
-        axios.post(`/api/orders/${id}/finished_order_act/store`, {
-            'order_id': id,
-            'name': `Акт выполненных работ`
-        }).then(response => {
-            this.$router.push({ name: 'order-finished-services', params: { id: id, finished_act_id: response.data.id }})
-        })
-    },
-
-    createExtraOrderAct (id) {
-        axios.post(`/api/orders/${id}/extra_order_act/store`, {
-            'order_id': id,
-            'name': `Акт дополнительных работ`
-        }).then(response => {
-            this.$router.push({ name: 'order-extra-services-rooms-show', params: { id: id, extra_order_act_id: response.data.id, extra_room_id: response.data.extra_rooms[0].id }})
-        })
-    },
 
     sortByDateStart() {
       this.sortByDate = !this.sortByDate;

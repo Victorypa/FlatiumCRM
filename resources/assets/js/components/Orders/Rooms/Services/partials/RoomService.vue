@@ -1,5 +1,13 @@
 <template>
     <div class="row align-items-center">
+
+        <input type="text"
+               class="col-md-1 w-85"
+               placeholder="Приоритет"
+               v-model="room_service.priority"
+               @change="updatePriority()"
+               >
+
         <label class="col-md-3 mb-0 d-flex align-items-center">
             <div class="form-check custom-control d-flex edit-show"
                  >
@@ -22,7 +30,7 @@
             </div>
         </label>
 
-        <div class="col-md-9 pr-0">
+        <div class="col-md-8 pr-0">
           <div class="form-group form-group--margin d-flex align-items-center">
               <input type="number"
                      class="form-control w-85 col-md-1"
@@ -132,6 +140,12 @@
                     'original_price': this.room_service.quantity * this.room_service.service.price
                 }).then(response => {
                     EventBus.$emit('updated-room-price')
+                })
+            },
+
+            updatePriority () {
+                axios.patch(`/api/orders/${this.$route.params.id}/rooms/${this.$route.params.room_id}/services/${this.room_service.service_id}/update`, {
+                    'priority': this.room_service.priority
                 })
             },
 
