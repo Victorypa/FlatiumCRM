@@ -142,7 +142,7 @@
                                          :rooms="rooms"
                                          />
 
-                            <div class="row bg py-4">
+                            <div class="row bg py-4" v-if="checkServiceMarkup">
                                 <div class="col-12 d-flex align-items-center justify-content-end">
                                      <div class="col-2">
                                         <select class="form-control"
@@ -331,97 +331,26 @@
 
         },
 
-
+        computed: {
+            checkServiceMarkup () {
+                this.rooms.forEach(room => {
+                    room.room_services.forEach(room_service => {
+                        if (room_service.markup) {
+                            return false
+                        } else {
+                            return true
+                        }
+                    })
+                })
+            }
+        }
     }
 </script>
 
 <style scoped lang="scss">
-    $main-color: #00A4D1;
-    $ccc: #CCCCCC;
-    .create {
-        &__features {
-            display: flex;
-            align-items: center;
-
-            &__name {
-           font-weight: bold;
-           font-size: 20px;
-           display: inline-block;
-           color: $ccc;
-           border: none;
-           cursor: pointer;
-           &:hover,
-           &.active {
-               color: $main-color;
-               border-bottom: 3px solid $main-color;
-               transition-duration: 0.3s;
-           }
-       }
-        }
-    }
-    .fa-arrow-down, .fa-arrow-up {
-        opacity: 0;
-        cursor: pointer;
-        &:hover {
-            color: $main-color;
-        }
-    }
-
-    tr {
-        &:hover {
-            .fa-arrow-down, .fa-arrow-up {
-                opacity: 1;
-            }
-        }
-    }
-
-    a:hover {
-        text-decoration: none;
-    }
-
-    .btn-primary {
-        background-color: #00A4D1;
-        border-radius: .25rem;
-        border: none;
-        color: #fff;
-        cursor: pointer;
-    }
-    .form-control {
-    border-radius: 0;
-    &::placeholder {
-        opacity: 0.3;
-    }
-    &:focus,
-    &:hover {
-        box-shadow: none;
-        border-color: #000;
-    }
-}
-
-.form-group {
-    .form-control {
-        border-radius: 0;
-        font-size: 0.875rem;
-        &:focus {
-            border-color: #000;
-            box-shadow: none;
-        }
-    }
-}
 textarea {
      resize: none;
      height:175px;
 }
 
-   .small-case {
-    font-size: 1rem;
-  }
-  .main-subtitle--room {
-    padding-top: 75px;
-  }
-
-  .main-subtitle img {
-    width: 13px;
-    cursor: pointer;
-  }
 </style>

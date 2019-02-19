@@ -70219,7 +70219,7 @@ exports = module.exports = __webpack_require__(2)(false);
 
 
 // module
-exports.push([module.i, "\n.create__features[data-v-861bc876] {\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-box-align: center;\n      -ms-flex-align: center;\n          align-items: center;\n}\n.create__features__name[data-v-861bc876] {\n    font-weight: bold;\n    font-size: 20px;\n    display: inline-block;\n    color: #CCCCCC;\n    border: none;\n    cursor: pointer;\n}\n.create__features__name[data-v-861bc876]:hover, .create__features__name.active[data-v-861bc876] {\n      color: #00A4D1;\n      border-bottom: 3px solid #00A4D1;\n      -webkit-transition-duration: 0.3s;\n              transition-duration: 0.3s;\n}\n.fa-arrow-down[data-v-861bc876], .fa-arrow-up[data-v-861bc876] {\n  opacity: 0;\n  cursor: pointer;\n}\n.fa-arrow-down[data-v-861bc876]:hover, .fa-arrow-up[data-v-861bc876]:hover {\n    color: #00A4D1;\n}\ntr:hover .fa-arrow-down[data-v-861bc876], tr:hover .fa-arrow-up[data-v-861bc876] {\n  opacity: 1;\n}\na[data-v-861bc876]:hover {\n  text-decoration: none;\n}\n.btn-primary[data-v-861bc876] {\n  background-color: #00A4D1;\n  border-radius: .25rem;\n  border: none;\n  color: #fff;\n  cursor: pointer;\n}\n.form-control[data-v-861bc876] {\n  border-radius: 0;\n}\n.form-control[data-v-861bc876]::-webkit-input-placeholder {\n    opacity: 0.3;\n}\n.form-control[data-v-861bc876]:-ms-input-placeholder {\n    opacity: 0.3;\n}\n.form-control[data-v-861bc876]::-ms-input-placeholder {\n    opacity: 0.3;\n}\n.form-control[data-v-861bc876]::placeholder {\n    opacity: 0.3;\n}\n.form-control[data-v-861bc876]:focus, .form-control[data-v-861bc876]:hover {\n    -webkit-box-shadow: none;\n            box-shadow: none;\n    border-color: #000;\n}\n.form-group .form-control[data-v-861bc876] {\n  border-radius: 0;\n  font-size: 0.875rem;\n}\n.form-group .form-control[data-v-861bc876]:focus {\n    border-color: #000;\n    -webkit-box-shadow: none;\n            box-shadow: none;\n}\ntextarea[data-v-861bc876] {\n  resize: none;\n  height: 175px;\n}\n.small-case[data-v-861bc876] {\n  font-size: 1rem;\n}\n.main-subtitle--room[data-v-861bc876] {\n  padding-top: 75px;\n}\n.main-subtitle img[data-v-861bc876] {\n  width: 13px;\n  cursor: pointer;\n}\n", ""]);
+exports.push([module.i, "\ntextarea[data-v-861bc876] {\n  resize: none;\n  height: 175px;\n}\n", ""]);
 
 // exports
 
@@ -70555,8 +70555,21 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 }
             }
         }
-    }
+    },
 
+    computed: {
+        checkServiceMarkup: function checkServiceMarkup() {
+            this.rooms.forEach(function (room) {
+                room.room_services.forEach(function (room_service) {
+                    if (room_service.markup) {
+                        return false;
+                    } else {
+                        return true;
+                    }
+                });
+            });
+        }
+    }
 });
 
 /***/ }),
@@ -71536,110 +71549,114 @@ var render = function() {
                     ? _c("RoomServices", { attrs: { rooms: _vm.rooms } })
                     : _vm._e(),
                   _vm._v(" "),
-                  _c("div", { staticClass: "row bg py-4" }, [
-                    _c(
-                      "div",
-                      {
-                        staticClass:
-                          "col-12 d-flex align-items-center justify-content-end"
-                      },
-                      [
-                        _c("div", { staticClass: "col-2" }, [
-                          _c(
-                            "select",
-                            {
-                              directives: [
+                  _vm.checkServiceMarkup
+                    ? _c("div", { staticClass: "row bg py-4" }, [
+                        _c(
+                          "div",
+                          {
+                            staticClass:
+                              "col-12 d-flex align-items-center justify-content-end"
+                          },
+                          [
+                            _c("div", { staticClass: "col-2" }, [
+                              _c(
+                                "select",
                                 {
-                                  name: "model",
-                                  rawName: "v-model",
-                                  value: _vm.selected_id,
-                                  expression: "selected_id"
-                                }
-                              ],
-                              staticClass: "form-control",
-                              on: {
-                                change: [
-                                  function($event) {
-                                    var $$selectedVal = Array.prototype.filter
-                                      .call($event.target.options, function(o) {
-                                        return o.selected
-                                      })
-                                      .map(function(o) {
-                                        var val =
-                                          "_value" in o ? o._value : o.value
-                                        return val
-                                      })
-                                    _vm.selected_id = $event.target.multiple
-                                      ? $$selectedVal
-                                      : $$selectedVal[0]
-                                  },
-                                  function($event) {
-                                    _vm.percentage = null
+                                  directives: [
+                                    {
+                                      name: "model",
+                                      rawName: "v-model",
+                                      value: _vm.selected_id,
+                                      expression: "selected_id"
+                                    }
+                                  ],
+                                  staticClass: "form-control",
+                                  on: {
+                                    change: [
+                                      function($event) {
+                                        var $$selectedVal = Array.prototype.filter
+                                          .call($event.target.options, function(
+                                            o
+                                          ) {
+                                            return o.selected
+                                          })
+                                          .map(function(o) {
+                                            var val =
+                                              "_value" in o ? o._value : o.value
+                                            return val
+                                          })
+                                        _vm.selected_id = $event.target.multiple
+                                          ? $$selectedVal
+                                          : $$selectedVal[0]
+                                      },
+                                      function($event) {
+                                        _vm.percentage = null
+                                      }
+                                    ]
                                   }
+                                },
+                                [
+                                  _c("option", { attrs: { value: "null" } }, [
+                                    _vm._v("Выберите")
+                                  ]),
+                                  _vm._v(" "),
+                                  _c("option", { attrs: { value: "1" } }, [
+                                    _vm._v("Скидка")
+                                  ]),
+                                  _vm._v(" "),
+                                  _c("option", { attrs: { value: "2" } }, [
+                                    _vm._v("Наценка")
+                                  ])
                                 ]
-                              }
-                            },
-                            [
-                              _c("option", { attrs: { value: "null" } }, [
-                                _vm._v("Выберите")
-                              ]),
-                              _vm._v(" "),
-                              _c("option", { attrs: { value: "1" } }, [
-                                _vm._v("Скидка")
-                              ]),
-                              _vm._v(" "),
-                              _c("option", { attrs: { value: "2" } }, [
-                                _vm._v("Наценка")
-                              ])
-                            ]
-                          )
-                        ]),
-                        _vm._v(" "),
-                        _c("div", { staticClass: "col-1" }, [
-                          _c("input", {
-                            directives: [
-                              {
-                                name: "model",
-                                rawName: "v-model",
-                                value: _vm.percentage,
-                                expression: "percentage"
-                              }
-                            ],
-                            staticClass: "form-control",
-                            attrs: {
-                              type: "number",
-                              placeholder: "%",
-                              min: "0"
-                            },
-                            domProps: { value: _vm.percentage },
-                            on: {
-                              change: function($event) {
-                                _vm.updateOrderDiscountOrMarkup()
-                              },
-                              input: function($event) {
-                                if ($event.target.composing) {
-                                  return
+                              )
+                            ]),
+                            _vm._v(" "),
+                            _c("div", { staticClass: "col-1" }, [
+                              _c("input", {
+                                directives: [
+                                  {
+                                    name: "model",
+                                    rawName: "v-model",
+                                    value: _vm.percentage,
+                                    expression: "percentage"
+                                  }
+                                ],
+                                staticClass: "form-control",
+                                attrs: {
+                                  type: "number",
+                                  placeholder: "%",
+                                  min: "0"
+                                },
+                                domProps: { value: _vm.percentage },
+                                on: {
+                                  change: function($event) {
+                                    _vm.updateOrderDiscountOrMarkup()
+                                  },
+                                  input: function($event) {
+                                    if ($event.target.composing) {
+                                      return
+                                    }
+                                    _vm.percentage = $event.target.value
+                                  }
                                 }
-                                _vm.percentage = $event.target.value
-                              }
-                            }
-                          })
-                        ]),
-                        _vm._v(" "),
-                        _c("h2", { staticClass: "main-subtitle px-15" }, [
-                          _vm._v(
-                            "\n                                    Итого: " +
-                              _vm._s(
-                                new Intl.NumberFormat("ru-Ru").format(
-                                  _vm.order.price
-                                )
-                              ) +
-                              " Р\n                                "
-                          )
-                        ])
-                      ]
-                    )
-                  ]),
+                              })
+                            ]),
+                            _vm._v(" "),
+                            _c("h2", { staticClass: "main-subtitle px-15" }, [
+                              _vm._v(
+                                "\n                                    Итого: " +
+                                  _vm._s(
+                                    new Intl.NumberFormat("ru-Ru").format(
+                                      _vm.order.price
+                                    )
+                                  ) +
+                                  " Р\n                                "
+                              )
+                            ])
+                          ]
+                        )
+                      ])
+                    : _vm._e(),
                   _vm._v(" "),
                   _c("div", { staticClass: "row ml-3 my-4" }, [
                     _c("textarea", {
