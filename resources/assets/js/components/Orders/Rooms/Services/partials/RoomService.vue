@@ -63,6 +63,7 @@
 
               <div class="col-md-2">
                   <input type="number"
+                         v-if="checkServiceMarkup"
                          class="form-control w-85"
                          min="0"
                          placeholder="Наценка"
@@ -151,7 +152,7 @@
                              this.$emit('deleted-service')
                          })
                 }
-            }
+            },
         },
 
         computed: {
@@ -160,6 +161,14 @@
                     return new Intl.NumberFormat('ru-Ru').format(parseInt(this.room_service.service.price * this.room_service.quantity) * (1 + (this.room_service.markup/100)))
                 } else {
                     return new Intl.NumberFormat('ru-Ru').format(parseInt(this.room_service.service.price * this.room_service.quantity))
+                }
+            },
+
+            checkServiceMarkup () {
+                if (this.room.order.discount === null && this.room.order.markup === null) {
+                    return true
+                } else {
+                    return false
                 }
             }
         }

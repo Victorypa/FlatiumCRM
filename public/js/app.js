@@ -31600,13 +31600,13 @@ var routes = [{
 }, {
     name: 'service-material',
     path: '/services/:service_id?/materials',
-    component: __webpack_require__(320),
+    component: __webpack_require__(323),
     meta: { requiresAuth: true },
     props: true
 }, {
     name: 'services',
     path: '/services',
-    component: __webpack_require__(325),
+    component: __webpack_require__(328),
     meta: { requiresAuth: true },
     props: true
 }];
@@ -44460,7 +44460,7 @@ return jQuery;
 /***/ (function(module, exports, __webpack_require__) {
 
 __webpack_require__(157);
-module.exports = __webpack_require__(352);
+module.exports = __webpack_require__(355);
 
 
 /***/ }),
@@ -44474,11 +44474,11 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__routes_js__ = __webpack_require__(142);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_vue_carousel__ = __webpack_require__(10);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_vue_carousel___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_vue_carousel__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__components_Partials_BasicHeader__ = __webpack_require__(335);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__components_Partials_BasicHeader__ = __webpack_require__(338);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__components_Partials_BasicHeader___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4__components_Partials_BasicHeader__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__components_Partials_Navigation__ = __webpack_require__(340);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__components_Partials_Navigation__ = __webpack_require__(343);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__components_Partials_Navigation___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_5__components_Partials_Navigation__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__components_App__ = __webpack_require__(345);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__components_App__ = __webpack_require__(348);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__components_App___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_6__components_App__);
 
 
@@ -44490,7 +44490,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 __WEBPACK_IMPORTED_MODULE_0_vue__["default"].use(__WEBPACK_IMPORTED_MODULE_3_vue_carousel___default.a);
 
-__webpack_require__(348);
+__webpack_require__(351);
 
 window.Vue = __webpack_require__(5);
 
@@ -66821,6 +66821,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
 
 
 
@@ -66871,6 +66872,13 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 return new Intl.NumberFormat('ru-Ru').format(parseInt(this.room_service.service.price * this.room_service.quantity) * (1 + this.room_service.markup / 100));
             } else {
                 return new Intl.NumberFormat('ru-Ru').format(parseInt(this.room_service.service.price * this.room_service.quantity));
+            }
+        },
+        checkServiceMarkup: function checkServiceMarkup() {
+            if (this.room.order.discount === null && this.room.order.markup === null) {
+                return true;
+            } else {
+                return false;
             }
         }
     }
@@ -67021,30 +67029,32 @@ var render = function() {
           ]),
           _vm._v(" "),
           _c("div", { staticClass: "col-md-2" }, [
-            _c("input", {
-              directives: [
-                {
-                  name: "model",
-                  rawName: "v-model",
-                  value: _vm.room_service.markup,
-                  expression: "room_service.markup"
-                }
-              ],
-              staticClass: "form-control w-85",
-              attrs: { type: "number", min: "0", placeholder: "Наценка" },
-              domProps: { value: _vm.room_service.markup },
-              on: {
-                change: function($event) {
-                  _vm.updateMarkup()
-                },
-                input: function($event) {
-                  if ($event.target.composing) {
-                    return
+            _vm.checkServiceMarkup
+              ? _c("input", {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.room_service.markup,
+                      expression: "room_service.markup"
+                    }
+                  ],
+                  staticClass: "form-control w-85",
+                  attrs: { type: "number", min: "0", placeholder: "Наценка" },
+                  domProps: { value: _vm.room_service.markup },
+                  on: {
+                    change: function($event) {
+                      _vm.updateMarkup()
+                    },
+                    input: function($event) {
+                      if ($event.target.composing) {
+                        return
+                      }
+                      _vm.$set(_vm.room_service, "markup", $event.target.value)
+                    }
                   }
-                  _vm.$set(_vm.room_service, "markup", $event.target.value)
-                }
-              }
-            })
+                })
+              : _vm._e()
           ]),
           _vm._v(" "),
           _c(
@@ -70136,7 +70146,7 @@ var normalizeComponent = __webpack_require__(1)
 /* script */
 var __vue_script__ = __webpack_require__(315)
 /* template */
-var __vue_template__ = __webpack_require__(319)
+var __vue_template__ = __webpack_require__(322)
 /* template functional */
 var __vue_template_functional__ = false
 /* styles */
@@ -70220,7 +70230,7 @@ exports.push([module.i, "\n.create__features[data-v-861bc876] {\n  display: -web
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__Partials_RoomServices__ = __webpack_require__(357);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__Partials_RoomServices__ = __webpack_require__(316);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__Partials_RoomServices___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__Partials_RoomServices__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__mixins_OrderExportCollection__ = __webpack_require__(7);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__mixins_ServiceCollection__ = __webpack_require__(11);
@@ -70550,10 +70560,524 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 });
 
 /***/ }),
-/* 316 */,
-/* 317 */,
-/* 318 */,
+/* 316 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+var normalizeComponent = __webpack_require__(1)
+/* script */
+var __vue_script__ = __webpack_require__(317)
+/* template */
+var __vue_template__ = __webpack_require__(321)
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = null
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources/assets/js/components/Orders/Export/Partials/RoomServices.vue"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-1604cf3e", Component.options)
+  } else {
+    hotAPI.reload("data-v-1604cf3e", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 317 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__RoomService__ = __webpack_require__(318);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__RoomService___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__RoomService__);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+    props: ['rooms'],
+
+    components: {
+        RoomService: __WEBPACK_IMPORTED_MODULE_0__RoomService___default.a
+    },
+
+    methods: {
+        getServiceTypeName: function getServiceTypeName(service_type_id) {
+            if (this.service_types && service_type_id) {
+                return this.service_types.filter(function (row) {
+                    return row.id === parseInt(service_type_id);
+                })[0].name;
+            }
+        },
+        servicesGroupBy: function servicesGroupBy(room_services) {
+            return _.groupBy(room_services, 'service_type.name');
+        }
+    },
+
+    computed: {
+        filteredRooms: function filteredRooms() {
+            var data = this.rooms;
+
+            data = _.orderBy(data, ['priority'], ['asc']);
+
+            return data;
+        }
+    }
+});
+
+/***/ }),
+/* 318 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+var normalizeComponent = __webpack_require__(1)
+/* script */
+var __vue_script__ = __webpack_require__(319)
+/* template */
+var __vue_template__ = __webpack_require__(320)
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = null
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources/assets/js/components/Orders/Export/Partials/RoomService.vue"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-61e9baf6", Component.options)
+  } else {
+    hotAPI.reload("data-v-61e9baf6", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
 /* 319 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+    props: ['order', 'room_service'],
+
+    methods: {
+        priceCount: function priceCount(quantity, price) {
+            return new Intl.NumberFormat('ru-Ru').format(parseInt(quantity * price));
+        }
+    }
+});
+
+/***/ }),
+/* 320 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c(
+    "tr",
+    [
+      _c("th", { staticClass: "w-50", attrs: { scope: "row" } }, [
+        _vm._v("\n        " + _vm._s(_vm.room_service.service.name) + "\n    ")
+      ]),
+      _vm._v(" "),
+      _c("td", [
+        _vm._v(
+          _vm._s(_vm.room_service.quantity) +
+            "  " +
+            _vm._s(_vm.room_service.unit.name)
+        )
+      ]),
+      _vm._v(" "),
+      _vm.order.discount
+        ? [
+            _vm.room_service.service.can_be_discounted
+              ? [
+                  _c("td", [
+                    _vm._v(
+                      _vm._s(
+                        _vm.room_service.service.price *
+                          (1 - parseInt(_vm.order.discount) / 100)
+                      ) +
+                        " Р/" +
+                        _vm._s(_vm.room_service.unit.name)
+                    )
+                  ]),
+                  _vm._v(" "),
+                  _c("td", [
+                    _vm._v(
+                      _vm._s(
+                        _vm.priceCount(
+                          _vm.room_service.quantity,
+                          _vm.room_service.service.price *
+                            (1 - parseFloat(_vm.order.discount) / 100)
+                        )
+                      ) + " Р"
+                    )
+                  ])
+                ]
+              : [
+                  _c("td", [
+                    _vm._v(
+                      _vm._s(_vm.room_service.service.price) +
+                        " Р/" +
+                        _vm._s(_vm.room_service.unit.name)
+                    )
+                  ]),
+                  _vm._v(" "),
+                  _c("td", [
+                    _vm._v(
+                      _vm._s(
+                        _vm.priceCount(
+                          _vm.room_service.quantity,
+                          _vm.room_service.service.price
+                        )
+                      ) + " Р"
+                    )
+                  ])
+                ]
+          ]
+        : _vm._e(),
+      _vm._v(" "),
+      _vm.order.markup
+        ? [
+            _c("td", [
+              _vm._v(
+                _vm._s(
+                  _vm.room_service.service.price *
+                    (1 + parseInt(_vm.order.markup) / 100)
+                ) +
+                  " Р/" +
+                  _vm._s(_vm.room_service.unit.name)
+              )
+            ]),
+            _vm._v(" "),
+            _c("td", [
+              _vm._v(
+                _vm._s(
+                  _vm.priceCount(
+                    _vm.room_service.quantity,
+                    _vm.room_service.service.price *
+                      (1 + parseFloat(_vm.order.markup) / 100)
+                  )
+                ) + " Р"
+              )
+            ])
+          ]
+        : _vm._e(),
+      _vm._v(" "),
+      _vm.order.discount === null && _vm.order.markup === null
+        ? [
+            _c("td", [
+              _vm._v(
+                _vm._s(_vm.room_service.service.price) +
+                  " Р/" +
+                  _vm._s(_vm.room_service.unit.name)
+              )
+            ]),
+            _vm._v(" "),
+            _c("td", [
+              _vm._v(
+                _vm._s(
+                  _vm.priceCount(
+                    _vm.room_service.quantity,
+                    _vm.room_service.service.price
+                  )
+                ) + " Р"
+              )
+            ])
+          ]
+        : _vm._e()
+    ],
+    2
+  )
+}
+var staticRenderFns = []
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-61e9baf6", module.exports)
+  }
+}
+
+/***/ }),
+/* 321 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c(
+    "div",
+    _vm._l(_vm.filteredRooms, function(room) {
+      return _c(
+        "div",
+        { key: "room-" + room.id, staticClass: "projects__information" },
+        [
+          _c("div", { staticClass: "px-15 pb-3" }, [
+            _c("h2", { staticClass: "main-subtitle main-subtitle--room" }, [
+              _c("span", [
+                _vm._v(
+                  "\n                    " +
+                    _vm._s(
+                      room.description ? room.description : room.room_type.type
+                    ) +
+                    "\n                "
+                )
+              ]),
+              _vm._v(" "),
+              _c("span", { staticClass: "float-right" }, [
+                _vm._v(
+                  "\n                    " +
+                    _vm._s(
+                      new Intl.NumberFormat("ru-Ru").format(
+                        parseInt(room.price)
+                      )
+                    ) +
+                    " Р\n                "
+                )
+              ])
+            ])
+          ]),
+          _vm._v(" "),
+          room.room_type_id === 1
+            ? _c(
+                "div",
+                {
+                  staticClass:
+                    "projects__desc col-8 d-flex justify-content-between align-items-center pt-3"
+                },
+                [
+                  _c("div", { staticClass: "projects__desc-item" }, [
+                    _vm._v(
+                      "\n                Общая площадь: " +
+                        _vm._s(room.area) +
+                        " м"
+                    ),
+                    _c("sup", [_vm._v("2")])
+                  ]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "projects__desc-item" }, [
+                    _vm._v(
+                      "\n                Высота потолка: " +
+                        _vm._s(room.height) +
+                        " м\n            "
+                    )
+                  ]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "projects__desc-item" }, [
+                    _vm._v(
+                      "\n                Площадь стен: " +
+                        _vm._s(room.wall_area) +
+                        " м"
+                    ),
+                    _c("sup", [_vm._v("2")])
+                  ]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "projects__desc-item" }, [
+                    _vm._v(
+                      "\n                Периметр: " +
+                        _vm._s(room.perimeter) +
+                        "\n            "
+                    )
+                  ])
+                ]
+              )
+            : _vm._e(),
+          _vm._v(" "),
+          _vm._l(_vm.servicesGroupBy(room.room_services), function(
+            room_services,
+            service_type
+          ) {
+            return room.room_services.length !== 0
+              ? _c("div", { staticClass: "row bg px-15" }, [
+                  _c(
+                    "div",
+                    {
+                      staticClass: "main-subtitle main-subtitle--fz col-12 pt-4"
+                    },
+                    [
+                      _vm._v(
+                        "\n                " +
+                          _vm._s(service_type) +
+                          "\n            "
+                      )
+                    ]
+                  ),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "col-12 px-0" }, [
+                    _c("table", { staticClass: "table table-hover" }, [
+                      _c(
+                        "tbody",
+                        _vm._l(room_services, function(room_service) {
+                          return _c("RoomService", {
+                            key: room_service.id,
+                            attrs: {
+                              room_service: room_service,
+                              order: room.order
+                            }
+                          })
+                        })
+                      )
+                    ])
+                  ])
+                ])
+              : _vm._e()
+          })
+        ],
+        2
+      )
+    })
+  )
+}
+var staticRenderFns = []
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-1604cf3e", module.exports)
+  }
+}
+
+/***/ }),
+/* 322 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var render = function() {
@@ -71166,19 +71690,19 @@ if (false) {
 }
 
 /***/ }),
-/* 320 */
+/* 323 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 function injectStyle (ssrContext) {
   if (disposed) return
-  __webpack_require__(321)
+  __webpack_require__(324)
 }
 var normalizeComponent = __webpack_require__(1)
 /* script */
-var __vue_script__ = __webpack_require__(323)
+var __vue_script__ = __webpack_require__(326)
 /* template */
-var __vue_template__ = __webpack_require__(324)
+var __vue_template__ = __webpack_require__(327)
 /* template functional */
 var __vue_template_functional__ = false
 /* styles */
@@ -71217,13 +71741,13 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 321 */
+/* 324 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(322);
+var content = __webpack_require__(325);
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
@@ -71243,7 +71767,7 @@ if(false) {
 }
 
 /***/ }),
-/* 322 */
+/* 325 */
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__(2)(false);
@@ -71257,7 +71781,7 @@ exports.push([module.i, "\ninput[data-v-11eca642]:required:valid {\n  border-col
 
 
 /***/ }),
-/* 323 */
+/* 326 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -71623,7 +72147,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 });
 
 /***/ }),
-/* 324 */
+/* 327 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var render = function() {
@@ -72554,19 +73078,19 @@ if (false) {
 }
 
 /***/ }),
-/* 325 */
+/* 328 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 function injectStyle (ssrContext) {
   if (disposed) return
-  __webpack_require__(326)
+  __webpack_require__(329)
 }
 var normalizeComponent = __webpack_require__(1)
 /* script */
-var __vue_script__ = __webpack_require__(328)
+var __vue_script__ = __webpack_require__(331)
 /* template */
-var __vue_template__ = __webpack_require__(334)
+var __vue_template__ = __webpack_require__(337)
 /* template functional */
 var __vue_template_functional__ = false
 /* styles */
@@ -72605,13 +73129,13 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 326 */
+/* 329 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(327);
+var content = __webpack_require__(330);
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
@@ -72631,7 +73155,7 @@ if(false) {
 }
 
 /***/ }),
-/* 327 */
+/* 330 */
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__(2)(false);
@@ -72645,12 +73169,12 @@ exports.push([module.i, "\n.fixed-part[data-v-1135c330] {\n  position: fixed;\n 
 
 
 /***/ }),
-/* 328 */
+/* 331 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__partials_Service__ = __webpack_require__(329);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__partials_Service__ = __webpack_require__(332);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__partials_Service___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__partials_Service__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__partials_AddService__ = __webpack_require__(153);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__partials_AddService___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__partials_AddService__);
@@ -72755,19 +73279,19 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 });
 
 /***/ }),
-/* 329 */
+/* 332 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 function injectStyle (ssrContext) {
   if (disposed) return
-  __webpack_require__(330)
+  __webpack_require__(333)
 }
 var normalizeComponent = __webpack_require__(1)
 /* script */
-var __vue_script__ = __webpack_require__(332)
+var __vue_script__ = __webpack_require__(335)
 /* template */
-var __vue_template__ = __webpack_require__(333)
+var __vue_template__ = __webpack_require__(336)
 /* template functional */
 var __vue_template_functional__ = false
 /* styles */
@@ -72806,13 +73330,13 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 330 */
+/* 333 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(331);
+var content = __webpack_require__(334);
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
@@ -72832,7 +73356,7 @@ if(false) {
 }
 
 /***/ }),
-/* 331 */
+/* 334 */
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__(2)(false);
@@ -72846,7 +73370,7 @@ exports.push([module.i, "\n.red[data-v-14046b82] {\n    color: red;\n}\n", ""]);
 
 
 /***/ }),
-/* 332 */
+/* 335 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -73006,7 +73530,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 });
 
 /***/ }),
-/* 333 */
+/* 336 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var render = function() {
@@ -73330,7 +73854,7 @@ if (false) {
 }
 
 /***/ }),
-/* 334 */
+/* 337 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var render = function() {
@@ -73499,19 +74023,19 @@ if (false) {
 }
 
 /***/ }),
-/* 335 */
+/* 338 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 function injectStyle (ssrContext) {
   if (disposed) return
-  __webpack_require__(336)
+  __webpack_require__(339)
 }
 var normalizeComponent = __webpack_require__(1)
 /* script */
-var __vue_script__ = __webpack_require__(338)
+var __vue_script__ = __webpack_require__(341)
 /* template */
-var __vue_template__ = __webpack_require__(339)
+var __vue_template__ = __webpack_require__(342)
 /* template functional */
 var __vue_template_functional__ = false
 /* styles */
@@ -73550,13 +74074,13 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 336 */
+/* 339 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(337);
+var content = __webpack_require__(340);
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
@@ -73576,7 +74100,7 @@ if(false) {
 }
 
 /***/ }),
-/* 337 */
+/* 340 */
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__(2)(false);
@@ -73590,7 +74114,7 @@ exports.push([module.i, "\n.transparent-button[data-v-926cc716] {\n  color: #00A
 
 
 /***/ }),
-/* 338 */
+/* 341 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -73638,7 +74162,7 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
 });
 
 /***/ }),
-/* 339 */
+/* 342 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var render = function() {
@@ -73721,19 +74245,19 @@ if (false) {
 }
 
 /***/ }),
-/* 340 */
+/* 343 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 function injectStyle (ssrContext) {
   if (disposed) return
-  __webpack_require__(341)
+  __webpack_require__(344)
 }
 var normalizeComponent = __webpack_require__(1)
 /* script */
-var __vue_script__ = __webpack_require__(343)
+var __vue_script__ = __webpack_require__(346)
 /* template */
-var __vue_template__ = __webpack_require__(344)
+var __vue_template__ = __webpack_require__(347)
 /* template functional */
 var __vue_template_functional__ = false
 /* styles */
@@ -73772,13 +74296,13 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 341 */
+/* 344 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(342);
+var content = __webpack_require__(345);
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
@@ -73798,7 +74322,7 @@ if(false) {
 }
 
 /***/ }),
-/* 342 */
+/* 345 */
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__(2)(false);
@@ -73812,7 +74336,7 @@ exports.push([module.i, "\n.sidebar-list-item[data-v-6463636a]:hover {\n  text-d
 
 
 /***/ }),
-/* 343 */
+/* 346 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -73838,7 +74362,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony default export */ __webpack_exports__["default"] = ({});
 
 /***/ }),
-/* 344 */
+/* 347 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var render = function() {
@@ -73908,15 +74432,15 @@ if (false) {
 }
 
 /***/ }),
-/* 345 */
+/* 348 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 var normalizeComponent = __webpack_require__(1)
 /* script */
-var __vue_script__ = __webpack_require__(346)
+var __vue_script__ = __webpack_require__(349)
 /* template */
-var __vue_template__ = __webpack_require__(347)
+var __vue_template__ = __webpack_require__(350)
 /* template functional */
 var __vue_template_functional__ = false
 /* styles */
@@ -73955,7 +74479,7 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 346 */
+/* 349 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -73968,7 +74492,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony default export */ __webpack_exports__["default"] = ({});
 
 /***/ }),
-/* 347 */
+/* 350 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var render = function() {
@@ -73988,17 +74512,17 @@ if (false) {
 }
 
 /***/ }),
-/* 348 */
+/* 351 */
 /***/ (function(module, exports, __webpack_require__) {
 
 window.moment = __webpack_require__(0);
-window._ = __webpack_require__(349);
+window._ = __webpack_require__(352);
 window.Popper = __webpack_require__(154).default;
 
 try {
     window.$ = window.jQuery = __webpack_require__(155);
-    __webpack_require__(350);
-    __webpack_require__(351);
+    __webpack_require__(353);
+    __webpack_require__(354);
 } catch (e) {
     console.log(e);
 }
@@ -74017,7 +74541,7 @@ if (token) {
 }
 
 /***/ }),
-/* 349 */
+/* 352 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(global, module) {var __WEBPACK_AMD_DEFINE_RESULT__;/**
@@ -91132,7 +91656,7 @@ if (token) {
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(6), __webpack_require__(149)(module)))
 
 /***/ }),
-/* 350 */
+/* 353 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /*!
@@ -95082,7 +95606,7 @@ if (token) {
 
 
 /***/ }),
-/* 351 */
+/* 354 */
 /***/ (function(module, exports) {
 
 $(document).ready(function () {
@@ -95102,528 +95626,10 @@ $(window).scroll(function () {
 });
 
 /***/ }),
-/* 352 */
+/* 355 */
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
-
-/***/ }),
-/* 353 */,
-/* 354 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var disposed = false
-var normalizeComponent = __webpack_require__(1)
-/* script */
-var __vue_script__ = __webpack_require__(355)
-/* template */
-var __vue_template__ = __webpack_require__(356)
-/* template functional */
-var __vue_template_functional__ = false
-/* styles */
-var __vue_styles__ = null
-/* scopeId */
-var __vue_scopeId__ = null
-/* moduleIdentifier (server only) */
-var __vue_module_identifier__ = null
-var Component = normalizeComponent(
-  __vue_script__,
-  __vue_template__,
-  __vue_template_functional__,
-  __vue_styles__,
-  __vue_scopeId__,
-  __vue_module_identifier__
-)
-Component.options.__file = "resources/assets/js/components/Orders/Export/Partials/RoomService.vue"
-
-/* hot reload */
-if (false) {(function () {
-  var hotAPI = require("vue-hot-reload-api")
-  hotAPI.install(require("vue"), false)
-  if (!hotAPI.compatible) return
-  module.hot.accept()
-  if (!module.hot.data) {
-    hotAPI.createRecord("data-v-61e9baf6", Component.options)
-  } else {
-    hotAPI.reload("data-v-61e9baf6", Component.options)
-  }
-  module.hot.dispose(function (data) {
-    disposed = true
-  })
-})()}
-
-module.exports = Component.exports
-
-
-/***/ }),
-/* 355 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-
-/* harmony default export */ __webpack_exports__["default"] = ({
-    props: ['order', 'room_service'],
-
-    methods: {
-        priceCount: function priceCount(quantity, price) {
-            return new Intl.NumberFormat('ru-Ru').format(parseInt(quantity * price));
-        }
-    }
-});
-
-/***/ }),
-/* 356 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var render = function() {
-  var _vm = this
-  var _h = _vm.$createElement
-  var _c = _vm._self._c || _h
-  return _c(
-    "tr",
-    [
-      _c("th", { staticClass: "w-50", attrs: { scope: "row" } }, [
-        _vm._v("\n        " + _vm._s(_vm.room_service.service.name) + "\n    ")
-      ]),
-      _vm._v(" "),
-      _c("td", [
-        _vm._v(
-          _vm._s(_vm.room_service.quantity) +
-            "  " +
-            _vm._s(_vm.room_service.unit.name)
-        )
-      ]),
-      _vm._v(" "),
-      _vm.order.discount
-        ? [
-            _vm.room_service.service.can_be_discounted
-              ? [
-                  _c("td", [
-                    _vm._v(
-                      _vm._s(
-                        _vm.room_service.service.price *
-                          (1 - parseInt(_vm.order.discount) / 100)
-                      ) +
-                        " Р/" +
-                        _vm._s(_vm.room_service.unit.name)
-                    )
-                  ]),
-                  _vm._v(" "),
-                  _c("td", [
-                    _vm._v(
-                      _vm._s(
-                        _vm.priceCount(
-                          _vm.room_service.quantity,
-                          _vm.room_service.service.price *
-                            (1 - parseFloat(_vm.order.discount) / 100)
-                        )
-                      ) + " Р"
-                    )
-                  ])
-                ]
-              : [
-                  _c("td", [
-                    _vm._v(
-                      _vm._s(_vm.room_service.service.price) +
-                        " Р/" +
-                        _vm._s(_vm.room_service.unit.name)
-                    )
-                  ]),
-                  _vm._v(" "),
-                  _c("td", [
-                    _vm._v(
-                      _vm._s(
-                        _vm.priceCount(
-                          _vm.room_service.quantity,
-                          _vm.room_service.service.price
-                        )
-                      ) + " Р"
-                    )
-                  ])
-                ]
-          ]
-        : _vm._e(),
-      _vm._v(" "),
-      _vm.order.markup
-        ? [
-            _c("td", [
-              _vm._v(
-                _vm._s(
-                  _vm.room_service.service.price *
-                    (1 + parseInt(_vm.order.markup) / 100)
-                ) +
-                  " Р/" +
-                  _vm._s(_vm.room_service.unit.name)
-              )
-            ]),
-            _vm._v(" "),
-            _c("td", [
-              _vm._v(
-                _vm._s(
-                  _vm.priceCount(
-                    _vm.room_service.quantity,
-                    _vm.room_service.service.price *
-                      (1 + parseFloat(_vm.order.markup) / 100)
-                  )
-                ) + " Р"
-              )
-            ])
-          ]
-        : _vm._e(),
-      _vm._v(" "),
-      _vm.order.discount === null && _vm.order.markup === null
-        ? [
-            _c("td", [
-              _vm._v(
-                _vm._s(_vm.room_service.service.price) +
-                  " Р/" +
-                  _vm._s(_vm.room_service.unit.name)
-              )
-            ]),
-            _vm._v(" "),
-            _c("td", [
-              _vm._v(
-                _vm._s(
-                  _vm.priceCount(
-                    _vm.room_service.quantity,
-                    _vm.room_service.service.price
-                  )
-                ) + " Р"
-              )
-            ])
-          ]
-        : _vm._e()
-    ],
-    2
-  )
-}
-var staticRenderFns = []
-render._withStripped = true
-module.exports = { render: render, staticRenderFns: staticRenderFns }
-if (false) {
-  module.hot.accept()
-  if (module.hot.data) {
-    require("vue-hot-reload-api")      .rerender("data-v-61e9baf6", module.exports)
-  }
-}
-
-/***/ }),
-/* 357 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var disposed = false
-var normalizeComponent = __webpack_require__(1)
-/* script */
-var __vue_script__ = __webpack_require__(358)
-/* template */
-var __vue_template__ = __webpack_require__(359)
-/* template functional */
-var __vue_template_functional__ = false
-/* styles */
-var __vue_styles__ = null
-/* scopeId */
-var __vue_scopeId__ = null
-/* moduleIdentifier (server only) */
-var __vue_module_identifier__ = null
-var Component = normalizeComponent(
-  __vue_script__,
-  __vue_template__,
-  __vue_template_functional__,
-  __vue_styles__,
-  __vue_scopeId__,
-  __vue_module_identifier__
-)
-Component.options.__file = "resources/assets/js/components/Orders/Export/Partials/RoomServices.vue"
-
-/* hot reload */
-if (false) {(function () {
-  var hotAPI = require("vue-hot-reload-api")
-  hotAPI.install(require("vue"), false)
-  if (!hotAPI.compatible) return
-  module.hot.accept()
-  if (!module.hot.data) {
-    hotAPI.createRecord("data-v-1604cf3e", Component.options)
-  } else {
-    hotAPI.reload("data-v-1604cf3e", Component.options)
-  }
-  module.hot.dispose(function (data) {
-    disposed = true
-  })
-})()}
-
-module.exports = Component.exports
-
-
-/***/ }),
-/* 358 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__RoomService__ = __webpack_require__(354);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__RoomService___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__RoomService__);
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-
-
-
-/* harmony default export */ __webpack_exports__["default"] = ({
-    props: ['rooms'],
-
-    components: {
-        RoomService: __WEBPACK_IMPORTED_MODULE_0__RoomService___default.a
-    },
-
-    methods: {
-        getServiceTypeName: function getServiceTypeName(service_type_id) {
-            if (this.service_types && service_type_id) {
-                return this.service_types.filter(function (row) {
-                    return row.id === parseInt(service_type_id);
-                })[0].name;
-            }
-        },
-        servicesGroupBy: function servicesGroupBy(room_services) {
-            return _.groupBy(room_services, 'service_type.name');
-        }
-    },
-
-    computed: {
-        filteredRooms: function filteredRooms() {
-            var data = this.rooms;
-
-            data = _.orderBy(data, ['priority'], ['asc']);
-
-            return data;
-        }
-    }
-});
-
-/***/ }),
-/* 359 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var render = function() {
-  var _vm = this
-  var _h = _vm.$createElement
-  var _c = _vm._self._c || _h
-  return _c(
-    "div",
-    _vm._l(_vm.filteredRooms, function(room) {
-      return _c(
-        "div",
-        { key: "room-" + room.id, staticClass: "projects__information" },
-        [
-          _c("div", { staticClass: "px-15 pb-3" }, [
-            _c("h2", { staticClass: "main-subtitle main-subtitle--room" }, [
-              _c("span", [
-                _vm._v(
-                  "\n                    " +
-                    _vm._s(
-                      room.description ? room.description : room.room_type.type
-                    ) +
-                    "\n                "
-                )
-              ]),
-              _vm._v(" "),
-              _c("span", { staticClass: "float-right" }, [
-                _vm._v(
-                  "\n                    " +
-                    _vm._s(
-                      new Intl.NumberFormat("ru-Ru").format(
-                        parseInt(room.price)
-                      )
-                    ) +
-                    " Р\n                "
-                )
-              ])
-            ])
-          ]),
-          _vm._v(" "),
-          room.room_type_id === 1
-            ? _c(
-                "div",
-                {
-                  staticClass:
-                    "projects__desc col-8 d-flex justify-content-between align-items-center pt-3"
-                },
-                [
-                  _c("div", { staticClass: "projects__desc-item" }, [
-                    _vm._v(
-                      "\n                Общая площадь: " +
-                        _vm._s(room.area) +
-                        " м"
-                    ),
-                    _c("sup", [_vm._v("2")])
-                  ]),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "projects__desc-item" }, [
-                    _vm._v(
-                      "\n                Высота потолка: " +
-                        _vm._s(room.height) +
-                        " м\n            "
-                    )
-                  ]),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "projects__desc-item" }, [
-                    _vm._v(
-                      "\n                Площадь стен: " +
-                        _vm._s(room.wall_area) +
-                        " м"
-                    ),
-                    _c("sup", [_vm._v("2")])
-                  ]),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "projects__desc-item" }, [
-                    _vm._v(
-                      "\n                Периметр: " +
-                        _vm._s(room.perimeter) +
-                        "\n            "
-                    )
-                  ])
-                ]
-              )
-            : _vm._e(),
-          _vm._v(" "),
-          _vm._l(_vm.servicesGroupBy(room.room_services), function(
-            room_services,
-            service_type
-          ) {
-            return room.room_services.length !== 0
-              ? _c("div", { staticClass: "row bg px-15" }, [
-                  _c(
-                    "div",
-                    {
-                      staticClass: "main-subtitle main-subtitle--fz col-12 pt-4"
-                    },
-                    [
-                      _vm._v(
-                        "\n                " +
-                          _vm._s(service_type) +
-                          "\n            "
-                      )
-                    ]
-                  ),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "col-12 px-0" }, [
-                    _c("table", { staticClass: "table table-hover" }, [
-                      _c(
-                        "tbody",
-                        _vm._l(room_services, function(room_service) {
-                          return _c("RoomService", {
-                            key: room_service.id,
-                            attrs: {
-                              room_service: room_service,
-                              order: room.order
-                            }
-                          })
-                        })
-                      )
-                    ])
-                  ])
-                ])
-              : _vm._e()
-          })
-        ],
-        2
-      )
-    })
-  )
-}
-var staticRenderFns = []
-render._withStripped = true
-module.exports = { render: render, staticRenderFns: staticRenderFns }
-if (false) {
-  module.hot.accept()
-  if (module.hot.data) {
-    require("vue-hot-reload-api")      .rerender("data-v-1604cf3e", module.exports)
-  }
-}
 
 /***/ })
 /******/ ]);
