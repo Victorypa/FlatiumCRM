@@ -57,6 +57,12 @@
                          response.data.finished_room_services.forEach(item => {
                              this.finished_room_service_ids.push(item.service_id)
                          })
+
+                         if (this.finished_room_service_ids.includes(this.room_service.service_id)) {
+                             this.quantity = response.data.finished_room_services.filter(row => row.service_id === this.room_service.service_id)[0].quantity
+                         } else {
+                             this.quantity = this.room_service.quantity
+                         }
                      })
             },
 
@@ -64,10 +70,10 @@
                 axios.post(`/api/orders/${this.$route.params.id}/finished_order_act/${this.$route.params.finished_act_id}/services/store`, {
                     'finished_room_id': this.finished_room_id,
                     'service_id': this.room_service.service_id,
-                    'quantity': this.room_service.quantity,
+                    'quantity': this.quantity,
                     'price': this.room_service.quantity * this.filteredServicePrice,
                 }).then(response => {
-                    // this.$emit('price', parseFloat(response.data).toFixed(2))
+                    this.$emit('service-changed')
                 })
             },
 
@@ -75,10 +81,10 @@
                 axios.patch(`/api/orders/${this.$route.params.id}/finished_order_act/${this.$route.params.finished_act_id}/services/update`, {
                     'finished_room_id': this.finished_room_id,
                     'service_id': this.room_service.service_id,
-                    'quantity': this.room_service.quantity,
+                    'quantity': this.quantity,
                     'price': this.room_service.quantity * this.filteredServicePrice,
                 }).then(response => {
-
+                    this.$emit('service-changed')
                 })
             },
 

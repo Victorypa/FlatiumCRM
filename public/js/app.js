@@ -58337,25 +58337,39 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 response.data.finished_room_services.forEach(function (item) {
                     _this.finished_room_service_ids.push(item.service_id);
                 });
+
+                if (_this.finished_room_service_ids.includes(_this.room_service.service_id)) {
+                    _this.quantity = response.data.finished_room_services.filter(function (row) {
+                        return row.service_id === _this.room_service.service_id;
+                    })[0].quantity;
+                } else {
+                    _this.quantity = _this.room_service.quantity;
+                }
             });
         },
         addFinishService: function addFinishService() {
+            var _this2 = this;
+
             axios.post('/api/orders/' + this.$route.params.id + '/finished_order_act/' + this.$route.params.finished_act_id + '/services/store', {
                 'finished_room_id': this.finished_room_id,
                 'service_id': this.room_service.service_id,
-                'quantity': this.room_service.quantity,
+                'quantity': this.quantity,
                 'price': this.room_service.quantity * this.filteredServicePrice
             }).then(function (response) {
-                // this.$emit('price', parseFloat(response.data).toFixed(2))
+                _this2.$emit('service-changed');
             });
         },
         updateFinishServiceQuantity: function updateFinishServiceQuantity() {
+            var _this3 = this;
+
             axios.patch('/api/orders/' + this.$route.params.id + '/finished_order_act/' + this.$route.params.finished_act_id + '/services/update', {
                 'finished_room_id': this.finished_room_id,
                 'service_id': this.room_service.service_id,
-                'quantity': this.room_service.quantity,
+                'quantity': this.quantity,
                 'price': this.room_service.quantity * this.filteredServicePrice
-            }).then(function (response) {});
+            }).then(function (response) {
+                _this3.$emit('service-changed');
+            });
         },
         priceCount: function priceCount(quantity, price) {
             return new Intl.NumberFormat('ru-Ru').format(parseInt(quantity * price));
@@ -58364,10 +58378,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
     computed: {
         finished_room_id: function finished_room_id() {
-            var _this2 = this;
+            var _this4 = this;
 
             return this.room.finished_room.filter(function (row) {
-                return row.finished_order_act_id == _this2.$route.params.finished_act_id;
+                return row.finished_order_act_id == _this4.$route.params.finished_act_id;
             })[0].id;
         },
         filteredServicePrice: function filteredServicePrice() {
