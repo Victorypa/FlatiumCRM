@@ -28,35 +28,6 @@
           <div class="pr-30">
                {{ humanDate }}
           </div>
-
-          <!-- <div class="pl-30">
-              <a class="estimates__dropdown-img estimates__dropdown-img--rotate" href="." data-toggle="dropdown" data-html="true"
-                title="Действия">
-                <img src="/img/dropdown-toggle.svg" alt="export">
-              </a>
-          <div class="dropdown-menu dropdown-menu-right">
-              <a class="dropdown-item text-color"
-                @click="createFinishedOrderAct(order.id)">
-                Создать акт
-            </a>
-              <a class="dropdown-item text-color"
-                 @click="createExtraOrderAct(order.id)">
-                  Создать доп.ведомость
-              </a>
-
-              <router-link class="dropdown-item text-color" :to="{ name: 'order-finance', params: { id: order.id} }">
-                  Баланс
-              </router-link>
-
-              <router-link class="dropdown-item text-color" :to="{ name: 'order-step', params: { id: order.id} }">
-                  График работ
-              </router-link>
-
-              <router-link class="dropdown-item text-color" :to="{ name: 'order-upload', params: { id: order.id} }">
-                  Загрузить файлы
-              </router-link>
-          </div>
-        </div> -->
       </td>
     </tr>
 </template>

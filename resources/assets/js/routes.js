@@ -71,12 +71,6 @@ let routes = [
         props: true
     },
 
-    // {
-    //     name: 'order-finished-services',
-    //     path: '/orders/:id?/order_finished_services',
-    //     component: require('./components/Orders/Services/Finished/FinishedServices'),
-    // },
-
     {
         name: 'order-finished-acts',
     	path: '/orders/:id?/order_finished_acts',
@@ -86,9 +80,9 @@ let routes = [
     },
 
     {
-        name: 'order-finished-services',
+        name: 'order-finished-act-show',
     	path: '/orders/:id?/order_finished_services/:finished_act_id?',
-    	component: require('./components/Orders/Services/FinishedServices'),
+    	component: require('./components/Orders/Services/Finished/FinishedActShow'),
         meta: { requiresAuth: true },
         props: true
     },

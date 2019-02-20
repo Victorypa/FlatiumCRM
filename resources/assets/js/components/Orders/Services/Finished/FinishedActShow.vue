@@ -8,40 +8,25 @@
           <div class="col-md-10">
 
             <div class="row col-10 fixed-part shadow bg-white rounded align-items-center">
-                <template v-if="!show">
-                    <template v-if="description">
-                        <div class="col-md-8">
-                          <h1 class="main-caption w-100" @click="show = !show">
-                            {{ description }}
-                            <img src="/img/edit.svg" alt="add-button" title="Редактировать">
-                          </h1>
-                        </div>
-                    </template>
-                    <template v-else>
-                        <div class="col-md-8">
-                          <h1 class="main-caption w-100" @click="show = !show">
-                            Акт выполненных работ
-                            <img src="/img/edit.svg" alt="add-button" title="Редактировать">
-                          </h1>
-                        </div>
-                    </template>
-                </template>
-                <template v-else>
-                    <input class="col-md-8"
-                           v-model="description"
-                           @change="updateFinishedOrderAct()"
-                           autofocus
-                           />
-                </template>
+                <div class="col-md-8">
+                  <h1 class="main-caption w-100" @click="show = !show">
+                    {{ description ? description : 'Акт выполненных работ' }}
+                  </h1>
+                </div>
 
+                <div class="col-md-2 ml-auto" v-if="order.length !== 0">
+                    <router-link :to="{ name: 'order-finished-services-export-show', params: { id: order.id, finished_act_id: this.$route.params.finished_act_id } }" target="_blank">
+                        <button type="button" class="primary-button w-100">Экспорт</button>
+                    </router-link>
+                </div>
 
-                <template v-if="order">
-                    <div class="col-md-2 ml-auto">
-                        <router-link :to="{ name: 'order-finished-services-export-show', params: { id: order.id, finished_act_id: this.$route.params.finished_act_id } }" target="_blank">
-                            <button type="button" class="primary-button w-100">Экспорт</button>
-                        </router-link>
+                <!-- <div class="col-md-6 pt-3 d-flex align-items-center">
+                    <h2 class="main-subtitle">Итого: {{ new Intl.NumberFormat('ru-Ru').format(parseInt(order.price)) }} Р</h2>
+                    <div class="d-flex pl-3">
+                      <span class="small-case">{{ new Intl.NumberFormat('ru-Ru').format(order.original_price) }} Р</span>
+                      <span class="small-case">(скидка: -{{ parseInt(order.discount) }}%)</span>
                     </div>
-                </template>
+                </div> -->
 
               <template v-if="order.price">
                   <template v-if="order.discount">
@@ -51,7 +36,6 @@
                             <span class="small-case">{{ new Intl.NumberFormat('ru-Ru').format(order.original_price) }} Р</span>
                             <span class="small-case">(скидка: -{{ parseInt(order.discount) }}%)</span>
                           </div>
-
                       </div>
                   </template>
                   <template v-if="order.markup">
@@ -81,7 +65,6 @@
                     <div class="col-12 text-right">
                       <h2 class="main-subtitle px-15"> {{ new Intl.NumberFormat('ru-Ru').format(parseInt(price)) }} Р</h2>
                     </div>
-
                   </div>
               </template>
               <template v-else>
@@ -96,9 +79,9 @@
 
             </div>
             <div class="projects__content"></div>
-            <template v-if="order.rooms" v-for="room in order.rooms">
+            <!-- <template v-if="order.rooms.length !== 0" v-for="room in order.rooms">
                 <finished-room :room="room" :order="order" @price="getPrice" :key="'finished-room-' + room.id"></finished-room>
-            </template>
+            </template> -->
           </div>
         </div>
       </div>
@@ -107,30 +90,25 @@
 
 
 <script>
-import FinishedRoom from './Partials/FinishedRoom'
+// import FinishedRoom from './Partials/FinishedRoom'
 
   export default {
       components: {
-          FinishedRoom
+          // FinishedRoom
       },
 
       data () {
           return {
               order: [],
               price: 0,
-              description: [],
-
-              show: false,
           }
       },
 
-      beforeMount() {
+      created () {
           this.getFinishedOrderAct()
-      },
-
-      mounted () {
           this.getOrder()
       },
+
 
       methods: {
           getOrder () {
@@ -160,7 +138,11 @@ import FinishedRoom from './Partials/FinishedRoom'
               this.room_price = 0
               this.room_price = parseInt(value)
               this.getFinishedOrderAct()
-          }
+          },
+
+          priceCount (quantity, price) {
+           return new Intl.NumberFormat('ru-Ru').format(parseInt(quantity * price))
+       },
       },
   };
 </script>

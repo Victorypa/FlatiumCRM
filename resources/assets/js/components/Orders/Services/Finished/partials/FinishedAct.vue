@@ -2,7 +2,7 @@
         <tr>
             <td></td>
             <td>
-                <router-link :to="{ name: '', params: {} }">
+                <router-link :to="{ name: 'order-finished-act-show', params: { id: this.$route.params.id, finished_act_id: act.id } }">
                     {{ act.description ? act.description : act.name }}
                 </router-link>
             </td>

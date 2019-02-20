@@ -31540,24 +31540,16 @@ var routes = [{
     component: __webpack_require__(232),
     meta: { requiresAuth: true },
     props: true
-},
-
-// {
-//     name: 'order-finished-services',
-//     path: '/orders/:id?/order_finished_services',
-//     component: require('./components/Orders/Services/Finished/FinishedServices'),
-// },
-
-{
+}, {
     name: 'order-finished-acts',
     path: '/orders/:id?/order_finished_acts',
     component: __webpack_require__(357),
     meta: { requiresAuth: true },
     props: true
 }, {
-    name: 'order-finished-services',
+    name: 'order-finished-act-show',
     path: '/orders/:id?/order_finished_services/:finished_act_id?',
-    component: __webpack_require__(245),
+    component: __webpack_require__(366),
     meta: { requiresAuth: true },
     props: true
 }, {
@@ -49166,35 +49158,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     props: ['order'],
@@ -57066,1365 +57029,16 @@ if (false) {
 }
 
 /***/ }),
-/* 245 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var disposed = false
-function injectStyle (ssrContext) {
-  if (disposed) return
-  __webpack_require__(246)
-}
-var normalizeComponent = __webpack_require__(1)
-/* script */
-var __vue_script__ = __webpack_require__(248)
-/* template */
-var __vue_template__ = __webpack_require__(254)
-/* template functional */
-var __vue_template_functional__ = false
-/* styles */
-var __vue_styles__ = injectStyle
-/* scopeId */
-var __vue_scopeId__ = "data-v-0734aa8e"
-/* moduleIdentifier (server only) */
-var __vue_module_identifier__ = null
-var Component = normalizeComponent(
-  __vue_script__,
-  __vue_template__,
-  __vue_template_functional__,
-  __vue_styles__,
-  __vue_scopeId__,
-  __vue_module_identifier__
-)
-Component.options.__file = "resources/assets/js/components/Orders/Services/FinishedServices.vue"
-
-/* hot reload */
-if (false) {(function () {
-  var hotAPI = require("vue-hot-reload-api")
-  hotAPI.install(require("vue"), false)
-  if (!hotAPI.compatible) return
-  module.hot.accept()
-  if (!module.hot.data) {
-    hotAPI.createRecord("data-v-0734aa8e", Component.options)
-  } else {
-    hotAPI.reload("data-v-0734aa8e", Component.options)
-  }
-  module.hot.dispose(function (data) {
-    disposed = true
-  })
-})()}
-
-module.exports = Component.exports
-
-
-/***/ }),
-/* 246 */
-/***/ (function(module, exports, __webpack_require__) {
-
-// style-loader: Adds some css to the DOM by adding a <style> tag
-
-// load the styles
-var content = __webpack_require__(247);
-if(typeof content === 'string') content = [[module.i, content, '']];
-if(content.locals) module.exports = content.locals;
-// add the styles to the DOM
-var update = __webpack_require__(3)("8bb12646", content, false, {});
-// Hot Module Replacement
-if(false) {
- // When the styles change, update the <style> tags
- if(!content.locals) {
-   module.hot.accept("!!../../../../../../node_modules/css-loader/index.js!../../../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-0734aa8e\",\"scoped\":true,\"hasInlineConfig\":true}!../../../../../../node_modules/sass-loader/lib/loader.js!../../../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./FinishedServices.vue", function() {
-     var newContent = require("!!../../../../../../node_modules/css-loader/index.js!../../../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-0734aa8e\",\"scoped\":true,\"hasInlineConfig\":true}!../../../../../../node_modules/sass-loader/lib/loader.js!../../../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./FinishedServices.vue");
-     if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
-     update(newContent);
-   });
- }
- // When the module is disposed, remove the <style> tags
- module.hot.dispose(function() { update(); });
-}
-
-/***/ }),
-/* 247 */
-/***/ (function(module, exports, __webpack_require__) {
-
-exports = module.exports = __webpack_require__(2)(false);
-// imports
-
-
-// module
-exports.push([module.i, "\n.fixed-part[data-v-0734aa8e] {\n  position: fixed;\n  background-color: #fff;\n  padding-bottom: 35px;\n  padding-top: 85px;\n  z-index: 999;\n}\n.projects__desc[data-v-0734aa8e] {\n  font-weight: bold;\n  color: #777777;\n}\n.projects__information .table[data-v-0734aa8e] {\n  color: #777777;\n}\n.projects__information .table td[data-v-0734aa8e] {\n    width: 13%;\n}\n.projects__information .table th[data-v-0734aa8e] {\n    font-weight: normal;\n}\n.form-check-label[data-v-0734aa8e] {\n  padding-top: 1px;\n  cursor: pointer;\n}\n.form-check-label[data-v-0734aa8e]:before {\n    border: 1px solid #CCCCCC;\n    border-radius: 0;\n}\n.form-check-label[data-v-0734aa8e]::after {\n    position: absolute;\n    left: -18px;\n    top: 5px;\n    padding-left: 3px;\n    font-size: 11px;\n    color: #00A4D1;\n}\n.form-check-label[data-v-0734aa8e]:hover {\n    color: #03B8E9;\n}\n.form-check input[type=\"checkbox\"]:checked + label[data-v-0734aa8e]::after,\n.form-check .abc-checkbox input[type=\"radio\"]:checked + label[data-v-0734aa8e]::after {\n  font-family: \"FontAwesome\";\n  content: \"\\F00C\";\n}\n.form-check label[data-v-0734aa8e] {\n  cursor: pointer;\n  display: inline;\n  vertical-align: top;\n  position: relative;\n  padding-left: 5px;\n}\n.form-check label[data-v-0734aa8e]::before {\n    content: \"\";\n    position: absolute;\n    width: 20px;\n    height: 20px;\n    top: 3px;\n    left: 0px;\n    margin-left: -1.25rem;\n    border-radius: 0;\n    background-color: #fff;\n    -webkit-transition: border 0.15s ease-in-out, color 0.15s ease-in-out;\n    transition: border 0.15s ease-in-out, color 0.15s ease-in-out;\n}\n.small-case[data-v-0734aa8e] {\n  font-size: 0.8rem;\n}\n.small-case th[data-v-0734aa8e]:first-child {\n    padding-left: 60px;\n}\ntr[data-v-0734aa8e]:hover {\n  cursor: pointer;\n}\n.main-caption img[data-v-0734aa8e] {\n  width: 16px;\n  cursor: pointer;\n}\n", ""]);
-
-// exports
-
-
-/***/ }),
-/* 248 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__Partials_FinishedRoom__ = __webpack_require__(249);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__Partials_FinishedRoom___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__Partials_FinishedRoom__);
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-
-
-
-/* harmony default export */ __webpack_exports__["default"] = ({
-    components: {
-        FinishedRoom: __WEBPACK_IMPORTED_MODULE_0__Partials_FinishedRoom___default.a
-    },
-
-    data: function data() {
-        return {
-            order: [],
-            price: 0,
-            description: [],
-
-            show: false
-        };
-    },
-    beforeMount: function beforeMount() {
-        this.getFinishedOrderAct();
-    },
-    mounted: function mounted() {
-        this.getOrder();
-    },
-
-
-    methods: {
-        getOrder: function getOrder() {
-            var _this = this;
-
-            return axios.get('/api/orders/' + this.$route.params.id).then(function (response) {
-                _this.order = response.data;
-            });
-        },
-        getFinishedOrderAct: function getFinishedOrderAct() {
-            var _this2 = this;
-
-            return axios.get('/api/orders/' + this.$route.params.id + '/finished_order_act/' + this.$route.params.finished_act_id + '/show').then(function (response) {
-                _this2.description = response.data.description;
-                _this2.price = response.data.price;
-            });
-        },
-        updateFinishedOrderAct: function updateFinishedOrderAct() {
-            var _this3 = this;
-
-            axios.patch('/api/orders/' + this.$route.params.id + '/finished_order_act/' + this.$route.params.finished_act_id + '/update', {
-                'description': this.description
-            }).then(function (response) {
-                _this3.show = false;
-            });
-        },
-        getPrice: function getPrice(value) {
-            this.room_price = 0;
-            this.room_price = parseInt(value);
-            this.getFinishedOrderAct();
-        }
-    }
-});
-
-/***/ }),
-/* 249 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var disposed = false
-function injectStyle (ssrContext) {
-  if (disposed) return
-  __webpack_require__(250)
-}
-var normalizeComponent = __webpack_require__(1)
-/* script */
-var __vue_script__ = __webpack_require__(252)
-/* template */
-var __vue_template__ = __webpack_require__(253)
-/* template functional */
-var __vue_template_functional__ = false
-/* styles */
-var __vue_styles__ = injectStyle
-/* scopeId */
-var __vue_scopeId__ = "data-v-70b92cbc"
-/* moduleIdentifier (server only) */
-var __vue_module_identifier__ = null
-var Component = normalizeComponent(
-  __vue_script__,
-  __vue_template__,
-  __vue_template_functional__,
-  __vue_styles__,
-  __vue_scopeId__,
-  __vue_module_identifier__
-)
-Component.options.__file = "resources/assets/js/components/Orders/Services/Partials/FinishedRoom.vue"
-
-/* hot reload */
-if (false) {(function () {
-  var hotAPI = require("vue-hot-reload-api")
-  hotAPI.install(require("vue"), false)
-  if (!hotAPI.compatible) return
-  module.hot.accept()
-  if (!module.hot.data) {
-    hotAPI.createRecord("data-v-70b92cbc", Component.options)
-  } else {
-    hotAPI.reload("data-v-70b92cbc", Component.options)
-  }
-  module.hot.dispose(function (data) {
-    disposed = true
-  })
-})()}
-
-module.exports = Component.exports
-
-
-/***/ }),
-/* 250 */
-/***/ (function(module, exports, __webpack_require__) {
-
-// style-loader: Adds some css to the DOM by adding a <style> tag
-
-// load the styles
-var content = __webpack_require__(251);
-if(typeof content === 'string') content = [[module.i, content, '']];
-if(content.locals) module.exports = content.locals;
-// add the styles to the DOM
-var update = __webpack_require__(3)("a12aeed2", content, false, {});
-// Hot Module Replacement
-if(false) {
- // When the styles change, update the <style> tags
- if(!content.locals) {
-   module.hot.accept("!!../../../../../../../node_modules/css-loader/index.js!../../../../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-70b92cbc\",\"scoped\":true,\"hasInlineConfig\":true}!../../../../../../../node_modules/sass-loader/lib/loader.js!../../../../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./FinishedRoom.vue", function() {
-     var newContent = require("!!../../../../../../../node_modules/css-loader/index.js!../../../../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-70b92cbc\",\"scoped\":true,\"hasInlineConfig\":true}!../../../../../../../node_modules/sass-loader/lib/loader.js!../../../../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./FinishedRoom.vue");
-     if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
-     update(newContent);
-   });
- }
- // When the module is disposed, remove the <style> tags
- module.hot.dispose(function() { update(); });
-}
-
-/***/ }),
-/* 251 */
-/***/ (function(module, exports, __webpack_require__) {
-
-exports = module.exports = __webpack_require__(2)(false);
-// imports
-
-
-// module
-exports.push([module.i, "\n.w-85[data-v-70b92cbc] {\n  width: 85px;\n}\n.main-subtitle--room[data-v-70b92cbc] {\n  padding-top: 75px;\n}\n", ""]);
-
-// exports
-
-
-/***/ }),
-/* 252 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__mixins_OrderExportCollection__ = __webpack_require__(7);
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-
-
-/* harmony default export */ __webpack_exports__["default"] = ({
-    props: ['room', 'order'],
-
-    mixins: [__WEBPACK_IMPORTED_MODULE_0__mixins_OrderExportCollection__["a" /* default */]],
-
-    data: function data() {
-        return {
-            finished_room_service_ids: [],
-
-            selected_service_ids: [],
-            selected_service_quantities: [],
-
-            room_service_ids: []
-        };
-    },
-    beforeMount: function beforeMount() {
-        this.getServicesQuantities();
-        this.getSelectedServices();
-    },
-    mounted: function mounted() {
-        this.RoomServicesInit();
-    },
-
-
-    methods: {
-        RoomServicesInit: function RoomServicesInit() {
-            this.room_service_ids = _.groupBy(this.room.room_services, 'service_type_id');
-        },
-        getServicesQuantities: function getServicesQuantities() {
-            var _this = this;
-
-            this.room.room_services.forEach(function (room_service) {
-                _this.selected_service_quantities[room_service.service_id] = parseFloat(room_service.quantity).toFixed(1);
-            });
-        },
-        getSelectedServices: function getSelectedServices() {
-            var _this2 = this;
-
-            axios.get('/api/orders/' + this.$route.params.id + '/finished_order_act/' + this.$route.params.finished_act_id + '/finished_room/' + this.filterFinishedRoomId() + '/services').then(function (response) {
-                response.data.selected_services.forEach(function (item) {
-                    _this2.finished_room_service_ids.push(item.id);
-                    _this2.selected_service_ids.push(item.id);
-                    _this2.selected_service_quantities[item.id] = item.pivot.quantity;
-                });
-            });
-        },
-        filterFinishedRoomId: function filterFinishedRoomId() {
-            var _this3 = this;
-
-            return this.room.finished_room.filter(function (row) {
-                return row.finished_order_act_id == _this3.$route.params.finished_act_id;
-            })[0].id;
-        },
-        addToSelectedServiceId: function addToSelectedServiceId(id) {
-            if (!this.finished_room_service_ids.includes(id)) {
-                this.finished_room_service_ids.push(id);
-            } else {
-                var index2 = this.finished_room_service_ids.indexOf(id);
-
-                if (index2 > -1) {
-                    this.finished_room_service_ids.splice(index2, 1);
-                }
-            }
-            this.linkSelectedServicesToFinishedRoom();
-        },
-        linkSelectedServicesToFinishedRoom: function linkSelectedServicesToFinishedRoom() {
-            var _this4 = this;
-
-            axios.post('/api/orders/' + this.$route.params.id + '/finished_order_act/' + this.$route.params.finished_act_id + '/services/store', {
-                'finished_room_id': this.filterFinishedRoomId(),
-                'selected_service_ids': this.finished_room_service_ids,
-                'selected_service_quantities': this.removeEmptyElem(this.selected_service_quantities)
-            }).then(function (response) {
-                _this4.$emit('price', parseFloat(response.data).toFixed(2));
-            });
-        }
-    }
-});
-
-/***/ }),
-/* 253 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var render = function() {
-  var _vm = this
-  var _h = _vm.$createElement
-  var _c = _vm._self._c || _h
-  return _c(
-    "div",
-    { staticClass: "col-12 px-0" },
-    [
-      _c(
-        "div",
-        [
-          _c(
-            "h2",
-            { staticClass: "main-subtitle main-subtitle--room pl-3" },
-            [
-              _vm.room.description
-                ? [
-                    _vm._v(
-                      "\n            " +
-                        _vm._s(_vm.room.description) +
-                        "\n        "
-                    )
-                  ]
-                : [
-                    _vm._v(
-                      "\n            " +
-                        _vm._s(_vm.room.room_type.type) +
-                        "\n        "
-                    )
-                  ]
-            ],
-            2
-          ),
-          _vm._v(" "),
-          _vm.room.room_type_id === 1
-            ? [
-                _c(
-                  "div",
-                  {
-                    staticClass:
-                      "projects__desc col-10 d-flex justify-content-between align-items-center py-3"
-                  },
-                  [
-                    _c("div", { staticClass: "projects__desc-item" }, [
-                      _vm._v("Общая площадь: " + _vm._s(_vm.room.area) + " м"),
-                      _c("sup", [_vm._v("2")])
-                    ]),
-                    _vm._v(" "),
-                    _c("div", { staticClass: "projects__desc-item" }, [
-                      _vm._v(
-                        "Высота потолка: " + _vm._s(_vm.room.height) + " м"
-                      )
-                    ]),
-                    _vm._v(" "),
-                    _c("div", { staticClass: "projects__desc-item" }, [
-                      _vm._v(
-                        "Площадь стен: " + _vm._s(_vm.room.wall_area) + " м"
-                      ),
-                      _c("sup", [_vm._v("2")])
-                    ]),
-                    _vm._v(" "),
-                    _c("div", { staticClass: "projects__desc-item" }, [
-                      _vm._v("Периметр: " + _vm._s(_vm.room.perimeter))
-                    ])
-                  ]
-                )
-              ]
-            : _vm._e()
-        ],
-        2
-      ),
-      _vm._v(" "),
-      _vm._l(_vm.room_service_ids, function(room_services, service_type_id) {
-        return [
-          _c("div", { staticClass: "projects__information " }, [
-            _c("div", { staticClass: "row bg px-3" }, [
-              _c(
-                "div",
-                { staticClass: "main-subtitle main-subtitle--fz col-12 pt-4" },
-                [
-                  _vm._v(
-                    "\n              " +
-                      _vm._s(_vm.getServiceTypeName(service_type_id)) +
-                      "\n            "
-                  )
-                ]
-              ),
-              _vm._v(" "),
-              _c("div", { staticClass: "col-12 px-0" }, [
-                _c("table", { staticClass: "table table-hover" }, [
-                  _c(
-                    "tbody",
-                    _vm._l(room_services, function(room_service) {
-                      return _c(
-                        "tr",
-                        [
-                          _c(
-                            "th",
-                            {
-                              staticClass: "w-50 pl-1",
-                              attrs: { scope: "row" }
-                            },
-                            [
-                              _c(
-                                "div",
-                                {
-                                  staticClass:
-                                    "form-check custom-control checkbox"
-                                },
-                                [
-                                  _c("input", {
-                                    staticClass: "form-check-input check",
-                                    attrs: {
-                                      id:
-                                        "room-" +
-                                        room_service.room_id +
-                                        "service-" +
-                                        room_service.service_id,
-                                      type: "checkbox"
-                                    },
-                                    domProps: {
-                                      checked: _vm.finished_room_service_ids.includes(
-                                        room_service.service_id
-                                      )
-                                    },
-                                    on: {
-                                      click: function($event) {
-                                        _vm.addToSelectedServiceId(
-                                          room_service.service_id
-                                        )
-                                      }
-                                    }
-                                  }),
-                                  _vm._v(" "),
-                                  _c(
-                                    "label",
-                                    {
-                                      staticClass: "form-check-label d-block",
-                                      attrs: {
-                                        for:
-                                          "room-" +
-                                          room_service.room_id +
-                                          "service-" +
-                                          room_service.service_id
-                                      }
-                                    },
-                                    [
-                                      _vm._v(
-                                        "\n                              " +
-                                          _vm._s(
-                                            _vm.getServiceDetails(
-                                              room_service.service_id,
-                                              "name"
-                                            )
-                                          ) +
-                                          "\n                          "
-                                      )
-                                    ]
-                                  )
-                                ]
-                              )
-                            ]
-                          ),
-                          _vm._v(" "),
-                          _c("td", { staticClass: "py-1 pl-1" }, [
-                            _c(
-                              "div",
-                              { staticClass: "d-flex align-items-center" },
-                              [
-                                _c("input", {
-                                  directives: [
-                                    {
-                                      name: "model",
-                                      rawName: "v-model",
-                                      value:
-                                        _vm.selected_service_quantities[
-                                          room_service.service_id
-                                        ],
-                                      expression:
-                                        "selected_service_quantities[room_service.service_id]"
-                                    }
-                                  ],
-                                  staticClass: "form-control w-85",
-                                  attrs: {
-                                    type: "number",
-                                    id:
-                                      "room-" +
-                                      room_service.room_id +
-                                      "service-" +
-                                      room_service.service_id,
-                                    min: "0"
-                                  },
-                                  domProps: {
-                                    value:
-                                      _vm.selected_service_quantities[
-                                        room_service.service_id
-                                      ]
-                                  },
-                                  on: {
-                                    change: function($event) {
-                                      _vm.linkSelectedServicesToFinishedRoom()
-                                    },
-                                    input: function($event) {
-                                      if ($event.target.composing) {
-                                        return
-                                      }
-                                      _vm.$set(
-                                        _vm.selected_service_quantities,
-                                        room_service.service_id,
-                                        $event.target.value
-                                      )
-                                    }
-                                  }
-                                }),
-                                _vm._v(" "),
-                                _c("div", { staticClass: "col-auto pl-2" }, [
-                                  _vm._v(
-                                    "\n                                  " +
-                                      _vm._s(
-                                        _vm.getServiceDetails(
-                                          room_service.service_id,
-                                          "unit"
-                                        )
-                                      ) +
-                                      "\n                              "
-                                  )
-                                ])
-                              ]
-                            )
-                          ]),
-                          _vm._v(" "),
-                          _vm.order.discount
-                            ? [
-                                _vm.getServiceDetails(
-                                  room_service.service_id,
-                                  "can_be_discounted"
-                                )
-                                  ? [
-                                      _c("td", [
-                                        _vm._v(
-                                          _vm._s(
-                                            parseInt(
-                                              _vm.getServiceDetails(
-                                                room_service.service_id,
-                                                "price"
-                                              ) *
-                                                (1 -
-                                                  parseInt(_vm.order.discount) /
-                                                    100)
-                                            )
-                                          ) +
-                                            " Р/" +
-                                            _vm._s(
-                                              _vm.getServiceDetails(
-                                                room_service.service_id,
-                                                "unit"
-                                              )
-                                            )
-                                        )
-                                      ]),
-                                      _vm._v(" "),
-                                      _c("td", [
-                                        _vm._v(
-                                          _vm._s(
-                                            _vm.priceCount(
-                                              _vm.selected_service_quantities[
-                                                room_service.service_id
-                                              ],
-                                              parseInt(
-                                                _vm.getServiceDetails(
-                                                  room_service.service_id,
-                                                  "price"
-                                                ) *
-                                                  (1 -
-                                                    parseInt(
-                                                      _vm.order.discount
-                                                    ) /
-                                                      100)
-                                              )
-                                            )
-                                          ) + " Р"
-                                        )
-                                      ])
-                                    ]
-                                  : [
-                                      _c("td", [
-                                        _vm._v(
-                                          _vm._s(
-                                            parseInt(
-                                              _vm.getServiceDetails(
-                                                room_service.service_id,
-                                                "price"
-                                              )
-                                            )
-                                          ) +
-                                            " Р/" +
-                                            _vm._s(
-                                              _vm.getServiceDetails(
-                                                room_service.service_id,
-                                                "unit"
-                                              )
-                                            )
-                                        )
-                                      ]),
-                                      _vm._v(" "),
-                                      _c("td", [
-                                        _vm._v(
-                                          _vm._s(
-                                            _vm.priceCount(
-                                              _vm.selected_service_quantities[
-                                                room_service.service_id
-                                              ],
-                                              parseInt(
-                                                _vm.getServiceDetails(
-                                                  room_service.service_id,
-                                                  "price"
-                                                )
-                                              )
-                                            )
-                                          ) + " Р"
-                                        )
-                                      ])
-                                    ]
-                              ]
-                            : _vm._e(),
-                          _vm._v(" "),
-                          _vm.order.markup
-                            ? [
-                                _c("td", [
-                                  _vm._v(
-                                    _vm._s(
-                                      parseInt(
-                                        _vm.getServiceDetails(
-                                          room_service.service_id,
-                                          "price"
-                                        ) *
-                                          (1 + parseInt(_vm.order.markup) / 100)
-                                      )
-                                    ) +
-                                      " Р/" +
-                                      _vm._s(
-                                        _vm.getServiceDetails(
-                                          room_service.service_id,
-                                          "unit"
-                                        )
-                                      )
-                                  )
-                                ]),
-                                _vm._v(" "),
-                                _c("td", [
-                                  _vm._v(
-                                    _vm._s(
-                                      _vm.priceCount(
-                                        _vm.selected_service_quantities[
-                                          room_service.service_id
-                                        ],
-                                        parseInt(
-                                          _vm.getServiceDetails(
-                                            room_service.service_id,
-                                            "price"
-                                          ) *
-                                            (1 +
-                                              parseInt(_vm.order.markup) / 100)
-                                        )
-                                      )
-                                    ) + " Р"
-                                  )
-                                ])
-                              ]
-                            : _vm._e(),
-                          _vm._v(" "),
-                          _vm.order.markup === null &&
-                          _vm.order.discount === null
-                            ? [
-                                _c("td", [
-                                  _vm._v(
-                                    _vm._s(
-                                      parseInt(
-                                        _vm.getServiceDetails(
-                                          room_service.service_id,
-                                          "price"
-                                        )
-                                      )
-                                    ) +
-                                      " Р/" +
-                                      _vm._s(
-                                        _vm.getServiceDetails(
-                                          room_service.service_id,
-                                          "unit"
-                                        )
-                                      )
-                                  )
-                                ]),
-                                _vm._v(" "),
-                                _c("td", [
-                                  _vm._v(
-                                    _vm._s(
-                                      _vm.priceCount(
-                                        _vm.selected_service_quantities[
-                                          room_service.service_id
-                                        ],
-                                        parseInt(
-                                          _vm.getServiceDetails(
-                                            room_service.service_id,
-                                            "price"
-                                          )
-                                        )
-                                      )
-                                    ) + " Р"
-                                  )
-                                ])
-                              ]
-                            : _vm._e()
-                        ],
-                        2
-                      )
-                    })
-                  )
-                ])
-              ])
-            ])
-          ])
-        ]
-      })
-    ],
-    2
-  )
-}
-var staticRenderFns = []
-render._withStripped = true
-module.exports = { render: render, staticRenderFns: staticRenderFns }
-if (false) {
-  module.hot.accept()
-  if (module.hot.data) {
-    require("vue-hot-reload-api")      .rerender("data-v-70b92cbc", module.exports)
-  }
-}
-
-/***/ }),
-/* 254 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var render = function() {
-  var _vm = this
-  var _h = _vm.$createElement
-  var _c = _vm._self._c || _h
-  return _c(
-    "div",
-    { staticClass: "projects" },
-    [
-      _c("basic-header"),
-      _vm._v(" "),
-      _c("div", { staticClass: "container-fluid " }, [
-        _c(
-          "div",
-          { staticClass: "row" },
-          [
-            _c("navigation"),
-            _vm._v(" "),
-            _c(
-              "div",
-              { staticClass: "col-md-10" },
-              [
-                _c(
-                  "div",
-                  {
-                    staticClass:
-                      "row col-10 fixed-part shadow bg-white rounded align-items-center"
-                  },
-                  [
-                    !_vm.show
-                      ? [
-                          _vm.description
-                            ? [
-                                _c("div", { staticClass: "col-md-8" }, [
-                                  _c(
-                                    "h1",
-                                    {
-                                      staticClass: "main-caption w-100",
-                                      on: {
-                                        click: function($event) {
-                                          _vm.show = !_vm.show
-                                        }
-                                      }
-                                    },
-                                    [
-                                      _vm._v(
-                                        "\n                        " +
-                                          _vm._s(_vm.description) +
-                                          "\n                        "
-                                      ),
-                                      _c("img", {
-                                        attrs: {
-                                          src: "/img/edit.svg",
-                                          alt: "add-button",
-                                          title: "Редактировать"
-                                        }
-                                      })
-                                    ]
-                                  )
-                                ])
-                              ]
-                            : [
-                                _c("div", { staticClass: "col-md-8" }, [
-                                  _c(
-                                    "h1",
-                                    {
-                                      staticClass: "main-caption w-100",
-                                      on: {
-                                        click: function($event) {
-                                          _vm.show = !_vm.show
-                                        }
-                                      }
-                                    },
-                                    [
-                                      _vm._v(
-                                        "\n                        Акт выполненных работ\n                        "
-                                      ),
-                                      _c("img", {
-                                        attrs: {
-                                          src: "/img/edit.svg",
-                                          alt: "add-button",
-                                          title: "Редактировать"
-                                        }
-                                      })
-                                    ]
-                                  )
-                                ])
-                              ]
-                        ]
-                      : [
-                          _c("input", {
-                            directives: [
-                              {
-                                name: "model",
-                                rawName: "v-model",
-                                value: _vm.description,
-                                expression: "description"
-                              }
-                            ],
-                            staticClass: "col-md-8",
-                            attrs: { autofocus: "" },
-                            domProps: { value: _vm.description },
-                            on: {
-                              change: function($event) {
-                                _vm.updateFinishedOrderAct()
-                              },
-                              input: function($event) {
-                                if ($event.target.composing) {
-                                  return
-                                }
-                                _vm.description = $event.target.value
-                              }
-                            }
-                          })
-                        ],
-                    _vm._v(" "),
-                    _vm.order
-                      ? [
-                          _c(
-                            "div",
-                            { staticClass: "col-md-2 ml-auto" },
-                            [
-                              _c(
-                                "router-link",
-                                {
-                                  attrs: {
-                                    to: {
-                                      name:
-                                        "order-finished-services-export-show",
-                                      params: {
-                                        id: _vm.order.id,
-                                        finished_act_id: this.$route.params
-                                          .finished_act_id
-                                      }
-                                    },
-                                    target: "_blank"
-                                  }
-                                },
-                                [
-                                  _c(
-                                    "button",
-                                    {
-                                      staticClass: "primary-button w-100",
-                                      attrs: { type: "button" }
-                                    },
-                                    [_vm._v("Экспорт")]
-                                  )
-                                ]
-                              )
-                            ],
-                            1
-                          )
-                        ]
-                      : _vm._e(),
-                    _vm._v(" "),
-                    _vm.order.price
-                      ? [
-                          _vm.order.discount
-                            ? [
-                                _c(
-                                  "div",
-                                  {
-                                    staticClass:
-                                      "col-md-6 pt-3 d-flex align-items-center"
-                                  },
-                                  [
-                                    _c("h2", { staticClass: "main-subtitle" }, [
-                                      _vm._v(
-                                        "Итого: " +
-                                          _vm._s(
-                                            new Intl.NumberFormat(
-                                              "ru-Ru"
-                                            ).format(parseInt(_vm.order.price))
-                                          ) +
-                                          " Р"
-                                      )
-                                    ]),
-                                    _vm._v(" "),
-                                    _c("div", { staticClass: "d-flex pl-3" }, [
-                                      _c(
-                                        "span",
-                                        { staticClass: "small-case" },
-                                        [
-                                          _vm._v(
-                                            _vm._s(
-                                              new Intl.NumberFormat(
-                                                "ru-Ru"
-                                              ).format(_vm.order.original_price)
-                                            ) + " Р"
-                                          )
-                                        ]
-                                      ),
-                                      _vm._v(" "),
-                                      _c(
-                                        "span",
-                                        { staticClass: "small-case" },
-                                        [
-                                          _vm._v(
-                                            "(скидка: -" +
-                                              _vm._s(
-                                                parseInt(_vm.order.discount)
-                                              ) +
-                                              "%)"
-                                          )
-                                        ]
-                                      )
-                                    ])
-                                  ]
-                                )
-                              ]
-                            : _vm._e(),
-                          _vm._v(" "),
-                          _vm.order.markup
-                            ? [
-                                _c("div", { staticClass: "col-md-6 pt-3" }, [
-                                  _c("h2", { staticClass: "main-subtitle" }, [
-                                    _vm._v(
-                                      "Итого: " +
-                                        _vm._s(
-                                          new Intl.NumberFormat("ru-Ru").format(
-                                            _vm.order.price
-                                          )
-                                        ) +
-                                        " Р"
-                                    )
-                                  ]),
-                                  _vm._v(" "),
-                                  _c("span", { staticClass: "small-case" }, [
-                                    _vm._v(
-                                      _vm._s(
-                                        new Intl.NumberFormat("ru-Ru").format(
-                                          _vm.order.original_price
-                                        )
-                                      ) + " Р"
-                                    )
-                                  ]),
-                                  _vm._v(" "),
-                                  _c("span", { staticClass: "small-case" }, [
-                                    _vm._v(
-                                      "(наценка: +" +
-                                        _vm._s(parseInt(_vm.order.markup)) +
-                                        "%)"
-                                    )
-                                  ])
-                                ])
-                              ]
-                            : _vm._e(),
-                          _vm._v(" "),
-                          _vm.order.discount === null &&
-                          _vm.order.markup === null
-                            ? [
-                                _c("div", { staticClass: "col-md-6 pt-3" }, [
-                                  _c("h2", { staticClass: "main-subtitle" }, [
-                                    _vm._v(
-                                      "Итого: " +
-                                        _vm._s(
-                                          new Intl.NumberFormat("ru-Ru").format(
-                                            parseInt(_vm.order.price)
-                                          )
-                                        ) +
-                                        " Р"
-                                    )
-                                  ])
-                                ])
-                              ]
-                            : _vm._e()
-                        ]
-                      : [
-                          _c("div", { staticClass: "col-md-6 pt-3" }, [
-                            _c("h2", { staticClass: "main-subtitle" }, [
-                              _vm._v(
-                                " Итого: " +
-                                  _vm._s(
-                                    new Intl.NumberFormat("ru-Ru").format(
-                                      parseInt(0)
-                                    )
-                                  ) +
-                                  " Р"
-                              )
-                            ])
-                          ])
-                        ],
-                    _vm._v(" "),
-                    _vm.price
-                      ? [
-                          _c(
-                            "div",
-                            {
-                              staticClass:
-                                "col-md-6 pt-3 d-flex justify-content-end px-0"
-                            },
-                            [
-                              _c("div", { staticClass: "col-12 text-right" }, [
-                                _c(
-                                  "h2",
-                                  { staticClass: "main-subtitle px-15" },
-                                  [
-                                    _vm._v(
-                                      " " +
-                                        _vm._s(
-                                          new Intl.NumberFormat("ru-Ru").format(
-                                            parseInt(_vm.price)
-                                          )
-                                        ) +
-                                        " Р"
-                                    )
-                                  ]
-                                )
-                              ])
-                            ]
-                          )
-                        ]
-                      : [
-                          _c(
-                            "div",
-                            {
-                              staticClass:
-                                "col-md-6 pt-3 d-flex justify-content-end px-0"
-                            },
-                            [
-                              _c("div", { staticClass: "col-12 text-right" }, [
-                                _c(
-                                  "h2",
-                                  { staticClass: "main-subtitle px-15" },
-                                  [
-                                    _vm._v(
-                                      " " +
-                                        _vm._s(
-                                          new Intl.NumberFormat("ru-Ru").format(
-                                            parseInt(0)
-                                          )
-                                        ) +
-                                        " Р"
-                                    )
-                                  ]
-                                )
-                              ])
-                            ]
-                          )
-                        ]
-                  ],
-                  2
-                ),
-                _vm._v(" "),
-                _c("div", { staticClass: "projects__content" }),
-                _vm._v(" "),
-                _vm._l(_vm.order.rooms, function(room) {
-                  return _vm.order.rooms
-                    ? [
-                        _c("finished-room", {
-                          key: "finished-room-" + room.id,
-                          attrs: { room: room, order: _vm.order },
-                          on: { price: _vm.getPrice }
-                        })
-                      ]
-                    : _vm._e()
-                })
-              ],
-              2
-            )
-          ],
-          1
-        )
-      ])
-    ],
-    1
-  )
-}
-var staticRenderFns = []
-render._withStripped = true
-module.exports = { render: render, staticRenderFns: staticRenderFns }
-if (false) {
-  module.hot.accept()
-  if (module.hot.data) {
-    require("vue-hot-reload-api")      .rerender("data-v-0734aa8e", module.exports)
-  }
-}
-
-/***/ }),
+/* 245 */,
+/* 246 */,
+/* 247 */,
+/* 248 */,
+/* 249 */,
+/* 250 */,
+/* 251 */,
+/* 252 */,
+/* 253 */,
+/* 254 */,
 /* 255 */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -96085,6 +94699,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
 
 
 
@@ -96131,113 +94749,123 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _vm.show
-    ? _c("div", { staticClass: "col-2 mt-5" }, [
-        _c("div", { staticClass: "form-group" }, [
-          _c(
-            "button",
-            {
-              staticClass: "btn primary-button",
-              attrs: { type: "button" },
-              on: {
-                click: function($event) {
-                  $event.preventDefault()
-                  _vm.show = !_vm.show
+  return _c("div", { staticClass: "col-12" }, [
+    _vm.show
+      ? _c("div", { staticClass: "col-2 mt-5" }, [
+          _c("div", { staticClass: "form-group" }, [
+            _c(
+              "button",
+              {
+                staticClass: "btn primary-button",
+                attrs: { type: "button" },
+                on: {
+                  click: function($event) {
+                    $event.preventDefault()
+                    _vm.show = !_vm.show
+                  }
                 }
-              }
-            },
-            [_vm._v("\n            Создать\n        ")]
+              },
+              [_vm._v("\n                Создать\n            ")]
+            )
+          ])
+        ])
+      : _c("div", { staticClass: "col-12 mt-5" }, [
+          _c(
+            "div",
+            { staticClass: "row align-items-center" },
+            [
+              _c("input", {
+                directives: [
+                  {
+                    name: "model",
+                    rawName: "v-model",
+                    value: _vm.state.description,
+                    expression: "state.description"
+                  }
+                ],
+                staticClass: "col-md-3",
+                attrs: { type: "text", placeholder: "Название" },
+                domProps: { value: _vm.state.description },
+                on: {
+                  input: function($event) {
+                    if ($event.target.composing) {
+                      return
+                    }
+                    _vm.$set(_vm.state, "description", $event.target.value)
+                  }
+                }
+              }),
+              _vm._v(" "),
+              _c("datepicker", {
+                staticClass: "col-md-2",
+                attrs: { placeholder: "Начало", language: _vm.ru },
+                model: {
+                  value: _vm.state.begin_at,
+                  callback: function($$v) {
+                    _vm.$set(_vm.state, "begin_at", $$v)
+                  },
+                  expression: "state.begin_at"
+                }
+              }),
+              _vm._v(" "),
+              _c("datepicker", {
+                staticClass: "my-datepicker col-md-2",
+                attrs: { placeholder: "Окончание", language: _vm.ru },
+                model: {
+                  value: _vm.state.finish_at,
+                  callback: function($$v) {
+                    _vm.$set(_vm.state, "finish_at", $$v)
+                  },
+                  expression: "state.finish_at"
+                }
+              }),
+              _vm._v(" "),
+              _c("div", { staticClass: "col-md-2 ml-3" }, [
+                _c(
+                  "button",
+                  {
+                    staticClass: "btn primary-button",
+                    attrs: { type: "submit" },
+                    on: {
+                      click: function($event) {
+                        $event.preventDefault()
+                        _vm.create()
+                      }
+                    }
+                  },
+                  [
+                    _vm._v(
+                      "\n                        Создать\n                "
+                    )
+                  ]
+                )
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "col-md-2" }, [
+                _c(
+                  "button",
+                  {
+                    staticClass: "btn btn-warning",
+                    attrs: { type: "button" },
+                    on: {
+                      click: function($event) {
+                        $event.preventDefault()
+                        _vm.show = !_vm.show
+                      }
+                    }
+                  },
+                  [
+                    _vm._v(
+                      "\n                        Отменить\n                "
+                    )
+                  ]
+                )
+              ])
+            ],
+            1
           )
         ])
-      ])
-    : _c("div", { staticClass: "col-12 mt-5" }, [
-        _c(
-          "div",
-          { staticClass: "row align-items-center" },
-          [
-            _c("input", {
-              directives: [
-                {
-                  name: "model",
-                  rawName: "v-model",
-                  value: _vm.state.description,
-                  expression: "state.description"
-                }
-              ],
-              staticClass: "col-md-3",
-              attrs: { type: "text", placeholder: "Название" },
-              domProps: { value: _vm.state.description },
-              on: {
-                input: function($event) {
-                  if ($event.target.composing) {
-                    return
-                  }
-                  _vm.$set(_vm.state, "description", $event.target.value)
-                }
-              }
-            }),
-            _vm._v(" "),
-            _c("datepicker", {
-              staticClass: "col-md-2",
-              attrs: { placeholder: "Начало", language: _vm.ru },
-              model: {
-                value: _vm.state.begin_at,
-                callback: function($$v) {
-                  _vm.$set(_vm.state, "begin_at", $$v)
-                },
-                expression: "state.begin_at"
-              }
-            }),
-            _vm._v(" "),
-            _c("datepicker", {
-              staticClass: "my-datepicker col-md-2",
-              attrs: { placeholder: "Окончание", language: _vm.ru },
-              model: {
-                value: _vm.state.finish_at,
-                callback: function($$v) {
-                  _vm.$set(_vm.state, "finish_at", $$v)
-                },
-                expression: "state.finish_at"
-              }
-            }),
-            _vm._v(" "),
-            _c("div", { staticClass: "col-md-2 ml-3" }, [
-              _c(
-                "button",
-                {
-                  staticClass: "btn primary-button",
-                  attrs: { type: "submit" },
-                  on: {
-                    click: function($event) {
-                      $event.preventDefault()
-                      _vm.create()
-                    }
-                  }
-                },
-                [_vm._v("\n                    Создать\n            ")]
-              )
-            ]),
-            _vm._v(" "),
-            _c("div", { staticClass: "col-md-2" }, [
-              _c(
-                "button",
-                {
-                  staticClass: "btn btn-warning",
-                  attrs: { type: "button" },
-                  on: {
-                    click: function($event) {
-                      $event.preventDefault()
-                      _vm.show = !_vm.show
-                    }
-                  }
-                },
-                [_vm._v("\n                    Отменить\n            ")]
-              )
-            ])
-          ],
-          1
-        )
-      ])
+  ])
 }
 var staticRenderFns = []
 render._withStripped = true
@@ -96344,13 +94972,29 @@ var render = function() {
     _c(
       "td",
       [
-        _c("router-link", { attrs: { to: { name: "", params: {} } } }, [
-          _vm._v(
-            "\n            " +
-              _vm._s(_vm.act.description ? _vm.act.description : _vm.act.name) +
-              "\n        "
-          )
-        ])
+        _c(
+          "router-link",
+          {
+            attrs: {
+              to: {
+                name: "order-finished-act-show",
+                params: {
+                  id: this.$route.params.id,
+                  finished_act_id: _vm.act.id
+                }
+              }
+            }
+          },
+          [
+            _vm._v(
+              "\n            " +
+                _vm._s(
+                  _vm.act.description ? _vm.act.description : _vm.act.name
+                ) +
+                "\n        "
+            )
+          ]
+        )
       ],
       1
     ),
@@ -96369,6 +95013,530 @@ if (false) {
   module.hot.accept()
   if (module.hot.data) {
     require("vue-hot-reload-api")      .rerender("data-v-bc3a601c", module.exports)
+  }
+}
+
+/***/ }),
+/* 366 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+function injectStyle (ssrContext) {
+  if (disposed) return
+  __webpack_require__(367)
+}
+var normalizeComponent = __webpack_require__(1)
+/* script */
+var __vue_script__ = __webpack_require__(369)
+/* template */
+var __vue_template__ = __webpack_require__(370)
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = injectStyle
+/* scopeId */
+var __vue_scopeId__ = "data-v-5e7cc884"
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources/assets/js/components/Orders/Services/Finished/FinishedActShow.vue"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-5e7cc884", Component.options)
+  } else {
+    hotAPI.reload("data-v-5e7cc884", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 367 */
+/***/ (function(module, exports, __webpack_require__) {
+
+// style-loader: Adds some css to the DOM by adding a <style> tag
+
+// load the styles
+var content = __webpack_require__(368);
+if(typeof content === 'string') content = [[module.i, content, '']];
+if(content.locals) module.exports = content.locals;
+// add the styles to the DOM
+var update = __webpack_require__(3)("71a62910", content, false, {});
+// Hot Module Replacement
+if(false) {
+ // When the styles change, update the <style> tags
+ if(!content.locals) {
+   module.hot.accept("!!../../../../../../../node_modules/css-loader/index.js!../../../../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-5e7cc884\",\"scoped\":true,\"hasInlineConfig\":true}!../../../../../../../node_modules/sass-loader/lib/loader.js!../../../../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./FinishedActShow.vue", function() {
+     var newContent = require("!!../../../../../../../node_modules/css-loader/index.js!../../../../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-5e7cc884\",\"scoped\":true,\"hasInlineConfig\":true}!../../../../../../../node_modules/sass-loader/lib/loader.js!../../../../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./FinishedActShow.vue");
+     if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+     update(newContent);
+   });
+ }
+ // When the module is disposed, remove the <style> tags
+ module.hot.dispose(function() { update(); });
+}
+
+/***/ }),
+/* 368 */
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(2)(false);
+// imports
+
+
+// module
+exports.push([module.i, "\n.fixed-part[data-v-5e7cc884] {\n  position: fixed;\n  background-color: #fff;\n  padding-bottom: 35px;\n  padding-top: 85px;\n  z-index: 999;\n}\n.projects__desc[data-v-5e7cc884] {\n  font-weight: bold;\n  color: #777777;\n}\n.projects__information .table[data-v-5e7cc884] {\n  color: #777777;\n}\n.projects__information .table td[data-v-5e7cc884] {\n    width: 13%;\n}\n.projects__information .table th[data-v-5e7cc884] {\n    font-weight: normal;\n}\n.form-check-label[data-v-5e7cc884] {\n  padding-top: 1px;\n  cursor: pointer;\n}\n.form-check-label[data-v-5e7cc884]:before {\n    border: 1px solid #CCCCCC;\n    border-radius: 0;\n}\n.form-check-label[data-v-5e7cc884]::after {\n    position: absolute;\n    left: -18px;\n    top: 5px;\n    padding-left: 3px;\n    font-size: 11px;\n    color: #00A4D1;\n}\n.form-check-label[data-v-5e7cc884]:hover {\n    color: #03B8E9;\n}\n.form-check input[type=\"checkbox\"]:checked + label[data-v-5e7cc884]::after,\n.form-check .abc-checkbox input[type=\"radio\"]:checked + label[data-v-5e7cc884]::after {\n  font-family: \"FontAwesome\";\n  content: \"\\F00C\";\n}\n.form-check label[data-v-5e7cc884] {\n  cursor: pointer;\n  display: inline;\n  vertical-align: top;\n  position: relative;\n  padding-left: 5px;\n}\n.form-check label[data-v-5e7cc884]::before {\n    content: \"\";\n    position: absolute;\n    width: 20px;\n    height: 20px;\n    top: 3px;\n    left: 0px;\n    margin-left: -1.25rem;\n    border-radius: 0;\n    background-color: #fff;\n    -webkit-transition: border 0.15s ease-in-out, color 0.15s ease-in-out;\n    transition: border 0.15s ease-in-out, color 0.15s ease-in-out;\n}\n.small-case[data-v-5e7cc884] {\n  font-size: 0.8rem;\n}\n.small-case th[data-v-5e7cc884]:first-child {\n    padding-left: 60px;\n}\ntr[data-v-5e7cc884]:hover {\n  cursor: pointer;\n}\n.main-caption img[data-v-5e7cc884] {\n  width: 16px;\n  cursor: pointer;\n}\n", ""]);
+
+// exports
+
+
+/***/ }),
+/* 369 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+// import FinishedRoom from './Partials/FinishedRoom'
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+    components: {
+        // FinishedRoom
+    },
+
+    data: function data() {
+        return {
+            order: [],
+            price: 0
+        };
+    },
+    created: function created() {
+        this.getFinishedOrderAct();
+        this.getOrder();
+    },
+
+
+    methods: {
+        getOrder: function getOrder() {
+            var _this = this;
+
+            return axios.get('/api/orders/' + this.$route.params.id).then(function (response) {
+                _this.order = response.data;
+            });
+        },
+        getFinishedOrderAct: function getFinishedOrderAct() {
+            var _this2 = this;
+
+            return axios.get('/api/orders/' + this.$route.params.id + '/finished_order_act/' + this.$route.params.finished_act_id + '/show').then(function (response) {
+                _this2.description = response.data.description;
+                _this2.price = response.data.price;
+            });
+        },
+        updateFinishedOrderAct: function updateFinishedOrderAct() {
+            var _this3 = this;
+
+            axios.patch('/api/orders/' + this.$route.params.id + '/finished_order_act/' + this.$route.params.finished_act_id + '/update', {
+                'description': this.description
+            }).then(function (response) {
+                _this3.show = false;
+            });
+        },
+        getPrice: function getPrice(value) {
+            this.room_price = 0;
+            this.room_price = parseInt(value);
+            this.getFinishedOrderAct();
+        },
+        priceCount: function priceCount(quantity, price) {
+            return new Intl.NumberFormat('ru-Ru').format(parseInt(quantity * price));
+        }
+    }
+});
+
+/***/ }),
+/* 370 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c(
+    "div",
+    { staticClass: "projects" },
+    [
+      _c("basic-header"),
+      _vm._v(" "),
+      _c("div", { staticClass: "container-fluid " }, [
+        _c(
+          "div",
+          { staticClass: "row" },
+          [
+            _c("navigation"),
+            _vm._v(" "),
+            _c("div", { staticClass: "col-md-10" }, [
+              _c(
+                "div",
+                {
+                  staticClass:
+                    "row col-10 fixed-part shadow bg-white rounded align-items-center"
+                },
+                [
+                  _c("div", { staticClass: "col-md-8" }, [
+                    _c(
+                      "h1",
+                      {
+                        staticClass: "main-caption w-100",
+                        on: {
+                          click: function($event) {
+                            _vm.show = !_vm.show
+                          }
+                        }
+                      },
+                      [
+                        _vm._v(
+                          "\n                " +
+                            _vm._s(
+                              _vm.description
+                                ? _vm.description
+                                : "Акт выполненных работ"
+                            ) +
+                            "\n              "
+                        )
+                      ]
+                    )
+                  ]),
+                  _vm._v(" "),
+                  _vm.order.length !== 0
+                    ? _c(
+                        "div",
+                        { staticClass: "col-md-2 ml-auto" },
+                        [
+                          _c(
+                            "router-link",
+                            {
+                              attrs: {
+                                to: {
+                                  name: "order-finished-services-export-show",
+                                  params: {
+                                    id: _vm.order.id,
+                                    finished_act_id: this.$route.params
+                                      .finished_act_id
+                                  }
+                                },
+                                target: "_blank"
+                              }
+                            },
+                            [
+                              _c(
+                                "button",
+                                {
+                                  staticClass: "primary-button w-100",
+                                  attrs: { type: "button" }
+                                },
+                                [_vm._v("Экспорт")]
+                              )
+                            ]
+                          )
+                        ],
+                        1
+                      )
+                    : _vm._e(),
+                  _vm._v(" "),
+                  _vm.order.price
+                    ? [
+                        _vm.order.discount
+                          ? [
+                              _c(
+                                "div",
+                                {
+                                  staticClass:
+                                    "col-md-6 pt-3 d-flex align-items-center"
+                                },
+                                [
+                                  _c("h2", { staticClass: "main-subtitle" }, [
+                                    _vm._v(
+                                      "Итого: " +
+                                        _vm._s(
+                                          new Intl.NumberFormat("ru-Ru").format(
+                                            parseInt(_vm.order.price)
+                                          )
+                                        ) +
+                                        " Р"
+                                    )
+                                  ]),
+                                  _vm._v(" "),
+                                  _c("div", { staticClass: "d-flex pl-3" }, [
+                                    _c("span", { staticClass: "small-case" }, [
+                                      _vm._v(
+                                        _vm._s(
+                                          new Intl.NumberFormat("ru-Ru").format(
+                                            _vm.order.original_price
+                                          )
+                                        ) + " Р"
+                                      )
+                                    ]),
+                                    _vm._v(" "),
+                                    _c("span", { staticClass: "small-case" }, [
+                                      _vm._v(
+                                        "(скидка: -" +
+                                          _vm._s(parseInt(_vm.order.discount)) +
+                                          "%)"
+                                      )
+                                    ])
+                                  ])
+                                ]
+                              )
+                            ]
+                          : _vm._e(),
+                        _vm._v(" "),
+                        _vm.order.markup
+                          ? [
+                              _c("div", { staticClass: "col-md-6 pt-3" }, [
+                                _c("h2", { staticClass: "main-subtitle" }, [
+                                  _vm._v(
+                                    "Итого: " +
+                                      _vm._s(
+                                        new Intl.NumberFormat("ru-Ru").format(
+                                          _vm.order.price
+                                        )
+                                      ) +
+                                      " Р"
+                                  )
+                                ]),
+                                _vm._v(" "),
+                                _c("span", { staticClass: "small-case" }, [
+                                  _vm._v(
+                                    _vm._s(
+                                      new Intl.NumberFormat("ru-Ru").format(
+                                        _vm.order.original_price
+                                      )
+                                    ) + " Р"
+                                  )
+                                ]),
+                                _vm._v(" "),
+                                _c("span", { staticClass: "small-case" }, [
+                                  _vm._v(
+                                    "(наценка: +" +
+                                      _vm._s(parseInt(_vm.order.markup)) +
+                                      "%)"
+                                  )
+                                ])
+                              ])
+                            ]
+                          : _vm._e(),
+                        _vm._v(" "),
+                        _vm.order.discount === null && _vm.order.markup === null
+                          ? [
+                              _c("div", { staticClass: "col-md-6 pt-3" }, [
+                                _c("h2", { staticClass: "main-subtitle" }, [
+                                  _vm._v(
+                                    "Итого: " +
+                                      _vm._s(
+                                        new Intl.NumberFormat("ru-Ru").format(
+                                          parseInt(_vm.order.price)
+                                        )
+                                      ) +
+                                      " Р"
+                                  )
+                                ])
+                              ])
+                            ]
+                          : _vm._e()
+                      ]
+                    : [
+                        _c("div", { staticClass: "col-md-6 pt-3" }, [
+                          _c("h2", { staticClass: "main-subtitle" }, [
+                            _vm._v(
+                              " Итого: " +
+                                _vm._s(
+                                  new Intl.NumberFormat("ru-Ru").format(
+                                    parseInt(0)
+                                  )
+                                ) +
+                                " Р"
+                            )
+                          ])
+                        ])
+                      ],
+                  _vm._v(" "),
+                  _vm.price
+                    ? [
+                        _c(
+                          "div",
+                          {
+                            staticClass:
+                              "col-md-6 pt-3 d-flex justify-content-end px-0"
+                          },
+                          [
+                            _c("div", { staticClass: "col-12 text-right" }, [
+                              _c("h2", { staticClass: "main-subtitle px-15" }, [
+                                _vm._v(
+                                  " " +
+                                    _vm._s(
+                                      new Intl.NumberFormat("ru-Ru").format(
+                                        parseInt(_vm.price)
+                                      )
+                                    ) +
+                                    " Р"
+                                )
+                              ])
+                            ])
+                          ]
+                        )
+                      ]
+                    : [
+                        _c(
+                          "div",
+                          {
+                            staticClass:
+                              "col-md-6 pt-3 d-flex justify-content-end px-0"
+                          },
+                          [
+                            _c("div", { staticClass: "col-12 text-right" }, [
+                              _c("h2", { staticClass: "main-subtitle px-15" }, [
+                                _vm._v(
+                                  " " +
+                                    _vm._s(
+                                      new Intl.NumberFormat("ru-Ru").format(
+                                        parseInt(0)
+                                      )
+                                    ) +
+                                    " Р"
+                                )
+                              ])
+                            ])
+                          ]
+                        )
+                      ]
+                ],
+                2
+              ),
+              _vm._v(" "),
+              _c("div", { staticClass: "projects__content" })
+            ])
+          ],
+          1
+        )
+      ])
+    ],
+    1
+  )
+}
+var staticRenderFns = []
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-5e7cc884", module.exports)
   }
 }
 

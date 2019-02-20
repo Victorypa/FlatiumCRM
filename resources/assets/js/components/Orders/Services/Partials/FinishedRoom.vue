@@ -1,5 +1,5 @@
 <template>
-    <div class="col-12 px-0">
+    <!-- <div class="col-12 px-0">
       <div>
         <h2 class="main-subtitle main-subtitle--room pl-3">
             <template v-if="room.description">
@@ -87,11 +87,12 @@
 
         </div>
       </template>
-    </div>
+    </div> -->
 </template>
 
 <script>
     import OrderExportCollection from '../../../../mixins/OrderExportCollection'
+
     export default {
         props: ['room', 'order'],
 
@@ -108,13 +109,10 @@
             }
         },
 
-        beforeMount() {
-          this.getServicesQuantities()
-          this.getSelectedServices()
-        },
-
-        mounted () {
-            this.RoomServicesInit()
+        created () {
+          // this.getServicesQuantities()
+          // this.getSelectedServices()
+          this.RoomServicesInit()
         },
 
         methods: {
@@ -140,9 +138,11 @@
             },
 
             filterFinishedRoomId () {
-                return this.room.finished_room.filter(row => {
-                    return row.finished_order_act_id == this.$route.params.finished_act_id
-                })[0].id
+                if (this.room.finished_room.length !== 0) {
+                    return this.room.finished_room.filter(row => {
+                        return row.finished_order_act_id == this.$route.params.finished_act_id
+                    })[0].id
+                }
             },
 
             addToSelectedServiceId (id) {
