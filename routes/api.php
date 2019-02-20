@@ -108,7 +108,7 @@ use Illuminate\Http\Request;
             });
 
             /**
-             * Finished Rooms - FinishedServices
+             * Finished Rooms Services
             */
             Route::group(['namespace' => 'Rooms\Services'], function () {
                 Route::get('/{order}/finished_order_act/{finished_order_act}/finished_room/{finished_room}/services', 'FinishedRoomServiceController@index');

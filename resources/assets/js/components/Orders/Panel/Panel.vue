@@ -24,15 +24,18 @@
                                          :to="finishedActsPath"
                                          >
                                         <div class="card-body">
-                                          <h5 class="card-title">Акты выполненных работ</h5>
+                                          <h5 class="card-title">
+                                              Акты выполненных работ
+                                              <span>в разработке</span>
+                                          </h5>
                                         </div>
                             </router-link>
 
-                            <div :class="panelClass">
+                            <!-- <div :class="panelClass">
                                 <div class="card-body">
                                   <h5 class="card-title">Акты дополнительных работ</h5>
                                 </div>
-                            </div>
+                            </div> -->
 
                             <router-link v-if="financePath" :class="panelClass"
                                          :to="financePath"

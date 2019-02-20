@@ -66,7 +66,7 @@
             finished_room_id () {
                 return this.room.finished_room.filter(row => {
                     return row.finished_order_act_id == this.$route.params.finished_act_id
-                })[0].id
+                })
             },
 
             filteredServicePrice () {

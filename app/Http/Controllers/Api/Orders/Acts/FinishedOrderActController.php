@@ -21,8 +21,7 @@ class FinishedOrderActController extends Controller
     {
         $filteredFinishedOrderAct = FinishedOrderAct::where('id', $finished_order_act->id)
                                     ->with([
-                                        'order', 'finished_rooms', 'finished_rooms.finished_services',
-                                        'finished_rooms.finished_services.service_type', 'finished_rooms.finished_services.unit',
+                                        'order', 'finished_rooms',
                                         'finished_rooms.room', 'finished_rooms.room.roomType'
                                     ])
                                     ->first();

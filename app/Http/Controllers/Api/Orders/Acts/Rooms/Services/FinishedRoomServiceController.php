@@ -13,17 +13,17 @@ class FinishedRoomServiceController extends Controller
 {
     public function index(Order $order, FinishedOrderAct $finished_order_act, FinishedRoom $finished_room, Request $request)
     {
-        return response()->json([
-            'selected_services' => $finished_room->finished_services()->get(),
-            'finished_room' => $finished_room
-        ]);
+        // return response()->json([
+        //     'selected_services' => $finished_room->finished_services()->get(),
+        //     'finished_room' => $finished_room
+        // ]);
     }
 
     public function store(Order $order, FinishedOrderAct $finished_order_act, Request $request)
     {
-
         $finished_room = FinishedRoom::where('id', $request->finished_room_id)->first();
 
+        $finished_room->finished_room_services()->create($request->all());
         //
         // $finished_room_service = $finished_room->finished_services()->attach($request->service_id);
 

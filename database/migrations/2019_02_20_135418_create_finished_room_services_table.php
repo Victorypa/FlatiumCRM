@@ -15,6 +15,15 @@ class CreateFinishedRoomServicesTable extends Migration
     {
         Schema::create('finished_room_services', function (Blueprint $table) {
             $table->increments('id');
+            $table->integer('finished_room_id')->unsigned()->index();
+            $table->integer('service_id')->unsigned()->index();
+
+            $table->float('quantity')->nullable();
+            $table->float('price')->nullable();
+
+            $table->foreign('finished_room_id')->references('id')->on('finished_rooms')->onDelete('cascade');
+            $table->foreign('service_id')->references('id')->on('services')->onDelete('cascade');
+
             $table->timestamps();
         });
     }
