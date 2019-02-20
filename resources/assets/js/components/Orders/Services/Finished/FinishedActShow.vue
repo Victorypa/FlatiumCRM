@@ -11,9 +11,12 @@
                                    />
 
               <div class="projects__content"></div>
-              <!-- <template v-if="order.rooms.length !== 0" v-for="room in order.rooms">
-                  <finished-room :room="room" :order="order" @price="getPrice" :key="'finished-room-' + room.id"></finished-room>
-              </template> -->
+
+              <FinishedRoom v-if="order.rooms.length !== 0"
+                             v-for="room in order.rooms"
+                             :room="room"
+                             :key="'finished-room-' + room.id"
+                             />
             </div>
           </div>
         </div>
@@ -23,12 +26,12 @@
 
 <script>
 import FinishedActDetail from './partials/FinishedActDetail'
-// import FinishedRoom from './Partials/FinishedRoom'
+import FinishedRoom from './partials/Rooms/FinishedRoom'
 
   export default {
       components: {
+          FinishedRoom,
           FinishedActDetail
-          // FinishedRoom
       },
 
       data () {
@@ -58,25 +61,7 @@ import FinishedActDetail from './partials/FinishedActDetail'
                           .then(response => {
                               this.finished_order_act = response.data
                           })
-          },
-
-          updateFinishedOrderAct () {
-              axios.patch(`/api/orders/${this.$route.params.id}/finished_order_act/${this.$route.params.finished_act_id}/update`, {
-                  'description': this.description
-              }).then(response => {
-                  this.show = false
-              })
-          },
-
-          getPrice (value) {
-              this.room_price = 0
-              this.room_price = parseInt(value)
-              this.getFinishedOrderAct()
-          },
-
-          priceCount (quantity, price) {
-           return new Intl.NumberFormat('ru-Ru').format(parseInt(quantity * price))
-       },
+          }
       },
   };
 </script>

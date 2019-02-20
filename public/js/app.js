@@ -95115,6 +95115,11 @@ exports.push([module.i, "\n.fixed-part[data-v-5e7cc884] {\n  position: fixed;\n 
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__partials_FinishedActDetail__ = __webpack_require__(371);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__partials_FinishedActDetail___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__partials_FinishedActDetail__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__partials_Rooms_FinishedRoom__ = __webpack_require__(377);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__partials_Rooms_FinishedRoom___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__partials_Rooms_FinishedRoom__);
+//
+//
+//
 //
 //
 //
@@ -95140,12 +95145,12 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 
 
-// import FinishedRoom from './Partials/FinishedRoom'
+
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     components: {
+        FinishedRoom: __WEBPACK_IMPORTED_MODULE_1__partials_Rooms_FinishedRoom___default.a,
         FinishedActDetail: __WEBPACK_IMPORTED_MODULE_0__partials_FinishedActDetail___default.a
-        // FinishedRoom
     },
 
     data: function data() {
@@ -95175,23 +95180,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             return axios.get('/api/orders/' + this.$route.params.id + '/finished_order_act/' + this.$route.params.finished_act_id + '/show').then(function (response) {
                 _this2.finished_order_act = response.data;
             });
-        },
-        updateFinishedOrderAct: function updateFinishedOrderAct() {
-            var _this3 = this;
-
-            axios.patch('/api/orders/' + this.$route.params.id + '/finished_order_act/' + this.$route.params.finished_act_id + '/update', {
-                'description': this.description
-            }).then(function (response) {
-                _this3.show = false;
-            });
-        },
-        getPrice: function getPrice(value) {
-            this.room_price = 0;
-            this.room_price = parseInt(value);
-            this.getFinishedOrderAct();
-        },
-        priceCount: function priceCount(quantity, price) {
-            return new Intl.NumberFormat('ru-Ru').format(parseInt(quantity * price));
         }
     }
 });
@@ -95228,9 +95216,18 @@ var render = function() {
                   }
                 }),
                 _vm._v(" "),
-                _c("div", { staticClass: "projects__content" })
+                _c("div", { staticClass: "projects__content" }),
+                _vm._v(" "),
+                _vm._l(_vm.order.rooms, function(room) {
+                  return _vm.order.rooms.length !== 0
+                    ? _c("FinishedRoom", {
+                        key: "finished-room-" + room.id,
+                        attrs: { room: room }
+                      })
+                    : _vm._e()
+                })
               ],
-              1
+              2
             )
           ],
           1
@@ -95484,6 +95481,678 @@ if (false) {
     require("vue-hot-reload-api")      .rerender("data-v-01216f3a", module.exports)
   }
 }
+
+/***/ }),
+/* 374 */,
+/* 375 */,
+/* 376 */,
+/* 377 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+function injectStyle (ssrContext) {
+  if (disposed) return
+  __webpack_require__(378)
+}
+var normalizeComponent = __webpack_require__(1)
+/* script */
+var __vue_script__ = __webpack_require__(380)
+/* template */
+var __vue_template__ = __webpack_require__(381)
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = injectStyle
+/* scopeId */
+var __vue_scopeId__ = "data-v-4054ef02"
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources/assets/js/components/Orders/Services/Finished/partials/Rooms/FinishedRoom.vue"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-4054ef02", Component.options)
+  } else {
+    hotAPI.reload("data-v-4054ef02", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 378 */
+/***/ (function(module, exports, __webpack_require__) {
+
+// style-loader: Adds some css to the DOM by adding a <style> tag
+
+// load the styles
+var content = __webpack_require__(379);
+if(typeof content === 'string') content = [[module.i, content, '']];
+if(content.locals) module.exports = content.locals;
+// add the styles to the DOM
+var update = __webpack_require__(3)("72e383a3", content, false, {});
+// Hot Module Replacement
+if(false) {
+ // When the styles change, update the <style> tags
+ if(!content.locals) {
+   module.hot.accept("!!../../../../../../../../../node_modules/css-loader/index.js!../../../../../../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-4054ef02\",\"scoped\":true,\"hasInlineConfig\":true}!../../../../../../../../../node_modules/sass-loader/lib/loader.js!../../../../../../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./FinishedRoom.vue", function() {
+     var newContent = require("!!../../../../../../../../../node_modules/css-loader/index.js!../../../../../../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-4054ef02\",\"scoped\":true,\"hasInlineConfig\":true}!../../../../../../../../../node_modules/sass-loader/lib/loader.js!../../../../../../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./FinishedRoom.vue");
+     if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+     update(newContent);
+   });
+ }
+ // When the module is disposed, remove the <style> tags
+ module.hot.dispose(function() { update(); });
+}
+
+/***/ }),
+/* 379 */
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(2)(false);
+// imports
+
+
+// module
+exports.push([module.i, "\n.w-85[data-v-4054ef02] {\n  width: 85px;\n}\n.main-subtitle--room[data-v-4054ef02] {\n  padding-top: 75px;\n}\n", ""]);
+
+// exports
+
+
+/***/ }),
+/* 380 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__FinishedRoomService__ = __webpack_require__(383);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__FinishedRoomService___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__FinishedRoomService__);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+    props: ['room'],
+
+    components: {
+        FinishedRoomService: __WEBPACK_IMPORTED_MODULE_0__FinishedRoomService___default.a
+    },
+
+    computed: {
+        groupByRoomServices: function groupByRoomServices() {
+            return _.groupBy(this.room.room_services, 'service_type.name');
+        }
+    }
+});
+
+/***/ }),
+/* 381 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c(
+    "div",
+    { staticClass: "col-12 px-0" },
+    [
+      _c(
+        "div",
+        [
+          _c("h2", { staticClass: "main-subtitle main-subtitle--room pl-3" }, [
+            _vm._v(
+              "\n        " +
+                _vm._s(
+                  _vm.room.description
+                    ? _vm.room.description
+                    : _vm.room.room_type.type
+                ) +
+                "\n    "
+            )
+          ]),
+          _vm._v(" "),
+          _vm.room.room_type_id === 1
+            ? [
+                _c(
+                  "div",
+                  {
+                    staticClass:
+                      "projects__desc col-10 d-flex justify-content-between align-items-center py-3"
+                  },
+                  [
+                    _c("div", { staticClass: "projects__desc-item" }, [
+                      _vm._v("Общая площадь: " + _vm._s(_vm.room.area) + " м"),
+                      _c("sup", [_vm._v("2")])
+                    ]),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "projects__desc-item" }, [
+                      _vm._v(
+                        "Высота потолка: " + _vm._s(_vm.room.height) + " м"
+                      )
+                    ]),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "projects__desc-item" }, [
+                      _vm._v(
+                        "Площадь стен: " + _vm._s(_vm.room.wall_area) + " м"
+                      ),
+                      _c("sup", [_vm._v("2")])
+                    ]),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "projects__desc-item" }, [
+                      _vm._v("Периметр: " + _vm._s(_vm.room.perimeter))
+                    ])
+                  ]
+                )
+              ]
+            : _vm._e()
+        ],
+        2
+      ),
+      _vm._v(" "),
+      _vm._l(_vm.groupByRoomServices, function(room_services, service_type) {
+        return _vm.groupByRoomServices.length !== 0
+          ? _c("div", { staticClass: "projects__information" }, [
+              _c("div", { staticClass: "row bg px-3" }, [
+                _c(
+                  "div",
+                  {
+                    staticClass: "main-subtitle main-subtitle--fz col-12 pt-4"
+                  },
+                  [
+                    _vm._v(
+                      "\n              " +
+                        _vm._s(service_type) +
+                        "\n            "
+                    )
+                  ]
+                ),
+                _vm._v(" "),
+                _c("div", { staticClass: "col-12 px-0" }, [
+                  _c("table", { staticClass: "table table-hover" }, [
+                    _c(
+                      "tbody",
+                      _vm._l(room_services, function(room_service) {
+                        return room_services.length !== 0
+                          ? _c("FinishedRoomService", {
+                              key: "finished-room-service-" + room_service.id,
+                              attrs: {
+                                room_service: room_service,
+                                room: _vm.room
+                              }
+                            })
+                          : _vm._e()
+                      })
+                    )
+                  ])
+                ])
+              ])
+            ])
+          : _vm._e()
+      })
+    ],
+    2
+  )
+}
+var staticRenderFns = []
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-4054ef02", module.exports)
+  }
+}
+
+/***/ }),
+/* 382 */,
+/* 383 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+var normalizeComponent = __webpack_require__(1)
+/* script */
+var __vue_script__ = __webpack_require__(385)
+/* template */
+var __vue_template__ = __webpack_require__(384)
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = null
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources/assets/js/components/Orders/Services/Finished/partials/Rooms/FinishedRoomService.vue"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-582a9703", Component.options)
+  } else {
+    hotAPI.reload("data-v-582a9703", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 384 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c(
+    "tr",
+    [
+      _c("th", { staticClass: "w-50 pl-1", attrs: { scope: "row" } }, [
+        _c("div", { staticClass: "form-check custom-control checkbox" }, [
+          _c("input", {
+            staticClass: "form-check-input check",
+            attrs: {
+              id:
+                "room-" +
+                _vm.room_service.room_id +
+                "service-" +
+                _vm.room_service.service_id,
+              type: "checkbox"
+            }
+          }),
+          _vm._v(" "),
+          _c(
+            "label",
+            {
+              staticClass: "form-check-label d-block",
+              attrs: {
+                for:
+                  "room-" +
+                  _vm.room_service.room_id +
+                  "service-" +
+                  _vm.room_service.service_id
+              }
+            },
+            [
+              _vm._v(
+                "\n          " +
+                  _vm._s(_vm.room_service.service.name) +
+                  "\n      "
+              )
+            ]
+          )
+        ])
+      ]),
+      _vm._v(" "),
+      _c("td", { staticClass: "py-1 pl-1" }, [
+        _c("div", { staticClass: "d-flex align-items-center" }, [
+          _c("input", {
+            directives: [
+              {
+                name: "model",
+                rawName: "v-model",
+                value: _vm.room_service.quantity,
+                expression: "room_service.quantity"
+              }
+            ],
+            staticClass: "form-control w-85",
+            attrs: {
+              type: "number",
+              id:
+                "room-" +
+                _vm.room_service.room_id +
+                "service-" +
+                _vm.room_service.service_id,
+              min: "0"
+            },
+            domProps: { value: _vm.room_service.quantity },
+            on: {
+              input: function($event) {
+                if ($event.target.composing) {
+                  return
+                }
+                _vm.$set(_vm.room_service, "quantity", $event.target.value)
+              }
+            }
+          }),
+          _vm._v(" "),
+          _c("div", { staticClass: "col-auto pl-2" }, [
+            _vm._v(
+              "\n              " +
+                _vm._s(_vm.room_service.unit.name) +
+                "\n          "
+            )
+          ])
+        ])
+      ]),
+      _vm._v(" "),
+      _vm.room.order.discount
+        ? [
+            _vm.room_service.service.can_be_discounted
+              ? [
+                  _c("td", [
+                    _vm._v(
+                      _vm._s(
+                        parseInt(
+                          _vm.room_service.service.price *
+                            (1 - parseInt(_vm.room.order.discount) / 100)
+                        )
+                      ) +
+                        " Р/" +
+                        _vm._s(_vm.room_service.unit.name)
+                    )
+                  ]),
+                  _vm._v(" "),
+                  _c("td", [
+                    _vm._v(
+                      _vm._s(
+                        _vm.priceCount(
+                          _vm.room_service.quantity,
+                          parseInt(
+                            _vm.room_service.service.price *
+                              (1 - parseInt(_vm.room.order.discount) / 100)
+                          )
+                        )
+                      ) + " Р"
+                    )
+                  ])
+                ]
+              : [
+                  _c("td", [
+                    _vm._v(
+                      _vm._s(
+                        parseInt(
+                          _vm.getServiceDetails(
+                            _vm.room_service.service_id,
+                            "price"
+                          )
+                        )
+                      ) +
+                        " Р/" +
+                        _vm._s(
+                          _vm.getServiceDetails(
+                            _vm.room_service.service_id,
+                            "unit"
+                          )
+                        )
+                    )
+                  ]),
+                  _vm._v(" "),
+                  _c("td", [
+                    _vm._v(
+                      _vm._s(
+                        _vm.priceCount(
+                          _vm.room_service.quantity,
+                          parseInt(_vm.room_service.service.price)
+                        )
+                      ) + " Р"
+                    )
+                  ])
+                ]
+          ]
+        : _vm._e(),
+      _vm._v(" "),
+      _vm.room.order.markup
+        ? [
+            _c("td", [
+              _vm._v(
+                _vm._s(
+                  parseInt(
+                    _vm.room_service.service.price *
+                      (1 + parseInt(_vm.room.order.markup) / 100)
+                  )
+                ) +
+                  " Р/" +
+                  _vm._s(_vm.room_service.unit.name)
+              )
+            ]),
+            _vm._v(" "),
+            _c("td", [
+              _vm._v(
+                _vm._s(
+                  _vm.priceCount(
+                    _vm.room_service.quantity,
+                    parseInt(
+                      _vm.room_service.service.price *
+                        (1 + parseInt(_vm.order.markup) / 100)
+                    )
+                  )
+                ) + " Р"
+              )
+            ])
+          ]
+        : _vm._e(),
+      _vm._v(" "),
+      _vm.room.order.markup === null && _vm.room.order.discount === null
+        ? [
+            _vm.room_service.markup
+              ? [
+                  _c("td", [
+                    _vm._v(
+                      _vm._s(
+                        parseInt(
+                          _vm.room_service.service.price *
+                            (1 + parseInt(_vm.room_service.markup) / 100)
+                        )
+                      ) +
+                        " Р/" +
+                        _vm._s(_vm.room_service.unit.name)
+                    )
+                  ]),
+                  _vm._v(" "),
+                  _c("td", [
+                    _vm._v(
+                      _vm._s(
+                        _vm.priceCount(
+                          _vm.room_service.quantity,
+                          parseInt(
+                            _vm.room_service.service.price *
+                              (1 + parseInt(_vm.room_service.markup) / 100)
+                          )
+                        )
+                      ) + " Р"
+                    )
+                  ])
+                ]
+              : [
+                  _c("td", [
+                    _vm._v(
+                      _vm._s(parseInt(_vm.room_service.service.price)) +
+                        " Р/" +
+                        _vm._s(_vm.room_service.unit.name)
+                    )
+                  ]),
+                  _vm._v(" "),
+                  _c("td", [
+                    _vm._v(
+                      _vm._s(
+                        _vm.priceCount(
+                          _vm.room_service.quantity,
+                          parseInt(_vm.room_service.service.price)
+                        )
+                      ) + " Р"
+                    )
+                  ])
+                ]
+          ]
+        : _vm._e()
+    ],
+    2
+  )
+}
+var staticRenderFns = []
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-582a9703", module.exports)
+  }
+}
+
+/***/ }),
+/* 385 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+    props: ['room_service', 'room'],
+
+    methods: {
+        linkSelectedServicesToFinishedRoom: function linkSelectedServicesToFinishedRoom() {
+            var _this = this;
+
+            axios.post('/api/orders/' + this.$route.params.id + '/finished_order_act/' + this.$route.params.finished_act_id + '/services/store', {
+                'finished_room_id': this.filterFinishedRoomId(),
+                'selected_service_ids': this.finished_room_service_ids,
+                'selected_service_quantities': this.removeEmptyElem(this.selected_service_quantities)
+            }).then(function (response) {
+                _this.$emit('price', parseFloat(response.data).toFixed(2));
+            });
+        },
+        priceCount: function priceCount(quantity, price) {
+            return new Intl.NumberFormat('ru-Ru').format(parseInt(quantity * price));
+        }
+    }
+});
 
 /***/ })
 /******/ ]);
