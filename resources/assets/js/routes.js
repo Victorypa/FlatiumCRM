@@ -28,7 +28,7 @@ let routes = [
     {
         name: 'order-upload',
     	path: '/orders/:id?/upload',
-    	component: require('./components/Orders/OrderUpload'),
+    	component: require('./components/Orders/Upload/OrderUpload'),
         meta: { requiresAuth: true }
     },
 
