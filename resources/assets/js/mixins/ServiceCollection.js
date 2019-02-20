@@ -89,15 +89,5 @@ export default {
         getServiceSummary (id) {
             return new Intl.NumberFormat('ru-Ru').format(parseInt(this.service_prices[id] * this.service_quantities[id]))
         },
-
-        removeEmptyElem(obj) {
-            let newObj = {}
-
-            Object.keys(obj).forEach((prop) => {
-              if (obj[prop]) { newObj[prop] = obj[prop] }
-            })
-
-            return newObj
-       },
     }
 }

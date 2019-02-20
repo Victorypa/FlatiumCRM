@@ -472,7 +472,11 @@
             axios.patch(`/api/orders/${this.$route.params.id}/order_step/${order_step_id}/update`, {
                 'finish_at': finish_at
             })
-        }
+        },
+
+        priceCount (quantity, price) {
+            return new Intl.NumberFormat('ru-Ru').format(parseInt(quantity * price))
+        },
     }
   };
 </script>
