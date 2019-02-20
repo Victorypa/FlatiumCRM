@@ -476,7 +476,7 @@
 
         priceCount (quantity, price) {
             return new Intl.NumberFormat('ru-Ru').format(parseInt(quantity * price))
-        },
+        }
     }
   };
 </script>
@@ -487,17 +487,7 @@
     $ccc: #CCCCCC;
     $button-hover:#03B8E9;
     $text-color: #777777;
-  .fixed {
-    &-footer {
-      position: fixed;
-      left: 16.7%;
-      right: 0;
-      bottom: 0;
-      height: 60px;
-      background-color: #fff;
-      border-top: 1px solid $main-color;
-    }
-  }
+
 
   .form-check {
     &-label {
@@ -524,61 +514,7 @@
       font-family: "FontAwesome";
       content: "\f00c";
     }
-    label {
-      cursor: pointer;
-      display: inline;
-      vertical-align: top;
-      position: relative;
-      padding-left: 5px;
-      &::before {
-        content: "";
-        position: absolute;
-        width: 20px;
-        height: 20px;
-        top: 3px;
-        left: 0px;
-        margin-left: -1.25rem;
-        border-radius: 0;
-        background-color: #fff;
-        transition: border 0.15s ease-in-out, color 0.15s ease-in-out;
-      }
-    }
-  }
 
-  .form-control {
-        border-radius: 0;
-        &::placeholder {
-            opacity: 0.3;
-        }
-        &:focus,
-        &:hover {
-          box-shadow: none;
-          border-color: #000;
-        }
-    }
-
-
-  .stages {
-    &__summ {
-      font-size: 14px;
-      color: #666;
-      font-weight: 700;
-      span {
-        margin-left: 10px;
-        font-size: 35px;
-        color: #000;
-      }
-    }
-  }
-
-  table {
-    color: $text-color;
-    tr {
-      cursor: pointer;
-    }
-    th {
-      font-weight: normal;
-    }
   }
 
   .add-button {
