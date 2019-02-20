@@ -23,51 +23,26 @@ class FinishedRoomServiceController extends Controller
     {
         $finished_room = FinishedRoom::where('id', $request->finished_room_id)->first();
 
-        $finished_room->finished_room_services()->create($request->all());
-        //
-        // $finished_room_service = $finished_room->finished_services()->attach($request->service_id);
+        $finished_room_service = $finished_room->finished_room_services()->create([
+            'service_id' => $request->service_id,
+            'quantity' => $request->quantity,
+            'price' => $request->price
+        ]);
 
-        // return response([$finished_room_service]);
-        // $quantities = $request->selected_service_quantities;
-        //
-        //
-        // foreach ($request->selected_service_quantities as $selected_service_id => $quantity) {
-        //
-        //     $currentService = Service::where('id', $selected_service_id)->first();
-        //
-        //     if ($order->discount && $currentService->can_be_discounted) {
-        //         $finished_room->finished_services()->updateExistingPivot($selected_service_id, [
-        //             'quantity' => $quantity = $quantities[$selected_service_id],
-        //             'price' => $quantity * $currentService->price * (1 - (float)$order->discount/100),
-        //             'service_type_id' => $currentService->service_type_id,
-        //             'service_unit_id' => $currentService->unit_id
-        //         ]);
-        //     }
-        //     if ($order->markup) {
-        //         $finished_room->finished_services()->updateExistingPivot($selected_service_id, [
-        //             'quantity' => $quantity = $quantities[$selected_service_id],
-        //             'price' => $quantity * $currentService->price * (1 + (float)$order->markup/100),
-        //             'service_type_id' => $currentService->service_type_id,
-        //             'service_unit_id' => $currentService->unit_id
-        //         ]);
-        //     }
-        //
-        //     if ($order->discount === null && $order->markup === null) {
-        //         $finished_room->finished_services()->updateExistingPivot($selected_service_id, [
-        //             'quantity' => $quantity = $quantities[$selected_service_id],
-        //             'price' => $quantity * $currentService->price,
-        //             'service_type_id' => $currentService->service_type_id,
-        //             'service_unit_id' => $currentService->unit_id
-        //         ]);
-        //     }
-        // }
-        //
-        // $price = 0;
-        //
         // $this->updateFinishedRoomPrice($finished_room);
 
-        // return response()->json($price);
+        return response()->json($finished_room_service);
 
+    }
+
+    public function update(Order $order, FinishedOrderAct $finished_order_act, Request $request)
+    {
+        $finished_room = FinishedRoom::where('id', $request->finished_room_id)->first();
+
+        return $finished_room->finished_room_services()->where('service_id', $request->service_id)->update([
+            'quantity' => $request->quantity,
+            'price' => $request->price
+        ]);
     }
 
     protected function updateFinishedRoomPrice(FinishedRoom $finished_room)

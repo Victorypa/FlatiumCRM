@@ -58319,18 +58319,30 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony default export */ __webpack_exports__["default"] = ({
     props: ['room_service', 'room'],
 
+    created: function created() {
+        this.getFinishedRoomServices();
+    },
+
+
     methods: {
+        getFinishedRoomServices: function getFinishedRoomServices() {},
         addFinishService: function addFinishService() {
             axios.post('/api/orders/' + this.$route.params.id + '/finished_order_act/' + this.$route.params.finished_act_id + '/services/store', {
                 'finished_room_id': this.finished_room_id,
                 'service_id': this.room_service.service_id,
                 'quantity': this.room_service.quantity,
-                'price': this.room_service.quantity * this.filteredServicePrice,
-                'service_type_id': this.room_service.service_type_id,
-                'service_unit_id': this.room_service.service_unit_id
+                'price': this.room_service.quantity * this.filteredServicePrice
             }).then(function (response) {
                 // this.$emit('price', parseFloat(response.data).toFixed(2))
             });
+        },
+        updateFinishServiceQuantity: function updateFinishServiceQuantity() {
+            axios.patch('/api/orders/' + this.$route.params.id + '/finished_order_act/' + this.$route.params.finished_act_id + '/services/update', {
+                'finished_room_id': this.finished_room_id,
+                'service_id': this.room_service.service_id,
+                'quantity': this.room_service.quantity,
+                'price': this.room_service.quantity * this.filteredServicePrice
+            }).then(function (response) {});
         },
         priceCount: function priceCount(quantity, price) {
             return new Intl.NumberFormat('ru-Ru').format(parseInt(quantity * price));
@@ -58343,7 +58355,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
             return this.room.finished_room.filter(function (row) {
                 return row.finished_order_act_id == _this.$route.params.finished_act_id;
-            });
+            })[0].id;
         },
         filteredServicePrice: function filteredServicePrice() {
             if (this.room.order.discount) {
@@ -58443,6 +58455,9 @@ var render = function() {
           },
           domProps: { value: _vm.room_service.quantity },
           on: {
+            change: function($event) {
+              _vm.updateFinishServiceQuantity()
+            },
             input: function($event) {
               if ($event.target.composing) {
                 return

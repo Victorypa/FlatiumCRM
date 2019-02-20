@@ -23,8 +23,8 @@
                      :id="'room-' + room_service.room_id + 'service-' + room_service.service_id"
                      min="0"
                      v-model="room_service.quantity"
+                     @change="updateFinishServiceQuantity()"
                      >
-                     <!-- @change="linkSelectedServicesToFinishedRoom()" -->
               <div class="col-auto pl-2">
                   {{ room_service.unit.name }}
               </div>
@@ -40,22 +40,36 @@
     export default {
         props: ['room_service', 'room'],
 
+        created () {
+            this.getFinishedRoomServices()
+        },
 
         methods: {
+            getFinishedRoomServices () {
+                
+            },
+
             addFinishService () {
                 axios.post(`/api/orders/${this.$route.params.id}/finished_order_act/${this.$route.params.finished_act_id}/services/store`, {
                     'finished_room_id': this.finished_room_id,
                     'service_id': this.room_service.service_id,
                     'quantity': this.room_service.quantity,
                     'price': this.room_service.quantity * this.filteredServicePrice,
-                    'service_type_id': this.room_service.service_type_id,
-                    'service_unit_id': this.room_service.service_unit_id
                 }).then(response => {
                     // this.$emit('price', parseFloat(response.data).toFixed(2))
                 })
             },
 
+            updateFinishServiceQuantity () {
+                axios.patch(`/api/orders/${this.$route.params.id}/finished_order_act/${this.$route.params.finished_act_id}/services/update`, {
+                    'finished_room_id': this.finished_room_id,
+                    'service_id': this.room_service.service_id,
+                    'quantity': this.room_service.quantity,
+                    'price': this.room_service.quantity * this.filteredServicePrice,
+                }).then(response => {
 
+                })
+            },
 
             priceCount (quantity, price) {
                 return new Intl.NumberFormat('ru-Ru').format(parseInt(quantity * price))
@@ -66,7 +80,7 @@
             finished_room_id () {
                 return this.room.finished_room.filter(row => {
                     return row.finished_order_act_id == this.$route.params.finished_act_id
-                })
+                })[0].id
             },
 
             filteredServicePrice () {
