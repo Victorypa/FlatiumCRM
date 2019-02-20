@@ -13,10 +13,10 @@ class FinishedRoomServiceController extends Controller
 {
     public function index(Order $order, FinishedOrderAct $finished_order_act, FinishedRoom $finished_room, Request $request)
     {
-        // return response()->json([
-        //     'selected_services' => $finished_room->finished_services()->get(),
-        //     'finished_room' => $finished_room
-        // ]);
+        return response()->json([
+            'finished_room_services' => $finished_room->finished_room_services()->get(),
+            'finished_room' => $finished_room
+        ]);
     }
 
     public function store(Order $order, FinishedOrderAct $finished_order_act, Request $request)

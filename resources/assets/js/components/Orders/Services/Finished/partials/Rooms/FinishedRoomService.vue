@@ -5,10 +5,9 @@
           <input class="form-check-input check"
                  :id="'room-' + room_service.room_id + 'service-' + room_service.service_id"
                  type="checkbox"
+                 :checked="finished_room_service_ids.includes(room_service.service_id)"
                  @click="addFinishService()"
                  >
-                 <!-- :checked="finished_room_service_ids.includes(room_service.service_id)" -->
-                 <!-- @click="addToSelectedServiceId(room_service.service_id)" -->
           <label class="form-check-label d-block"
                  :for="'room-' + room_service.room_id + 'service-' + room_service.service_id"
                  >
@@ -22,7 +21,7 @@
                      class="form-control w-85"
                      :id="'room-' + room_service.room_id + 'service-' + room_service.service_id"
                      min="0"
-                     v-model="room_service.quantity"
+                     v-model="quantity"
                      @change="updateFinishServiceQuantity()"
                      >
               <div class="col-auto pl-2">
@@ -40,13 +39,25 @@
     export default {
         props: ['room_service', 'room'],
 
+        data () {
+            return {
+                finished_room_service_ids: [],
+                quantity: null
+            }
+        },
+
         created () {
             this.getFinishedRoomServices()
         },
 
         methods: {
             getFinishedRoomServices () {
-                
+                axios.get(`/api/orders/${this.$route.params.id}/finished_order_act/${this.$route.params.finished_act_id}/finished_room/${this.finished_room_id}/services`)
+                     .then(response => {
+                         response.data.finished_room_services.forEach(item => {
+                             this.finished_room_service_ids.push(item.service_id)
+                         })
+                     })
             },
 
             addFinishService () {

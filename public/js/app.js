@@ -58314,18 +58314,31 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     props: ['room_service', 'room'],
 
+    data: function data() {
+        return {
+            finished_room_service_ids: [],
+            quantity: null
+        };
+    },
     created: function created() {
         this.getFinishedRoomServices();
     },
 
 
     methods: {
-        getFinishedRoomServices: function getFinishedRoomServices() {},
+        getFinishedRoomServices: function getFinishedRoomServices() {
+            var _this = this;
+
+            axios.get('/api/orders/' + this.$route.params.id + '/finished_order_act/' + this.$route.params.finished_act_id + '/finished_room/' + this.finished_room_id + '/services').then(function (response) {
+                response.data.finished_room_services.forEach(function (item) {
+                    _this.finished_room_service_ids.push(item.service_id);
+                });
+            });
+        },
         addFinishService: function addFinishService() {
             axios.post('/api/orders/' + this.$route.params.id + '/finished_order_act/' + this.$route.params.finished_act_id + '/services/store', {
                 'finished_room_id': this.finished_room_id,
@@ -58351,10 +58364,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
     computed: {
         finished_room_id: function finished_room_id() {
-            var _this = this;
+            var _this2 = this;
 
             return this.room.finished_room.filter(function (row) {
-                return row.finished_order_act_id == _this.$route.params.finished_act_id;
+                return row.finished_order_act_id == _this2.$route.params.finished_act_id;
             })[0].id;
         },
         filteredServicePrice: function filteredServicePrice() {
@@ -58402,6 +58415,11 @@ var render = function() {
               _vm.room_service.service_id,
             type: "checkbox"
           },
+          domProps: {
+            checked: _vm.finished_room_service_ids.includes(
+              _vm.room_service.service_id
+            )
+          },
           on: {
             click: function($event) {
               _vm.addFinishService()
@@ -58439,8 +58457,8 @@ var render = function() {
             {
               name: "model",
               rawName: "v-model",
-              value: _vm.room_service.quantity,
-              expression: "room_service.quantity"
+              value: _vm.quantity,
+              expression: "quantity"
             }
           ],
           staticClass: "form-control w-85",
@@ -58453,7 +58471,7 @@ var render = function() {
               _vm.room_service.service_id,
             min: "0"
           },
-          domProps: { value: _vm.room_service.quantity },
+          domProps: { value: _vm.quantity },
           on: {
             change: function($event) {
               _vm.updateFinishServiceQuantity()
@@ -58462,7 +58480,7 @@ var render = function() {
               if ($event.target.composing) {
                 return
               }
-              _vm.$set(_vm.room_service, "quantity", $event.target.value)
+              _vm.quantity = $event.target.value
             }
           }
         }),
