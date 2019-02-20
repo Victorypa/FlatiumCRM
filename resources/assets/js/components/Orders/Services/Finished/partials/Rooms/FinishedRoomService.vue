@@ -5,11 +5,13 @@
           <input class="form-check-input check"
                  :id="'room-' + room_service.room_id + 'service-' + room_service.service_id"
                  type="checkbox"
-
+                 @click="addFinishService()"
                  >
                  <!-- :checked="finished_room_service_ids.includes(room_service.service_id)" -->
                  <!-- @click="addToSelectedServiceId(room_service.service_id)" -->
-          <label class="form-check-label d-block" :for="'room-' + room_service.room_id + 'service-' + room_service.service_id">
+          <label class="form-check-label d-block"
+                 :for="'room-' + room_service.room_id + 'service-' + room_service.service_id"
+                 >
               {{ room_service.service.name }}
           </label>
         </div>
@@ -29,30 +31,8 @@
           </div>
       </td>
 
-      <template v-if="room.order.discount">
-          <template v-if="room_service.service.can_be_discounted">
-              <td>{{ parseInt(room_service.service.price * (1 - parseInt(room.order.discount)/100)) }} Р/{{ room_service.unit.name }}</td>
-              <td>{{ priceCount(room_service.quantity, parseInt(room_service.service.price * (1 - parseInt(room.order.discount)/100))) }} Р</td>
-          </template>
-          <template v-else>
-              <td>{{ parseInt(getServiceDetails(room_service.service_id, 'price')) }} Р/{{ getServiceDetails(room_service.service_id, 'unit') }}</td>
-              <td>{{ priceCount(room_service.quantity, parseInt(room_service.service.price)) }} Р</td>
-          </template>
-      </template>
-      <template v-if="room.order.markup">
-          <td>{{ parseInt(room_service.service.price * (1 + parseInt(room.order.markup)/100)) }} Р/{{ room_service.unit.name }}</td>
-          <td>{{ priceCount(room_service.quantity, parseInt(room_service.service.price * (1 + parseInt(order.markup)/100))) }} Р</td>
-      </template>
-      <template v-if="room.order.markup === null && room.order.discount === null">
-          <template v-if="room_service.markup">
-              <td>{{ parseInt(room_service.service.price * (1 + parseInt(room_service.markup)/100)) }} Р/{{ room_service.unit.name }}</td>
-              <td>{{ priceCount(room_service.quantity, parseInt(room_service.service.price * (1 + parseInt(room_service.markup)/100))) }} Р</td>
-          </template>
-          <template v-else>
-              <td>{{ parseInt(room_service.service.price) }} Р/{{ room_service.unit.name }}</td>
-              <td>{{ priceCount(room_service.quantity, parseInt(room_service.service.price)) }} Р</td>
-          </template>
-      </template>
+      <td>{{ filteredServicePrice }} Р/{{ room_service.unit.name }}</td>
+      <td>{{ priceCount(room_service.quantity, filteredServicePrice) }} Р</td>
     </tr>
 </template>
 
@@ -60,20 +40,56 @@
     export default {
         props: ['room_service', 'room'],
 
+
         methods: {
-            linkSelectedServicesToFinishedRoom () {
+            addFinishService () {
                 axios.post(`/api/orders/${this.$route.params.id}/finished_order_act/${this.$route.params.finished_act_id}/services/store`, {
-                    'finished_room_id': this.filterFinishedRoomId(),
-                    'selected_service_ids': this.finished_room_service_ids,
-                    'selected_service_quantities': this.removeEmptyElem(this.selected_service_quantities)
+                    'finished_room_id': this.finished_room_id,
+                    'service_id': this.room_service.service_id,
+                    'quantity': this.room_service.quantity,
+                    'price': this.room_service.quantity * this.filteredServicePrice,
+                    'service_type_id': this.room_service.service_type_id,
+                    'service_unit_id': this.room_service.service_unit_id
                 }).then(response => {
-                    this.$emit('price', parseFloat(response.data).toFixed(2))
+                    // this.$emit('price', parseFloat(response.data).toFixed(2))
                 })
             },
+
+
 
             priceCount (quantity, price) {
                 return new Intl.NumberFormat('ru-Ru').format(parseInt(quantity * price))
             },
+        },
+
+        computed: {
+            finished_room_id () {
+                return this.room.finished_room.filter(row => {
+                    return row.finished_order_act_id == this.$route.params.finished_act_id
+                })[0].id
+            },
+
+            filteredServicePrice () {
+                if (this.room.order.discount) {
+                    if (this.room_service.service.can_be_discounted) {
+                        return parseInt(this.room_service.service.price * (1 - parseInt(this.room.order.discount)/100))
+                    } else {
+                        return parseInt(this.room_service.service.price)
+                    }
+                }
+
+                if (this.room.order.markup) {
+                    return parseInt(this.room_service.service.price * (1 + parseInt(this.room.order.markup)/100))
+                }
+
+                if (this.room.order.markup === null && this.room.order.discount === null) {
+                    if (this.room_service.markup) {
+                        return parseInt(this.room_service.service.price * (1 + parseInt(this.room_service.markup)/100))
+                    } else {
+                        return parseInt(room_service.service.price)
+                    }
+                }
+            }
         }
     }
 </script>
