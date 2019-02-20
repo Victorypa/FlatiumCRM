@@ -1,112 +1,47 @@
 <template>
     <div class="projects">
         <basic-header></basic-header>
-      <div class="container-fluid ">
-        <div class="row">
-          <navigation></navigation>
+        <div class="container-fluid ">
+          <div class="row">
+            <navigation></navigation>
 
-          <div class="col-md-10">
+            <div class="col-md-10">
+                <FinishedActDetail :order="order"
+                                   :finished_order_act="finished_order_act"
+                                   />
 
-            <div class="row col-10 fixed-part shadow bg-white rounded align-items-center">
-                <div class="col-md-8">
-                  <h1 class="main-caption w-100" @click="show = !show">
-                    {{ description ? description : 'Акт выполненных работ' }}
-                  </h1>
-                </div>
-
-                <div class="col-md-2 ml-auto" v-if="order.length !== 0">
-                    <router-link :to="{ name: 'order-finished-services-export-show', params: { id: order.id, finished_act_id: this.$route.params.finished_act_id } }" target="_blank">
-                        <button type="button" class="primary-button w-100">Экспорт</button>
-                    </router-link>
-                </div>
-
-                <!-- <div class="col-md-6 pt-3 d-flex align-items-center">
-                    <h2 class="main-subtitle">Итого: {{ new Intl.NumberFormat('ru-Ru').format(parseInt(order.price)) }} Р</h2>
-                    <div class="d-flex pl-3">
-                      <span class="small-case">{{ new Intl.NumberFormat('ru-Ru').format(order.original_price) }} Р</span>
-                      <span class="small-case">(скидка: -{{ parseInt(order.discount) }}%)</span>
-                    </div>
-                </div> -->
-
-              <template v-if="order.price">
-                  <template v-if="order.discount">
-                      <div class="col-md-6 pt-3 d-flex align-items-center">
-                          <h2 class="main-subtitle">Итого: {{ new Intl.NumberFormat('ru-Ru').format(parseInt(order.price)) }} Р</h2>
-                          <div class="d-flex pl-3">
-                            <span class="small-case">{{ new Intl.NumberFormat('ru-Ru').format(order.original_price) }} Р</span>
-                            <span class="small-case">(скидка: -{{ parseInt(order.discount) }}%)</span>
-                          </div>
-                      </div>
-                  </template>
-                  <template v-if="order.markup">
-                      <div class="col-md-6 pt-3">
-                        <h2 class="main-subtitle">Итого: {{ new Intl.NumberFormat('ru-Ru').format(order.price) }} Р</h2>
-                            <span class="small-case">{{ new Intl.NumberFormat('ru-Ru').format(order.original_price) }} Р</span>
-                            <span class="small-case">(наценка: +{{ parseInt(order.markup) }}%)</span>
-                      </div>
-                  </template>
-                  <template v-if="order.discount === null && order.markup === null">
-                      <div class="col-md-6 pt-3">
-                        <h2 class="main-subtitle">Итого: {{ new Intl.NumberFormat('ru-Ru').format(parseInt(order.price)) }} Р</h2>
-                      </div>
-                  </template>
-
-              </template>
-              <template v-else>
-                  <div class="col-md-6 pt-3">
-                    <h2 class="main-subtitle"> Итого: {{ new Intl.NumberFormat('ru-Ru').format(parseInt(0)) }} Р</h2>
-                  </div>
-              </template>
-
-
-
-              <template v-if="price">
-                  <div class="col-md-6 pt-3 d-flex justify-content-end px-0">
-                    <div class="col-12 text-right">
-                      <h2 class="main-subtitle px-15"> {{ new Intl.NumberFormat('ru-Ru').format(parseInt(price)) }} Р</h2>
-                    </div>
-                  </div>
-              </template>
-              <template v-else>
-                  <div class="col-md-6 pt-3 d-flex justify-content-end px-0">
-                    <div class="col-12 text-right">
-                      <h2 class="main-subtitle px-15"> {{ new Intl.NumberFormat('ru-Ru').format(parseInt(0)) }} Р</h2>
-                    </div>
-
-                  </div>
-              </template>
-
-
+              <div class="projects__content"></div>
+              <!-- <template v-if="order.rooms.length !== 0" v-for="room in order.rooms">
+                  <finished-room :room="room" :order="order" @price="getPrice" :key="'finished-room-' + room.id"></finished-room>
+              </template> -->
             </div>
-            <div class="projects__content"></div>
-            <!-- <template v-if="order.rooms.length !== 0" v-for="room in order.rooms">
-                <finished-room :room="room" :order="order" @price="getPrice" :key="'finished-room-' + room.id"></finished-room>
-            </template> -->
           </div>
         </div>
-      </div>
     </div>
 </template>
 
 
 <script>
+import FinishedActDetail from './partials/FinishedActDetail'
 // import FinishedRoom from './Partials/FinishedRoom'
 
   export default {
       components: {
+          FinishedActDetail
           // FinishedRoom
       },
 
       data () {
           return {
               order: [],
+              finished_order_act: [],
               price: 0,
           }
       },
 
       created () {
-          this.getFinishedOrderAct()
           this.getOrder()
+          this.getFinishedOrderAct()
       },
 
 
@@ -121,8 +56,7 @@
           getFinishedOrderAct () {
               return axios.get(`/api/orders/${this.$route.params.id}/finished_order_act/${this.$route.params.finished_act_id}/show`)
                           .then(response => {
-                              this.description = response.data.description
-                              this.price = response.data.price
+                              this.finished_order_act = response.data
                           })
           },
 
