@@ -31509,7 +31509,7 @@ var routes = [{
 }, {
     name: 'order-upload',
     path: '/orders/:id?/upload',
-    component: __webpack_require__(362),
+    component: __webpack_require__(202),
     meta: { requiresAuth: true }
 }, {
     name: 'order-show',
@@ -31525,7 +31525,7 @@ var routes = [{
 }, {
     name: 'order-finance',
     path: '/orders/:id?/finance',
-    component: __webpack_require__(357),
+    component: __webpack_require__(222),
     meta: { requiresAuth: true },
     props: true
 }, {
@@ -31549,6 +31549,12 @@ var routes = [{
 // },
 
 {
+    name: 'order-finished-acts',
+    path: '/orders/:id?/order_finished_acts',
+    component: __webpack_require__(357),
+    meta: { requiresAuth: true },
+    props: true
+}, {
     name: 'order-finished-services',
     path: '/orders/:id?/order_finished_services/:finished_act_id?',
     component: __webpack_require__(245),
@@ -50457,10 +50463,255 @@ if (false) {
 }
 
 /***/ }),
-/* 202 */,
-/* 203 */,
-/* 204 */,
-/* 205 */,
+/* 202 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+function injectStyle (ssrContext) {
+  if (disposed) return
+  __webpack_require__(203)
+}
+var normalizeComponent = __webpack_require__(1)
+/* script */
+var __vue_script__ = __webpack_require__(205)
+/* template */
+var __vue_template__ = __webpack_require__(209)
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = injectStyle
+/* scopeId */
+var __vue_scopeId__ = "data-v-68b8b7a4"
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources/assets/js/components/Orders/Upload/OrderUpload.vue"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-68b8b7a4", Component.options)
+  } else {
+    hotAPI.reload("data-v-68b8b7a4", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 203 */
+/***/ (function(module, exports, __webpack_require__) {
+
+// style-loader: Adds some css to the DOM by adding a <style> tag
+
+// load the styles
+var content = __webpack_require__(204);
+if(typeof content === 'string') content = [[module.i, content, '']];
+if(content.locals) module.exports = content.locals;
+// add the styles to the DOM
+var update = __webpack_require__(3)("3112b5c7", content, false, {});
+// Hot Module Replacement
+if(false) {
+ // When the styles change, update the <style> tags
+ if(!content.locals) {
+   module.hot.accept("!!../../../../../../node_modules/css-loader/index.js!../../../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-68b8b7a4\",\"scoped\":true,\"hasInlineConfig\":true}!../../../../../../node_modules/sass-loader/lib/loader.js!../../../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./OrderUpload.vue", function() {
+     var newContent = require("!!../../../../../../node_modules/css-loader/index.js!../../../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-68b8b7a4\",\"scoped\":true,\"hasInlineConfig\":true}!../../../../../../node_modules/sass-loader/lib/loader.js!../../../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./OrderUpload.vue");
+     if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+     update(newContent);
+   });
+ }
+ // When the module is disposed, remove the <style> tags
+ module.hot.dispose(function() { update(); });
+}
+
+/***/ }),
+/* 204 */
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(2)(false);
+// imports
+
+
+// module
+exports.push([module.i, "\n.container-fluid.px-0 .row[data-v-68b8b7a4] {\n  margin-left: 0;\n  margin-right: 0;\n}\n.vue-dropzone[data-v-68b8b7a4] {\n  -webkit-box-shadow: 0 1px 10px rgba(0, 0, 0, 0.1), 0 1px 4px rgba(0, 0, 0, 0.1);\n          box-shadow: 0 1px 10px rgba(0, 0, 0, 0.1), 0 1px 4px rgba(0, 0, 0, 0.1);\n  border-radius: 4px;\n}\n.dropzone-custom-content[data-v-68b8b7a4] {\n  position: absolute;\n  top: 50%;\n  left: 50%;\n  -webkit-transform: translate(-50%, -50%);\n          transform: translate(-50%, -50%);\n  text-align: center;\n}\n.dropzone-custom-title[data-v-68b8b7a4] {\n  margin-top: 0;\n  color: #00b782;\n}\n.subtitle[data-v-68b8b7a4] {\n  color: #314b5f;\n}\n.mp-10[data-v-68b8b7a4] {\n  margin-top: 100px;\n}\n.mp-5[data-v-68b8b7a4] {\n  margin-top: 50px;\n}\n.badger-accordion-item[data-v-68b8b7a4] {\n  -webkit-box-shadow: 0 1px 10px rgba(0, 0, 0, 0.1), 0 1px 4px rgba(0, 0, 0, 0.1);\n          box-shadow: 0 1px 10px rgba(0, 0, 0, 0.1), 0 1px 4px rgba(0, 0, 0, 0.1);\n  border-radius: 4px;\n  padding: 15px;\n}\n.badger-accordion-item[data-v-68b8b7a4]:hover {\n    background-color: #00A4D1;\n}\n.js-badger-accordion-header .-ba-is-active[data-v-68b8b7a4]:hover {\n  background-color: #red;\n}\n.h-200[data-v-68b8b7a4] {\n  height: 200px;\n}\n.accordion-wrapper[data-v-68b8b7a4] {\n  padding: 0 30px;\n}\n.add-button[data-v-68b8b7a4] {\n  background-color: transparent;\n  border: none;\n  cursor: pointer;\n}\n.add-button[data-v-68b8b7a4]:focus {\n    outline: none;\n}\n.add-button img[data-v-68b8b7a4] {\n    width: 35px;\n    border-radius: 50%;\n}\n.add-button img[data-v-68b8b7a4]:hover {\n      -webkit-box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);\n              box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);\n}\n.add-button--remove[data-v-68b8b7a4] {\n    color: #ccc;\n}\n.add-button--remove[data-v-68b8b7a4]:hover {\n      color: #00A4D1;\n}\n.add-button--remove img[data-v-68b8b7a4] {\n      width: 15px;\n}\ntd[data-v-68b8b7a4]:first-child {\n  padding-left: 30px;\n}\n.story-text[data-v-68b8b7a4] {\n  padding-left: 30px;\n  margin-top: 30px;\n  color: #00A4D1;\n  font-weight: bold;\n  font-size: 18px;\n}\n", ""]);
+
+// exports
+
+
+/***/ }),
+/* 205 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue2_dropzone__ = __webpack_require__(150);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue2_dropzone___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_vue2_dropzone__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_vue2_dropzone_dist_vue2Dropzone_min_css__ = __webpack_require__(151);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_vue2_dropzone_dist_vue2Dropzone_min_css___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_vue2_dropzone_dist_vue2Dropzone_min_css__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_vuejs_datepicker__ = __webpack_require__(8);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_vuejs_datepicker_dist_locale__ = __webpack_require__(9);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+
+
+
+
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+    data: function data() {
+        return {
+            ru: __WEBPACK_IMPORTED_MODULE_3_vuejs_datepicker_dist_locale__["a" /* ru */],
+            moment: moment,
+            chosenDate: null,
+
+            dropzoneOptions: {
+                url: '/api/orders/' + this.$route.params.id + '/uploads/store',
+                paramName: 'uploadedFile',
+                autoProcessQueue: false,
+                thumbnailWidth: 100,
+                addRemoveLinks: true,
+                maxFilesize: 10.0,
+                dictDefaultMessage: "<i class='fa fa-cloud-upload'></i> Документы или Фотки"
+            },
+
+            folders: [],
+            currentPath: window.location.origin
+        };
+    },
+
+
+    components: {
+        vueDropzone: __WEBPACK_IMPORTED_MODULE_0_vue2_dropzone___default.a,
+        Datepicker: __WEBPACK_IMPORTED_MODULE_2_vuejs_datepicker__["a" /* default */]
+    },
+    mounted: function mounted() {
+        this.getFolders();
+    },
+
+
+    methods: {
+        getFolders: function getFolders() {
+            var _this = this;
+
+            axios.get('/api/orders/' + this.$route.params.id + '/folders').then(function (response) {
+                _this.folders = response.data;
+            });
+        },
+        uploadFiles: function uploadFiles() {
+            this.$refs.myVueDropzone.processQueue();
+            window.location.reload(true);
+        },
+        createFolder: function createFolder() {
+            var _this2 = this;
+
+            axios.post('/api/orders/' + this.$route.params.id + '/folders/store', {
+                'date': moment(this.chosenDate).format('DD-MM-YYYY')
+            }).then(function (response) {
+                _this2.getFolders();
+            });
+        },
+        deleteFolder: function deleteFolder(id) {
+            var _this3 = this;
+
+            axios.delete('/api/orders/' + this.$route.params.id + '/folders/' + id + '/destroy').then(function () {
+                _this3.getFolders();
+            });
+        }
+    }
+});
+
+/***/ }),
 /* 206 */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -50929,7 +51180,215 @@ module.exports = function (css) {
 
 
 /***/ }),
-/* 209 */,
+/* 209 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c(
+    "div",
+    [
+      _c("basic-header"),
+      _vm._v(" "),
+      _c("div", { staticClass: "container-fluid px-0" }, [
+        _c(
+          "div",
+          { staticClass: "row" },
+          [
+            _c("navigation"),
+            _vm._v(" "),
+            _c("div", { staticClass: "col-md-10 px-0" }, [
+              _c(
+                "div",
+                { staticClass: "create__fixed-top col-10 shadow-light" },
+                [
+                  _c("div", { staticClass: "row align-items-center " }, [
+                    _vm._m(0),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "col-md-4 text-right d-flex" }, [
+                      _vm.chosenDate
+                        ? _c(
+                            "button",
+                            {
+                              staticClass: "primary-button col-6 ml-auto",
+                              attrs: { type: "button" },
+                              on: {
+                                click: function($event) {
+                                  $event.preventDefault()
+                                  _vm.uploadFiles()
+                                }
+                              }
+                            },
+                            [
+                              _vm._v(
+                                "\n                      Сохранить\n                  "
+                              )
+                            ]
+                          )
+                        : _vm._e()
+                    ])
+                  ])
+                ]
+              ),
+              _vm._v(" "),
+              _c("div", { staticClass: "col-md-12 mp-10" }, [
+                _c("div", { staticClass: "row" }, [
+                  _c(
+                    "div",
+                    { staticClass: "col-md-12" },
+                    [
+                      _c("vue-dropzone", {
+                        ref: "myVueDropzone",
+                        staticClass: "mp-10",
+                        attrs: { id: "dropzone", options: _vm.dropzoneOptions }
+                      })
+                    ],
+                    1
+                  )
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "row mp-5" }, [
+                  _c(
+                    "div",
+                    { staticClass: "col-md-4" },
+                    [
+                      _c("datepicker", {
+                        attrs: {
+                          language: _vm.ru,
+                          placeholder: "Выбрать Дату"
+                        },
+                        on: {
+                          input: function($event) {
+                            _vm.createFolder()
+                          }
+                        },
+                        model: {
+                          value: _vm.chosenDate,
+                          callback: function($$v) {
+                            _vm.chosenDate = $$v
+                          },
+                          expression: "chosenDate"
+                        }
+                      })
+                    ],
+                    1
+                  )
+                ])
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "story-text" }, [
+                _vm._v("История загрузок:")
+              ]),
+              _vm._v(" "),
+              _vm.folders.length
+                ? _c("table", { staticClass: "table table-hover" }, [
+                    _c(
+                      "tbody",
+                      _vm._l(_vm.folders, function(folder) {
+                        return _c("tr", { key: folder.id }, [
+                          _c("td", [
+                            _vm._v(
+                              _vm._s(
+                                folder.order_uploads.filter(function(row) {
+                                  return row.type === "photo"
+                                }).length
+                              ) + " фото"
+                            )
+                          ]),
+                          _vm._v(" "),
+                          _c("td", [
+                            _vm._v(
+                              _vm._s(
+                                folder.order_uploads.filter(function(row) {
+                                  return row.type === "doc"
+                                }).length
+                              ) + " док"
+                            )
+                          ]),
+                          _vm._v(" "),
+                          _c("td", [
+                            _vm._v("Дата съёмки " + _vm._s(folder.name))
+                          ]),
+                          _vm._v(" "),
+                          _c("td", [
+                            _vm._v(
+                              _vm._s(
+                                _vm
+                                  .moment(folder.created_at)
+                                  .format("DD-MM-YYYY")
+                              )
+                            )
+                          ]),
+                          _vm._v(" "),
+                          _c("td", [
+                            _c(
+                              "button",
+                              {
+                                staticClass:
+                                  "add-button add-button--remove d-flex align-items-center",
+                                attrs: { title: "Удалить" },
+                                on: {
+                                  click: function($event) {
+                                    _vm.deleteFolder(folder.id)
+                                  }
+                                }
+                              },
+                              [
+                                _c("img", {
+                                  attrs: {
+                                    src: "/img/del.svg",
+                                    alt: "add-button"
+                                  }
+                                }),
+                                _vm._v(" "),
+                                _c(
+                                  "div",
+                                  { staticClass: "remove-materials ml-1" },
+                                  [
+                                    _vm._v(
+                                      "\n                          Удалить\n                        "
+                                    )
+                                  ]
+                                )
+                              ]
+                            )
+                          ])
+                        ])
+                      })
+                    )
+                  ])
+                : _vm._e()
+            ])
+          ],
+          1
+        )
+      ])
+    ],
+    1
+  )
+}
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "col-md-8" }, [
+      _c("h4", [_vm._v("Загрузить файл")])
+    ])
+  }
+]
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-68b8b7a4", module.exports)
+  }
+}
+
+/***/ }),
 /* 210 */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -51861,6 +52320,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     data: function data() {
@@ -51923,6 +52384,12 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 name: 'order-upload',
                 params: { id: this.$route.params.id }
             };
+        },
+        finishedActsPath: function finishedActsPath() {
+            return {
+                name: 'order-finished-acts',
+                params: { id: this.$route.params.id }
+            };
         }
     }
 });
@@ -51974,9 +52441,24 @@ var render = function() {
                           )
                         : _vm._e(),
                       _vm._v(" "),
-                      _c("div", { class: _vm.panelClass }, [_vm._m(0)]),
+                      _vm.finishedActsPath
+                        ? _c(
+                            "router-link",
+                            {
+                              class: _vm.panelClass,
+                              attrs: { to: _vm.finishedActsPath }
+                            },
+                            [
+                              _c("div", { staticClass: "card-body" }, [
+                                _c("h5", { staticClass: "card-title" }, [
+                                  _vm._v("Акты выполненных работ")
+                                ])
+                              ])
+                            ]
+                          )
+                        : _vm._e(),
                       _vm._v(" "),
-                      _c("div", { class: _vm.panelClass }, [_vm._m(1)]),
+                      _c("div", { class: _vm.panelClass }, [_vm._m(0)]),
                       _vm._v(" "),
                       _vm.financePath
                         ? _c(
@@ -52049,16 +52531,6 @@ var staticRenderFns = [
     var _c = _vm._self._c || _h
     return _c("div", { staticClass: "card-body" }, [
       _c("h5", { staticClass: "card-title" }, [
-        _vm._v("Акты выполненных работ")
-      ])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "card-body" }, [
-      _c("h5", { staticClass: "card-title" }, [
         _vm._v("Акты дополнительных работ")
       ])
     ])
@@ -52074,11 +52546,1673 @@ if (false) {
 }
 
 /***/ }),
-/* 222 */,
-/* 223 */,
-/* 224 */,
-/* 225 */,
-/* 226 */,
+/* 222 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+function injectStyle (ssrContext) {
+  if (disposed) return
+  __webpack_require__(223)
+}
+var normalizeComponent = __webpack_require__(1)
+/* script */
+var __vue_script__ = __webpack_require__(225)
+/* template */
+var __vue_template__ = __webpack_require__(226)
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = injectStyle
+/* scopeId */
+var __vue_scopeId__ = "data-v-a478bd48"
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources/assets/js/components/Orders/Finances/Finances.vue"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-a478bd48", Component.options)
+  } else {
+    hotAPI.reload("data-v-a478bd48", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 223 */
+/***/ (function(module, exports, __webpack_require__) {
+
+// style-loader: Adds some css to the DOM by adding a <style> tag
+
+// load the styles
+var content = __webpack_require__(224);
+if(typeof content === 'string') content = [[module.i, content, '']];
+if(content.locals) module.exports = content.locals;
+// add the styles to the DOM
+var update = __webpack_require__(3)("1849448e", content, false, {});
+// Hot Module Replacement
+if(false) {
+ // When the styles change, update the <style> tags
+ if(!content.locals) {
+   module.hot.accept("!!../../../../../../node_modules/css-loader/index.js!../../../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-a478bd48\",\"scoped\":true,\"hasInlineConfig\":true}!../../../../../../node_modules/sass-loader/lib/loader.js!../../../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./Finances.vue", function() {
+     var newContent = require("!!../../../../../../node_modules/css-loader/index.js!../../../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-a478bd48\",\"scoped\":true,\"hasInlineConfig\":true}!../../../../../../node_modules/sass-loader/lib/loader.js!../../../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./Finances.vue");
+     if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+     update(newContent);
+   });
+ }
+ // When the module is disposed, remove the <style> tags
+ module.hot.dispose(function() { update(); });
+}
+
+/***/ }),
+/* 224 */
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(2)(false);
+// imports
+
+
+// module
+exports.push([module.i, "\ninput[data-v-a478bd48]:required:valid {\n  border-color: #495057 !important;\n}\n.fixed-part[data-v-a478bd48] {\n  position: fixed;\n  background-color: #fff;\n  padding-bottom: 35px;\n  padding-top: 85px;\n  z-index: 999;\n}\n.sidebar[data-v-a478bd48] {\n  min-height: 100vh;\n}\n.main-content[data-v-a478bd48] {\n  padding-top: 275px;\n}\n.main-subtitle[data-v-a478bd48] {\n  font-size: 1.3rem;\n}\n.main-subtitle span[data-v-a478bd48] {\n    font-size: 1rem;\n}\n.add-button[data-v-a478bd48] {\n  background-color: transparent;\n  border: none;\n  cursor: pointer;\n}\n.add-button[data-v-a478bd48]:focus {\n    outline: none;\n}\n.add-button img[data-v-a478bd48] {\n    width: 35px;\n    border-radius: 50%;\n}\n.add-button img[data-v-a478bd48]:hover {\n      -webkit-box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);\n              box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);\n}\n.add-button--remove[data-v-a478bd48] {\n    color: #ccc;\n}\n.add-button--remove[data-v-a478bd48]:hover {\n      color: #00A4D1;\n}\n.add-button--remove img[data-v-a478bd48] {\n      width: 15px;\n}\n.remove-materials[data-v-a478bd48] {\n  font-size: 0.75rem;\n}\n.bg[data-v-a478bd48] {\n  padding-bottom: 400px;\n}\n.my-datepicker[data-v-a478bd48] {\n  line-height: 15px;\n}\n.form-control[data-v-a478bd48] {\n  border-radius: 0;\n}\n.form-control[data-v-a478bd48]::-webkit-input-placeholder {\n    opacity: 0.3;\n}\n.form-control[data-v-a478bd48]:-ms-input-placeholder {\n    opacity: 0.3;\n}\n.form-control[data-v-a478bd48]::-ms-input-placeholder {\n    opacity: 0.3;\n}\n.form-control[data-v-a478bd48]::placeholder {\n    opacity: 0.3;\n}\n.form-control[data-v-a478bd48]:focus, .form-control[data-v-a478bd48]:hover {\n    -webkit-box-shadow: none;\n            box-shadow: none;\n    border-color: #000;\n}\n.inputfile[data-v-a478bd48] {\n  width: 0.1px;\n  height: 0.1px;\n  opacity: 0;\n  overflow: hidden;\n  position: absolute;\n  z-index: -1;\n}\n.inputfile + label[data-v-a478bd48] {\n  cursor: pointer;\n  /* \"hand\" cursor */\n}\n", ""]);
+
+// exports
+
+
+/***/ }),
+/* 225 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vuejs_datepicker__ = __webpack_require__(8);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_vuejs_datepicker_dist_locale__ = __webpack_require__(9);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_vue2_dropzone__ = __webpack_require__(150);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_vue2_dropzone___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_vue2_dropzone__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_vue2_dropzone_dist_vue2Dropzone_min_css__ = __webpack_require__(151);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_vue2_dropzone_dist_vue2Dropzone_min_css___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_vue2_dropzone_dist_vue2Dropzone_min_css__);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+
+
+
+
+var moment = __webpack_require__(0);
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+    data: function data() {
+        return {
+            order: [],
+
+            expense: null,
+            expense_amount: 0,
+            expense_date: null,
+            expense_reason: null,
+
+            income: null,
+            income_date: null,
+            income_amount: 0,
+            income_reason: null,
+
+            service_price: 0,
+            material_price: 0,
+
+            finances: [],
+
+            file: null,
+
+            ru: __WEBPACK_IMPORTED_MODULE_1_vuejs_datepicker_dist_locale__["a" /* ru */],
+            moment: moment,
+
+            dropzoneOptions: {
+                url: "/api/orders/" + this.$route.params.id + "/finance/store",
+                paramName: 'file_path',
+                autoProcessQueue: false,
+                thumbnailWidth: 100,
+                addRemoveLinks: true,
+                maxFilesize: 10.0,
+                dictDefaultMessage: "<i class='fa fa-cloud-upload'></i> Документы или Фотки"
+            },
+
+            path: window.location.hostname
+        };
+    },
+
+
+    components: {
+        Datepicker: __WEBPACK_IMPORTED_MODULE_0_vuejs_datepicker__["a" /* default */],
+        vueDropzone: __WEBPACK_IMPORTED_MODULE_2_vue2_dropzone___default.a
+    },
+
+    mounted: function mounted() {
+        this.getOrder();
+    },
+
+
+    methods: {
+        getOrder: function getOrder() {
+            var _this = this;
+
+            return axios.get("/api/orders/" + this.$route.params.id).then(function (response) {
+                _this.order = response.data;
+
+                _this.service_price = _this.order.price === null ? 0 : _this.order.price;
+
+                _this.income = null;
+                _this.income_amount = 0;
+                _this.income_date = null;
+                _this.income_reason = null;
+                _this.expense = null;
+                _this.expense_amount = 0;
+                _this.expense_date = null;
+                _this.expense_reason = null;
+                _this.material_price = 0;
+
+                _this.finances = _this.order.finances;
+
+                _this.finances.forEach(function (finance) {
+                    if (finance.finance_type === 'income') {
+                        _this.income_amount += parseInt(finance.price);
+                    }
+                    if (finance.finance_type === 'expense') {
+                        _this.expense_amount += parseInt(finance.price);
+                    }
+                });
+
+                if (_this.order.rooms) {
+                    _this.order.rooms.forEach(function (room) {
+                        if (room.room_services) {
+                            room.room_services.forEach(function (service) {
+                                if (service.materials) {
+                                    service.materials.forEach(function (material) {
+                                        _this.material_price += Math.ceil(parseFloat(material.pivot.rate).toFixed(2) * parseFloat(service.quantity).toFixed(2) / parseFloat(material.quantity).toFixed(2)) * parseFloat(material.price).toFixed(2);
+                                    });
+                                }
+                            });
+                        }
+                    });
+                }
+            });
+        },
+        saveIncome: function saveIncome() {
+            var _this2 = this;
+
+            if (this.income_reason !== null && this.income_date !== null) {
+                axios.post("/api/orders/" + this.$route.params.id + "/finance/store", {
+                    'type': 'income',
+                    'income': this.income,
+                    'income_date': this.income_date,
+                    'income_reason': this.income_reason
+                }).then(function (response) {
+                    _this2.getOrder();
+                });
+            } else {
+                alert('Вводи причину или дату');
+            }
+        },
+        saveExpense: function saveExpense(e) {
+            var _this3 = this;
+
+            if (this.expense_reason !== null && this.expense_date !== null) {
+                if (this.expense_reason === 'Оплата материалов') {
+                    axios.post("/api/orders/" + this.$route.params.id + "/finance/store", {
+                        'type': 'expense',
+                        'income': this.expense,
+                        'income_date': this.expense_date,
+                        'income_reason': this.expense_reason
+                    }).then(function () {
+                        _this3.$refs.MyDropzone.processQueue();
+                        setTimeout(function () {
+                            window.location.reload(true);
+                        }, 3000);
+                    });
+                } else {
+                    axios.post("/api/orders/" + this.$route.params.id + "/finance/store", {
+                        'type': 'expense',
+                        'income': this.expense,
+                        'income_date': this.expense_date,
+                        'income_reason': this.expense_reason
+                    }).then(function (response) {
+                        _this3.getOrder();
+                    });
+                }
+            } else {
+                alert('Вводи причину или дату');
+            }
+        },
+        updateFinance: function updateFinance(finance) {
+            var _this4 = this;
+
+            axios.patch("/api/orders/" + this.$route.params.id + "/finance/" + finance.id + "/update", {
+                'can_be_showed': finance.can_be_showed ? false : true
+            }).then(function (response) {
+                _this4.getOrder();
+            });
+        },
+        deleteFinance: function deleteFinance(id) {
+            var _this5 = this;
+
+            if (confirm('Удалить ?')) {
+                axios.delete("/api/orders/" + this.$route.params.id + "/finance/" + id + "/delete").then(function (response) {
+                    _this5.getOrder();
+                });
+            }
+        },
+        dateFormatter: function dateFormatter(dateString) {
+            return this.moment(new Date(dateString)).format("DD-MM-YYYY");
+        }
+    },
+
+    computed: {
+        filteredFinances: function filteredFinances() {
+            if (this.finances) {
+                var data = this.finances;
+
+                data = _.orderBy(data, ['inputed_at'], ['desc']);
+
+                return data;
+            }
+        },
+        profit: function profit() {
+            return parseInt(this.income_amount) - parseInt(this.expense_amount);
+        }
+    }
+});
+
+/***/ }),
+/* 226 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c(
+    "div",
+    { staticClass: "projects" },
+    [
+      _c("basic-header"),
+      _vm._v(" "),
+      _vm.order
+        ? [
+            _c("div", { staticClass: "container-fluid px-0" }, [
+              _c(
+                "div",
+                { staticClass: "row" },
+                [
+                  _c("navigation"),
+                  _vm._v(" "),
+                  _c(
+                    "div",
+                    { staticClass: "col-md-10 px-0" },
+                    [
+                      _c(
+                        "div",
+                        {
+                          staticClass:
+                            "row col-10 fixed-part shadow bg-white rounded pl-3 align-items-center"
+                        },
+                        [
+                          _c("div", { staticClass: "col-md-8" }, [
+                            _c("h1", { staticClass: "main-caption" }, [
+                              _vm._v(
+                                "\n                    " +
+                                  _vm._s(_vm.order.order_name) +
+                                  " (" +
+                                  _vm._s(_vm.order.address) +
+                                  ")\n                  "
+                              )
+                            ])
+                          ]),
+                          _vm._v(" "),
+                          _vm.order.rooms
+                            ? [
+                                _c(
+                                  "div",
+                                  { staticClass: "col-md-2 ml-auto" },
+                                  [
+                                    _vm.order.rooms.length
+                                      ? [
+                                          _c(
+                                            "router-link",
+                                            {
+                                              attrs: {
+                                                to: {
+                                                  name: "room-show",
+                                                  params: {
+                                                    id: _vm.order.id,
+                                                    room_id:
+                                                      _vm.order.rooms[
+                                                        _vm.order.rooms.length -
+                                                          1
+                                                      ].id
+                                                  }
+                                                }
+                                              }
+                                            },
+                                            [
+                                              _c(
+                                                "button",
+                                                {
+                                                  staticClass:
+                                                    "primary-button w-100",
+                                                  attrs: { type: "button" }
+                                                },
+                                                [_vm._v("Редактировать")]
+                                              )
+                                            ]
+                                          )
+                                        ]
+                                      : [
+                                          _c(
+                                            "router-link",
+                                            {
+                                              attrs: {
+                                                to: {
+                                                  name: "order-show",
+                                                  params: { id: _vm.order.id }
+                                                }
+                                              }
+                                            },
+                                            [
+                                              _c(
+                                                "button",
+                                                {
+                                                  staticClass:
+                                                    "primary-button w-100",
+                                                  attrs: { type: "button" }
+                                                },
+                                                [_vm._v("Редактировать")]
+                                              )
+                                            ]
+                                          )
+                                        ]
+                                  ],
+                                  2
+                                )
+                              ]
+                            : _vm._e(),
+                          _vm._v(" "),
+                          _c("div", { staticClass: "col-12 pt-3 d-flex" }, [
+                            _c(
+                              "div",
+                              {
+                                staticClass: "main-subtitle px-15 col-auto pl-0"
+                              },
+                              [
+                                _vm._v(
+                                  " Итого: " +
+                                    _vm._s(
+                                      new Intl.NumberFormat("ru-Ru").format(
+                                        parseInt(_vm.service_price)
+                                      )
+                                    ) +
+                                    " Р "
+                                ),
+                                _c("span", [_vm._v("(работы)")])
+                              ]
+                            ),
+                            _vm._v(" "),
+                            _c(
+                              "div",
+                              { staticClass: "main-subtitle px-15 col-auto" },
+                              [
+                                _vm._v(
+                                  " " +
+                                    _vm._s(
+                                      new Intl.NumberFormat("ru-Ru").format(
+                                        parseInt(_vm.material_price)
+                                      )
+                                    ) +
+                                    " Р"
+                                ),
+                                _c("span", [_vm._v("(материалы)")])
+                              ]
+                            ),
+                            _vm._v(" "),
+                            _c(
+                              "div",
+                              { staticClass: "main-subtitle px-15 col-auto" },
+                              [
+                                _vm._v(
+                                  " Приход: " +
+                                    _vm._s(
+                                      new Intl.NumberFormat("ru-Ru").format(
+                                        parseInt(_vm.income_amount)
+                                      )
+                                    ) +
+                                    " Р"
+                                )
+                              ]
+                            ),
+                            _vm._v(" "),
+                            _c(
+                              "div",
+                              { staticClass: "main-subtitle px-15 col-auto" },
+                              [
+                                _vm._v(
+                                  " Прибыль: " +
+                                    _vm._s(
+                                      new Intl.NumberFormat("ru-Ru").format(
+                                        parseInt(_vm.profit)
+                                      )
+                                    ) +
+                                    " Р"
+                                )
+                              ]
+                            )
+                          ])
+                        ],
+                        2
+                      ),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "col-12" }, [
+                        _c("div", { staticClass: "main-content" }, [
+                          _c(
+                            "form",
+                            {
+                              staticClass: "row align-items-center",
+                              on: {
+                                submit: function($event) {
+                                  $event.preventDefault()
+                                  _vm.saveIncome()
+                                }
+                              }
+                            },
+                            [
+                              _c(
+                                "div",
+                                {
+                                  staticClass: "main-subtitle profit col-1 mr-4"
+                                },
+                                [
+                                  _vm._v(
+                                    "\n                      Приход:\n                    "
+                                  )
+                                ]
+                              ),
+                              _vm._v(" "),
+                              _c("div", { staticClass: "col-2" }, [
+                                _c("input", {
+                                  directives: [
+                                    {
+                                      name: "model",
+                                      rawName: "v-model",
+                                      value: _vm.income,
+                                      expression: "income"
+                                    }
+                                  ],
+                                  staticClass: "form-control",
+                                  attrs: {
+                                    type: "number",
+                                    min: "0",
+                                    placeholder: "Сумма",
+                                    required: ""
+                                  },
+                                  domProps: { value: _vm.income },
+                                  on: {
+                                    input: function($event) {
+                                      if ($event.target.composing) {
+                                        return
+                                      }
+                                      _vm.income = $event.target.value
+                                    }
+                                  }
+                                })
+                              ]),
+                              _vm._v(" "),
+                              _c("div", { staticClass: "col-2" }, [
+                                _c(
+                                  "select",
+                                  {
+                                    directives: [
+                                      {
+                                        name: "model",
+                                        rawName: "v-model",
+                                        value: _vm.income_reason,
+                                        expression: "income_reason"
+                                      }
+                                    ],
+                                    staticClass: "form-control",
+                                    on: {
+                                      change: function($event) {
+                                        var $$selectedVal = Array.prototype.filter
+                                          .call($event.target.options, function(
+                                            o
+                                          ) {
+                                            return o.selected
+                                          })
+                                          .map(function(o) {
+                                            var val =
+                                              "_value" in o ? o._value : o.value
+                                            return val
+                                          })
+                                        _vm.income_reason = $event.target
+                                          .multiple
+                                          ? $$selectedVal
+                                          : $$selectedVal[0]
+                                      }
+                                    }
+                                  },
+                                  [
+                                    _c(
+                                      "option",
+                                      {
+                                        attrs: {
+                                          selected: "",
+                                          disabled: "",
+                                          value: "null"
+                                        }
+                                      },
+                                      [_vm._v("Причина")]
+                                    ),
+                                    _vm._v(" "),
+                                    _vm.order.finished_order_acts
+                                      ? [
+                                          _vm._l(
+                                            _vm.order.finished_order_acts,
+                                            function(
+                                              finished_order_act,
+                                              index
+                                            ) {
+                                              return [
+                                                finished_order_act.description
+                                                  ? [
+                                                      _c(
+                                                        "option",
+                                                        {
+                                                          domProps: {
+                                                            value:
+                                                              finished_order_act.description
+                                                          }
+                                                        },
+                                                        [
+                                                          _vm._v(
+                                                            "\n                                        " +
+                                                              _vm._s(
+                                                                finished_order_act.description
+                                                              ) +
+                                                              " (" +
+                                                              _vm._s(
+                                                                parseInt(
+                                                                  index
+                                                                ) + 1
+                                                              ) +
+                                                              ")\n                                    "
+                                                          )
+                                                        ]
+                                                      )
+                                                    ]
+                                                  : [
+                                                      _c(
+                                                        "option",
+                                                        {
+                                                          domProps: {
+                                                            value:
+                                                              finished_order_act.name
+                                                          }
+                                                        },
+                                                        [
+                                                          _vm._v(
+                                                            "\n                                        " +
+                                                              _vm._s(
+                                                                finished_order_act.name
+                                                              ) +
+                                                              " (" +
+                                                              _vm._s(
+                                                                parseInt(
+                                                                  index
+                                                                ) + 1
+                                                              ) +
+                                                              ")\n                                    "
+                                                          )
+                                                        ]
+                                                      )
+                                                    ]
+                                              ]
+                                            }
+                                          )
+                                        ]
+                                      : _vm._e(),
+                                    _vm._v(" "),
+                                    _vm.order.extra_order_acts
+                                      ? [
+                                          _vm._l(
+                                            _vm.order.extra_order_acts,
+                                            function(extra_order_act, index) {
+                                              return [
+                                                extra_order_act.description
+                                                  ? [
+                                                      _c(
+                                                        "option",
+                                                        {
+                                                          domProps: {
+                                                            value:
+                                                              extra_order_act.description
+                                                          }
+                                                        },
+                                                        [
+                                                          _vm._v(
+                                                            "\n                                        " +
+                                                              _vm._s(
+                                                                extra_order_act.description
+                                                              ) +
+                                                              " (" +
+                                                              _vm._s(
+                                                                parseInt(
+                                                                  index
+                                                                ) + 1
+                                                              ) +
+                                                              ")\n                                    "
+                                                          )
+                                                        ]
+                                                      )
+                                                    ]
+                                                  : [
+                                                      _c(
+                                                        "option",
+                                                        {
+                                                          domProps: {
+                                                            value:
+                                                              extra_order_act.name
+                                                          }
+                                                        },
+                                                        [
+                                                          _vm._v(
+                                                            "\n                                        " +
+                                                              _vm._s(
+                                                                extra_order_act.name
+                                                              ) +
+                                                              " (" +
+                                                              _vm._s(
+                                                                parseInt(
+                                                                  index
+                                                                ) + 1
+                                                              ) +
+                                                              ")\n                                    "
+                                                          )
+                                                        ]
+                                                      )
+                                                    ]
+                                              ]
+                                            }
+                                          )
+                                        ]
+                                      : _vm._e(),
+                                    _vm._v(" "),
+                                    _c(
+                                      "option",
+                                      {
+                                        attrs: {
+                                          value: "Оплата материалов от клиента"
+                                        }
+                                      },
+                                      [_vm._v("Оплата материалов от клиента")]
+                                    ),
+                                    _vm._v(" "),
+                                    _c(
+                                      "option",
+                                      { attrs: { value: "Аванс" } },
+                                      [_vm._v("Аванс")]
+                                    )
+                                  ],
+                                  2
+                                )
+                              ]),
+                              _vm._v(" "),
+                              _c(
+                                "div",
+                                { staticClass: "col-2" },
+                                [
+                                  _c("datepicker", {
+                                    staticClass: "my-datepicker",
+                                    attrs: {
+                                      language: _vm.ru,
+                                      placeholder: "Дата"
+                                    },
+                                    model: {
+                                      value: _vm.income_date,
+                                      callback: function($$v) {
+                                        _vm.income_date = $$v
+                                      },
+                                      expression: "income_date"
+                                    }
+                                  })
+                                ],
+                                1
+                              ),
+                              _vm._v(" "),
+                              _c("button", {
+                                staticStyle: { display: "none" },
+                                attrs: { type: "submit" }
+                              })
+                            ]
+                          ),
+                          _vm._v(" "),
+                          _c(
+                            "form",
+                            {
+                              staticClass: "row align-items-center py-4",
+                              attrs: { enctype: "multipart/form-data" },
+                              on: {
+                                submit: function($event) {
+                                  $event.preventDefault()
+                                  _vm.saveExpense()
+                                }
+                              }
+                            },
+                            [
+                              _c(
+                                "div",
+                                {
+                                  staticClass: "main-subtitle profit col-1 mr-4"
+                                },
+                                [
+                                  _vm._v(
+                                    "\n                          Расход:\n                        "
+                                  )
+                                ]
+                              ),
+                              _vm._v(" "),
+                              _c("div", { staticClass: "col-2" }, [
+                                _c("input", {
+                                  directives: [
+                                    {
+                                      name: "model",
+                                      rawName: "v-model",
+                                      value: _vm.expense,
+                                      expression: "expense"
+                                    }
+                                  ],
+                                  staticClass: "form-control",
+                                  attrs: {
+                                    type: "text",
+                                    min: "0",
+                                    placeholder: "Сумма"
+                                  },
+                                  domProps: { value: _vm.expense },
+                                  on: {
+                                    input: function($event) {
+                                      if ($event.target.composing) {
+                                        return
+                                      }
+                                      _vm.expense = $event.target.value
+                                    }
+                                  }
+                                })
+                              ]),
+                              _vm._v(" "),
+                              _c("div", { staticClass: "col-2" }, [
+                                _c(
+                                  "select",
+                                  {
+                                    directives: [
+                                      {
+                                        name: "model",
+                                        rawName: "v-model",
+                                        value: _vm.expense_reason,
+                                        expression: "expense_reason"
+                                      }
+                                    ],
+                                    staticClass: "form-control",
+                                    on: {
+                                      change: function($event) {
+                                        var $$selectedVal = Array.prototype.filter
+                                          .call($event.target.options, function(
+                                            o
+                                          ) {
+                                            return o.selected
+                                          })
+                                          .map(function(o) {
+                                            var val =
+                                              "_value" in o ? o._value : o.value
+                                            return val
+                                          })
+                                        _vm.expense_reason = $event.target
+                                          .multiple
+                                          ? $$selectedVal
+                                          : $$selectedVal[0]
+                                      }
+                                    }
+                                  },
+                                  [
+                                    _c(
+                                      "option",
+                                      {
+                                        attrs: {
+                                          selected: "",
+                                          disabled: "",
+                                          value: "null"
+                                        }
+                                      },
+                                      [_vm._v("Причина")]
+                                    ),
+                                    _vm._v(" "),
+                                    _c(
+                                      "option",
+                                      { attrs: { value: "Оплата материалов" } },
+                                      [_vm._v("Оплата материалов")]
+                                    ),
+                                    _vm._v(" "),
+                                    _c(
+                                      "option",
+                                      { attrs: { value: "Оплата рабочим" } },
+                                      [_vm._v("Оплата рабочим")]
+                                    ),
+                                    _vm._v(" "),
+                                    _vm.order.finished_order_acts
+                                      ? [
+                                          _vm._l(
+                                            _vm.order.finished_order_acts,
+                                            function(
+                                              finished_order_act,
+                                              index
+                                            ) {
+                                              return [
+                                                finished_order_act.description
+                                                  ? [
+                                                      _c(
+                                                        "option",
+                                                        {
+                                                          domProps: {
+                                                            value:
+                                                              finished_order_act.description
+                                                          }
+                                                        },
+                                                        [
+                                                          _vm._v(
+                                                            "\n                                              " +
+                                                              _vm._s(
+                                                                finished_order_act.description
+                                                              ) +
+                                                              " (" +
+                                                              _vm._s(
+                                                                parseInt(
+                                                                  index
+                                                                ) + 1
+                                                              ) +
+                                                              ")\n                                          "
+                                                          )
+                                                        ]
+                                                      )
+                                                    ]
+                                                  : [
+                                                      _c(
+                                                        "option",
+                                                        {
+                                                          domProps: {
+                                                            value:
+                                                              finished_order_act.name
+                                                          }
+                                                        },
+                                                        [
+                                                          _vm._v(
+                                                            "\n                                              " +
+                                                              _vm._s(
+                                                                finished_order_act.name
+                                                              ) +
+                                                              " (" +
+                                                              _vm._s(
+                                                                parseInt(
+                                                                  index
+                                                                ) + 1
+                                                              ) +
+                                                              ")\n                                          "
+                                                          )
+                                                        ]
+                                                      )
+                                                    ]
+                                              ]
+                                            }
+                                          )
+                                        ]
+                                      : _vm._e(),
+                                    _vm._v(" "),
+                                    _vm.order.extra_order_acts
+                                      ? [
+                                          _vm._l(
+                                            _vm.order.extra_order_acts,
+                                            function(extra_order_act, index) {
+                                              return [
+                                                extra_order_act.description
+                                                  ? [
+                                                      _c(
+                                                        "option",
+                                                        {
+                                                          domProps: {
+                                                            value:
+                                                              extra_order_act.description
+                                                          }
+                                                        },
+                                                        [
+                                                          _vm._v(
+                                                            "\n                                              " +
+                                                              _vm._s(
+                                                                extra_order_act.description
+                                                              ) +
+                                                              " (" +
+                                                              _vm._s(
+                                                                parseInt(
+                                                                  index
+                                                                ) + 1
+                                                              ) +
+                                                              ")\n                                          "
+                                                          )
+                                                        ]
+                                                      )
+                                                    ]
+                                                  : [
+                                                      _c(
+                                                        "option",
+                                                        {
+                                                          domProps: {
+                                                            value:
+                                                              extra_order_act.name
+                                                          }
+                                                        },
+                                                        [
+                                                          _vm._v(
+                                                            "\n                                              " +
+                                                              _vm._s(
+                                                                extra_order_act.name
+                                                              ) +
+                                                              " (" +
+                                                              _vm._s(
+                                                                parseInt(
+                                                                  index
+                                                                ) + 1
+                                                              ) +
+                                                              ")\n                                          "
+                                                          )
+                                                        ]
+                                                      )
+                                                    ]
+                                              ]
+                                            }
+                                          )
+                                        ]
+                                      : _vm._e()
+                                  ],
+                                  2
+                                )
+                              ]),
+                              _vm._v(" "),
+                              _c(
+                                "div",
+                                { staticClass: "col-2" },
+                                [
+                                  _c("datepicker", {
+                                    staticClass: "my-datepicker",
+                                    attrs: {
+                                      language: _vm.ru,
+                                      placeholder: "Дата"
+                                    },
+                                    model: {
+                                      value: _vm.expense_date,
+                                      callback: function($$v) {
+                                        _vm.expense_date = $$v
+                                      },
+                                      expression: "expense_date"
+                                    }
+                                  })
+                                ],
+                                1
+                              ),
+                              _vm._v(" "),
+                              _vm.expense_reason === "Оплата материалов"
+                                ? _c(
+                                    "div",
+                                    { staticClass: "col-2 ml-5" },
+                                    [
+                                      _c("vue-dropzone", {
+                                        ref: "MyDropzone",
+                                        staticClass: "mp-10",
+                                        attrs: {
+                                          id: "dropzone",
+                                          options: _vm.dropzoneOptions
+                                        }
+                                      })
+                                    ],
+                                    1
+                                  )
+                                : _vm._e(),
+                              _vm._v(" "),
+                              _c("button", {
+                                staticStyle: { display: "none" },
+                                attrs: { type: "submit" }
+                              })
+                            ]
+                          )
+                        ])
+                      ]),
+                      _vm._v(" "),
+                      _vm.finances
+                        ? [
+                            _c("div", { staticClass: "col-12 px-0 bg mt-3" }, [
+                              _c(
+                                "table",
+                                { staticClass: "table table-hover" },
+                                [
+                                  _c(
+                                    "tbody",
+                                    [
+                                      _vm._l(_vm.filteredFinances, function(
+                                        finance
+                                      ) {
+                                        return [
+                                          finance.finance_type === "income"
+                                            ? [
+                                                _c(
+                                                  "tr",
+                                                  {
+                                                    staticStyle: {
+                                                      "background-color":
+                                                        "#DEFFE8"
+                                                    }
+                                                  },
+                                                  [
+                                                    _c(
+                                                      "td",
+                                                      { staticClass: "pl-4" },
+                                                      [
+                                                        _vm._v(
+                                                          "+" +
+                                                            _vm._s(
+                                                              finance.price
+                                                            )
+                                                        )
+                                                      ]
+                                                    ),
+                                                    _vm._v(" "),
+                                                    _c("td", [
+                                                      _vm._v(
+                                                        _vm._s(finance.reason)
+                                                      )
+                                                    ]),
+                                                    _vm._v(" "),
+                                                    _c("td", [
+                                                      _vm._v(
+                                                        _vm._s(
+                                                          _vm.dateFormatter(
+                                                            finance.inputed_at
+                                                          )
+                                                        )
+                                                      )
+                                                    ]),
+                                                    _vm._v(" "),
+                                                    _c("td", [
+                                                      _c(
+                                                        "button",
+                                                        {
+                                                          staticClass:
+                                                            "add-button add-button--remove d-flex align-items-center",
+                                                          attrs: {
+                                                            title:
+                                                              "Удалить материал"
+                                                          },
+                                                          on: {
+                                                            click: function(
+                                                              $event
+                                                            ) {
+                                                              _vm.deleteFinance(
+                                                                finance.id
+                                                              )
+                                                            }
+                                                          }
+                                                        },
+                                                        [
+                                                          _c("img", {
+                                                            attrs: {
+                                                              src:
+                                                                "/img/del.svg",
+                                                              alt: "add-button"
+                                                            }
+                                                          }),
+                                                          _vm._v(" "),
+                                                          _c(
+                                                            "div",
+                                                            {
+                                                              staticClass:
+                                                                "remove-materials ml-1"
+                                                            },
+                                                            [
+                                                              _vm._v(
+                                                                "\n                                                    Удалить\n                                                  "
+                                                              )
+                                                            ]
+                                                          )
+                                                        ]
+                                                      )
+                                                    ]),
+                                                    _vm._v(" "),
+                                                    _c("td", [
+                                                      _c(
+                                                        "div",
+                                                        {
+                                                          staticClass:
+                                                            "form-check custom-control checkbox"
+                                                        },
+                                                        [
+                                                          _c("input", {
+                                                            staticClass:
+                                                              "form-check-input check",
+                                                            attrs: {
+                                                              id:
+                                                                "finance-" +
+                                                                finance.id,
+                                                              type: "checkbox"
+                                                            },
+                                                            domProps: {
+                                                              checked:
+                                                                finance.can_be_showed
+                                                            },
+                                                            on: {
+                                                              click: function(
+                                                                $event
+                                                              ) {
+                                                                _vm.updateFinance(
+                                                                  finance
+                                                                )
+                                                              }
+                                                            }
+                                                          }),
+                                                          _vm._v(" "),
+                                                          _c(
+                                                            "label",
+                                                            {
+                                                              staticClass:
+                                                                "form-check-label",
+                                                              attrs: {
+                                                                for:
+                                                                  "finance-" +
+                                                                  finance.id
+                                                              }
+                                                            },
+                                                            [
+                                                              _vm._v(
+                                                                "\n                                              показывать\n                                            "
+                                                              )
+                                                            ]
+                                                          )
+                                                        ]
+                                                      )
+                                                    ]),
+                                                    _vm._v(" "),
+                                                    _c("td", [_vm._v(" ")])
+                                                  ]
+                                                )
+                                              ]
+                                            : _vm._e(),
+                                          _vm._v(" "),
+                                          finance.finance_type === "expense"
+                                            ? [
+                                                _c("tr", [
+                                                  _c(
+                                                    "td",
+                                                    { staticClass: "pl-4" },
+                                                    [
+                                                      _vm._v(
+                                                        "-" +
+                                                          _vm._s(finance.price)
+                                                      )
+                                                    ]
+                                                  ),
+                                                  _vm._v(" "),
+                                                  _c("td", [
+                                                    _vm._v(
+                                                      _vm._s(finance.reason)
+                                                    )
+                                                  ]),
+                                                  _vm._v(" "),
+                                                  _c("td", [
+                                                    _vm._v(
+                                                      _vm._s(
+                                                        _vm.dateFormatter(
+                                                          finance.inputed_at
+                                                        )
+                                                      )
+                                                    )
+                                                  ]),
+                                                  _vm._v(" "),
+                                                  _c("td", [
+                                                    _c(
+                                                      "button",
+                                                      {
+                                                        staticClass:
+                                                          "add-button add-button--remove d-flex align-items-center",
+                                                        attrs: {
+                                                          title:
+                                                            "Удалить материал"
+                                                        },
+                                                        on: {
+                                                          click: function(
+                                                            $event
+                                                          ) {
+                                                            _vm.deleteFinance(
+                                                              finance.id
+                                                            )
+                                                          }
+                                                        }
+                                                      },
+                                                      [
+                                                        _c("img", {
+                                                          attrs: {
+                                                            src: "/img/del.svg",
+                                                            alt: "add-button"
+                                                          }
+                                                        }),
+                                                        _vm._v(" "),
+                                                        _c(
+                                                          "div",
+                                                          {
+                                                            staticClass:
+                                                              "remove-materials ml-1"
+                                                          },
+                                                          [
+                                                            _vm._v(
+                                                              "\n                                                    Удалить\n                                                  "
+                                                            )
+                                                          ]
+                                                        )
+                                                      ]
+                                                    )
+                                                  ]),
+                                                  _vm._v(" "),
+                                                  _c("td", [
+                                                    _c(
+                                                      "div",
+                                                      {
+                                                        staticClass:
+                                                          "form-check custom-control checkbox"
+                                                      },
+                                                      [
+                                                        _c("input", {
+                                                          staticClass:
+                                                            "form-check-input check",
+                                                          attrs: {
+                                                            id:
+                                                              "finance-" +
+                                                              finance.id,
+                                                            type: "checkbox"
+                                                          },
+                                                          domProps: {
+                                                            checked:
+                                                              finance.can_be_showed
+                                                          },
+                                                          on: {
+                                                            click: function(
+                                                              $event
+                                                            ) {
+                                                              _vm.updateFinance(
+                                                                finance
+                                                              )
+                                                            }
+                                                          }
+                                                        }),
+                                                        _vm._v(" "),
+                                                        _c(
+                                                          "label",
+                                                          {
+                                                            staticClass:
+                                                              "form-check-label",
+                                                            attrs: {
+                                                              for:
+                                                                "finance-" +
+                                                                finance.id
+                                                            }
+                                                          },
+                                                          [
+                                                            _vm._v(
+                                                              "\n                                              показывать\n                                            "
+                                                            )
+                                                          ]
+                                                        )
+                                                      ]
+                                                    )
+                                                  ]),
+                                                  _vm._v(" "),
+                                                  finance.finance_files.length
+                                                    ? _c("td", [
+                                                        _c(
+                                                          "a",
+                                                          {
+                                                            attrs: {
+                                                              href:
+                                                                "/storage/finances/" +
+                                                                finance
+                                                                  .finance_files[0]
+                                                                  .file_path
+                                                            }
+                                                          },
+                                                          [
+                                                            _vm._v(
+                                                              "смотреть файл"
+                                                            )
+                                                          ]
+                                                        )
+                                                      ])
+                                                    : _vm._e()
+                                                ])
+                                              ]
+                                            : _vm._e()
+                                        ]
+                                      })
+                                    ],
+                                    2
+                                  )
+                                ]
+                              )
+                            ])
+                          ]
+                        : _vm._e()
+                    ],
+                    2
+                  )
+                ],
+                1
+              )
+            ])
+          ]
+        : _vm._e()
+    ],
+    2
+  )
+}
+var staticRenderFns = []
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-a478bd48", module.exports)
+  }
+}
+
+/***/ }),
 /* 227 */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -93638,21 +95772,17 @@ $(window).scroll(function () {
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
-function injectStyle (ssrContext) {
-  if (disposed) return
-  __webpack_require__(358)
-}
 var normalizeComponent = __webpack_require__(1)
 /* script */
-var __vue_script__ = __webpack_require__(360)
+var __vue_script__ = __webpack_require__(358)
 /* template */
-var __vue_template__ = __webpack_require__(361)
+var __vue_template__ = __webpack_require__(359)
 /* template functional */
 var __vue_template_functional__ = false
 /* styles */
-var __vue_styles__ = injectStyle
+var __vue_styles__ = null
 /* scopeId */
-var __vue_scopeId__ = "data-v-a478bd48"
+var __vue_scopeId__ = null
 /* moduleIdentifier (server only) */
 var __vue_module_identifier__ = null
 var Component = normalizeComponent(
@@ -93663,7 +95793,7 @@ var Component = normalizeComponent(
   __vue_scopeId__,
   __vue_module_identifier__
 )
-Component.options.__file = "resources/assets/js/components/Orders/Finances/Finances.vue"
+Component.options.__file = "resources/assets/js/components/Orders/Services/Finished/FinishedActs.vue"
 
 /* hot reload */
 if (false) {(function () {
@@ -93672,9 +95802,9 @@ if (false) {(function () {
   if (!hotAPI.compatible) return
   module.hot.accept()
   if (!module.hot.data) {
-    hotAPI.createRecord("data-v-a478bd48", Component.options)
+    hotAPI.createRecord("data-v-e4a674bc", Component.options)
   } else {
-    hotAPI.reload("data-v-a478bd48", Component.options)
+    hotAPI.reload("data-v-e4a674bc", Component.options)
   }
   module.hot.dispose(function (data) {
     disposed = true
@@ -93686,288 +95816,10 @@ module.exports = Component.exports
 
 /***/ }),
 /* 358 */
-/***/ (function(module, exports, __webpack_require__) {
-
-// style-loader: Adds some css to the DOM by adding a <style> tag
-
-// load the styles
-var content = __webpack_require__(359);
-if(typeof content === 'string') content = [[module.i, content, '']];
-if(content.locals) module.exports = content.locals;
-// add the styles to the DOM
-var update = __webpack_require__(3)("1849448e", content, false, {});
-// Hot Module Replacement
-if(false) {
- // When the styles change, update the <style> tags
- if(!content.locals) {
-   module.hot.accept("!!../../../../../../node_modules/css-loader/index.js!../../../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-a478bd48\",\"scoped\":true,\"hasInlineConfig\":true}!../../../../../../node_modules/sass-loader/lib/loader.js!../../../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./Finances.vue", function() {
-     var newContent = require("!!../../../../../../node_modules/css-loader/index.js!../../../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-a478bd48\",\"scoped\":true,\"hasInlineConfig\":true}!../../../../../../node_modules/sass-loader/lib/loader.js!../../../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./Finances.vue");
-     if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
-     update(newContent);
-   });
- }
- // When the module is disposed, remove the <style> tags
- module.hot.dispose(function() { update(); });
-}
-
-/***/ }),
-/* 359 */
-/***/ (function(module, exports, __webpack_require__) {
-
-exports = module.exports = __webpack_require__(2)(false);
-// imports
-
-
-// module
-exports.push([module.i, "\ninput[data-v-a478bd48]:required:valid {\n  border-color: #495057 !important;\n}\n.fixed-part[data-v-a478bd48] {\n  position: fixed;\n  background-color: #fff;\n  padding-bottom: 35px;\n  padding-top: 85px;\n  z-index: 999;\n}\n.sidebar[data-v-a478bd48] {\n  min-height: 100vh;\n}\n.main-content[data-v-a478bd48] {\n  padding-top: 275px;\n}\n.main-subtitle[data-v-a478bd48] {\n  font-size: 1.3rem;\n}\n.main-subtitle span[data-v-a478bd48] {\n    font-size: 1rem;\n}\n.add-button[data-v-a478bd48] {\n  background-color: transparent;\n  border: none;\n  cursor: pointer;\n}\n.add-button[data-v-a478bd48]:focus {\n    outline: none;\n}\n.add-button img[data-v-a478bd48] {\n    width: 35px;\n    border-radius: 50%;\n}\n.add-button img[data-v-a478bd48]:hover {\n      -webkit-box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);\n              box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);\n}\n.add-button--remove[data-v-a478bd48] {\n    color: #ccc;\n}\n.add-button--remove[data-v-a478bd48]:hover {\n      color: #00A4D1;\n}\n.add-button--remove img[data-v-a478bd48] {\n      width: 15px;\n}\n.remove-materials[data-v-a478bd48] {\n  font-size: 0.75rem;\n}\n.bg[data-v-a478bd48] {\n  padding-bottom: 400px;\n}\n.my-datepicker[data-v-a478bd48] {\n  line-height: 15px;\n}\n.form-control[data-v-a478bd48] {\n  border-radius: 0;\n}\n.form-control[data-v-a478bd48]::-webkit-input-placeholder {\n    opacity: 0.3;\n}\n.form-control[data-v-a478bd48]:-ms-input-placeholder {\n    opacity: 0.3;\n}\n.form-control[data-v-a478bd48]::-ms-input-placeholder {\n    opacity: 0.3;\n}\n.form-control[data-v-a478bd48]::placeholder {\n    opacity: 0.3;\n}\n.form-control[data-v-a478bd48]:focus, .form-control[data-v-a478bd48]:hover {\n    -webkit-box-shadow: none;\n            box-shadow: none;\n    border-color: #000;\n}\n.inputfile[data-v-a478bd48] {\n  width: 0.1px;\n  height: 0.1px;\n  opacity: 0;\n  overflow: hidden;\n  position: absolute;\n  z-index: -1;\n}\n.inputfile + label[data-v-a478bd48] {\n  cursor: pointer;\n  /* \"hand\" cursor */\n}\n", ""]);
-
-// exports
-
-
-/***/ }),
-/* 360 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vuejs_datepicker__ = __webpack_require__(8);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_vuejs_datepicker_dist_locale__ = __webpack_require__(9);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_vue2_dropzone__ = __webpack_require__(150);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_vue2_dropzone___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_vue2_dropzone__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_vue2_dropzone_dist_vue2Dropzone_min_css__ = __webpack_require__(151);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_vue2_dropzone_dist_vue2Dropzone_min_css___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_vue2_dropzone_dist_vue2Dropzone_min_css__);
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 //
 //
 //
@@ -94005,194 +95857,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 
-
-
-
-
-var moment = __webpack_require__(0);
-
-/* harmony default export */ __webpack_exports__["default"] = ({
-    data: function data() {
-        return {
-            order: [],
-
-            expense: null,
-            expense_amount: 0,
-            expense_date: null,
-            expense_reason: null,
-
-            income: null,
-            income_date: null,
-            income_amount: 0,
-            income_reason: null,
-
-            service_price: 0,
-            material_price: 0,
-
-            finances: [],
-
-            file: null,
-
-            ru: __WEBPACK_IMPORTED_MODULE_1_vuejs_datepicker_dist_locale__["a" /* ru */],
-            moment: moment,
-
-            dropzoneOptions: {
-                url: "/api/orders/" + this.$route.params.id + "/finance/store",
-                paramName: 'file_path',
-                autoProcessQueue: false,
-                thumbnailWidth: 100,
-                addRemoveLinks: true,
-                maxFilesize: 10.0,
-                dictDefaultMessage: "<i class='fa fa-cloud-upload'></i> Документы или Фотки"
-            },
-
-            path: window.location.hostname
-        };
-    },
-
-
-    components: {
-        Datepicker: __WEBPACK_IMPORTED_MODULE_0_vuejs_datepicker__["a" /* default */],
-        vueDropzone: __WEBPACK_IMPORTED_MODULE_2_vue2_dropzone___default.a
-    },
-
-    mounted: function mounted() {
-        this.getOrder();
-    },
-
-
-    methods: {
-        getOrder: function getOrder() {
-            var _this = this;
-
-            return axios.get("/api/orders/" + this.$route.params.id).then(function (response) {
-                _this.order = response.data;
-
-                _this.service_price = _this.order.price === null ? 0 : _this.order.price;
-
-                _this.income = null;
-                _this.income_amount = 0;
-                _this.income_date = null;
-                _this.income_reason = null;
-                _this.expense = null;
-                _this.expense_amount = 0;
-                _this.expense_date = null;
-                _this.expense_reason = null;
-                _this.material_price = 0;
-
-                _this.finances = _this.order.finances;
-
-                _this.finances.forEach(function (finance) {
-                    if (finance.finance_type === 'income') {
-                        _this.income_amount += parseInt(finance.price);
-                    }
-                    if (finance.finance_type === 'expense') {
-                        _this.expense_amount += parseInt(finance.price);
-                    }
-                });
-
-                if (_this.order.rooms) {
-                    _this.order.rooms.forEach(function (room) {
-                        if (room.room_services) {
-                            room.room_services.forEach(function (service) {
-                                if (service.materials) {
-                                    service.materials.forEach(function (material) {
-                                        _this.material_price += Math.ceil(parseFloat(material.pivot.rate).toFixed(2) * parseFloat(service.quantity).toFixed(2) / parseFloat(material.quantity).toFixed(2)) * parseFloat(material.price).toFixed(2);
-                                    });
-                                }
-                            });
-                        }
-                    });
-                }
-            });
-        },
-        saveIncome: function saveIncome() {
-            var _this2 = this;
-
-            if (this.income_reason !== null && this.income_date !== null) {
-                axios.post("/api/orders/" + this.$route.params.id + "/finance/store", {
-                    'type': 'income',
-                    'income': this.income,
-                    'income_date': this.income_date,
-                    'income_reason': this.income_reason
-                }).then(function (response) {
-                    _this2.getOrder();
-                });
-            } else {
-                alert('Вводи причину или дату');
-            }
-        },
-        saveExpense: function saveExpense(e) {
-            var _this3 = this;
-
-            if (this.expense_reason !== null && this.expense_date !== null) {
-                if (this.expense_reason === 'Оплата материалов') {
-                    axios.post("/api/orders/" + this.$route.params.id + "/finance/store", {
-                        'type': 'expense',
-                        'income': this.expense,
-                        'income_date': this.expense_date,
-                        'income_reason': this.expense_reason
-                    }).then(function () {
-                        _this3.$refs.MyDropzone.processQueue();
-                        setTimeout(function () {
-                            window.location.reload(true);
-                        }, 3000);
-                    });
-                } else {
-                    axios.post("/api/orders/" + this.$route.params.id + "/finance/store", {
-                        'type': 'expense',
-                        'income': this.expense,
-                        'income_date': this.expense_date,
-                        'income_reason': this.expense_reason
-                    }).then(function (response) {
-                        _this3.getOrder();
-                    });
-                }
-            } else {
-                alert('Вводи причину или дату');
-            }
-        },
-        updateFinance: function updateFinance(finance) {
-            var _this4 = this;
-
-            axios.patch("/api/orders/" + this.$route.params.id + "/finance/" + finance.id + "/update", {
-                'can_be_showed': finance.can_be_showed ? false : true
-            }).then(function (response) {
-                _this4.getOrder();
-            });
-        },
-        deleteFinance: function deleteFinance(id) {
-            var _this5 = this;
-
-            if (confirm('Удалить ?')) {
-                axios.delete("/api/orders/" + this.$route.params.id + "/finance/" + id + "/delete").then(function (response) {
-                    _this5.getOrder();
-                });
-            }
-        },
-        dateFormatter: function dateFormatter(dateString) {
-            return this.moment(new Date(dateString)).format("DD-MM-YYYY");
-        }
-    },
-
-    computed: {
-        filteredFinances: function filteredFinances() {
-            if (this.finances) {
-                var data = this.finances;
-
-                data = _.orderBy(data, ['inputed_at'], ['desc']);
-
-                return data;
-            }
-        },
-        profit: function profit() {
-            return parseInt(this.income_amount) - parseInt(this.expense_amount);
-        }
-    }
-});
+/* harmony default export */ __webpack_exports__["default"] = ({});
 
 /***/ }),
-/* 361 */
+/* 359 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var render = function() {
@@ -94205,1533 +95873,11 @@ var render = function() {
     [
       _c("basic-header"),
       _vm._v(" "),
-      _vm.order
-        ? [
-            _c("div", { staticClass: "container-fluid px-0" }, [
-              _c(
-                "div",
-                { staticClass: "row" },
-                [
-                  _c("navigation"),
-                  _vm._v(" "),
-                  _c(
-                    "div",
-                    { staticClass: "col-md-10 px-0" },
-                    [
-                      _c(
-                        "div",
-                        {
-                          staticClass:
-                            "row col-10 fixed-part shadow bg-white rounded pl-3 align-items-center"
-                        },
-                        [
-                          _c("div", { staticClass: "col-md-8" }, [
-                            _c("h1", { staticClass: "main-caption" }, [
-                              _vm._v(
-                                "\n                    " +
-                                  _vm._s(_vm.order.order_name) +
-                                  " (" +
-                                  _vm._s(_vm.order.address) +
-                                  ")\n                  "
-                              )
-                            ])
-                          ]),
-                          _vm._v(" "),
-                          _vm.order.rooms
-                            ? [
-                                _c(
-                                  "div",
-                                  { staticClass: "col-md-2 ml-auto" },
-                                  [
-                                    _vm.order.rooms.length
-                                      ? [
-                                          _c(
-                                            "router-link",
-                                            {
-                                              attrs: {
-                                                to: {
-                                                  name: "room-show",
-                                                  params: {
-                                                    id: _vm.order.id,
-                                                    room_id:
-                                                      _vm.order.rooms[
-                                                        _vm.order.rooms.length -
-                                                          1
-                                                      ].id
-                                                  }
-                                                }
-                                              }
-                                            },
-                                            [
-                                              _c(
-                                                "button",
-                                                {
-                                                  staticClass:
-                                                    "primary-button w-100",
-                                                  attrs: { type: "button" }
-                                                },
-                                                [_vm._v("Редактировать")]
-                                              )
-                                            ]
-                                          )
-                                        ]
-                                      : [
-                                          _c(
-                                            "router-link",
-                                            {
-                                              attrs: {
-                                                to: {
-                                                  name: "order-show",
-                                                  params: { id: _vm.order.id }
-                                                }
-                                              }
-                                            },
-                                            [
-                                              _c(
-                                                "button",
-                                                {
-                                                  staticClass:
-                                                    "primary-button w-100",
-                                                  attrs: { type: "button" }
-                                                },
-                                                [_vm._v("Редактировать")]
-                                              )
-                                            ]
-                                          )
-                                        ]
-                                  ],
-                                  2
-                                )
-                              ]
-                            : _vm._e(),
-                          _vm._v(" "),
-                          _c("div", { staticClass: "col-12 pt-3 d-flex" }, [
-                            _c(
-                              "div",
-                              {
-                                staticClass: "main-subtitle px-15 col-auto pl-0"
-                              },
-                              [
-                                _vm._v(
-                                  " Итого: " +
-                                    _vm._s(
-                                      new Intl.NumberFormat("ru-Ru").format(
-                                        parseInt(_vm.service_price)
-                                      )
-                                    ) +
-                                    " Р "
-                                ),
-                                _c("span", [_vm._v("(работы)")])
-                              ]
-                            ),
-                            _vm._v(" "),
-                            _c(
-                              "div",
-                              { staticClass: "main-subtitle px-15 col-auto" },
-                              [
-                                _vm._v(
-                                  " " +
-                                    _vm._s(
-                                      new Intl.NumberFormat("ru-Ru").format(
-                                        parseInt(_vm.material_price)
-                                      )
-                                    ) +
-                                    " Р"
-                                ),
-                                _c("span", [_vm._v("(материалы)")])
-                              ]
-                            ),
-                            _vm._v(" "),
-                            _c(
-                              "div",
-                              { staticClass: "main-subtitle px-15 col-auto" },
-                              [
-                                _vm._v(
-                                  " Приход: " +
-                                    _vm._s(
-                                      new Intl.NumberFormat("ru-Ru").format(
-                                        parseInt(_vm.income_amount)
-                                      )
-                                    ) +
-                                    " Р"
-                                )
-                              ]
-                            ),
-                            _vm._v(" "),
-                            _c(
-                              "div",
-                              { staticClass: "main-subtitle px-15 col-auto" },
-                              [
-                                _vm._v(
-                                  " Прибыль: " +
-                                    _vm._s(
-                                      new Intl.NumberFormat("ru-Ru").format(
-                                        parseInt(_vm.profit)
-                                      )
-                                    ) +
-                                    " Р"
-                                )
-                              ]
-                            )
-                          ])
-                        ],
-                        2
-                      ),
-                      _vm._v(" "),
-                      _c("div", { staticClass: "col-12" }, [
-                        _c("div", { staticClass: "main-content" }, [
-                          _c(
-                            "form",
-                            {
-                              staticClass: "row align-items-center",
-                              on: {
-                                submit: function($event) {
-                                  $event.preventDefault()
-                                  _vm.saveIncome()
-                                }
-                              }
-                            },
-                            [
-                              _c(
-                                "div",
-                                {
-                                  staticClass: "main-subtitle profit col-1 mr-4"
-                                },
-                                [
-                                  _vm._v(
-                                    "\n                      Приход:\n                    "
-                                  )
-                                ]
-                              ),
-                              _vm._v(" "),
-                              _c("div", { staticClass: "col-2" }, [
-                                _c("input", {
-                                  directives: [
-                                    {
-                                      name: "model",
-                                      rawName: "v-model",
-                                      value: _vm.income,
-                                      expression: "income"
-                                    }
-                                  ],
-                                  staticClass: "form-control",
-                                  attrs: {
-                                    type: "number",
-                                    min: "0",
-                                    placeholder: "Сумма",
-                                    required: ""
-                                  },
-                                  domProps: { value: _vm.income },
-                                  on: {
-                                    input: function($event) {
-                                      if ($event.target.composing) {
-                                        return
-                                      }
-                                      _vm.income = $event.target.value
-                                    }
-                                  }
-                                })
-                              ]),
-                              _vm._v(" "),
-                              _c("div", { staticClass: "col-2" }, [
-                                _c(
-                                  "select",
-                                  {
-                                    directives: [
-                                      {
-                                        name: "model",
-                                        rawName: "v-model",
-                                        value: _vm.income_reason,
-                                        expression: "income_reason"
-                                      }
-                                    ],
-                                    staticClass: "form-control",
-                                    on: {
-                                      change: function($event) {
-                                        var $$selectedVal = Array.prototype.filter
-                                          .call($event.target.options, function(
-                                            o
-                                          ) {
-                                            return o.selected
-                                          })
-                                          .map(function(o) {
-                                            var val =
-                                              "_value" in o ? o._value : o.value
-                                            return val
-                                          })
-                                        _vm.income_reason = $event.target
-                                          .multiple
-                                          ? $$selectedVal
-                                          : $$selectedVal[0]
-                                      }
-                                    }
-                                  },
-                                  [
-                                    _c(
-                                      "option",
-                                      {
-                                        attrs: {
-                                          selected: "",
-                                          disabled: "",
-                                          value: "null"
-                                        }
-                                      },
-                                      [_vm._v("Причина")]
-                                    ),
-                                    _vm._v(" "),
-                                    _vm.order.finished_order_acts
-                                      ? [
-                                          _vm._l(
-                                            _vm.order.finished_order_acts,
-                                            function(
-                                              finished_order_act,
-                                              index
-                                            ) {
-                                              return [
-                                                finished_order_act.description
-                                                  ? [
-                                                      _c(
-                                                        "option",
-                                                        {
-                                                          domProps: {
-                                                            value:
-                                                              finished_order_act.description
-                                                          }
-                                                        },
-                                                        [
-                                                          _vm._v(
-                                                            "\n                                        " +
-                                                              _vm._s(
-                                                                finished_order_act.description
-                                                              ) +
-                                                              " (" +
-                                                              _vm._s(
-                                                                parseInt(
-                                                                  index
-                                                                ) + 1
-                                                              ) +
-                                                              ")\n                                    "
-                                                          )
-                                                        ]
-                                                      )
-                                                    ]
-                                                  : [
-                                                      _c(
-                                                        "option",
-                                                        {
-                                                          domProps: {
-                                                            value:
-                                                              finished_order_act.name
-                                                          }
-                                                        },
-                                                        [
-                                                          _vm._v(
-                                                            "\n                                        " +
-                                                              _vm._s(
-                                                                finished_order_act.name
-                                                              ) +
-                                                              " (" +
-                                                              _vm._s(
-                                                                parseInt(
-                                                                  index
-                                                                ) + 1
-                                                              ) +
-                                                              ")\n                                    "
-                                                          )
-                                                        ]
-                                                      )
-                                                    ]
-                                              ]
-                                            }
-                                          )
-                                        ]
-                                      : _vm._e(),
-                                    _vm._v(" "),
-                                    _vm.order.extra_order_acts
-                                      ? [
-                                          _vm._l(
-                                            _vm.order.extra_order_acts,
-                                            function(extra_order_act, index) {
-                                              return [
-                                                extra_order_act.description
-                                                  ? [
-                                                      _c(
-                                                        "option",
-                                                        {
-                                                          domProps: {
-                                                            value:
-                                                              extra_order_act.description
-                                                          }
-                                                        },
-                                                        [
-                                                          _vm._v(
-                                                            "\n                                        " +
-                                                              _vm._s(
-                                                                extra_order_act.description
-                                                              ) +
-                                                              " (" +
-                                                              _vm._s(
-                                                                parseInt(
-                                                                  index
-                                                                ) + 1
-                                                              ) +
-                                                              ")\n                                    "
-                                                          )
-                                                        ]
-                                                      )
-                                                    ]
-                                                  : [
-                                                      _c(
-                                                        "option",
-                                                        {
-                                                          domProps: {
-                                                            value:
-                                                              extra_order_act.name
-                                                          }
-                                                        },
-                                                        [
-                                                          _vm._v(
-                                                            "\n                                        " +
-                                                              _vm._s(
-                                                                extra_order_act.name
-                                                              ) +
-                                                              " (" +
-                                                              _vm._s(
-                                                                parseInt(
-                                                                  index
-                                                                ) + 1
-                                                              ) +
-                                                              ")\n                                    "
-                                                          )
-                                                        ]
-                                                      )
-                                                    ]
-                                              ]
-                                            }
-                                          )
-                                        ]
-                                      : _vm._e(),
-                                    _vm._v(" "),
-                                    _c(
-                                      "option",
-                                      {
-                                        attrs: {
-                                          value: "Оплата материалов от клиента"
-                                        }
-                                      },
-                                      [_vm._v("Оплата материалов от клиента")]
-                                    ),
-                                    _vm._v(" "),
-                                    _c(
-                                      "option",
-                                      { attrs: { value: "Аванс" } },
-                                      [_vm._v("Аванс")]
-                                    )
-                                  ],
-                                  2
-                                )
-                              ]),
-                              _vm._v(" "),
-                              _c(
-                                "div",
-                                { staticClass: "col-2" },
-                                [
-                                  _c("datepicker", {
-                                    staticClass: "my-datepicker",
-                                    attrs: {
-                                      language: _vm.ru,
-                                      placeholder: "Дата"
-                                    },
-                                    model: {
-                                      value: _vm.income_date,
-                                      callback: function($$v) {
-                                        _vm.income_date = $$v
-                                      },
-                                      expression: "income_date"
-                                    }
-                                  })
-                                ],
-                                1
-                              ),
-                              _vm._v(" "),
-                              _c("button", {
-                                staticStyle: { display: "none" },
-                                attrs: { type: "submit" }
-                              })
-                            ]
-                          ),
-                          _vm._v(" "),
-                          _c(
-                            "form",
-                            {
-                              staticClass: "row align-items-center py-4",
-                              attrs: { enctype: "multipart/form-data" },
-                              on: {
-                                submit: function($event) {
-                                  $event.preventDefault()
-                                  _vm.saveExpense()
-                                }
-                              }
-                            },
-                            [
-                              _c(
-                                "div",
-                                {
-                                  staticClass: "main-subtitle profit col-1 mr-4"
-                                },
-                                [
-                                  _vm._v(
-                                    "\n                          Расход:\n                        "
-                                  )
-                                ]
-                              ),
-                              _vm._v(" "),
-                              _c("div", { staticClass: "col-2" }, [
-                                _c("input", {
-                                  directives: [
-                                    {
-                                      name: "model",
-                                      rawName: "v-model",
-                                      value: _vm.expense,
-                                      expression: "expense"
-                                    }
-                                  ],
-                                  staticClass: "form-control",
-                                  attrs: {
-                                    type: "text",
-                                    min: "0",
-                                    placeholder: "Сумма"
-                                  },
-                                  domProps: { value: _vm.expense },
-                                  on: {
-                                    input: function($event) {
-                                      if ($event.target.composing) {
-                                        return
-                                      }
-                                      _vm.expense = $event.target.value
-                                    }
-                                  }
-                                })
-                              ]),
-                              _vm._v(" "),
-                              _c("div", { staticClass: "col-2" }, [
-                                _c(
-                                  "select",
-                                  {
-                                    directives: [
-                                      {
-                                        name: "model",
-                                        rawName: "v-model",
-                                        value: _vm.expense_reason,
-                                        expression: "expense_reason"
-                                      }
-                                    ],
-                                    staticClass: "form-control",
-                                    on: {
-                                      change: function($event) {
-                                        var $$selectedVal = Array.prototype.filter
-                                          .call($event.target.options, function(
-                                            o
-                                          ) {
-                                            return o.selected
-                                          })
-                                          .map(function(o) {
-                                            var val =
-                                              "_value" in o ? o._value : o.value
-                                            return val
-                                          })
-                                        _vm.expense_reason = $event.target
-                                          .multiple
-                                          ? $$selectedVal
-                                          : $$selectedVal[0]
-                                      }
-                                    }
-                                  },
-                                  [
-                                    _c(
-                                      "option",
-                                      {
-                                        attrs: {
-                                          selected: "",
-                                          disabled: "",
-                                          value: "null"
-                                        }
-                                      },
-                                      [_vm._v("Причина")]
-                                    ),
-                                    _vm._v(" "),
-                                    _c(
-                                      "option",
-                                      { attrs: { value: "Оплата материалов" } },
-                                      [_vm._v("Оплата материалов")]
-                                    ),
-                                    _vm._v(" "),
-                                    _c(
-                                      "option",
-                                      { attrs: { value: "Оплата рабочим" } },
-                                      [_vm._v("Оплата рабочим")]
-                                    ),
-                                    _vm._v(" "),
-                                    _vm.order.finished_order_acts
-                                      ? [
-                                          _vm._l(
-                                            _vm.order.finished_order_acts,
-                                            function(
-                                              finished_order_act,
-                                              index
-                                            ) {
-                                              return [
-                                                finished_order_act.description
-                                                  ? [
-                                                      _c(
-                                                        "option",
-                                                        {
-                                                          domProps: {
-                                                            value:
-                                                              finished_order_act.description
-                                                          }
-                                                        },
-                                                        [
-                                                          _vm._v(
-                                                            "\n                                              " +
-                                                              _vm._s(
-                                                                finished_order_act.description
-                                                              ) +
-                                                              " (" +
-                                                              _vm._s(
-                                                                parseInt(
-                                                                  index
-                                                                ) + 1
-                                                              ) +
-                                                              ")\n                                          "
-                                                          )
-                                                        ]
-                                                      )
-                                                    ]
-                                                  : [
-                                                      _c(
-                                                        "option",
-                                                        {
-                                                          domProps: {
-                                                            value:
-                                                              finished_order_act.name
-                                                          }
-                                                        },
-                                                        [
-                                                          _vm._v(
-                                                            "\n                                              " +
-                                                              _vm._s(
-                                                                finished_order_act.name
-                                                              ) +
-                                                              " (" +
-                                                              _vm._s(
-                                                                parseInt(
-                                                                  index
-                                                                ) + 1
-                                                              ) +
-                                                              ")\n                                          "
-                                                          )
-                                                        ]
-                                                      )
-                                                    ]
-                                              ]
-                                            }
-                                          )
-                                        ]
-                                      : _vm._e(),
-                                    _vm._v(" "),
-                                    _vm.order.extra_order_acts
-                                      ? [
-                                          _vm._l(
-                                            _vm.order.extra_order_acts,
-                                            function(extra_order_act, index) {
-                                              return [
-                                                extra_order_act.description
-                                                  ? [
-                                                      _c(
-                                                        "option",
-                                                        {
-                                                          domProps: {
-                                                            value:
-                                                              extra_order_act.description
-                                                          }
-                                                        },
-                                                        [
-                                                          _vm._v(
-                                                            "\n                                              " +
-                                                              _vm._s(
-                                                                extra_order_act.description
-                                                              ) +
-                                                              " (" +
-                                                              _vm._s(
-                                                                parseInt(
-                                                                  index
-                                                                ) + 1
-                                                              ) +
-                                                              ")\n                                          "
-                                                          )
-                                                        ]
-                                                      )
-                                                    ]
-                                                  : [
-                                                      _c(
-                                                        "option",
-                                                        {
-                                                          domProps: {
-                                                            value:
-                                                              extra_order_act.name
-                                                          }
-                                                        },
-                                                        [
-                                                          _vm._v(
-                                                            "\n                                              " +
-                                                              _vm._s(
-                                                                extra_order_act.name
-                                                              ) +
-                                                              " (" +
-                                                              _vm._s(
-                                                                parseInt(
-                                                                  index
-                                                                ) + 1
-                                                              ) +
-                                                              ")\n                                          "
-                                                          )
-                                                        ]
-                                                      )
-                                                    ]
-                                              ]
-                                            }
-                                          )
-                                        ]
-                                      : _vm._e()
-                                  ],
-                                  2
-                                )
-                              ]),
-                              _vm._v(" "),
-                              _c(
-                                "div",
-                                { staticClass: "col-2" },
-                                [
-                                  _c("datepicker", {
-                                    staticClass: "my-datepicker",
-                                    attrs: {
-                                      language: _vm.ru,
-                                      placeholder: "Дата"
-                                    },
-                                    model: {
-                                      value: _vm.expense_date,
-                                      callback: function($$v) {
-                                        _vm.expense_date = $$v
-                                      },
-                                      expression: "expense_date"
-                                    }
-                                  })
-                                ],
-                                1
-                              ),
-                              _vm._v(" "),
-                              _vm.expense_reason === "Оплата материалов"
-                                ? _c(
-                                    "div",
-                                    { staticClass: "col-2 ml-5" },
-                                    [
-                                      _c("vue-dropzone", {
-                                        ref: "MyDropzone",
-                                        staticClass: "mp-10",
-                                        attrs: {
-                                          id: "dropzone",
-                                          options: _vm.dropzoneOptions
-                                        }
-                                      })
-                                    ],
-                                    1
-                                  )
-                                : _vm._e(),
-                              _vm._v(" "),
-                              _c("button", {
-                                staticStyle: { display: "none" },
-                                attrs: { type: "submit" }
-                              })
-                            ]
-                          )
-                        ])
-                      ]),
-                      _vm._v(" "),
-                      _vm.finances
-                        ? [
-                            _c("div", { staticClass: "col-12 px-0 bg mt-3" }, [
-                              _c(
-                                "table",
-                                { staticClass: "table table-hover" },
-                                [
-                                  _c(
-                                    "tbody",
-                                    [
-                                      _vm._l(_vm.filteredFinances, function(
-                                        finance
-                                      ) {
-                                        return [
-                                          finance.finance_type === "income"
-                                            ? [
-                                                _c(
-                                                  "tr",
-                                                  {
-                                                    staticStyle: {
-                                                      "background-color":
-                                                        "#DEFFE8"
-                                                    }
-                                                  },
-                                                  [
-                                                    _c(
-                                                      "td",
-                                                      { staticClass: "pl-4" },
-                                                      [
-                                                        _vm._v(
-                                                          "+" +
-                                                            _vm._s(
-                                                              finance.price
-                                                            )
-                                                        )
-                                                      ]
-                                                    ),
-                                                    _vm._v(" "),
-                                                    _c("td", [
-                                                      _vm._v(
-                                                        _vm._s(finance.reason)
-                                                      )
-                                                    ]),
-                                                    _vm._v(" "),
-                                                    _c("td", [
-                                                      _vm._v(
-                                                        _vm._s(
-                                                          _vm.dateFormatter(
-                                                            finance.inputed_at
-                                                          )
-                                                        )
-                                                      )
-                                                    ]),
-                                                    _vm._v(" "),
-                                                    _c("td", [
-                                                      _c(
-                                                        "button",
-                                                        {
-                                                          staticClass:
-                                                            "add-button add-button--remove d-flex align-items-center",
-                                                          attrs: {
-                                                            title:
-                                                              "Удалить материал"
-                                                          },
-                                                          on: {
-                                                            click: function(
-                                                              $event
-                                                            ) {
-                                                              _vm.deleteFinance(
-                                                                finance.id
-                                                              )
-                                                            }
-                                                          }
-                                                        },
-                                                        [
-                                                          _c("img", {
-                                                            attrs: {
-                                                              src:
-                                                                "/img/del.svg",
-                                                              alt: "add-button"
-                                                            }
-                                                          }),
-                                                          _vm._v(" "),
-                                                          _c(
-                                                            "div",
-                                                            {
-                                                              staticClass:
-                                                                "remove-materials ml-1"
-                                                            },
-                                                            [
-                                                              _vm._v(
-                                                                "\n                                                    Удалить\n                                                  "
-                                                              )
-                                                            ]
-                                                          )
-                                                        ]
-                                                      )
-                                                    ]),
-                                                    _vm._v(" "),
-                                                    _c("td", [
-                                                      _c(
-                                                        "div",
-                                                        {
-                                                          staticClass:
-                                                            "form-check custom-control checkbox"
-                                                        },
-                                                        [
-                                                          _c("input", {
-                                                            staticClass:
-                                                              "form-check-input check",
-                                                            attrs: {
-                                                              id:
-                                                                "finance-" +
-                                                                finance.id,
-                                                              type: "checkbox"
-                                                            },
-                                                            domProps: {
-                                                              checked:
-                                                                finance.can_be_showed
-                                                            },
-                                                            on: {
-                                                              click: function(
-                                                                $event
-                                                              ) {
-                                                                _vm.updateFinance(
-                                                                  finance
-                                                                )
-                                                              }
-                                                            }
-                                                          }),
-                                                          _vm._v(" "),
-                                                          _c(
-                                                            "label",
-                                                            {
-                                                              staticClass:
-                                                                "form-check-label",
-                                                              attrs: {
-                                                                for:
-                                                                  "finance-" +
-                                                                  finance.id
-                                                              }
-                                                            },
-                                                            [
-                                                              _vm._v(
-                                                                "\n                                              показывать\n                                            "
-                                                              )
-                                                            ]
-                                                          )
-                                                        ]
-                                                      )
-                                                    ]),
-                                                    _vm._v(" "),
-                                                    _c("td", [_vm._v(" ")])
-                                                  ]
-                                                )
-                                              ]
-                                            : _vm._e(),
-                                          _vm._v(" "),
-                                          finance.finance_type === "expense"
-                                            ? [
-                                                _c("tr", [
-                                                  _c(
-                                                    "td",
-                                                    { staticClass: "pl-4" },
-                                                    [
-                                                      _vm._v(
-                                                        "-" +
-                                                          _vm._s(finance.price)
-                                                      )
-                                                    ]
-                                                  ),
-                                                  _vm._v(" "),
-                                                  _c("td", [
-                                                    _vm._v(
-                                                      _vm._s(finance.reason)
-                                                    )
-                                                  ]),
-                                                  _vm._v(" "),
-                                                  _c("td", [
-                                                    _vm._v(
-                                                      _vm._s(
-                                                        _vm.dateFormatter(
-                                                          finance.inputed_at
-                                                        )
-                                                      )
-                                                    )
-                                                  ]),
-                                                  _vm._v(" "),
-                                                  _c("td", [
-                                                    _c(
-                                                      "button",
-                                                      {
-                                                        staticClass:
-                                                          "add-button add-button--remove d-flex align-items-center",
-                                                        attrs: {
-                                                          title:
-                                                            "Удалить материал"
-                                                        },
-                                                        on: {
-                                                          click: function(
-                                                            $event
-                                                          ) {
-                                                            _vm.deleteFinance(
-                                                              finance.id
-                                                            )
-                                                          }
-                                                        }
-                                                      },
-                                                      [
-                                                        _c("img", {
-                                                          attrs: {
-                                                            src: "/img/del.svg",
-                                                            alt: "add-button"
-                                                          }
-                                                        }),
-                                                        _vm._v(" "),
-                                                        _c(
-                                                          "div",
-                                                          {
-                                                            staticClass:
-                                                              "remove-materials ml-1"
-                                                          },
-                                                          [
-                                                            _vm._v(
-                                                              "\n                                                    Удалить\n                                                  "
-                                                            )
-                                                          ]
-                                                        )
-                                                      ]
-                                                    )
-                                                  ]),
-                                                  _vm._v(" "),
-                                                  _c("td", [
-                                                    _c(
-                                                      "div",
-                                                      {
-                                                        staticClass:
-                                                          "form-check custom-control checkbox"
-                                                      },
-                                                      [
-                                                        _c("input", {
-                                                          staticClass:
-                                                            "form-check-input check",
-                                                          attrs: {
-                                                            id:
-                                                              "finance-" +
-                                                              finance.id,
-                                                            type: "checkbox"
-                                                          },
-                                                          domProps: {
-                                                            checked:
-                                                              finance.can_be_showed
-                                                          },
-                                                          on: {
-                                                            click: function(
-                                                              $event
-                                                            ) {
-                                                              _vm.updateFinance(
-                                                                finance
-                                                              )
-                                                            }
-                                                          }
-                                                        }),
-                                                        _vm._v(" "),
-                                                        _c(
-                                                          "label",
-                                                          {
-                                                            staticClass:
-                                                              "form-check-label",
-                                                            attrs: {
-                                                              for:
-                                                                "finance-" +
-                                                                finance.id
-                                                            }
-                                                          },
-                                                          [
-                                                            _vm._v(
-                                                              "\n                                              показывать\n                                            "
-                                                            )
-                                                          ]
-                                                        )
-                                                      ]
-                                                    )
-                                                  ]),
-                                                  _vm._v(" "),
-                                                  finance.finance_files.length
-                                                    ? _c("td", [
-                                                        _c(
-                                                          "a",
-                                                          {
-                                                            attrs: {
-                                                              href:
-                                                                "/storage/finances/" +
-                                                                finance
-                                                                  .finance_files[0]
-                                                                  .file_path
-                                                            }
-                                                          },
-                                                          [
-                                                            _vm._v(
-                                                              "смотреть файл"
-                                                            )
-                                                          ]
-                                                        )
-                                                      ])
-                                                    : _vm._e()
-                                                ])
-                                              ]
-                                            : _vm._e()
-                                        ]
-                                      })
-                                    ],
-                                    2
-                                  )
-                                ]
-                              )
-                            ])
-                          ]
-                        : _vm._e()
-                    ],
-                    2
-                  )
-                ],
-                1
-              )
-            ])
-          ]
-        : _vm._e()
-    ],
-    2
-  )
-}
-var staticRenderFns = []
-render._withStripped = true
-module.exports = { render: render, staticRenderFns: staticRenderFns }
-if (false) {
-  module.hot.accept()
-  if (module.hot.data) {
-    require("vue-hot-reload-api")      .rerender("data-v-a478bd48", module.exports)
-  }
-}
-
-/***/ }),
-/* 362 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var disposed = false
-function injectStyle (ssrContext) {
-  if (disposed) return
-  __webpack_require__(363)
-}
-var normalizeComponent = __webpack_require__(1)
-/* script */
-var __vue_script__ = __webpack_require__(365)
-/* template */
-var __vue_template__ = __webpack_require__(366)
-/* template functional */
-var __vue_template_functional__ = false
-/* styles */
-var __vue_styles__ = injectStyle
-/* scopeId */
-var __vue_scopeId__ = "data-v-68b8b7a4"
-/* moduleIdentifier (server only) */
-var __vue_module_identifier__ = null
-var Component = normalizeComponent(
-  __vue_script__,
-  __vue_template__,
-  __vue_template_functional__,
-  __vue_styles__,
-  __vue_scopeId__,
-  __vue_module_identifier__
-)
-Component.options.__file = "resources/assets/js/components/Orders/Upload/OrderUpload.vue"
-
-/* hot reload */
-if (false) {(function () {
-  var hotAPI = require("vue-hot-reload-api")
-  hotAPI.install(require("vue"), false)
-  if (!hotAPI.compatible) return
-  module.hot.accept()
-  if (!module.hot.data) {
-    hotAPI.createRecord("data-v-68b8b7a4", Component.options)
-  } else {
-    hotAPI.reload("data-v-68b8b7a4", Component.options)
-  }
-  module.hot.dispose(function (data) {
-    disposed = true
-  })
-})()}
-
-module.exports = Component.exports
-
-
-/***/ }),
-/* 363 */
-/***/ (function(module, exports, __webpack_require__) {
-
-// style-loader: Adds some css to the DOM by adding a <style> tag
-
-// load the styles
-var content = __webpack_require__(364);
-if(typeof content === 'string') content = [[module.i, content, '']];
-if(content.locals) module.exports = content.locals;
-// add the styles to the DOM
-var update = __webpack_require__(3)("3112b5c7", content, false, {});
-// Hot Module Replacement
-if(false) {
- // When the styles change, update the <style> tags
- if(!content.locals) {
-   module.hot.accept("!!../../../../../../node_modules/css-loader/index.js!../../../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-68b8b7a4\",\"scoped\":true,\"hasInlineConfig\":true}!../../../../../../node_modules/sass-loader/lib/loader.js!../../../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./OrderUpload.vue", function() {
-     var newContent = require("!!../../../../../../node_modules/css-loader/index.js!../../../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-68b8b7a4\",\"scoped\":true,\"hasInlineConfig\":true}!../../../../../../node_modules/sass-loader/lib/loader.js!../../../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./OrderUpload.vue");
-     if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
-     update(newContent);
-   });
- }
- // When the module is disposed, remove the <style> tags
- module.hot.dispose(function() { update(); });
-}
-
-/***/ }),
-/* 364 */
-/***/ (function(module, exports, __webpack_require__) {
-
-exports = module.exports = __webpack_require__(2)(false);
-// imports
-
-
-// module
-exports.push([module.i, "\n.container-fluid.px-0 .row[data-v-68b8b7a4] {\n  margin-left: 0;\n  margin-right: 0;\n}\n.vue-dropzone[data-v-68b8b7a4] {\n  -webkit-box-shadow: 0 1px 10px rgba(0, 0, 0, 0.1), 0 1px 4px rgba(0, 0, 0, 0.1);\n          box-shadow: 0 1px 10px rgba(0, 0, 0, 0.1), 0 1px 4px rgba(0, 0, 0, 0.1);\n  border-radius: 4px;\n}\n.dropzone-custom-content[data-v-68b8b7a4] {\n  position: absolute;\n  top: 50%;\n  left: 50%;\n  -webkit-transform: translate(-50%, -50%);\n          transform: translate(-50%, -50%);\n  text-align: center;\n}\n.dropzone-custom-title[data-v-68b8b7a4] {\n  margin-top: 0;\n  color: #00b782;\n}\n.subtitle[data-v-68b8b7a4] {\n  color: #314b5f;\n}\n.mp-10[data-v-68b8b7a4] {\n  margin-top: 100px;\n}\n.mp-5[data-v-68b8b7a4] {\n  margin-top: 50px;\n}\n.badger-accordion-item[data-v-68b8b7a4] {\n  -webkit-box-shadow: 0 1px 10px rgba(0, 0, 0, 0.1), 0 1px 4px rgba(0, 0, 0, 0.1);\n          box-shadow: 0 1px 10px rgba(0, 0, 0, 0.1), 0 1px 4px rgba(0, 0, 0, 0.1);\n  border-radius: 4px;\n  padding: 15px;\n}\n.badger-accordion-item[data-v-68b8b7a4]:hover {\n    background-color: #00A4D1;\n}\n.js-badger-accordion-header .-ba-is-active[data-v-68b8b7a4]:hover {\n  background-color: #red;\n}\n.h-200[data-v-68b8b7a4] {\n  height: 200px;\n}\n.accordion-wrapper[data-v-68b8b7a4] {\n  padding: 0 30px;\n}\n.add-button[data-v-68b8b7a4] {\n  background-color: transparent;\n  border: none;\n  cursor: pointer;\n}\n.add-button[data-v-68b8b7a4]:focus {\n    outline: none;\n}\n.add-button img[data-v-68b8b7a4] {\n    width: 35px;\n    border-radius: 50%;\n}\n.add-button img[data-v-68b8b7a4]:hover {\n      -webkit-box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);\n              box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);\n}\n.add-button--remove[data-v-68b8b7a4] {\n    color: #ccc;\n}\n.add-button--remove[data-v-68b8b7a4]:hover {\n      color: #00A4D1;\n}\n.add-button--remove img[data-v-68b8b7a4] {\n      width: 15px;\n}\ntd[data-v-68b8b7a4]:first-child {\n  padding-left: 30px;\n}\n.story-text[data-v-68b8b7a4] {\n  padding-left: 30px;\n  margin-top: 30px;\n  color: #00A4D1;\n  font-weight: bold;\n  font-size: 18px;\n}\n", ""]);
-
-// exports
-
-
-/***/ }),
-/* 365 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue2_dropzone__ = __webpack_require__(150);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue2_dropzone___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_vue2_dropzone__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_vue2_dropzone_dist_vue2Dropzone_min_css__ = __webpack_require__(151);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_vue2_dropzone_dist_vue2Dropzone_min_css___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_vue2_dropzone_dist_vue2Dropzone_min_css__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_vuejs_datepicker__ = __webpack_require__(8);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_vuejs_datepicker_dist_locale__ = __webpack_require__(9);
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-
-
-
-
-
-
-/* harmony default export */ __webpack_exports__["default"] = ({
-    data: function data() {
-        return {
-            ru: __WEBPACK_IMPORTED_MODULE_3_vuejs_datepicker_dist_locale__["a" /* ru */],
-            moment: moment,
-            chosenDate: null,
-
-            dropzoneOptions: {
-                url: '/api/orders/' + this.$route.params.id + '/uploads/store',
-                paramName: 'uploadedFile',
-                autoProcessQueue: false,
-                thumbnailWidth: 100,
-                addRemoveLinks: true,
-                maxFilesize: 10.0,
-                dictDefaultMessage: "<i class='fa fa-cloud-upload'></i> Документы или Фотки"
-            },
-
-            folders: [],
-            currentPath: window.location.origin
-        };
-    },
-
-
-    components: {
-        vueDropzone: __WEBPACK_IMPORTED_MODULE_0_vue2_dropzone___default.a,
-        Datepicker: __WEBPACK_IMPORTED_MODULE_2_vuejs_datepicker__["a" /* default */]
-    },
-    mounted: function mounted() {
-        this.getFolders();
-    },
-
-
-    methods: {
-        getFolders: function getFolders() {
-            var _this = this;
-
-            axios.get('/api/orders/' + this.$route.params.id + '/folders').then(function (response) {
-                _this.folders = response.data;
-            });
-        },
-        uploadFiles: function uploadFiles() {
-            this.$refs.myVueDropzone.processQueue();
-            window.location.reload(true);
-        },
-        createFolder: function createFolder() {
-            var _this2 = this;
-
-            axios.post('/api/orders/' + this.$route.params.id + '/folders/store', {
-                'date': moment(this.chosenDate).format('DD-MM-YYYY')
-            }).then(function (response) {
-                _this2.getFolders();
-            });
-        },
-        deleteFolder: function deleteFolder(id) {
-            var _this3 = this;
-
-            axios.delete('/api/orders/' + this.$route.params.id + '/folders/' + id + '/destroy').then(function () {
-                _this3.getFolders();
-            });
-        }
-    }
-});
-
-/***/ }),
-/* 366 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var render = function() {
-  var _vm = this
-  var _h = _vm.$createElement
-  var _c = _vm._self._c || _h
-  return _c(
-    "div",
-    [
-      _c("basic-header"),
-      _vm._v(" "),
-      _c("div", { staticClass: "container-fluid px-0" }, [
+      _c("div", { staticClass: "container-fluid" }, [
         _c(
           "div",
           { staticClass: "row" },
-          [
-            _c("navigation"),
-            _vm._v(" "),
-            _c("div", { staticClass: "col-md-10 px-0" }, [
-              _c(
-                "div",
-                { staticClass: "create__fixed-top col-10 shadow-light" },
-                [
-                  _c("div", { staticClass: "row align-items-center " }, [
-                    _vm._m(0),
-                    _vm._v(" "),
-                    _c("div", { staticClass: "col-md-4 text-right d-flex" }, [
-                      _vm.chosenDate
-                        ? _c(
-                            "button",
-                            {
-                              staticClass: "primary-button col-6 ml-auto",
-                              attrs: { type: "button" },
-                              on: {
-                                click: function($event) {
-                                  $event.preventDefault()
-                                  _vm.uploadFiles()
-                                }
-                              }
-                            },
-                            [
-                              _vm._v(
-                                "\n                      Сохранить\n                  "
-                              )
-                            ]
-                          )
-                        : _vm._e()
-                    ])
-                  ])
-                ]
-              ),
-              _vm._v(" "),
-              _c("div", { staticClass: "col-md-12 mp-10" }, [
-                _c("div", { staticClass: "row" }, [
-                  _c(
-                    "div",
-                    { staticClass: "col-md-12" },
-                    [
-                      _c("vue-dropzone", {
-                        ref: "myVueDropzone",
-                        staticClass: "mp-10",
-                        attrs: { id: "dropzone", options: _vm.dropzoneOptions }
-                      })
-                    ],
-                    1
-                  )
-                ]),
-                _vm._v(" "),
-                _c("div", { staticClass: "row mp-5" }, [
-                  _c(
-                    "div",
-                    { staticClass: "col-md-4" },
-                    [
-                      _c("datepicker", {
-                        attrs: {
-                          language: _vm.ru,
-                          placeholder: "Выбрать Дату"
-                        },
-                        on: {
-                          input: function($event) {
-                            _vm.createFolder()
-                          }
-                        },
-                        model: {
-                          value: _vm.chosenDate,
-                          callback: function($$v) {
-                            _vm.chosenDate = $$v
-                          },
-                          expression: "chosenDate"
-                        }
-                      })
-                    ],
-                    1
-                  )
-                ])
-              ]),
-              _vm._v(" "),
-              _c("div", { staticClass: "story-text" }, [
-                _vm._v("История загрузок:")
-              ]),
-              _vm._v(" "),
-              _vm.folders.length
-                ? _c("table", { staticClass: "table table-hover" }, [
-                    _c(
-                      "tbody",
-                      _vm._l(_vm.folders, function(folder) {
-                        return _c("tr", { key: folder.id }, [
-                          _c("td", [
-                            _vm._v(
-                              _vm._s(
-                                folder.order_uploads.filter(function(row) {
-                                  return row.type === "photo"
-                                }).length
-                              ) + " фото"
-                            )
-                          ]),
-                          _vm._v(" "),
-                          _c("td", [
-                            _vm._v(
-                              _vm._s(
-                                folder.order_uploads.filter(function(row) {
-                                  return row.type === "doc"
-                                }).length
-                              ) + " док"
-                            )
-                          ]),
-                          _vm._v(" "),
-                          _c("td", [
-                            _vm._v("Дата съёмки " + _vm._s(folder.name))
-                          ]),
-                          _vm._v(" "),
-                          _c("td", [
-                            _vm._v(
-                              _vm._s(
-                                _vm
-                                  .moment(folder.created_at)
-                                  .format("DD-MM-YYYY")
-                              )
-                            )
-                          ]),
-                          _vm._v(" "),
-                          _c("td", [
-                            _c(
-                              "button",
-                              {
-                                staticClass:
-                                  "add-button add-button--remove d-flex align-items-center",
-                                attrs: { title: "Удалить" },
-                                on: {
-                                  click: function($event) {
-                                    _vm.deleteFolder(folder.id)
-                                  }
-                                }
-                              },
-                              [
-                                _c("img", {
-                                  attrs: {
-                                    src: "/img/del.svg",
-                                    alt: "add-button"
-                                  }
-                                }),
-                                _vm._v(" "),
-                                _c(
-                                  "div",
-                                  { staticClass: "remove-materials ml-1" },
-                                  [
-                                    _vm._v(
-                                      "\n                          Удалить\n                        "
-                                    )
-                                  ]
-                                )
-                              ]
-                            )
-                          ])
-                        ])
-                      })
-                    )
-                  ])
-                : _vm._e()
-            ])
-          ],
+          [_c("navigation"), _vm._v(" "), _vm._m(0)],
           1
         )
       ])
@@ -95744,8 +95890,38 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "col-md-8" }, [
-      _c("h4", [_vm._v("Загрузить файл")])
+    return _c("div", { staticClass: "col-md-10 mt-5" }, [
+      _c("div", { staticClass: "col-12 mt-5" }, [
+        _c("table", { staticClass: "table" }, [
+          _c("thead", [
+            _c("tr", [
+              _c("th", { attrs: { scope: "col" } }, [_vm._v("#")]),
+              _vm._v(" "),
+              _c("th", { attrs: { scope: "col" } }, [_vm._v("Название")]),
+              _vm._v(" "),
+              _c("th", { attrs: { scope: "col" } }, [_vm._v("Стоимость")]),
+              _vm._v(" "),
+              _c("th", { attrs: { scope: "col" } }, [_vm._v("Начало")]),
+              _vm._v(" "),
+              _c("th", { attrs: { scope: "col" } }, [_vm._v("Окончание")])
+            ])
+          ]),
+          _vm._v(" "),
+          _c("tbody", [
+            _c("tr", [
+              _c("th", { attrs: { scope: "row" } }, [_vm._v("1")]),
+              _vm._v(" "),
+              _c("td", [_vm._v("Mark")]),
+              _vm._v(" "),
+              _c("td", [_vm._v("Otto")]),
+              _vm._v(" "),
+              _c("td", [_vm._v("@mdo")]),
+              _vm._v(" "),
+              _c("td", [_vm._v("@mdo")])
+            ])
+          ])
+        ])
+      ])
     ])
   }
 ]
@@ -95754,7 +95930,7 @@ module.exports = { render: render, staticRenderFns: staticRenderFns }
 if (false) {
   module.hot.accept()
   if (module.hot.data) {
-    require("vue-hot-reload-api")      .rerender("data-v-68b8b7a4", module.exports)
+    require("vue-hot-reload-api")      .rerender("data-v-e4a674bc", module.exports)
   }
 }
 

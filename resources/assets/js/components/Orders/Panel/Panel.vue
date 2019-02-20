@@ -20,11 +20,13 @@
                             </router-link>
 
 
-                            <div :class="panelClass">
-                                <div class="card-body">
-                                  <h5 class="card-title">Акты выполненных работ</h5>
-                                </div>
-                            </div>
+                            <router-link v-if="finishedActsPath" :class="panelClass"
+                                         :to="finishedActsPath"
+                                         >
+                                        <div class="card-body">
+                                          <h5 class="card-title">Акты выполненных работ</h5>
+                                        </div>
+                            </router-link>
 
                             <div :class="panelClass">
                                 <div class="card-body">
@@ -129,6 +131,13 @@
             uploadPath () {
                 return {
                     name: 'order-upload',
+                    params: { id: this.$route.params.id }
+                }
+            },
+
+            finishedActsPath () {
+                return {
+                    name: 'order-finished-acts',
                     params: { id: this.$route.params.id }
                 }
             }

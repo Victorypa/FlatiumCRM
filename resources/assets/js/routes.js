@@ -78,6 +78,14 @@ let routes = [
     // },
 
     {
+        name: 'order-finished-acts',
+    	path: '/orders/:id?/order_finished_acts',
+    	component: require('./components/Orders/Services/Finished/FinishedActs'),
+        meta: { requiresAuth: true },
+        props: true
+    },
+
+    {
         name: 'order-finished-services',
     	path: '/orders/:id?/order_finished_services/:finished_act_id?',
     	component: require('./components/Orders/Services/FinishedServices'),
