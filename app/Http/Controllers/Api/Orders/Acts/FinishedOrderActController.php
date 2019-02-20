@@ -12,6 +12,11 @@ use App\Models\Orders\Acts\FinishedOrderAct;
 
 class FinishedOrderActController extends Controller
 {
+    public function index(Order $order)
+    {
+        return $order->finished_order_acts()->get();
+    }
+
     public function show(Order $order, FinishedOrderAct $finished_order_act)
     {
         $filteredFinishedOrderAct = FinishedOrderAct::where('id', $finished_order_act->id)
@@ -25,11 +30,13 @@ class FinishedOrderActController extends Controller
         return response()->json($filteredFinishedOrderAct);
     }
 
-    public function store(Request $request)
+    public function store(Order $order, Request $request)
     {
-        $finished_order_act = FinishedOrderAct::create([
-            'order_id' => $request->order_id,
-            'name' => $request->name
+        $finished_order_act = $order->finished_order_acts()->create([
+            'name' => $request->state['name'],
+            'description' => $request->state['description'],
+            'begin_at' => new DateTime($request->state['begin_at']),
+            'finish_at' => new DateTime($request->state['finish_at'])
         ]);
 
         $this->createFinishedRooms($finished_order_act);

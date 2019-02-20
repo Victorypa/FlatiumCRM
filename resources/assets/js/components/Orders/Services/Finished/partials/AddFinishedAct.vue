@@ -10,28 +10,32 @@
     </div>
 
     <div class="col-12 mt-5" v-else>
-        <form class="row align-items-center">
+        <div class="row align-items-center">
             <input type="text"
                    class="col-md-3"
                    placeholder="Название"
+                   v-model="state.description"
                    >
 
             <datepicker class="col-md-2"
                         placeholder="Начало"
                         :language="ru"
-                        v-model="data.begin_at"
-                        @selected="updateFinishedOrderAct()"
+                        v-model="state.begin_at"
                         />
 
             <datepicker class="my-datepicker col-md-2"
                         placeholder="Окончание"
                         :language="ru"
-                        v-model="data.finish_at"
-                        @selected="updateFinishedOrderAct()"
+                        v-model="state.finish_at"
                         />
 
             <div class="col-md-2 ml-3">
-                <button type="submit" class="btn primary-button">Создать</button>
+                <button type="submit"
+                        class="btn primary-button"
+                        @click.prevent="create()"
+                        >
+                        Создать
+                </button>
             </div>
 
             <div class="col-md-2">
@@ -43,7 +47,7 @@
                 </button>
             </div>
 
-        </form>
+        </div>
     </div>
 </template>
 
@@ -52,23 +56,33 @@
     import { ru } from 'vuejs-datepicker/dist/locale'
 
     export default {
-        data () {
-            return {
-                show: true,
-
-                data: {
-                    name: 'Акт выполненных работ',
-                    description: '',
-                    begin_at: '',
-                    finish_at: ''
-                },
-
-                ru
-            }
-        },
-
         components: {
             Datepicker
         },
+
+        data () {
+            return {
+                ru,
+                show: true,
+
+                state: {
+                    name: 'Акт выполненных работ'
+                }
+            }
+        },
+
+        methods: {
+            create () {
+                axios.post(`/api/orders/${this.$route.params.id}/finished_order_act/store`, {
+                    'state': this.state
+                }).then(response => {
+                    this.state = {
+                        name: 'Акт выполненных работ'
+                    }
+                    this.show = !this.show
+                    this.$emit('created_finished_act')
+                })
+            }
+        }
     }
 </script>

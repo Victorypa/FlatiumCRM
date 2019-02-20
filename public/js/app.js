@@ -95819,6 +95819,8 @@ module.exports = Component.exports
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__partials_AddFinishedAct__ = __webpack_require__(360);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__partials_AddFinishedAct___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__partials_AddFinishedAct__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__partials_FinishedAct__ = __webpack_require__(363);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__partials_FinishedAct___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__partials_FinishedAct__);
 //
 //
 //
@@ -95855,20 +95857,33 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
-//
-//
+
 
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
+    components: {
+        AddFinishedAct: __WEBPACK_IMPORTED_MODULE_0__partials_AddFinishedAct___default.a, FinishedAct: __WEBPACK_IMPORTED_MODULE_1__partials_FinishedAct___default.a
+    },
+
     data: function data() {
-        return {};
+        return {
+            acts: []
+        };
+    },
+    created: function created() {
+        this.getFinishedActs();
     },
 
 
-    components: {
-        AddFinishedAct: __WEBPACK_IMPORTED_MODULE_0__partials_AddFinishedAct___default.a
+    methods: {
+        getFinishedActs: function getFinishedActs() {
+            var _this = this;
+
+            axios.get('/api/orders/' + this.$route.params.id + '/finished_order_acts').then(function (response) {
+                _this.acts = response.data;
+            });
+        }
     }
 });
 
@@ -95896,7 +95911,33 @@ var render = function() {
             _c(
               "div",
               { staticClass: "col-md-10 mt-5" },
-              [_c("AddFinishedAct"), _vm._v(" "), _vm._m(0)],
+              [
+                _c("AddFinishedAct", {
+                  on: {
+                    created_finished_act: function($event) {
+                      _vm.getFinishedActs()
+                    }
+                  }
+                }),
+                _vm._v(" "),
+                _c("div", { staticClass: "col-12 mt-5" }, [
+                  _c("table", { staticClass: "table" }, [
+                    _vm._m(0),
+                    _vm._v(" "),
+                    _vm.acts.length !== 0
+                      ? _c(
+                          "tbody",
+                          _vm._l(_vm.acts, function(act) {
+                            return _c("FinishedAct", {
+                              key: act.id,
+                              attrs: { act: act }
+                            })
+                          })
+                        )
+                      : _vm._e()
+                  ])
+                ])
+              ],
               1
             )
           ],
@@ -95912,35 +95953,17 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "col-12 mt-5" }, [
-      _c("table", { staticClass: "table" }, [
-        _c("thead", [
-          _c("tr", [
-            _c("th", { attrs: { scope: "col" } }, [_vm._v("#")]),
-            _vm._v(" "),
-            _c("th", { attrs: { scope: "col" } }, [_vm._v("Название")]),
-            _vm._v(" "),
-            _c("th", { attrs: { scope: "col" } }, [_vm._v("Стоимость")]),
-            _vm._v(" "),
-            _c("th", { attrs: { scope: "col" } }, [_vm._v("Начало")]),
-            _vm._v(" "),
-            _c("th", { attrs: { scope: "col" } }, [_vm._v("Окончание")])
-          ])
-        ]),
+    return _c("thead", [
+      _c("tr", [
+        _c("th", { attrs: { scope: "col" } }),
         _vm._v(" "),
-        _c("tbody", [
-          _c("tr", [
-            _c("th", { attrs: { scope: "row" } }, [_vm._v("1")]),
-            _vm._v(" "),
-            _c("td", [_vm._v("Mark")]),
-            _vm._v(" "),
-            _c("td", [_vm._v("Otto")]),
-            _vm._v(" "),
-            _c("td", [_vm._v("@mdo")]),
-            _vm._v(" "),
-            _c("td", [_vm._v("@mdo")])
-          ])
-        ])
+        _c("th", { attrs: { scope: "col" } }, [_vm._v("Название")]),
+        _vm._v(" "),
+        _c("th", { attrs: { scope: "col" } }, [_vm._v("Стоимость")]),
+        _vm._v(" "),
+        _c("th", { attrs: { scope: "col" } }, [_vm._v("Начало")]),
+        _vm._v(" "),
+        _c("th", { attrs: { scope: "col" } }, [_vm._v("Окончание")])
       ])
     ])
   }
@@ -96058,29 +96081,45 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
 
 
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
+    components: {
+        Datepicker: __WEBPACK_IMPORTED_MODULE_0_vuejs_datepicker__["a" /* default */]
+    },
+
     data: function data() {
         return {
+            ru: __WEBPACK_IMPORTED_MODULE_1_vuejs_datepicker_dist_locale__["a" /* ru */],
             show: true,
 
-            data: {
-                name: 'Акт выполненных работ',
-                description: '',
-                begin_at: '',
-                finish_at: ''
-            },
-
-            ru: __WEBPACK_IMPORTED_MODULE_1_vuejs_datepicker_dist_locale__["a" /* ru */]
+            state: {
+                name: 'Акт выполненных работ'
+            }
         };
     },
 
 
-    components: {
-        Datepicker: __WEBPACK_IMPORTED_MODULE_0_vuejs_datepicker__["a" /* default */]
+    methods: {
+        create: function create() {
+            var _this = this;
+
+            axios.post('/api/orders/' + this.$route.params.id + '/finished_order_act/store', {
+                'state': this.state
+            }).then(function (response) {
+                _this.state = {
+                    name: 'Акт выполненных работ'
+                };
+                _this.show = !_this.show;
+                _this.$emit('created_finished_act');
+            });
+        }
     }
 });
 
@@ -96113,49 +96152,71 @@ var render = function() {
       ])
     : _c("div", { staticClass: "col-12 mt-5" }, [
         _c(
-          "form",
+          "div",
           { staticClass: "row align-items-center" },
           [
             _c("input", {
+              directives: [
+                {
+                  name: "model",
+                  rawName: "v-model",
+                  value: _vm.state.description,
+                  expression: "state.description"
+                }
+              ],
               staticClass: "col-md-3",
-              attrs: { type: "text", placeholder: "Название" }
+              attrs: { type: "text", placeholder: "Название" },
+              domProps: { value: _vm.state.description },
+              on: {
+                input: function($event) {
+                  if ($event.target.composing) {
+                    return
+                  }
+                  _vm.$set(_vm.state, "description", $event.target.value)
+                }
+              }
             }),
             _vm._v(" "),
             _c("datepicker", {
               staticClass: "col-md-2",
               attrs: { placeholder: "Начало", language: _vm.ru },
-              on: {
-                selected: function($event) {
-                  _vm.updateFinishedOrderAct()
-                }
-              },
               model: {
-                value: _vm.data.begin_at,
+                value: _vm.state.begin_at,
                 callback: function($$v) {
-                  _vm.$set(_vm.data, "begin_at", $$v)
+                  _vm.$set(_vm.state, "begin_at", $$v)
                 },
-                expression: "data.begin_at"
+                expression: "state.begin_at"
               }
             }),
             _vm._v(" "),
             _c("datepicker", {
               staticClass: "my-datepicker col-md-2",
               attrs: { placeholder: "Окончание", language: _vm.ru },
-              on: {
-                selected: function($event) {
-                  _vm.updateFinishedOrderAct()
-                }
-              },
               model: {
-                value: _vm.data.finish_at,
+                value: _vm.state.finish_at,
                 callback: function($$v) {
-                  _vm.$set(_vm.data, "finish_at", $$v)
+                  _vm.$set(_vm.state, "finish_at", $$v)
                 },
-                expression: "data.finish_at"
+                expression: "state.finish_at"
               }
             }),
             _vm._v(" "),
-            _vm._m(0),
+            _c("div", { staticClass: "col-md-2 ml-3" }, [
+              _c(
+                "button",
+                {
+                  staticClass: "btn primary-button",
+                  attrs: { type: "submit" },
+                  on: {
+                    click: function($event) {
+                      $event.preventDefault()
+                      _vm.create()
+                    }
+                  }
+                },
+                [_vm._v("\n                    Создать\n            ")]
+              )
+            ]),
             _vm._v(" "),
             _c("div", { staticClass: "col-md-2" }, [
               _c(
@@ -96178,26 +96239,136 @@ var render = function() {
         )
       ])
 }
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "col-md-2 ml-3" }, [
-      _c(
-        "button",
-        { staticClass: "btn primary-button", attrs: { type: "submit" } },
-        [_vm._v("Создать")]
-      )
-    ])
-  }
-]
+var staticRenderFns = []
 render._withStripped = true
 module.exports = { render: render, staticRenderFns: staticRenderFns }
 if (false) {
   module.hot.accept()
   if (module.hot.data) {
     require("vue-hot-reload-api")      .rerender("data-v-bd6ef4c6", module.exports)
+  }
+}
+
+/***/ }),
+/* 363 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+var normalizeComponent = __webpack_require__(1)
+/* script */
+var __vue_script__ = __webpack_require__(364)
+/* template */
+var __vue_template__ = __webpack_require__(365)
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = null
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources/assets/js/components/Orders/Services/Finished/partials/FinishedAct.vue"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-bc3a601c", Component.options)
+  } else {
+    hotAPI.reload("data-v-bc3a601c", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 364 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+    props: ['act'],
+
+    computed: {
+        humanBeginAt: function humanBeginAt() {
+            return moment(this.act.begin_at).format('DD-MM-YYYY');
+        },
+        humanFinishAt: function humanFinishAt() {
+            return moment(this.act.finish_at).format('DD-MM-YYYY');
+        }
+    }
+});
+
+/***/ }),
+/* 365 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("tr", [
+    _c("td"),
+    _vm._v(" "),
+    _c(
+      "td",
+      [
+        _c("router-link", { attrs: { to: { name: "", params: {} } } }, [
+          _vm._v(
+            "\n            " +
+              _vm._s(_vm.act.description ? _vm.act.description : _vm.act.name) +
+              "\n        "
+          )
+        ])
+      ],
+      1
+    ),
+    _vm._v(" "),
+    _c("td", [_vm._v(_vm._s(_vm.act.price))]),
+    _vm._v(" "),
+    _c("td", [_vm._v(_vm._s(_vm.humanBeginAt))]),
+    _vm._v(" "),
+    _c("td", [_vm._v(_vm._s(_vm.humanFinishAt))])
+  ])
+}
+var staticRenderFns = []
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-bc3a601c", module.exports)
   }
 }
 

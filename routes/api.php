@@ -94,6 +94,7 @@ use Illuminate\Http\Request;
          * Finshed Order Act
         */
         Route::group(['namespace' => 'Acts'], function ($router) {
+            Route::get('/{order}/finished_order_acts', 'FinishedOrderActController@index');
             Route::get('/{order}/finished_order_act/{finished_order_act}/show', 'FinishedOrderActController@show');
             Route::patch('/{order}/finished_order_act/{finished_order_act}/update', 'FinishedOrderActController@update');
             Route::post('/{order}/finished_order_act/store', 'FinishedOrderActController@store');
