@@ -50,7 +50,7 @@ let routes = [
     {
         name: 'order-finance',
     	path: '/orders/:id?/finance',
-    	component: require('./components/Orders/Finances/Finance'),
+    	component: require('./components/Orders/Finances/Finances'),
         meta: { requiresAuth: true },
         props: true
     },

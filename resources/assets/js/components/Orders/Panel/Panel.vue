@@ -48,11 +48,13 @@
                                         </div>
                             </router-link>
 
-                            <div :class="panelClass">
-                                <div class="card-body">
-                                  <h5 class="card-title">Загрузить файлы</h5>
-                                </div>
-                            </div>
+                            <router-link v-if="uploadPath" :class="panelClass"
+                                         :to="uploadPath"
+                                         >
+                                        <div class="card-body">
+                                          <h5 class="card-title">Загрузить файлы</h5>
+                                        </div>
+                            </router-link>
 
                         </div>
                     </div>
@@ -99,12 +101,12 @@
                     if (this.order.rooms.length !== 0) {
                         return {
                             name: 'room-show',
-                            params: { id: this.order.id, room_id: this.getFirstRoomId }
+                            params: { id: this.$route.params.id, room_id: this.getFirstRoomId }
                         }
                     } else {
                         return {
                             name: 'order-show',
-                            params: { id: this.order.id }
+                            params: { id: this.$route.params.id }
                         }
                     }
                 }
@@ -113,14 +115,21 @@
             orderGraphicPath () {
                 return {
                     name: 'order-steps',
-                    params: { id: this.order.id }
+                    params: { id: this.$route.params.id }
                 }
             },
 
             financePath () {
                 return {
                     name: 'order-finance',
-                    params: { id: this.order.id }
+                    params: { id: this.$route.params.id }
+                }
+            },
+
+            uploadPath () {
+                return {
+                    name: 'order-upload',
+                    params: { id: this.$route.params.id }
                 }
             }
         }
