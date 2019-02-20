@@ -32,11 +32,13 @@
                                 </div>
                             </div>
 
-                            <div :class="panelClass">
-                                <div class="card-body">
-                                  <h5 class="card-title">Баланс</h5>
-                                </div>
-                            </div>
+                            <router-link v-if="financePath" :class="panelClass"
+                                         :to="financePath"
+                                         >
+                                        <div class="card-body">
+                                          <h5 class="card-title">Баланс</h5>
+                                        </div>
+                            </router-link>
 
                             <router-link v-if="orderGraphicPath" :class="panelClass"
                                          :to="orderGraphicPath"
@@ -111,7 +113,14 @@
             orderGraphicPath () {
                 return {
                     name: 'order-steps',
-                    params: { id: this.order.id  }
+                    params: { id: this.order.id }
+                }
+            },
+
+            financePath () {
+                return {
+                    name: 'order-finance',
+                    params: { id: this.order.id }
                 }
             }
         }

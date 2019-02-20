@@ -52310,6 +52310,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     data: function data() {
@@ -52358,6 +52360,12 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         orderGraphicPath: function orderGraphicPath() {
             return {
                 name: 'order-steps',
+                params: { id: this.order.id }
+            };
+        },
+        financePath: function financePath() {
+            return {
+                name: 'order-finance',
                 params: { id: this.order.id }
             };
         }
@@ -52415,7 +52423,22 @@ var render = function() {
                       _vm._v(" "),
                       _c("div", { class: _vm.panelClass }, [_vm._m(1)]),
                       _vm._v(" "),
-                      _c("div", { class: _vm.panelClass }, [_vm._m(2)]),
+                      _vm.financePath
+                        ? _c(
+                            "router-link",
+                            {
+                              class: _vm.panelClass,
+                              attrs: { to: _vm.financePath }
+                            },
+                            [
+                              _c("div", { staticClass: "card-body" }, [
+                                _c("h5", { staticClass: "card-title" }, [
+                                  _vm._v("Баланс")
+                                ])
+                              ])
+                            ]
+                          )
+                        : _vm._e(),
                       _vm._v(" "),
                       _vm.orderGraphicPath
                         ? _c(
@@ -52434,7 +52457,7 @@ var render = function() {
                           )
                         : _vm._e(),
                       _vm._v(" "),
-                      _c("div", { class: _vm.panelClass }, [_vm._m(3)])
+                      _c("div", { class: _vm.panelClass }, [_vm._m(2)])
                     ],
                     1
                   )
@@ -52468,14 +52491,6 @@ var staticRenderFns = [
       _c("h5", { staticClass: "card-title" }, [
         _vm._v("Акты дополнительных работ")
       ])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "card-body" }, [
-      _c("h5", { staticClass: "card-title" }, [_vm._v("Баланс")])
     ])
   },
   function() {
