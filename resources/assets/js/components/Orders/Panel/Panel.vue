@@ -38,11 +38,13 @@
                                 </div>
                             </div>
 
-                            <div :class="panelClass">
-                                <div class="card-body">
-                                  <h5 class="card-title">График работ</h5>
-                                </div>
-                            </div>
+                            <router-link v-if="orderGraphicPath" :class="panelClass"
+                                         :to="orderGraphicPath"
+                                         >
+                                        <div class="card-body">
+                                          <h5 class="card-title">График работ</h5>
+                                        </div>
+                            </router-link>
 
                             <div :class="panelClass">
                                 <div class="card-body">
@@ -106,11 +108,12 @@
                 }
             },
 
-            // finishedOrderActPath () {
-            //     return {
-            //         name: ''
-            //     }
-            // }
+            orderGraphicPath () {
+                return {
+                    name: 'order-steps',
+                    params: { id: this.order.id  }
+                }
+            }
         }
     }
 </script>

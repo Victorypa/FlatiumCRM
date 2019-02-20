@@ -56,9 +56,9 @@ let routes = [
     },
 
     {
-        name: 'order-step',
+        name: 'order-steps',
     	path: '/orders/:id?/steps',
-    	component: require('./components/Orders/Steps/OrderStep'),
+    	component: require('./components/Orders/Steps/OrderSteps'),
         meta: { requiresAuth: true },
         props: true
     },

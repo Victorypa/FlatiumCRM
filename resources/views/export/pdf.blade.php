@@ -77,12 +77,7 @@
                     <div class="first-room" style="margin-top: 30px;">
                         <div class="first-room-top px-20 border-black">
                             <div class="main-subtitle pt-40 pb-20 inline-block">
-                                @if ($room->description)
-                                    {{ $room->description }}
-                                @else
-                                    {{ $room->roomType->type }}
-                                @endif
-
+                                {{ $room->description ? $room->description : $room->roomType->type }}
                             </div>
                             @if ($room->room_type_id === 1)
                                 @include('export.partials._room_details', [$room])
@@ -92,7 +87,7 @@
                         <div class="first-room-top background-solid"></div>
 
                         @if ($room->room_services->count())
-                            @foreach ( $room->room_services()->orderBy('created_at', 'asc')->orderBy('service_type_id', 'asc')->get()->groupBy(function($room_service) { return $room_service->service_type_id; }) as $service_type_id => $room_services)
+                            @foreach ( $room->room_services()->orderBy('priority', 'asc')->orderBy('service_type_id', 'asc')->get()->groupBy(function($room_service) { return $room_service->service_type_id; }) as $service_type_id => $room_services)
                                 @include('export.partials._room_services', [$service_type_id, $room_services])
                             @endforeach
                         @endif
@@ -162,12 +157,7 @@
                       <div class="first-room" style="margin-top: 30px;">
                           <div class="first-room-top px-20 border-black">
                               <div class="main-subtitle pt-40 pb-20 inline-block">
-                                  @if ($room->description)
-                                      {{ $room->description }}
-                                  @else
-                                      {{ $room->roomType->type }}
-                                  @endif
-
+                                  {{ $room->description ? $room->description : $room->roomType->type }}
                               </div>
                               @if ($room->room_type_id === 1)
                                   @include('export.partials._room_details', [$room])
@@ -177,7 +167,7 @@
                           <div class="first-room-top background-solid"></div>
 
                           @if ($room->room_services->count())
-                              @foreach ( $room->room_services()->orderBy('created_at', 'asc')->orderBy('service_type_id', 'asc')->get()->groupBy(function($room_service) { return $room_service->service_type_id; }) as $service_type_id => $room_services)
+                              @foreach ( $room->room_services()->orderBy('priority', 'asc')->orderBy('service_type_id', 'asc')->get()->groupBy(function($room_service) { return $room_service->service_type_id; }) as $service_type_id => $room_services)
                                   @include('export.partials._room_services', [$service_type_id, $room_services])
                               @endforeach
                           @endif
