@@ -117,10 +117,6 @@ export default {
       this.sortByDate = !this.sortByDate;
     },
 
-    checkIfLastElement (element, data) {
-        return element === data[data.length - 1]
-    },
-
     deleteFinishedOrderAct (order_id, finished_order_act_id) {
         if (confirm('Удалить?')) {
             axios.delete(`/api/orders/${order_id}/finished_order_act/${finished_order_act_id}/destroy`)

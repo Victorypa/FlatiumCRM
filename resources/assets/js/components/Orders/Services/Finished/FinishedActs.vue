@@ -6,18 +6,9 @@
                 <navigation></navigation>
 
                 <div class="col-md-10 mt-5">
-                    <div class="col-2 mt-5" v-if="show">
-                        <div class="form-group">
-                            <button type="button"
-                                    class="btn primary-button"
-                                    @click.prevent="show = !show">
-                                Создать
-                            </button>
-                        </div>
-                    </div>
-                    <div class="col-12 mt-5" v-else>
-                        <p>new form</p>
-                    </div>
+
+                    <AddFinishedAct />
+
                     <div class="col-12 mt-5">
                         <table class="table">
                             <thead>
@@ -47,11 +38,17 @@
 </template>
 
 <script>
+    import AddFinishedAct from './partials/AddFinishedAct'
+
     export default {
         data () {
             return {
-                show: true
+
             }
+        },
+
+        components: {
+            AddFinishedAct
         }
     }
 </script>

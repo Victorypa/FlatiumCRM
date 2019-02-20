@@ -48953,9 +48953,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     sortByDateStart: function sortByDateStart() {
       this.sortByDate = !this.sortByDate;
     },
-    checkIfLastElement: function checkIfLastElement(element, data) {
-      return element === data[data.length - 1];
-    },
     deleteFinishedOrderAct: function deleteFinishedOrderAct(order_id, finished_order_act_id) {
       var _this2 = this;
 
@@ -95820,15 +95817,8 @@ module.exports = Component.exports
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-//
-//
-//
-//
-//
-//
-//
-//
-//
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__partials_AddFinishedAct__ = __webpack_require__(360);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__partials_AddFinishedAct___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__partials_AddFinishedAct__);
 //
 //
 //
@@ -95869,11 +95859,16 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 
+
+
 /* harmony default export */ __webpack_exports__["default"] = ({
     data: function data() {
-        return {
-            show: true
-        };
+        return {};
+    },
+
+
+    components: {
+        AddFinishedAct: __WEBPACK_IMPORTED_MODULE_0__partials_AddFinishedAct___default.a
     }
 });
 
@@ -95898,36 +95893,12 @@ var render = function() {
           [
             _c("navigation"),
             _vm._v(" "),
-            _c("div", { staticClass: "col-md-10 mt-5" }, [
-              _vm.show
-                ? _c("div", { staticClass: "col-2 mt-5" }, [
-                    _c("div", { staticClass: "form-group" }, [
-                      _c(
-                        "button",
-                        {
-                          staticClass: "btn primary-button",
-                          attrs: { type: "button" },
-                          on: {
-                            click: function($event) {
-                              $event.preventDefault()
-                              _vm.show = !_vm.show
-                            }
-                          }
-                        },
-                        [
-                          _vm._v(
-                            "\n                            Создать\n                        "
-                          )
-                        ]
-                      )
-                    ])
-                  ])
-                : _c("div", { staticClass: "col-12 mt-5" }, [
-                    _c("p", [_vm._v("new form")])
-                  ]),
-              _vm._v(" "),
-              _vm._m(0)
-            ])
+            _c(
+              "div",
+              { staticClass: "col-md-10 mt-5" },
+              [_c("AddFinishedAct"), _vm._v(" "), _vm._m(0)],
+              1
+            )
           ],
           1
         )
@@ -95980,6 +95951,253 @@ if (false) {
   module.hot.accept()
   if (module.hot.data) {
     require("vue-hot-reload-api")      .rerender("data-v-e4a674bc", module.exports)
+  }
+}
+
+/***/ }),
+/* 360 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+var normalizeComponent = __webpack_require__(1)
+/* script */
+var __vue_script__ = __webpack_require__(361)
+/* template */
+var __vue_template__ = __webpack_require__(362)
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = null
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources/assets/js/components/Orders/Services/Finished/partials/AddFinishedAct.vue"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-bd6ef4c6", Component.options)
+  } else {
+    hotAPI.reload("data-v-bd6ef4c6", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 361 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vuejs_datepicker__ = __webpack_require__(8);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_vuejs_datepicker_dist_locale__ = __webpack_require__(9);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+
+
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+    data: function data() {
+        return {
+            show: true,
+
+            data: {
+                name: 'Акт выполненных работ',
+                description: '',
+                begin_at: '',
+                finish_at: ''
+            },
+
+            ru: __WEBPACK_IMPORTED_MODULE_1_vuejs_datepicker_dist_locale__["a" /* ru */]
+        };
+    },
+
+
+    components: {
+        Datepicker: __WEBPACK_IMPORTED_MODULE_0_vuejs_datepicker__["a" /* default */]
+    }
+});
+
+/***/ }),
+/* 362 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _vm.show
+    ? _c("div", { staticClass: "col-2 mt-5" }, [
+        _c("div", { staticClass: "form-group" }, [
+          _c(
+            "button",
+            {
+              staticClass: "btn primary-button",
+              attrs: { type: "button" },
+              on: {
+                click: function($event) {
+                  $event.preventDefault()
+                  _vm.show = !_vm.show
+                }
+              }
+            },
+            [_vm._v("\n            Создать\n        ")]
+          )
+        ])
+      ])
+    : _c("div", { staticClass: "col-12 mt-5" }, [
+        _c(
+          "form",
+          { staticClass: "row align-items-center" },
+          [
+            _c("input", {
+              staticClass: "col-md-3",
+              attrs: { type: "text", placeholder: "Название" }
+            }),
+            _vm._v(" "),
+            _c("datepicker", {
+              staticClass: "col-md-2",
+              attrs: { placeholder: "Начало", language: _vm.ru },
+              on: {
+                selected: function($event) {
+                  _vm.updateFinishedOrderAct()
+                }
+              },
+              model: {
+                value: _vm.data.begin_at,
+                callback: function($$v) {
+                  _vm.$set(_vm.data, "begin_at", $$v)
+                },
+                expression: "data.begin_at"
+              }
+            }),
+            _vm._v(" "),
+            _c("datepicker", {
+              staticClass: "my-datepicker col-md-2",
+              attrs: { placeholder: "Окончание", language: _vm.ru },
+              on: {
+                selected: function($event) {
+                  _vm.updateFinishedOrderAct()
+                }
+              },
+              model: {
+                value: _vm.data.finish_at,
+                callback: function($$v) {
+                  _vm.$set(_vm.data, "finish_at", $$v)
+                },
+                expression: "data.finish_at"
+              }
+            }),
+            _vm._v(" "),
+            _vm._m(0),
+            _vm._v(" "),
+            _c("div", { staticClass: "col-md-2" }, [
+              _c(
+                "button",
+                {
+                  staticClass: "btn btn-warning",
+                  attrs: { type: "button" },
+                  on: {
+                    click: function($event) {
+                      $event.preventDefault()
+                      _vm.show = !_vm.show
+                    }
+                  }
+                },
+                [_vm._v("\n                    Отменить\n            ")]
+              )
+            ])
+          ],
+          1
+        )
+      ])
+}
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "col-md-2 ml-3" }, [
+      _c(
+        "button",
+        { staticClass: "btn primary-button", attrs: { type: "submit" } },
+        [_vm._v("Создать")]
+      )
+    ])
+  }
+]
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-bd6ef4c6", module.exports)
   }
 }
 
