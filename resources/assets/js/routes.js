@@ -105,8 +105,8 @@ let routes = [
 
     {
         name: 'order-extra-services-rooms-show',
-    	path: '/orders/:id?/order_extra_services/:extra_order_act_id?/extra_rooms/:extra_room_id?',
-    	component: require('./components/Orders/Services/Rooms/ExtraRoom'),
+    	path: '/orders/:id?/order_extra_services/:extra_act_id?/extra_rooms/:extra_room_id?',
+    	component: require('./components/Orders/Services/Extra/Rooms/ExtraRoom'),
         meta: { requiresAuth: true },
         props: true
     },

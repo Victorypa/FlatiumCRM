@@ -2,9 +2,9 @@
     <tr>
         <td></td>
         <td>
-            <!-- <router-link :to="{ name: 'order-extra-act-show', params: { id: this.$route.params.id, finished_act_id: act.id } }"> -->
+            <router-link :to="getExtraActPath">
                 {{ act.description ? act.description : act.name }}
-            <!-- </router-link> -->
+            </router-link>
         </td>
         <td>{{ act.price }}</td>
         <td>{{ humanBeginAt }}</td>
@@ -23,6 +23,15 @@
 
             humanFinishAt () {
                 return moment(this.act.finish_at).format('DD-MM-YYYY')
+            },
+
+            getExtraActPath () {
+                if (this.act.extra_rooms.length !== 0) {
+                    return {
+                        name: 'order-extra-services-rooms-show',
+                        params: { id: this.$route.params.id, extra_act_id: this.act.id, extra_room_id: this.act.extra_rooms[0].id  }
+                    }
+                }
             }
         }
     }
