@@ -82,7 +82,7 @@
                 axios.patch(`/api/orders/${this.$route.params.id}/finished_order_act/${this.$route.params.finished_act_id}/update`, {
                     'state': this.state
                 })
-            },
+            }
         },
 
         computed: {

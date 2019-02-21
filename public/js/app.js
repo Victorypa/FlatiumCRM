@@ -95753,7 +95753,8 @@ var render = function() {
                               "finished-room-service-" +
                               finished_room_service.id,
                             attrs: {
-                              finished_room_service: finished_room_service
+                              finished_room_service: finished_room_service,
+                              finished_room: _vm.finished_room
                             }
                           })
                         })
@@ -95787,6 +95788,7 @@ if (false) {
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__RoomServiceDetail__ = __webpack_require__(387);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__RoomServiceDetail___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__RoomServiceDetail__);
+//
 //
 //
 //
@@ -95918,27 +95920,34 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-    props: ['finished_room_service'],
+    props: ['finished_room_service', 'finished_room'],
+
+    methods: {
+        priceCount: function priceCount(quantity, price) {
+            return new Intl.NumberFormat('ru-Ru').format(parseInt(quantity * price));
+        }
+    },
 
     computed: {
-        filteredPrice: function filteredPrice() {}
+        filteredServicePrice: function filteredServicePrice() {
+            if (this.finished_room.room.order.discount) {
+                if (this.finished_room_service.service.can_be_discounted) {
+                    return parseInt(this.finished_room_service.service.price * (1 - parseInt(this.finished_room.room.order.discount) / 100));
+                } else {
+                    return parseInt(this.finished_room_service.service.price);
+                }
+            }
+
+            if (this.finished_roomюroom.order.markup) {
+                return parseInt(this.finished_room_service.service.price * (1 + parseInt(this.finished_room_service.room.order.markup) / 100));
+            }
+
+            if (this.finished_room_service.room.order.markup === null && this.finished_room_service.room.order.discount === null) {
+                return parseInt(finished_room_service.service.price);
+            }
+        }
     }
 });
 
@@ -95961,7 +95970,17 @@ var render = function() {
           " " +
           _vm._s(_vm.finished_room_service.service.unit.name)
       )
-    ])
+    ]),
+    _vm._v(" "),
+    _c("td", [
+      _vm._v(
+        _vm._s(_vm.filteredServicePrice) +
+          " Р/" +
+          _vm._s(_vm.finished_room_service.service.unit.name)
+      )
+    ]),
+    _vm._v(" "),
+    _c("td", [_vm._v(_vm._s(_vm.finished_room_service.price) + " Р")])
   ])
 }
 var staticRenderFns = []

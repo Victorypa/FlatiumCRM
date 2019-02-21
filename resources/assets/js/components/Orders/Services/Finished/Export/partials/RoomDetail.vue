@@ -33,6 +33,7 @@
                     <tbody>
                         <RoomServiceDetail v-for="finished_room_service in finished_room_services"
                                            :finished_room_service="finished_room_service"
+                                           :finished_room="finished_room"
                                            :key="'finished-room-service-' + finished_room_service.id"
                                            />
                     </tbody>

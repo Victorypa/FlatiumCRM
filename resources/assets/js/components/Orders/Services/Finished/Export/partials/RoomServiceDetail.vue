@@ -3,34 +3,39 @@
       <th scope="row" class="w-50">{{ finished_room_service.service.name }}</th>
       <td>{{ finished_room_service.quantity }} {{ finished_room_service.service.unit.name }}</td>
 
-      <!-- <template v-if="finished_order.order.discount">
-          <template v-if="finished_room_service.service.can_be_discounted">
-              <td>{{ finished_room_service.price * (1 - parseInt(finished_order.order.discount)/100) }} Р/{{ finished_service.unit.name }}</td>
-              <td>{{ priceCount(finished_service.pivot.quantity, finished_service.price * (1 - parseInt(finished_order.order.discount)/100)) }} Р</td>
-          </template>
-          <template v-else>
-              <td>{{ finished_service.price }} Р/{{ finished_service.unit.name }}</td>
-              <td>{{ priceCount(finished_service.pivot.quantity, finished_service.price) }} Р</td>
-          </template>
-      </template>
-      <template v-if="finished_order.order.markup">
-          <td>{{ finished_service.price * (1 + parseInt(finished_order.order.markup)/100) }} Р/{{ finished_service.unit.name }}</td>
-          <td>{{ priceCount(finished_service.pivot.quantity, finished_service.price * (1 + parseInt(finished_order.order.markup)/100)) }} Р</td>
-      </template>
-      <template v-if="finished_order.order.discount === null && finished_order.order.markup === null">
-          <td>{{ finished_service.price }} Р/{{ finished_service.unit.name }}</td>
-          <td>{{ priceCount(finished_service.pivot.quantity, finished_service.price) }} Р</td>
-      </template> -->
+      <td>{{ filteredServicePrice }} Р/{{ finished_room_service.service.unit.name }}</td>
+      <td>{{ finished_room_service.price }} Р</td>
+
     </tr>
 </template>
 
 <script>
     export default {
-        props: ['finished_room_service'],
+        props: ['finished_room_service', 'finished_room'],
+
+        methods: {
+            priceCount (quantity, price) {
+                return new Intl.NumberFormat('ru-Ru').format(parseInt(quantity * price))
+            }
+        },
 
         computed: {
-            filteredPrice () {
-                
+            filteredServicePrice () {
+                if (this.finished_room.room.order.discount) {
+                    if (this.finished_room_service.service.can_be_discounted) {
+                        return parseInt(this.finished_room_service.service.price * (1 - parseInt(this.finished_room.room.order.discount)/100))
+                    } else {
+                        return parseInt(this.finished_room_service.service.price)
+                    }
+                }
+
+                if (this.finished_roomюroom.order.markup) {
+                    return parseInt(this.finished_room_service.service.price * (1 + parseInt(this.finished_room_service.room.order.markup)/100))
+                }
+
+                if (this.finished_room_service.room.order.markup === null && this.finished_room_service.room.order.discount === null) {
+                    return parseInt(finished_room_service.service.price)
+                }
             }
         }
     }
