@@ -90,7 +90,7 @@ let routes = [
     {
         name: 'order-finished-services-export-show',
     	path: '/orders/:id?/order_finished_services/:finished_act_id?/export/show',
-    	component: require('./components/Orders/Services/Export/FinishedServicesShow'),
+    	component: require('./components/Orders/Services/Finished/Export/Export'),
         meta: { requiresAuth: true },
         props: true
     },

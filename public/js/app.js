@@ -31555,7 +31555,7 @@ var routes = [{
 }, {
     name: 'order-finished-services-export-show',
     path: '/orders/:id?/order_finished_services/:finished_act_id?/export/show',
-    component: __webpack_require__(270),
+    component: __webpack_require__(372),
     meta: { requiresAuth: true },
     props: true
 }, {
@@ -58739,793 +58739,11 @@ if (false) {
 }
 
 /***/ }),
-/* 270 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var disposed = false
-function injectStyle (ssrContext) {
-  if (disposed) return
-  __webpack_require__(271)
-}
-var normalizeComponent = __webpack_require__(1)
-/* script */
-var __vue_script__ = __webpack_require__(273)
-/* template */
-var __vue_template__ = __webpack_require__(274)
-/* template functional */
-var __vue_template_functional__ = false
-/* styles */
-var __vue_styles__ = injectStyle
-/* scopeId */
-var __vue_scopeId__ = "data-v-4adc577a"
-/* moduleIdentifier (server only) */
-var __vue_module_identifier__ = null
-var Component = normalizeComponent(
-  __vue_script__,
-  __vue_template__,
-  __vue_template_functional__,
-  __vue_styles__,
-  __vue_scopeId__,
-  __vue_module_identifier__
-)
-Component.options.__file = "resources/assets/js/components/Orders/Services/Export/FinishedServicesShow.vue"
-
-/* hot reload */
-if (false) {(function () {
-  var hotAPI = require("vue-hot-reload-api")
-  hotAPI.install(require("vue"), false)
-  if (!hotAPI.compatible) return
-  module.hot.accept()
-  if (!module.hot.data) {
-    hotAPI.createRecord("data-v-4adc577a", Component.options)
-  } else {
-    hotAPI.reload("data-v-4adc577a", Component.options)
-  }
-  module.hot.dispose(function (data) {
-    disposed = true
-  })
-})()}
-
-module.exports = Component.exports
-
-
-/***/ }),
-/* 271 */
-/***/ (function(module, exports, __webpack_require__) {
-
-// style-loader: Adds some css to the DOM by adding a <style> tag
-
-// load the styles
-var content = __webpack_require__(272);
-if(typeof content === 'string') content = [[module.i, content, '']];
-if(content.locals) module.exports = content.locals;
-// add the styles to the DOM
-var update = __webpack_require__(3)("3c50db82", content, false, {});
-// Hot Module Replacement
-if(false) {
- // When the styles change, update the <style> tags
- if(!content.locals) {
-   module.hot.accept("!!../../../../../../../node_modules/css-loader/index.js!../../../../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-4adc577a\",\"scoped\":true,\"hasInlineConfig\":true}!../../../../../../../node_modules/sass-loader/lib/loader.js!../../../../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./FinishedServicesShow.vue", function() {
-     var newContent = require("!!../../../../../../../node_modules/css-loader/index.js!../../../../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-4adc577a\",\"scoped\":true,\"hasInlineConfig\":true}!../../../../../../../node_modules/sass-loader/lib/loader.js!../../../../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./FinishedServicesShow.vue");
-     if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
-     update(newContent);
-   });
- }
- // When the module is disposed, remove the <style> tags
- module.hot.dispose(function() { update(); });
-}
-
-/***/ }),
-/* 272 */
-/***/ (function(module, exports, __webpack_require__) {
-
-exports = module.exports = __webpack_require__(2)(false);
-// imports
-
-
-// module
-exports.push([module.i, "\n.fixed-part[data-v-4adc577a] {\n  position: fixed;\n  background-color: #fff;\n  padding-bottom: 35px;\n  padding-top: 85px;\n  z-index: 999;\n}\n.projects__content[data-v-4adc577a] {\n  padding-top: 250px;\n  padding-bottom: 20px;\n}\n.projects__content .form-group[data-v-4adc577a] {\n    margin-bottom: 0;\n}\n.projects__content .form-group input[data-v-4adc577a] {\n      margin-left: 10px;\n}\n.projects__content .form-group input[data-v-4adc577a]:first-child {\n        margin-left: 0;\n}\n.projects__content .form-control[data-v-4adc577a] {\n    color: 666;\n    height: 45px;\n}\n.projects__desc[data-v-4adc577a] {\n  font-weight: bold;\n  color: #777777;\n}\n.projects__information .table[data-v-4adc577a] {\n  color: #777777;\n}\n.projects__information .table td[data-v-4adc577a] {\n    width: 13%;\n}\n.projects__information .table th[data-v-4adc577a] {\n    font-weight: normal;\n}\n.my-datepicker[data-v-4adc577a] {\n  line-height: 21px;\n}\n.main-subtitle--room[data-v-4adc577a] {\n  padding-top: 75px;\n}\n", ""]);
-
-// exports
-
-
-/***/ }),
-/* 273 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vuejs_datepicker__ = __webpack_require__(7);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_vuejs_datepicker_dist_locale__ = __webpack_require__(8);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__mixins_OrderExportCollection__ = __webpack_require__(10);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__mixins_ServiceCollection__ = __webpack_require__(11);
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-
-var moment = __webpack_require__(0);
-
-
-
-
-
-/* harmony default export */ __webpack_exports__["default"] = ({
-    mixins: [__WEBPACK_IMPORTED_MODULE_2__mixins_OrderExportCollection__["a" /* default */], __WEBPACK_IMPORTED_MODULE_3__mixins_ServiceCollection__["a" /* default */]],
-
-    data: function data() {
-        return {
-            finished_order: [],
-            description: null,
-            price: null,
-
-            state: {
-                begin_at: moment(new Date()).format("DD-MMM-YYYY"),
-                finish_at: moment(new Date()).format("DD-MMM-YYYY")
-            },
-
-            ru: __WEBPACK_IMPORTED_MODULE_1_vuejs_datepicker_dist_locale__["a" /* ru */],
-            moment: moment
-        };
-    },
-
-
-    components: {
-        Datepicker: __WEBPACK_IMPORTED_MODULE_0_vuejs_datepicker__["a" /* default */]
-    },
-
-    mounted: function mounted() {
-        this.getFinishedOrderAct();
-    },
-
-
-    methods: {
-        getFinishedOrderAct: function getFinishedOrderAct() {
-            var _this = this;
-
-            return axios.get('/api/orders/' + this.$route.params.id + '/finished_order_act/' + this.$route.params.finished_act_id + '/show').then(function (response) {
-                _this.finished_order = response.data;
-                _this.description = response.data.description;
-                _this.price = response.data.price;
-                _this.state.begin_at = response.data.begin_at;
-                _this.state.finish_at = response.data.finish_at;
-            });
-        },
-        getServiceTypeName: function getServiceTypeName(service_type_id) {
-            if (this.service_types && service_type_id) {
-                return this.service_types.filter(function (row) {
-                    return row.id === parseInt(service_type_id);
-                })[0].name;
-            }
-        },
-        updateFinishedOrderAct: function updateFinishedOrderAct() {
-            axios.patch('/api/orders/' + this.$route.params.id + '/finished_order_act/' + this.$route.params.finished_act_id + '/update', {
-                'state': this.state
-            });
-        },
-        exportFile: function exportFile() {
-            axios.get('/api/orders/' + this.$route.params.id + '/finished_order_act/' + this.$route.params.finished_act_id + '/export/pdf').then(function (response) {
-                window.open(response.data.url + '/storage/' + response.data.data);
-            });
-        }
-    }
-});
-
-/***/ }),
-/* 274 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var render = function() {
-  var _vm = this
-  var _h = _vm.$createElement
-  var _c = _vm._self._c || _h
-  return _c(
-    "div",
-    [
-      _c("basic-header"),
-      _vm._v(" "),
-      _c("div", { staticClass: "projects" }, [
-        _c("div", { staticClass: "container-fluid " }, [
-          _c(
-            "div",
-            { staticClass: "row" },
-            [
-              _c("navigation"),
-              _vm._v(" "),
-              _c(
-                "div",
-                { staticClass: "col-md-10" },
-                [
-                  _c(
-                    "div",
-                    {
-                      staticClass:
-                        "row col-10 fixed-part shadow bg-white rounded pl-3 align-items-center"
-                    },
-                    [
-                      _vm.finished_order
-                        ? [
-                            _vm.finished_order.description
-                              ? [
-                                  _c("div", { staticClass: "col-md-8" }, [
-                                    _c("h1", { staticClass: "main-caption" }, [
-                                      _vm._v(
-                                        "\n                          " +
-                                          _vm._s(
-                                            _vm.finished_order.description
-                                          ) +
-                                          "\n                        "
-                                      )
-                                    ])
-                                  ])
-                                ]
-                              : [
-                                  _c("div", { staticClass: "col-md-8" }, [
-                                    _c("h1", { staticClass: "main-caption" }, [
-                                      _vm._v(
-                                        "\n                          " +
-                                          _vm._s(_vm.finished_order.name) +
-                                          "\n                        "
-                                      )
-                                    ])
-                                  ])
-                                ]
-                          ]
-                        : _vm._e(),
-                      _vm._v(" "),
-                      _vm.finished_order && _vm.finished_order.order
-                        ? [
-                            _c(
-                              "div",
-                              { staticClass: "col-md-2 ml-auto" },
-                              [
-                                _c(
-                                  "router-link",
-                                  {
-                                    attrs: {
-                                      to: {
-                                        name: "order-finished-services",
-                                        params: {
-                                          id: _vm.finished_order.order.id,
-                                          finished_act_id: _vm.finished_order.id
-                                        }
-                                      }
-                                    }
-                                  },
-                                  [
-                                    _c(
-                                      "button",
-                                      {
-                                        staticClass: "primary-button w-100",
-                                        attrs: { type: "button" }
-                                      },
-                                      [_vm._v("Редактировать")]
-                                    )
-                                  ]
-                                )
-                              ],
-                              1
-                            ),
-                            _vm._v(" "),
-                            _c("div", { staticClass: "col-md-6 pt-3" }, [
-                              _c("h2", { staticClass: "main-subtitle" }, [
-                                _vm._v(
-                                  " Итого по акту: " +
-                                    _vm._s(
-                                      new Intl.NumberFormat("ru-Ru").format(
-                                        _vm.finished_order.price
-                                      )
-                                    ) +
-                                    " Р"
-                                )
-                              ])
-                            ])
-                          ]
-                        : _vm._e()
-                    ],
-                    2
-                  ),
-                  _vm._v(" "),
-                  _c(
-                    "div",
-                    { staticClass: "row projects__content col-12 mt-3" },
-                    [
-                      _c(
-                        "div",
-                        {
-                          staticClass:
-                            "form-group d-flex align-items-center col-6"
-                        },
-                        [
-                          _c("datepicker", {
-                            staticClass: "my-datepicker",
-                            attrs: { placeholder: "Начало", language: _vm.ru },
-                            on: {
-                              selected: function($event) {
-                                _vm.updateFinishedOrderAct()
-                              }
-                            },
-                            model: {
-                              value: _vm.state.begin_at,
-                              callback: function($$v) {
-                                _vm.$set(_vm.state, "begin_at", $$v)
-                              },
-                              expression: "state.begin_at"
-                            }
-                          }),
-                          _vm._v(" "),
-                          _c("datepicker", {
-                            staticClass: "my-datepicker pl-3",
-                            attrs: {
-                              placeholder: "Окончание",
-                              language: _vm.ru
-                            },
-                            on: {
-                              selected: function($event) {
-                                _vm.updateFinishedOrderAct()
-                              }
-                            },
-                            model: {
-                              value: _vm.state.finish_at,
-                              callback: function($$v) {
-                                _vm.$set(_vm.state, "finish_at", $$v)
-                              },
-                              expression: "state.finish_at"
-                            }
-                          }),
-                          _vm._v(" "),
-                          _c("div", { staticClass: "col-md-3" }, [
-                            _c(
-                              "button",
-                              {
-                                staticClass: "primary-button w-100",
-                                attrs: { type: "button" },
-                                on: {
-                                  click: function($event) {
-                                    $event.preventDefault()
-                                    _vm.exportFile(0)
-                                  }
-                                }
-                              },
-                              [
-                                _vm._v(
-                                  "\n                          Экспорт\n                "
-                                )
-                              ]
-                            )
-                          ])
-                        ],
-                        1
-                      )
-                    ]
-                  ),
-                  _vm._v(" "),
-                  _vm.finished_order && _vm.finished_order.finished_rooms
-                    ? _vm._l(_vm.finished_order.finished_rooms, function(
-                        finished_room
-                      ) {
-                        return _c(
-                          "div",
-                          { staticClass: "col-12 px-0" },
-                          [
-                            _c(
-                              "div",
-                              { staticClass: "px-15" },
-                              [
-                                finished_room.room.description
-                                  ? [
-                                      _c(
-                                        "h2",
-                                        {
-                                          staticClass:
-                                            "main-subtitle main-subtitle--room"
-                                        },
-                                        [
-                                          _vm._v(
-                                            "\n                            " +
-                                              _vm._s(
-                                                finished_room.room.description
-                                              ) +
-                                              "\n                        "
-                                          )
-                                        ]
-                                      )
-                                    ]
-                                  : [
-                                      _c(
-                                        "h2",
-                                        {
-                                          staticClass:
-                                            "main-subtitle main-subtitle--room"
-                                        },
-                                        [
-                                          _vm._v(
-                                            "\n                            " +
-                                              _vm._s(
-                                                finished_room.room.room_type
-                                                  .type
-                                              ) +
-                                              "\n                        "
-                                          )
-                                        ]
-                                      )
-                                    ],
-                                _vm._v(" "),
-                                finished_room.room.room_type_id === 1
-                                  ? [
-                                      _c(
-                                        "div",
-                                        {
-                                          staticClass:
-                                            "projects__desc col-8 d-flex justify-content-between align-items-center py-3 pl-0"
-                                        },
-                                        [
-                                          _c(
-                                            "div",
-                                            {
-                                              staticClass: "projects__desc-item"
-                                            },
-                                            [
-                                              _vm._v(
-                                                "Общая площадь: " +
-                                                  _vm._s(
-                                                    finished_room.room.area
-                                                  ) +
-                                                  " м"
-                                              ),
-                                              _c("sup", [_vm._v("2")])
-                                            ]
-                                          ),
-                                          _vm._v(" "),
-                                          _c(
-                                            "div",
-                                            {
-                                              staticClass: "projects__desc-item"
-                                            },
-                                            [
-                                              _vm._v(
-                                                "Высота потолка: " +
-                                                  _vm._s(
-                                                    finished_room.room.height
-                                                  ) +
-                                                  " м"
-                                              )
-                                            ]
-                                          ),
-                                          _vm._v(" "),
-                                          _c(
-                                            "div",
-                                            {
-                                              staticClass: "projects__desc-item"
-                                            },
-                                            [
-                                              _vm._v(
-                                                "Площадь стен: " +
-                                                  _vm._s(
-                                                    finished_room.room.wall_area
-                                                  ) +
-                                                  " м"
-                                              ),
-                                              _c("sup", [_vm._v("2")])
-                                            ]
-                                          ),
-                                          _vm._v(" "),
-                                          _c(
-                                            "div",
-                                            {
-                                              staticClass: "projects__desc-item"
-                                            },
-                                            [
-                                              _vm._v(
-                                                "Периметр: " +
-                                                  _vm._s(
-                                                    finished_room.room.perimeter
-                                                  )
-                                              )
-                                            ]
-                                          )
-                                        ]
-                                      )
-                                    ]
-                                  : _vm._e()
-                              ],
-                              2
-                            ),
-                            _vm._v(" "),
-                            finished_room.finished_room_services
-                              ? [
-                                  _vm._l(
-                                    _vm.groupByServiceType(
-                                      finished_room.finished_room_services
-                                    ),
-                                    function(
-                                      finished_room_services,
-                                      service_type_id
-                                    ) {
-                                      return [
-                                        _c(
-                                          "div",
-                                          {
-                                            staticClass:
-                                              "projects__information "
-                                          },
-                                          [
-                                            _c(
-                                              "div",
-                                              { staticClass: "row bg px-3" },
-                                              [
-                                                _c(
-                                                  "div",
-                                                  {
-                                                    staticClass:
-                                                      "main-subtitle main-subtitle--fz col-12 pt-4 pl-3"
-                                                  },
-                                                  [
-                                                    _vm._v(
-                                                      "\n                                " +
-                                                        _vm._s(
-                                                          _vm.getServiceTypeName(
-                                                            service_type_id
-                                                          )
-                                                        ) +
-                                                        "\n                              "
-                                                    )
-                                                  ]
-                                                ),
-                                                _vm._v(" "),
-                                                _c(
-                                                  "div",
-                                                  {
-                                                    staticClass: "col-12 px-0"
-                                                  },
-                                                  [
-                                                    _c(
-                                                      "table",
-                                                      {
-                                                        staticClass:
-                                                          "table table-hover"
-                                                      },
-                                                      [
-                                                        _c(
-                                                          "tbody",
-                                                          _vm._l(
-                                                            finished_room_services,
-                                                            function(
-                                                              finished_room_service
-                                                            ) {
-                                                              return _c("tr", [
-                                                                _c(
-                                                                  "th",
-                                                                  {
-                                                                    staticClass:
-                                                                      "w-50",
-                                                                    attrs: {
-                                                                      scope:
-                                                                        "row"
-                                                                    }
-                                                                  },
-                                                                  [
-                                                                    _vm._v(
-                                                                      _vm._s(
-                                                                        finished_room_service.name
-                                                                      )
-                                                                    )
-                                                                  ]
-                                                                ),
-                                                                _vm._v(" "),
-                                                                _c("td", [
-                                                                  _vm._v(
-                                                                    _vm._s(
-                                                                      finished_room_service.quantity
-                                                                    ) +
-                                                                      " " +
-                                                                      _vm._s(
-                                                                        finished_room_service
-                                                                          .service
-                                                                          .unit
-                                                                          .name
-                                                                      )
-                                                                  )
-                                                                ])
-                                                              ])
-                                                            }
-                                                          )
-                                                        )
-                                                      ]
-                                                    )
-                                                  ]
-                                                )
-                                              ]
-                                            )
-                                          ]
-                                        )
-                                      ]
-                                    }
-                                  )
-                                ]
-                              : _vm._e()
-                          ],
-                          2
-                        )
-                      })
-                    : _vm._e()
-                ],
-                2
-              )
-            ],
-            1
-          )
-        ])
-      ])
-    ],
-    1
-  )
-}
-var staticRenderFns = []
-render._withStripped = true
-module.exports = { render: render, staticRenderFns: staticRenderFns }
-if (false) {
-  module.hot.accept()
-  if (module.hot.data) {
-    require("vue-hot-reload-api")      .rerender("data-v-4adc577a", module.exports)
-  }
-}
-
-/***/ }),
+/* 270 */,
+/* 271 */,
+/* 272 */,
+/* 273 */,
+/* 274 */,
 /* 275 */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -95864,6 +95082,945 @@ $(window).scroll(function () {
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
+
+/***/ }),
+/* 371 */,
+/* 372 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+var normalizeComponent = __webpack_require__(1)
+/* script */
+var __vue_script__ = __webpack_require__(375)
+/* template */
+var __vue_template__ = __webpack_require__(383)
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = null
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources/assets/js/components/Orders/Services/Finished/Export/Export.vue"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-cde26ca0", Component.options)
+  } else {
+    hotAPI.reload("data-v-cde26ca0", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 373 */,
+/* 374 */,
+/* 375 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__partials_Detail__ = __webpack_require__(377);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__partials_Detail___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__partials_Detail__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__partials_RoomDetail__ = __webpack_require__(384);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__partials_RoomDetail___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__partials_RoomDetail__);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+
+
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+    components: {
+        Detail: __WEBPACK_IMPORTED_MODULE_0__partials_Detail___default.a, RoomDetail: __WEBPACK_IMPORTED_MODULE_1__partials_RoomDetail___default.a
+    },
+
+    data: function data() {
+        return {
+            finished_order_act: []
+        };
+    },
+    created: function created() {
+        this.getFinishedOrderAct();
+    },
+
+
+    methods: {
+        getFinishedOrderAct: function getFinishedOrderAct() {
+            var _this = this;
+
+            return axios.get('/api/orders/' + this.$route.params.id + '/finished_order_act/' + this.$route.params.finished_act_id + '/show').then(function (response) {
+                _this.finished_order_act = response.data;
+            });
+        }
+    }
+});
+
+/***/ }),
+/* 376 */,
+/* 377 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+function injectStyle (ssrContext) {
+  if (disposed) return
+  __webpack_require__(380)
+}
+var normalizeComponent = __webpack_require__(1)
+/* script */
+var __vue_script__ = __webpack_require__(378)
+/* template */
+var __vue_template__ = __webpack_require__(382)
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = injectStyle
+/* scopeId */
+var __vue_scopeId__ = "data-v-20a4cce2"
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources/assets/js/components/Orders/Services/Finished/Export/partials/Detail.vue"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-20a4cce2", Component.options)
+  } else {
+    hotAPI.reload("data-v-20a4cce2", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 378 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vuejs_datepicker__ = __webpack_require__(7);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_vuejs_datepicker_dist_locale__ = __webpack_require__(8);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+
+
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+    props: ['finished_order_act'],
+
+    components: {
+        Datepicker: __WEBPACK_IMPORTED_MODULE_0_vuejs_datepicker__["a" /* default */]
+    },
+
+    data: function data() {
+        return {
+            ru: __WEBPACK_IMPORTED_MODULE_1_vuejs_datepicker_dist_locale__["a" /* ru */],
+
+            state: {
+                begin_at: this.finished_order_act.begin_at,
+                finish_at: this.finished_order_act.finish_at
+            }
+        };
+    },
+
+
+    methods: {
+        exportFile: function exportFile() {
+            axios.get('/api/orders/' + this.$route.params.id + '/finished_order_act_act/' + this.$route.params.finished_act_id + '/export/pdf').then(function (response) {
+                window.open(response.data.url + '/storage/' + response.data.data);
+            });
+        },
+        updateFinishedOrderAct: function updateFinishedOrderAct() {
+            axios.patch('/api/orders/' + this.$route.params.id + '/finished_order_act/' + this.$route.params.finished_act_id + '/update', {
+                'state': this.state
+            });
+        }
+    },
+
+    computed: {
+        filteredPrice: function filteredPrice() {
+            return new Intl.NumberFormat('ru-Ru').format(parseInt(this.finished_order_act.price));
+        }
+    }
+});
+
+/***/ }),
+/* 379 */,
+/* 380 */
+/***/ (function(module, exports, __webpack_require__) {
+
+// style-loader: Adds some css to the DOM by adding a <style> tag
+
+// load the styles
+var content = __webpack_require__(381);
+if(typeof content === 'string') content = [[module.i, content, '']];
+if(content.locals) module.exports = content.locals;
+// add the styles to the DOM
+var update = __webpack_require__(3)("62819786", content, false, {});
+// Hot Module Replacement
+if(false) {
+ // When the styles change, update the <style> tags
+ if(!content.locals) {
+   module.hot.accept("!!../../../../../../../../../node_modules/css-loader/index.js!../../../../../../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-20a4cce2\",\"scoped\":true,\"hasInlineConfig\":true}!../../../../../../../../../node_modules/sass-loader/lib/loader.js!../../../../../../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./Detail.vue", function() {
+     var newContent = require("!!../../../../../../../../../node_modules/css-loader/index.js!../../../../../../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-20a4cce2\",\"scoped\":true,\"hasInlineConfig\":true}!../../../../../../../../../node_modules/sass-loader/lib/loader.js!../../../../../../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./Detail.vue");
+     if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+     update(newContent);
+   });
+ }
+ // When the module is disposed, remove the <style> tags
+ module.hot.dispose(function() { update(); });
+}
+
+/***/ }),
+/* 381 */
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(2)(false);
+// imports
+
+
+// module
+exports.push([module.i, "\n.fixed-part[data-v-20a4cce2] {\n  position: fixed;\n  background-color: #fff;\n  padding-bottom: 35px;\n  padding-top: 85px;\n  z-index: 999;\n}\n.projects__content[data-v-20a4cce2] {\n  padding-top: 250px;\n  padding-bottom: 20px;\n}\n.projects__content .form-group[data-v-20a4cce2] {\n    margin-bottom: 0;\n}\n.projects__content .form-group input[data-v-20a4cce2] {\n      margin-left: 10px;\n}\n.projects__content .form-group input[data-v-20a4cce2]:first-child {\n        margin-left: 0;\n}\n.projects__content .form-control[data-v-20a4cce2] {\n    color: 666;\n    height: 45px;\n}\n.projects__desc[data-v-20a4cce2] {\n  font-weight: bold;\n  color: #777777;\n}\n.projects__information .table[data-v-20a4cce2] {\n  color: #777777;\n}\n.projects__information .table td[data-v-20a4cce2] {\n    width: 13%;\n}\n.projects__information .table th[data-v-20a4cce2] {\n    font-weight: normal;\n}\n.my-datepicker[data-v-20a4cce2] {\n  line-height: 21px;\n}\n.main-subtitle--room[data-v-20a4cce2] {\n  padding-top: 75px;\n}\n", ""]);
+
+// exports
+
+
+/***/ }),
+/* 382 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", [
+    _c(
+      "div",
+      {
+        staticClass:
+          "row col-10 fixed-part shadow bg-white rounded pl-3 align-items-center"
+      },
+      [
+        _c("div", { staticClass: "col-md-8" }, [
+          _c("h1", { staticClass: "main-caption" }, [
+            _vm._v(
+              "\n            " +
+                _vm._s(
+                  _vm.finished_order_act.description
+                    ? _vm.finished_order_act.description
+                    : _vm.finished_order_act.name
+                ) +
+                "\n          "
+            )
+          ])
+        ]),
+        _vm._v(" "),
+        _c(
+          "div",
+          { staticClass: "col-md-2 ml-auto" },
+          [
+            _c(
+              "router-link",
+              {
+                attrs: {
+                  to: {
+                    name: "order-finished-act-show",
+                    params: {
+                      id: _vm.finished_order_act.order.id,
+                      finished_act_id: _vm.finished_order_act.id
+                    }
+                  }
+                }
+              },
+              [
+                _c(
+                  "button",
+                  {
+                    staticClass: "primary-button w-100",
+                    attrs: { type: "button" }
+                  },
+                  [_vm._v("Редактировать")]
+                )
+              ]
+            )
+          ],
+          1
+        ),
+        _vm._v(" "),
+        _c("div", { staticClass: "col-md-6 pt-3" }, [
+          _c("h2", { staticClass: "main-subtitle" }, [
+            _vm._v(" Итого по акту: " + _vm._s(_vm.filteredPrice) + " Р")
+          ])
+        ])
+      ]
+    ),
+    _vm._v(" "),
+    _c("div", { staticClass: "row projects__content col-12 mt-3" }, [
+      _c(
+        "div",
+        { staticClass: "form-group d-flex align-items-center col-6" },
+        [
+          _c("datepicker", {
+            staticClass: "my-datepicker",
+            attrs: { placeholder: "Начало", language: _vm.ru },
+            on: {
+              selected: function($event) {
+                _vm.updateFinishedOrderAct()
+              }
+            },
+            model: {
+              value: _vm.state.begin_at,
+              callback: function($$v) {
+                _vm.$set(_vm.state, "begin_at", $$v)
+              },
+              expression: "state.begin_at"
+            }
+          }),
+          _vm._v(" "),
+          _c("datepicker", {
+            staticClass: "my-datepicker pl-3",
+            attrs: { placeholder: "Окончание", language: _vm.ru },
+            on: {
+              selected: function($event) {
+                _vm.updateFinishedOrderAct()
+              }
+            },
+            model: {
+              value: _vm.state.finish_at,
+              callback: function($$v) {
+                _vm.$set(_vm.state, "finish_at", $$v)
+              },
+              expression: "state.finish_at"
+            }
+          }),
+          _vm._v(" "),
+          _c("div", { staticClass: "col-md-3" }, [
+            _c(
+              "button",
+              {
+                staticClass: "primary-button w-100",
+                attrs: { type: "button" },
+                on: {
+                  click: function($event) {
+                    $event.preventDefault()
+                    _vm.exportFile()
+                  }
+                }
+              },
+              [_vm._v("\n                    Экспорт\n          ")]
+            )
+          ])
+        ],
+        1
+      )
+    ])
+  ])
+}
+var staticRenderFns = []
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-20a4cce2", module.exports)
+  }
+}
+
+/***/ }),
+/* 383 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c(
+    "div",
+    [
+      _c("basic-header"),
+      _vm._v(" "),
+      _c("div", { staticClass: "projects" }, [
+        _c("div", { staticClass: "container-fluid " }, [
+          _c(
+            "div",
+            { staticClass: "row" },
+            [
+              _c("navigation"),
+              _vm._v(" "),
+              _c(
+                "div",
+                { staticClass: "col-md-10" },
+                [
+                  _vm.finished_order_act.length !== 0
+                    ? _c("Detail", {
+                        attrs: { finished_order_act: _vm.finished_order_act }
+                      })
+                    : _vm._e(),
+                  _vm._v(" "),
+                  _vm._l(_vm.finished_order_act.finished_rooms, function(
+                    finished_room
+                  ) {
+                    return _vm.finished_order_act.finished_rooms.length !== 0
+                      ? _c("RoomDetail", {
+                          key: "finished-room-" + finished_room.id,
+                          attrs: { finished_room: finished_room }
+                        })
+                      : _vm._e()
+                  })
+                ],
+                2
+              )
+            ],
+            1
+          )
+        ])
+      ])
+    ],
+    1
+  )
+}
+var staticRenderFns = []
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-cde26ca0", module.exports)
+  }
+}
+
+/***/ }),
+/* 384 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+var normalizeComponent = __webpack_require__(1)
+/* script */
+var __vue_script__ = __webpack_require__(386)
+/* template */
+var __vue_template__ = __webpack_require__(385)
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = null
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources/assets/js/components/Orders/Services/Finished/Export/partials/RoomDetail.vue"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-d4fda0c6", Component.options)
+  } else {
+    hotAPI.reload("data-v-d4fda0c6", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 385 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c(
+    "div",
+    { staticClass: "col-12 px-0" },
+    [
+      _c(
+        "div",
+        { staticClass: "px-15" },
+        [
+          _c("h2", { staticClass: "main-subtitle main-subtitle--room" }, [
+            _vm._v(
+              "\n          " +
+                _vm._s(
+                  _vm.finished_room.room.description
+                    ? _vm.finished_room.room.description
+                    : _vm.finished_room.room.room_type.type
+                ) +
+                "\n      "
+            )
+          ]),
+          _vm._v(" "),
+          _vm.finished_room.room.room_type_id === 1
+            ? [
+                _c(
+                  "div",
+                  {
+                    staticClass:
+                      "projects__desc col-8 d-flex justify-content-between align-items-center py-3 pl-0"
+                  },
+                  [
+                    _c("div", { staticClass: "projects__desc-item" }, [
+                      _vm._v(
+                        "Общая площадь: " +
+                          _vm._s(_vm.finished_room.room.area) +
+                          " м"
+                      ),
+                      _c("sup", [_vm._v("2")])
+                    ]),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "projects__desc-item" }, [
+                      _vm._v(
+                        "Высота потолка: " +
+                          _vm._s(_vm.finished_room.room.height) +
+                          " м"
+                      )
+                    ]),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "projects__desc-item" }, [
+                      _vm._v(
+                        "Площадь стен: " +
+                          _vm._s(_vm.finished_room.room.wall_area) +
+                          " м"
+                      ),
+                      _c("sup", [_vm._v("2")])
+                    ]),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "projects__desc-item" }, [
+                      _vm._v(
+                        "Периметр: " + _vm._s(_vm.finished_room.room.perimeter)
+                      )
+                    ])
+                  ]
+                )
+              ]
+            : _vm._e()
+        ],
+        2
+      ),
+      _vm._v(" "),
+      _vm.finished_room.finished_room_services
+        ? [
+            _vm._l(
+              _vm.groupByServiceType(_vm.finished_room.finished_room_services),
+              function(finished_room_services, service_type_id) {
+                return [
+                  _c("div", { staticClass: "projects__information " }, [
+                    _c("div", { staticClass: "row bg px-3" }, [
+                      _c(
+                        "div",
+                        {
+                          staticClass:
+                            "main-subtitle main-subtitle--fz col-12 pt-4 pl-3"
+                        },
+                        [
+                          _vm._v(
+                            "\n                  " +
+                              _vm._s(_vm.getServiceTypeName(service_type_id)) +
+                              "\n                "
+                          )
+                        ]
+                      ),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "col-12 px-0" }, [
+                        _c("table", { staticClass: "table table-hover" }, [
+                          _c(
+                            "tbody",
+                            _vm._l(finished_room_services, function(
+                              finished_room_service
+                            ) {
+                              return _c(
+                                "tr",
+                                [
+                                  _c(
+                                    "th",
+                                    {
+                                      staticClass: "w-50",
+                                      attrs: { scope: "row" }
+                                    },
+                                    [_vm._v(_vm._s(finished_room_service.name))]
+                                  ),
+                                  _vm._v(" "),
+                                  _c("td", [
+                                    _vm._v(
+                                      _vm._s(finished_room_service.quantity) +
+                                        " " +
+                                        _vm._s(
+                                          finished_room_service.service.unit
+                                            .name
+                                        )
+                                    )
+                                  ]),
+                                  _vm._v(" "),
+                                  _vm.finished_order.order.discount
+                                    ? [
+                                        finished_room_service.service
+                                          .can_be_discounted
+                                          ? [
+                                              _c("td", [
+                                                _vm._v(
+                                                  _vm._s(
+                                                    finished_room_service.price *
+                                                      (1 -
+                                                        parseInt(
+                                                          _vm.finished_order
+                                                            .order.discount
+                                                        ) /
+                                                          100)
+                                                  ) +
+                                                    " Р/" +
+                                                    _vm._s(
+                                                      _vm.finished_service.unit
+                                                        .name
+                                                    )
+                                                )
+                                              ]),
+                                              _vm._v(" "),
+                                              _c("td", [
+                                                _vm._v(
+                                                  _vm._s(
+                                                    _vm.priceCount(
+                                                      _vm.finished_service.pivot
+                                                        .quantity,
+                                                      _vm.finished_service
+                                                        .price *
+                                                        (1 -
+                                                          parseInt(
+                                                            _vm.finished_order
+                                                              .order.discount
+                                                          ) /
+                                                            100)
+                                                    )
+                                                  ) + " Р"
+                                                )
+                                              ])
+                                            ]
+                                          : [
+                                              _c("td", [
+                                                _vm._v(
+                                                  _vm._s(
+                                                    _vm.finished_service.price
+                                                  ) +
+                                                    " Р/" +
+                                                    _vm._s(
+                                                      _vm.finished_service.unit
+                                                        .name
+                                                    )
+                                                )
+                                              ]),
+                                              _vm._v(" "),
+                                              _c("td", [
+                                                _vm._v(
+                                                  _vm._s(
+                                                    _vm.priceCount(
+                                                      _vm.finished_service.pivot
+                                                        .quantity,
+                                                      _vm.finished_service.price
+                                                    )
+                                                  ) + " Р"
+                                                )
+                                              ])
+                                            ]
+                                      ]
+                                    : _vm._e(),
+                                  _vm._v(" "),
+                                  _vm.finished_order.order.markup
+                                    ? [
+                                        _c("td", [
+                                          _vm._v(
+                                            _vm._s(
+                                              _vm.finished_service.price *
+                                                (1 +
+                                                  parseInt(
+                                                    _vm.finished_order.order
+                                                      .markup
+                                                  ) /
+                                                    100)
+                                            ) +
+                                              " Р/" +
+                                              _vm._s(
+                                                _vm.finished_service.unit.name
+                                              )
+                                          )
+                                        ]),
+                                        _vm._v(" "),
+                                        _c("td", [
+                                          _vm._v(
+                                            _vm._s(
+                                              _vm.priceCount(
+                                                _vm.finished_service.pivot
+                                                  .quantity,
+                                                _vm.finished_service.price *
+                                                  (1 +
+                                                    parseInt(
+                                                      _vm.finished_order.order
+                                                        .markup
+                                                    ) /
+                                                      100)
+                                              )
+                                            ) + " Р"
+                                          )
+                                        ])
+                                      ]
+                                    : _vm._e(),
+                                  _vm._v(" "),
+                                  _vm.finished_order.order.discount === null &&
+                                  _vm.finished_order.order.markup === null
+                                    ? [
+                                        _c("td", [
+                                          _vm._v(
+                                            _vm._s(_vm.finished_service.price) +
+                                              " Р/" +
+                                              _vm._s(
+                                                _vm.finished_service.unit.name
+                                              )
+                                          )
+                                        ]),
+                                        _vm._v(" "),
+                                        _c("td", [
+                                          _vm._v(
+                                            _vm._s(
+                                              _vm.priceCount(
+                                                _vm.finished_service.pivot
+                                                  .quantity,
+                                                _vm.finished_service.price
+                                              )
+                                            ) + " Р"
+                                          )
+                                        ])
+                                      ]
+                                    : _vm._e()
+                                ],
+                                2
+                              )
+                            })
+                          )
+                        ])
+                      ])
+                    ])
+                  ])
+                ]
+              }
+            )
+          ]
+        : _vm._e()
+    ],
+    2
+  )
+}
+var staticRenderFns = []
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-d4fda0c6", module.exports)
+  }
+}
+
+/***/ }),
+/* 386 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+    props: ['finished_room']
+});
 
 /***/ })
 /******/ ]);
