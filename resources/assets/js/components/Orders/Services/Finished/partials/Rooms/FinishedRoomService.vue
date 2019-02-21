@@ -76,7 +76,7 @@
                     'quantity': this.quantity,
                     'price': this.room_service.quantity * this.filteredServicePrice,
                 }).then(response => {
-                    this.$emit('service-changed')
+                    EventBus.$emit('service-changed')
                 })
             },
 
@@ -85,7 +85,7 @@
                     'finished_room_id': this.finished_room_id,
                     'service_id': this.room_service.service_id
                 }).then(() => {
-                    this.getFinishedRoomServices()
+                    EventBus.$emit('service-changed')
                 })
             },
 
@@ -100,7 +100,7 @@
                     'quantity': this.quantity,
                     'price': this.room_service.quantity * this.filteredServicePrice,
                 }).then(response => {
-                    this.$emit('service-changed')
+                    EventBus.$emit('service-changed')
                 })
             },
 

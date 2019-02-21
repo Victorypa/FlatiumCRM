@@ -37,15 +37,8 @@
 </template>
 
 <script>
-    import { EventBus } from '@/bus'
     export default {
         props: ['finished_order_act', 'order'],
-
-        mounted () {
-            EventBus.$on('fetched-price', (value) => {
-                console.log(value);
-            })
-        },
 
         methods: {
             filteredInteger (data) {

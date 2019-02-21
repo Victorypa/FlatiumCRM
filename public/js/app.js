@@ -57745,7 +57745,7 @@ exports = module.exports = __webpack_require__(2)(false);
 
 
 // module
-exports.push([module.i, "\n.fixed-part[data-v-5e7cc884] {\n  position: fixed;\n  background-color: #fff;\n  padding-bottom: 35px;\n  padding-top: 85px;\n  z-index: 999;\n}\n.projects__desc[data-v-5e7cc884] {\n  font-weight: bold;\n  color: #777777;\n}\n.projects__information .table[data-v-5e7cc884] {\n  color: #777777;\n}\n.projects__information .table td[data-v-5e7cc884] {\n    width: 13%;\n}\n.projects__information .table th[data-v-5e7cc884] {\n    font-weight: normal;\n}\n.form-check-label[data-v-5e7cc884] {\n  padding-top: 1px;\n  cursor: pointer;\n}\n.form-check-label[data-v-5e7cc884]:before {\n    border: 1px solid #CCCCCC;\n    border-radius: 0;\n}\n.form-check-label[data-v-5e7cc884]::after {\n    position: absolute;\n    left: -18px;\n    top: 5px;\n    padding-left: 3px;\n    font-size: 11px;\n    color: #00A4D1;\n}\n.form-check-label[data-v-5e7cc884]:hover {\n    color: #03B8E9;\n}\n.form-check input[type=\"checkbox\"]:checked + label[data-v-5e7cc884]::after,\n.form-check .abc-checkbox input[type=\"radio\"]:checked + label[data-v-5e7cc884]::after {\n  font-family: \"FontAwesome\";\n  content: \"\\F00C\";\n}\n.form-check label[data-v-5e7cc884] {\n  cursor: pointer;\n  display: inline;\n  vertical-align: top;\n  position: relative;\n  padding-left: 5px;\n}\n.form-check label[data-v-5e7cc884]::before {\n    content: \"\";\n    position: absolute;\n    width: 20px;\n    height: 20px;\n    top: 3px;\n    left: 0px;\n    margin-left: -1.25rem;\n    border-radius: 0;\n    background-color: #fff;\n    -webkit-transition: border 0.15s ease-in-out, color 0.15s ease-in-out;\n    transition: border 0.15s ease-in-out, color 0.15s ease-in-out;\n}\n.small-case[data-v-5e7cc884] {\n  font-size: 0.8rem;\n}\n.small-case th[data-v-5e7cc884]:first-child {\n    padding-left: 60px;\n}\ntr[data-v-5e7cc884]:hover {\n  cursor: pointer;\n}\n.main-caption img[data-v-5e7cc884] {\n  width: 16px;\n  cursor: pointer;\n}\n", ""]);
+exports.push([module.i, "\n.fixed-part[data-v-5e7cc884] {\n  position: fixed;\n  background-color: #fff;\n  padding-bottom: 35px;\n  padding-top: 85px;\n  z-index: 999;\n}\n", ""]);
 
 // exports
 
@@ -57756,10 +57756,11 @@ exports.push([module.i, "\n.fixed-part[data-v-5e7cc884] {\n  position: fixed;\n 
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__partials_FinishedActDetail__ = __webpack_require__(258);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__partials_FinishedActDetail___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__partials_FinishedActDetail__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__partials_Rooms_FinishedRoom__ = __webpack_require__(261);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__partials_Rooms_FinishedRoom___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__partials_Rooms_FinishedRoom__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__bus__ = __webpack_require__(139);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__partials_FinishedActDetail__ = __webpack_require__(258);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__partials_FinishedActDetail___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__partials_FinishedActDetail__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__partials_Rooms_FinishedRoom__ = __webpack_require__(261);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__partials_Rooms_FinishedRoom___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2__partials_Rooms_FinishedRoom__);
 //
 //
 //
@@ -57786,14 +57787,15 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+
 
 
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     components: {
-        FinishedRoom: __WEBPACK_IMPORTED_MODULE_1__partials_Rooms_FinishedRoom___default.a,
-        FinishedActDetail: __WEBPACK_IMPORTED_MODULE_0__partials_FinishedActDetail___default.a
+        FinishedRoom: __WEBPACK_IMPORTED_MODULE_2__partials_Rooms_FinishedRoom___default.a,
+        FinishedActDetail: __WEBPACK_IMPORTED_MODULE_1__partials_FinishedActDetail___default.a
     },
 
     data: function data() {
@@ -57807,21 +57809,28 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         this.getOrder();
         this.getFinishedOrderAct();
     },
+    mounted: function mounted() {
+        var _this = this;
+
+        __WEBPACK_IMPORTED_MODULE_0__bus__["a" /* EventBus */].$on('service-changed', function () {
+            _this.getFinishedOrderAct();
+        });
+    },
 
 
     methods: {
         getOrder: function getOrder() {
-            var _this = this;
+            var _this2 = this;
 
             return axios.get('/api/orders/' + this.$route.params.id).then(function (response) {
-                _this.order = response.data;
+                _this2.order = response.data;
             });
         },
         getFinishedOrderAct: function getFinishedOrderAct() {
-            var _this2 = this;
+            var _this3 = this;
 
             return axios.get('/api/orders/' + this.$route.params.id + '/finished_order_act/' + this.$route.params.finished_act_id + '/show').then(function (response) {
-                _this2.finished_order_act = response.data;
+                _this3.finished_order_act = response.data;
             });
         }
     }
@@ -57880,7 +57889,6 @@ module.exports = Component.exports
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__bus__ = __webpack_require__(139);
 //
 //
 //
@@ -57919,17 +57927,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     props: ['finished_order_act', 'order'],
-
-    mounted: function mounted() {
-        __WEBPACK_IMPORTED_MODULE_0__bus__["a" /* EventBus */].$on('fetched-price', function (value) {
-            console.log(value);
-        });
-    },
-
 
     methods: {
         filteredInteger: function filteredInteger(data) {
@@ -58361,40 +58361,34 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             });
         },
         addFinishService: function addFinishService() {
-            var _this2 = this;
-
             axios.post('/api/orders/' + this.$route.params.id + '/finished_order_act/' + this.$route.params.finished_act_id + '/services/store', {
                 'finished_room_id': this.finished_room_id,
                 'service_id': this.room_service.service_id,
                 'quantity': this.quantity,
                 'price': this.room_service.quantity * this.filteredServicePrice
             }).then(function (response) {
-                _this2.$emit('service-changed');
+                __WEBPACK_IMPORTED_MODULE_0__bus__["a" /* EventBus */].$emit('service-changed');
             });
         },
         removeFinishService: function removeFinishService() {
-            var _this3 = this;
-
             axios.post('/api/orders/' + this.$route.params.id + '/finished_order_act/' + this.$route.params.finished_act_id + '/services/destroy', {
                 'finished_room_id': this.finished_room_id,
                 'service_id': this.room_service.service_id
             }).then(function () {
-                _this3.getFinishedRoomServices();
+                __WEBPACK_IMPORTED_MODULE_0__bus__["a" /* EventBus */].$emit('service-changed');
             });
         },
         handle: function handle() {
             this.finished_room_service_ids.includes(this.room_service.service_id) ? this.removeFinishService() : this.addFinishService();
         },
         updateFinishServiceQuantity: function updateFinishServiceQuantity() {
-            var _this4 = this;
-
             axios.patch('/api/orders/' + this.$route.params.id + '/finished_order_act/' + this.$route.params.finished_act_id + '/services/update', {
                 'finished_room_id': this.finished_room_id,
                 'service_id': this.room_service.service_id,
                 'quantity': this.quantity,
                 'price': this.room_service.quantity * this.filteredServicePrice
             }).then(function (response) {
-                _this4.$emit('service-changed');
+                __WEBPACK_IMPORTED_MODULE_0__bus__["a" /* EventBus */].$emit('service-changed');
             });
         },
         priceCount: function priceCount(quantity, price) {
@@ -58404,10 +58398,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
     computed: {
         finished_room_id: function finished_room_id() {
-            var _this5 = this;
+            var _this2 = this;
 
             return this.room.finished_room.filter(function (row) {
-                return row.finished_order_act_id == _this5.$route.params.finished_act_id;
+                return row.finished_order_act_id == _this2.$route.params.finished_act_id;
             })[0].id;
         },
         filteredServicePrice: function filteredServicePrice() {
@@ -59392,14 +59386,14 @@ var render = function() {
                               2
                             ),
                             _vm._v(" "),
-                            finished_room.finished_services
+                            finished_room.finished_room_services
                               ? [
                                   _vm._l(
                                     _vm.groupByServiceType(
-                                      finished_room.finished_services
+                                      finished_room.finished_room_services
                                     ),
                                     function(
-                                      finished_services,
+                                      finished_room_services,
                                       service_type_id
                                     ) {
                                       return [
@@ -59449,257 +59443,45 @@ var render = function() {
                                                         _c(
                                                           "tbody",
                                                           _vm._l(
-                                                            finished_services,
+                                                            finished_room_services,
                                                             function(
-                                                              finished_service
+                                                              finished_room_service
                                                             ) {
-                                                              return _c(
-                                                                "tr",
-                                                                [
-                                                                  _c(
-                                                                    "th",
-                                                                    {
-                                                                      staticClass:
-                                                                        "w-50",
-                                                                      attrs: {
-                                                                        scope:
-                                                                          "row"
-                                                                      }
-                                                                    },
-                                                                    [
-                                                                      _vm._v(
-                                                                        _vm._s(
-                                                                          finished_service.name
-                                                                        )
-                                                                      )
-                                                                    ]
-                                                                  ),
-                                                                  _vm._v(" "),
-                                                                  _c("td", [
+                                                              return _c("tr", [
+                                                                _c(
+                                                                  "th",
+                                                                  {
+                                                                    staticClass:
+                                                                      "w-50",
+                                                                    attrs: {
+                                                                      scope:
+                                                                        "row"
+                                                                    }
+                                                                  },
+                                                                  [
                                                                     _vm._v(
                                                                       _vm._s(
-                                                                        finished_service
-                                                                          .pivot
-                                                                          .quantity
-                                                                      ) +
-                                                                        " " +
-                                                                        _vm._s(
-                                                                          finished_service
-                                                                            .unit
-                                                                            .name
-                                                                        )
+                                                                        finished_room_service.name
+                                                                      )
                                                                     )
-                                                                  ]),
-                                                                  _vm._v(" "),
-                                                                  _vm
-                                                                    .finished_order
-                                                                    .order
-                                                                    .discount
-                                                                    ? [
-                                                                        finished_service.can_be_discounted
-                                                                          ? [
-                                                                              _c(
-                                                                                "td",
-                                                                                [
-                                                                                  _vm._v(
-                                                                                    _vm._s(
-                                                                                      finished_service.price *
-                                                                                        (1 -
-                                                                                          parseInt(
-                                                                                            _vm
-                                                                                              .finished_order
-                                                                                              .order
-                                                                                              .discount
-                                                                                          ) /
-                                                                                            100)
-                                                                                    ) +
-                                                                                      " Р/" +
-                                                                                      _vm._s(
-                                                                                        finished_service
-                                                                                          .unit
-                                                                                          .name
-                                                                                      )
-                                                                                  )
-                                                                                ]
-                                                                              ),
-                                                                              _vm._v(
-                                                                                " "
-                                                                              ),
-                                                                              _c(
-                                                                                "td",
-                                                                                [
-                                                                                  _vm._v(
-                                                                                    _vm._s(
-                                                                                      _vm.priceCount(
-                                                                                        finished_service
-                                                                                          .pivot
-                                                                                          .quantity,
-                                                                                        finished_service.price *
-                                                                                          (1 -
-                                                                                            parseInt(
-                                                                                              _vm
-                                                                                                .finished_order
-                                                                                                .order
-                                                                                                .discount
-                                                                                            ) /
-                                                                                              100)
-                                                                                      )
-                                                                                    ) +
-                                                                                      " Р"
-                                                                                  )
-                                                                                ]
-                                                                              )
-                                                                            ]
-                                                                          : [
-                                                                              _c(
-                                                                                "td",
-                                                                                [
-                                                                                  _vm._v(
-                                                                                    _vm._s(
-                                                                                      finished_service.price
-                                                                                    ) +
-                                                                                      " Р/" +
-                                                                                      _vm._s(
-                                                                                        finished_service
-                                                                                          .unit
-                                                                                          .name
-                                                                                      )
-                                                                                  )
-                                                                                ]
-                                                                              ),
-                                                                              _vm._v(
-                                                                                " "
-                                                                              ),
-                                                                              _c(
-                                                                                "td",
-                                                                                [
-                                                                                  _vm._v(
-                                                                                    _vm._s(
-                                                                                      _vm.priceCount(
-                                                                                        finished_service
-                                                                                          .pivot
-                                                                                          .quantity,
-                                                                                        finished_service.price
-                                                                                      )
-                                                                                    ) +
-                                                                                      " Р"
-                                                                                  )
-                                                                                ]
-                                                                              )
-                                                                            ]
-                                                                      ]
-                                                                    : _vm._e(),
-                                                                  _vm._v(" "),
-                                                                  _vm
-                                                                    .finished_order
-                                                                    .order
-                                                                    .markup
-                                                                    ? [
-                                                                        _c(
-                                                                          "td",
-                                                                          [
-                                                                            _vm._v(
-                                                                              _vm._s(
-                                                                                finished_service.price *
-                                                                                  (1 +
-                                                                                    parseInt(
-                                                                                      _vm
-                                                                                        .finished_order
-                                                                                        .order
-                                                                                        .markup
-                                                                                    ) /
-                                                                                      100)
-                                                                              ) +
-                                                                                " Р/" +
-                                                                                _vm._s(
-                                                                                  finished_service
-                                                                                    .unit
-                                                                                    .name
-                                                                                )
-                                                                            )
-                                                                          ]
-                                                                        ),
-                                                                        _vm._v(
-                                                                          " "
-                                                                        ),
-                                                                        _c(
-                                                                          "td",
-                                                                          [
-                                                                            _vm._v(
-                                                                              _vm._s(
-                                                                                _vm.priceCount(
-                                                                                  finished_service
-                                                                                    .pivot
-                                                                                    .quantity,
-                                                                                  finished_service.price *
-                                                                                    (1 +
-                                                                                      parseInt(
-                                                                                        _vm
-                                                                                          .finished_order
-                                                                                          .order
-                                                                                          .markup
-                                                                                      ) /
-                                                                                        100)
-                                                                                )
-                                                                              ) +
-                                                                                " Р"
-                                                                            )
-                                                                          ]
-                                                                        )
-                                                                      ]
-                                                                    : _vm._e(),
-                                                                  _vm._v(" "),
-                                                                  _vm
-                                                                    .finished_order
-                                                                    .order
-                                                                    .discount ===
-                                                                    null &&
-                                                                  _vm
-                                                                    .finished_order
-                                                                    .order
-                                                                    .markup ===
-                                                                    null
-                                                                    ? [
-                                                                        _c(
-                                                                          "td",
-                                                                          [
-                                                                            _vm._v(
-                                                                              _vm._s(
-                                                                                finished_service.price
-                                                                              ) +
-                                                                                " Р/" +
-                                                                                _vm._s(
-                                                                                  finished_service
-                                                                                    .unit
-                                                                                    .name
-                                                                                )
-                                                                            )
-                                                                          ]
-                                                                        ),
-                                                                        _vm._v(
-                                                                          " "
-                                                                        ),
-                                                                        _c(
-                                                                          "td",
-                                                                          [
-                                                                            _vm._v(
-                                                                              _vm._s(
-                                                                                _vm.priceCount(
-                                                                                  finished_service
-                                                                                    .pivot
-                                                                                    .quantity,
-                                                                                  finished_service.price
-                                                                                )
-                                                                              ) +
-                                                                                " Р"
-                                                                            )
-                                                                          ]
-                                                                        )
-                                                                      ]
-                                                                    : _vm._e()
-                                                                ],
-                                                                2
-                                                              )
+                                                                  ]
+                                                                ),
+                                                                _vm._v(" "),
+                                                                _c("td", [
+                                                                  _vm._v(
+                                                                    _vm._s(
+                                                                      finished_room_service.quantity
+                                                                    ) +
+                                                                      " " +
+                                                                      _vm._s(
+                                                                        finished_room_service
+                                                                          .service
+                                                                          .unit
+                                                                          .name
+                                                                      )
+                                                                  )
+                                                                ])
+                                                              ])
                                                             }
                                                           )
                                                         )
