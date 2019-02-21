@@ -63767,6 +63767,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
 
 
 
@@ -64426,7 +64427,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
 
 
 
@@ -64569,7 +64569,7 @@ var render = function() {
               attrs: {
                 to: {
                   name: "service-material",
-                  params: { service_id: _vm.room_service.id }
+                  params: { service_id: _vm.room_service.service_id }
                 }
               }
             },
@@ -65193,73 +65193,70 @@ var render = function() {
       ),
       _vm._v(" "),
       _vm.service_type_id !== 0
-        ? [
-            _c(
-              "div",
-              {
-                staticClass: "col-12 pr-0",
-                staticStyle: { "margin-bottom": "5em" }
-              },
-              [
-                _c(
+        ? _c(
+            "div",
+            {
+              staticClass: "col-12 pr-0",
+              staticStyle: { "margin-bottom": "5em" }
+            },
+            [
+              _c(
+                "div",
+                { staticClass: "main-subtitle main-subtitle--fz pt-3 pb-2" },
+                [
+                  _vm._v(
+                    "\n          " +
+                      _vm._s(_vm.getServiceTypeName(_vm.service_type_id)) +
+                      "\n      "
+                  )
+                ]
+              ),
+              _vm._v(" "),
+              _vm._l(_vm.filteredRoomServices, function(room_service) {
+                return _c(
                   "div",
-                  { staticClass: "main-subtitle main-subtitle--fz pt-3 pb-2" },
+                  { staticClass: "col-md-12 px-0 all-items" },
                   [
-                    _vm._v(
-                      "\n              " +
-                        _vm._s(_vm.getServiceTypeName(_vm.service_type_id)) +
-                        "\n          "
-                    )
-                  ]
-                ),
-                _vm._v(" "),
-                _vm._l(_vm.filteredRoomServices, function(room_service) {
-                  return _c(
-                    "div",
-                    { staticClass: "col-md-12 px-0 all-items" },
-                    [
-                      _c("RoomService", {
-                        key: room_service.service_id,
-                        attrs: { room_service: room_service, room: _vm.room },
-                        on: {
-                          "removed-service": function($event) {
-                            _vm.getRoomServices()
-                          },
-                          "deleted-service": function($event) {
-                            _vm.handleDeletedService()
-                          }
+                    _c("RoomService", {
+                      key: room_service.service_id,
+                      attrs: { room_service: room_service, room: _vm.room },
+                      on: {
+                        "removed-service": function($event) {
+                          _vm.getRoomServices()
+                        },
+                        "deleted-service": function($event) {
+                          _vm.handleDeletedService()
                         }
-                      })
-                    ],
-                    1
-                  )
-                }),
-                _vm._v(" "),
-                _vm._l(_vm.filteredServices, function(service) {
-                  return _c(
-                    "div",
-                    { staticClass: "col-md-12 px-0 all-items" },
-                    [
-                      _c("Service", {
-                        key: service.id,
-                        attrs: { service: service, room: _vm.room },
-                        on: {
-                          "added-service": function($event) {
-                            _vm.getRoomServices()
-                          }
+                      }
+                    })
+                  ],
+                  1
+                )
+              }),
+              _vm._v(" "),
+              _vm._l(_vm.filteredServices, function(service) {
+                return _c(
+                  "div",
+                  { staticClass: "col-md-12 px-0 all-items" },
+                  [
+                    _c("Service", {
+                      key: service.id,
+                      attrs: { service: service, room: _vm.room },
+                      on: {
+                        "added-service": function($event) {
+                          _vm.getRoomServices()
                         }
-                      })
-                    ],
-                    1
-                  )
-                })
-              ],
-              2
-            )
-          ]
+                      }
+                    })
+                  ],
+                  1
+                )
+              })
+            ],
+            2
+          )
         : _vm._e()
-    ],
-    2
+    ]
   )
 }
 var staticRenderFns = []
@@ -93542,18 +93539,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 
 
 
@@ -94004,7 +93989,9 @@ var render = function() {
                               ])
                             ]),
                             _vm._v(" "),
-                            _c("ExtraServices")
+                            _c("ExtraServices", {
+                              attrs: { extra_room: _vm.extra_room }
+                            })
                           ],
                           1
                         )
@@ -95042,6 +95029,37 @@ module.exports = Component.exports
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__components_Services_partials_AddService__ = __webpack_require__(153);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__components_Services_partials_AddService___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__components_Services_partials_AddService__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__partials_ExtraRoomService__ = __webpack_require__(429);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__partials_ExtraRoomService___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__partials_ExtraRoomService__);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -95066,7 +95084,12 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 
+
+
+
 /* harmony default export */ __webpack_exports__["default"] = ({
+    props: ['extra_room'],
+
     data: function data() {
         return {
             service_type_id: 1,
@@ -95074,6 +95097,12 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             searchQuery: ''
         };
     },
+
+
+    components: {
+        AddService: __WEBPACK_IMPORTED_MODULE_0__components_Services_partials_AddService___default.a, ExtraRoomService: __WEBPACK_IMPORTED_MODULE_1__partials_ExtraRoomService___default.a
+    },
+
     created: function created() {
         this.getServiceTypes();
     },
@@ -95090,6 +95119,31 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                     _this.service_types = response.data;
                     localStorage.setItem('service_types', JSON.stringify(_this.service_types));
                 });
+            }
+        },
+        getServiceTypeName: function getServiceTypeName(service_type_id) {
+            var _this2 = this;
+
+            if (this.service_types.length) {
+                return this.service_types.filter(function (row) {
+                    return row.id === _this2.service_type_id;
+                })[0].name;
+            }
+        }
+    },
+
+    computed: {
+        filteredExtraRoomServices: function filteredExtraRoomServices() {
+            var _this3 = this;
+
+            if (this.extra_room.length !== 0) {
+                var data = this.extra_room.extra_room_services;
+
+                data = data.filter(function (row) {
+                    return row.service_type_id === _this3.service_type_id;
+                });
+
+                return data;
             }
         }
     }
@@ -95180,7 +95234,66 @@ var render = function() {
             })
           ]
         )
-      ])
+      ]),
+      _vm._v(" "),
+      _c(
+        "div",
+        { staticClass: "col-12" },
+        [
+          _c("AddService", {
+            attrs: { service_type_id: _vm.service_type_id },
+            on: {
+              "created-service": function($event) {
+                _vm.getServices()
+              }
+            }
+          })
+        ],
+        1
+      ),
+      _vm._v(" "),
+      _vm.service_type_id !== 0
+        ? _c(
+            "div",
+            {
+              staticClass: "col-12 pr-0",
+              staticStyle: { "margin-bottom": "5em" }
+            },
+            [
+              _c(
+                "div",
+                { staticClass: "main-subtitle main-subtitle--fz pt-3 pb-2" },
+                [
+                  _vm._v(
+                    "\n             " +
+                      _vm._s(_vm.getServiceTypeName(_vm.service_type_id)) +
+                      "\n         "
+                  )
+                ]
+              ),
+              _vm._v(" "),
+              _vm._l(_vm.filteredExtraRoomServices, function(
+                extra_room_service
+              ) {
+                return _c(
+                  "div",
+                  { staticClass: "col-md-12 px-0 all-items" },
+                  [
+                    _c("ExtraRoomService", {
+                      key: extra_room_service.service_id,
+                      attrs: {
+                        extra_room_service: extra_room_service,
+                        extra_room: _vm.extra_room
+                      }
+                    })
+                  ],
+                  1
+                )
+              })
+            ],
+            2
+          )
+        : _vm._e()
     ]
   )
 }
@@ -95191,6 +95304,250 @@ if (false) {
   module.hot.accept()
   if (module.hot.data) {
     require("vue-hot-reload-api")      .rerender("data-v-182673f1", module.exports)
+  }
+}
+
+/***/ }),
+/* 429 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+var normalizeComponent = __webpack_require__(1)
+/* script */
+var __vue_script__ = __webpack_require__(430)
+/* template */
+var __vue_template__ = __webpack_require__(431)
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = null
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources/assets/js/components/Orders/Services/Extra/Rooms/Services/partials/ExtraRoomService.vue"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-56718f2a", Component.options)
+  } else {
+    hotAPI.reload("data-v-56718f2a", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 430 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+    props: ['extra_room_service'],
+
+    created: function created() {}
+});
+
+/***/ }),
+/* 431 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", { staticClass: "row align-items-center" }, [
+    _c("label", { staticClass: "col-md-3 mb-0 d-flex align-items-center" }, [
+      _c(
+        "div",
+        { staticClass: "form-check custom-control d-flex edit-show" },
+        [
+          _c("input", {
+            staticClass: "form-check-input",
+            attrs: {
+              type: "checkbox",
+              id: "extra-room-service-" + _vm.extra_room_service.id
+            },
+            domProps: { checked: true },
+            on: {
+              click: function($event) {
+                _vm.removeService()
+              }
+            }
+          }),
+          _vm._v(" "),
+          _c(
+            "label",
+            {
+              staticClass: "form-check-label",
+              attrs: { for: "extra-room-service-" + _vm.extra_room_service.id }
+            },
+            [
+              _vm._v(
+                "\n                   " +
+                  _vm._s(_vm.extra_room_service.service.name) +
+                  "\n            "
+              )
+            ]
+          ),
+          _vm._v(" "),
+          _c(
+            "router-link",
+            {
+              staticClass: "ml-auto edit",
+              attrs: {
+                to: {
+                  name: "service-material",
+                  params: { service_id: _vm.extra_room_service.service_id }
+                }
+              }
+            },
+            [_vm._v("\n                    Ред.\n            ")]
+          )
+        ],
+        1
+      )
+    ])
+  ])
+}
+var staticRenderFns = []
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-56718f2a", module.exports)
   }
 }
 

@@ -1,6 +1,5 @@
 <template>
     <div class="row align-items-center">
-
         <input type="text"
                class="col-md-1 w-85"
                placeholder="Приоритет"
@@ -24,7 +23,7 @@
                        {{ room_service.service.name }}
                 </label>
 
-                <router-link class="ml-auto edit" :to="{ name: 'service-material', params: { service_id: room_service.id } }">
+                <router-link class="ml-auto edit" :to="{ name: 'service-material', params: { service_id: room_service.service_id } }">
                         Ред.
                 </router-link>
             </div>

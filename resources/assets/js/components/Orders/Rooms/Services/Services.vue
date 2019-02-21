@@ -25,36 +25,37 @@
                             />
             </div>
 
-            <template v-if="service_type_id !== 0">
-                <div class="col-12 pr-0" style="margin-bottom: 5em;">
-                  <div class="main-subtitle main-subtitle--fz pt-3 pb-2">
-                      {{ getServiceTypeName(service_type_id) }}
-                  </div>
+            <div class="col-12 pr-0"
+                 style="margin-bottom: 5em;"
+                 v-if="service_type_id !== 0"
+                 >
+              <div class="main-subtitle main-subtitle--fz pt-3 pb-2">
+                  {{ getServiceTypeName(service_type_id) }}
+              </div>
 
-                  <div class="col-md-12 px-0 all-items"
-                       v-for="room_service in filteredRoomServices"
-                       >
-                          <RoomService :room_service="room_service"
-                                       :room="room"
-                                       :key="room_service.service_id"
-                                       @removed-service="getRoomServices()"
-                                       @deleted-service="handleDeletedService()"
-                                       />
-                  </div>
+              <div class="col-md-12 px-0 all-items"
+                   v-for="room_service in filteredRoomServices"
+                   >
+                      <RoomService :room_service="room_service"
+                                   :room="room"
+                                   :key="room_service.service_id"
+                                   @removed-service="getRoomServices()"
+                                   @deleted-service="handleDeletedService()"
+                                   />
+              </div>
 
-                  <div class="col-md-12 px-0 all-items"
-                       v-for="service in filteredServices"
-                       >
+              <div class="col-md-12 px-0 all-items"
+                   v-for="service in filteredServices"
+                   >
 
-                       <Service :service="service"
-                                :room="room"
-                                :key="service.id"
-                                @added-service="getRoomServices()"
-                                />
-                  </div>
-                </div>
-
-            </template>
+                   <Service :service="service"
+                            :room="room"
+                            :key="service.id"
+                            @added-service="getRoomServices()"
+                            />
+              </div>
+            </div>
+            
         </div>
 </template>
 

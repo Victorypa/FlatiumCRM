@@ -107,19 +107,7 @@
                             </div>
                         </div>
 
-                        <ExtraServices />
-
-
-
-                        <!-- <ExtraRoomService v-if="extra_room.extra_room_services.length !== 0"
-                                           v-for="extra_room_service in extra_room.extra_room_services"
-                                           :extra_room_service="extra_room_service"
-                                           :key="'extra-room-service-' + extra_room_service.id"
-                                           /> -->
-
-                        <!-- <template v-if="extra_room.room && order">
-                            <services :extra_room="extra_room" :order="order" :key="'extra-room-' + extra_room.id" @price="getPrice"></services>
-                        </template> -->
+                        <ExtraServices :extra_room="extra_room" />
 
                     </div>
                 </div>
