@@ -103,10 +103,8 @@ class AmoDataFetch extends Command
     protected function allowedStatuses()
     {
         $allowed_status_ids = [
-            18733813,
-            21851482,
-            632370133, 22510579,
-            19015582
+            18733813, 21851482, 632370133,
+            22510579, 19015582
         ];
         // $allowed_status_ids = [
         //     19015585, 21236431, 18733813, 21851482,

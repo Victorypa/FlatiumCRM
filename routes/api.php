@@ -123,6 +123,7 @@ use Illuminate\Http\Request;
          * Extra Order Act
         */
         Route::group(['namespace' => 'Acts'], function () {
+            Route::get('/{order}/extra_order_acts', 'ExtraOrderActController@index');
             Route::get('/{order}/extra_order_act/{extra_order_act}', 'ExtraOrderActController@show');
             Route::patch('/{order}/extra_order_act/{extra_order_act}/update', 'ExtraOrderActController@update');
             Route::post('/{order}/extra_order_act/store', 'ExtraOrderActController@store');

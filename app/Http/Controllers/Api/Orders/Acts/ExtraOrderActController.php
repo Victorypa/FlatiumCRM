@@ -12,12 +12,17 @@ use App\Models\Orders\Acts\ExtraOrderAct;
 
 class ExtraOrderActController extends Controller
 {
+    public function index(Order $order)
+    {
+        return $order->extra_order_acts()->get();
+    }
+
     public function show(Order $order, ExtraOrderAct $extra_order_act)
     {
         $filteredExtraOrderAct = ExtraOrderAct::where('id', $extra_order_act->id)
                                     ->with([
                                         'order', 'extra_rooms', 'extra_rooms.room',
-                                        'extra_rooms.room.roomType', 'extra_rooms.extra_room_services', 
+                                        'extra_rooms.room.roomType', 'extra_rooms.extra_room_services',
                                         'extra_rooms.extra_room_services', 'order.rooms.order', 'extra_rooms.extra_room_services.service'
                                     ])
                                     ->first();
@@ -25,19 +30,18 @@ class ExtraOrderActController extends Controller
         return response()->json($filteredExtraOrderAct);
     }
 
-    public function store(Request $request)
+    public function store(Order $order, Request $request)
     {
-        $extra_order_act = ExtraOrderAct::create([
-            'order_id' => $request->order_id,
-            'name' => $request->name
+        $extra_order_act = $order->extra_order_acts()->create([
+            'name' => $request->state['name'],
+            'description' => $request->state['description'],
+            'begin_at' => new DateTime($request->state['begin_at']),
+            'finish_at' => new DateTime($request->state['finish_at'])
         ]);
 
         $this->createExtraRooms($extra_order_act);
 
-        $filtered_extra_order_act = ExtraOrderAct::where('id', $extra_order_act->id)->with('extra_rooms')->first();
-
-        return response()->json($filtered_extra_order_act);
-
+        return response()->json($extra_order_act);
     }
 
     public function update(Order $order, ExtraOrderAct $extra_order_act, Request $request)

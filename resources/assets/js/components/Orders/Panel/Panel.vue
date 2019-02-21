@@ -30,11 +30,15 @@
                                         </div>
                             </router-link>
 
-                            <!-- <div :class="panelClass">
-                                <div class="card-body">
-                                  <h5 class="card-title">Акты дополнительных работ</h5>
-                                </div>
-                            </div> -->
+                            <router-link v-if="ExtraActsPath" :class="panelClass"
+                                         :to="ExtraActsPath"
+                                         >
+                                        <div class="card-body">
+                                          <h5 class="card-title">
+                                              Акты дополнительных работ
+                                          </h5>
+                                        </div>
+                            </router-link>
 
                             <router-link v-if="financePath" :class="panelClass"
                                          :to="financePath"
@@ -140,6 +144,13 @@
             finishedActsPath () {
                 return {
                     name: 'order-finished-acts',
+                    params: { id: this.$route.params.id }
+                }
+            },
+
+            ExtraActsPath () {
+                return {
+                    name: 'order-extra-acts',
                     params: { id: this.$route.params.id }
                 }
             }
