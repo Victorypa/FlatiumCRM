@@ -95722,211 +95722,49 @@ var render = function() {
         2
       ),
       _vm._v(" "),
-      _vm.finished_room.finished_room_services
-        ? [
-            _vm._l(
-              _vm.groupByServiceType(_vm.finished_room.finished_room_services),
-              function(finished_room_services, service_type_id) {
-                return [
-                  _c("div", { staticClass: "projects__information " }, [
-                    _c("div", { staticClass: "row bg px-3" }, [
+      _vm._l(
+        _vm.groupByServiceType(_vm.finished_room.finished_room_services),
+        function(finished_room_services, service_type) {
+          return _vm.finished_room.finished_room_services
+            ? _c("div", { staticClass: "projects__information" }, [
+                _c("div", { staticClass: "row bg px-3" }, [
+                  _c(
+                    "div",
+                    {
+                      staticClass:
+                        "main-subtitle main-subtitle--fz col-12 pt-4 pl-3"
+                    },
+                    [
+                      _vm._v(
+                        "\n            " + _vm._s(service_type) + "\n        "
+                      )
+                    ]
+                  ),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "col-12 px-0" }, [
+                    _c("table", { staticClass: "table table-hover" }, [
                       _c(
-                        "div",
-                        {
-                          staticClass:
-                            "main-subtitle main-subtitle--fz col-12 pt-4 pl-3"
-                        },
-                        [
-                          _vm._v(
-                            "\n                  " +
-                              _vm._s(_vm.getServiceTypeName(service_type_id)) +
-                              "\n                "
-                          )
-                        ]
-                      ),
-                      _vm._v(" "),
-                      _c("div", { staticClass: "col-12 px-0" }, [
-                        _c("table", { staticClass: "table table-hover" }, [
-                          _c(
-                            "tbody",
-                            _vm._l(finished_room_services, function(
-                              finished_room_service
-                            ) {
-                              return _c(
-                                "tr",
-                                [
-                                  _c(
-                                    "th",
-                                    {
-                                      staticClass: "w-50",
-                                      attrs: { scope: "row" }
-                                    },
-                                    [_vm._v(_vm._s(finished_room_service.name))]
-                                  ),
-                                  _vm._v(" "),
-                                  _c("td", [
-                                    _vm._v(
-                                      _vm._s(finished_room_service.quantity) +
-                                        " " +
-                                        _vm._s(
-                                          finished_room_service.service.unit
-                                            .name
-                                        )
-                                    )
-                                  ]),
-                                  _vm._v(" "),
-                                  _vm.finished_order.order.discount
-                                    ? [
-                                        finished_room_service.service
-                                          .can_be_discounted
-                                          ? [
-                                              _c("td", [
-                                                _vm._v(
-                                                  _vm._s(
-                                                    finished_room_service.price *
-                                                      (1 -
-                                                        parseInt(
-                                                          _vm.finished_order
-                                                            .order.discount
-                                                        ) /
-                                                          100)
-                                                  ) +
-                                                    " Р/" +
-                                                    _vm._s(
-                                                      _vm.finished_service.unit
-                                                        .name
-                                                    )
-                                                )
-                                              ]),
-                                              _vm._v(" "),
-                                              _c("td", [
-                                                _vm._v(
-                                                  _vm._s(
-                                                    _vm.priceCount(
-                                                      _vm.finished_service.pivot
-                                                        .quantity,
-                                                      _vm.finished_service
-                                                        .price *
-                                                        (1 -
-                                                          parseInt(
-                                                            _vm.finished_order
-                                                              .order.discount
-                                                          ) /
-                                                            100)
-                                                    )
-                                                  ) + " Р"
-                                                )
-                                              ])
-                                            ]
-                                          : [
-                                              _c("td", [
-                                                _vm._v(
-                                                  _vm._s(
-                                                    _vm.finished_service.price
-                                                  ) +
-                                                    " Р/" +
-                                                    _vm._s(
-                                                      _vm.finished_service.unit
-                                                        .name
-                                                    )
-                                                )
-                                              ]),
-                                              _vm._v(" "),
-                                              _c("td", [
-                                                _vm._v(
-                                                  _vm._s(
-                                                    _vm.priceCount(
-                                                      _vm.finished_service.pivot
-                                                        .quantity,
-                                                      _vm.finished_service.price
-                                                    )
-                                                  ) + " Р"
-                                                )
-                                              ])
-                                            ]
-                                      ]
-                                    : _vm._e(),
-                                  _vm._v(" "),
-                                  _vm.finished_order.order.markup
-                                    ? [
-                                        _c("td", [
-                                          _vm._v(
-                                            _vm._s(
-                                              _vm.finished_service.price *
-                                                (1 +
-                                                  parseInt(
-                                                    _vm.finished_order.order
-                                                      .markup
-                                                  ) /
-                                                    100)
-                                            ) +
-                                              " Р/" +
-                                              _vm._s(
-                                                _vm.finished_service.unit.name
-                                              )
-                                          )
-                                        ]),
-                                        _vm._v(" "),
-                                        _c("td", [
-                                          _vm._v(
-                                            _vm._s(
-                                              _vm.priceCount(
-                                                _vm.finished_service.pivot
-                                                  .quantity,
-                                                _vm.finished_service.price *
-                                                  (1 +
-                                                    parseInt(
-                                                      _vm.finished_order.order
-                                                        .markup
-                                                    ) /
-                                                      100)
-                                              )
-                                            ) + " Р"
-                                          )
-                                        ])
-                                      ]
-                                    : _vm._e(),
-                                  _vm._v(" "),
-                                  _vm.finished_order.order.discount === null &&
-                                  _vm.finished_order.order.markup === null
-                                    ? [
-                                        _c("td", [
-                                          _vm._v(
-                                            _vm._s(_vm.finished_service.price) +
-                                              " Р/" +
-                                              _vm._s(
-                                                _vm.finished_service.unit.name
-                                              )
-                                          )
-                                        ]),
-                                        _vm._v(" "),
-                                        _c("td", [
-                                          _vm._v(
-                                            _vm._s(
-                                              _vm.priceCount(
-                                                _vm.finished_service.pivot
-                                                  .quantity,
-                                                _vm.finished_service.price
-                                              )
-                                            ) + " Р"
-                                          )
-                                        ])
-                                      ]
-                                    : _vm._e()
-                                ],
-                                2
-                              )
-                            })
-                          )
-                        ])
-                      ])
+                        "tbody",
+                        _vm._l(finished_room_services, function(
+                          finished_room_service
+                        ) {
+                          return _c("RoomServiceDetail", {
+                            key:
+                              "finished-room-service-" +
+                              finished_room_service.id,
+                            attrs: {
+                              finished_room_service: finished_room_service
+                            }
+                          })
+                        })
+                      )
                     ])
                   ])
-                ]
-              }
-            )
-          ]
-        : _vm._e()
+                ])
+              ])
+            : _vm._e()
+        }
+      )
     ],
     2
   )
@@ -95943,6 +95781,128 @@ if (false) {
 
 /***/ }),
 /* 386 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__RoomServiceDetail__ = __webpack_require__(387);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__RoomServiceDetail___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__RoomServiceDetail__);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+    props: ['finished_room'],
+
+    components: {
+        RoomServiceDetail: __WEBPACK_IMPORTED_MODULE_0__RoomServiceDetail___default.a
+    },
+
+    methods: {
+        groupByServiceType: function groupByServiceType(services) {
+            return _.groupBy(services, 'service.service_type.name');
+        }
+    }
+});
+
+/***/ }),
+/* 387 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+var normalizeComponent = __webpack_require__(1)
+/* script */
+var __vue_script__ = __webpack_require__(388)
+/* template */
+var __vue_template__ = __webpack_require__(389)
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = null
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources/assets/js/components/Orders/Services/Finished/Export/partials/RoomServiceDetail.vue"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-cde9716c", Component.options)
+  } else {
+    hotAPI.reload("data-v-cde9716c", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 388 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -95973,54 +95933,46 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-    props: ['finished_room']
+    props: ['finished_room_service'],
+
+    computed: {
+        filteredPrice: function filteredPrice() {}
+    }
 });
+
+/***/ }),
+/* 389 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("tr", [
+    _c("th", { staticClass: "w-50", attrs: { scope: "row" } }, [
+      _vm._v(_vm._s(_vm.finished_room_service.service.name))
+    ]),
+    _vm._v(" "),
+    _c("td", [
+      _vm._v(
+        _vm._s(_vm.finished_room_service.quantity) +
+          " " +
+          _vm._s(_vm.finished_room_service.service.unit.name)
+      )
+    ])
+  ])
+}
+var staticRenderFns = []
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-cde9716c", module.exports)
+  }
+}
 
 /***/ })
 /******/ ]);

@@ -16,52 +16,32 @@
                 </template>
           </div>
 
-          <template v-if="finished_room.finished_room_services">
-              <template v-for="(finished_room_services, service_type_id) in groupByServiceType(finished_room.finished_room_services)">
-                  <div class="projects__information ">
-                      <div class="row bg px-3">
+          <div class="projects__information"
+               v-if="finished_room.finished_room_services"
+               v-for="(finished_room_services, service_type) in groupByServiceType(finished_room.finished_room_services)"
+               >
+              <div class="row bg px-3">
 
-                        <div class="main-subtitle main-subtitle--fz col-12 pt-4 pl-3">
-                          {{ getServiceTypeName(service_type_id) }}
-                        </div>
+                <div class="main-subtitle main-subtitle--fz col-12 pt-4 pl-3">
+                    {{ service_type }}
+                </div>
 
-                        <div class="col-12 px-0">
+                <div class="col-12 px-0">
 
-                          <table class="table table-hover">
+                  <table class="table table-hover">
 
-                            <tbody>
-                              <tr v-for="finished_room_service in finished_room_services">
-                                <th scope="row" class="w-50">{{ finished_room_service.name }}</th>
-                            <td>{{ finished_room_service.quantity }} {{ finished_room_service.service.unit.name }}</td>
+                    <tbody>
+                        <RoomServiceDetail v-for="finished_room_service in finished_room_services"
+                                           :finished_room_service="finished_room_service"
+                                           :key="'finished-room-service-' + finished_room_service.id"
+                                           />
+                    </tbody>
+                  </table>
 
-                                <template v-if="finished_order.order.discount">
-                                    <template v-if="finished_room_service.service.can_be_discounted">
-                                        <td>{{ finished_room_service.price * (1 - parseInt(finished_order.order.discount)/100) }} Р/{{ finished_service.unit.name }}</td>
-                                        <td>{{ priceCount(finished_service.pivot.quantity, finished_service.price * (1 - parseInt(finished_order.order.discount)/100)) }} Р</td>
-                                    </template>
-                                    <template v-else>
-                                        <td>{{ finished_service.price }} Р/{{ finished_service.unit.name }}</td>
-                                        <td>{{ priceCount(finished_service.pivot.quantity, finished_service.price) }} Р</td>
-                                    </template>
-                                </template>
-                                <template v-if="finished_order.order.markup">
-                                    <td>{{ finished_service.price * (1 + parseInt(finished_order.order.markup)/100) }} Р/{{ finished_service.unit.name }}</td>
-                                    <td>{{ priceCount(finished_service.pivot.quantity, finished_service.price * (1 + parseInt(finished_order.order.markup)/100)) }} Р</td>
-                                </template>
-                                <template v-if="finished_order.order.discount === null && finished_order.order.markup === null">
-                                    <td>{{ finished_service.price }} Р/{{ finished_service.unit.name }}</td>
-                                    <td>{{ priceCount(finished_service.pivot.quantity, finished_service.price) }} Р</td>
-                                </template>
-                              </tr>
+                </div>
+              </div>
+          </div>
 
-                            </tbody>
-                          </table>
-
-                        </div>
-                      </div>
-                  </div>
-              </template>
-          </template>
 
         </div>
 
@@ -69,7 +49,19 @@
 </template>
 
 <script>
+    import RoomServiceDetail from './RoomServiceDetail'
+
     export default {
-        props: ['finished_room']
+        props: ['finished_room'],
+
+        components: {
+            RoomServiceDetail
+        },
+
+        methods: {
+            groupByServiceType(services) {
+                return _.groupBy(services, 'service.service_type.name')
+            },
+        }
     }
 </script>
