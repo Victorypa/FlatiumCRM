@@ -114,7 +114,7 @@ use Illuminate\Http\Request;
                 Route::get('/{order}/finished_order_act/{finished_order_act}/finished_room/{finished_room}/services', 'FinishedRoomServiceController@index');
                 Route::post('/{order}/finished_order_act/{finished_order_act}/services/store', 'FinishedRoomServiceController@store');
                 Route::patch('/{order}/finished_order_act/{finished_order_act}/services/update', 'FinishedRoomServiceController@update');
-
+                Route::post('/{order}/finished_order_act/{finished_order_act}/services/destroy', 'FinishedRoomServiceController@destroy');
             });
 
         });

@@ -6,7 +6,7 @@
                  :id="'room-' + room_service.room_id + 'service-' + room_service.service_id"
                  type="checkbox"
                  :checked="finished_room_service_ids.includes(room_service.service_id)"
-                 @click="addFinishService()"
+                 @click="handle()"
                  >
           <label class="form-check-label d-block"
                  :for="'room-' + room_service.room_id + 'service-' + room_service.service_id"
@@ -36,13 +36,16 @@
 </template>
 
 <script>
+    import { EventBus } from '@/bus'
+
     export default {
         props: ['room_service', 'room'],
 
         data () {
             return {
                 finished_room_service_ids: [],
-                quantity: null
+                quantity: null,
+                price: 0
             }
         },
 
@@ -75,6 +78,19 @@
                 }).then(response => {
                     this.$emit('service-changed')
                 })
+            },
+
+            removeFinishService () {
+                axios.post(`/api/orders/${this.$route.params.id}/finished_order_act/${this.$route.params.finished_act_id}/services/destroy`, {
+                    'finished_room_id': this.finished_room_id,
+                    'service_id': this.room_service.service_id
+                }).then(() => {
+                    this.getFinishedRoomServices()
+                })
+            },
+
+            handle () {
+                this.finished_room_service_ids.includes(this.room_service.service_id) ? this.removeFinishService() : this.addFinishService()
             },
 
             updateFinishServiceQuantity () {

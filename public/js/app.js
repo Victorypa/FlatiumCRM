@@ -57880,6 +57880,7 @@ module.exports = Component.exports
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__bus__ = __webpack_require__(139);
 //
 //
 //
@@ -57919,8 +57920,16 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 
+
 /* harmony default export */ __webpack_exports__["default"] = ({
     props: ['finished_order_act', 'order'],
+
+    mounted: function mounted() {
+        __WEBPACK_IMPORTED_MODULE_0__bus__["a" /* EventBus */].$on('fetched-price', function (value) {
+            console.log(value);
+        });
+    },
+
 
     methods: {
         filteredInteger: function filteredInteger(data) {
@@ -58277,6 +58286,7 @@ module.exports = Component.exports
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__bus__ = __webpack_require__(139);
 //
 //
 //
@@ -58314,6 +58324,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+
+
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     props: ['room_service', 'room'],
@@ -58321,7 +58333,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     data: function data() {
         return {
             finished_room_service_ids: [],
-            quantity: null
+            quantity: null,
+            price: 0
         };
     },
     created: function created() {
@@ -58359,8 +58372,21 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 _this2.$emit('service-changed');
             });
         },
-        updateFinishServiceQuantity: function updateFinishServiceQuantity() {
+        removeFinishService: function removeFinishService() {
             var _this3 = this;
+
+            axios.post('/api/orders/' + this.$route.params.id + '/finished_order_act/' + this.$route.params.finished_act_id + '/services/destroy', {
+                'finished_room_id': this.finished_room_id,
+                'service_id': this.room_service.service_id
+            }).then(function () {
+                _this3.getFinishedRoomServices();
+            });
+        },
+        handle: function handle() {
+            this.finished_room_service_ids.includes(this.room_service.service_id) ? this.removeFinishService() : this.addFinishService();
+        },
+        updateFinishServiceQuantity: function updateFinishServiceQuantity() {
+            var _this4 = this;
 
             axios.patch('/api/orders/' + this.$route.params.id + '/finished_order_act/' + this.$route.params.finished_act_id + '/services/update', {
                 'finished_room_id': this.finished_room_id,
@@ -58368,7 +58394,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 'quantity': this.quantity,
                 'price': this.room_service.quantity * this.filteredServicePrice
             }).then(function (response) {
-                _this3.$emit('service-changed');
+                _this4.$emit('service-changed');
             });
         },
         priceCount: function priceCount(quantity, price) {
@@ -58378,10 +58404,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
     computed: {
         finished_room_id: function finished_room_id() {
-            var _this4 = this;
+            var _this5 = this;
 
             return this.room.finished_room.filter(function (row) {
-                return row.finished_order_act_id == _this4.$route.params.finished_act_id;
+                return row.finished_order_act_id == _this5.$route.params.finished_act_id;
             })[0].id;
         },
         filteredServicePrice: function filteredServicePrice() {
@@ -58436,7 +58462,7 @@ var render = function() {
           },
           on: {
             click: function($event) {
-              _vm.addFinishService()
+              _vm.handle()
             }
           }
         }),

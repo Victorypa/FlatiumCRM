@@ -29,7 +29,7 @@ class FinishedRoomServiceController extends Controller
             'price' => $request->price
         ]);
 
-        // $this->updateFinishedRoomPrice($finished_room);
+        $this->updateFinishedRoomPrice($finished_room);
 
         return response()->json($finished_room_service);
 
@@ -39,18 +39,29 @@ class FinishedRoomServiceController extends Controller
     {
         $finished_room = FinishedRoom::where('id', $request->finished_room_id)->first();
 
-        return $finished_room->finished_room_services()->where('service_id', $request->service_id)->update([
+        $finished_room->finished_room_services()->where('service_id', $request->service_id)->update([
             'quantity' => $request->quantity,
             'price' => $request->price
         ]);
+
+        return $this->updateFinishedRoomPrice($finished_room);
+    }
+
+    public function destroy(Order $order, FinishedOrderAct $finished_order_act, Request $request)
+    {
+        $finished_room = FinishedRoom::where('id', $request->finished_room_id)->first();
+
+        $finished_room->finished_room_services()->where('service_id', $request->service_id)->delete();
+
+        return $this->updateFinishedRoomPrice($finished_room);
     }
 
     protected function updateFinishedRoomPrice(FinishedRoom $finished_room)
     {
         $price = 0;
 
-        foreach ($finished_room->finished_services()->get() as $finished_service) {
-            $price += (float) $finished_service->pivot->price;
+        foreach ($finished_room->finished_room_services()->get() as $finished_room_service) {
+            $price += (float) $finished_room_service->price;
         }
 
         $finished_room->update([
