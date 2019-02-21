@@ -35,13 +35,23 @@
                  {{ getServiceTypeName(service_type_id) }}
              </div>
 
-             <div class="col-md-12 px-0 all-items"
+             <!-- <div class="col-md-12 px-0 all-items"
                   v-for="extra_room_service in filteredExtraRoomServices"
                   >
                      <ExtraRoomService :extra_room_service="extra_room_service"
                                   :extra_room="extra_room"
                                   :key="extra_room_service.service_id"
                                   />
+             </div> -->
+
+             <div class="col-md-12 px-0 all-items"
+                  v-for="service in filteredServices"
+                  >
+
+                  <Service :service="service"
+                           :room="extra_room"
+                           :key="service.id"
+                           />
              </div>
 
          </div>
@@ -49,42 +59,43 @@
 </template>
 
 <script>
+    import ServiceCollection from '@/components/Services/mixins/ServiceCollection'
     import AddService from '@/components/Services/partials/AddService'
     import ExtraRoomService from './partials/ExtraRoomService'
+    import Service from '@/components/Orders/Rooms/Services/partials/Service'
 
     export default {
-        props: ['extra_room'],
+        mixins: [ServiceCollection],
 
         data () {
             return {
-                service_type_id: 1,
+                room: [],
+                extra_room: [],
                 service_types: [],
-                searchQuery: ''
+                service_type_id: 1,
+
+                searchQuery: ""
             }
         },
 
         components: {
-            AddService, ExtraRoomService
+            AddService, ExtraRoomService, Service
         },
 
         created () {
-            this.getServiceTypes()
+            this.getExtraRoomServices()
         },
 
         methods: {
-            getServiceTypes () {
-                if (localStorage.getItem('service_types')) {
-                    this.service_types = JSON.parse(localStorage.getItem('service_types'))
-                } else {
-                    return axios.get(`/api/service_types`).then(response => {
-                        this.service_types = response.data
-                        localStorage.setItem('service_types', JSON.stringify(this.service_types))
-                    })
-                }
+            getExtraRoomServices () {
+                axios.get(`/api/orders/${this.$route.params.id}/extra_order_act/${this.$route.params.extra_act_id}/extra_rooms/${this.$route.params.extra_room_id}`)
+                     .then(response => {
+                         this.extra_room = response.data
+                     })
             },
 
             getServiceTypeName (service_type_id) {
-                if (this.service_types.length) {
+                if (this.service_types.length !== 0) {
                     return this.service_types.filter(row => {
                         return row.id === this.service_type_id
                     })[0].name
@@ -93,8 +104,39 @@
         },
 
         computed: {
+            filteredServices () {
+                if (this.services.length !== 0 && this.extra_room.length !== 0) {
+                    let data = this.services
+
+                    let extra_room_service_ids = []
+
+                    this.extra_room.extra_room_services.forEach(extra_room_service => {
+                        extra_room_service_ids.push(extra_room_service.service_id)
+                    })
+
+                    data = data.filter(row => {
+                        return extra_room_service_ids.indexOf(row.id) < 0
+                    })
+
+                    data = data.filter(row => {
+                        return row.service_type_id === this.service_type_id
+                    })
+
+                    data = data.filter(row => {
+                      return Object.keys(row).some(key => {
+                        return (
+                          String(row[key])
+                            .toLowerCase()
+                            .indexOf(this.searchQuery.toLowerCase()) > -1
+                        )
+                      })
+                    })
+
+                    return data
+                }
+            },
+
             filteredExtraRoomServices () {
-                if (this.extra_room.length !== 0) {
                     let data = this.extra_room.extra_room_services
 
                     data = data.filter(row => {
@@ -102,7 +144,7 @@
                     })
 
                     return data
-                }
+
             }
         }
     }

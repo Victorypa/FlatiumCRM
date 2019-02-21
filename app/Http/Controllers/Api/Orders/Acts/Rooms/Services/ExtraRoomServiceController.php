@@ -12,6 +12,11 @@ use App\Models\Orders\Acts\Rooms\Services\ExtraRoomService;
 
 class ExtraRoomServiceController extends Controller
 {
+    public function index(Order $order, ExtraOrderAct $extra_order_act, ExtraRoom $extra_room)
+    {
+        return ExtraRoomService::where('extra_room_id', $extra_room->id)->get();
+    }
+
     public function show(Order $order, ExtraOrderAct $extra_order_act, ExtraRoom $extra_room, Service $extra_service, Request $request)
     {
         return ExtraRoomService::where([

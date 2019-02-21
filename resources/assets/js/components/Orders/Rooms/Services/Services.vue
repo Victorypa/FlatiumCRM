@@ -55,7 +55,7 @@
                             />
               </div>
             </div>
-            
+
         </div>
 </template>
 
@@ -78,7 +78,7 @@
             return {
                 room: [],
                 service_types: [],
-                service_type_id: 0,
+                service_type_id: 1,
 
                 searchQuery: ""
             }

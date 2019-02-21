@@ -63787,7 +63787,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         return {
             room: [],
             service_types: [],
-            service_type_id: 0,
+            service_type_id: 1,
 
             searchQuery: ""
         };
@@ -95029,10 +95029,13 @@ module.exports = Component.exports
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__components_Services_partials_AddService__ = __webpack_require__(153);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__components_Services_partials_AddService___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__components_Services_partials_AddService__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__partials_ExtraRoomService__ = __webpack_require__(429);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__partials_ExtraRoomService___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__partials_ExtraRoomService__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__components_Services_mixins_ServiceCollection__ = __webpack_require__(11);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__components_Services_partials_AddService__ = __webpack_require__(153);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__components_Services_partials_AddService___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__components_Services_partials_AddService__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__partials_ExtraRoomService__ = __webpack_require__(429);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__partials_ExtraRoomService___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2__partials_ExtraRoomService__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__components_Orders_Rooms_Services_partials_Service__ = __webpack_require__(333);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__components_Orders_Rooms_Services_partials_Service___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3__components_Orders_Rooms_Services_partials_Service__);
 //
 //
 //
@@ -95083,48 +95086,58 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+
 
 
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-    props: ['extra_room'],
+    mixins: [__WEBPACK_IMPORTED_MODULE_0__components_Services_mixins_ServiceCollection__["a" /* default */]],
 
     data: function data() {
         return {
-            service_type_id: 1,
+            room: [],
+            extra_room: [],
             service_types: [],
-            searchQuery: ''
+            service_type_id: 1,
+
+            searchQuery: ""
         };
     },
 
 
     components: {
-        AddService: __WEBPACK_IMPORTED_MODULE_0__components_Services_partials_AddService___default.a, ExtraRoomService: __WEBPACK_IMPORTED_MODULE_1__partials_ExtraRoomService___default.a
+        AddService: __WEBPACK_IMPORTED_MODULE_1__components_Services_partials_AddService___default.a, ExtraRoomService: __WEBPACK_IMPORTED_MODULE_2__partials_ExtraRoomService___default.a, Service: __WEBPACK_IMPORTED_MODULE_3__components_Orders_Rooms_Services_partials_Service___default.a
     },
 
     created: function created() {
-        this.getServiceTypes();
+        this.getExtraRoomServices();
     },
 
 
     methods: {
-        getServiceTypes: function getServiceTypes() {
+        getExtraRoomServices: function getExtraRoomServices() {
             var _this = this;
 
-            if (localStorage.getItem('service_types')) {
-                this.service_types = JSON.parse(localStorage.getItem('service_types'));
-            } else {
-                return axios.get('/api/service_types').then(function (response) {
-                    _this.service_types = response.data;
-                    localStorage.setItem('service_types', JSON.stringify(_this.service_types));
-                });
-            }
+            axios.get('/api/orders/' + this.$route.params.id + '/extra_order_act/' + this.$route.params.extra_act_id + '/extra_rooms/' + this.$route.params.extra_room_id).then(function (response) {
+                _this.extra_room = response.data;
+            });
         },
         getServiceTypeName: function getServiceTypeName(service_type_id) {
             var _this2 = this;
 
-            if (this.service_types.length) {
+            if (this.service_types.length !== 0) {
                 return this.service_types.filter(function (row) {
                     return row.id === _this2.service_type_id;
                 })[0].name;
@@ -95133,18 +95146,45 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     },
 
     computed: {
-        filteredExtraRoomServices: function filteredExtraRoomServices() {
+        filteredServices: function filteredServices() {
             var _this3 = this;
 
-            if (this.extra_room.length !== 0) {
-                var data = this.extra_room.extra_room_services;
+            if (this.services.length !== 0 && this.extra_room.length !== 0) {
+                var data = this.services;
+
+                var extra_room_service_ids = [];
+
+                this.extra_room.extra_room_services.forEach(function (extra_room_service) {
+                    extra_room_service_ids.push(extra_room_service.service_id);
+                });
+
+                data = data.filter(function (row) {
+                    return extra_room_service_ids.indexOf(row.id) < 0;
+                });
 
                 data = data.filter(function (row) {
                     return row.service_type_id === _this3.service_type_id;
                 });
 
+                data = data.filter(function (row) {
+                    return Object.keys(row).some(function (key) {
+                        return String(row[key]).toLowerCase().indexOf(_this3.searchQuery.toLowerCase()) > -1;
+                    });
+                });
+
                 return data;
             }
+        },
+        filteredExtraRoomServices: function filteredExtraRoomServices() {
+            var _this4 = this;
+
+            var data = this.extra_room.extra_room_services;
+
+            data = data.filter(function (row) {
+                return row.service_type_id === _this4.service_type_id;
+            });
+
+            return data;
         }
     }
 });
@@ -95272,19 +95312,14 @@ var render = function() {
                 ]
               ),
               _vm._v(" "),
-              _vm._l(_vm.filteredExtraRoomServices, function(
-                extra_room_service
-              ) {
+              _vm._l(_vm.filteredServices, function(service) {
                 return _c(
                   "div",
                   { staticClass: "col-md-12 px-0 all-items" },
                   [
-                    _c("ExtraRoomService", {
-                      key: extra_room_service.service_id,
-                      attrs: {
-                        extra_room_service: extra_room_service,
-                        extra_room: _vm.extra_room
-                      }
+                    _c("Service", {
+                      key: service.id,
+                      attrs: { service: service, room: _vm.extra_room }
                     })
                   ],
                   1
