@@ -72,7 +72,7 @@
 
         methods: {
             exportFile () {
-                axios.get(`/api/orders/${this.$route.params.id}/finished_order_act_act/${this.$route.params.finished_act_id}/export/pdf`)
+                axios.get(`/api/orders/${this.$route.params.id}/finished_order_act/${this.$route.params.finished_act_id}/export/pdf`)
                      .then(response => {
                          window.open(`${response.data.url}/storage/${response.data.data}`)
                      })

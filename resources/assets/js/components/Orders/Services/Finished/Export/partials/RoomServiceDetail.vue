@@ -13,12 +13,6 @@
     export default {
         props: ['finished_room_service', 'finished_room'],
 
-        methods: {
-            priceCount (quantity, price) {
-                return new Intl.NumberFormat('ru-Ru').format(parseInt(quantity * price))
-            }
-        },
-
         computed: {
             filteredServicePrice () {
                 if (this.finished_room.room.order.discount) {

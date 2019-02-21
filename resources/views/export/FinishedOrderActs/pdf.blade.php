@@ -76,23 +76,18 @@
                 @foreach ($filteredFinishedOrderAct->finished_rooms as $finished_room)
                     <div class="first-room">
                         <div class="first-room-top px-20">
-                            @if ($finished_room->room->description)
-                                <div class="main-subtitle pt-40 pb-20 inline-block">
-                                    {{ $finished_room->room->description }}
-                                </div>
-                            @else
-                                <div class="main-subtitle pt-40 pb-20 inline-block">
-                                    {{ $finished_room->room->roomType->type }}
-                                </div>
-                            @endif
+                            <div class="main-subtitle pt-40 pb-20 inline-block">
+                                {{ $finished_room->room->description ? $finished_room->room->description : $finished_room->room->roomType->type }}
+                            </div>
+
                             @if ($finished_room->room->room_type_id === 1)
                                 @include('export.partials._room_details', ['room' => $finished_room])
                             @endif
                         </div>
                     </div>
 
-                    @if (count($finished_room->finished_services))
-                        @foreach ($finished_room->finished_services()->orderBy('service_type_id')->get()->groupBy(function($finished_service) { return $finished_service->service_type_id; }) as $service_type_id => $finished_services)
+                    @if (count($finished_room->finished_room_services))
+                        @foreach ($finished_room->finished_room_services()->get()->groupBy(function($finished_room_service) { return $finished_room_service->service->service_type_id; }) as $service_type_id => $finished_room_services)
                             <table class="floor">
                                 <tr>
                                     <th class="table-subtitle">Наименование
@@ -110,30 +105,27 @@
                                 </tr>
 
 
-                                @foreach ($finished_services as $finished_service)
+                                @foreach ($finished_room_services as $finished_room_service)
                                     <tr>
-                                        <th>{{ $finished_service->name }}</th>
-                                        <td>{{ number_format((float) $finished_service->pivot->quantity, 2, '.', '') }} м<sup>2</sup></td>
+                                        <th>{{ $finished_room_service->service->name }}</th>
+                                        <td>{{ number_format((float) $finished_room_service->quantity, 2, '.', '') }} Р/{{ $finished_room_service->service->unit->name }}</td>
 
                                         @if ($filteredFinishedOrderAct->order->discount)
-                                            @if ($finished_service->can_be_discounted)
-                                                <td>{{ $finished_service->price * (1 - $filteredFinishedOrderAct->order->discount/100) }} Р/м<sup>2</sup></td>
-                                                <td>{{ number_format($finished_service->price * (1 - $filteredFinishedOrderAct->order->discount/100) * $finished_service->pivot->quantity, 2, ',', ' ') }} Р</td>
-                                                @else
-                                                    <td>{{ $finished_service->price }} Р/м<sup>2</sup></td>
-                                                    <td>{{ number_format($finished_service->pivot->quantity * $finished_service->price, 2, ',', ' ') }} Р</td>
+                                            @if ($finished_room_service->service->can_be_discounted)
+                                                <td>{{ $finished_room_service->service->price * (1 - $filteredFinishedOrderAct->order->discount/100) }} Р/{{ $finished_room_service->service->unit->name }}</td>
+                                            @else
+                                                <td>{{ $finished_room_service->service->price }} Р/м<sup>2</sup></td>
                                             @endif
                                         @endif
 
                                         @if ($filteredFinishedOrderAct->order->markup)
-                                                <td>{{ $finished_service->price * (1 + $filteredFinishedOrderAct->order->markup/100) }} Р/м<sup>2</sup></td>
-                                                <td>{{ number_format($finished_service->price * (1 + $filteredFinishedOrderAct->order->markup/100) * $finished_service->pivot->quantity, 2, ',', ' ') }} Р</td>
+                                                <td>{{ $finished_room_service->service->price * (1 + $filteredFinishedOrderAct->order->markup/100) }} Р/{{ $finished_room_service->service->unit->name }}</td>
                                         @endif
 
                                         @if ($filteredFinishedOrderAct->order->markup === null && $filteredFinishedOrderAct->order->discount === null)
-                                            <td>{{ $finished_service->price }} Р/м<sup>2</sup></td>
-                                            <td>{{ number_format($finished_service->pivot->quantity * $finished_service->price, 2, ',', ' ') }} Р</td>
+                                            <td>{{ $finished_room_service->service->price }} Р/{{ $finished_room_service->service->unit->name }}</td>
                                         @endif
+                                        <td>{{ number_format($finished_room_service->price, 2, ',', ' ') }} Р</td>
                                     </tr>
                                 @endforeach
                             </table>

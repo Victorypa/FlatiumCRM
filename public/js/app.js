@@ -52284,7 +52284,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     data: function data() {
@@ -52415,9 +52414,8 @@ var render = function() {
                               _c("div", { staticClass: "card-body" }, [
                                 _c("h5", { staticClass: "card-title" }, [
                                   _vm._v(
-                                    "\n                                          Акты выполненных работ\n                                          "
-                                  ),
-                                  _c("span", [_vm._v("в разработке")])
+                                    "\n                                          Акты выполненных работ\n                                      "
+                                  )
                                 ])
                               ])
                             ]
@@ -95336,7 +95334,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
     methods: {
         exportFile: function exportFile() {
-            axios.get('/api/orders/' + this.$route.params.id + '/finished_order_act_act/' + this.$route.params.finished_act_id + '/export/pdf').then(function (response) {
+            axios.get('/api/orders/' + this.$route.params.id + '/finished_order_act/' + this.$route.params.finished_act_id + '/export/pdf').then(function (response) {
                 window.open(response.data.url + '/storage/' + response.data.data);
             });
         },
@@ -95923,12 +95921,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     props: ['finished_room_service', 'finished_room'],
-
-    methods: {
-        priceCount: function priceCount(quantity, price) {
-            return new Intl.NumberFormat('ru-Ru').format(parseInt(quantity * price));
-        }
-    },
 
     computed: {
         filteredServicePrice: function filteredServicePrice() {

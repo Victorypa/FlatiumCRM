@@ -26,7 +26,6 @@
                                         <div class="card-body">
                                           <h5 class="card-title">
                                               Акты выполненных работ
-                                              <span>в разработке</span>
                                           </h5>
                                         </div>
                             </router-link>
