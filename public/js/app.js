@@ -93422,6 +93422,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue_carousel___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_vue_carousel__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__partials_ExtraOrderDetail__ = __webpack_require__(400);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__partials_ExtraOrderDetail___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__partials_ExtraOrderDetail__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__Windows_ExtraRoomWindows__ = __webpack_require__(406);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__Windows_ExtraRoomWindows___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2__Windows_ExtraRoomWindows__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__Windows_AddExtraRoomWindow__ = __webpack_require__(403);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__Windows_AddExtraRoomWindow___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3__Windows_AddExtraRoomWindow__);
 //
 //
 //
@@ -93547,171 +93551,15 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
+
+
 
 
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     components: {
-        ExtraOrderDetail: __WEBPACK_IMPORTED_MODULE_1__partials_ExtraOrderDetail___default.a
+        ExtraOrderDetail: __WEBPACK_IMPORTED_MODULE_1__partials_ExtraOrderDetail___default.a, ExtraRoomWindows: __WEBPACK_IMPORTED_MODULE_2__Windows_ExtraRoomWindows___default.a, AddExtraRoomWindow: __WEBPACK_IMPORTED_MODULE_3__Windows_AddExtraRoomWindow___default.a
     },
 
     data: function data() {
@@ -93719,15 +93567,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             order: [],
             extra_order_act: [],
             extra_room: [],
-            extra_room_price: null,
-            extra_order_act_price: null,
-
-            width: null,
-            length: null,
-            height: null,
-            area: null,
-            wall_area: null,
-            perimeter: null,
 
             newExtraWindows: [],
             extra_room_service_materials: [],
@@ -93749,19 +93588,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             return axios.get('/api/orders/' + this.$route.params.id + '/extra_order_act/' + this.$route.params.extra_act_id + '/extra_rooms/' + this.$route.params.extra_room_id).then(function (response) {
                 _this.extra_room = response.data;
                 _this.extra_order_act = response.data.extra_order_act;
-
-                _this.width = _this.extra_room.width;
-                _this.length = _this.extra_room.length;
-                _this.height = _this.extra_room.height;
-                _this.area = _this.extra_room.area;
-                _this.wall_area = _this.extra_room.wall_area;
-                _this.perimeter = _this.extra_room.perimeter;
-
-                _this.order = response.data.extra_order_act.order;
-
-                _this.extra_room_price = _this.extra_room.price;
-                _this.extra_order_act_price = _this.extra_order_act.price;
-
                 _this.path = _this.$router.history.current.path;
             });
         },
@@ -94015,14 +93841,230 @@ var render = function() {
                             ]
                           ),
                           _vm._v(" "),
-                          _c("div", {
-                            staticClass:
-                              "row align-items-center py-5 shadow-light px-15 mb-2"
-                          })
+                          _c(
+                            "div",
+                            {
+                              staticClass:
+                                "row align-items-center py-5 shadow-light px-15 mb-2"
+                            },
+                            [
+                              _c("div", { staticClass: "col-3" }, [
+                                _c(
+                                  "select",
+                                  { staticClass: "form-control match-content" },
+                                  [
+                                    _c("option", [
+                                      _vm._v(
+                                        "\n                                        " +
+                                          _vm._s(
+                                            _vm.extra_room.room.description
+                                              ? _vm.extra_room.room.description
+                                              : _vm.extra_room.room.room_type
+                                                  .type
+                                          ) +
+                                          "\n                                    "
+                                      )
+                                    ])
+                                  ]
+                                )
+                              ]),
+                              _vm._v(" "),
+                              _vm.extra_room.room.room_type_id === 1
+                                ? [
+                                    _c(
+                                      "div",
+                                      {
+                                        staticClass:
+                                          "col-6 d-flex align-items-center justify-content-between px-0"
+                                      },
+                                      [
+                                        _c(
+                                          "div",
+                                          {
+                                            staticClass:
+                                              "placeholder-text ml-2",
+                                            attrs: { placeholder: "Шир" }
+                                          },
+                                          [
+                                            _c("input", {
+                                              attrs: {
+                                                type: "number",
+                                                disabled: ""
+                                              },
+                                              domProps: {
+                                                value: _vm.extra_room.room.width
+                                              }
+                                            })
+                                          ]
+                                        ),
+                                        _vm._v(" "),
+                                        _c(
+                                          "div",
+                                          {
+                                            staticClass:
+                                              "placeholder-text ml-2",
+                                            attrs: { placeholder: "Дли" }
+                                          },
+                                          [
+                                            _c("input", {
+                                              attrs: {
+                                                type: "number",
+                                                disabled: ""
+                                              },
+                                              domProps: {
+                                                value:
+                                                  _vm.extra_room.room.length
+                                              }
+                                            })
+                                          ]
+                                        ),
+                                        _vm._v(" "),
+                                        _c(
+                                          "div",
+                                          {
+                                            staticClass:
+                                              "placeholder-text ml-2",
+                                            attrs: { placeholder: "Выс" }
+                                          },
+                                          [
+                                            _c("input", {
+                                              attrs: {
+                                                type: "number",
+                                                disabled: ""
+                                              },
+                                              domProps: {
+                                                value:
+                                                  _vm.extra_room.room.height
+                                              }
+                                            })
+                                          ]
+                                        ),
+                                        _vm._v(" "),
+                                        _c(
+                                          "div",
+                                          {
+                                            staticClass:
+                                              "placeholder-text ml-2",
+                                            attrs: { placeholder: "S" }
+                                          },
+                                          [
+                                            _c("input", {
+                                              attrs: {
+                                                type: "number",
+                                                disabled: ""
+                                              },
+                                              domProps: {
+                                                value: _vm.extra_room.room.area
+                                              }
+                                            })
+                                          ]
+                                        ),
+                                        _vm._v(" "),
+                                        _c(
+                                          "div",
+                                          {
+                                            staticClass:
+                                              "placeholder-text ml-2",
+                                            attrs: { placeholder: "Сте" }
+                                          },
+                                          [
+                                            _c("input", {
+                                              attrs: {
+                                                type: "number",
+                                                disabled: ""
+                                              },
+                                              domProps: {
+                                                value:
+                                                  _vm.extra_room.room.wall_area
+                                              }
+                                            })
+                                          ]
+                                        ),
+                                        _vm._v(" "),
+                                        _c(
+                                          "div",
+                                          {
+                                            staticClass:
+                                              "placeholder-text ml-2",
+                                            attrs: { placeholder: "Пер" }
+                                          },
+                                          [
+                                            _c("input", {
+                                              attrs: {
+                                                type: "number",
+                                                disabled: ""
+                                              },
+                                              domProps: {
+                                                value:
+                                                  _vm.extra_room.room.perimeter
+                                              }
+                                            })
+                                          ]
+                                        )
+                                      ]
+                                    )
+                                  ]
+                                : _vm._e()
+                            ],
+                            2
+                          )
                         ]
                       ),
                       _vm._v(" "),
-                      _vm._m(0)
+                      _c("div", { staticClass: "row" }, [
+                        _c("div", { staticClass: "col-md-12 pl-5 pt-5 bg" }, [
+                          _c(
+                            "div",
+                            {
+                              staticClass:
+                                "row align-items-center justify-content-between"
+                            },
+                            [
+                              _vm.extra_room.room.room_type_id != 4
+                                ? _c("div", { staticClass: "col-6" }, [
+                                    _c(
+                                      "div",
+                                      {
+                                        staticClass: "create__sum",
+                                        staticStyle: { "font-size": "16px" }
+                                      },
+                                      [
+                                        _vm._v(
+                                          "\n                                        ИТОГО В ТЕКУЩЕЙ ВКЛАДКЕ: " +
+                                            _vm._s(
+                                              _vm.extra_room.price
+                                                ? new Intl.NumberFormat().format(
+                                                    parseInt(
+                                                      _vm.extra_room.price
+                                                    )
+                                                  )
+                                                : 0
+                                            ) +
+                                            " P\n                                    "
+                                        )
+                                      ]
+                                    )
+                                  ])
+                                : _vm._e()
+                            ]
+                          ),
+                          _vm._v(" "),
+                          _c("div", { staticClass: "container-fluid px-0" }, [
+                            _c("div", { staticClass: "row" }, [
+                              _c(
+                                "div",
+                                { staticClass: "col-md-12 pt-4 pr-0" },
+                                [
+                                  _c("ExtraRoomWindows"),
+                                  _vm._v(" "),
+                                  _c("AddExtraRoomWindow")
+                                ],
+                                1
+                              )
+                            ])
+                          ])
+                        ])
+                      ])
                     ],
                     1
                   )
@@ -94036,22 +94078,7 @@ var render = function() {
     1
   )
 }
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "row" }, [
-      _c("div", { staticClass: "col-md-12 pl-5 pt-5 bg" }, [
-        _c("div", { staticClass: "container-fluid px-0" }, [
-          _c("div", { staticClass: "row" }, [
-            _c("div", { staticClass: "col-md-12 pt-4 pr-0" })
-          ])
-        ])
-      ])
-    ])
-  }
-]
+var staticRenderFns = []
 render._withStripped = true
 module.exports = { render: render, staticRenderFns: staticRenderFns }
 if (false) {
@@ -94221,6 +94248,572 @@ if (false) {
   module.hot.accept()
   if (module.hot.data) {
     require("vue-hot-reload-api")      .rerender("data-v-5e3b3068", module.exports)
+  }
+}
+
+/***/ }),
+/* 403 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+var normalizeComponent = __webpack_require__(1)
+/* script */
+var __vue_script__ = __webpack_require__(404)
+/* template */
+var __vue_template__ = __webpack_require__(405)
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = null
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources/assets/js/components/Orders/Services/Extra/Rooms/Windows/AddExtraRoomWindow.vue"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-360a861a", Component.options)
+  } else {
+    hotAPI.reload("data-v-360a861a", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 404 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+    data: function data() {
+        return {
+            newExtraWindows: []
+        };
+    },
+
+
+    methods: {
+        addExtraWindow: function addExtraWindow() {
+            this.newExtraWindows.push({
+                type: 'window',
+                length: null,
+                width: null,
+                quantity: null
+            });
+        },
+        save: function save() {
+            var _this = this;
+
+            this.newExtraWindows.forEach(function (item, index) {
+                return axios.post('/api/orders/' + _this.$route.params.id + '/extra_order_act/' + _this.$route.params.extra_act_id + '/extra_rooms/' + _this.$route.params.extra_room_id + '/extra_windows/store', {
+                    'type': item.type,
+                    'length': item.length,
+                    'width': item.width,
+                    'quantity': item.quantity
+                }).then(function (response) {});
+            });
+        }
+    }
+});
+
+/***/ }),
+/* 405 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", [
+    _c(
+      "form",
+      {
+        on: {
+          submit: function($event) {
+            $event.preventDefault()
+            _vm.save()
+          }
+        }
+      },
+      _vm._l(_vm.newExtraWindows, function(window, index) {
+        return _c(
+          "div",
+          {
+            key: window.id,
+            staticClass:
+              "row col-12 justify-content-between add-space-block align-items-center"
+          },
+          [
+            _c("div", { staticClass: "col-3 px-0" }, [
+              _c("button", { staticClass: "add-space-button pl-4 active" }, [
+                _vm._v("Новый проем " + _vm._s(index + parseInt(1)))
+              ])
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "col-md-9" }, [
+              _c(
+                "div",
+                {
+                  staticClass:
+                    "row col-12 form-group--margin d-flex align-items-center create-spaces"
+                },
+                [
+                  _c("div", { staticClass: "form-group col-md-3" }, [
+                    _c(
+                      "select",
+                      {
+                        directives: [
+                          {
+                            name: "model",
+                            rawName: "v-model",
+                            value: window.type,
+                            expression: "window.type"
+                          }
+                        ],
+                        staticClass: "form-control",
+                        attrs: { name: "type", value: "window" },
+                        on: {
+                          change: function($event) {
+                            var $$selectedVal = Array.prototype.filter
+                              .call($event.target.options, function(o) {
+                                return o.selected
+                              })
+                              .map(function(o) {
+                                var val = "_value" in o ? o._value : o.value
+                                return val
+                              })
+                            _vm.$set(
+                              window,
+                              "type",
+                              $event.target.multiple
+                                ? $$selectedVal
+                                : $$selectedVal[0]
+                            )
+                          }
+                        }
+                      },
+                      [
+                        _c(
+                          "option",
+                          { attrs: { name: "type", value: "window" } },
+                          [
+                            _vm._v(
+                              "\n                            Окно\n                        "
+                            )
+                          ]
+                        ),
+                        _vm._v(" "),
+                        _c(
+                          "option",
+                          { attrs: { name: "type", value: "door" } },
+                          [
+                            _vm._v(
+                              "\n                            Дверь\n                        "
+                            )
+                          ]
+                        )
+                      ]
+                    )
+                  ]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "form-group col-md-2" }, [
+                    _c("input", {
+                      directives: [
+                        {
+                          name: "model",
+                          rawName: "v-model",
+                          value: window.length,
+                          expression: "window.length"
+                        }
+                      ],
+                      staticClass: "form-control",
+                      attrs: {
+                        type: "text",
+                        placeholder: "Ширина",
+                        required: ""
+                      },
+                      domProps: { value: window.length },
+                      on: {
+                        input: function($event) {
+                          if ($event.target.composing) {
+                            return
+                          }
+                          _vm.$set(window, "length", $event.target.value)
+                        }
+                      }
+                    })
+                  ]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "form-group col-md-2" }, [
+                    _c("input", {
+                      directives: [
+                        {
+                          name: "model",
+                          rawName: "v-model",
+                          value: window.width,
+                          expression: "window.width"
+                        }
+                      ],
+                      staticClass: "form-control",
+                      attrs: {
+                        type: "text",
+                        placeholder: "Длина",
+                        required: ""
+                      },
+                      domProps: { value: window.width },
+                      on: {
+                        input: function($event) {
+                          if ($event.target.composing) {
+                            return
+                          }
+                          _vm.$set(window, "width", $event.target.value)
+                        }
+                      }
+                    })
+                  ]),
+                  _vm._v(" "),
+                  _c("span", {}, [_vm._v("x")]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "form-group col-md-2" }, [
+                    _c("input", {
+                      directives: [
+                        {
+                          name: "model",
+                          rawName: "v-model",
+                          value: window.quantity,
+                          expression: "window.quantity"
+                        }
+                      ],
+                      staticClass: "form-control",
+                      attrs: {
+                        type: "text",
+                        placeholder: "Кол-во",
+                        required: ""
+                      },
+                      domProps: { value: window.quantity },
+                      on: {
+                        input: function($event) {
+                          if ($event.target.composing) {
+                            return
+                          }
+                          _vm.$set(window, "quantity", $event.target.value)
+                        }
+                      }
+                    })
+                  ]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "form-group col-md-2" }, [
+                    _c("div", { staticClass: "form-group__calc " }, [
+                      _vm._v(
+                        "\n                      " +
+                          _vm._s(
+                            parseFloat(
+                              window.length * window.width * window.quantity
+                            ).toFixed(2)
+                          ) +
+                          " M"
+                      ),
+                      _c("sup", [_vm._v("2")])
+                    ])
+                  ]),
+                  _vm._v(" "),
+                  _c(
+                    "button",
+                    {
+                      staticClass:
+                        "add-button add-button--remove d-flex align-items-center ml-auto",
+                      on: {
+                        click: function($event) {
+                          _vm.deleteNewExtraWindow(window)
+                        }
+                      }
+                    },
+                    [
+                      _c("img", {
+                        attrs: { src: "/img/del.svg", alt: "add-button" }
+                      })
+                    ]
+                  )
+                ]
+              )
+            ])
+          ]
+        )
+      })
+    ),
+    _vm._v(" "),
+    _c("div", { staticClass: "row col-12" }, [
+      _c(
+        "button",
+        {
+          staticClass: "add-space-button py-2",
+          on: { click: _vm.addExtraWindow }
+        },
+        [_vm._v("+ Добавить проем ")]
+      )
+    ])
+  ])
+}
+var staticRenderFns = []
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-360a861a", module.exports)
+  }
+}
+
+/***/ }),
+/* 406 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+var normalizeComponent = __webpack_require__(1)
+/* script */
+var __vue_script__ = __webpack_require__(407)
+/* template */
+var __vue_template__ = __webpack_require__(408)
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = null
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources/assets/js/components/Orders/Services/Extra/Rooms/Windows/ExtraRoomWindows.vue"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-1a578218", Component.options)
+  } else {
+    hotAPI.reload("data-v-1a578218", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 407 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+/* harmony default export */ __webpack_exports__["default"] = ({});
+
+/***/ }),
+/* 408 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div")
+}
+var staticRenderFns = []
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-1a578218", module.exports)
   }
 }
 

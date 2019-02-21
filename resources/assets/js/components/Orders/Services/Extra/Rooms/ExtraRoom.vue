@@ -45,44 +45,40 @@
                         </div>
 
                             <div class="row align-items-center py-5 shadow-light px-15 mb-2">
-                                <!-- <div class="col-6">
+                                <div class="col-3">
                                     <select class="form-control match-content">
                                         <option>
-                                            {{ extra_room.room.room_type.type }}
+                                            {{ extra_room.room.description ? extra_room.room.description : extra_room.room.room_type.type }}
                                         </option>
                                     </select>
-                                </div> -->
-
-                            <!-- <template v-if="extra_room.room">
+                                </div>
                                 <template v-if="extra_room.room.room_type_id === 1">
                                     <div class="col-6 d-flex align-items-center justify-content-between px-0">
 
                                         <div class="placeholder-text ml-2" placeholder="Шир">
-                                            <input type="number" disabled v-model="width" />
+                                            <input type="number" disabled :value="extra_room.room.width" />
                                         </div>
                                         <div class="placeholder-text ml-2" placeholder="Дли">
-                                            <input type="number" disabled v-model="length" />
+                                            <input type="number" disabled :value="extra_room.room.length" />
                                         </div>
                                         <div class="placeholder-text ml-2" placeholder="Выс">
-                                            <input type="number" disabled v-model="height" />
+                                            <input type="number" disabled :value="extra_room.room.height" />
                                         </div>
 
                                         <div class="placeholder-text ml-2" placeholder="S">
-                                            <input type="number" disabled v-model="area" />
+                                            <input type="number" disabled :value="extra_room.room.area" />
                                         </div>
 
                                         <div class="placeholder-text ml-2" placeholder="Сте">
-                                            <input type="number" disabled v-model="wall_area" />
+                                            <input type="number" disabled :value="extra_room.room.wall_area" />
                                         </div>
 
                                         <div class="placeholder-text ml-2" placeholder="Пер">
-                                            <input type="number" disabled v-model="perimeter" />
+                                            <input type="number" disabled :value="extra_room.room.perimeter" />
                                         </div>
                                     </div>
 
                                 </template>
-                            </template> -->
-
                         </div>
                        </div>
 
@@ -90,175 +86,21 @@
                         <div class="row">
                             <div class="col-md-12 pl-5 pt-5 bg">
 
-                                <!-- <div class="row align-items-center justify-content-between">
-                                        <template v-if="extra_room.room.room_type_id != 4">
-                                            <div class="col-6">
-                                                <template v-if="extra_room_price">
-                                                    <div class="create__sum" style="font-size: 16px;">
-                                                        ИТОГО В ТЕКУЩЕЙ ВКЛАДКЕ: {{ new Intl.NumberFormat().format(parseInt(extra_room_price)) }} P
-                                                    </div>
-                                                </template>
-                                                <template v-else>
-                                                    <div class="create__sum" style="font-size: 16px;">
-                                                        ИТОГО В ТЕКУЩЕЙ ВКЛАДКЕ: 0 Р
-                                                    </div>
-                                                </template>
-                                            </div>
-                                        </template>
-                                </div> -->
+                                <div class="row align-items-center justify-content-between">
+                                    <div class="col-6" v-if="extra_room.room.room_type_id != 4">
+                                        <div class="create__sum" style="font-size: 16px;">
+                                            ИТОГО В ТЕКУЩЕЙ ВКЛАДКЕ: {{ extra_room.price ? new Intl.NumberFormat().format(parseInt(extra_room.price)) : 0 }} P
+                                        </div>
+                                    </div>
+                                </div>
 
                         <div class="container-fluid px-0">
 
                             <div class="row">
                                 <div class="col-md-12 pt-4 pr-0">
-                                    <!-- <div class="row col-12 justify-content-between add-space-block align-items-center" v-for="(window, index) in extra_room.extra_windows" :key="window.id">
+                                    <ExtraRoomWindows />
 
-                                      <div class="col-3 px-0">
-                                          <button class="add-space-button pl-4 active">Проем {{ index + parseInt(1) }}</button>
-                                      </div>
-
-                                        <div class="col-md-9">
-                                            <div class="row col-12 form-group--margin d-flex align-items-center create-spaces">
-
-                                            <div class="form-group col-md-3">
-                                                <select class="form-control"
-                                                        name="type"
-                                                        >
-                                                        <option name="type" :value="window.type">
-                                                            <template v-if="window.type === 'window'">
-                                                                Окно
-                                                            </template>
-
-                                                            <template v-else>
-                                                                Дверь
-                                                            </template>
-                                                        </option>
-                                                </select>
-                                            </div>
-
-
-                                          <div class="form-group col-md-2">
-                                              <input type="number"
-                                                     min="0"
-                                                     class="form-control"
-                                                     v-model="window.length"
-                                                     @change="updateExtraWindow(window)"
-                                                     required
-                                                     >
-                                          </div>
-
-                                          <div class="form-group col-md-2">
-                                              <input type="number"
-                                                     min="0"
-                                                     class="form-control"
-                                                     v-model="window.width"
-                                                     @change="updateExtraWindow(window)"
-                                                     required
-                                                     >
-                                          </div>
-
-
-                                          <span>x</span>
-
-                                          <div class="form-group col-md-2">
-                                              <input type="number"
-                                                     min="0"
-                                                     class="form-control"
-                                                     v-model="window.quantity"
-                                                     @change="updateExtraWindow(window)"
-                                                     required
-                                                     >
-                                          </div>
-
-                                          <div class="form-group col-md-2">
-                                              <div class="form-group__calc form-group__parametres">
-                                                  {{ parseFloat(window.length * window.width * window.quantity).toFixed(2) }} M<sup>2</sup>
-                                              </div>
-                                          </div>
-
-                                          <button @click="deleteExtraWindow(window)" class="add-button add-button--remove d-flex align-items-center ml-auto">
-                                              <img src="/img/del.svg" alt="add-button">
-                                          </button>
-
-                                        </div>
-                                        </div>
-                                    </div> -->
-
-
-                                        <!-- <form @submit.prevent="save()">
-                                            <div class="row col-12 justify-content-between add-space-block align-items-center" v-for="(window, index) in newExtraWindows" :key="window.id">
-
-                                              <div class="col-3 px-0">
-                                                <button class="add-space-button pl-4 active">Новый проем {{ index + parseInt(1) }}</button>
-                                              </div>
-
-                                              <div class="col-md-9">
-                                                  <div class="row col-12 form-group--margin d-flex align-items-center create-spaces">
-
-                                                    <div class="form-group col-md-3">
-                                                        <select class="form-control"
-                                                                name="type"
-                                                                v-model="window.type"
-                                                                value="window"
-                                                                >
-                                                            <option name="type" value="window">
-                                                                Окно
-                                                            </option>
-
-                                                            <option name="type" value="door">
-                                                                Дверь
-                                                            </option>
-                                                        </select>
-                                                    </div>
-
-
-                                                    <div class="form-group col-md-2">
-                                                        <input type="text"
-                                                               class="form-control"
-                                                               placeholder="Ширина"
-                                                               v-model="window.length"
-                                                               required
-                                                               >
-                                                    </div>
-
-                                                    <div class="form-group col-md-2">
-                                                        <input type="text"
-                                                               class="form-control"
-                                                               placeholder="Длина"
-                                                               v-model="window.width"
-                                                               required
-                                                              >
-                                                    </div>
-
-                                                 <span class="">x</span>
-
-                                                  <div class="form-group col-md-2">
-                                                      <input type="text"
-                                                             class="form-control"
-                                                             placeholder="Кол-во"
-                                                             v-model="window.quantity"
-                                                             required
-                                                             >
-                                                  </div>
-
-                                                  <div class="form-group col-md-2">
-                                                      <div class="form-group__calc ">
-                                                          {{ parseFloat(window.length * window.width * window.quantity).toFixed(2) }} M<sup>2</sup>
-                                                      </div>
-                                                  </div>
-
-                                                  <button @click="deleteNewExtraWindow(window)" class="add-button add-button--remove d-flex align-items-center ml-auto">
-                                                      <img src="/img/del.svg" alt="add-button">
-                                                  </button>
-                                                </div>
-                                              </div>
-                                            </div>
-
-                                        </form> -->
-
-                                        <!-- <div class="row col-12">
-                                            <button class="add-space-button py-2" @click="addExtraWindow">+ Добавить проем </button>
-                                        </div> -->
+                                    <AddExtraRoomWindow />
 
 
                                 </div>
@@ -284,10 +126,12 @@
 <script>
   import { Carousel, Slide } from 'vue-carousel'
   import ExtraOrderDetail from './partials/ExtraOrderDetail'
+  import ExtraRoomWindows from './Windows/ExtraRoomWindows'
+  import AddExtraRoomWindow from './Windows/AddExtraRoomWindow'
 
   export default {
       components: {
-          ExtraOrderDetail
+          ExtraOrderDetail, ExtraRoomWindows, AddExtraRoomWindow
       },
 
       data () {
@@ -295,15 +139,6 @@
               order: [],
               extra_order_act: [],
               extra_room: [],
-              extra_room_price: null,
-              extra_order_act_price: null,
-
-              width: null,
-              length: null,
-              height: null,
-              area: null,
-              wall_area: null,
-              perimeter: null,
 
               newExtraWindows: [],
               extra_room_service_materials: [],
@@ -325,20 +160,6 @@
                           .then(response => {
                               this.extra_room = response.data
                               this.extra_order_act = response.data.extra_order_act
-
-                              this.width = this.extra_room.width
-                              this.length = this.extra_room.length
-                              this.height = this.extra_room.height
-                              this.area = this.extra_room.area
-                              this.wall_area = this.extra_room.wall_area
-                              this.perimeter = this.extra_room.perimeter
-
-                              this.order = response.data.extra_order_act.order
-
-                              this.extra_room_price = this.extra_room.price
-                              this.extra_order_act_price = this.extra_order_act.price
-
-
                               this.path = this.$router.history.current.path
 
                           })
