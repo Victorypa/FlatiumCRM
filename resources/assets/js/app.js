@@ -1,6 +1,6 @@
 import Vue from 'vue'
 import store from './store'
-import router from './routes.js'
+import router from './routes'
 import VueCarousel from 'vue-carousel'
 import BasicHeader from './components/Partials/BasicHeader'
 import Navigation from './components/Partials/Navigation'

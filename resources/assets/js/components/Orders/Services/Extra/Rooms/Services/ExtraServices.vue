@@ -35,14 +35,14 @@
                  {{ getServiceTypeName(service_type_id) }}
              </div>
 
-             <!-- <div class="col-md-12 px-0 all-items"
+             <div class="col-md-12 px-0 all-items"
                   v-for="extra_room_service in filteredExtraRoomServices"
                   >
                      <ExtraRoomService :extra_room_service="extra_room_service"
                                   :extra_room="extra_room"
                                   :key="extra_room_service.service_id"
                                   />
-             </div> -->
+             </div>
 
              <div class="col-md-12 px-0 all-items"
                   v-for="service in filteredServices"
@@ -62,7 +62,7 @@
     import ServiceCollection from '@/components/Services/mixins/ServiceCollection'
     import AddService from '@/components/Services/partials/AddService'
     import ExtraRoomService from './partials/ExtraRoomService'
-    import Service from '@/components/Orders/Rooms/Services/partials/Service'
+    import Service from './partials/Service'
 
     export default {
         mixins: [ServiceCollection],
@@ -137,6 +137,7 @@
             },
 
             filteredExtraRoomServices () {
+                if (this.extra_room.length !== 0 && this.extra_room.extra_room_services.length !== 0) {
                     let data = this.extra_room.extra_room_services
 
                     data = data.filter(row => {
@@ -144,6 +145,7 @@
                     })
 
                     return data
+                }
 
             }
         }
