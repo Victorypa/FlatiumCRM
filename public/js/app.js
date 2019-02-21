@@ -63452,10 +63452,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
-//
-//
-//
-//
 
 
 
@@ -66692,18 +66688,14 @@ var render = function() {
                     )
                   ]),
                   _vm._v(" "),
-                  _vm.room.room_type_id
-                    ? [
-                        _c("Services", {
-                          key: _vm.room.id,
-                          on: {
-                            "added-service": function($event) {
-                              _vm.getRoom()
-                            }
-                          }
-                        })
-                      ]
-                    : _vm._e()
+                  _c("Services", {
+                    key: _vm.room.id,
+                    on: {
+                      "added-service": function($event) {
+                        _vm.getRoom()
+                      }
+                    }
+                  })
                 ],
                 2
               )
@@ -93426,6 +93418,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__Windows_ExtraRoomWindows___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2__Windows_ExtraRoomWindows__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__Windows_AddExtraRoomWindow__ = __webpack_require__(403);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__Windows_AddExtraRoomWindow___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3__Windows_AddExtraRoomWindow__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__Services_ExtraServices__ = __webpack_require__(426);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__Services_ExtraServices___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4__Services_ExtraServices__);
 //
 //
 //
@@ -93551,6 +93545,16 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
 
 
 
@@ -93559,12 +93563,12 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     components: {
-        ExtraOrderDetail: __WEBPACK_IMPORTED_MODULE_1__partials_ExtraOrderDetail___default.a, ExtraRoomWindows: __WEBPACK_IMPORTED_MODULE_2__Windows_ExtraRoomWindows___default.a, AddExtraRoomWindow: __WEBPACK_IMPORTED_MODULE_3__Windows_AddExtraRoomWindow___default.a
+        ExtraOrderDetail: __WEBPACK_IMPORTED_MODULE_1__partials_ExtraOrderDetail___default.a, ExtraRoomWindows: __WEBPACK_IMPORTED_MODULE_2__Windows_ExtraRoomWindows___default.a,
+        AddExtraRoomWindow: __WEBPACK_IMPORTED_MODULE_3__Windows_AddExtraRoomWindow___default.a, ExtraServices: __WEBPACK_IMPORTED_MODULE_4__Services_ExtraServices___default.a
     },
 
     data: function data() {
         return {
-            order: [],
             extra_order_act: [],
             extra_room: [],
 
@@ -93585,35 +93589,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 _this.extra_order_act = response.data.extra_order_act;
                 _this.path = _this.$router.history.current.path;
             });
-        },
-        getPrice: function getPrice(value) {
-            this.extra_room_price = 0;
-            this.extra_room_price = parseInt(value);
-            this.getExtraRoom();
-        }
-    },
-
-    computed: {
-        filteredServices: function filteredServices() {
-            var _this2 = this;
-
-            var data = this.services;
-
-            if (this.newServices.length) {
-                this.newServices = [];
-            }
-
-            data = data.filter(function (row) {
-                return row.service_type_id === _this2.service_type_id;
-            });
-
-            data = data.filter(function (row) {
-                return Object.keys(row).some(function (key) {
-                    return String(row[key]).toLowerCase().indexOf(_this2.searchQuery.toLowerCase()) > -1;
-                });
-            });
-
-            return data;
         }
     }
 });
@@ -93958,74 +93933,81 @@ var render = function() {
                       ),
                       _vm._v(" "),
                       _c("div", { staticClass: "row" }, [
-                        _c("div", { staticClass: "col-md-12 pl-5 pt-5 bg" }, [
-                          _c(
-                            "div",
-                            {
-                              staticClass:
-                                "row align-items-center justify-content-between"
-                            },
-                            [
-                              _vm.extra_room.room.room_type_id != 4
-                                ? _c("div", { staticClass: "col-6" }, [
-                                    _c(
-                                      "div",
-                                      {
-                                        staticClass: "create__sum",
-                                        staticStyle: { "font-size": "16px" }
-                                      },
-                                      [
-                                        _vm._v(
-                                          "\n                                        ИТОГО В ТЕКУЩЕЙ ВКЛАДКЕ: " +
-                                            _vm._s(
-                                              _vm.extra_room.price
-                                                ? new Intl.NumberFormat().format(
-                                                    parseInt(
-                                                      _vm.extra_room.price
+                        _c(
+                          "div",
+                          { staticClass: "col-md-12 pl-5 pt-5 bg" },
+                          [
+                            _c(
+                              "div",
+                              {
+                                staticClass:
+                                  "row align-items-center justify-content-between"
+                              },
+                              [
+                                _vm.extra_room.room.room_type_id != 4
+                                  ? _c("div", { staticClass: "col-6" }, [
+                                      _c(
+                                        "div",
+                                        {
+                                          staticClass: "create__sum",
+                                          staticStyle: { "font-size": "16px" }
+                                        },
+                                        [
+                                          _vm._v(
+                                            "\n                                        ИТОГО В ТЕКУЩЕЙ ВКЛАДКЕ: " +
+                                              _vm._s(
+                                                _vm.extra_room.price
+                                                  ? new Intl.NumberFormat().format(
+                                                      parseInt(
+                                                        _vm.extra_room.price
+                                                      )
                                                     )
-                                                  )
-                                                : 0
-                                            ) +
-                                            " P\n                                    "
-                                        )
-                                      ]
-                                    )
-                                  ])
-                                : _vm._e()
-                            ]
-                          ),
-                          _vm._v(" "),
-                          _c("div", { staticClass: "container-fluid px-0" }, [
-                            _c("div", { staticClass: "row" }, [
-                              _c(
-                                "div",
-                                { staticClass: "col-md-12 pt-4 pr-0" },
-                                [
-                                  _c("ExtraRoomWindows", {
-                                    attrs: {
-                                      extra_windows:
-                                        _vm.extra_room.extra_windows
-                                    },
-                                    on: {
-                                      "window-changed": function($event) {
-                                        _vm.getExtraRoom()
+                                                  : 0
+                                              ) +
+                                              " P\n                                    "
+                                          )
+                                        ]
+                                      )
+                                    ])
+                                  : _vm._e()
+                              ]
+                            ),
+                            _vm._v(" "),
+                            _c("div", { staticClass: "container-fluid px-0" }, [
+                              _c("div", { staticClass: "row" }, [
+                                _c(
+                                  "div",
+                                  { staticClass: "col-md-12 pt-4 pr-0" },
+                                  [
+                                    _c("ExtraRoomWindows", {
+                                      attrs: {
+                                        extra_windows:
+                                          _vm.extra_room.extra_windows
+                                      },
+                                      on: {
+                                        "window-changed": function($event) {
+                                          _vm.getExtraRoom()
+                                        }
                                       }
-                                    }
-                                  }),
-                                  _vm._v(" "),
-                                  _c("AddExtraRoomWindow", {
-                                    on: {
-                                      "window-created": function($event) {
-                                        _vm.getExtraRoom()
+                                    }),
+                                    _vm._v(" "),
+                                    _c("AddExtraRoomWindow", {
+                                      on: {
+                                        "window-created": function($event) {
+                                          _vm.getExtraRoom()
+                                        }
                                       }
-                                    }
-                                  })
-                                ],
-                                1
-                              )
-                            ])
-                          ])
-                        ])
+                                    })
+                                  ],
+                                  1
+                                )
+                              ])
+                            ]),
+                            _vm._v(" "),
+                            _c("ExtraServices")
+                          ],
+                          1
+                        )
                       ])
                     ],
                     1
@@ -94987,6 +94969,228 @@ if (false) {
   module.hot.accept()
   if (module.hot.data) {
     require("vue-hot-reload-api")      .rerender("data-v-1a578218", module.exports)
+  }
+}
+
+/***/ }),
+/* 409 */,
+/* 410 */,
+/* 411 */,
+/* 412 */,
+/* 413 */,
+/* 414 */,
+/* 415 */,
+/* 416 */,
+/* 417 */,
+/* 418 */,
+/* 419 */,
+/* 420 */,
+/* 421 */,
+/* 422 */,
+/* 423 */,
+/* 424 */,
+/* 425 */,
+/* 426 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+var normalizeComponent = __webpack_require__(1)
+/* script */
+var __vue_script__ = __webpack_require__(427)
+/* template */
+var __vue_template__ = __webpack_require__(428)
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = null
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources/assets/js/components/Orders/Services/Extra/Rooms/Services/ExtraServices.vue"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-182673f1", Component.options)
+  } else {
+    hotAPI.reload("data-v-182673f1", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 427 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+    data: function data() {
+        return {
+            service_type_id: 1,
+            service_types: [],
+            searchQuery: ''
+        };
+    },
+    created: function created() {
+        this.getServiceTypes();
+    },
+
+
+    methods: {
+        getServiceTypes: function getServiceTypes() {
+            var _this = this;
+
+            if (localStorage.getItem('service_types')) {
+                this.service_types = JSON.parse(localStorage.getItem('service_types'));
+            } else {
+                return axios.get('/api/service_types').then(function (response) {
+                    _this.service_types = response.data;
+                    localStorage.setItem('service_types', JSON.stringify(_this.service_types));
+                });
+            }
+        }
+    }
+});
+
+/***/ }),
+/* 428 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c(
+    "div",
+    { staticClass: "row align-items-center col-12 py-4 fixed-search" },
+    [
+      _c("div", { staticClass: "col-2 pb-2" }, [
+        _c(
+          "select",
+          {
+            directives: [
+              {
+                name: "model",
+                rawName: "v-model",
+                value: _vm.service_type_id,
+                expression: "service_type_id"
+              }
+            ],
+            staticClass: "form-control",
+            on: {
+              change: function($event) {
+                var $$selectedVal = Array.prototype.filter
+                  .call($event.target.options, function(o) {
+                    return o.selected
+                  })
+                  .map(function(o) {
+                    var val = "_value" in o ? o._value : o.value
+                    return val
+                  })
+                _vm.service_type_id = $event.target.multiple
+                  ? $$selectedVal
+                  : $$selectedVal[0]
+              }
+            }
+          },
+          _vm._l(_vm.service_types, function(service_type) {
+            return _c("option", { domProps: { value: service_type.id } }, [
+              _vm._v(
+                "\n                  " +
+                  _vm._s(service_type.name) +
+                  "\n              "
+              )
+            ])
+          })
+        )
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "col-10 d-flex align-items-center pl-0 pb-2" }, [
+        _c(
+          "div",
+          { staticClass: "form-group col-12 d-flex align-items-center" },
+          [
+            _c("input", {
+              directives: [
+                {
+                  name: "model",
+                  rawName: "v-model",
+                  value: _vm.searchQuery,
+                  expression: "searchQuery"
+                }
+              ],
+              staticClass: "form-control",
+              attrs: {
+                type: "text",
+                placeholder: "Название вида работы",
+                autofocus: ""
+              },
+              domProps: { value: _vm.searchQuery },
+              on: {
+                input: function($event) {
+                  if ($event.target.composing) {
+                    return
+                  }
+                  _vm.searchQuery = $event.target.value
+                }
+              }
+            })
+          ]
+        )
+      ])
+    ]
+  )
+}
+var staticRenderFns = []
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-182673f1", module.exports)
   }
 }
 

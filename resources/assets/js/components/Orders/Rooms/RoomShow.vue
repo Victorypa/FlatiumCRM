@@ -174,13 +174,9 @@
                                 </div>
                             </div>
 
-                            <template v-if="room.room_type_id">
-                                <Services :key="room.id"
-                                          @added-service="getRoom()"
-                                          />
-                            </template>
-
-
+                            <Services :key="room.id"
+                                      @added-service="getRoom()"
+                                      />
                         </div>
                     </div>
                 </div>

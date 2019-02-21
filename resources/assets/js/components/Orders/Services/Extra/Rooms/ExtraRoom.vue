@@ -107,6 +107,15 @@
                             </div>
                         </div>
 
+                        <ExtraServices />
+
+
+
+                        <!-- <ExtraRoomService v-if="extra_room.extra_room_services.length !== 0"
+                                           v-for="extra_room_service in extra_room.extra_room_services"
+                                           :extra_room_service="extra_room_service"
+                                           :key="'extra-room-service-' + extra_room_service.id"
+                                           /> -->
 
                         <!-- <template v-if="extra_room.room && order">
                             <services :extra_room="extra_room" :order="order" :key="'extra-room-' + extra_room.id" @price="getPrice"></services>
@@ -128,15 +137,16 @@
   import ExtraOrderDetail from './partials/ExtraOrderDetail'
   import ExtraRoomWindows from './Windows/ExtraRoomWindows'
   import AddExtraRoomWindow from './Windows/AddExtraRoomWindow'
+  import ExtraServices from './Services/ExtraServices'
 
   export default {
       components: {
-          ExtraOrderDetail, ExtraRoomWindows, AddExtraRoomWindow
+          ExtraOrderDetail, ExtraRoomWindows,
+          AddExtraRoomWindow, ExtraServices
       },
 
       data () {
           return {
-              order: [],
               extra_order_act: [],
               extra_room: [],
 
@@ -157,38 +167,6 @@
                               this.path = this.$router.history.current.path
                           })
           },
-
-          getPrice (value) {
-              this.extra_room_price = 0
-              this.extra_room_price = parseInt(value)
-              this.getExtraRoom()
-          },
-      },
-
-      computed: {
-          filteredServices () {
-              let data = this.services
-
-              if (this.newServices.length) {
-                  this.newServices = []
-              }
-
-              data = data.filter(row => {
-                  return row.service_type_id === this.service_type_id
-              })
-
-              data = data.filter(row => {
-                return Object.keys(row).some(key => {
-                  return (
-                    String(row[key])
-                      .toLowerCase()
-                      .indexOf(this.searchQuery.toLowerCase()) > -1
-                  )
-                })
-              })
-
-              return data
-          }
       }
   }
 </script>
