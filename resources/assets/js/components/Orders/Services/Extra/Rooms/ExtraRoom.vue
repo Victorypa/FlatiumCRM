@@ -25,11 +25,11 @@
                                               >
                                                 <slide v-for="(extra_room, index) in extra_order_act.extra_rooms" :key="extra_room.id">
                                                     <router-link @click.native="getExtraRoom()"
-                                                                 :to="{ name: 'order-extra-services-rooms-show', params: { id: order.id, extra_act_id: extra_order_act.id, extra_room_id: extra_room.id } }"
+                                                                 :to="{ name: 'order-extra-services-rooms-show', params: { id: extra_order_act.order.id, extra_act_id: extra_order_act.id, extra_room_id: extra_room.id } }"
                                                                  class="create__features justify-content-center"
                                                                  >
                                                         <div class="create__features__name col-auto px-0 mx-2"
-                                                             :class="{ 'active': path === '/orders/' + order.id + '/order_extra_services/' + extra_order_act.id + '/extra_rooms/' + extra_room.id }"
+                                                             :class="{ 'active': path === '/orders/' + extra_order_act.order.id + '/order_extra_services/' + extra_order_act.id + '/extra_rooms/' + extra_room.id }"
                                                             >
                                                             <span>
                                                                 {{ extra_room.room.description ? extra_room.room.description.substring(0, 13) : extra_room.room.room_type.type }}
@@ -98,11 +98,11 @@
 
                             <div class="row">
                                 <div class="col-md-12 pt-4 pr-0">
-                                    <ExtraRoomWindows />
+                                    <ExtraRoomWindows :extra_windows="extra_room.extra_windows"
+                                                      @window-changed="getExtraRoom()"
+                                                      />
 
-                                    <AddExtraRoomWindow />
-
-
+                                    <AddExtraRoomWindow @window-created="getExtraRoom()" />
                                 </div>
                             </div>
                         </div>
@@ -140,18 +140,12 @@
               extra_order_act: [],
               extra_room: [],
 
-              newExtraWindows: [],
-              extra_room_service_materials: [],
-
-              show: false,
-
               path: this.$router.history.current.path
           }
       },
 
-      mounted () {
+      created () {
           this.getExtraRoom()
-
       },
 
       methods: {
@@ -161,67 +155,7 @@
                               this.extra_room = response.data
                               this.extra_order_act = response.data.extra_order_act
                               this.path = this.$router.history.current.path
-
                           })
-          },
-
-
-          save () {
-              this.newExtraWindows.forEach((item, index) => {
-                  return axios.post(`/api/orders/${this.$route.params.id}/extra_order_act/${this.$route.params.extra_order_act_id}/extra_rooms/${this.$route.params.extra_room_id}/extra_windows/store`, {
-                          'type': item.type,
-                          'length': item.length,
-                          'width': item.width,
-                          'quantity': item.quantity
-                      }).then(response => {
-                          window.location.reload(true)
-                      })
-              })
-          },
-
-          updateExtraOrderAct () {
-              axios.patch(`/api/orders/${this.$route.params.id}/extra_order_act/${this.$route.params.extra_order_act_id}/update`, {
-                  'description': this.description
-              }).then(response => {
-                  this.show = false
-              })
-          },
-
-          addExtraWindow () {
-              this.newExtraWindows.push({
-                  type: 'window',
-                  length: null,
-                  width: null,
-                  quantity: null
-              })
-              console.log(this.newExtraWindows);
-          },
-
-          deleteNewExtraWindow(window) {
-              this.newExtraWindows.splice(window, 1)
-          },
-
-          updateExtraWindow (currentWindow) {
-               axios.patch(`/api/orders/${this.$route.params.id}/extra_order_act/${this.$route.params.extra_order_act_id}/extra_rooms/${this.$route.params.extra_room_id}/extra_windows/${currentWindow.id}/update`, {
-                  'quantity': currentWindow.quantity,
-                  'length': currentWindow.length,
-                  'width': currentWindow.width
-              }).then(response => {
-                  window.location.reload(true)
-              })
-          },
-
-          deleteExtraWindow (currentWindow) {
-                  if (confirm('Удалить ?')) {
-                      axios.delete(`/api/orders/${this.$route.params.id}/extra_order_act/${this.$route.params.extra_order_act_id}/extra_rooms/${this.$route.params.extra_room_id}/extra_windows/${currentWindow.id}/delete`)
-                           .then(response => {
-                               window.location.reload(true)
-                           })
-                  }
-          },
-
-          getMaterialSummary (rate, quantity, price) {
-              return parseFloat(Math.ceil(rate/quantity) * price).toFixed(2)
           },
 
           getPrice (value) {

@@ -1,6 +1,6 @@
 <template>
     <div>
-        <form @submit.prevent="save()">
+        <form @submit.prevent="saveNewWindows()">
             <div class="row col-12 justify-content-between add-space-block align-items-center" v-for="(window, index) in newExtraWindows" :key="window.id">
 
               <div class="col-3 px-0">
@@ -96,7 +96,11 @@
                 })
             },
 
-            save () {
+            deleteNewExtraWindow(window) {
+                this.newExtraWindows.splice(window, 1)
+            },
+
+            saveNewWindows () {
                 this.newExtraWindows.forEach((item, index) => {
                     return axios.post(`/api/orders/${this.$route.params.id}/extra_order_act/${this.$route.params.extra_act_id}/extra_rooms/${this.$route.params.extra_room_id}/extra_windows/store`, {
                             'type': item.type,
@@ -104,10 +108,11 @@
                             'width': item.width,
                             'quantity': item.quantity
                         }).then(response => {
-
+                            this.newExtraWindows = []
+                            this.$emit('window-created')
                         })
                 })
-            },
+            }
         }
     }
 </script>

@@ -93568,15 +93568,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             extra_order_act: [],
             extra_room: [],
 
-            newExtraWindows: [],
-            extra_room_service_materials: [],
-
-            show: false,
-
             path: this.$router.history.current.path
         };
     },
-    mounted: function mounted() {
+    created: function created() {
         this.getExtraRoom();
     },
 
@@ -93591,60 +93586,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 _this.path = _this.$router.history.current.path;
             });
         },
-        save: function save() {
-            var _this2 = this;
-
-            this.newExtraWindows.forEach(function (item, index) {
-                return axios.post('/api/orders/' + _this2.$route.params.id + '/extra_order_act/' + _this2.$route.params.extra_order_act_id + '/extra_rooms/' + _this2.$route.params.extra_room_id + '/extra_windows/store', {
-                    'type': item.type,
-                    'length': item.length,
-                    'width': item.width,
-                    'quantity': item.quantity
-                }).then(function (response) {
-                    window.location.reload(true);
-                });
-            });
-        },
-        updateExtraOrderAct: function updateExtraOrderAct() {
-            var _this3 = this;
-
-            axios.patch('/api/orders/' + this.$route.params.id + '/extra_order_act/' + this.$route.params.extra_order_act_id + '/update', {
-                'description': this.description
-            }).then(function (response) {
-                _this3.show = false;
-            });
-        },
-        addExtraWindow: function addExtraWindow() {
-            this.newExtraWindows.push({
-                type: 'window',
-                length: null,
-                width: null,
-                quantity: null
-            });
-            console.log(this.newExtraWindows);
-        },
-        deleteNewExtraWindow: function deleteNewExtraWindow(window) {
-            this.newExtraWindows.splice(window, 1);
-        },
-        updateExtraWindow: function updateExtraWindow(currentWindow) {
-            axios.patch('/api/orders/' + this.$route.params.id + '/extra_order_act/' + this.$route.params.extra_order_act_id + '/extra_rooms/' + this.$route.params.extra_room_id + '/extra_windows/' + currentWindow.id + '/update', {
-                'quantity': currentWindow.quantity,
-                'length': currentWindow.length,
-                'width': currentWindow.width
-            }).then(function (response) {
-                window.location.reload(true);
-            });
-        },
-        deleteExtraWindow: function deleteExtraWindow(currentWindow) {
-            if (confirm('Удалить ?')) {
-                axios.delete('/api/orders/' + this.$route.params.id + '/extra_order_act/' + this.$route.params.extra_order_act_id + '/extra_rooms/' + this.$route.params.extra_room_id + '/extra_windows/' + currentWindow.id + '/delete').then(function (response) {
-                    window.location.reload(true);
-                });
-            }
-        },
-        getMaterialSummary: function getMaterialSummary(rate, quantity, price) {
-            return parseFloat(Math.ceil(rate / quantity) * price).toFixed(2);
-        },
         getPrice: function getPrice(value) {
             this.extra_room_price = 0;
             this.extra_room_price = parseInt(value);
@@ -93654,7 +93595,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
     computed: {
         filteredServices: function filteredServices() {
-            var _this4 = this;
+            var _this2 = this;
 
             var data = this.services;
 
@@ -93663,12 +93604,12 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             }
 
             data = data.filter(function (row) {
-                return row.service_type_id === _this4.service_type_id;
+                return row.service_type_id === _this2.service_type_id;
             });
 
             data = data.filter(function (row) {
                 return Object.keys(row).some(function (key) {
-                    return String(row[key]).toLowerCase().indexOf(_this4.searchQuery.toLowerCase()) > -1;
+                    return String(row[key]).toLowerCase().indexOf(_this2.searchQuery.toLowerCase()) > -1;
                 });
             });
 
@@ -93765,7 +93706,10 @@ var render = function() {
                                                             name:
                                                               "order-extra-services-rooms-show",
                                                             params: {
-                                                              id: _vm.order.id,
+                                                              id:
+                                                                _vm
+                                                                  .extra_order_act
+                                                                  .order.id,
                                                               extra_act_id:
                                                                 _vm
                                                                   .extra_order_act
@@ -93793,7 +93737,9 @@ var render = function() {
                                                               active:
                                                                 _vm.path ===
                                                                 "/orders/" +
-                                                                  _vm.order.id +
+                                                                  _vm
+                                                                    .extra_order_act
+                                                                    .order.id +
                                                                   "/order_extra_services/" +
                                                                   _vm
                                                                     .extra_order_act
@@ -94055,9 +94001,25 @@ var render = function() {
                                 "div",
                                 { staticClass: "col-md-12 pt-4 pr-0" },
                                 [
-                                  _c("ExtraRoomWindows"),
+                                  _c("ExtraRoomWindows", {
+                                    attrs: {
+                                      extra_windows:
+                                        _vm.extra_room.extra_windows
+                                    },
+                                    on: {
+                                      "window-changed": function($event) {
+                                        _vm.getExtraRoom()
+                                      }
+                                    }
+                                  }),
                                   _vm._v(" "),
-                                  _c("AddExtraRoomWindow")
+                                  _c("AddExtraRoomWindow", {
+                                    on: {
+                                      "window-created": function($event) {
+                                        _vm.getExtraRoom()
+                                      }
+                                    }
+                                  })
                                 ],
                                 1
                               )
@@ -94402,7 +94364,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 quantity: null
             });
         },
-        save: function save() {
+        deleteNewExtraWindow: function deleteNewExtraWindow(window) {
+            this.newExtraWindows.splice(window, 1);
+        },
+        saveNewWindows: function saveNewWindows() {
             var _this = this;
 
             this.newExtraWindows.forEach(function (item, index) {
@@ -94411,7 +94376,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                     'length': item.length,
                     'width': item.width,
                     'quantity': item.quantity
-                }).then(function (response) {});
+                }).then(function (response) {
+                    _this.newExtraWindows = [];
+                    _this.$emit('window-created');
+                });
             });
         }
     }
@@ -94432,7 +94400,7 @@ var render = function() {
         on: {
           submit: function($event) {
             $event.preventDefault()
-            _vm.save()
+            _vm.saveNewWindows()
           }
         }
       },
@@ -94794,8 +94762,33 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
 
-/* harmony default export */ __webpack_exports__["default"] = ({});
+/* harmony default export */ __webpack_exports__["default"] = ({
+    props: ['extra_windows'],
+
+    methods: {
+        updateExtraWindow: function updateExtraWindow(currentWindow) {
+            var _this = this;
+
+            axios.patch('/api/orders/' + this.$route.params.id + '/extra_order_act/' + this.$route.params.extra_act_id + '/extra_rooms/' + this.$route.params.extra_room_id + '/extra_windows/' + currentWindow.id + '/update', currentWindow).then(function (response) {
+                _this.$emit('window-changed');
+            });
+        },
+        deleteExtraWindow: function deleteExtraWindow(currentWindow) {
+            var _this2 = this;
+
+            if (confirm('Удалить ?')) {
+                axios.delete('/api/orders/' + this.$route.params.id + '/extra_order_act/' + this.$route.params.extra_act_id + '/extra_rooms/' + this.$route.params.extra_room_id + '/extra_windows/' + currentWindow.id + '/delete').then(function (response) {
+                    _this2.$emit('window-changed');
+                });
+            }
+        }
+    }
+
+});
 
 /***/ }),
 /* 408 */
@@ -94805,7 +94798,187 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div")
+  return _c(
+    "div",
+    _vm._l(_vm.extra_windows, function(window, index) {
+      return _c(
+        "div",
+        {
+          key: "exetra-window-" + window.id,
+          staticClass:
+            "row col-12 justify-content-between add-space-block align-items-center"
+        },
+        [
+          _c("div", { staticClass: "col-3 px-0" }, [
+            _c("button", { staticClass: "add-space-button pl-4 active" }, [
+              _vm._v("Проем " + _vm._s(index + parseInt(1)))
+            ])
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "col-md-9" }, [
+            _c(
+              "div",
+              {
+                staticClass:
+                  "row col-12 form-group--margin d-flex align-items-center create-spaces"
+              },
+              [
+                _c("div", { staticClass: "form-group col-md-3" }, [
+                  _c(
+                    "select",
+                    { staticClass: "form-control", attrs: { name: "type" } },
+                    [
+                      _c(
+                        "option",
+                        {
+                          attrs: { name: "type" },
+                          domProps: { value: window.type }
+                        },
+                        [
+                          window.type === "window"
+                            ? [
+                                _vm._v(
+                                  "\n                                Окно\n                            "
+                                )
+                              ]
+                            : [
+                                _vm._v(
+                                  "\n                                Дверь\n                            "
+                                )
+                              ]
+                        ],
+                        2
+                      )
+                    ]
+                  )
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "form-group col-md-2" }, [
+                  _c("input", {
+                    directives: [
+                      {
+                        name: "model",
+                        rawName: "v-model",
+                        value: window.length,
+                        expression: "window.length"
+                      }
+                    ],
+                    staticClass: "form-control",
+                    attrs: { type: "number", min: "0", required: "" },
+                    domProps: { value: window.length },
+                    on: {
+                      change: function($event) {
+                        _vm.updateExtraWindow(window)
+                      },
+                      input: function($event) {
+                        if ($event.target.composing) {
+                          return
+                        }
+                        _vm.$set(window, "length", $event.target.value)
+                      }
+                    }
+                  })
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "form-group col-md-2" }, [
+                  _c("input", {
+                    directives: [
+                      {
+                        name: "model",
+                        rawName: "v-model",
+                        value: window.width,
+                        expression: "window.width"
+                      }
+                    ],
+                    staticClass: "form-control",
+                    attrs: { type: "number", min: "0", required: "" },
+                    domProps: { value: window.width },
+                    on: {
+                      change: function($event) {
+                        _vm.updateExtraWindow(window)
+                      },
+                      input: function($event) {
+                        if ($event.target.composing) {
+                          return
+                        }
+                        _vm.$set(window, "width", $event.target.value)
+                      }
+                    }
+                  })
+                ]),
+                _vm._v(" "),
+                _c("span", [_vm._v("x")]),
+                _vm._v(" "),
+                _c("div", { staticClass: "form-group col-md-2" }, [
+                  _c("input", {
+                    directives: [
+                      {
+                        name: "model",
+                        rawName: "v-model",
+                        value: window.quantity,
+                        expression: "window.quantity"
+                      }
+                    ],
+                    staticClass: "form-control",
+                    attrs: { type: "number", min: "0", required: "" },
+                    domProps: { value: window.quantity },
+                    on: {
+                      change: function($event) {
+                        _vm.updateExtraWindow(window)
+                      },
+                      input: function($event) {
+                        if ($event.target.composing) {
+                          return
+                        }
+                        _vm.$set(window, "quantity", $event.target.value)
+                      }
+                    }
+                  })
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "form-group col-md-2" }, [
+                  _c(
+                    "div",
+                    { staticClass: "form-group__calc form-group__parametres" },
+                    [
+                      _vm._v(
+                        "\n                  " +
+                          _vm._s(
+                            parseFloat(
+                              window.length * window.width * window.quantity
+                            ).toFixed(2)
+                          ) +
+                          " M"
+                      ),
+                      _c("sup", [_vm._v("2")])
+                    ]
+                  )
+                ]),
+                _vm._v(" "),
+                _c(
+                  "button",
+                  {
+                    staticClass:
+                      "add-button add-button--remove d-flex align-items-center ml-auto",
+                    on: {
+                      click: function($event) {
+                        _vm.deleteExtraWindow(window)
+                      }
+                    }
+                  },
+                  [
+                    _c("img", {
+                      attrs: { src: "/img/del.svg", alt: "add-button" }
+                    })
+                  ]
+                )
+              ]
+            )
+          ])
+        ]
+      )
+    })
+  )
 }
 var staticRenderFns = []
 render._withStripped = true
