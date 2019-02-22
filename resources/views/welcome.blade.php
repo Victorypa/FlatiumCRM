@@ -7,9 +7,15 @@
         <meta http-equiv="Pragma" content="no-cache" />
         <meta http-equiv="Expires" content="0" />
         <title>Flatium</title>
-        <script src="{{ asset('js/app.js') }}" defer></script>
-        <link rel="stylesheet" href="{{ asset('css/app.css') }}">
-        <link rel="stylesheet" href="{{ asset('css/libs.min.css') }}">
+        @if (env('APP_ENV') === 'production')
+            <script src="{{ secure_asset('js/app.js') }}" defer></script>
+            <link rel="stylesheet" href="{{ secure_asset('css/app.css') }}">
+            <link rel="stylesheet" href="{{ secure_asset('css/libs.min.css') }}">
+        @else
+            <script src="{{ asset('js/app.js') }}" defer></script>
+            <link rel="stylesheet" href="{{ asset('css/app.css') }}">
+            <link rel="stylesheet" href="{{ asset('css/libs.min.css') }}">
+        @endif
     </head>
     <body>
         <div id="app">
