@@ -48997,7 +48997,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
             if (this.sortByPrice) {
                 data = data.filter(function (order) {
-                    return order.price;
+                    if (order.price && order.price != 0) {
+                        return order.price;
+                    }
                 });
 
                 data = _.sortBy(data, 'price');

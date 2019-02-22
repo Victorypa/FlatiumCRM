@@ -164,7 +164,9 @@ export default {
 
       if (this.sortByPrice) {
           data = data.filter(order => {
-              return order.price
+              if (order.price && order.price != 0) {
+                  return order.price
+              }
           })
 
           data = _.sortBy(data, 'price')

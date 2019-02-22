@@ -17,7 +17,7 @@ class AppServiceProvider extends ServiceProvider
     public function boot()
     {
         $this->app['request']->server->set('HTTPS', true);
-        
+
         Schema::defaultStringLength(191);
 
         Sheet::macro('styleCells', function (Sheet $sheet, string $cellRange, array $style) {
