@@ -10,9 +10,7 @@ class ServiceController extends Controller
 {
     public function index()
     {
-        return response()->json(
-            Service::orderBy('name', 'asc')->with(['materials'])->get()
-        );
+        return Service::orderBy('name', 'asc')->with('materials')->get();
     }
 
     public function show(Service $service)
@@ -35,7 +33,7 @@ class ServiceController extends Controller
     public function update(Service $service, Request $request)
     {
         $service->update($request->all());
-        
+
         return response('updated', 200);
     }
 

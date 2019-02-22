@@ -27,7 +27,7 @@ class MaterialController extends Controller
 
     public function store(Request $request)
     {
-        $service = Service::where('id', $request->service['id'])->first();
+        $service = Service::where('id', $request->service_id)->first();
 
         $material = Material::create([
             'material_unit_id' => $request->material_unit_id,
