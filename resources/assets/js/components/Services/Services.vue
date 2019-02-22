@@ -72,6 +72,10 @@
             }
         },
 
+        created () {
+            this.getServices()
+        },
+
         components: {
             Service, AddService
         },

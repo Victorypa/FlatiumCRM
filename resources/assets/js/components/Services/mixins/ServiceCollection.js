@@ -12,7 +12,6 @@ export default {
     created () {
         this.getServiceUnits()
         this.getServiceTypes()
-        this.getServices()
     },
 
     methods: {

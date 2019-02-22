@@ -60,6 +60,7 @@
                               />
                    </div>
                </div>
+
                <div class="col-1">
                    <div class="form-group">
                        <select class="form-control" v-model="service.unit_id">
@@ -95,18 +96,23 @@
                </div>
 
                <div class="col-2">
+                   <div class="form-group">
+                       <select class="form-control"
+                               v-model="service.service_type_id"
+                               @change="updateService()"
+                               >
+                           <option v-for="service_type in service_types" :value="service_type.id" >
+                               {{ service_type.name }}
+                           </option>
+                       </select>
+                   </div>
+               </div>
+
+               <div class="col-2">
                    <button class="btn btn-dark btn-md"
                            @click.prevent="updateService"
                            >
                            Сохранить
-                   </button>
-               </div>
-
-               <div class="col-2">
-                   <button class="btn btn-danger btn-md"
-                           @click.prevent="show = !show"
-                           >
-                           Отменить
                    </button>
                </div>
            </div>
@@ -134,11 +140,13 @@
                     'name': this.service.name,
                     'price': this.service.price,
                     'can_be_discounted': this.service.can_be_discounted,
-                    'unit_id': this.service.unit_id
+                    'unit_id': this.service.unit_id,
+                    'service_type_id': this.service.service_type_id
                 }).then(response => {
                     this.show = !this.show
                })
-            }
+           },
+
         },
 
         computed: {

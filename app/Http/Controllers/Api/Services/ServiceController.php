@@ -35,7 +35,7 @@ class ServiceController extends Controller
     public function update(Service $service, Request $request)
     {
         $service->update($request->all());
-
+        
         return response('updated', 200);
     }
 
