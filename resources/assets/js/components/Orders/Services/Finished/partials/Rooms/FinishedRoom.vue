@@ -31,7 +31,7 @@
                                                v-for="room_service in room.room_services"
                                                :room_service="room_service"
                                                :room="room"
-                                               :key="'finished-room-service-' + room_service.id"
+                                               :key="'finished-room-service-' + room.room_service.id"
                                                />
                       </tbody>
                     </table>

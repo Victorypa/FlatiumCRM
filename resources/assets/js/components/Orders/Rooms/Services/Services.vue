@@ -85,6 +85,7 @@
         },
 
         created () {
+            this.getServices()
             this.getRoomServices()
         },
 
