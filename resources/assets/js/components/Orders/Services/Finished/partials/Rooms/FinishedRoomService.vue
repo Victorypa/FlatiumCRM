@@ -25,12 +25,12 @@
                      @change="updateFinishServiceQuantity()"
                      >
               <div class="col-auto pl-2">
-                  {{ room_service.unit.name }}
+                  {{ room_service.service.unit.name }}
               </div>
           </div>
       </td>
 
-      <td>{{ filteredServicePrice }} Р/{{ room_service.unit.name }}</td>
+      <td>{{ filteredServicePrice }} Р/{{ room_service.service.unit.name }}</td>
       <td>{{ priceCount(room_service.quantity, filteredServicePrice) }} Р</td>
     </tr>
 </template>
@@ -133,7 +133,7 @@
                     if (this.room_service.markup) {
                         return parseInt(this.room_service.service.price * (1 + parseInt(this.room_service.markup)/100))
                     } else {
-                        return parseInt(room_service.service.price)
+                        return parseInt(this.room_service.service.price)
                     }
                 }
             }

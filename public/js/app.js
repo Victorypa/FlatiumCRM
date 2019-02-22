@@ -58453,7 +58453,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 if (this.room_service.markup) {
                     return parseInt(this.room_service.service.price * (1 + parseInt(this.room_service.markup) / 100));
                 } else {
-                    return parseInt(room_service.service.price);
+                    return parseInt(this.room_service.service.price);
                 }
             }
         }
@@ -58554,7 +58554,7 @@ var render = function() {
         _c("div", { staticClass: "col-auto pl-2" }, [
           _vm._v(
             "\n              " +
-              _vm._s(_vm.room_service.unit.name) +
+              _vm._s(_vm.room_service.service.unit.name) +
               "\n          "
           )
         ])
@@ -58565,7 +58565,7 @@ var render = function() {
       _vm._v(
         _vm._s(_vm.filteredServicePrice) +
           " Р/" +
-          _vm._s(_vm.room_service.unit.name)
+          _vm._s(_vm.room_service.service.unit.name)
       )
     ]),
     _vm._v(" "),
@@ -58675,12 +58675,10 @@ var render = function() {
                   _c("table", { staticClass: "table table-hover" }, [
                     _c(
                       "tbody",
-                      _vm._l(_vm.room.room_services, function(room_service) {
-                        return _vm.room.room_services.length !== 0
+                      _vm._l(room_services, function(room_service) {
+                        return room_services.length !== 0
                           ? _c("FinishedRoomService", {
-                              key:
-                                "finished-room-service-" +
-                                _vm.room.room_service.id,
+                              key: "finished-room-service-" + room_service.id,
                               attrs: {
                                 room_service: room_service,
                                 room: _vm.room

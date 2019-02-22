@@ -27,11 +27,11 @@
                 <div class="col-12 px-0">
                     <table class="table table-hover">
                       <tbody>
-                          <FinishedRoomService v-if="room.room_services.length !== 0"
-                                               v-for="room_service in room.room_services"
+                          <FinishedRoomService v-if="room_services.length !== 0"
+                                               v-for="room_service in room_services"
                                                :room_service="room_service"
                                                :room="room"
-                                               :key="'finished-room-service-' + room.room_service.id"
+                                               :key="'finished-room-service-' + room_service.id"
                                                />
                       </tbody>
                     </table>
