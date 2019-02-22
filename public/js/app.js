@@ -48918,87 +48918,100 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
 
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-  data: function data() {
-    return {
-      orders: [],
-      sortByDate: false,
-      quickSearchQuery: "",
-      sortByStatus: false
-    };
-  },
-
-
-  components: {
-    Order: __WEBPACK_IMPORTED_MODULE_0__Partials_Order___default.a
-  },
-
-  created: function created() {
-    this.getOrders();
-  },
-
-
-  methods: {
-    getOrders: function getOrders() {
-      var _this = this;
-
-      return axios.get('/api/orders').then(function (response) {
-        _this.orders = response.data;
-      });
+    data: function data() {
+        return {
+            orders: [],
+            sortByDate: false,
+            sortByPrice: false,
+            quickSearchQuery: "",
+            sortByStatus: false
+        };
     },
-    sortByDateStart: function sortByDateStart() {
-      this.sortByDate = !this.sortByDate;
-    },
-    deleteFinishedOrderAct: function deleteFinishedOrderAct(order_id, finished_order_act_id) {
-      var _this2 = this;
 
-      if (confirm('Удалить?')) {
-        axios.delete('/api/orders/' + order_id + '/finished_order_act/' + finished_order_act_id + '/destroy').then(function (response) {
-          _this2.getOrders();
-        });
-      }
-    },
-    deleteExtraOrderAct: function deleteExtraOrderAct(order_id, extra_order_act_id) {
-      var _this3 = this;
 
-      if (confirm('Удалить?')) {
-        axios.delete('/api/orders/' + order_id + '/extra_order_act/' + extra_order_act_id + '/destroy').then(function (response) {
-          _this3.getOrders();
-        });
-      }
+    components: {
+        Order: __WEBPACK_IMPORTED_MODULE_0__Partials_Order___default.a
+    },
+
+    created: function created() {
+        this.getOrders();
+    },
+
+
+    methods: {
+        getOrders: function getOrders() {
+            var _this = this;
+
+            return axios.get('/api/orders').then(function (response) {
+                _this.orders = response.data;
+            });
+        },
+        deleteFinishedOrderAct: function deleteFinishedOrderAct(order_id, finished_order_act_id) {
+            var _this2 = this;
+
+            if (confirm('Удалить?')) {
+                axios.delete('/api/orders/' + order_id + '/finished_order_act/' + finished_order_act_id + '/destroy').then(function (response) {
+                    _this2.getOrders();
+                });
+            }
+        },
+        deleteExtraOrderAct: function deleteExtraOrderAct(order_id, extra_order_act_id) {
+            var _this3 = this;
+
+            if (confirm('Удалить?')) {
+                axios.delete('/api/orders/' + order_id + '/extra_order_act/' + extra_order_act_id + '/destroy').then(function (response) {
+                    _this3.getOrders();
+                });
+            }
+        }
+    },
+
+    computed: {
+        filteredDateArrow: function filteredDateArrow() {
+            return this.sortByDate ? 'fa-arrow-up' : 'fa-arrow-down';
+        },
+        filteredOrders: function filteredOrders() {
+            var _this4 = this;
+
+            var data = this.orders;
+
+            data = data.filter(function (row) {
+                return Object.keys(row).some(function (key) {
+                    return String(row[key]).toLowerCase().indexOf(_this4.quickSearchQuery.toLowerCase()) > -1;
+                });
+            });
+
+            if (!this.sortByDate) {
+                data = _.orderBy(data, ['created_at'], ['desc']);
+            } else {
+                data = _.orderBy(data, ['created_at'], ['asc']);
+            }
+
+            if (this.sortByPrice) {
+                data = data.filter(function (order) {
+                    return order.price;
+                });
+
+                data = _.sortBy(data, 'price');
+            }
+
+            if (this.sortByStatus) {
+                data = data.filter(function (row) {
+                    return row.processing;
+                });
+            }
+
+            return data;
+        }
     }
-  },
-
-  computed: {
-    filteredOrders: function filteredOrders() {
-      var _this4 = this;
-
-      var data = this.orders;
-
-      data = data.filter(function (row) {
-        return Object.keys(row).some(function (key) {
-          return String(row[key]).toLowerCase().indexOf(_this4.quickSearchQuery.toLowerCase()) > -1;
-        });
-      });
-
-      if (!this.sortByDate) {
-        data = _.orderBy(data, ['created_at'], ['desc']);
-      } else {
-        data = _.orderBy(data, ['created_at'], ['asc']);
-      }
-
-      if (this.sortByStatus) {
-        data = data.filter(function (row) {
-          return row.processing;
-        });
-      }
-
-      return data;
-    }
-  }
 });
 
 /***/ }),
@@ -49404,7 +49417,23 @@ var render = function() {
                       _vm._v(" "),
                       _vm._m(2),
                       _vm._v(" "),
-                      _c("th", [_vm._v("Стоимость")]),
+                      _c(
+                        "th",
+                        {
+                          on: {
+                            click: function($event) {
+                              _vm.sortByPrice = !_vm.sortByPrice
+                            }
+                          }
+                        },
+                        [
+                          _c("span", { staticClass: "arrow-sort" }, [
+                            _vm._v(
+                              "\n                            Стоимость\n                        "
+                            )
+                          ])
+                        ]
+                      ),
                       _vm._v(" "),
                       _c(
                         "th",
@@ -49412,11 +49441,21 @@ var render = function() {
                           staticClass: "d-flex justify-content-end",
                           on: {
                             click: function($event) {
-                              _vm.sortByDateStart()
+                              _vm.sortByDate = !_vm.sortByDate
                             }
                           }
                         },
-                        [_vm._m(3)]
+                        [
+                          _c("span", { staticClass: "arrow-sort" }, [
+                            _vm._v(
+                              "\n                          Сортировка по дате\n                          "
+                            ),
+                            _c("i", {
+                              staticClass: "fa",
+                              class: _vm.filteredDateArrow
+                            })
+                          ])
+                        ]
                       )
                     ])
                   ]),
@@ -49487,20 +49526,6 @@ var staticRenderFns = [
           )
         ])
       ])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("span", { staticClass: "arrow-sort" }, [
-      _vm._v(
-        "\n                          Сортировка по дате\n                          "
-      ),
-      _c("img", {
-        staticClass: "arrow-icon",
-        attrs: { src: "/img/arrow_down.svg", alt: "up" }
-      })
     ])
   }
 ]

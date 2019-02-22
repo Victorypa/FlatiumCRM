@@ -58,12 +58,16 @@
                       </div>
                     </th>
 
-                    <th>Стоимость</th>
+                    <th @click="sortByPrice = !sortByPrice">
+                        <span class="arrow-sort">
+                            Стоимость
+                        </span>
+                    </th>
 
-                    <th class="d-flex justify-content-end" @click="sortByDateStart()">
+                    <th class="d-flex justify-content-end" @click="sortByDate = !sortByDate">
                       <span class="arrow-sort">
                           Сортировка по дате
-                          <img class="arrow-icon" src="/img/arrow_down.svg" alt="up">
+                          <i class="fa" :class="filteredDateArrow"></i>
                       </span>
                     </th>
                   </tr>
@@ -94,6 +98,7 @@ export default {
     return {
       orders: [],
       sortByDate: false,
+      sortByPrice: false,
       quickSearchQuery: "",
       sortByStatus: false
     };
@@ -112,11 +117,6 @@ export default {
         return axios.get(`/api/orders`).then(response => {
           this.orders = response.data
         })
-    },
-
-
-    sortByDateStart() {
-      this.sortByDate = !this.sortByDate;
     },
 
     deleteFinishedOrderAct (order_id, finished_order_act_id) {
@@ -139,6 +139,10 @@ export default {
   },
 
   computed: {
+      filteredDateArrow () {
+          return this.sortByDate ? 'fa-arrow-up' : 'fa-arrow-down'
+      },
+
     filteredOrders() {
       let data = this.orders;
 
@@ -153,9 +157,17 @@ export default {
       });
 
       if (!this.sortByDate) {
-            data = _.orderBy(data, ['created_at'], ['desc'])
+          data = _.orderBy(data, ['created_at'], ['desc'])
       } else {
-            data = _.orderBy(data, ['created_at'], ['asc'])
+          data = _.orderBy(data, ['created_at'], ['asc'])
+      }
+
+      if (this.sortByPrice) {
+          data = data.filter(order => {
+              return order.price
+          })
+
+          data = _.sortBy(data, 'price')
       }
 
       if (this.sortByStatus) {
