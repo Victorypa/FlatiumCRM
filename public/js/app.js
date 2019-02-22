@@ -48916,6 +48916,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
 
 
 
@@ -49163,6 +49165,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     props: ['order'],
@@ -49193,6 +49198,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         },
         humanDate: function humanDate() {
             return moment(new Date(this.order.created_at)).format("DD-MM-YYYY");
+        },
+        filteredOrderPrice: function filteredOrderPrice() {
+            return this.order.price ? new Intl.NumberFormat('ru-Ru').format(parseInt(this.order.price)) : 0;
         }
     }
 });
@@ -49262,6 +49270,8 @@ var render = function() {
         )
       ])
     ]),
+    _vm._v(" "),
+    _c("td", [_vm._v("\n      " + _vm._s(_vm.filteredOrderPrice) + " Р\n  ")]),
     _vm._v(" "),
     _c("td", { staticClass: "d-flex justify-content-end" }, [
       _c("div", { staticClass: "pr-30" }, [
@@ -49393,6 +49403,8 @@ var render = function() {
                       _vm._m(1),
                       _vm._v(" "),
                       _vm._m(2),
+                      _vm._v(" "),
+                      _c("th", [_vm._v("Стоимость")]),
                       _vm._v(" "),
                       _c(
                         "th",

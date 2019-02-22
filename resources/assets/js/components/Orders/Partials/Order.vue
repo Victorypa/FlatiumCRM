@@ -23,6 +23,9 @@
         </div>
       </td>
 
+      <td>
+          {{ filteredOrderPrice }} Р
+      </td>
 
       <td class="d-flex justify-content-end">
           <div class="pr-30">
@@ -64,6 +67,10 @@
 
             humanDate () {
                 return moment(new Date(this.order.created_at)).format("DD-MM-YYYY")
+            },
+
+            filteredOrderPrice () {
+                return this.order.price ? new Intl.NumberFormat('ru-Ru').format(parseInt(this.order.price)) : 0
             }
         }
     }

@@ -58,6 +58,8 @@
                       </div>
                     </th>
 
+                    <th>Стоимость</th>
+
                     <th class="d-flex justify-content-end" @click="sortByDateStart()">
                       <span class="arrow-sort">
                           Сортировка по дате
