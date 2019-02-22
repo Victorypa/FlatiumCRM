@@ -31391,7 +31391,7 @@ var routes = [{
 }, {
     name: 'services',
     path: '/services',
-    component: __webpack_require__(376),
+    component: __webpack_require__(385),
     meta: { requiresAuth: true },
     props: true
 }];
@@ -44462,7 +44462,7 @@ return jQuery;
 /***/ (function(module, exports, __webpack_require__) {
 
 __webpack_require__(157);
-module.exports = __webpack_require__(403);
+module.exports = __webpack_require__(412);
 
 
 /***/ }),
@@ -44476,11 +44476,11 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__routes__ = __webpack_require__(141);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_vue_carousel__ = __webpack_require__(11);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_vue_carousel___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_vue_carousel__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__components_Partials_BasicHeader__ = __webpack_require__(386);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__components_Partials_BasicHeader__ = __webpack_require__(395);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__components_Partials_BasicHeader___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4__components_Partials_BasicHeader__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__components_Partials_Navigation__ = __webpack_require__(391);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__components_Partials_Navigation__ = __webpack_require__(400);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__components_Partials_Navigation___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_5__components_Partials_Navigation__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__components_App__ = __webpack_require__(396);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__components_App__ = __webpack_require__(405);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__components_App___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_6__components_App__);
 
 
@@ -44492,7 +44492,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 __WEBPACK_IMPORTED_MODULE_0_vue__["default"].use(__WEBPACK_IMPORTED_MODULE_3_vue_carousel___default.a);
 
-__webpack_require__(399);
+__webpack_require__(408);
 
 window.Vue = __webpack_require__(8);
 
@@ -58675,8 +58675,8 @@ var render = function() {
                   _c("table", { staticClass: "table table-hover" }, [
                     _c(
                       "tbody",
-                      _vm._l(room_services, function(room_service) {
-                        return room_services.length !== 0
+                      _vm._l(_vm.room.room_services, function(room_service) {
+                        return _vm.room.room_services.length !== 0
                           ? _c("FinishedRoomService", {
                               key: "finished-room-service-" + room_service.id,
                               attrs: {
@@ -71982,7 +71982,7 @@ var normalizeComponent = __webpack_require__(1)
 /* script */
 var __vue_script__ = __webpack_require__(374)
 /* template */
-var __vue_template__ = __webpack_require__(375)
+var __vue_template__ = __webpack_require__(384)
 /* template functional */
 var __vue_template_functional__ = false
 /* styles */
@@ -72066,80 +72066,10 @@ exports.push([module.i, "\ninput[data-v-11eca642]:required:valid {\n  border-col
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__partials_ServiceDetail__ = __webpack_require__(405);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__partials_ServiceDetail__ = __webpack_require__(375);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__partials_ServiceDetail___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__partials_ServiceDetail__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__partials_AddMaterial__ = __webpack_require__(408);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__partials_AddMaterial__ = __webpack_require__(378);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__partials_AddMaterial___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__partials_AddMaterial__);
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 //
 //
 //
@@ -72249,6 +72179,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 // import ServiceMaterialCollection from '../../../mixins/ServiceMaterialCollection'
 
 
+// import ServiceMaterial from './partials/ServiceMaterial'
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     // mixins: [ ServiceMaterialCollection ],
@@ -72281,6 +72212,545 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 /***/ }),
 /* 375 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+var normalizeComponent = __webpack_require__(1)
+/* script */
+var __vue_script__ = __webpack_require__(376)
+/* template */
+var __vue_template__ = __webpack_require__(377)
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = null
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources/assets/js/components/Services/Materials/partials/ServiceDetail.vue"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-dbfbb554", Component.options)
+  } else {
+    hotAPI.reload("data-v-dbfbb554", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 376 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+    props: ['service']
+});
+
+/***/ }),
+/* 377 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", { staticClass: "create__fixed-top col-10 shadow-light" }, [
+    _c("div", { staticClass: "row align-items-center " }, [
+      _c("div", { staticClass: "col-md-8 d-flex align-items-end" }, [
+        _c("h2", { staticClass: "main-caption col-8" }, [
+          _vm._v("\n          " + _vm._s(_vm.service.name) + "\n        ")
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "main-subtitle ml-5" }, [
+          _vm._v(
+            "\n            Цена: " + _vm._s(_vm.service.price) + " Р\n        "
+          )
+        ])
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "col-md-4 text-right d-flex" }, [
+        _c(
+          "button",
+          {
+            staticClass: "primary-button primary-button--outline col-6",
+            attrs: { type: "button" },
+            on: {
+              click: function($event) {
+                _vm.$router.go(-1)
+              }
+            }
+          },
+          [_vm._v("\n          Назад\n        ")]
+        )
+      ])
+    ])
+  ])
+}
+var staticRenderFns = []
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-dbfbb554", module.exports)
+  }
+}
+
+/***/ }),
+/* 378 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+var normalizeComponent = __webpack_require__(1)
+/* script */
+var __vue_script__ = __webpack_require__(379)
+/* template */
+var __vue_template__ = __webpack_require__(380)
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = null
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources/assets/js/components/Services/Materials/partials/AddMaterial.vue"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-960ba850", Component.options)
+  } else {
+    hotAPI.reload("data-v-960ba850", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 379 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+    data: function data() {
+        return {
+            newMaterials: [],
+            material_units: []
+        };
+    },
+    created: function created() {
+        this.getMaterialUnits();
+    },
+
+
+    methods: {
+        MaterialCalculation: function MaterialCalculation(quantity, rate, price) {
+            if (quantity && rate && price) {
+                return parseFloat(Math.ceil(rate / quantity) * price).toFixed(2);
+            } else {
+                return 0;
+            }
+        },
+        addMaterial: function addMaterial() {
+            this.newMaterials.push({
+                name: null,
+                flat_id: 1,
+                material_unit_id: 1,
+                price: null,
+                quantity: null,
+                rate: null
+            });
+        },
+        getMaterialUnits: function getMaterialUnits() {
+            var _this = this;
+
+            if (localStorage.getItem('material_units')) {
+                this.material_units = JSON.parse(localStorage.getItem('material_units'));
+            } else {
+                return axios.get('/api/material_units').then(function (response) {
+                    _this.material_units = response.data;
+                    localStorage.setItem('material_units', JSON.stringify(_this.material_units));
+                });
+            }
+        },
+        saveNewMaterial: function saveNewMaterial() {
+            var _this2 = this;
+
+            this.newMaterials.forEach(function (item, index) {
+                return axios.post('/api/materials/store', {
+                    'service_id': _this2.$route.params.service_id,
+                    'material_unit_id': item.material_unit_id,
+                    'name': item.name,
+                    'price': item.price,
+                    'quantity': item.quantity,
+                    'rate': item.rate,
+                    'service': _this2.service
+                }).then(function (response) {
+                    _this2.newMaterials = [];
+                    _this2.$emit('added-material');
+                });
+            });
+        }
+    }
+});
+
+/***/ }),
+/* 380 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c(
+    "form",
+    {
+      staticClass: "col-12 px-0",
+      on: {
+        submit: function($event) {
+          $event.preventDefault()
+          _vm.saveNewMaterial()
+        }
+      }
+    },
+    [
+      _vm._l(_vm.newMaterials, function(newMaterial) {
+        return _c(
+          "div",
+          {
+            staticClass:
+              "row justify-content-between align-items-center col-12 pb-3"
+          },
+          [
+            _c("div", { staticClass: "col-6 pr-0" }, [
+              _c("input", {
+                directives: [
+                  {
+                    name: "model",
+                    rawName: "v-model",
+                    value: newMaterial.name,
+                    expression: "newMaterial.name"
+                  }
+                ],
+                staticClass: "form-control",
+                attrs: { type: "text", placeholder: "Наименование" },
+                domProps: { value: newMaterial.name },
+                on: {
+                  input: function($event) {
+                    if ($event.target.composing) {
+                      return
+                    }
+                    _vm.$set(newMaterial, "name", $event.target.value)
+                  }
+                }
+              })
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "col-2 d-flex pr-0" }, [
+              _c("input", {
+                directives: [
+                  {
+                    name: "model",
+                    rawName: "v-model",
+                    value: newMaterial.price,
+                    expression: "newMaterial.price"
+                  }
+                ],
+                staticClass: "form-control",
+                attrs: { type: "text", placeholder: "Цена" },
+                domProps: { value: newMaterial.price },
+                on: {
+                  input: function($event) {
+                    if ($event.target.composing) {
+                      return
+                    }
+                    _vm.$set(newMaterial, "price", $event.target.value)
+                  }
+                }
+              }),
+              _vm._v(" "),
+              _c("input", {
+                directives: [
+                  {
+                    name: "model",
+                    rawName: "v-model",
+                    value: newMaterial.quantity,
+                    expression: "newMaterial.quantity"
+                  }
+                ],
+                staticClass: "form-control ml-2",
+                attrs: { type: "text", placeholder: "Ед.уп" },
+                domProps: { value: newMaterial.quantity },
+                on: {
+                  input: function($event) {
+                    if ($event.target.composing) {
+                      return
+                    }
+                    _vm.$set(newMaterial, "quantity", $event.target.value)
+                  }
+                }
+              })
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "col-md-4 pl-0" }, [
+              _c(
+                "div",
+                {
+                  staticClass:
+                    "form-group d-flex align-items-center mb-0 justify-around"
+                },
+                [
+                  _c(
+                    "select",
+                    {
+                      directives: [
+                        {
+                          name: "model",
+                          rawName: "v-model",
+                          value: newMaterial.material_unit_id,
+                          expression: "newMaterial.material_unit_id"
+                        }
+                      ],
+                      staticClass: "form-control col-4 ml-2",
+                      on: {
+                        change: function($event) {
+                          var $$selectedVal = Array.prototype.filter
+                            .call($event.target.options, function(o) {
+                              return o.selected
+                            })
+                            .map(function(o) {
+                              var val = "_value" in o ? o._value : o.value
+                              return val
+                            })
+                          _vm.$set(
+                            newMaterial,
+                            "material_unit_id",
+                            $event.target.multiple
+                              ? $$selectedVal
+                              : $$selectedVal[0]
+                          )
+                        }
+                      }
+                    },
+                    _vm._l(_vm.material_units, function(material_unit) {
+                      return _c(
+                        "option",
+                        { domProps: { value: material_unit.id } },
+                        [
+                          _vm._v(
+                            "\n                    " +
+                              _vm._s(material_unit.name) +
+                              "\n                "
+                          )
+                        ]
+                      )
+                    })
+                  ),
+                  _vm._v(" "),
+                  _c("input", {
+                    directives: [
+                      {
+                        name: "model",
+                        rawName: "v-model",
+                        value: newMaterial.rate,
+                        expression: "newMaterial.rate"
+                      }
+                    ],
+                    staticClass: "form-control col-3 ml-2",
+                    attrs: { type: "text", placeholder: "Расход" },
+                    domProps: { value: newMaterial.rate },
+                    on: {
+                      input: function($event) {
+                        if ($event.target.composing) {
+                          return
+                        }
+                        _vm.$set(newMaterial, "rate", $event.target.value)
+                      }
+                    }
+                  }),
+                  _vm._v(" "),
+                  _c(
+                    "div",
+                    { staticClass: "total-sum col-3 text-right pr-0" },
+                    [
+                      _vm._v(
+                        "\n                  " +
+                          _vm._s(
+                            _vm.MaterialCalculation(
+                              newMaterial.quantity,
+                              newMaterial.rate,
+                              newMaterial.price
+                            )
+                          ) +
+                          " Р\n              "
+                      )
+                    ]
+                  )
+                ]
+              )
+            ])
+          ]
+        )
+      }),
+      _vm._v(" "),
+      _c(
+        "div",
+        {
+          staticClass: "add-work",
+          on: {
+            click: function($event) {
+              _vm.addMaterial()
+            }
+          }
+        },
+        [_vm._v("\n          +Добавить материал\n        ")]
+      ),
+      _vm._v(" "),
+      _c("button", {
+        staticStyle: { display: "none" },
+        attrs: { type: "submit" }
+      })
+    ],
+    2
+  )
+}
+var staticRenderFns = []
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-960ba850", module.exports)
+  }
+}
+
+/***/ }),
+/* 381 */,
+/* 382 */,
+/* 383 */,
+/* 384 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var render = function() {
@@ -72351,272 +72821,9 @@ var render = function() {
                             _vm.getService()
                           }
                         }
-                      }),
-                      _vm._v(" "),
-                      _vm.show
-                        ? _vm._l(_vm.service_materials, function(material) {
-                            return _c(
-                              "div",
-                              {
-                                key: material.id,
-                                staticClass:
-                                  "row justify-content-between align-items-center col-12 py-2"
-                              },
-                              [
-                                _c("div", { staticClass: "col-6" }, [
-                                  _c("div", { staticClass: "form-check" }, [
-                                    _c("input", {
-                                      staticClass: "form-check-input",
-                                      attrs: {
-                                        id: "service-material-" + material.id,
-                                        type: "checkbox"
-                                      },
-                                      domProps: { checked: true },
-                                      on: {
-                                        click: function($event) {
-                                          _vm.addServiceMaterialId(material.id)
-                                        }
-                                      }
-                                    }),
-                                    _vm._v(" "),
-                                    _c(
-                                      "label",
-                                      {
-                                        staticClass: "form-check-label",
-                                        attrs: {
-                                          for: "service-material-" + material.id
-                                        }
-                                      },
-                                      [
-                                        _vm._v(
-                                          "\n                               " +
-                                            _vm._s(material.name) +
-                                            "\n                        "
-                                        )
-                                      ]
-                                    )
-                                  ])
-                                ]),
-                                _vm._v(" "),
-                                _c(
-                                  "div",
-                                  {
-                                    staticClass:
-                                      "col-2 d-flex pr-2 align-items-center justify-content-between"
-                                  },
-                                  [
-                                    _c(
-                                      "div",
-                                      { staticClass: "total-sum col-6" },
-                                      [
-                                        _vm._v(
-                                          "\n                          " +
-                                            _vm._s(material.price) +
-                                            " Р\n                      "
-                                        )
-                                      ]
-                                    ),
-                                    _vm._v(" "),
-                                    _c("input", {
-                                      directives: [
-                                        {
-                                          name: "model",
-                                          rawName: "v-model",
-                                          value:
-                                            _vm.service_material_quantities[
-                                              material.id
-                                            ],
-                                          expression:
-                                            "service_material_quantities[material.id]"
-                                        }
-                                      ],
-                                      staticClass: "form-control ml-2 col-6",
-                                      attrs: {
-                                        type: "text",
-                                        placeholder: "Ед.уп"
-                                      },
-                                      domProps: {
-                                        value:
-                                          _vm.service_material_quantities[
-                                            material.id
-                                          ]
-                                      },
-                                      on: {
-                                        input: function($event) {
-                                          if ($event.target.composing) {
-                                            return
-                                          }
-                                          _vm.$set(
-                                            _vm.service_material_quantities,
-                                            material.id,
-                                            $event.target.value
-                                          )
-                                        }
-                                      }
-                                    })
-                                  ]
-                                ),
-                                _vm._v(" "),
-                                _c("div", { staticClass: "col-md-4 px-0" }, [
-                                  _c(
-                                    "div",
-                                    {
-                                      staticClass:
-                                        "form-group d-flex align-items-center mb-0 justify-around"
-                                    },
-                                    [
-                                      _c(
-                                        "select",
-                                        {
-                                          staticClass: "form-control col-4 ml-2"
-                                        },
-                                        _vm._l(_vm.material_units, function(
-                                          material_unit
-                                        ) {
-                                          return _c(
-                                            "option",
-                                            {
-                                              domProps: {
-                                                value: material_unit.id,
-                                                selected:
-                                                  material_unit.id ===
-                                                  material.material_unit_id
-                                              }
-                                            },
-                                            [
-                                              _vm._v(
-                                                "\n                                   " +
-                                                  _vm._s(material_unit.name) +
-                                                  "\n                               "
-                                              )
-                                            ]
-                                          )
-                                        })
-                                      ),
-                                      _vm._v(" "),
-                                      _c("input", {
-                                        directives: [
-                                          {
-                                            name: "model",
-                                            rawName: "v-model",
-                                            value:
-                                              _vm.service_material_rates[
-                                                material.id
-                                              ],
-                                            expression:
-                                              "service_material_rates[material.id]"
-                                          }
-                                        ],
-                                        staticClass: "form-control col-3 ml-2",
-                                        attrs: {
-                                          type: "text",
-                                          placeholder: "Расход/м2",
-                                          id: "service-material-" + material.id
-                                        },
-                                        domProps: {
-                                          value:
-                                            _vm.service_material_rates[
-                                              material.id
-                                            ]
-                                        },
-                                        on: {
-                                          input: function($event) {
-                                            if ($event.target.composing) {
-                                              return
-                                            }
-                                            _vm.$set(
-                                              _vm.service_material_rates,
-                                              material.id,
-                                              $event.target.value
-                                            )
-                                          }
-                                        }
-                                      }),
-                                      _vm._v(" "),
-                                      _c(
-                                        "div",
-                                        {
-                                          staticClass:
-                                            "total-sum col-3 text-right pr-0"
-                                        },
-                                        [
-                                          _vm.service_material_quantities[
-                                            material.id
-                                          ] &&
-                                          _vm.service_material_rates[
-                                            material.id
-                                          ]
-                                            ? [
-                                                _vm._v(
-                                                  "\n                                " +
-                                                    _vm._s(
-                                                      _vm.MaterialCalculation(
-                                                        _vm
-                                                          .service_material_quantities[
-                                                          material.id
-                                                        ],
-                                                        _vm
-                                                          .service_material_rates[
-                                                          material.id
-                                                        ],
-                                                        material.price
-                                                      )
-                                                    ) +
-                                                    " Р\n                            "
-                                                )
-                                              ]
-                                            : [
-                                                _vm._v(
-                                                  "\n                                0 Р\n                            "
-                                                )
-                                              ]
-                                        ],
-                                        2
-                                      ),
-                                      _vm._v(" "),
-                                      material.can_be_deleted
-                                        ? [
-                                            _c(
-                                              "button",
-                                              {
-                                                staticClass:
-                                                  "add-button add-button--remove ml-auto",
-                                                attrs: {
-                                                  title: "Удалить материал"
-                                                },
-                                                on: {
-                                                  click: function($event) {
-                                                    _vm.deleteMaterial(
-                                                      material.id
-                                                    )
-                                                  }
-                                                }
-                                              },
-                                              [
-                                                _c("img", {
-                                                  attrs: {
-                                                    src: "/img/del.svg",
-                                                    alt: "add-button"
-                                                  }
-                                                })
-                                              ]
-                                            )
-                                          ]
-                                        : [
-                                            _vm._v(
-                                              "\n                             \n                        "
-                                            )
-                                          ]
-                                    ],
-                                    2
-                                  )
-                                ])
-                              ]
-                            )
-                          })
-                        : _vm._e()
+                      })
                     ],
-                    2
+                    1
                   )
                 ],
                 1
@@ -72641,19 +72848,19 @@ if (false) {
 }
 
 /***/ }),
-/* 376 */
+/* 385 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 function injectStyle (ssrContext) {
   if (disposed) return
-  __webpack_require__(377)
+  __webpack_require__(386)
 }
 var normalizeComponent = __webpack_require__(1)
 /* script */
-var __vue_script__ = __webpack_require__(379)
+var __vue_script__ = __webpack_require__(388)
 /* template */
-var __vue_template__ = __webpack_require__(385)
+var __vue_template__ = __webpack_require__(394)
 /* template functional */
 var __vue_template_functional__ = false
 /* styles */
@@ -72692,13 +72899,13 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 377 */
+/* 386 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(378);
+var content = __webpack_require__(387);
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
@@ -72718,7 +72925,7 @@ if(false) {
 }
 
 /***/ }),
-/* 378 */
+/* 387 */
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__(2)(false);
@@ -72732,12 +72939,12 @@ exports.push([module.i, "\n.fixed-part[data-v-1135c330] {\n  position: fixed;\n 
 
 
 /***/ }),
-/* 379 */
+/* 388 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__partials_Service__ = __webpack_require__(380);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__partials_Service__ = __webpack_require__(389);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__partials_Service___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__partials_Service__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__partials_AddService__ = __webpack_require__(138);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__partials_AddService___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__partials_AddService__);
@@ -72845,19 +73052,19 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 });
 
 /***/ }),
-/* 380 */
+/* 389 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 function injectStyle (ssrContext) {
   if (disposed) return
-  __webpack_require__(381)
+  __webpack_require__(390)
 }
 var normalizeComponent = __webpack_require__(1)
 /* script */
-var __vue_script__ = __webpack_require__(383)
+var __vue_script__ = __webpack_require__(392)
 /* template */
-var __vue_template__ = __webpack_require__(384)
+var __vue_template__ = __webpack_require__(393)
 /* template functional */
 var __vue_template_functional__ = false
 /* styles */
@@ -72896,13 +73103,13 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 381 */
+/* 390 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(382);
+var content = __webpack_require__(391);
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
@@ -72922,7 +73129,7 @@ if(false) {
 }
 
 /***/ }),
-/* 382 */
+/* 391 */
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__(2)(false);
@@ -72936,7 +73143,7 @@ exports.push([module.i, "\n.red[data-v-14046b82] {\n    color: red;\n}\n", ""]);
 
 
 /***/ }),
-/* 383 */
+/* 392 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -73103,7 +73310,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 });
 
 /***/ }),
-/* 384 */
+/* 393 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var render = function() {
@@ -73469,7 +73676,7 @@ if (false) {
 }
 
 /***/ }),
-/* 385 */
+/* 394 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var render = function() {
@@ -73638,19 +73845,19 @@ if (false) {
 }
 
 /***/ }),
-/* 386 */
+/* 395 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 function injectStyle (ssrContext) {
   if (disposed) return
-  __webpack_require__(387)
+  __webpack_require__(396)
 }
 var normalizeComponent = __webpack_require__(1)
 /* script */
-var __vue_script__ = __webpack_require__(389)
+var __vue_script__ = __webpack_require__(398)
 /* template */
-var __vue_template__ = __webpack_require__(390)
+var __vue_template__ = __webpack_require__(399)
 /* template functional */
 var __vue_template_functional__ = false
 /* styles */
@@ -73689,13 +73896,13 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 387 */
+/* 396 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(388);
+var content = __webpack_require__(397);
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
@@ -73715,7 +73922,7 @@ if(false) {
 }
 
 /***/ }),
-/* 388 */
+/* 397 */
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__(2)(false);
@@ -73729,7 +73936,7 @@ exports.push([module.i, "\n.transparent-button[data-v-926cc716] {\n  color: #00A
 
 
 /***/ }),
-/* 389 */
+/* 398 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -73777,7 +73984,7 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
 });
 
 /***/ }),
-/* 390 */
+/* 399 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var render = function() {
@@ -73860,19 +74067,19 @@ if (false) {
 }
 
 /***/ }),
-/* 391 */
+/* 400 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 function injectStyle (ssrContext) {
   if (disposed) return
-  __webpack_require__(392)
+  __webpack_require__(401)
 }
 var normalizeComponent = __webpack_require__(1)
 /* script */
-var __vue_script__ = __webpack_require__(394)
+var __vue_script__ = __webpack_require__(403)
 /* template */
-var __vue_template__ = __webpack_require__(395)
+var __vue_template__ = __webpack_require__(404)
 /* template functional */
 var __vue_template_functional__ = false
 /* styles */
@@ -73911,13 +74118,13 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 392 */
+/* 401 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(393);
+var content = __webpack_require__(402);
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
@@ -73937,7 +74144,7 @@ if(false) {
 }
 
 /***/ }),
-/* 393 */
+/* 402 */
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__(2)(false);
@@ -73951,7 +74158,7 @@ exports.push([module.i, "\n.sidebar-list-item[data-v-6463636a]:hover {\n  text-d
 
 
 /***/ }),
-/* 394 */
+/* 403 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -73977,7 +74184,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony default export */ __webpack_exports__["default"] = ({});
 
 /***/ }),
-/* 395 */
+/* 404 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var render = function() {
@@ -74047,15 +74254,15 @@ if (false) {
 }
 
 /***/ }),
-/* 396 */
+/* 405 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 var normalizeComponent = __webpack_require__(1)
 /* script */
-var __vue_script__ = __webpack_require__(397)
+var __vue_script__ = __webpack_require__(406)
 /* template */
-var __vue_template__ = __webpack_require__(398)
+var __vue_template__ = __webpack_require__(407)
 /* template functional */
 var __vue_template_functional__ = false
 /* styles */
@@ -74094,7 +74301,7 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 397 */
+/* 406 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -74107,7 +74314,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony default export */ __webpack_exports__["default"] = ({});
 
 /***/ }),
-/* 398 */
+/* 407 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var render = function() {
@@ -74127,17 +74334,17 @@ if (false) {
 }
 
 /***/ }),
-/* 399 */
+/* 408 */
 /***/ (function(module, exports, __webpack_require__) {
 
 window.moment = __webpack_require__(0);
-window._ = __webpack_require__(400);
+window._ = __webpack_require__(409);
 window.Popper = __webpack_require__(154).default;
 
 try {
     window.$ = window.jQuery = __webpack_require__(155);
-    __webpack_require__(401);
-    __webpack_require__(402);
+    __webpack_require__(410);
+    __webpack_require__(411);
 } catch (e) {
     console.log(e);
 }
@@ -74156,7 +74363,7 @@ if (token) {
 }
 
 /***/ }),
-/* 400 */
+/* 409 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(global, module) {var __WEBPACK_AMD_DEFINE_RESULT__;/**
@@ -91271,7 +91478,7 @@ if (token) {
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(9), __webpack_require__(148)(module)))
 
 /***/ }),
-/* 401 */
+/* 410 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /*!
@@ -95221,7 +95428,7 @@ if (token) {
 
 
 /***/ }),
-/* 402 */
+/* 411 */
 /***/ (function(module, exports) {
 
 $(document).ready(function () {
@@ -95241,547 +95448,10 @@ $(window).scroll(function () {
 });
 
 /***/ }),
-/* 403 */
+/* 412 */
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
-
-/***/ }),
-/* 404 */,
-/* 405 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var disposed = false
-var normalizeComponent = __webpack_require__(1)
-/* script */
-var __vue_script__ = __webpack_require__(406)
-/* template */
-var __vue_template__ = __webpack_require__(407)
-/* template functional */
-var __vue_template_functional__ = false
-/* styles */
-var __vue_styles__ = null
-/* scopeId */
-var __vue_scopeId__ = null
-/* moduleIdentifier (server only) */
-var __vue_module_identifier__ = null
-var Component = normalizeComponent(
-  __vue_script__,
-  __vue_template__,
-  __vue_template_functional__,
-  __vue_styles__,
-  __vue_scopeId__,
-  __vue_module_identifier__
-)
-Component.options.__file = "resources/assets/js/components/Services/Materials/partials/ServiceDetail.vue"
-
-/* hot reload */
-if (false) {(function () {
-  var hotAPI = require("vue-hot-reload-api")
-  hotAPI.install(require("vue"), false)
-  if (!hotAPI.compatible) return
-  module.hot.accept()
-  if (!module.hot.data) {
-    hotAPI.createRecord("data-v-dbfbb554", Component.options)
-  } else {
-    hotAPI.reload("data-v-dbfbb554", Component.options)
-  }
-  module.hot.dispose(function (data) {
-    disposed = true
-  })
-})()}
-
-module.exports = Component.exports
-
-
-/***/ }),
-/* 406 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-
-/* harmony default export */ __webpack_exports__["default"] = ({
-    props: ['service']
-});
-
-/***/ }),
-/* 407 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var render = function() {
-  var _vm = this
-  var _h = _vm.$createElement
-  var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "create__fixed-top col-10 shadow-light" }, [
-    _c("div", { staticClass: "row align-items-center " }, [
-      _c("div", { staticClass: "col-md-8 d-flex align-items-end" }, [
-        _c("h2", { staticClass: "main-caption col-8" }, [
-          _vm._v("\n          " + _vm._s(_vm.service.name) + "\n        ")
-        ]),
-        _vm._v(" "),
-        _c("div", { staticClass: "main-subtitle ml-5" }, [
-          _vm._v(
-            "\n            Цена: " + _vm._s(_vm.service.price) + " Р\n        "
-          )
-        ])
-      ]),
-      _vm._v(" "),
-      _c("div", { staticClass: "col-md-4 text-right d-flex" }, [
-        _c(
-          "button",
-          {
-            staticClass: "primary-button primary-button--outline col-6",
-            attrs: { type: "button" },
-            on: {
-              click: function($event) {
-                _vm.$router.go(-1)
-              }
-            }
-          },
-          [_vm._v("\n          Назад\n        ")]
-        )
-      ])
-    ])
-  ])
-}
-var staticRenderFns = []
-render._withStripped = true
-module.exports = { render: render, staticRenderFns: staticRenderFns }
-if (false) {
-  module.hot.accept()
-  if (module.hot.data) {
-    require("vue-hot-reload-api")      .rerender("data-v-dbfbb554", module.exports)
-  }
-}
-
-/***/ }),
-/* 408 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var disposed = false
-var normalizeComponent = __webpack_require__(1)
-/* script */
-var __vue_script__ = __webpack_require__(409)
-/* template */
-var __vue_template__ = __webpack_require__(410)
-/* template functional */
-var __vue_template_functional__ = false
-/* styles */
-var __vue_styles__ = null
-/* scopeId */
-var __vue_scopeId__ = null
-/* moduleIdentifier (server only) */
-var __vue_module_identifier__ = null
-var Component = normalizeComponent(
-  __vue_script__,
-  __vue_template__,
-  __vue_template_functional__,
-  __vue_styles__,
-  __vue_scopeId__,
-  __vue_module_identifier__
-)
-Component.options.__file = "resources/assets/js/components/Services/Materials/partials/AddMaterial.vue"
-
-/* hot reload */
-if (false) {(function () {
-  var hotAPI = require("vue-hot-reload-api")
-  hotAPI.install(require("vue"), false)
-  if (!hotAPI.compatible) return
-  module.hot.accept()
-  if (!module.hot.data) {
-    hotAPI.createRecord("data-v-960ba850", Component.options)
-  } else {
-    hotAPI.reload("data-v-960ba850", Component.options)
-  }
-  module.hot.dispose(function (data) {
-    disposed = true
-  })
-})()}
-
-module.exports = Component.exports
-
-
-/***/ }),
-/* 409 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-
-/* harmony default export */ __webpack_exports__["default"] = ({
-    data: function data() {
-        return {
-            newMaterials: [],
-            material_units: []
-        };
-    },
-    created: function created() {
-        this.getMaterialUnits();
-    },
-
-
-    methods: {
-        MaterialCalculation: function MaterialCalculation(quantity, rate, price) {
-            if (quantity && rate && price) {
-                return parseFloat(Math.ceil(rate / quantity) * price).toFixed(2);
-            } else {
-                return 0;
-            }
-        },
-        addMaterial: function addMaterial() {
-            this.newMaterials.push({
-                name: null,
-                flat_id: 1,
-                material_unit_id: 1,
-                price: null,
-                quantity: null,
-                rate: null
-            });
-        },
-        getMaterialUnits: function getMaterialUnits() {
-            var _this = this;
-
-            if (localStorage.getItem('material_units')) {
-                this.material_units = JSON.parse(localStorage.getItem('material_units'));
-            } else {
-                return axios.get('/api/material_units').then(function (response) {
-                    _this.material_units = response.data;
-                    localStorage.setItem('material_units', JSON.stringify(_this.material_units));
-                });
-            }
-        },
-        saveNewMaterial: function saveNewMaterial() {
-            var _this2 = this;
-
-            this.newMaterials.forEach(function (item, index) {
-                return axios.post('/api/materials/store', {
-                    'service_id': _this2.$route.params.service_id,
-                    'material_unit_id': item.material_unit_id,
-                    'name': item.name,
-                    'price': item.price,
-                    'quantity': item.quantity,
-                    'rate': item.rate,
-                    'service': _this2.service
-                }).then(function (response) {
-                    _this2.newMaterials = [];
-                    _this2.$emit('added-material');
-                });
-            });
-        }
-    }
-});
-
-/***/ }),
-/* 410 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var render = function() {
-  var _vm = this
-  var _h = _vm.$createElement
-  var _c = _vm._self._c || _h
-  return _c(
-    "form",
-    {
-      staticClass: "col-12 px-0",
-      on: {
-        submit: function($event) {
-          $event.preventDefault()
-          _vm.saveNewMaterial()
-        }
-      }
-    },
-    [
-      _vm._l(_vm.newMaterials, function(newMaterial) {
-        return _c(
-          "div",
-          {
-            staticClass:
-              "row justify-content-between align-items-center col-12 pb-3"
-          },
-          [
-            _c("div", { staticClass: "col-6 pr-0" }, [
-              _c("input", {
-                directives: [
-                  {
-                    name: "model",
-                    rawName: "v-model",
-                    value: newMaterial.name,
-                    expression: "newMaterial.name"
-                  }
-                ],
-                staticClass: "form-control",
-                attrs: { type: "text", placeholder: "Наименование" },
-                domProps: { value: newMaterial.name },
-                on: {
-                  input: function($event) {
-                    if ($event.target.composing) {
-                      return
-                    }
-                    _vm.$set(newMaterial, "name", $event.target.value)
-                  }
-                }
-              })
-            ]),
-            _vm._v(" "),
-            _c("div", { staticClass: "col-2 d-flex pr-0" }, [
-              _c("input", {
-                directives: [
-                  {
-                    name: "model",
-                    rawName: "v-model",
-                    value: newMaterial.price,
-                    expression: "newMaterial.price"
-                  }
-                ],
-                staticClass: "form-control",
-                attrs: { type: "text", placeholder: "Цена" },
-                domProps: { value: newMaterial.price },
-                on: {
-                  input: function($event) {
-                    if ($event.target.composing) {
-                      return
-                    }
-                    _vm.$set(newMaterial, "price", $event.target.value)
-                  }
-                }
-              }),
-              _vm._v(" "),
-              _c("input", {
-                directives: [
-                  {
-                    name: "model",
-                    rawName: "v-model",
-                    value: newMaterial.quantity,
-                    expression: "newMaterial.quantity"
-                  }
-                ],
-                staticClass: "form-control ml-2",
-                attrs: { type: "text", placeholder: "Ед.уп" },
-                domProps: { value: newMaterial.quantity },
-                on: {
-                  input: function($event) {
-                    if ($event.target.composing) {
-                      return
-                    }
-                    _vm.$set(newMaterial, "quantity", $event.target.value)
-                  }
-                }
-              })
-            ]),
-            _vm._v(" "),
-            _c("div", { staticClass: "col-md-4 pl-0" }, [
-              _c(
-                "div",
-                {
-                  staticClass:
-                    "form-group d-flex align-items-center mb-0 justify-around"
-                },
-                [
-                  _c(
-                    "select",
-                    {
-                      directives: [
-                        {
-                          name: "model",
-                          rawName: "v-model",
-                          value: newMaterial.material_unit_id,
-                          expression: "newMaterial.material_unit_id"
-                        }
-                      ],
-                      staticClass: "form-control col-4 ml-2",
-                      on: {
-                        change: function($event) {
-                          var $$selectedVal = Array.prototype.filter
-                            .call($event.target.options, function(o) {
-                              return o.selected
-                            })
-                            .map(function(o) {
-                              var val = "_value" in o ? o._value : o.value
-                              return val
-                            })
-                          _vm.$set(
-                            newMaterial,
-                            "material_unit_id",
-                            $event.target.multiple
-                              ? $$selectedVal
-                              : $$selectedVal[0]
-                          )
-                        }
-                      }
-                    },
-                    _vm._l(_vm.material_units, function(material_unit) {
-                      return _c(
-                        "option",
-                        { domProps: { value: material_unit.id } },
-                        [
-                          _vm._v(
-                            "\n                    " +
-                              _vm._s(material_unit.name) +
-                              "\n                "
-                          )
-                        ]
-                      )
-                    })
-                  ),
-                  _vm._v(" "),
-                  _c("input", {
-                    directives: [
-                      {
-                        name: "model",
-                        rawName: "v-model",
-                        value: newMaterial.rate,
-                        expression: "newMaterial.rate"
-                      }
-                    ],
-                    staticClass: "form-control col-3 ml-2",
-                    attrs: { type: "text", placeholder: "Расход" },
-                    domProps: { value: newMaterial.rate },
-                    on: {
-                      input: function($event) {
-                        if ($event.target.composing) {
-                          return
-                        }
-                        _vm.$set(newMaterial, "rate", $event.target.value)
-                      }
-                    }
-                  }),
-                  _vm._v(" "),
-                  _c(
-                    "div",
-                    { staticClass: "total-sum col-3 text-right pr-0" },
-                    [
-                      _vm._v(
-                        "\n                  " +
-                          _vm._s(
-                            _vm.MaterialCalculation(
-                              newMaterial.quantity,
-                              newMaterial.rate,
-                              newMaterial.price
-                            )
-                          ) +
-                          " Р\n              "
-                      )
-                    ]
-                  )
-                ]
-              )
-            ])
-          ]
-        )
-      }),
-      _vm._v(" "),
-      _c(
-        "div",
-        {
-          staticClass: "add-work",
-          on: {
-            click: function($event) {
-              _vm.addMaterial()
-            }
-          }
-        },
-        [_vm._v("\n          +Добавить материал\n        ")]
-      ),
-      _vm._v(" "),
-      _c("button", {
-        staticStyle: { display: "none" },
-        attrs: { type: "submit" }
-      })
-    ],
-    2
-  )
-}
-var staticRenderFns = []
-render._withStripped = true
-module.exports = { render: render, staticRenderFns: staticRenderFns }
-if (false) {
-  module.hot.accept()
-  if (module.hot.data) {
-    require("vue-hot-reload-api")      .rerender("data-v-960ba850", module.exports)
-  }
-}
 
 /***/ })
 /******/ ]);

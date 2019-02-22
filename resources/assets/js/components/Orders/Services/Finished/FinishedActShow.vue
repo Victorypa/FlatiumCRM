@@ -12,7 +12,7 @@
 
               <div class="projects__content"></div>
 
-              <FinishedRoom v-if="order.rooms.length !== 0"
+              <FinishedRoom  v-if="order.rooms.length !== 0"
                              v-for="room in order.rooms"
                              :room="room"
                              :key="'finished-room-' + room.id"
