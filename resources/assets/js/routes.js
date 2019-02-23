@@ -154,7 +154,7 @@ let routes = [
     {
         name: 'service-material',
         path: '/services/:service_id?/materials',
-        component: require('./components/Services/Materials/ServiceMaterial'),
+        component: require('./components/Services/Materials/ServiceMaterials'),
         meta: { requiresAuth: true },
         props: true
     },

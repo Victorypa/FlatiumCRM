@@ -45,8 +45,16 @@
               </div>
             </div>
 
-            <div class="add-work" @click="addMaterial()">
-              +Добавить материал
+            <div>
+                <span class="add-work" @click="addMaterial()">
+                    +Добавить материал
+                </span>
+                <span class="add-work"
+                      v-if="newMaterials.length"
+                      @click="newMaterials = []"
+                      >
+                    Чистить
+                </span>
             </div>
 
           <button type="submit" style="display: none;"></button>

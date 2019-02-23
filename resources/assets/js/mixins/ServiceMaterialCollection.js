@@ -40,26 +40,6 @@ export default {
                         })
         },
 
-        search () {
-            axios.get(`/api/materials/search`, {
-                params: { 'searchQuery': this.searchQuery }
-            })
-                .then(response => {
-                    this.searchQuery = response.data.searchQuery
-                    this.materials = response.data.materials
-
-                    if (this.materials.length != 0) {
-                        this.show = false
-
-                        this.materials.forEach(item => {
-                            this.service_material_quantities[item.id] = item.quantity
-                            // this.service_material_rates[item.id] = item.pivot.rate
-
-                        })
-                    }
-                })
-        },
-
         getMaterialUnits () {
             if (localStorage.getItem('material_units')) {
                 this.material_units = JSON.parse(localStorage.getItem('material_units'))
