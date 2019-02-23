@@ -23,7 +23,12 @@
 
         methods: {
             deleteFinishedAct () {
-                
+                if (confirm('Удалить')) {
+                    axios.delete(`/api/orders/${this.$route.params.id}/finished_order_act/${this.act.id}/destroy/`)
+                         .then(response => {
+                             this.$emit('deleted-act')
+                         })
+                }
             }
         },
 

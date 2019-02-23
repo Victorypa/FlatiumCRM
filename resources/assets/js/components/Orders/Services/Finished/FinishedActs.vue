@@ -25,6 +25,7 @@
                                 <FinishedAct v-for="act in acts"
                                              :act="act"
                                              :key="act.id"
+                                             @deleted-act="getFinishedActs()"
                                              />
                             </tbody>
                       </table>

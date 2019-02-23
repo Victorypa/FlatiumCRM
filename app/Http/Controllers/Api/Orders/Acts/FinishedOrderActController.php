@@ -54,14 +54,13 @@ class FinishedOrderActController extends Controller
         } else {
             $finished_order_act->update($request->all());
         }
-
     }
 
     public function destroy(Order $order, FinishedOrderAct $finished_order_act)
     {
-        if ($this->canBeDeleted($order, $finished_order_act)) {
-            $finished_order_act->delete();
-        }
+        $finished_order_act->delete();
+
+        return response('deleted', 200);
     }
 
     public function exportPdf(Order $order, FinishedOrderAct $finished_order_act)
@@ -139,10 +138,5 @@ class FinishedOrderActController extends Controller
                 ]);
             }
         }
-    }
-
-    protected function canBeDeleted(Order $order, FinishedOrderAct $finished_order_act)
-    {
-        return $finished_order_act->toArray() === $order->finished_order_acts->toArray()[count($order->finished_order_acts->toArray()) - 1];
     }
 }

@@ -57186,6 +57186,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
 
 
 
@@ -57584,7 +57585,15 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     props: ['act'],
 
     methods: {
-        deleteFinishedAct: function deleteFinishedAct() {}
+        deleteFinishedAct: function deleteFinishedAct() {
+            var _this = this;
+
+            if (confirm('Удалить')) {
+                axios.delete('/api/orders/' + this.$route.params.id + '/finished_order_act/' + this.act.id + '/destroy/').then(function (response) {
+                    _this.$emit('deleted-act');
+                });
+            }
+        }
     },
 
     computed: {
@@ -57641,7 +57650,12 @@ var render = function() {
                           _vm._l(_vm.acts, function(act) {
                             return _c("FinishedAct", {
                               key: act.id,
-                              attrs: { act: act }
+                              attrs: { act: act },
+                              on: {
+                                "deleted-act": function($event) {
+                                  _vm.getFinishedActs()
+                                }
+                              }
                             })
                           })
                         )
