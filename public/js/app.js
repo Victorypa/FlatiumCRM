@@ -95377,15 +95377,13 @@ var render = function() {
               "form-group d-flex align-items-center mb-0 justify-around"
           },
           [
-            _c("p", { staticClass: "form-control col-4 ml-2" }, [
-              _c("select", [
-                _c("option", [
-                  _vm._v(
-                    "\n                       " +
-                      _vm._s(_vm.material.material_unit.name) +
-                      "\n                   "
-                  )
-                ])
+            _c("select", { staticClass: "form-control col-4 ml-2" }, [
+              _c("option", [
+                _vm._v(
+                  "\n                   " +
+                    _vm._s(_vm.material.material_unit.name) +
+                    "\n               "
+                )
               ])
             ]),
             _vm._v(" "),
@@ -95844,8 +95842,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     props: ['material'],
@@ -95860,11 +95856,11 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     methods: {
         saveServiceMaterial: function saveServiceMaterial() {
             axios.post('/api/services/' + this.$route.params.service_id + '/materials/store', {
-                'material': this.material,
-                'rate': this.rate,
-                'quantity': this.material.quantity
+                'material': this.material
             });
-        }
+        },
+        updateServiceMaterial: function updateServiceMaterial() {},
+        updateMaterial: function updateMaterial() {}
     },
 
     computed: {

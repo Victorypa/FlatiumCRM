@@ -11,26 +11,18 @@ class ServiceMaterialController extends Controller
 {
     public function index(Service $service)
     {
-        return response()->json([
-            'service_materials' => $service->materials()->get(),
-            'service' => $service
-        ]);
+        return $service->materials()->get();
     }
 
     public function store(Service $service, Request $request)
     {
-        $service->materials()->sync($request->service_material_ids);
+        $service->materials()->attach($request->material['id']);
+    }
 
-        foreach ($request->service_material_quantities as $id => $quantity) {
-            Material::find($id)->update([
-                'quantity' => $quantity,
-            ]);
-        }
-
-        foreach ($request->service_material_rates as $id => $rate) {
-            $service->materials()->updateExistingPivot($id, [
-                'rate' => $rate
-            ]);
-        }
+    public function update(Service $servie, Request $request)
+    {
+        $service->materials()->updateExistingPivot($request->material['id'], [
+            'rate' => $request->rate
+        ]);
     }
 }

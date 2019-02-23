@@ -29,13 +29,11 @@
 
        <div class="col-md-4 px-0">
            <div class="form-group d-flex align-items-center mb-0 justify-around">
-               <p class="form-control col-4 ml-2">
-                   <select>
-                       <option>
-                           {{ material.material_unit.name }}
-                       </option>
-                   </select>
-               </p>
+               <select class="form-control col-4 ml-2">
+                   <option>
+                       {{ material.material_unit.name }}
+                   </option>
+               </select>
 
                <input type="text"
                       class="form-control col-3 ml-2"
@@ -67,10 +65,16 @@
             saveServiceMaterial () {
                 axios.post(`/api/services/${this.$route.params.service_id}/materials/store`, {
                     'material': this.material,
-                    'rate': this.rate,
-                    'quantity': this.material.quantity
                 })
             },
+
+            updateServiceMaterial () {
+
+            },
+
+            updateMaterial () {
+                
+            }
         },
 
         computed : {
