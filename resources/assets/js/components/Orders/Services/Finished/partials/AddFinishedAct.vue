@@ -83,9 +83,10 @@
                     this.state = {
                         name: 'Акт выполненных работ'
                     }
-                    this.show = !this.show
+
                     this.$emit('created_finished_act')
                 })
+                this.show = !this.show
             }
         }
     }

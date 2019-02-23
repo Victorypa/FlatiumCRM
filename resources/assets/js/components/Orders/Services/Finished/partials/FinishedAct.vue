@@ -9,12 +9,23 @@
         <td>{{ act.price }}</td>
         <td>{{ humanBeginAt }}</td>
         <td>{{ humanFinishAt }}</td>
+        <td>
+            <p class="cursor" @click="deleteFinishedAct()">
+                Удалить
+            </p>
+        </td>
     </tr>
 </template>
 
 <script>
     export default {
         props: ['act'],
+
+        methods: {
+            deleteFinishedAct () {
+                
+            }
+        },
 
         computed: {
             humanBeginAt () {
@@ -27,3 +38,9 @@
         }
     }
 </script>
+
+<style scoped>
+    .cursor {
+        cursor: pointer;
+    }
+</style>

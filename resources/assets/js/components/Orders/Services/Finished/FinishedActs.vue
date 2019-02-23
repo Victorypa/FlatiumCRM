@@ -18,6 +18,7 @@
                                 <th scope="col">Стоимость</th>
                                 <th scope="col">Начало</th>
                                 <th scope="col">Окончание</th>
+                                <th></th>
                               </tr>
                             </thead>
                             <tbody v-if="acts.length !== 0">

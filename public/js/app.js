@@ -57185,6 +57185,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
 
 
 
@@ -57358,9 +57359,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 _this.state = {
                     name: 'Акт выполненных работ'
                 };
-                _this.show = !_this.show;
+
                 _this.$emit('created_finished_act');
             });
+            this.show = !this.show;
         }
     }
 });
@@ -57506,17 +57508,21 @@ if (false) {
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
+function injectStyle (ssrContext) {
+  if (disposed) return
+  __webpack_require__(411)
+}
 var normalizeComponent = __webpack_require__(1)
 /* script */
 var __vue_script__ = __webpack_require__(251)
 /* template */
-var __vue_template__ = __webpack_require__(252)
+var __vue_template__ = __webpack_require__(413)
 /* template functional */
 var __vue_template_functional__ = false
 /* styles */
-var __vue_styles__ = null
+var __vue_styles__ = injectStyle
 /* scopeId */
-var __vue_scopeId__ = null
+var __vue_scopeId__ = "data-v-bc3a601c"
 /* moduleIdentifier (server only) */
 var __vue_module_identifier__ = null
 var Component = normalizeComponent(
@@ -57568,9 +57574,18 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     props: ['act'],
+
+    methods: {
+        deleteFinishedAct: function deleteFinishedAct() {}
+    },
 
     computed: {
         humanBeginAt: function humanBeginAt() {
@@ -57583,64 +57598,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 });
 
 /***/ }),
-/* 252 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var render = function() {
-  var _vm = this
-  var _h = _vm.$createElement
-  var _c = _vm._self._c || _h
-  return _c("tr", [
-    _c("td"),
-    _vm._v(" "),
-    _c(
-      "td",
-      [
-        _c(
-          "router-link",
-          {
-            attrs: {
-              to: {
-                name: "order-finished-act-show",
-                params: {
-                  id: this.$route.params.id,
-                  finished_act_id: _vm.act.id
-                }
-              }
-            }
-          },
-          [
-            _vm._v(
-              "\n            " +
-                _vm._s(
-                  _vm.act.description ? _vm.act.description : _vm.act.name
-                ) +
-                "\n        "
-            )
-          ]
-        )
-      ],
-      1
-    ),
-    _vm._v(" "),
-    _c("td", [_vm._v(_vm._s(_vm.act.price))]),
-    _vm._v(" "),
-    _c("td", [_vm._v(_vm._s(_vm.humanBeginAt))]),
-    _vm._v(" "),
-    _c("td", [_vm._v(_vm._s(_vm.humanFinishAt))])
-  ])
-}
-var staticRenderFns = []
-render._withStripped = true
-module.exports = { render: render, staticRenderFns: staticRenderFns }
-if (false) {
-  module.hot.accept()
-  if (module.hot.data) {
-    require("vue-hot-reload-api")      .rerender("data-v-bc3a601c", module.exports)
-  }
-}
-
-/***/ }),
+/* 252 */,
 /* 253 */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -57716,7 +57674,9 @@ var staticRenderFns = [
         _vm._v(" "),
         _c("th", { attrs: { scope: "col" } }, [_vm._v("Начало")]),
         _vm._v(" "),
-        _c("th", { attrs: { scope: "col" } }, [_vm._v("Окончание")])
+        _c("th", { attrs: { scope: "col" } }, [_vm._v("Окончание")]),
+        _vm._v(" "),
+        _c("th")
       ])
     ])
   }
@@ -95489,6 +95449,120 @@ $(window).scroll(function () {
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
+
+/***/ }),
+/* 410 */,
+/* 411 */
+/***/ (function(module, exports, __webpack_require__) {
+
+// style-loader: Adds some css to the DOM by adding a <style> tag
+
+// load the styles
+var content = __webpack_require__(412);
+if(typeof content === 'string') content = [[module.i, content, '']];
+if(content.locals) module.exports = content.locals;
+// add the styles to the DOM
+var update = __webpack_require__(3)("9be78a18", content, false, {});
+// Hot Module Replacement
+if(false) {
+ // When the styles change, update the <style> tags
+ if(!content.locals) {
+   module.hot.accept("!!../../../../../../../../node_modules/css-loader/index.js!../../../../../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-bc3a601c\",\"scoped\":true,\"hasInlineConfig\":true}!../../../../../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./FinishedAct.vue", function() {
+     var newContent = require("!!../../../../../../../../node_modules/css-loader/index.js!../../../../../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-bc3a601c\",\"scoped\":true,\"hasInlineConfig\":true}!../../../../../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./FinishedAct.vue");
+     if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+     update(newContent);
+   });
+ }
+ // When the module is disposed, remove the <style> tags
+ module.hot.dispose(function() { update(); });
+}
+
+/***/ }),
+/* 412 */
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(2)(false);
+// imports
+
+
+// module
+exports.push([module.i, "\n.cursor[data-v-bc3a601c] {\n    cursor: pointer;\n}\n", ""]);
+
+// exports
+
+
+/***/ }),
+/* 413 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("tr", [
+    _c("td"),
+    _vm._v(" "),
+    _c(
+      "td",
+      [
+        _c(
+          "router-link",
+          {
+            attrs: {
+              to: {
+                name: "order-finished-act-show",
+                params: {
+                  id: this.$route.params.id,
+                  finished_act_id: _vm.act.id
+                }
+              }
+            }
+          },
+          [
+            _vm._v(
+              "\n            " +
+                _vm._s(
+                  _vm.act.description ? _vm.act.description : _vm.act.name
+                ) +
+                "\n        "
+            )
+          ]
+        )
+      ],
+      1
+    ),
+    _vm._v(" "),
+    _c("td", [_vm._v(_vm._s(_vm.act.price))]),
+    _vm._v(" "),
+    _c("td", [_vm._v(_vm._s(_vm.humanBeginAt))]),
+    _vm._v(" "),
+    _c("td", [_vm._v(_vm._s(_vm.humanFinishAt))]),
+    _vm._v(" "),
+    _c("td", [
+      _c(
+        "p",
+        {
+          staticClass: "cursor",
+          on: {
+            click: function($event) {
+              _vm.deleteFinishedAct()
+            }
+          }
+        },
+        [_vm._v("\n            Удалить\n        ")]
+      )
+    ])
+  ])
+}
+var staticRenderFns = []
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-bc3a601c", module.exports)
+  }
+}
 
 /***/ })
 /******/ ]);
