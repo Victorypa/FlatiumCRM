@@ -10,12 +10,12 @@ class ServiceController extends Controller
 {
     public function index()
     {
-        return Service::orderBy('name', 'asc')->with('materials')->get();
+        return Service::orderBy('name', 'asc')->with(['materials'])->get();
     }
 
     public function show(Service $service)
     {
-        return Service::where('id', $service->id)->with(['materials'])->first();
+        return Service::where('id', $service->id)->with(['materials', 'materials.services'])->first();
     }
 
     public function store(Request $request)

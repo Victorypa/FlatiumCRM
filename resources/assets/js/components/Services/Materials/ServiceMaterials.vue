@@ -36,6 +36,13 @@
               <div class="row pt-4">
                   <AddMaterial @added-material="getService()" />
 
+                  <ServiceMaterial v-if="service.materials.length !== 0 && material_units.length !== 0"
+                                   v-for="material in service.materials"
+                                   :material="material"
+                                   :material_units="material_units"
+                                   :key="material.id"
+                                   />
+
                   <Material v-if="materials.length !== 0 && searchQuery !== ''"
                             v-for="material in materials"
                             :material="material"

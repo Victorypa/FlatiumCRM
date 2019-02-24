@@ -95600,6 +95600,13 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -95762,6 +95769,19 @@ var render = function() {
                             _vm.getService()
                           }
                         }
+                      }),
+                      _vm._v(" "),
+                      _vm._l(_vm.service.materials, function(material) {
+                        return _vm.service.materials.length !== 0 &&
+                          _vm.material_units.length !== 0
+                          ? _c("ServiceMaterial", {
+                              key: material.id,
+                              attrs: {
+                                material: material,
+                                material_units: _vm.material_units
+                              }
+                            })
+                          : _vm._e()
                       }),
                       _vm._v(" "),
                       _vm._l(_vm.materials, function(material) {
@@ -96024,8 +96044,29 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
 
-/* harmony default export */ __webpack_exports__["default"] = ({});
+/* harmony default export */ __webpack_exports__["default"] = ({
+    props: ['material', 'rate', 'material_units'],
+
+    created: function created() {
+        console.log(this.material);
+    },
+
+
+    methods: {
+        updateMaterialQuantity: function updateMaterialQuantity() {
+            axios.patch('/api/materials/' + this.material.id + '/update', {
+                'quantity': this.material.quantity
+            });
+        },
+        updateMaterialUnit: function updateMaterialUnit() {
+            axios.patch('/api/materials/' + this.material.id + '/update', {
+                'material_unit_id': this.material.material_unit_id
+            });
+        }
+    }
+});
 
 /***/ }),
 /* 426 */
@@ -96035,7 +96076,121 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div")
+  return _c(
+    "div",
+    {
+      staticClass: "row justify-content-between align-items-center col-12 py-2"
+    },
+    [
+      _c("div", { staticClass: "col-6" }, [
+        _c("div", { staticClass: "form-check" }, [
+          _c("input", {
+            staticClass: "form-check-input",
+            attrs: {
+              id: "service-material-" + _vm.material.id,
+              type: "checkbox"
+            },
+            domProps: { checked: true }
+          }),
+          _vm._v(" "),
+          _c(
+            "label",
+            {
+              staticClass: "form-check-label",
+              attrs: { for: "service-material-" + _vm.material.id }
+            },
+            [
+              _vm._v(
+                "\n               " + _vm._s(_vm.material.name) + "\n        "
+              )
+            ]
+          )
+        ])
+      ]),
+      _vm._v(" "),
+      _c(
+        "div",
+        {
+          staticClass:
+            "col-2 d-flex pr-2 align-items-center justify-content-between"
+        },
+        [
+          _c("div", { staticClass: "total-sum col-6" }, [
+            _vm._v(
+              "\n            " + _vm._s(_vm.material.price) + " Р\n        "
+            )
+          ]),
+          _vm._v(" "),
+          _c("input", {
+            directives: [
+              {
+                name: "model",
+                rawName: "v-model",
+                value: _vm.material.quantity,
+                expression: "material.quantity"
+              }
+            ],
+            staticClass: "form-control ml-2 col-6",
+            attrs: { type: "text", placeholder: "Ед.уп" },
+            domProps: { value: _vm.material.quantity },
+            on: {
+              change: function($event) {
+                _vm.updateMaterialQuantity()
+              },
+              input: function($event) {
+                if ($event.target.composing) {
+                  return
+                }
+                _vm.$set(_vm.material, "quantity", $event.target.value)
+              }
+            }
+          })
+        ]
+      ),
+      _vm._v(" "),
+      _c("div", { staticClass: "col-md-4 px-0" }, [
+        _c(
+          "div",
+          {
+            staticClass:
+              "form-group d-flex align-items-center mb-0 justify-around"
+          },
+          [
+            _c(
+              "select",
+              {
+                staticClass: "form-control col-4 ml-2",
+                on: {
+                  change: function($event) {
+                    _vm.updateMaterialUnit()
+                  }
+                }
+              },
+              _vm._l(_vm.material_units, function(material_unit) {
+                return _c(
+                  "option",
+                  {
+                    domProps: {
+                      value: material_unit.id,
+                      selected:
+                        material_unit.id === _vm.material.material_unit_id
+                    }
+                  },
+                  [
+                    _vm._v(
+                      "\n                     " +
+                        _vm._s(material_unit.name) +
+                        "\n                 "
+                    )
+                  ]
+                )
+              })
+            )
+          ]
+        )
+      ])
+    ]
+  )
 }
 var staticRenderFns = []
 render._withStripped = true
