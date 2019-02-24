@@ -44,23 +44,18 @@
                      </option>
              </select>
 
-            <!-- <input type="text"
+            <input type="text"
                    class="form-control col-3 ml-2"
                    placeholder="Расход/м2"
                    :id="'service-material-' + material.id"
-                   v-model="service_material_rates[material.id]"
-                   > -->
+                   v-model="rate"
+                   >
 
-          <!-- <div class="total-sum col-3 text-right pr-0">
-              <template v-if="service_material_quantities[material.id] && service_material_rates[material.id]">
-                  {{ MaterialCalculation(service_material_quantities[material.id], service_material_rates[material.id], material.price) }} Р
-              </template>
-              <template v-else>
-                  0 Р
-              </template>
+          <div class="total-sum col-3 text-right pr-0">
+              {{ materialPrice }}
           </div>
 
-          <button @click="deleteMaterial(material.id)"
+          <!-- <button @click="deleteMaterial()"
                   class="add-button add-button--remove ml-auto"
                   title="Удалить материал"
                   v-if="material.can_be_deleted"
@@ -74,10 +69,14 @@
 
 <script>
     export default {
-        props: ['material', 'rate', 'material_units'],
+        props: ['material', 'material_units'],
 
-        created () {
-            console.log(this.material);
+        data () {
+            return {
+                rate: this.material.services.filter(row => {
+                    return row.pivot.material_id === this.material.id
+                })[0].pivot.rate
+            }
         },
 
         methods: {
@@ -91,7 +90,13 @@
                 axios.patch(`/api/materials/${this.material.id}/update`, {
                     'material_unit_id': this.material.material_unit_id
                 })
-            },
+            }
+        },
+
+        computed: {
+            materialPrice () {
+                
+            }
         }
     }
 </script>

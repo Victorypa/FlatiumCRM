@@ -33,7 +33,7 @@ class Material extends Model
 
     public function services()
     {
-        return $this->belongsToMany(Service::class, 'service_material');
+        return $this->belongsToMany(Service::class, 'service_material')->withPivot('rate');
     }
 
     public function RoomServices()
@@ -43,8 +43,10 @@ class Material extends Model
 
     protected function calculateUnivalence($material)
     {
-        $amount =  $material->price / $material->quantity;
+        if ($material->quantity) {
+            $amount =  $material->price / $material->quantity;
 
-        return number_format((float)($amount), 2, '.', '');
+            return number_format((float)($amount), 2, '.', '');
+        }
     }
 }

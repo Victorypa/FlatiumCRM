@@ -95359,7 +95359,7 @@ var render = function() {
             domProps: { value: _vm.material.quantity },
             on: {
               change: function($event) {
-                _vm.updateMaterial()
+                _vm.updateMaterialQuantity()
               },
               input: function($event) {
                 if ($event.target.composing) {
@@ -95380,15 +95380,63 @@ var render = function() {
               "form-group d-flex align-items-center mb-0 justify-around"
           },
           [
-            _c("select", { staticClass: "form-control col-4 ml-2" }, [
-              _c("option", [
-                _vm._v(
-                  "\n                   " +
-                    _vm._s(_vm.material.material_unit.name) +
-                    "\n               "
+            _c(
+              "select",
+              {
+                directives: [
+                  {
+                    name: "model",
+                    rawName: "v-model",
+                    value: _vm.material.material_unit_id,
+                    expression: "material.material_unit_id"
+                  }
+                ],
+                staticClass: "form-control col-4 ml-2",
+                on: {
+                  change: [
+                    function($event) {
+                      var $$selectedVal = Array.prototype.filter
+                        .call($event.target.options, function(o) {
+                          return o.selected
+                        })
+                        .map(function(o) {
+                          var val = "_value" in o ? o._value : o.value
+                          return val
+                        })
+                      _vm.$set(
+                        _vm.material,
+                        "material_unit_id",
+                        $event.target.multiple
+                          ? $$selectedVal
+                          : $$selectedVal[0]
+                      )
+                    },
+                    function($event) {
+                      _vm.updateMaterialUnit()
+                    }
+                  ]
+                }
+              },
+              _vm._l(_vm.material_units, function(material_unit) {
+                return _c(
+                  "option",
+                  {
+                    domProps: {
+                      value: material_unit.id,
+                      selected:
+                        material_unit.id === _vm.material.material_unit_id
+                    }
+                  },
+                  [
+                    _vm._v(
+                      "\n                       " +
+                        _vm._s(material_unit.name) +
+                        "\n                   "
+                    )
+                  ]
                 )
-              ])
-            ]),
+              })
+            ),
             _vm._v(" "),
             _c("input", {
               directives: [
@@ -95545,6 +95593,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__partials_Material___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2__partials_Material__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__partials_ServiceMaterial__ = __webpack_require__(424);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__partials_ServiceMaterial___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3__partials_ServiceMaterial__);
+//
 //
 //
 //
@@ -95789,7 +95838,10 @@ var render = function() {
                           _vm.searchQuery !== ""
                           ? _c("Material", {
                               key: material.id,
-                              attrs: { material: material }
+                              attrs: {
+                                material: material,
+                                material_units: _vm.material_units
+                              }
                             })
                           : _vm._e()
                       })
@@ -95879,9 +95931,15 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-    props: ['material'],
+    props: ['material', 'material_units'],
 
     data: function data() {
         return {
@@ -95902,9 +95960,14 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 'rate': this.rate
             });
         },
-        updateMaterial: function updateMaterial() {
+        updateMaterialQuantity: function updateMaterialQuantity() {
             axios.patch('/api/materials/' + this.material.id + '/update', {
                 'quantity': this.material.quantity
+            });
+        },
+        updateMaterialUnit: function updateMaterialUnit() {
+            axios.patch('/api/materials/' + this.material.id + '/update', {
+                'material_unit_id': this.material.material_unit_id
             });
         }
     },
@@ -96043,17 +96106,18 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
-//
-//
-//
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-    props: ['material', 'rate', 'material_units'],
+    props: ['material', 'material_units'],
 
-    created: function created() {
-        console.log(this.material);
+    data: function data() {
+        var _this = this;
+
+        return {
+            rate: this.material.services.filter(function (row) {
+                return row.pivot.material_id === _this.material.id;
+            })[0].pivot.rate
+        };
     },
 
 
@@ -96068,6 +96132,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 'material_unit_id': this.material.material_unit_id
             });
         }
+    },
+
+    computed: {
+        materialPrice: function materialPrice() {}
     }
 });
 
@@ -96215,7 +96283,37 @@ var render = function() {
                   ]
                 )
               })
-            )
+            ),
+            _vm._v(" "),
+            _c("input", {
+              directives: [
+                {
+                  name: "model",
+                  rawName: "v-model",
+                  value: _vm.rate,
+                  expression: "rate"
+                }
+              ],
+              staticClass: "form-control col-3 ml-2",
+              attrs: {
+                type: "text",
+                placeholder: "Расход/м2",
+                id: "service-material-" + _vm.material.id
+              },
+              domProps: { value: _vm.rate },
+              on: {
+                input: function($event) {
+                  if ($event.target.composing) {
+                    return
+                  }
+                  _vm.rate = $event.target.value
+                }
+              }
+            }),
+            _vm._v(" "),
+            _c("div", { staticClass: "total-sum col-3 text-right pr-0" }, [
+              _vm._v("\n          " + _vm._s(_vm.materialPrice) + "\n      ")
+            ])
           ]
         )
       ])

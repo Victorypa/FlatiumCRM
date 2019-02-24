@@ -46,6 +46,7 @@
                   <Material v-if="materials.length !== 0 && searchQuery !== ''"
                             v-for="material in materials"
                             :material="material"
+                            :material_units="material_units"
                             :key="material.id"
                             />
               </div>
