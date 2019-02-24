@@ -19,6 +19,11 @@ class ServiceMaterialController extends Controller
         $service->materials()->attach($request->material['id']);
     }
 
+    public function remove(Service $service, Request $request)
+    {
+        $service->materials()->detach($request->material_id);
+    }
+
     public function update(Service $service, Request $request)
     {
         $service->materials()->updateExistingPivot($request->material_id, [

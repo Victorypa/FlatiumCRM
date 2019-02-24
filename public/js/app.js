@@ -95656,6 +95656,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
 
 
 
@@ -95719,6 +95720,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                     _this3.material_units = response.data;
                 });
             }
+        },
+        handle: function handle() {
+            this.searchQuery = "";
+            this.getService();
         }
     }
 });
@@ -95794,7 +95799,7 @@ var render = function() {
                             attrs: { type: "button" },
                             on: {
                               click: function($event) {
-                                _vm.searchQuery = ""
+                                _vm.handle()
                               }
                             }
                           },
@@ -95828,6 +95833,11 @@ var render = function() {
                               attrs: {
                                 material: material,
                                 material_units: _vm.material_units
+                              },
+                              on: {
+                                "removed-service-material": function($event) {
+                                  _vm.getService()
+                                }
                               }
                             })
                           : _vm._e()
@@ -96099,13 +96109,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     props: ['material', 'material_units'],
@@ -96122,6 +96125,15 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 
     methods: {
+        removeServiceMaterial: function removeServiceMaterial() {
+            var _this2 = this;
+
+            axios.post('/api/services/' + this.$route.params.service_id + '/materials/remove', {
+                'material_id': this.material.id
+            }).then(function (response) {
+                _this2.$emit('removed-service-material');
+            });
+        },
         updateMaterialQuantity: function updateMaterialQuantity() {
             axios.patch('/api/materials/' + this.material.id + '/update', {
                 'quantity': this.material.quantity
@@ -96135,7 +96147,11 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     },
 
     computed: {
-        materialPrice: function materialPrice() {}
+        materialPrice: function materialPrice() {
+            if (this.rate && this.material.quantity) {
+                return parseFloat(Math.ceil(this.rate / this.material.quantity) * this.material.price).toFixed(2);
+            }
+        }
     }
 });
 
@@ -96161,7 +96177,12 @@ var render = function() {
               id: "service-material-" + _vm.material.id,
               type: "checkbox"
             },
-            domProps: { checked: true }
+            domProps: { checked: true },
+            on: {
+              click: function($event) {
+                _vm.removeServiceMaterial()
+              }
+            }
           }),
           _vm._v(" "),
           _c(
@@ -96312,7 +96333,7 @@ var render = function() {
             }),
             _vm._v(" "),
             _c("div", { staticClass: "total-sum col-3 text-right pr-0" }, [
-              _vm._v("\n          " + _vm._s(_vm.materialPrice) + "\n      ")
+              _vm._v("\n          " + _vm._s(_vm.materialPrice) + " Р\n      ")
             ])
           ]
         )

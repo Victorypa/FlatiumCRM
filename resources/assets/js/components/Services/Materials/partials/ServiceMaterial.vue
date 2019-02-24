@@ -7,6 +7,7 @@
                    :id="'service-material-' + material.id"
                    type="checkbox"
                    :checked="true"
+                   @click="removeServiceMaterial()"
                    >
 
             <label class="form-check-label"
@@ -52,16 +53,8 @@
                    >
 
           <div class="total-sum col-3 text-right pr-0">
-              {{ materialPrice }}
+              {{ materialPrice }} Р
           </div>
-
-          <!-- <button @click="deleteMaterial()"
-                  class="add-button add-button--remove ml-auto"
-                  title="Удалить материал"
-                  v-if="material.can_be_deleted"
-                  >
-              <img src="/img/del.svg" alt="add-button">
-          </button> -->
         </div>
       </div>
     </div>
@@ -80,6 +73,14 @@
         },
 
         methods: {
+            removeServiceMaterial () {
+                axios.post(`/api/services/${this.$route.params.service_id}/materials/remove`, {
+                    'material_id': this.material.id,
+                }).then(response => {
+                    this.$emit('removed-service-material')
+                })
+            },
+
             updateMaterialQuantity () {
                 axios.patch(`/api/materials/${this.material.id}/update`, {
                     'quantity': this.material.quantity
@@ -95,7 +96,11 @@
 
         computed: {
             materialPrice () {
-                
+                if (this.rate && this.material.quantity) {
+                    return parseFloat(
+                        Math.ceil(this.rate / this.material.quantity) * this.material.price
+                    ).toFixed(2)
+                }
             }
         }
     }

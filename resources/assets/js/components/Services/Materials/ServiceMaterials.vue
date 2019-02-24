@@ -26,7 +26,7 @@
                   <div class="col-2">
                       <button type="button"
                               class="btn btn-link"
-                              @click="searchQuery = ''"
+                              @click="handle()"
                               >
                           Чистить
                       </button>
@@ -41,6 +41,7 @@
                                    :material="material"
                                    :material_units="material_units"
                                    :key="material.id"
+                                   @removed-service-material="getService()"
                                    />
 
                   <Material v-if="materials.length !== 0 && searchQuery !== ''"
@@ -121,6 +122,11 @@
                         this.material_units = response.data
                     })
                 }
+            },
+
+            handle () {
+                this.searchQuery = ""
+                this.getService()
             }
         }
     }
