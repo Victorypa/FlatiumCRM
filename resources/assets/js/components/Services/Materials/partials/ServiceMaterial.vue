@@ -32,7 +32,10 @@
      <div class="col-md-4 px-0">
          <div class="form-group d-flex align-items-center mb-0 justify-around">
 
-             <select class="form-control col-4 ml-2" @change="updateMaterialUnit()">
+             <select class="form-control col-4 ml-2"
+                     v-model="material.material_unit_id"
+                     @change="updateMaterialUnit()"
+                     >
                      <option v-for="material_unit in material_units"
                             :value="material_unit.id"
                             :selected="material_unit.id === material.material_unit_id"

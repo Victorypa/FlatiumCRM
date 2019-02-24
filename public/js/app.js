@@ -96045,6 +96045,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     props: ['material', 'rate', 'material_units'],
@@ -96159,11 +96162,38 @@ var render = function() {
             _c(
               "select",
               {
+                directives: [
+                  {
+                    name: "model",
+                    rawName: "v-model",
+                    value: _vm.material.material_unit_id,
+                    expression: "material.material_unit_id"
+                  }
+                ],
                 staticClass: "form-control col-4 ml-2",
                 on: {
-                  change: function($event) {
-                    _vm.updateMaterialUnit()
-                  }
+                  change: [
+                    function($event) {
+                      var $$selectedVal = Array.prototype.filter
+                        .call($event.target.options, function(o) {
+                          return o.selected
+                        })
+                        .map(function(o) {
+                          var val = "_value" in o ? o._value : o.value
+                          return val
+                        })
+                      _vm.$set(
+                        _vm.material,
+                        "material_unit_id",
+                        $event.target.multiple
+                          ? $$selectedVal
+                          : $$selectedVal[0]
+                      )
+                    },
+                    function($event) {
+                      _vm.updateMaterialUnit()
+                    }
+                  ]
                 }
               },
               _vm._l(_vm.material_units, function(material_unit) {
