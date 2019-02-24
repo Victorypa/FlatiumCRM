@@ -275,5 +275,6 @@ Route::group(['namespace' => 'Api\Materials', 'middleware' => 'cacheResponse:30'
     Route::group(['namespace' => 'Services'], function () {
         Route::get('/services/{service}/materials', 'ServiceMaterialController@index');
         Route::post('/services/{service}/materials/store', 'ServiceMaterialController@store');
+        Route::patch('/services/{service}/materials/update', 'ServiceMaterialController@update');
     });
 });

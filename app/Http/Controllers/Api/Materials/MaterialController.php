@@ -49,7 +49,9 @@ class MaterialController extends Controller
 
     public function update(Material $material, Request $request)
     {
-        return $material->update($request->all());
+        $material->update($request->all());
+
+        return response('updated material', 200);
     }
 
     public function destroy(Material $material)

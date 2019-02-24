@@ -1,5 +1,5 @@
 <template>
-    <div class="row justify-content-between align-items-center col-12 py-2" v-for="material in service_materials" :key="material.id">
+    <!-- <div class="row justify-content-between align-items-center col-12 py-2" v-for="material in service_materials" :key="material.id">
       <div class="col-6">
         <div class="form-check">
           <input class="form-check-input"
@@ -65,7 +65,7 @@
           </button>
         </div>
       </div>
-    </div>
+    </div> -->
 </template>
 
 <script>

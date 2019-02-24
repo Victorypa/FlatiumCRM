@@ -95358,6 +95358,9 @@ var render = function() {
             attrs: { type: "text", placeholder: "Ед.уп" },
             domProps: { value: _vm.material.quantity },
             on: {
+              change: function($event) {
+                _vm.updateMaterial()
+              },
               input: function($event) {
                 if ($event.target.composing) {
                   return
@@ -95537,6 +95540,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__partials_AddMaterial___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__partials_AddMaterial__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__partials_Material__ = __webpack_require__(416);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__partials_Material___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2__partials_Material__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__partials_ServiceMaterial__ = __webpack_require__(424);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__partials_ServiceMaterial___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3__partials_ServiceMaterial__);
 //
 //
 //
@@ -95592,10 +95597,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
-//
-//
-//
+
 
 
 
@@ -95603,7 +95605,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     components: {
-        ServiceDetail: __WEBPACK_IMPORTED_MODULE_0__partials_ServiceDetail___default.a, AddMaterial: __WEBPACK_IMPORTED_MODULE_1__partials_AddMaterial___default.a, Material: __WEBPACK_IMPORTED_MODULE_2__partials_Material___default.a
+        ServiceDetail: __WEBPACK_IMPORTED_MODULE_0__partials_ServiceDetail___default.a, AddMaterial: __WEBPACK_IMPORTED_MODULE_1__partials_AddMaterial___default.a,
+        Material: __WEBPACK_IMPORTED_MODULE_2__partials_Material___default.a, ServiceMaterial: __WEBPACK_IMPORTED_MODULE_3__partials_ServiceMaterial___default.a
     },
 
     data: function data() {
@@ -95611,6 +95614,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             service: [],
             materials: [],
             material_units: [],
+
+            service_material_ids: [],
+
             searchQuery: ""
         };
     },
@@ -95626,6 +95632,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
             return axios.get('/api/services/' + this.$route.params.service_id).then(function (response) {
                 _this.service = response.data;
+
+                _this.service.materials.forEach(function (row) {
+                    _this.service_material_ids.push(row.id);
+                });
             });
         },
         getMaterials: function getMaterials() {
@@ -95634,7 +95644,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             return axios.get('/api/materials/search', {
                 params: { 'searchQuery': this.searchQuery }
             }).then(function (response) {
-                _this2.materials = response.data.materials;
+                _this2.materials = response.data.materials.filter(function (row) {
+                    return _this2.service_material_ids.indexOf(row.id) < 0;
+                });
             });
         },
         getMaterialUnits: function getMaterialUnits() {
@@ -95842,6 +95854,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     props: ['material'],
@@ -95860,7 +95873,11 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             });
         },
         updateServiceMaterial: function updateServiceMaterial() {},
-        updateMaterial: function updateMaterial() {}
+        updateMaterial: function updateMaterial() {
+            axios.patch('/api/materials/' + this.material.id + '/update', {
+                'quantity': this.material.quantity
+            });
+        }
     },
 
     computed: {
@@ -95874,6 +95891,152 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         }
     }
 });
+
+/***/ }),
+/* 424 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+var normalizeComponent = __webpack_require__(1)
+/* script */
+var __vue_script__ = __webpack_require__(425)
+/* template */
+var __vue_template__ = __webpack_require__(426)
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = null
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources/assets/js/components/Services/Materials/partials/ServiceMaterial.vue"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-8943e028", Component.options)
+  } else {
+    hotAPI.reload("data-v-8943e028", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 425 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+/* harmony default export */ __webpack_exports__["default"] = ({});
+
+/***/ }),
+/* 426 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div")
+}
+var staticRenderFns = []
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-8943e028", module.exports)
+  }
+}
 
 /***/ })
 /******/ ]);

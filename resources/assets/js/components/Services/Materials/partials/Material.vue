@@ -24,6 +24,7 @@
                class="form-control ml-2 col-6"
                placeholder="Ед.уп"
                v-model="material.quantity"
+               @change="updateMaterial()"
                >
      </div>
 
@@ -69,11 +70,13 @@
             },
 
             updateServiceMaterial () {
-
+                
             },
 
             updateMaterial () {
-                
+                axios.patch(`/api/materials/${this.material.id}/update`, {
+                    'quantity': this.material.quantity
+                })
             }
         },
 

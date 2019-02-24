@@ -34,17 +34,13 @@
               </div>
 
               <div class="row pt-4">
-
                   <AddMaterial @added-material="getService()" />
-
 
                   <Material v-if="materials.length !== 0 && searchQuery !== ''"
                             v-for="material in materials"
                             :material="material"
                             :key="material.id"
                             />
-
-
               </div>
 
             </div>
@@ -61,10 +57,12 @@
     import ServiceDetail from './partials/ServiceDetail'
     import AddMaterial from './partials/AddMaterial'
     import Material from './partials/Material'
+    import ServiceMaterial from './partials/ServiceMaterial'
 
     export default {
         components: {
-            ServiceDetail, AddMaterial, Material
+            ServiceDetail, AddMaterial,
+            Material, ServiceMaterial
         },
 
         data () {
@@ -72,6 +70,9 @@
                 service: [],
                 materials: [],
                 material_units: [],
+
+                service_material_ids: [],
+
                 searchQuery: ""
             }
         },
@@ -86,6 +87,10 @@
                 return axios.get(`/api/services/${this.$route.params.service_id}`)
                             .then(response => {
                                 this.service = response.data
+
+                                this.service.materials.forEach(row => {
+                                    this.service_material_ids.push(row.id)
+                                })
                             })
             },
 
@@ -93,7 +98,9 @@
                 return axios.get(`/api/materials/search`, {
                     params: { 'searchQuery': this.searchQuery }
                 }).then(response => {
-                    this.materials = response.data.materials
+                    this.materials = response.data.materials.filter(row => {
+                        return this.service_material_ids.indexOf(row.id) < 0
+                    })
                 })
             },
 
@@ -107,7 +114,7 @@
                     })
                 }
             }
-        },
+        }
     }
 </script>
 
