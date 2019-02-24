@@ -41,6 +41,7 @@
                       placeholder="Расход/м2"
                       :id="'material-' + material.id"
                       v-model="rate"
+                      @change="updateServiceMaterial()"
                       >
 
               <div class="total-sum col-3 text-right pr-0">
@@ -70,7 +71,10 @@
             },
 
             updateServiceMaterial () {
-                
+                axios.patch(`/api/services/${this.$route.params.service_id}/materials/update`, {
+                    'material_id': this.material.id,
+                    'rate': this.rate
+                })
             },
 
             updateMaterial () {

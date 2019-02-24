@@ -19,9 +19,9 @@ class ServiceMaterialController extends Controller
         $service->materials()->attach($request->material['id']);
     }
 
-    public function update(Service $servie, Request $request)
+    public function update(Service $service, Request $request)
     {
-        $service->materials()->updateExistingPivot($request->material['id'], [
+        $service->materials()->updateExistingPivot($request->material_id, [
             'rate' => $request->rate
         ]);
     }

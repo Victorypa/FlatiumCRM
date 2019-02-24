@@ -95407,6 +95407,9 @@ var render = function() {
               },
               domProps: { value: _vm.rate },
               on: {
+                change: function($event) {
+                  _vm.updateServiceMaterial()
+                },
                 input: function($event) {
                   if ($event.target.composing) {
                     return
@@ -95855,6 +95858,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     props: ['material'],
@@ -95872,7 +95876,12 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 'material': this.material
             });
         },
-        updateServiceMaterial: function updateServiceMaterial() {},
+        updateServiceMaterial: function updateServiceMaterial() {
+            axios.patch('/api/services/' + this.$route.params.service_id + '/materials/update', {
+                'material_id': this.material.id,
+                'rate': this.rate
+            });
+        },
         updateMaterial: function updateMaterial() {
             axios.patch('/api/materials/' + this.material.id + '/update', {
                 'quantity': this.material.quantity
