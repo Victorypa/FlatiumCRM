@@ -1,7 +1,7 @@
 <template>
     <table class="table table-hover">
       <tbody>
-        <tr>
+        <tr @click="show = !show">
           <td>{{ folder.order_uploads.filter(row => row.type === 'photo').length }} фото</td>
           <td>{{ folder.order_uploads.filter(row => row.type === 'doc').length }} док</td>
           <td>Дата съёмки {{ folder.name }}</td>
@@ -15,16 +15,31 @@
             </button>
           </td>
         </tr>
-        <tr>
-            
-        </tr>
+
+        <File v-if="show && folder.order_uploads.length !== 0"
+              v-for="upload in folder.order_uploads"
+              :upload="upload"
+              :key="'upload-' + upload.id"
+              />
       </tbody>
     </table>
 </template>
 
 <script>
+    import File from './Files/File'
+
     export default {
         props: ['folder'],
+
+        data () {
+            return {
+                show: false
+            }
+        },
+
+        components: {
+            File
+        },
 
         methods: {
             deleteFolder () {
@@ -46,6 +61,13 @@
 </script>
 
 <style lang="scss" scoped>
+tr {
+    cursor: pointer;
+    &:hover {
+        cursor: pointer;
+    }
+}
+
 .add-button {
   background-color: transparent;
   border: none;

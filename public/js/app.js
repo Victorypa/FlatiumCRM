@@ -96503,6 +96503,11 @@ module.exports = Component.exports
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__Files_File__ = __webpack_require__(431);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__Files_File___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__Files_File__);
+//
+//
+//
 //
 //
 //
@@ -96528,8 +96533,21 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 
+
+
 /* harmony default export */ __webpack_exports__["default"] = ({
     props: ['folder'],
+
+    data: function data() {
+        return {
+            show: false
+        };
+    },
+
+
+    components: {
+        File: __WEBPACK_IMPORTED_MODULE_0__Files_File___default.a
+    },
 
     methods: {
         deleteFolder: function deleteFolder() {
@@ -96586,7 +96604,7 @@ exports = module.exports = __webpack_require__(2)(false);
 
 
 // module
-exports.push([module.i, "\n.add-button[data-v-5259801a] {\n  background-color: transparent;\n  border: none;\n  cursor: pointer;\n}\n.add-button[data-v-5259801a]:focus {\n    outline: none;\n}\n.add-button img[data-v-5259801a] {\n    width: 35px;\n    border-radius: 50%;\n}\n.add-button img[data-v-5259801a]:hover {\n      -webkit-box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);\n              box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);\n}\n.add-button--remove[data-v-5259801a] {\n    color: #ccc;\n}\n.add-button--remove[data-v-5259801a]:hover {\n      color: #00A4D1;\n}\n.add-button--remove img[data-v-5259801a] {\n      width: 15px;\n}\n", ""]);
+exports.push([module.i, "\ntr[data-v-5259801a] {\n  cursor: pointer;\n}\ntr[data-v-5259801a]:hover {\n    cursor: pointer;\n}\n.add-button[data-v-5259801a] {\n  background-color: transparent;\n  border: none;\n  cursor: pointer;\n}\n.add-button[data-v-5259801a]:focus {\n    outline: none;\n}\n.add-button img[data-v-5259801a] {\n    width: 35px;\n    border-radius: 50%;\n}\n.add-button img[data-v-5259801a]:hover {\n      -webkit-box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);\n              box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);\n}\n.add-button--remove[data-v-5259801a] {\n    color: #ccc;\n}\n.add-button--remove[data-v-5259801a]:hover {\n      color: #00A4D1;\n}\n.add-button--remove img[data-v-5259801a] {\n      width: 15px;\n}\n", ""]);
 
 // exports
 
@@ -96600,58 +96618,81 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("table", { staticClass: "table table-hover" }, [
-    _c("tbody", [
-      _c("tr", [
-        _c("td", [
-          _vm._v(
-            _vm._s(
-              _vm.folder.order_uploads.filter(function(row) {
-                return row.type === "photo"
-              }).length
-            ) + " фото"
-          )
-        ]),
-        _vm._v(" "),
-        _c("td", [
-          _vm._v(
-            _vm._s(
-              _vm.folder.order_uploads.filter(function(row) {
-                return row.type === "doc"
-              }).length
-            ) + " док"
-          )
-        ]),
-        _vm._v(" "),
-        _c("td", [_vm._v("Дата съёмки " + _vm._s(_vm.folder.name))]),
-        _vm._v(" "),
-        _c("td", [_vm._v(_vm._s(_vm.filteredDate))]),
-        _vm._v(" "),
-        _c("td", [
-          _c(
-            "button",
-            {
-              staticClass:
-                "add-button add-button--remove d-flex align-items-center",
-              attrs: { title: "Удалить" },
-              on: {
-                click: function($event) {
-                  _vm.deleteFolder()
-                }
+    _c(
+      "tbody",
+      [
+        _c(
+          "tr",
+          {
+            on: {
+              click: function($event) {
+                _vm.show = !_vm.show
               }
-            },
-            [
-              _c("img", { attrs: { src: "/img/del.svg", alt: "add-button" } }),
-              _vm._v(" "),
-              _c("div", { staticClass: "remove-materials ml-1" }, [
-                _vm._v("\n                Удалить\n              ")
-              ])
-            ]
-          )
-        ])
-      ]),
-      _vm._v(" "),
-      _c("tr")
-    ])
+            }
+          },
+          [
+            _c("td", [
+              _vm._v(
+                _vm._s(
+                  _vm.folder.order_uploads.filter(function(row) {
+                    return row.type === "photo"
+                  }).length
+                ) + " фото"
+              )
+            ]),
+            _vm._v(" "),
+            _c("td", [
+              _vm._v(
+                _vm._s(
+                  _vm.folder.order_uploads.filter(function(row) {
+                    return row.type === "doc"
+                  }).length
+                ) + " док"
+              )
+            ]),
+            _vm._v(" "),
+            _c("td", [_vm._v("Дата съёмки " + _vm._s(_vm.folder.name))]),
+            _vm._v(" "),
+            _c("td", [_vm._v(_vm._s(_vm.filteredDate))]),
+            _vm._v(" "),
+            _c("td", [
+              _c(
+                "button",
+                {
+                  staticClass:
+                    "add-button add-button--remove d-flex align-items-center",
+                  attrs: { title: "Удалить" },
+                  on: {
+                    click: function($event) {
+                      _vm.deleteFolder()
+                    }
+                  }
+                },
+                [
+                  _c("img", {
+                    attrs: { src: "/img/del.svg", alt: "add-button" }
+                  }),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "remove-materials ml-1" }, [
+                    _vm._v("\n                Удалить\n              ")
+                  ])
+                ]
+              )
+            ])
+          ]
+        ),
+        _vm._v(" "),
+        _vm._l(_vm.folder.order_uploads, function(upload) {
+          return _vm.show && _vm.folder.order_uploads.length !== 0
+            ? _c("File", {
+                key: "upload-" + upload.id,
+                attrs: { upload: upload }
+              })
+            : _vm._e()
+        })
+      ],
+      2
+    )
   ])
 }
 var staticRenderFns = []
@@ -96661,6 +96702,118 @@ if (false) {
   module.hot.accept()
   if (module.hot.data) {
     require("vue-hot-reload-api")      .rerender("data-v-5259801a", module.exports)
+  }
+}
+
+/***/ }),
+/* 431 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+var normalizeComponent = __webpack_require__(1)
+/* script */
+var __vue_script__ = __webpack_require__(432)
+/* template */
+var __vue_template__ = __webpack_require__(433)
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = null
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources/assets/js/components/Orders/Upload/Folders/Files/File.vue"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-44900439", Component.options)
+  } else {
+    hotAPI.reload("data-v-44900439", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 432 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+    props: ['upload'],
+
+    computed: {
+        filteredDate: function filteredDate() {
+            return moment(this.upload.created_at).format('DD-MM-YYYY');
+        }
+    }
+});
+
+/***/ }),
+/* 433 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("tr", [
+    _c("th"),
+    _vm._v(" "),
+    _c("th", [
+      _c("a", { attrs: { href: "#", target: "_blank" } }, [
+        _vm._v("\n            " + _vm._s(_vm.upload.path) + "\n        ")
+      ])
+    ]),
+    _vm._v(" "),
+    _c("th", [_vm._v(_vm._s(_vm.filteredDate))]),
+    _vm._v(" "),
+    _c("th"),
+    _vm._v(" "),
+    _c("th")
+  ])
+}
+var staticRenderFns = []
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-44900439", module.exports)
   }
 }
 
