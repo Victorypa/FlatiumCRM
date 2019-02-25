@@ -82,7 +82,9 @@
 
             uploadFiles () {
               this.$refs.myVueDropzone.processQueue()
-              window.location.reload(true)
+              setTimeout(() => {
+                   window.location.reload(true)
+              }, 2500)
             }
         }
     }

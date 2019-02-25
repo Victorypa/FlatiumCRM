@@ -96333,7 +96333,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         },
         uploadFiles: function uploadFiles() {
             this.$refs.myVueDropzone.processQueue();
-            window.location.reload(true);
+            setTimeout(function () {
+                window.location.reload(true);
+            }, 2500);
         }
     }
 });
