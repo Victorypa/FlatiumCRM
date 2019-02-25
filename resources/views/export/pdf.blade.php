@@ -51,9 +51,9 @@
                         </div>
 
                         <div>
-                            {{ number_format((float) $total_area, 2, ',', ''); }} м²
+                            {{ number_format((float) $total_area, 2, ',', '') }} м²
                         </div>
-                        
+
                         <div>{{ $order->address }}</div>
 
                         @if ($order->client_name)
