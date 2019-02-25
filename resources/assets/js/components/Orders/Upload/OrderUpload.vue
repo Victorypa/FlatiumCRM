@@ -22,11 +22,22 @@
                     История загрузок:
                 </div>
 
-                <Folder v-for="folder in folders"
-                        :folder="folder"
-                        :key="'folder-' + folder.id"
-                        @deleted-folder="getFolders()"
-                        />
+                <table class="table table-hover">
+                    <thead>
+                        <tr>
+                            <th></th>
+                            <th></th>
+                            <th>Дата съёмки</th>
+                            <th>Дата создания</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <Folder v-for="folder in folders"
+                            :folder="folder"
+                            :key="'folder-' + folder.id"
+                            @deleted-folder="getFolders()"
+                            />
+                </table>
             </template>
 
           </div>

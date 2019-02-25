@@ -50586,6 +50586,17 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -51129,17 +51140,26 @@ var render = function() {
                         )
                       ]),
                       _vm._v(" "),
-                      _vm._l(_vm.folders, function(folder) {
-                        return _c("Folder", {
-                          key: "folder-" + folder.id,
-                          attrs: { folder: folder },
-                          on: {
-                            "deleted-folder": function($event) {
-                              _vm.getFolders()
-                            }
-                          }
-                        })
-                      })
+                      _c(
+                        "table",
+                        { staticClass: "table table-hover" },
+                        [
+                          _vm._m(1),
+                          _vm._v(" "),
+                          _vm._l(_vm.folders, function(folder) {
+                            return _c("Folder", {
+                              key: "folder-" + folder.id,
+                              attrs: { folder: folder },
+                              on: {
+                                "deleted-folder": function($event) {
+                                  _vm.getFolders()
+                                }
+                              }
+                            })
+                          })
+                        ],
+                        2
+                      )
                     ]
                   : _vm._e()
               ],
@@ -51163,6 +51183,24 @@ var staticRenderFns = [
         _c("div", { staticClass: "col-md-8" }, [
           _c("h4", [_vm._v("Загрузить файл")])
         ])
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("thead", [
+      _c("tr", [
+        _c("th"),
+        _vm._v(" "),
+        _c("th"),
+        _vm._v(" "),
+        _c("th", [_vm._v("Дата съёмки")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("Дата создания")]),
+        _vm._v(" "),
+        _c("th")
       ])
     ])
   }
@@ -96530,8 +96568,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
-//
 
 
 
@@ -96564,6 +96600,16 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     computed: {
         filteredDate: function filteredDate() {
             return moment(this.folder.created_at).format('DD-MM-YYYY');
+        },
+        docCount: function docCount() {
+            return this.folder.order_uploads.filter(function (row) {
+                return row.type === 'doc';
+            }).length;
+        },
+        photoCount: function photoCount() {
+            return this.folder.order_uploads.filter(function (row) {
+                return row.type === 'photo';
+            }).length;
         }
     }
 });
@@ -96617,83 +96663,65 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("table", { staticClass: "table table-hover" }, [
-    _c(
-      "tbody",
-      [
-        _c(
-          "tr",
-          {
-            on: {
-              click: function($event) {
-                _vm.show = !_vm.show
-              }
+  return _c(
+    "tbody",
+    [
+      _c(
+        "tr",
+        {
+          on: {
+            click: function($event) {
+              _vm.show = !_vm.show
             }
-          },
-          [
-            _c("td", [
-              _vm._v(
-                _vm._s(
-                  _vm.folder.order_uploads.filter(function(row) {
-                    return row.type === "photo"
-                  }).length
-                ) + " фото"
-              )
-            ]),
-            _vm._v(" "),
-            _c("td", [
-              _vm._v(
-                _vm._s(
-                  _vm.folder.order_uploads.filter(function(row) {
-                    return row.type === "doc"
-                  }).length
-                ) + " док"
-              )
-            ]),
-            _vm._v(" "),
-            _c("td", [_vm._v("Дата съёмки " + _vm._s(_vm.folder.name))]),
-            _vm._v(" "),
-            _c("td", [_vm._v(_vm._s(_vm.filteredDate))]),
-            _vm._v(" "),
-            _c("td", [
-              _c(
-                "button",
-                {
-                  staticClass:
-                    "add-button add-button--remove d-flex align-items-center",
-                  attrs: { title: "Удалить" },
-                  on: {
-                    click: function($event) {
-                      _vm.deleteFolder()
-                    }
+          }
+        },
+        [
+          _c("td", [_vm._v(_vm._s(_vm.photoCount) + " фото")]),
+          _vm._v(" "),
+          _c("td", [_vm._v(_vm._s(_vm.docCount) + " док")]),
+          _vm._v(" "),
+          _c("td", [_vm._v(_vm._s(_vm.folder.name))]),
+          _vm._v(" "),
+          _c("td", [_vm._v(_vm._s(_vm.filteredDate))]),
+          _vm._v(" "),
+          _c("td", [
+            _c(
+              "button",
+              {
+                staticClass:
+                  "add-button add-button--remove d-flex align-items-center",
+                attrs: { title: "Удалить" },
+                on: {
+                  click: function($event) {
+                    _vm.deleteFolder()
                   }
-                },
-                [
-                  _c("img", {
-                    attrs: { src: "/img/del.svg", alt: "add-button" }
-                  }),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "remove-materials ml-1" }, [
-                    _vm._v("\n                Удалить\n              ")
-                  ])
-                ]
-              )
-            ])
-          ]
-        ),
-        _vm._v(" "),
-        _vm._l(_vm.folder.order_uploads, function(upload) {
-          return _vm.show && _vm.folder.order_uploads.length !== 0
-            ? _c("File", {
-                key: "upload-" + upload.id,
-                attrs: { upload: upload }
-              })
-            : _vm._e()
-        })
-      ],
-      2
-    )
-  ])
+                }
+              },
+              [
+                _c("img", {
+                  attrs: { src: "/img/del.svg", alt: "add-button" }
+                }),
+                _vm._v(" "),
+                _c("div", { staticClass: "remove-materials ml-1" }, [
+                  _vm._v("\n              Удалить\n            ")
+                ])
+              ]
+            )
+          ])
+        ]
+      ),
+      _vm._v(" "),
+      _vm._l(_vm.folder.order_uploads, function(upload) {
+        return _vm.show && _vm.folder.order_uploads.length !== 0
+          ? _c("File", {
+              key: "upload-" + upload.id,
+              attrs: { upload: upload }
+            })
+          : _vm._e()
+      })
+    ],
+    2
+  )
 }
 var staticRenderFns = []
 render._withStripped = true

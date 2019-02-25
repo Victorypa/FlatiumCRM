@@ -1,10 +1,9 @@
 <template>
-    <table class="table table-hover">
       <tbody>
         <tr @click="show = !show">
-          <td>{{ folder.order_uploads.filter(row => row.type === 'photo').length }} фото</td>
-          <td>{{ folder.order_uploads.filter(row => row.type === 'doc').length }} док</td>
-          <td>Дата съёмки {{ folder.name }}</td>
+          <td>{{ photoCount }} фото</td>
+          <td>{{ docCount }} док</td>
+          <td>{{ folder.name }}</td>
           <td>{{ filteredDate }}</td>
           <td>
             <button @click="deleteFolder()" class="add-button add-button--remove d-flex align-items-center" title="Удалить">
@@ -22,7 +21,6 @@
               :key="'upload-' + upload.id"
               />
       </tbody>
-    </table>
 </template>
 
 <script>
@@ -55,6 +53,14 @@
         computed: {
             filteredDate () {
                 return moment(this.folder.created_at).format('DD-MM-YYYY')
+            },
+
+            docCount () {
+                return this.folder.order_uploads.filter(row => row.type === 'doc').length
+            },
+
+            photoCount () {
+                return this.folder.order_uploads.filter(row => row.type === 'photo').length
             }
         }
     }
