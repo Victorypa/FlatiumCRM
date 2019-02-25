@@ -50533,7 +50533,7 @@ exports = module.exports = __webpack_require__(2)(false);
 
 
 // module
-exports.push([module.i, "\n.container-fluid.px-0 .row[data-v-68b8b7a4] {\n  margin-left: 0;\n  margin-right: 0;\n}\n.vue-dropzone[data-v-68b8b7a4] {\n  -webkit-box-shadow: 0 1px 10px rgba(0, 0, 0, 0.1), 0 1px 4px rgba(0, 0, 0, 0.1);\n          box-shadow: 0 1px 10px rgba(0, 0, 0, 0.1), 0 1px 4px rgba(0, 0, 0, 0.1);\n  border-radius: 4px;\n}\n.dropzone-custom-content[data-v-68b8b7a4] {\n  position: absolute;\n  top: 50%;\n  left: 50%;\n  -webkit-transform: translate(-50%, -50%);\n          transform: translate(-50%, -50%);\n  text-align: center;\n}\n.dropzone-custom-title[data-v-68b8b7a4] {\n  margin-top: 0;\n  color: #00b782;\n}\n.subtitle[data-v-68b8b7a4] {\n  color: #314b5f;\n}\n.mp-10[data-v-68b8b7a4] {\n  margin-top: 100px;\n}\n.mp-5[data-v-68b8b7a4] {\n  margin-top: 50px;\n}\n.badger-accordion-item[data-v-68b8b7a4] {\n  -webkit-box-shadow: 0 1px 10px rgba(0, 0, 0, 0.1), 0 1px 4px rgba(0, 0, 0, 0.1);\n          box-shadow: 0 1px 10px rgba(0, 0, 0, 0.1), 0 1px 4px rgba(0, 0, 0, 0.1);\n  border-radius: 4px;\n  padding: 15px;\n}\n.badger-accordion-item[data-v-68b8b7a4]:hover {\n    background-color: #00A4D1;\n}\n.js-badger-accordion-header .-ba-is-active[data-v-68b8b7a4]:hover {\n  background-color: #red;\n}\n.h-200[data-v-68b8b7a4] {\n  height: 200px;\n}\n.accordion-wrapper[data-v-68b8b7a4] {\n  padding: 0 30px;\n}\n.add-button[data-v-68b8b7a4] {\n  background-color: transparent;\n  border: none;\n  cursor: pointer;\n}\n.add-button[data-v-68b8b7a4]:focus {\n    outline: none;\n}\n.add-button img[data-v-68b8b7a4] {\n    width: 35px;\n    border-radius: 50%;\n}\n.add-button img[data-v-68b8b7a4]:hover {\n      -webkit-box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);\n              box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);\n}\n.add-button--remove[data-v-68b8b7a4] {\n    color: #ccc;\n}\n.add-button--remove[data-v-68b8b7a4]:hover {\n      color: #00A4D1;\n}\n.add-button--remove img[data-v-68b8b7a4] {\n      width: 15px;\n}\ntd[data-v-68b8b7a4]:first-child {\n  padding-left: 30px;\n}\n.story-text[data-v-68b8b7a4] {\n  padding-left: 30px;\n  margin-top: 30px;\n  color: #00A4D1;\n  font-weight: bold;\n  font-size: 18px;\n}\n", ""]);
+exports.push([module.i, "\n.container-fluid.px-0 .row[data-v-68b8b7a4] {\n  margin-left: 0;\n  margin-right: 0;\n}\n.subtitle[data-v-68b8b7a4] {\n  color: #314b5f;\n}\n.badger-accordion-item[data-v-68b8b7a4] {\n  -webkit-box-shadow: 0 1px 10px rgba(0, 0, 0, 0.1), 0 1px 4px rgba(0, 0, 0, 0.1);\n          box-shadow: 0 1px 10px rgba(0, 0, 0, 0.1), 0 1px 4px rgba(0, 0, 0, 0.1);\n  border-radius: 4px;\n  padding: 15px;\n}\n.badger-accordion-item[data-v-68b8b7a4]:hover {\n    background-color: #00A4D1;\n}\n.js-badger-accordion-header .-ba-is-active[data-v-68b8b7a4]:hover {\n  background-color: #red;\n}\n.h-200[data-v-68b8b7a4] {\n  height: 200px;\n}\n.accordion-wrapper[data-v-68b8b7a4] {\n  padding: 0 30px;\n}\n.add-button[data-v-68b8b7a4] {\n  background-color: transparent;\n  border: none;\n  cursor: pointer;\n}\n.add-button[data-v-68b8b7a4]:focus {\n    outline: none;\n}\n.add-button img[data-v-68b8b7a4] {\n    width: 35px;\n    border-radius: 50%;\n}\n.add-button img[data-v-68b8b7a4]:hover {\n      -webkit-box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);\n              box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);\n}\n.add-button--remove[data-v-68b8b7a4] {\n    color: #ccc;\n}\n.add-button--remove[data-v-68b8b7a4]:hover {\n      color: #00A4D1;\n}\n.add-button--remove img[data-v-68b8b7a4] {\n      width: 15px;\n}\ntd[data-v-68b8b7a4]:first-child {\n  padding-left: 30px;\n}\n.story-text[data-v-68b8b7a4] {\n  padding-left: 30px;\n  margin-top: 30px;\n  color: #00A4D1;\n  font-weight: bold;\n  font-size: 18px;\n}\n", ""]);
 
 // exports
 
@@ -50544,12 +50544,8 @@ exports.push([module.i, "\n.container-fluid.px-0 .row[data-v-68b8b7a4] {\n  marg
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue2_dropzone__ = __webpack_require__(149);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue2_dropzone___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_vue2_dropzone__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_vue2_dropzone_dist_vue2Dropzone_min_css__ = __webpack_require__(150);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_vue2_dropzone_dist_vue2Dropzone_min_css___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_vue2_dropzone_dist_vue2Dropzone_min_css__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_vuejs_datepicker__ = __webpack_require__(5);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_vuejs_datepicker_dist_locale__ = __webpack_require__(6);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__partials_UploadBlock__ = __webpack_require__(419);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__partials_UploadBlock___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__partials_UploadBlock__);
 //
 //
 //
@@ -50606,49 +50602,13 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-
-
-
 
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     data: function data() {
         return {
-            ru: __WEBPACK_IMPORTED_MODULE_3_vuejs_datepicker_dist_locale__["a" /* ru */],
             moment: moment,
-            chosenDate: null,
-
-            dropzoneOptions: {
-                url: '/api/orders/' + this.$route.params.id + '/uploads/store',
-                paramName: 'uploadedFile',
-                autoProcessQueue: false,
-                thumbnailWidth: 100,
-                addRemoveLinks: true,
-                maxFilesize: 10.0,
-                dictDefaultMessage: "<i class='fa fa-cloud-upload'></i> Документы или Фотки"
-            },
 
             folders: [],
             currentPath: window.location.origin
@@ -50657,9 +50617,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 
     components: {
-        vueDropzone: __WEBPACK_IMPORTED_MODULE_0_vue2_dropzone___default.a,
-        Datepicker: __WEBPACK_IMPORTED_MODULE_2_vuejs_datepicker__["a" /* default */]
+        UploadBlock: __WEBPACK_IMPORTED_MODULE_0__partials_UploadBlock___default.a
     },
+
     mounted: function mounted() {
         this.getFolders();
     },
@@ -50677,20 +50637,11 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             this.$refs.myVueDropzone.processQueue();
             window.location.reload(true);
         },
-        createFolder: function createFolder() {
+        deleteFolder: function deleteFolder(id) {
             var _this2 = this;
 
-            axios.post('/api/orders/' + this.$route.params.id + '/folders/store', {
-                'date': moment(this.chosenDate).format('DD-MM-YYYY')
-            }).then(function (response) {
-                _this2.getFolders();
-            });
-        },
-        deleteFolder: function deleteFolder(id) {
-            var _this3 = this;
-
             axios.delete('/api/orders/' + this.$route.params.id + '/folders/' + id + '/destroy').then(function () {
-                _this3.getFolders();
+                _this2.getFolders();
             });
         }
     }
@@ -51184,168 +51135,128 @@ var render = function() {
           [
             _c("navigation"),
             _vm._v(" "),
-            _c("div", { staticClass: "col-md-10 px-0" }, [
-              _c(
-                "div",
-                { staticClass: "create__fixed-top col-10 shadow-light" },
-                [
-                  _c("div", { staticClass: "row align-items-center " }, [
-                    _vm._m(0),
-                    _vm._v(" "),
-                    _c("div", { staticClass: "col-md-4 text-right d-flex" }, [
-                      _vm.chosenDate
-                        ? _c(
-                            "button",
-                            {
-                              staticClass: "primary-button col-6 ml-auto",
-                              attrs: { type: "button" },
-                              on: {
-                                click: function($event) {
-                                  $event.preventDefault()
-                                  _vm.uploadFiles()
-                                }
+            _c(
+              "div",
+              { staticClass: "col-md-10 px-0" },
+              [
+                _c(
+                  "div",
+                  { staticClass: "create__fixed-top col-10 shadow-light" },
+                  [
+                    _c("div", { staticClass: "row align-items-center " }, [
+                      _vm._m(0),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "col-md-4 text-right d-flex" }, [
+                        _c(
+                          "button",
+                          {
+                            staticClass: "primary-button col-6 ml-auto",
+                            attrs: { type: "button" },
+                            on: {
+                              click: function($event) {
+                                $event.preventDefault()
+                                _vm.uploadFiles()
                               }
-                            },
-                            [
-                              _vm._v(
-                                "\n                      Сохранить\n                  "
-                              )
-                            ]
-                          )
-                        : _vm._e()
+                            }
+                          },
+                          [
+                            _vm._v(
+                              "\n                      Сохранить\n                  "
+                            )
+                          ]
+                        )
+                      ])
                     ])
-                  ])
-                ]
-              ),
-              _vm._v(" "),
-              _c("div", { staticClass: "col-md-12 mp-10" }, [
-                _c("div", { staticClass: "row" }, [
-                  _c(
-                    "div",
-                    { staticClass: "col-md-12" },
-                    [
-                      _c("vue-dropzone", {
-                        ref: "myVueDropzone",
-                        staticClass: "mp-10",
-                        attrs: { id: "dropzone", options: _vm.dropzoneOptions }
-                      })
-                    ],
-                    1
-                  )
+                  ]
+                ),
+                _vm._v(" "),
+                _c("UploadBlock"),
+                _vm._v(" "),
+                _c("div", { staticClass: "story-text" }, [
+                  _vm._v("История загрузок:")
                 ]),
                 _vm._v(" "),
-                _c("div", { staticClass: "row mp-5" }, [
-                  _c(
-                    "div",
-                    { staticClass: "col-md-4" },
-                    [
-                      _c("datepicker", {
-                        attrs: {
-                          language: _vm.ru,
-                          placeholder: "Выбрать Дату"
-                        },
-                        on: {
-                          input: function($event) {
-                            _vm.createFolder()
-                          }
-                        },
-                        model: {
-                          value: _vm.chosenDate,
-                          callback: function($$v) {
-                            _vm.chosenDate = $$v
-                          },
-                          expression: "chosenDate"
-                        }
-                      })
-                    ],
-                    1
-                  )
-                ])
-              ]),
-              _vm._v(" "),
-              _c("div", { staticClass: "story-text" }, [
-                _vm._v("История загрузок:")
-              ]),
-              _vm._v(" "),
-              _vm.folders.length
-                ? _c("table", { staticClass: "table table-hover" }, [
-                    _c(
-                      "tbody",
-                      _vm._l(_vm.folders, function(folder) {
-                        return _c("tr", { key: folder.id }, [
-                          _c("td", [
-                            _vm._v(
-                              _vm._s(
-                                folder.order_uploads.filter(function(row) {
-                                  return row.type === "photo"
-                                }).length
-                              ) + " фото"
-                            )
-                          ]),
-                          _vm._v(" "),
-                          _c("td", [
-                            _vm._v(
-                              _vm._s(
-                                folder.order_uploads.filter(function(row) {
-                                  return row.type === "doc"
-                                }).length
-                              ) + " док"
-                            )
-                          ]),
-                          _vm._v(" "),
-                          _c("td", [
-                            _vm._v("Дата съёмки " + _vm._s(folder.name))
-                          ]),
-                          _vm._v(" "),
-                          _c("td", [
-                            _vm._v(
-                              _vm._s(
-                                _vm
-                                  .moment(folder.created_at)
-                                  .format("DD-MM-YYYY")
+                _vm.folders.length
+                  ? _c("table", { staticClass: "table table-hover" }, [
+                      _c(
+                        "tbody",
+                        _vm._l(_vm.folders, function(folder) {
+                          return _c("tr", { key: folder.id }, [
+                            _c("td", [
+                              _vm._v(
+                                _vm._s(
+                                  folder.order_uploads.filter(function(row) {
+                                    return row.type === "photo"
+                                  }).length
+                                ) + " фото"
                               )
-                            )
-                          ]),
-                          _vm._v(" "),
-                          _c("td", [
-                            _c(
-                              "button",
-                              {
-                                staticClass:
-                                  "add-button add-button--remove d-flex align-items-center",
-                                attrs: { title: "Удалить" },
-                                on: {
-                                  click: function($event) {
-                                    _vm.deleteFolder(folder.id)
-                                  }
-                                }
-                              },
-                              [
-                                _c("img", {
-                                  attrs: {
-                                    src: "/img/del.svg",
-                                    alt: "add-button"
-                                  }
-                                }),
-                                _vm._v(" "),
-                                _c(
-                                  "div",
-                                  { staticClass: "remove-materials ml-1" },
-                                  [
-                                    _vm._v(
-                                      "\n                          Удалить\n                        "
-                                    )
-                                  ]
+                            ]),
+                            _vm._v(" "),
+                            _c("td", [
+                              _vm._v(
+                                _vm._s(
+                                  folder.order_uploads.filter(function(row) {
+                                    return row.type === "doc"
+                                  }).length
+                                ) + " док"
+                              )
+                            ]),
+                            _vm._v(" "),
+                            _c("td", [
+                              _vm._v("Дата съёмки " + _vm._s(folder.name))
+                            ]),
+                            _vm._v(" "),
+                            _c("td", [
+                              _vm._v(
+                                _vm._s(
+                                  _vm
+                                    .moment(folder.created_at)
+                                    .format("DD-MM-YYYY")
                                 )
-                              ]
-                            )
+                              )
+                            ]),
+                            _vm._v(" "),
+                            _c("td", [
+                              _c(
+                                "button",
+                                {
+                                  staticClass:
+                                    "add-button add-button--remove d-flex align-items-center",
+                                  attrs: { title: "Удалить" },
+                                  on: {
+                                    click: function($event) {
+                                      _vm.deleteFolder(folder.id)
+                                    }
+                                  }
+                                },
+                                [
+                                  _c("img", {
+                                    attrs: {
+                                      src: "/img/del.svg",
+                                      alt: "add-button"
+                                    }
+                                  }),
+                                  _vm._v(" "),
+                                  _c(
+                                    "div",
+                                    { staticClass: "remove-materials ml-1" },
+                                    [
+                                      _vm._v(
+                                        "\n                          Удалить\n                        "
+                                      )
+                                    ]
+                                  )
+                                ]
+                              )
+                            ])
                           ])
-                        ])
-                      })
-                    )
-                  ])
-                : _vm._e()
-            ])
+                        })
+                      )
+                    ])
+                  : _vm._e()
+              ],
+              1
+            )
           ],
           1
         )
@@ -96341,6 +96252,241 @@ $(window).scroll(function () {
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
+
+/***/ }),
+/* 418 */,
+/* 419 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+function injectStyle (ssrContext) {
+  if (disposed) return
+  __webpack_require__(422)
+}
+var normalizeComponent = __webpack_require__(1)
+/* script */
+var __vue_script__ = __webpack_require__(420)
+/* template */
+var __vue_template__ = __webpack_require__(424)
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = injectStyle
+/* scopeId */
+var __vue_scopeId__ = "data-v-666d8d2c"
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources/assets/js/components/Orders/Upload/partials/UploadBlock.vue"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-666d8d2c", Component.options)
+  } else {
+    hotAPI.reload("data-v-666d8d2c", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 420 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue2_dropzone__ = __webpack_require__(149);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue2_dropzone___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_vue2_dropzone__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_vue2_dropzone_dist_vue2Dropzone_min_css__ = __webpack_require__(150);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_vue2_dropzone_dist_vue2Dropzone_min_css___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_vue2_dropzone_dist_vue2Dropzone_min_css__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_vuejs_datepicker__ = __webpack_require__(5);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_vuejs_datepicker_dist_locale__ = __webpack_require__(6);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+
+
+
+
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+    components: {
+        vueDropzone: __WEBPACK_IMPORTED_MODULE_0_vue2_dropzone___default.a,
+        Datepicker: __WEBPACK_IMPORTED_MODULE_2_vuejs_datepicker__["a" /* default */]
+    },
+
+    data: function data() {
+        return {
+            ru: __WEBPACK_IMPORTED_MODULE_3_vuejs_datepicker_dist_locale__["a" /* ru */],
+            chosenDate: null,
+
+            dropzoneOptions: {
+                url: '/api/orders/' + this.$route.params.id + '/uploads/store',
+                paramName: 'uploadedFile',
+                autoProcessQueue: false,
+                thumbnailWidth: 100,
+                addRemoveLinks: true,
+                maxFilesize: 10.0,
+                dictDefaultMessage: "<i class='fa fa-cloud-upload'></i> Документы или Фотки"
+            }
+        };
+    },
+
+
+    methods: {
+        createFolder: function createFolder() {
+            var _this = this;
+
+            axios.post('/api/orders/' + this.$route.params.id + '/folders/store', {
+                'date': moment(this.chosenDate).format('DD-MM-YYYY')
+            }).then(function (response) {
+                _this.getFolders();
+            });
+        }
+    }
+});
+
+/***/ }),
+/* 421 */,
+/* 422 */
+/***/ (function(module, exports, __webpack_require__) {
+
+// style-loader: Adds some css to the DOM by adding a <style> tag
+
+// load the styles
+var content = __webpack_require__(423);
+if(typeof content === 'string') content = [[module.i, content, '']];
+if(content.locals) module.exports = content.locals;
+// add the styles to the DOM
+var update = __webpack_require__(3)("37c2dead", content, false, {});
+// Hot Module Replacement
+if(false) {
+ // When the styles change, update the <style> tags
+ if(!content.locals) {
+   module.hot.accept("!!../../../../../../../node_modules/css-loader/index.js!../../../../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-666d8d2c\",\"scoped\":true,\"hasInlineConfig\":true}!../../../../../../../node_modules/sass-loader/lib/loader.js!../../../../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./UploadBlock.vue", function() {
+     var newContent = require("!!../../../../../../../node_modules/css-loader/index.js!../../../../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-666d8d2c\",\"scoped\":true,\"hasInlineConfig\":true}!../../../../../../../node_modules/sass-loader/lib/loader.js!../../../../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./UploadBlock.vue");
+     if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+     update(newContent);
+   });
+ }
+ // When the module is disposed, remove the <style> tags
+ module.hot.dispose(function() { update(); });
+}
+
+/***/ }),
+/* 423 */
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(2)(false);
+// imports
+
+
+// module
+exports.push([module.i, "\n.vue-dropzone[data-v-666d8d2c] {\n  -webkit-box-shadow: 0 1px 10px rgba(0, 0, 0, 0.1), 0 1px 4px rgba(0, 0, 0, 0.1);\n          box-shadow: 0 1px 10px rgba(0, 0, 0, 0.1), 0 1px 4px rgba(0, 0, 0, 0.1);\n  border-radius: 4px;\n}\n.dropzone-custom-content[data-v-666d8d2c] {\n  position: absolute;\n  top: 50%;\n  left: 50%;\n  -webkit-transform: translate(-50%, -50%);\n          transform: translate(-50%, -50%);\n  text-align: center;\n}\n.dropzone-custom-title[data-v-666d8d2c] {\n  margin-top: 0;\n  color: #00b782;\n}\n.mp-10[data-v-666d8d2c] {\n  margin-top: 100px;\n}\n.mp-5[data-v-666d8d2c] {\n  margin-top: 50px;\n}\n", ""]);
+
+// exports
+
+
+/***/ }),
+/* 424 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", { staticClass: "col-md-12 mp-10" }, [
+    _c("div", { staticClass: "row" }, [
+      _c(
+        "div",
+        { staticClass: "col-md-12" },
+        [
+          _c("vue-dropzone", {
+            ref: "myVueDropzone",
+            staticClass: "mp-10",
+            attrs: { id: "dropzone", options: _vm.dropzoneOptions }
+          })
+        ],
+        1
+      )
+    ]),
+    _vm._v(" "),
+    _c("div", { staticClass: "row mp-5" }, [
+      _c(
+        "div",
+        { staticClass: "col-md-4" },
+        [
+          _c("datepicker", {
+            attrs: { language: _vm.ru, placeholder: "Выбрать Дату" },
+            on: {
+              input: function($event) {
+                _vm.createFolder()
+              }
+            },
+            model: {
+              value: _vm.chosenDate,
+              callback: function($$v) {
+                _vm.chosenDate = $$v
+              },
+              expression: "chosenDate"
+            }
+          })
+        ],
+        1
+      )
+    ])
+  ])
+}
+var staticRenderFns = []
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-666d8d2c", module.exports)
+  }
+}
 
 /***/ })
 /******/ ]);

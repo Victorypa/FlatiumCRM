@@ -11,7 +11,7 @@
                   <h4>Загрузить файл</h4>
                 </div>
                 <div class="col-md-4 text-right d-flex">
-                    <button v-if="chosenDate"
+                    <button
                             type="button"
                             class="primary-button col-6 ml-auto"
                             @click.prevent="uploadFiles()"
@@ -23,30 +23,9 @@
               </div>
             </div>
 
-            <div class="col-md-12 mp-10">
+            <UploadBlock />
 
-              <div class="row">
-                <div class="col-md-12">
-                  <vue-dropzone
-                                ref="myVueDropzone"
-                                id="dropzone"
-                                :options="dropzoneOptions"
-                                class="mp-10">
-                  </vue-dropzone>
-                </div>
-              </div>
 
-              <div class="row mp-5">
-                <div class="col-md-4">
-                  <datepicker :language="ru"
-                              placeholder="Выбрать Дату"
-                              v-model="chosenDate"
-                              @input="createFolder()"
-                              >
-                  </datepicker>
-                </div>
-              </div>
-            </div>
 
             <div class="story-text">История загрузок:</div>
 
@@ -76,27 +55,12 @@
 </template>
 
 <script>
-    import vue2Dropzone from 'vue2-dropzone'
-    import 'vue2-dropzone/dist/vue2Dropzone.min.css'
-    import Datepicker from "vuejs-datepicker"
-    import { ru } from "vuejs-datepicker/dist/locale"
+    import UploadBlock from './partials/UploadBlock'
 
     export default {
         data () {
             return {
-                ru,
                 moment,
-                chosenDate: null,
-
-                dropzoneOptions: {
-                    url: `/api/orders/${this.$route.params.id}/uploads/store`,
-                    paramName: 'uploadedFile',
-                    autoProcessQueue: false,
-                    thumbnailWidth: 100,
-                    addRemoveLinks: true,
-                    maxFilesize: 10.0,
-                    dictDefaultMessage: "<i class='fa fa-cloud-upload'></i> Документы или Фотки"
-                },
 
                 folders: [],
                 currentPath: window.location.origin
@@ -104,9 +68,9 @@
         },
 
         components: {
-            vueDropzone: vue2Dropzone,
-            Datepicker
+            UploadBlock
         },
+
         mounted () {
             this.getFolders()
         },
@@ -122,14 +86,6 @@
             uploadFiles () {
               this.$refs.myVueDropzone.processQueue()
               window.location.reload(true)
-            },
-
-            createFolder () {
-                axios.post(`/api/orders/${this.$route.params.id}/folders/store`, {
-                    'date': moment(this.chosenDate).format('DD-MM-YYYY')
-                }).then(response => {
-                    this.getFolders()
-                })
             },
 
             deleteFolder (id) {
@@ -153,34 +109,8 @@
 	}
 }
 
-.vue-dropzone {
-  box-shadow: 0 1px 10px rgba(0, 0, 0, 0.1), 0 1px 4px rgba(0, 0, 0, 0.1);
-border-radius: 4px;
-}
-
-.dropzone-custom-content {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  text-align: center;
-}
-
-.dropzone-custom-title {
-  margin-top: 0;
-  color: #00b782;
-}
-
 .subtitle {
   color: #314b5f;
-}
-
-.mp-10 {
-    margin-top: 100px;
-}
-
-.mp-5 {
-    margin-top: 50px;
 }
 
 .badger-accordion {
