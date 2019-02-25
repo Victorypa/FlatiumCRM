@@ -96335,7 +96335,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             this.$refs.myVueDropzone.processQueue();
             setTimeout(function () {
                 window.location.reload(true);
-            }, 2500);
+            }, 3000);
         }
     }
 });

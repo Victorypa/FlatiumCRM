@@ -84,7 +84,7 @@
               this.$refs.myVueDropzone.processQueue()
               setTimeout(() => {
                    window.location.reload(true)
-              }, 2500)
+              }, 3000)
             }
         }
     }
