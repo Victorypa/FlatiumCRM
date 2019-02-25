@@ -82,7 +82,7 @@
             </div>
 
             @if ($order->rooms)
-                @foreach ($order->rooms()->where('room_type_id', '!=', 4)->orderBy('priority', 'asc')->orderBy('room_type_id')->get() as $index => $room)
+                @foreach ($order->rooms()->where('room_type_id', '!=', 4)->orderBy('room_type_id')->orderBy('priority', 'asc')->get() as $index => $room)
                     <div class="first-room" style="margin-top: 30px;">
                         <div class="first-room-top px-20 border-black">
                             <div class="main-subtitle pt-40 pb-20 inline-block">
