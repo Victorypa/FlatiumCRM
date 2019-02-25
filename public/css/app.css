@@ -800,10 +800,33 @@ a:hover {
 .add-button {
   background-color: transparent;
   border: none;
+  cursor: pointer;
 }
 
 .add-button:focus {
   outline: none;
+}
+
+.add-button img {
+  width: 35px;
+  border-radius: 50%;
+}
+
+.add-button img:hover {
+  -webkit-box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
+          box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
+}
+
+.add-button--remove {
+  color: #ccc;
+}
+
+.add-button--remove:hover {
+  color: #00A4D1;
+}
+
+.add-button--remove img {
+  width: 15px;
 }
 
 .bg {

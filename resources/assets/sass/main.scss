@@ -730,11 +730,28 @@ a {
 }
 
 .add-button {
-    background-color: transparent;
-    border: none;
-    &:focus {
-        outline: none;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  &:focus {
+    outline: none;
+  }
+  img {
+    width: 35px;
+    border-radius: 50%;
+    &:hover {
+      box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
     }
+  }
+  &--remove {
+    color: #ccc;
+    &:hover {
+      color: #00A4D1;
+    }
+    img {
+      width: 15px;
+    }
+  }
 }
 
 .bg {
