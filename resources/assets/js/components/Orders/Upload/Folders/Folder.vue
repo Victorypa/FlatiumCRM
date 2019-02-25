@@ -18,6 +18,7 @@
         <File v-if="show && folder.order_uploads.length !== 0"
               v-for="upload in folder.order_uploads"
               :upload="upload"
+              :folder="folder"
               :key="'upload-' + upload.id"
               />
       </tbody>

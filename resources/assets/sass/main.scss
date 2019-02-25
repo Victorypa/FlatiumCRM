@@ -552,23 +552,6 @@ a {
             font-size: 0.85rem;
         }
     }
-    .add-button {
-        img {
-            cursor: pointer;
-            width: 35px;
-            border-radius: 50%;
-            @include transition;
-            &:hover {
-                box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
-                @include transition;
-            }
-        }
-        &--remove {
-            img {
-                width: 15px;
-            }
-        }
-    }
     .add-space {
         &-button {
             color: $main-color;

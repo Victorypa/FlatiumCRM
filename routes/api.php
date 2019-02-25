@@ -45,6 +45,7 @@ use Illuminate\Http\Request;
             */
             Route::get('/{order}/folders/{folder}/uploads', 'OrderUploadController@index');
             Route::post('/{order}/uploads/store', 'OrderUploadController@store');
+            Route::delete('/{order}/uploads/{order_upload}/destroy', 'OrderUploadController@destroy');
         });
 
         /**

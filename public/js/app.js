@@ -96568,6 +96568,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
 
 
 
@@ -96715,7 +96716,7 @@ var render = function() {
         return _vm.show && _vm.folder.order_uploads.length !== 0
           ? _c("File", {
               key: "upload-" + upload.id,
-              attrs: { upload: upload }
+              attrs: { upload: upload, folder: _vm.folder }
             })
           : _vm._e()
       })
@@ -96738,17 +96739,21 @@ if (false) {
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
+function injectStyle (ssrContext) {
+  if (disposed) return
+  __webpack_require__(434)
+}
 var normalizeComponent = __webpack_require__(1)
 /* script */
 var __vue_script__ = __webpack_require__(432)
 /* template */
-var __vue_template__ = __webpack_require__(433)
+var __vue_template__ = __webpack_require__(436)
 /* template functional */
 var __vue_template_functional__ = false
 /* styles */
-var __vue_styles__ = null
+var __vue_styles__ = injectStyle
 /* scopeId */
-var __vue_scopeId__ = null
+var __vue_scopeId__ = "data-v-44900439"
 /* moduleIdentifier (server only) */
 var __vue_module_identifier__ = null
 var Component = normalizeComponent(
@@ -96800,40 +96805,137 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-    props: ['upload'],
+    props: ['upload', 'folder'],
+
+    data: function data() {
+        return {
+            show: true
+        };
+    },
+
+
+    methods: {
+        deleteFile: function deleteFile() {
+            var _this = this;
+
+            axios.delete('/api/orders/' + this.$route.params.id + '/uploads/' + this.upload.id + '/destroy').then(function (response) {
+                _this.show = !_this.show;
+            });
+        }
+    },
 
     computed: {
         filteredDate: function filteredDate() {
             return moment(this.upload.created_at).format('DD-MM-YYYY');
+        },
+        uploadPath: function uploadPath() {
+            if (this.upload.type === 'doc') {
+                return '/storage/' + this.folder.name + '/docs/' + this.upload.path;
+            }
+
+            if (this.upload.type === 'photo') {
+                return '/storage/' + this.folder.name + '/photos/' + this.upload.path;
+            }
         }
     }
 });
 
 /***/ }),
-/* 433 */
+/* 433 */,
+/* 434 */
+/***/ (function(module, exports, __webpack_require__) {
+
+// style-loader: Adds some css to the DOM by adding a <style> tag
+
+// load the styles
+var content = __webpack_require__(435);
+if(typeof content === 'string') content = [[module.i, content, '']];
+if(content.locals) module.exports = content.locals;
+// add the styles to the DOM
+var update = __webpack_require__(3)("1a78bcc0", content, false, {});
+// Hot Module Replacement
+if(false) {
+ // When the styles change, update the <style> tags
+ if(!content.locals) {
+   module.hot.accept("!!../../../../../../../../node_modules/css-loader/index.js!../../../../../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-44900439\",\"scoped\":true,\"hasInlineConfig\":true}!../../../../../../../../node_modules/sass-loader/lib/loader.js!../../../../../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./File.vue", function() {
+     var newContent = require("!!../../../../../../../../node_modules/css-loader/index.js!../../../../../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-44900439\",\"scoped\":true,\"hasInlineConfig\":true}!../../../../../../../../node_modules/sass-loader/lib/loader.js!../../../../../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./File.vue");
+     if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+     update(newContent);
+   });
+ }
+ // When the module is disposed, remove the <style> tags
+ module.hot.dispose(function() { update(); });
+}
+
+/***/ }),
+/* 435 */
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(2)(false);
+// imports
+
+
+// module
+exports.push([module.i, "\n.add-button[data-v-44900439] {\n  background-color: transparent;\n  border: none;\n  cursor: pointer;\n}\n.add-button[data-v-44900439]:focus {\n    outline: none;\n}\n.add-button img[data-v-44900439] {\n    width: 35px;\n    border-radius: 50%;\n}\n.add-button img[data-v-44900439]:hover {\n      -webkit-box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);\n              box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);\n}\n.add-button--remove[data-v-44900439] {\n    color: #ccc;\n}\n.add-button--remove[data-v-44900439]:hover {\n      color: #00A4D1;\n}\n.add-button--remove img[data-v-44900439] {\n      width: 15px;\n}\n", ""]);
+
+// exports
+
+
+/***/ }),
+/* 436 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("tr", [
-    _c("th"),
-    _vm._v(" "),
-    _c("th", [
-      _c("a", { attrs: { href: "#", target: "_blank" } }, [
-        _vm._v("\n            " + _vm._s(_vm.upload.path) + "\n        ")
+  return _vm.show
+    ? _c("tr", [
+        _c("th"),
+        _vm._v(" "),
+        _c("th", [
+          _c("a", { attrs: { href: _vm.uploadPath, target: "_blank" } }, [
+            _vm._v("\n            " + _vm._s(_vm.upload.path) + "\n        ")
+          ])
+        ]),
+        _vm._v(" "),
+        _c("th"),
+        _vm._v(" "),
+        _c("th", [_vm._v(_vm._s(_vm.filteredDate))]),
+        _vm._v(" "),
+        _c("th", [
+          _c(
+            "button",
+            {
+              staticClass:
+                "add-button add-button--remove d-flex align-items-center",
+              attrs: { title: "Удалить" },
+              on: {
+                click: function($event) {
+                  _vm.deleteFile()
+                }
+              }
+            },
+            [
+              _c("img", { attrs: { src: "/img/del.svg", alt: "add-button" } }),
+              _vm._v(" "),
+              _c("div", { staticClass: "remove-materials ml-1" }, [
+                _vm._v("\n                Удалить\n              ")
+              ])
+            ]
+          )
+        ])
       ])
-    ]),
-    _vm._v(" "),
-    _c("th", [_vm._v(_vm._s(_vm.filteredDate))]),
-    _vm._v(" "),
-    _c("th"),
-    _vm._v(" "),
-    _c("th")
-  ])
+    : _vm._e()
 }
 var staticRenderFns = []
 render._withStripped = true

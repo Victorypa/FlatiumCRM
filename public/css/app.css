@@ -603,25 +603,6 @@ a:hover {
   font-size: 0.85rem;
 }
 
-.create .add-button img {
-  cursor: pointer;
-  width: 35px;
-  border-radius: 50%;
-  -webkit-transition: 0.2s ease-in;
-  transition: 0.2s ease-in;
-}
-
-.create .add-button img:hover {
-  -webkit-box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
-          box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
-  -webkit-transition: 0.2s ease-in;
-  transition: 0.2s ease-in;
-}
-
-.create .add-button--remove img {
-  width: 15px;
-}
-
 .create .add-space-button {
   color: #00A4D1;
   background-color: transparent;

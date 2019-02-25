@@ -50,4 +50,11 @@ class OrderUploadController extends Controller
 
         }
     }
+
+    public function destroy(Order $order, OrderUpload $order_upload)
+    {
+        $order_upload->delete();
+
+        return response(['deleted file'], 200);
+    }
 }
