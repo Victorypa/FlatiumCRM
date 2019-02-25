@@ -2,6 +2,15 @@
     <div class="col-md-12 mp-10">
 
       <div class="row">
+          <div class="col-md-12">
+            <datepicker :language="ru"
+                        placeholder="Выбрать дату для создания папки"
+                        v-model="chosenDate"
+                        @input="createFolder()"
+                        >
+            </datepicker>
+          </div>
+
         <div class="col-md-12">
           <vue-dropzone
                         ref="myVueDropzone"
@@ -13,13 +22,12 @@
       </div>
 
       <div class="row mp-5">
-        <div class="col-md-4">
-          <datepicker :language="ru"
-                      placeholder="Выбрать Дату"
-                      v-model="chosenDate"
-                      @input="createFolder()"
-                      >
-          </datepicker>
+        <div class="col-md-12">
+                <datepicker :language="ru"
+                            placeholder="Выбрать дату"
+                            v-model="chosenDate"
+                            @input="createFolder()"
+                            />
         </div>
       </div>
     </div>
@@ -48,7 +56,7 @@
                     autoProcessQueue: false,
                     thumbnailWidth: 100,
                     addRemoveLinks: true,
-                    maxFilesize: 10.0,
+                    maxFilesize: 20.0,
                     dictDefaultMessage: "<i class='fa fa-cloud-upload'></i> Документы или Фотки"
                 }
             }
@@ -59,7 +67,7 @@
                 axios.post(`/api/orders/${this.$route.params.id}/folders/store`, {
                     'date': moment(this.chosenDate).format('DD-MM-YYYY')
                 }).then(response => {
-                    this.getFolders()
+                    this.$emit('created-folder')
                 })
             }
         }

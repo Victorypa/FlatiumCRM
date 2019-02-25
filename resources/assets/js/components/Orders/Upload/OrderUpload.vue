@@ -11,7 +11,7 @@
                   <h4>Загрузить файл</h4>
                 </div>
                 <div class="col-md-4 text-right d-flex">
-                    <button
+                    <button v-if="show"
                             type="button"
                             class="primary-button col-6 ml-auto"
                             @click.prevent="uploadFiles()"
@@ -23,30 +23,20 @@
               </div>
             </div>
 
-            <UploadBlock />
+            <UploadBlock @created-folder="show = true" />
 
+            <template v-if="folders.length !== 0">
+                <div class="story-text">
+                    История загрузок:
+                </div>
 
+                <Folder v-for="folder in folders"
+                        :folder="folder"
+                        :key="'folder-' + folder.id"
+                        @deleted-folder="getFolders()"
+                        />
+            </template>
 
-            <div class="story-text">История загрузок:</div>
-
-            <table class="table table-hover" v-if="folders.length">
-              <tbody>
-                <tr v-for="folder in folders" :key="folder.id">
-                  <td>{{ folder.order_uploads.filter(row => row.type === 'photo').length }} фото</td>
-                  <td>{{ folder.order_uploads.filter(row => row.type === 'doc').length }} док</td>
-                  <td>Дата съёмки {{ folder.name }}</td>
-                  <td>{{ moment(folder.created_at).format('DD-MM-YYYY') }}</td>
-                  <td>
-                    <button @click="deleteFolder(folder.id)" class="add-button add-button--remove d-flex align-items-center" title="Удалить">
-                          <img src="/img/del.svg" alt="add-button">
-                          <div class="remove-materials ml-1">
-                            Удалить
-                          </div>
-                    </button>
-                  </td>
-                </tr>
-              </tbody>
-            </table>
           </div>
         </div>
       </div>
@@ -56,11 +46,12 @@
 
 <script>
     import UploadBlock from './partials/UploadBlock'
+    import Folder from './Folders/Folder'
 
     export default {
         data () {
             return {
-                moment,
+                show: false,
 
                 folders: [],
                 currentPath: window.location.origin
@@ -68,10 +59,10 @@
         },
 
         components: {
-            UploadBlock
+            UploadBlock, Folder
         },
 
-        mounted () {
+        created () {
             this.getFolders()
         },
 
@@ -86,13 +77,6 @@
             uploadFiles () {
               this.$refs.myVueDropzone.processQueue()
               window.location.reload(true)
-            },
-
-            deleteFolder (id) {
-                axios.delete(`/api/orders/${this.$route.params.id}/folders/${id}/destroy`)
-                     .then(() => {
-                         this.getFolders()
-                     })
             }
         }
     }
@@ -139,31 +123,6 @@
   padding: 0 30px;
 }
 
-
-.add-button {
-  background-color: transparent;
-  border: none;
-  cursor: pointer;
-  &:focus {
-    outline: none;
-  }
-  img {
-    width: 35px;
-    border-radius: 50%;
-    &:hover {
-      box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
-    }
-  }
-  &--remove {
-    color: #ccc;
-    &:hover {
-      color: #00A4D1;
-    }
-    img {
-      width: 15px;
-    }
-  }
-}
 
 td {
   &:first-child {
