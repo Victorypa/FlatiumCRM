@@ -12,8 +12,7 @@
           </div>
 
         <div class="col-md-12">
-          <vue-dropzone
-                        ref="myVueDropzone"
+          <vue-dropzone ref="myVueDropzone"
                         id="dropzone"
                         :options="dropzoneOptions"
                         class="mp-10">
@@ -22,12 +21,22 @@
       </div>
 
       <div class="row mp-5">
-        <div class="col-md-12">
+        <div class="col-md-6">
                 <datepicker :language="ru"
                             placeholder="Выбрать дату"
                             v-model="chosenDate"
                             @input="createFolder()"
                             />
+        </div>
+
+        <div class="col-md-6">
+            <button v-if="chosenDate"
+                    type="button"
+                    class="primary-button col-6 ml-auto"
+                    @click.prevent="uploadFiles()"
+                    >
+                Сохранить
+            </button>
         </div>
       </div>
     </div>
@@ -69,6 +78,11 @@
                 }).then(response => {
                     this.$emit('created-folder')
                 })
+            },
+
+            uploadFiles () {
+              this.$refs.myVueDropzone.processQueue()
+              window.location.reload(true)
             }
         }
     }

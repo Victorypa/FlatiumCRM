@@ -50586,14 +50586,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
 
 
 
@@ -50601,8 +50593,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony default export */ __webpack_exports__["default"] = ({
     data: function data() {
         return {
-            show: false,
-
             folders: [],
             currentPath: window.location.origin
         };
@@ -50625,10 +50615,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             axios.get('/api/orders/' + this.$route.params.id + '/folders').then(function (response) {
                 _this.folders = response.data;
             });
-        },
-        uploadFiles: function uploadFiles() {
-            this.$refs.myVueDropzone.processQueue();
-            window.location.reload(true);
         }
     }
 });
@@ -51125,43 +51111,12 @@ var render = function() {
               "div",
               { staticClass: "col-md-10 px-0" },
               [
-                _c(
-                  "div",
-                  { staticClass: "create__fixed-top col-10 shadow-light" },
-                  [
-                    _c("div", { staticClass: "row align-items-center " }, [
-                      _vm._m(0),
-                      _vm._v(" "),
-                      _c("div", { staticClass: "col-md-4 text-right d-flex" }, [
-                        _vm.show
-                          ? _c(
-                              "button",
-                              {
-                                staticClass: "primary-button col-6 ml-auto",
-                                attrs: { type: "button" },
-                                on: {
-                                  click: function($event) {
-                                    $event.preventDefault()
-                                    _vm.uploadFiles()
-                                  }
-                                }
-                              },
-                              [
-                                _vm._v(
-                                  "\n                      Сохранить\n                  "
-                                )
-                              ]
-                            )
-                          : _vm._e()
-                      ])
-                    ])
-                  ]
-                ),
+                _vm._m(0),
                 _vm._v(" "),
                 _c("UploadBlock", {
                   on: {
                     "created-folder": function($event) {
-                      _vm.show = true
+                      _vm.getFolders()
                     }
                   }
                 }),
@@ -51203,8 +51158,12 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "col-md-8" }, [
-      _c("h4", [_vm._v("Загрузить файл")])
+    return _c("div", { staticClass: "create__fixed-top col-10 shadow-light" }, [
+      _c("div", { staticClass: "row align-items-center " }, [
+        _c("div", { staticClass: "col-md-8" }, [
+          _c("h4", [_vm._v("Загрузить файл")])
+        ])
+      ])
     ])
   }
 ]
@@ -96285,6 +96244,15 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -96324,6 +96292,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             }).then(function (response) {
                 _this.$emit('created-folder');
             });
+        },
+        uploadFiles: function uploadFiles() {
+            this.$refs.myVueDropzone.processQueue();
+            window.location.reload(true);
         }
     }
 });
@@ -96422,7 +96394,7 @@ var render = function() {
     _c("div", { staticClass: "row mp-5" }, [
       _c(
         "div",
-        { staticClass: "col-md-12" },
+        { staticClass: "col-md-6" },
         [
           _c("datepicker", {
             attrs: { language: _vm.ru, placeholder: "Выбрать дату" },
@@ -96441,7 +96413,26 @@ var render = function() {
           })
         ],
         1
-      )
+      ),
+      _vm._v(" "),
+      _c("div", { staticClass: "col-md-6" }, [
+        _vm.chosenDate
+          ? _c(
+              "button",
+              {
+                staticClass: "primary-button col-6 ml-auto",
+                attrs: { type: "button" },
+                on: {
+                  click: function($event) {
+                    $event.preventDefault()
+                    _vm.uploadFiles()
+                  }
+                }
+              },
+              [_vm._v("\n            Сохранить\n        ")]
+            )
+          : _vm._e()
+      ])
     ])
   ])
 }

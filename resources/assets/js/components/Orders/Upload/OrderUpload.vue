@@ -10,20 +10,12 @@
                 <div class="col-md-8">
                   <h4>Загрузить файл</h4>
                 </div>
-                <div class="col-md-4 text-right d-flex">
-                    <button v-if="show"
-                            type="button"
-                            class="primary-button col-6 ml-auto"
-                            @click.prevent="uploadFiles()"
-                            >
-                        Сохранить
-                    </button>
-                </div>
 
               </div>
             </div>
 
-            <UploadBlock @created-folder="show = true" />
+            <UploadBlock @created-folder="getFolders()"
+                         />
 
             <template v-if="folders.length !== 0">
                 <div class="story-text">
@@ -51,8 +43,6 @@
     export default {
         data () {
             return {
-                show: false,
-
                 folders: [],
                 currentPath: window.location.origin
             }
@@ -72,11 +62,6 @@
                      .then(response => {
                          this.folders = response.data
                      })
-            },
-
-            uploadFiles () {
-              this.$refs.myVueDropzone.processQueue()
-              window.location.reload(true)
             }
         }
     }
