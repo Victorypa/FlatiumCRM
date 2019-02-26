@@ -23,8 +23,8 @@
                class="form-control ml-2 col-6"
                placeholder="Ед.уп"
                v-model="material.quantity"
+               @change="updateMaterialQuantity()"
                >
-                <!-- @change="saveServiceMaterial()" -->
      </div>
 
      <div class="col-md-4 px-0">
@@ -47,13 +47,12 @@
                    class="form-control col-3 ml-2"
                    placeholder="Расход/м2"
                    :id="'material-' + material.id"
+                   v-model="this.material.pivot.rate"
                    >
-                   <!-- v-model="service_material_rates[material.id]" -->
-                   <!-- @change="saveServiceMaterial()" -->
 
-          <!-- <div class="total-sum col-3 text-right pr-0">
-              {{ MaterialCalculation(service_material_quantities[material.id], service_material_rates[material.id], material.price, currentRoomService.quantity) }} Р
-          </div> -->
+          <div class="total-sum col-3 text-right pr-0">
+             {{ materialPrice }} Р
+          </div>
         </div>
       </div>
     </div>
@@ -68,6 +67,22 @@
                 axios.patch(`/api/materials/${this.material.id}/update`, {
                     'material_unit_id': this.material.material_unit_id
                 })
+            },
+
+            updateMaterialQuantity () {
+                axios.patch(`/api/materials/${this.material.id}/update`, {
+                    'quantity': this.material.quantity
+                })
+            },
+        },
+
+        computed: {
+            materialPrice () {
+                if (this.material.pivot.rate && this.material.quantity) {
+                    return parseFloat(
+                        Math.ceil(this.material.pivot.rate / this.material.quantity) * this.material.price
+                    ).toFixed(2)
+                }
             }
         }
     }

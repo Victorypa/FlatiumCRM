@@ -96342,7 +96342,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     props: ['material', 'material_units'],
@@ -96352,6 +96351,19 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             axios.patch('/api/materials/' + this.material.id + '/update', {
                 'material_unit_id': this.material.material_unit_id
             });
+        },
+        updateMaterialQuantity: function updateMaterialQuantity() {
+            axios.patch('/api/materials/' + this.material.id + '/update', {
+                'quantity': this.material.quantity
+            });
+        }
+    },
+
+    computed: {
+        materialPrice: function materialPrice() {
+            if (this.material.pivot.rate && this.material.quantity) {
+                return parseFloat(Math.ceil(this.material.pivot.rate / this.material.quantity) * this.material.price).toFixed(2);
+            }
         }
     }
 });
@@ -96412,6 +96424,9 @@ var render = function() {
             attrs: { type: "text", placeholder: "Ед.уп" },
             domProps: { value: _vm.material.quantity },
             on: {
+              change: function($event) {
+                _vm.updateMaterialQuantity()
+              },
               input: function($event) {
                 if ($event.target.composing) {
                   return
@@ -96490,13 +96505,34 @@ var render = function() {
             ),
             _vm._v(" "),
             _c("input", {
+              directives: [
+                {
+                  name: "model",
+                  rawName: "v-model",
+                  value: this.material.pivot.rate,
+                  expression: "this.material.pivot.rate"
+                }
+              ],
               staticClass: "form-control col-3 ml-2",
               attrs: {
                 type: "text",
                 placeholder: "Расход/м2",
                 id: "material-" + _vm.material.id
+              },
+              domProps: { value: this.material.pivot.rate },
+              on: {
+                input: function($event) {
+                  if ($event.target.composing) {
+                    return
+                  }
+                  _vm.$set(this.material.pivot, "rate", $event.target.value)
+                }
               }
-            })
+            }),
+            _vm._v(" "),
+            _c("div", { staticClass: "total-sum col-3 text-right pr-0" }, [
+              _vm._v("\n         " + _vm._s(_vm.materialPrice) + " Р\n      ")
+            ])
           ]
         )
       ])
