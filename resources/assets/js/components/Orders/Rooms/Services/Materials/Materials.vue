@@ -8,41 +8,24 @@
 
           <div class="col-md-10 bg px-0">
             <div class="container-fluid px-0">
-                    <div class="create__fixed-top col-10 shadow-light">
-                      <div class="row align-items-center">
 
-                          <div class="col-md-8 d-flex align-items-end">
-                            <h2 class="main-caption col-8" v-if="service.name">
-                              {{ service.name}}
-                            </h2>
-                            <div class="main-subtitle ml-5">Цена: {{ service.price  }} Р</div>
-                          </div>
-
-                        <div class="col-md-4 d-flex">
-                            <button type="button"
-                                    class="primary-button primary-button--outline col-6 ml-auto"
-                                    @click="$router.go(-1)">
-                              Назад
-                            </button>
-                        </div>
-
-                      </div>
-                    </div>
+                <ServiceDetail v-if="service.length !== 0"
+                              :service="service"
+                              />
 
 
               <div class="row create-floor-work__content px-15">
-                <form class="col-12" @submit.prevent="search()">
-                  <div class="input-group">
-                    <input class="form-control py-2"
-                           placeholder="Введите навание материала"
-                           v-model="searchQuery"
-                           >
-                    <i class="fa fa-search"></i>
-                  </div>
-                </form>
+                <div class="col-12">
+                    <div class="input-group">
+                      <input class="form-control py-2"
+                             placeholder="Введите навание материала"
+                             v-model="searchQuery"
+                             >
+                    </div>
+                </div>
               </div>
 
-              <div class="row pt-4">
+              <!-- <div class="row pt-4">
 
                   <form @submit.prevent="saveNewMaterial()" class="col-12 px-0">
 
@@ -172,7 +155,7 @@
                     </div>
                   </div>
 
-              </div>
+              </div> -->
 
             </div>
 
@@ -185,27 +168,27 @@
 </template>
 
 <script>
-    import ServiceMaterialCollection from '../../../../../mixins/ServiceMaterialCollection'
+    import ServiceDetail from '@/components/Services/Materials/partials/ServiceDetail'
+    // import ServiceMaterialCollection from '../../../../../mixins/ServiceMaterialCollection'
 
     export default {
-        mixins: [ServiceMaterialCollection],
+        // mixins: [ServiceMaterialCollection],
 
         data () {
             return {
-                currentRoomService: [],
-                room_service_material_ids: [],
+                service: [],
+                searchQuery: ''
 
-                service_materials: [],
-                service_material_ids: [],
-                service_material_prices: [],
-                service_material_rates: [],
-
-                material_ids: [],
+                
             }
         },
 
         created () {
-            this.getCurrentRoomService()
+            this.getService()
+        },
+
+        components: {
+            ServiceDetail
         },
 
         methods: {
@@ -213,14 +196,6 @@
                 return axios.get(`/api/services/${this.$route.params.service_id}`)
                             .then(response => {
                                 this.service = response.data
-                                this.default_service_materials = response.data.materials
-                                this.service_name = response.data.name
-                                this.service_price = response.data.price
-
-                                response.data.materials.forEach(material => {
-                                    this.service_material_quantities[material.id] = material.quantity
-                                    this.service_material_rates[material.id] = material.pivot.rate
-                                })
                             })
             },
 

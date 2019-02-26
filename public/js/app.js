@@ -70126,24 +70126,8 @@ exports.push([module.i, "\n.main-caption[data-v-7672b952]::after {\n  display: n
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__mixins_ServiceMaterialCollection__ = __webpack_require__(153);
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__components_Services_Materials_partials_ServiceDetail__ = __webpack_require__(392);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__components_Services_Materials_partials_ServiceDetail___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__components_Services_Materials_partials_ServiceDetail__);
 //
 //
 //
@@ -70315,27 +70299,26 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 
 
+// import ServiceMaterialCollection from '../../../../../mixins/ServiceMaterialCollection'
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-    mixins: [__WEBPACK_IMPORTED_MODULE_0__mixins_ServiceMaterialCollection__["a" /* default */]],
+    // mixins: [ServiceMaterialCollection],
 
     data: function data() {
         return {
-            currentRoomService: [],
-            room_service_material_ids: [],
+            service: [],
+            searchQuery: ''
 
-            service_materials: [],
-            service_material_ids: [],
-            service_material_prices: [],
-            service_material_rates: [],
-
-            material_ids: []
         };
     },
     created: function created() {
-        this.getCurrentRoomService();
+        this.getService();
     },
 
+
+    components: {
+        ServiceDetail: __WEBPACK_IMPORTED_MODULE_0__components_Services_Materials_partials_ServiceDetail___default.a
+    },
 
     methods: {
         getService: function getService() {
@@ -70343,14 +70326,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
             return axios.get('/api/services/' + this.$route.params.service_id).then(function (response) {
                 _this.service = response.data;
-                _this.default_service_materials = response.data.materials;
-                _this.service_name = response.data.name;
-                _this.service_price = response.data.price;
-
-                response.data.materials.forEach(function (material) {
-                    _this.service_material_quantities[material.id] = material.quantity;
-                    _this.service_material_rates[material.id] = material.pivot.rate;
-                });
             });
         },
         getCurrentRoomService: function getCurrentRoomService() {
@@ -70427,72 +70402,19 @@ var render = function() {
             _c("navigation"),
             _vm._v(" "),
             _c("div", { staticClass: "col-md-10 bg px-0" }, [
-              _c("div", { staticClass: "container-fluid px-0" }, [
-                _c(
-                  "div",
-                  { staticClass: "create__fixed-top col-10 shadow-light" },
-                  [
-                    _c("div", { staticClass: "row align-items-center" }, [
-                      _c(
-                        "div",
-                        { staticClass: "col-md-8 d-flex align-items-end" },
-                        [
-                          _vm.service.name
-                            ? _c("h2", { staticClass: "main-caption col-8" }, [
-                                _vm._v(
-                                  "\n                          " +
-                                    _vm._s(_vm.service.name) +
-                                    "\n                        "
-                                )
-                              ])
-                            : _vm._e(),
-                          _vm._v(" "),
-                          _c("div", { staticClass: "main-subtitle ml-5" }, [
-                            _vm._v("Цена: " + _vm._s(_vm.service.price) + " Р")
-                          ])
-                        ]
-                      ),
-                      _vm._v(" "),
-                      _c("div", { staticClass: "col-md-4 d-flex" }, [
-                        _c(
-                          "button",
-                          {
-                            staticClass:
-                              "primary-button primary-button--outline col-6 ml-auto",
-                            attrs: { type: "button" },
-                            on: {
-                              click: function($event) {
-                                _vm.$router.go(-1)
-                              }
-                            }
-                          },
-                          [
-                            _vm._v(
-                              "\n                          Назад\n                        "
-                            )
-                          ]
-                        )
-                      ])
-                    ])
-                  ]
-                ),
-                _vm._v(" "),
-                _c(
-                  "div",
-                  { staticClass: "row create-floor-work__content px-15" },
-                  [
-                    _c(
-                      "form",
-                      {
-                        staticClass: "col-12",
-                        on: {
-                          submit: function($event) {
-                            $event.preventDefault()
-                            _vm.search()
-                          }
-                        }
-                      },
-                      [
+              _c(
+                "div",
+                { staticClass: "container-fluid px-0" },
+                [
+                  _vm.service.length !== 0
+                    ? _c("ServiceDetail", { attrs: { service: _vm.service } })
+                    : _vm._e(),
+                  _vm._v(" "),
+                  _c(
+                    "div",
+                    { staticClass: "row create-floor-work__content px-15" },
+                    [
+                      _c("div", { staticClass: "col-12" }, [
                         _c("div", { staticClass: "input-group" }, [
                           _c("input", {
                             directives: [
@@ -70514,548 +70436,14 @@ var render = function() {
                                 _vm.searchQuery = $event.target.value
                               }
                             }
-                          }),
-                          _vm._v(" "),
-                          _c("i", { staticClass: "fa fa-search" })
+                          })
                         ])
-                      ]
-                    )
-                  ]
-                ),
-                _vm._v(" "),
-                _c(
-                  "div",
-                  { staticClass: "row pt-4" },
-                  [
-                    _c(
-                      "form",
-                      {
-                        staticClass: "col-12 px-0",
-                        on: {
-                          submit: function($event) {
-                            $event.preventDefault()
-                            _vm.saveNewMaterial()
-                          }
-                        }
-                      },
-                      [
-                        _vm._l(_vm.newMaterials, function(newMaterial) {
-                          return _c(
-                            "div",
-                            {
-                              staticClass:
-                                "row justify-content-between align-items-center col-12 pb-3"
-                            },
-                            [
-                              _c("div", { staticClass: "col-6 pr-0" }, [
-                                _c("input", {
-                                  directives: [
-                                    {
-                                      name: "model",
-                                      rawName: "v-model",
-                                      value: newMaterial.name,
-                                      expression: "newMaterial.name"
-                                    }
-                                  ],
-                                  staticClass: "form-control",
-                                  attrs: {
-                                    type: "text",
-                                    placeholder: "Наименование"
-                                  },
-                                  domProps: { value: newMaterial.name },
-                                  on: {
-                                    input: function($event) {
-                                      if ($event.target.composing) {
-                                        return
-                                      }
-                                      _vm.$set(
-                                        newMaterial,
-                                        "name",
-                                        $event.target.value
-                                      )
-                                    }
-                                  }
-                                })
-                              ]),
-                              _vm._v(" "),
-                              _c("div", { staticClass: "col-2 d-flex pr-0" }, [
-                                _c("input", {
-                                  directives: [
-                                    {
-                                      name: "model",
-                                      rawName: "v-model",
-                                      value: newMaterial.price,
-                                      expression: "newMaterial.price"
-                                    }
-                                  ],
-                                  staticClass: "form-control",
-                                  attrs: { type: "text", placeholder: "Цена" },
-                                  domProps: { value: newMaterial.price },
-                                  on: {
-                                    input: function($event) {
-                                      if ($event.target.composing) {
-                                        return
-                                      }
-                                      _vm.$set(
-                                        newMaterial,
-                                        "price",
-                                        $event.target.value
-                                      )
-                                    }
-                                  }
-                                }),
-                                _vm._v(" "),
-                                _c("input", {
-                                  directives: [
-                                    {
-                                      name: "model",
-                                      rawName: "v-model",
-                                      value: newMaterial.quantity,
-                                      expression: "newMaterial.quantity"
-                                    }
-                                  ],
-                                  staticClass: "form-control ml-2",
-                                  attrs: { type: "text", placeholder: "Ед.уп" },
-                                  domProps: { value: newMaterial.quantity },
-                                  on: {
-                                    input: function($event) {
-                                      if ($event.target.composing) {
-                                        return
-                                      }
-                                      _vm.$set(
-                                        newMaterial,
-                                        "quantity",
-                                        $event.target.value
-                                      )
-                                    }
-                                  }
-                                })
-                              ]),
-                              _vm._v(" "),
-                              _c("div", { staticClass: "col-md-4 pl-0" }, [
-                                _c(
-                                  "div",
-                                  {
-                                    staticClass:
-                                      "form-group d-flex align-items-center mb-0 justify-around"
-                                  },
-                                  [
-                                    _c(
-                                      "select",
-                                      {
-                                        directives: [
-                                          {
-                                            name: "model",
-                                            rawName: "v-model",
-                                            value: newMaterial.material_unit_id,
-                                            expression:
-                                              "newMaterial.material_unit_id"
-                                          }
-                                        ],
-                                        staticClass: "form-control col-4 ml-2",
-                                        on: {
-                                          change: function($event) {
-                                            var $$selectedVal = Array.prototype.filter
-                                              .call(
-                                                $event.target.options,
-                                                function(o) {
-                                                  return o.selected
-                                                }
-                                              )
-                                              .map(function(o) {
-                                                var val =
-                                                  "_value" in o
-                                                    ? o._value
-                                                    : o.value
-                                                return val
-                                              })
-                                            _vm.$set(
-                                              newMaterial,
-                                              "material_unit_id",
-                                              $event.target.multiple
-                                                ? $$selectedVal
-                                                : $$selectedVal[0]
-                                            )
-                                          }
-                                        }
-                                      },
-                                      _vm._l(_vm.material_units, function(
-                                        material_unit
-                                      ) {
-                                        return _c(
-                                          "option",
-                                          {
-                                            domProps: {
-                                              value: material_unit.id
-                                            }
-                                          },
-                                          [
-                                            _vm._v(
-                                              "\n                                  " +
-                                                _vm._s(material_unit.name) +
-                                                "\n                              "
-                                            )
-                                          ]
-                                        )
-                                      })
-                                    ),
-                                    _vm._v(" "),
-                                    _c("input", {
-                                      directives: [
-                                        {
-                                          name: "model",
-                                          rawName: "v-model",
-                                          value: newMaterial.rate,
-                                          expression: "newMaterial.rate"
-                                        }
-                                      ],
-                                      staticClass: "form-control col-3 ml-2",
-                                      attrs: {
-                                        type: "text",
-                                        placeholder: "Расход"
-                                      },
-                                      domProps: { value: newMaterial.rate },
-                                      on: {
-                                        input: function($event) {
-                                          if ($event.target.composing) {
-                                            return
-                                          }
-                                          _vm.$set(
-                                            newMaterial,
-                                            "rate",
-                                            $event.target.value
-                                          )
-                                        }
-                                      }
-                                    }),
-                                    _vm._v(" "),
-                                    newMaterial.quantity &&
-                                    newMaterial.rate &&
-                                    newMaterial.price
-                                      ? [
-                                          _c(
-                                            "div",
-                                            {
-                                              staticClass:
-                                                "total-sum col-3 text-right pr-0"
-                                            },
-                                            [
-                                              _vm._v(
-                                                "\n                                    " +
-                                                  _vm._s(
-                                                    _vm.MaterialCalculation(
-                                                      newMaterial.quantity,
-                                                      newMaterial.rate,
-                                                      newMaterial.price,
-                                                      _vm.currentRoomService
-                                                        .quantity
-                                                    )
-                                                  ) +
-                                                  " Р\n                                "
-                                              )
-                                            ]
-                                          )
-                                        ]
-                                      : [
-                                          _c(
-                                            "div",
-                                            {
-                                              staticClass:
-                                                "total-sum col-3 text-right pr-0"
-                                            },
-                                            [
-                                              _vm._v(
-                                                "\n                                    0 Р\n                                "
-                                              )
-                                            ]
-                                          )
-                                        ]
-                                  ],
-                                  2
-                                )
-                              ])
-                            ]
-                          )
-                        }),
-                        _vm._v(" "),
-                        _c(
-                          "div",
-                          {
-                            staticClass: "add-work",
-                            on: {
-                              click: function($event) {
-                                _vm.addMaterial()
-                              }
-                            }
-                          },
-                          [
-                            _vm._v(
-                              "\n                        +Добавить материал\n                      "
-                            )
-                          ]
-                        ),
-                        _vm._v(" "),
-                        _c("button", {
-                          staticStyle: { display: "none" },
-                          attrs: { type: "submit" }
-                        })
-                      ],
-                      2
-                    ),
-                    _vm._v(" "),
-                    _vm._l(_vm.filteredMaterials, function(material) {
-                      return _c(
-                        "div",
-                        {
-                          key: material.id,
-                          staticClass:
-                            "row justify-content-between align-items-center col-12 py-1"
-                        },
-                        [
-                          _c("div", { staticClass: "col-6" }, [
-                            _c("div", { staticClass: "form-check" }, [
-                              _c("input", {
-                                staticClass: "form-check-input",
-                                attrs: {
-                                  id: "service-material-" + material.id,
-                                  type: "checkbox"
-                                },
-                                domProps: {
-                                  checked: _vm.room_service_material_ids.includes(
-                                    material.id
-                                  )
-                                },
-                                on: {
-                                  click: function($event) {
-                                    _vm.addServiceMaterialId(material.id)
-                                  }
-                                }
-                              }),
-                              _vm._v(" "),
-                              _c(
-                                "label",
-                                {
-                                  staticClass: "form-check-label",
-                                  attrs: {
-                                    for: "service-material-" + material.id
-                                  }
-                                },
-                                [
-                                  _vm._v(
-                                    "\n                           " +
-                                      _vm._s(material.name) +
-                                      "\n                    "
-                                  )
-                                ]
-                              )
-                            ])
-                          ]),
-                          _vm._v(" "),
-                          _c(
-                            "div",
-                            {
-                              staticClass:
-                                "col-2 d-flex pr-2 align-items-center justify-content-between py-2"
-                            },
-                            [
-                              _c("div", { staticClass: "total-sum col-6" }, [
-                                _vm._v(
-                                  "\n                      " +
-                                    _vm._s(material.price) +
-                                    " Р\n                  "
-                                )
-                              ]),
-                              _vm._v(" "),
-                              _c("input", {
-                                directives: [
-                                  {
-                                    name: "model",
-                                    rawName: "v-model",
-                                    value:
-                                      _vm.service_material_quantities[
-                                        material.id
-                                      ],
-                                    expression:
-                                      "service_material_quantities[material.id]"
-                                  }
-                                ],
-                                staticClass: "form-control ml-2 col-6",
-                                attrs: { type: "text", placeholder: "Ед.уп" },
-                                domProps: {
-                                  value:
-                                    _vm.service_material_quantities[material.id]
-                                },
-                                on: {
-                                  change: function($event) {
-                                    _vm.saveServiceMaterial()
-                                  },
-                                  input: function($event) {
-                                    if ($event.target.composing) {
-                                      return
-                                    }
-                                    _vm.$set(
-                                      _vm.service_material_quantities,
-                                      material.id,
-                                      $event.target.value
-                                    )
-                                  }
-                                }
-                              })
-                            ]
-                          ),
-                          _vm._v(" "),
-                          _c("div", { staticClass: "col-md-4 px-0" }, [
-                            _c(
-                              "div",
-                              {
-                                staticClass:
-                                  "form-group d-flex align-items-center mb-0 justify-around"
-                              },
-                              [
-                                _c(
-                                  "select",
-                                  {
-                                    staticClass: "form-control col-4 ml-2",
-                                    attrs: { disabled: "" }
-                                  },
-                                  [
-                                    _c(
-                                      "option",
-                                      {
-                                        domProps: {
-                                          value: material.material_unit.id
-                                        }
-                                      },
-                                      [
-                                        _vm._v(
-                                          "\n                            " +
-                                            _vm._s(
-                                              material.material_unit.name
-                                            ) +
-                                            "\n                        "
-                                        )
-                                      ]
-                                    )
-                                  ]
-                                ),
-                                _vm._v(" "),
-                                _c("input", {
-                                  directives: [
-                                    {
-                                      name: "model",
-                                      rawName: "v-model",
-                                      value:
-                                        _vm.service_material_rates[material.id],
-                                      expression:
-                                        "service_material_rates[material.id]"
-                                    }
-                                  ],
-                                  staticClass: "form-control col-3 ml-2",
-                                  attrs: {
-                                    type: "text",
-                                    placeholder: "Расход/м2",
-                                    id: "service-material-" + material.id
-                                  },
-                                  domProps: {
-                                    value:
-                                      _vm.service_material_rates[material.id]
-                                  },
-                                  on: {
-                                    change: function($event) {
-                                      _vm.saveServiceMaterial()
-                                    },
-                                    input: function($event) {
-                                      if ($event.target.composing) {
-                                        return
-                                      }
-                                      _vm.$set(
-                                        _vm.service_material_rates,
-                                        material.id,
-                                        $event.target.value
-                                      )
-                                    }
-                                  }
-                                }),
-                                _vm._v(" "),
-                                _c(
-                                  "div",
-                                  {
-                                    staticClass:
-                                      "total-sum col-3 text-right pr-0"
-                                  },
-                                  [
-                                    _vm.service_material_quantities[
-                                      material.id
-                                    ] && _vm.service_material_rates[material.id]
-                                      ? [
-                                          _vm._v(
-                                            "\n                            " +
-                                              _vm._s(
-                                                _vm.MaterialCalculation(
-                                                  _vm
-                                                    .service_material_quantities[
-                                                    material.id
-                                                  ],
-                                                  _vm.service_material_rates[
-                                                    material.id
-                                                  ],
-                                                  material.price,
-                                                  _vm.currentRoomService
-                                                    .quantity
-                                                )
-                                              ) +
-                                              " Р\n                        "
-                                          )
-                                        ]
-                                      : [
-                                          _vm._v(
-                                            "\n                            0 Р\n                        "
-                                          )
-                                        ]
-                                  ],
-                                  2
-                                ),
-                                _vm._v(" "),
-                                material.can_be_deleted
-                                  ? [
-                                      _c(
-                                        "button",
-                                        {
-                                          staticClass:
-                                            "add-button add-button--remove ml-auto",
-                                          attrs: { title: "Удалить материал" },
-                                          on: {
-                                            click: function($event) {
-                                              _vm.deleteMaterial(material.id)
-                                            }
-                                          }
-                                        },
-                                        [
-                                          _c("img", {
-                                            attrs: {
-                                              src: "/img/del.svg",
-                                              alt: "add-button"
-                                            }
-                                          })
-                                        ]
-                                      )
-                                    ]
-                                  : [
-                                      _vm._v(
-                                        "\n                         \n                    "
-                                      )
-                                    ]
-                              ],
-                              2
-                            )
-                          ])
-                        ]
-                      )
-                    })
-                  ],
-                  2
-                )
-              ])
+                      ])
+                    ]
+                  )
+                ],
+                1
+              )
             ])
           ],
           1
