@@ -82,29 +82,12 @@
               </div>
             </div>
 
-          <div class="row col-12 mt-3"
-               v-if="room_service.materials.length !== 0"
-               v-for="material in room_service.materials"
-               :key="material.id"
-               >
-
-                <div class="col-6 pl-5 mb-3">
-                  <div class="subtitle-list">
-                    <div class="subtitle-list__item">
-                        {{ material.name }}
-                    </div>
-                  </div>
-                </div>
-
-                <div class="col-6">
-                  <div class="d-flex align-items-center">
-                    <div class="form-group__calc col-md-2">
-                        <!-- {{ getMaterialSummary(material.pivot.rate, material.quantity, material.price, service_quantities[room_service_id]) }} Р -->
-                    </div>
-                  </div>
-                </div>
-
-          </div>
+            <RoomServiceMaterial v-if="room_service.materials.length !== 0"
+                                 v-for="material in room_service.materials"
+                                 :material="material"
+                                 :quantity="room_service.quantity"
+                                 :key="'material-' + material.id"
+                                 />
         </div>
         <br>
     </div>
@@ -112,9 +95,14 @@
 
 <script>
     import { EventBus } from '@/bus'
+    import RoomServiceMaterial from './RoomServiceMaterial'
 
     export default {
         props: ['room_service', 'room'],
+
+        components: {
+            RoomServiceMaterial
+        },
 
         methods: {
             removeService () {

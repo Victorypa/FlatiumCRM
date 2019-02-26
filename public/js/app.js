@@ -67623,6 +67623,8 @@ exports.push([module.i, "\n.edit-show:hover .edit[data-v-2e30a2f8] {\n  -webkit-
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__bus__ = __webpack_require__(7);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__RoomServiceMaterial__ = __webpack_require__(440);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__RoomServiceMaterial___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__RoomServiceMaterial__);
 //
 //
 //
@@ -67718,28 +67720,16 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
+
 
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     props: ['room_service', 'room'],
+
+    components: {
+        RoomServiceMaterial: __WEBPACK_IMPORTED_MODULE_1__RoomServiceMaterial___default.a
+    },
 
     methods: {
         removeService: function removeService() {
@@ -68031,21 +68021,13 @@ var render = function() {
         _vm._v(" "),
         _vm._l(_vm.room_service.materials, function(material) {
           return _vm.room_service.materials.length !== 0
-            ? _c("div", { key: material.id, staticClass: "row col-12 mt-3" }, [
-                _c("div", { staticClass: "col-6 pl-5 mb-3" }, [
-                  _c("div", { staticClass: "subtitle-list" }, [
-                    _c("div", { staticClass: "subtitle-list__item" }, [
-                      _vm._v(
-                        "\n                    " +
-                          _vm._s(material.name) +
-                          "\n                "
-                      )
-                    ])
-                  ])
-                ]),
-                _vm._v(" "),
-                _vm._m(0, true)
-              ])
+            ? _c("RoomServiceMaterial", {
+                key: "material-" + material.id,
+                attrs: {
+                  material: material,
+                  quantity: _vm.room_service.quantity
+                }
+              })
             : _vm._e()
         })
       ],
@@ -68055,18 +68037,7 @@ var render = function() {
     _c("br")
   ])
 }
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "col-6" }, [
-      _c("div", { staticClass: "d-flex align-items-center" }, [
-        _c("div", { staticClass: "form-group__calc col-md-2" })
-      ])
-    ])
-  }
-]
+var staticRenderFns = []
 render._withStripped = true
 module.exports = { render: render, staticRenderFns: staticRenderFns }
 if (false) {
@@ -97010,6 +96981,133 @@ if (false) {
   module.hot.accept()
   if (module.hot.data) {
     require("vue-hot-reload-api")      .rerender("data-v-ca31d1a4", module.exports)
+  }
+}
+
+/***/ }),
+/* 440 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+var normalizeComponent = __webpack_require__(1)
+/* script */
+var __vue_script__ = __webpack_require__(441)
+/* template */
+var __vue_template__ = __webpack_require__(442)
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = null
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources/assets/js/components/Orders/Rooms/Services/partials/RoomServiceMaterial.vue"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-6c5cd04b", Component.options)
+  } else {
+    hotAPI.reload("data-v-6c5cd04b", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 441 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+    props: ['material', 'quantity'],
+
+    computed: {
+        filteredMaterialPrice: function filteredMaterialPrice() {}
+    }
+});
+
+/***/ }),
+/* 442 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", { staticClass: "row col-12 mt-3" }, [
+    _c("div", { staticClass: "col-6 pl-5 mb-3" }, [
+      _c("div", { staticClass: "subtitle-list" }, [
+        _c("div", { staticClass: "subtitle-list__item" }, [
+          _vm._v(
+            "\n              " + _vm._s(_vm.material.name) + "\n          "
+          )
+        ])
+      ])
+    ]),
+    _vm._v(" "),
+    _vm._m(0)
+  ])
+}
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "col-6" }, [
+      _c("div", { staticClass: "d-flex align-items-center" }, [
+        _c("div", { staticClass: "form-group__calc col-md-2" })
+      ])
+    ])
+  }
+]
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-6c5cd04b", module.exports)
   }
 }
 
