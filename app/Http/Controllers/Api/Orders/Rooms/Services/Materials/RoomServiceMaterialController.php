@@ -24,21 +24,18 @@ class RoomServiceMaterialController extends Controller
 
     public function store(Order $order, Room $room, Service $service, Request $request)
     {
-        $room_service = RoomService::where([['room_id', $room->id], ['service_id', $service->id]])->first();
+
+        $room_service = RoomService::where([
+            ['room_id', $room->id], ['service_id', $service->id]
+        ])->first();
 
         $room_service->materials()->attach($request->material_id);
 
-        // foreach ($request->service_material_quantities as $id => $quantity) {
-        //     Material::find($id)->update([
-        //         'quantity' => $quantity,
-        //     ]);
-        // }
+        $room_service->materials()->updateExistingPivot($request->material_id, [
+                'rate' => $request->rate
+            ]);
 
-        // foreach ($request->service_material_rates as $id => $rate) {
-        //     $room_service->materials()->updateExistingPivot($id, [
-        //         'rate' => $rate
-        //     ]);
-        // }
+        return response('added material', 200);
     }
 
     public function remove()

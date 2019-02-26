@@ -80,7 +80,7 @@
               </div>
 
               <div class="col-md-auto">
-                  <router-link :to="{ name: 'actual-material', params: { id: room_service.room.order_id, room_id: room_service.room_id, service_id: room_service.id }}">
+                  <router-link :to="{ name: 'actual-material', params: { id: room_service.room.order_id, room_id: room_service.room_id, service_id: room_service.service_id }}">
                       <button class="add-button " title="Добавить материалы">
                           <img src="/img/plus-circle.svg" alt="add-button">
                       </button>

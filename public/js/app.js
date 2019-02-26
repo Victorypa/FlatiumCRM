@@ -68019,7 +68019,7 @@ var render = function() {
                       params: {
                         id: _vm.room_service.room.order_id,
                         room_id: _vm.room_service.room_id,
-                        service_id: _vm.room_service.id
+                        service_id: _vm.room_service.service_id
                       }
                     }
                   }
@@ -96348,7 +96348,16 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     props: ['material', 'material_units'],
 
     methods: {
-        addRoomServiceMaterial: function addRoomServiceMaterial() {},
+        addRoomServiceMaterial: function addRoomServiceMaterial() {
+            var _this = this;
+
+            axios.post('/api/orders/' + this.$route.params.id + '/rooms/' + this.$route.params.room_id + '/services/' + this.$route.params.service_id + '/materials/store', {
+                'material_id': this.material.id,
+                'rate': this.material.pivot.rate
+            }).then(function (response) {
+                _this.$emit('added-material');
+            });
+        },
         updateMaterialUnit: function updateMaterialUnit() {
             axios.patch('/api/materials/' + this.material.id + '/update', {
                 'material_unit_id': this.material.material_unit_id
@@ -96516,8 +96525,8 @@ var render = function() {
                 {
                   name: "model",
                   rawName: "v-model",
-                  value: this.material.pivot.rate,
-                  expression: "this.material.pivot.rate"
+                  value: _vm.material.pivot.rate,
+                  expression: "material.pivot.rate"
                 }
               ],
               staticClass: "form-control col-3 ml-2",
@@ -96526,13 +96535,13 @@ var render = function() {
                 placeholder: "Расход/м2",
                 id: "material-" + _vm.material.id
               },
-              domProps: { value: this.material.pivot.rate },
+              domProps: { value: _vm.material.pivot.rate },
               on: {
                 input: function($event) {
                   if ($event.target.composing) {
                     return
                   }
-                  _vm.$set(this.material.pivot, "rate", $event.target.value)
+                  _vm.$set(_vm.material.pivot, "rate", $event.target.value)
                 }
               }
             }),

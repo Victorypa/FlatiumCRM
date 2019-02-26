@@ -38,7 +38,7 @@ class Material extends Model
 
     public function RoomServices()
     {
-        return $this->belongsToMany(RoomService::class, 'room_service_material');
+        return $this->belongsToMany(RoomService::class, 'room_service_material')->withPivot('rate');
     }
 
     protected function calculateUnivalence($material)

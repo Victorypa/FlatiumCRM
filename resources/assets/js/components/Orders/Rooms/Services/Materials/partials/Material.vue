@@ -48,7 +48,7 @@
                    class="form-control col-3 ml-2"
                    placeholder="Расход/м2"
                    :id="'material-' + material.id"
-                   v-model="this.material.pivot.rate"
+                   v-model="material.pivot.rate"
                    >
 
           <div class="total-sum col-3 text-right pr-0">
@@ -65,7 +65,12 @@
 
         methods: {
             addRoomServiceMaterial () {
-
+                axios.post(`/api/orders/${this.$route.params.id}/rooms/${this.$route.params.room_id}/services/${this.$route.params.service_id}/materials/store`, {
+                    'material_id': this.material.id,
+                    'rate': this.material.pivot.rate
+                }).then(response => {
+                    this.$emit('added-material')
+                })
             },
 
             updateMaterialUnit () {
