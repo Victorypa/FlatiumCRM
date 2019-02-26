@@ -25,137 +25,17 @@
                 </div>
               </div>
 
-              <!-- <div class="row pt-4">
+              <div class="row pt-4">
+                  <AddMaterial />
 
-                  <form @submit.prevent="saveNewMaterial()" class="col-12 px-0">
 
-                      <div class="row justify-content-between align-items-center col-12 pb-3" v-for="newMaterial in newMaterials">
-                        <div class="col-6 pr-0">
-                          <input type="text"
-                                 class="form-control"
-                                 placeholder="Наименование"
-                                 v-model="newMaterial.name">
-                        </div>
-
-                          <div class="col-2 d-flex pr-0">
-                            <input type="text"
-                                   class="form-control"
-                                   placeholder="Цена"
-                                   v-model="newMaterial.price"
-                                   >
-
-                            <input type="text"
-                                   class="form-control ml-2"
-                                   placeholder="Ед.уп"
-                                   v-model="newMaterial.quantity"
-                                   >
-                         </div>
-
-                            <div class="col-md-4 pl-0">
-                              <div class="form-group d-flex align-items-center mb-0 justify-around">
-
-                                <select class="form-control col-4 ml-2" v-model="newMaterial.material_unit_id">
-                                  <option v-for="material_unit in material_units" :value="material_unit.id">
-                                      {{ material_unit.name }}
-                                  </option>
-                              </select>
-
-                                <input type="text"
-                                       class="form-control col-3 ml-2"
-                                       placeholder="Расход"
-                                       v-model="newMaterial.rate"
-                                       >
-
-                                <template v-if="newMaterial.quantity && newMaterial.rate && newMaterial.price">
-                                    <div class="total-sum col-3 text-right pr-0">
-                                        {{ MaterialCalculation(newMaterial.quantity, newMaterial.rate, newMaterial.price, currentRoomService.quantity) }} Р
-                                    </div>
-                                </template>
-                                <template v-else>
-                                    <div class="total-sum col-3 text-right pr-0">
-                                        0 Р
-                                    </div>
-                                </template>
-                              </div>
-                            </div>
-                          </div>
-
-                          <div class="add-work" @click="addMaterial()">
-                            +Добавить материал
-                          </div>
-
-                        <button type="submit" style="display: none;"></button>
-                  </form>
-
-                  <div class="row justify-content-between align-items-center col-12 py-1" v-for="material in filteredMaterials" :key="material.id">
-                    <div class="col-6">
-                      <div class="form-check">
-                        <input class="form-check-input"
-                               :id="'service-material-' + material.id"
-                               type="checkbox"
-                               :checked="room_service_material_ids.includes(material.id)"
-                               @click="addServiceMaterialId(material.id)"
-                               >
-
-                        <label class="form-check-label"
-                               :for="'service-material-' + material.id">
-                               {{ material.name }}
-                        </label>
-                      </div>
-                  </div>
-
-                  <div class="col-2 d-flex pr-2 align-items-center justify-content-between py-2">
-                      <div class="total-sum col-6">
-                          {{ material.price }} Р
-                      </div>
-
-                      <input type="text"
-                             class="form-control ml-2 col-6"
-                             placeholder="Ед.уп"
-                             v-model="service_material_quantities[material.id]"
-                             @change="saveServiceMaterial()"
-                             >
-                   </div>
-
-                   <div class="col-md-4 px-0">
-                       <div class="form-group d-flex align-items-center mb-0 justify-around">
-
-                          <select class="form-control col-4 ml-2" disabled>
-                            <option :value="material.material_unit.id">
-                                {{ material.material_unit.name }}
-                            </option>
-                          </select>
-
-                          <input type="text"
-                                 class="form-control col-3 ml-2"
-                                 placeholder="Расход/м2"
-                                 :id="'service-material-' + material.id"
-                                 v-model="service_material_rates[material.id]"
-                                 @change="saveServiceMaterial()"
-                                 >
-
-                        <div class="total-sum col-3 text-right pr-0">
-                            <template v-if="service_material_quantities[material.id] && service_material_rates[material.id]">
-                                {{ MaterialCalculation(service_material_quantities[material.id], service_material_rates[material.id], material.price, currentRoomService.quantity) }} Р
-                            </template>
-                            <template v-else>
-                                0 Р
-                            </template>
-                        </div>
-
-                        <template v-if="material.can_be_deleted">
-                            <button @click="deleteMaterial(material.id)" class="add-button add-button--remove ml-auto" title="Удалить материал">
-                                <img src="/img/del.svg" alt="add-button">
-                            </button>
-                        </template>
-                        <template v-else>
-                            &nbsp;
-                        </template>
-                      </div>
-                    </div>
-                  </div>
-
-              </div> -->
+                  <Material v-if="filteredMaterials.length !== 0"
+                            v-for="material in filteredMaterials"
+                            :material="material"
+                            :material_units="material_units"
+                            :key="material.id"
+                            />
+              </div>
 
             </div>
 
@@ -169,17 +49,15 @@
 
 <script>
     import ServiceDetail from '@/components/Services/Materials/partials/ServiceDetail'
-    // import ServiceMaterialCollection from '../../../../../mixins/ServiceMaterialCollection'
+    import AddMaterial from '@/components/Services/Materials/partials/AddMaterial'
+    import Material from './partials/Material'
 
     export default {
-        // mixins: [ServiceMaterialCollection],
-
         data () {
             return {
                 service: [],
-                searchQuery: ''
-
-                
+                searchQuery: '',
+                material_units: []
             }
         },
 
@@ -188,7 +66,7 @@
         },
 
         components: {
-            ServiceDetail
+            ServiceDetail, AddMaterial, Material
         },
 
         methods: {
@@ -210,49 +88,43 @@
                             })
             },
 
-            addServiceMaterialId (id) {
-                if (!this.room_service_material_ids.includes(id)) {
-                    this.room_service_material_ids.push(id)
+            getMaterialUnits () {
+                if (localStorage.getItem('material_units')) {
+                    this.material_units = JSON.parse(localStorage.getItem('material_units'))
                 } else {
-                    var index = this.room_service_material_ids.indexOf(id)
-
-                    if (index > -1) {
-                        this.room_service_material_ids.splice(index, 1)
-                    }
+                    return axios.get(`/api/material_units`).then(response => {
+                        localStorage.setItem('material_units', JSON.stringify(response.data))
+                        this.material_units = response.data
+                    })
                 }
-
-                this.saveServiceMaterial()
             },
 
-            saveServiceMaterial () {
-                axios.post(`/api/orders/${this.$route.params.id}/rooms/${this.$route.params.room_id}/services/${this.$route.params.service_id}/materials/store`, {
-                    'service_material_ids': this.room_service_material_ids,
-                    'service_material_rates': this.removeEmptyElem(this.service_material_rates),
-                    'service_material_quantities': this.removeEmptyElem(this.service_material_quantities),
-                })
-            },
-
-            MaterialCalculation (quantity, rate, price, room_service_quantity) {
-                let data = Math.ceil((rate * room_service_quantity) / quantity) * price
-                return new Intl.NumberFormat('ru-Ru').format(parseInt(data))
-            },
+            // saveServiceMaterial () {
+            //     axios.post(`/api/orders/${this.$route.params.id}/rooms/${this.$route.params.room_id}/services/${this.$route.params.service_id}/materials/store`, {
+            //         'service_material_ids': this.room_service_material_ids,
+            //         'service_material_rates': this.removeEmptyElem(this.service_material_rates),
+            //         'service_material_quantities': this.removeEmptyElem(this.service_material_quantities),
+            //     })
+            // }
         },
 
         computed: {
           filteredMaterials() {
-            let data = this.default_service_materials
+              if (this.service.length !== 0) {
+                  let data = this.service.materials
 
-            data = data.filter(row => {
-              return Object.keys(row).some(key => {
-                return (
-                  String(row[key])
-                    .toLowerCase()
-                    .indexOf(this.searchQuery.toLowerCase()) > -1
-                )
-              })
-            })
+                  data = data.filter(row => {
+                    return Object.keys(row).some(key => {
+                      return (
+                        String(row[key])
+                          .toLowerCase()
+                          .indexOf(this.searchQuery.toLowerCase()) > -1
+                      )
+                    })
+                  })
 
-            return data
+                  return data
+              }
           }
         }
     }

@@ -70128,126 +70128,10 @@ exports.push([module.i, "\n.main-caption[data-v-7672b952]::after {\n  display: n
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__components_Services_Materials_partials_ServiceDetail__ = __webpack_require__(392);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__components_Services_Materials_partials_ServiceDetail___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__components_Services_Materials_partials_ServiceDetail__);
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__components_Services_Materials_partials_AddMaterial__ = __webpack_require__(395);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__components_Services_Materials_partials_AddMaterial___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__components_Services_Materials_partials_AddMaterial__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__partials_Material__ = __webpack_require__(434);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__partials_Material___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2__partials_Material__);
 //
 //
 //
@@ -70299,16 +70183,15 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 
 
-// import ServiceMaterialCollection from '../../../../../mixins/ServiceMaterialCollection'
+
+
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-    // mixins: [ServiceMaterialCollection],
-
     data: function data() {
         return {
             service: [],
-            searchQuery: ''
-
+            searchQuery: '',
+            material_units: []
         };
     },
     created: function created() {
@@ -70317,7 +70200,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 
     components: {
-        ServiceDetail: __WEBPACK_IMPORTED_MODULE_0__components_Services_Materials_partials_ServiceDetail___default.a
+        ServiceDetail: __WEBPACK_IMPORTED_MODULE_0__components_Services_Materials_partials_ServiceDetail___default.a, AddMaterial: __WEBPACK_IMPORTED_MODULE_1__components_Services_Materials_partials_AddMaterial___default.a, Material: __WEBPACK_IMPORTED_MODULE_2__partials_Material___default.a
     },
 
     methods: {
@@ -70337,45 +70220,35 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 // })
             });
         },
-        addServiceMaterialId: function addServiceMaterialId(id) {
-            if (!this.room_service_material_ids.includes(id)) {
-                this.room_service_material_ids.push(id);
+        getMaterialUnits: function getMaterialUnits() {
+            var _this2 = this;
+
+            if (localStorage.getItem('material_units')) {
+                this.material_units = JSON.parse(localStorage.getItem('material_units'));
             } else {
-                var index = this.room_service_material_ids.indexOf(id);
-
-                if (index > -1) {
-                    this.room_service_material_ids.splice(index, 1);
-                }
+                return axios.get('/api/material_units').then(function (response) {
+                    localStorage.setItem('material_units', JSON.stringify(response.data));
+                    _this2.material_units = response.data;
+                });
             }
-
-            this.saveServiceMaterial();
-        },
-        saveServiceMaterial: function saveServiceMaterial() {
-            axios.post('/api/orders/' + this.$route.params.id + '/rooms/' + this.$route.params.room_id + '/services/' + this.$route.params.service_id + '/materials/store', {
-                'service_material_ids': this.room_service_material_ids,
-                'service_material_rates': this.removeEmptyElem(this.service_material_rates),
-                'service_material_quantities': this.removeEmptyElem(this.service_material_quantities)
-            });
-        },
-        MaterialCalculation: function MaterialCalculation(quantity, rate, price, room_service_quantity) {
-            var data = Math.ceil(rate * room_service_quantity / quantity) * price;
-            return new Intl.NumberFormat('ru-Ru').format(parseInt(data));
         }
     },
 
     computed: {
         filteredMaterials: function filteredMaterials() {
-            var _this2 = this;
+            var _this3 = this;
 
-            var data = this.default_service_materials;
+            if (this.service.length !== 0) {
+                var data = this.service.materials;
 
-            data = data.filter(function (row) {
-                return Object.keys(row).some(function (key) {
-                    return String(row[key]).toLowerCase().indexOf(_this2.searchQuery.toLowerCase()) > -1;
+                data = data.filter(function (row) {
+                    return Object.keys(row).some(function (key) {
+                        return String(row[key]).toLowerCase().indexOf(_this3.searchQuery.toLowerCase()) > -1;
+                    });
                 });
-            });
 
-            return data;
+                return data;
+            }
         }
     }
 });
@@ -70440,6 +70313,27 @@ var render = function() {
                         ])
                       ])
                     ]
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "div",
+                    { staticClass: "row pt-4" },
+                    [
+                      _c("AddMaterial"),
+                      _vm._v(" "),
+                      _vm._l(_vm.filteredMaterials, function(material) {
+                        return _vm.filteredMaterials.length !== 0
+                          ? _c("Material", {
+                              key: material.id,
+                              attrs: {
+                                material: material,
+                                material_units: _vm.material_units
+                              }
+                            })
+                          : _vm._e()
+                      })
+                    ],
+                    2
                   )
                 ],
                 1
@@ -96332,6 +96226,239 @@ $(window).scroll(function () {
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
+
+/***/ }),
+/* 433 */,
+/* 434 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+var normalizeComponent = __webpack_require__(1)
+/* script */
+var __vue_script__ = __webpack_require__(435)
+/* template */
+var __vue_template__ = __webpack_require__(436)
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = null
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources/assets/js/components/Orders/Rooms/Services/Materials/partials/Material.vue"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-aece522c", Component.options)
+  } else {
+    hotAPI.reload("data-v-aece522c", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 435 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+    props: ['material', 'material_units']
+});
+
+/***/ }),
+/* 436 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c(
+    "div",
+    {
+      staticClass: "row justify-content-between align-items-center col-12 py-1"
+    },
+    [
+      _c("div", { staticClass: "col-6" }, [
+        _c("div", { staticClass: "form-check" }, [
+          _c("input", {
+            staticClass: "form-check-input",
+            attrs: { id: "material-" + _vm.material.id, type: "checkbox" }
+          }),
+          _vm._v(" "),
+          _c(
+            "label",
+            {
+              staticClass: "form-check-label",
+              attrs: { for: "material-" + _vm.material.id }
+            },
+            [_vm._v("\n             " + _vm._s(_vm.material.name) + "\n      ")]
+          )
+        ])
+      ]),
+      _vm._v(" "),
+      _c(
+        "div",
+        {
+          staticClass:
+            "col-2 d-flex pr-2 align-items-center justify-content-between py-2"
+        },
+        [
+          _c("div", { staticClass: "total-sum col-6" }, [
+            _vm._v("\n        " + _vm._s(_vm.material.price) + " Р\n    ")
+          ]),
+          _vm._v(" "),
+          _c("input", {
+            directives: [
+              {
+                name: "model",
+                rawName: "v-model",
+                value: _vm.material.quantity,
+                expression: "material.quantity"
+              }
+            ],
+            staticClass: "form-control ml-2 col-6",
+            attrs: { type: "text", placeholder: "Ед.уп" },
+            domProps: { value: _vm.material.quantity },
+            on: {
+              input: function($event) {
+                if ($event.target.composing) {
+                  return
+                }
+                _vm.$set(_vm.material, "quantity", $event.target.value)
+              }
+            }
+          })
+        ]
+      ),
+      _vm._v(" "),
+      _c("div", { staticClass: "col-md-4 px-0" }, [
+        _c(
+          "div",
+          {
+            staticClass:
+              "form-group d-flex align-items-center mb-0 justify-around"
+          },
+          [
+            _c(
+              "select",
+              {
+                staticClass: "form-control col-4 ml-2",
+                attrs: { disabled: "" }
+              },
+              [
+                _c(
+                  "option",
+                  { domProps: { value: _vm.material.material_unit.id } },
+                  [
+                    _vm._v(
+                      "\n              " +
+                        _vm._s(_vm.material.material_unit.name) +
+                        "\n          "
+                    )
+                  ]
+                )
+              ]
+            ),
+            _vm._v(" "),
+            _c("input", {
+              staticClass: "form-control col-3 ml-2",
+              attrs: {
+                type: "text",
+                placeholder: "Расход/м2",
+                id: "service-material-" + _vm.material.id
+              }
+            })
+          ]
+        )
+      ])
+    ]
+  )
+}
+var staticRenderFns = []
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-aece522c", module.exports)
+  }
+}
 
 /***/ })
 /******/ ]);
