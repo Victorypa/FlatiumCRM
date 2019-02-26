@@ -15,13 +15,22 @@
 
 
               <div class="row create-floor-work__content px-15">
-                <div class="col-12">
+                <div class="col-10">
                     <div class="input-group">
                       <input class="form-control py-2"
                              placeholder="Введите навание материала"
                              v-model="searchQuery"
                              >
                     </div>
+                </div>
+
+                <div class="col-2">
+                    <button type="button"
+                            class="btn btn-link"
+                            @click="handle()"
+                            >
+                        Чистить
+                    </button>
                 </div>
               </div>
 
@@ -100,13 +109,11 @@
                 }
             },
 
-            // saveServiceMaterial () {
-            //     axios.post(`/api/orders/${this.$route.params.id}/rooms/${this.$route.params.room_id}/services/${this.$route.params.service_id}/materials/store`, {
-            //         'service_material_ids': this.room_service_material_ids,
-            //         'service_material_rates': this.removeEmptyElem(this.service_material_rates),
-            //         'service_material_quantities': this.removeEmptyElem(this.service_material_quantities),
-            //     })
-            // }
+
+            handle () {
+                this.searchQuery = ''
+                this.getService()
+            }
         },
 
         computed: {
