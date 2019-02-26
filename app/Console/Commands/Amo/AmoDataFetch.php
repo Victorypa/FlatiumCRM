@@ -105,7 +105,7 @@ class AmoDataFetch extends Command
         $allowed_status_ids = [
             18733813, 21851482, 632370133,
             22510579, 19015582, 19015585,
-            21236431, 24432478
+            21236431, 24432478, 18733678
         ];
 
         return $allowed_status_ids;
