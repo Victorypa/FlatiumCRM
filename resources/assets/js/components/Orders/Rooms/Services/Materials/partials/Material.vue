@@ -5,6 +5,7 @@
           <input class="form-check-input"
                  :id="'material-' + material.id"
                  type="checkbox"
+                 @click="addRoomServiceMaterial()"
                  >
 
           <label class="form-check-label"
@@ -63,6 +64,10 @@
         props: ['material', 'material_units'],
 
         methods: {
+            addRoomServiceMaterial () {
+
+            },
+
             updateMaterialUnit () {
                 axios.patch(`/api/materials/${this.material.id}/update`, {
                     'material_unit_id': this.material.material_unit_id

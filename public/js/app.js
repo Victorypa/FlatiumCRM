@@ -96342,11 +96342,13 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     props: ['material', 'material_units'],
 
     methods: {
+        addRoomServiceMaterial: function addRoomServiceMaterial() {},
         updateMaterialUnit: function updateMaterialUnit() {
             axios.patch('/api/materials/' + this.material.id + '/update', {
                 'material_unit_id': this.material.material_unit_id
@@ -96386,7 +96388,12 @@ var render = function() {
         _c("div", { staticClass: "form-check" }, [
           _c("input", {
             staticClass: "form-check-input",
-            attrs: { id: "material-" + _vm.material.id, type: "checkbox" }
+            attrs: { id: "material-" + _vm.material.id, type: "checkbox" },
+            on: {
+              click: function($event) {
+                _vm.addRoomServiceMaterial()
+              }
+            }
           }),
           _vm._v(" "),
           _c(
