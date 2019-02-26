@@ -37,6 +37,7 @@
               <div class="row pt-4">
                   <AddMaterial />
 
+                  <RoomServiceMaterial />
 
                   <Material v-if="filteredMaterials.length !== 0"
                             v-for="material in filteredMaterials"
@@ -60,11 +61,13 @@
     import ServiceDetail from '@/components/Services/Materials/partials/ServiceDetail'
     import AddMaterial from '@/components/Services/Materials/partials/AddMaterial'
     import Material from './partials/Material'
+    import RoomServiceMaterial from './partials/RoomServiceMaterial'
 
     export default {
         data () {
             return {
                 service: [],
+                room_service: [],
                 searchQuery: '',
                 material_units: []
             }
@@ -73,10 +76,12 @@
         created () {
             this.getMaterialUnits()
             this.getService()
+            this.getCurrentRoomService()
         },
 
         components: {
-            ServiceDetail, AddMaterial, Material
+            ServiceDetail, AddMaterial,
+            Material, RoomServiceMaterial
         },
 
         methods: {
@@ -90,11 +95,7 @@
             getCurrentRoomService () {
                 return axios.get(`/api/orders/${this.$route.params.id}/rooms/${this.$route.params.room_id}/services/${this.$route.params.service_id}/show`)
                             .then(response => {
-
-                                // this.currentRoomService = response.data
-                                // response.data.materials.forEach(material => {
-                                //     this.room_service_material_ids.push(material.id)
-                                // })
+                                this.room_service = response.data
                             })
             },
 
