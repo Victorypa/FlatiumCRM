@@ -97058,13 +97058,14 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     props: ['material', 'quantity'],
 
     computed: {
-        filteredMaterialPrice: function filteredMaterialPrice() {}
+        filteredMaterialPrice: function filteredMaterialPrice() {
+            return new Intl.NumberFormat('ru-Ru').format(parseInt(Math.ceil(this.material.pivot.rate * this.quantity / this.material.quantity) * this.material.price));
+        }
     }
 });
 
@@ -97087,21 +97088,20 @@ var render = function() {
       ])
     ]),
     _vm._v(" "),
-    _vm._m(0)
-  ])
-}
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "col-6" }, [
+    _c("div", { staticClass: "col-6" }, [
       _c("div", { staticClass: "d-flex align-items-center" }, [
-        _c("div", { staticClass: "form-group__calc col-md-2" })
+        _c("div", { staticClass: "form-group__calc col-md-2" }, [
+          _vm._v(
+            "\n              " +
+              _vm._s(_vm.filteredMaterialPrice) +
+              " Р\n          "
+          )
+        ])
       ])
     ])
-  }
-]
+  ])
+}
+var staticRenderFns = []
 render._withStripped = true
 module.exports = { render: render, staticRenderFns: staticRenderFns }
 if (false) {

@@ -12,11 +12,10 @@
           <div class="col-6">
             <div class="d-flex align-items-center">
               <div class="form-group__calc col-md-2">
-                  <!-- {{ getMaterialSummary(material.pivot.rate, material.quantity, material.price, service_quantities[room_service_id]) }} Р -->
+                  {{ filteredMaterialPrice }} Р
               </div>
             </div>
           </div>
-
     </div>
 </template>
 
@@ -26,7 +25,9 @@
 
         computed: {
             filteredMaterialPrice () {
-
+                return new Intl.NumberFormat('ru-Ru').format(
+                    parseInt(Math.ceil((this.material.pivot.rate * this.quantity)/this.material.quantity) * this.material.price)
+                )
             }
         }
     }
