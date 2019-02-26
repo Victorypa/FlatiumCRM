@@ -70195,6 +70195,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         };
     },
     created: function created() {
+        this.getMaterialUnits();
         this.getService();
     },
 
@@ -96335,9 +96336,24 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-    props: ['material', 'material_units']
+    props: ['material', 'material_units'],
+
+    methods: {
+        updateMaterialUnit: function updateMaterialUnit() {
+            axios.patch('/api/materials/' + this.material.id + '/update', {
+                'material_unit_id': this.material.material_unit_id
+            });
+        }
+    }
 });
 
 /***/ }),
@@ -96418,22 +96434,59 @@ var render = function() {
             _c(
               "select",
               {
+                directives: [
+                  {
+                    name: "model",
+                    rawName: "v-model",
+                    value: _vm.material.material_unit_id,
+                    expression: "material.material_unit_id"
+                  }
+                ],
                 staticClass: "form-control col-4 ml-2",
-                attrs: { disabled: "" }
+                on: {
+                  change: [
+                    function($event) {
+                      var $$selectedVal = Array.prototype.filter
+                        .call($event.target.options, function(o) {
+                          return o.selected
+                        })
+                        .map(function(o) {
+                          var val = "_value" in o ? o._value : o.value
+                          return val
+                        })
+                      _vm.$set(
+                        _vm.material,
+                        "material_unit_id",
+                        $event.target.multiple
+                          ? $$selectedVal
+                          : $$selectedVal[0]
+                      )
+                    },
+                    function($event) {
+                      _vm.updateMaterialUnit()
+                    }
+                  ]
+                }
               },
-              [
-                _c(
+              _vm._l(_vm.material_units, function(material_unit) {
+                return _c(
                   "option",
-                  { domProps: { value: _vm.material.material_unit.id } },
+                  {
+                    domProps: {
+                      value: material_unit.id,
+                      selected:
+                        material_unit.id === _vm.material.material_unit_id
+                    }
+                  },
                   [
                     _vm._v(
-                      "\n              " +
-                        _vm._s(_vm.material.material_unit.name) +
-                        "\n          "
+                      "\n                     " +
+                        _vm._s(material_unit.name) +
+                        "\n                 "
                     )
                   ]
                 )
-              ]
+              })
             ),
             _vm._v(" "),
             _c("input", {
@@ -96441,7 +96494,7 @@ var render = function() {
               attrs: {
                 type: "text",
                 placeholder: "Расход/м2",
-                id: "service-material-" + _vm.material.id
+                id: "material-" + _vm.material.id
               }
             })
           ]

@@ -30,16 +30,23 @@
      <div class="col-md-4 px-0">
          <div class="form-group d-flex align-items-center mb-0 justify-around">
 
-            <select class="form-control col-4 ml-2" disabled>
-              <option :value="material.material_unit.id">
-                  {{ material.material_unit.name }}
-              </option>
-            </select>
+             <select class="form-control col-4 ml-2"
+                     v-model="material.material_unit_id"
+                     @change="updateMaterialUnit()"
+                     >
+                     <option v-for="material_unit in material_units"
+                            :value="material_unit.id"
+                            :selected="material_unit.id === material.material_unit_id"
+                             >
+                         {{ material_unit.name }}
+                     </option>
+             </select>
+
 
             <input type="text"
                    class="form-control col-3 ml-2"
                    placeholder="Расход/м2"
-                   :id="'service-material-' + material.id"
+                   :id="'material-' + material.id"
                    >
                    <!-- v-model="service_material_rates[material.id]" -->
                    <!-- @change="saveServiceMaterial()" -->
@@ -54,6 +61,14 @@
 
 <script>
     export default {
-        props: ['material', 'material_units']
+        props: ['material', 'material_units'],
+
+        methods: {
+            updateMaterialUnit () {
+                axios.patch(`/api/materials/${this.material.id}/update`, {
+                    'material_unit_id': this.material.material_unit_id
+                })
+            }
+        }
     }
 </script>

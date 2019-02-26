@@ -62,6 +62,7 @@
         },
 
         created () {
+            this.getMaterialUnits()
             this.getService()
         },
 
