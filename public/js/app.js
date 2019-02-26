@@ -70165,6 +70165,13 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -70222,6 +70229,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         handle: function handle() {
             this.searchQuery = '';
             this.getService();
+            this.getCurrentRoomService();
         }
     },
 
@@ -70231,6 +70239,18 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
             if (this.service.length !== 0) {
                 var data = this.service.materials;
+
+                var room_service_material_ids = [];
+
+                if (this.room_service.length !== 0) {
+                    this.room_service.materials.forEach(function (room_service_material) {
+                        room_service_material_ids.push(room_service_material.id);
+                    });
+
+                    data = data.filter(function (row) {
+                        return room_service_material_ids.indexOf(row.id) < 0;
+                    });
+                }
 
                 data = data.filter(function (row) {
                     return Object.keys(row).some(function (key) {
@@ -70332,7 +70352,22 @@ var render = function() {
                     [
                       _c("AddMaterial"),
                       _vm._v(" "),
-                      _c("RoomServiceMaterial"),
+                      _vm._l(_vm.room_service.materials, function(material) {
+                        return _vm.room_service.materials.length !== 0
+                          ? _c("RoomServiceMaterial", {
+                              key: "room-service-material-" + material.id,
+                              attrs: {
+                                material: material,
+                                material_units: _vm.material_units
+                              },
+                              on: {
+                                "removed-material": function($event) {
+                                  _vm.handle()
+                                }
+                              }
+                            })
+                          : _vm._e()
+                      }),
                       _vm._v(" "),
                       _vm._l(_vm.filteredMaterials, function(material) {
                         return _vm.filteredMaterials.length !== 0
@@ -70341,6 +70376,11 @@ var render = function() {
                               attrs: {
                                 material: material,
                                 material_units: _vm.material_units
+                              },
+                              on: {
+                                "added-material": function($event) {
+                                  _vm.handle()
+                                }
                               }
                             })
                           : _vm._e()
@@ -96634,8 +96674,100 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
-/* harmony default export */ __webpack_exports__["default"] = ({});
+/* harmony default export */ __webpack_exports__["default"] = ({
+    props: ['material', 'material_units'],
+
+    methods: {
+        removeRoomServiceMaterial: function removeRoomServiceMaterial() {
+            var _this = this;
+
+            axios.post('/api/orders/' + this.$route.params.id + '/rooms/' + this.$route.params.room_id + '/services/' + this.$route.params.service_id + '/materials/remove', {
+                'material_id': this.material.id
+            }).then(function (response) {
+                _this.$emit('removed-material');
+            });
+        },
+        updateMaterialUnit: function updateMaterialUnit() {
+            axios.patch('/api/materials/' + this.material.id + '/update', {
+                'material_unit_id': this.material.material_unit_id
+            });
+        },
+        updateMaterialQuantity: function updateMaterialQuantity() {
+            axios.patch('/api/materials/' + this.material.id + '/update', {
+                'quantity': this.material.quantity
+            });
+        }
+    },
+
+    computed: {
+        materialPrice: function materialPrice() {
+            if (this.material.pivot.rate && this.material.quantity) {
+                return parseFloat(Math.ceil(this.material.pivot.rate / this.material.quantity) * this.material.price).toFixed(2);
+            }
+        }
+    }
+});
 
 /***/ }),
 /* 439 */
@@ -96645,7 +96777,177 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div")
+  return _c(
+    "div",
+    {
+      staticClass: "row justify-content-between align-items-center col-12 py-1"
+    },
+    [
+      _c("div", { staticClass: "col-6" }, [
+        _c("div", { staticClass: "form-check" }, [
+          _c("input", {
+            staticClass: "form-check-input",
+            attrs: {
+              id: "material-" + _vm.material.id,
+              type: "checkbox",
+              checked: ""
+            },
+            on: {
+              click: function($event) {
+                _vm.removeRoomServiceMaterial()
+              }
+            }
+          }),
+          _vm._v(" "),
+          _c(
+            "label",
+            {
+              staticClass: "form-check-label",
+              attrs: { for: "material-" + _vm.material.id }
+            },
+            [_vm._v("\n             " + _vm._s(_vm.material.name) + "\n      ")]
+          )
+        ])
+      ]),
+      _vm._v(" "),
+      _c(
+        "div",
+        {
+          staticClass:
+            "col-2 d-flex pr-2 align-items-center justify-content-between py-2"
+        },
+        [
+          _c("div", { staticClass: "total-sum col-6" }, [
+            _vm._v("\n        " + _vm._s(_vm.material.price) + " Р\n    ")
+          ]),
+          _vm._v(" "),
+          _c("input", {
+            directives: [
+              {
+                name: "model",
+                rawName: "v-model",
+                value: _vm.material.quantity,
+                expression: "material.quantity"
+              }
+            ],
+            staticClass: "form-control ml-2 col-6",
+            attrs: { type: "text", placeholder: "Ед.уп" },
+            domProps: { value: _vm.material.quantity },
+            on: {
+              change: function($event) {
+                _vm.updateMaterialQuantity()
+              },
+              input: function($event) {
+                if ($event.target.composing) {
+                  return
+                }
+                _vm.$set(_vm.material, "quantity", $event.target.value)
+              }
+            }
+          })
+        ]
+      ),
+      _vm._v(" "),
+      _c("div", { staticClass: "col-md-4 px-0" }, [
+        _c(
+          "div",
+          {
+            staticClass:
+              "form-group d-flex align-items-center mb-0 justify-around"
+          },
+          [
+            _c(
+              "select",
+              {
+                directives: [
+                  {
+                    name: "model",
+                    rawName: "v-model",
+                    value: _vm.material.material_unit_id,
+                    expression: "material.material_unit_id"
+                  }
+                ],
+                staticClass: "form-control col-4 ml-2",
+                on: {
+                  change: [
+                    function($event) {
+                      var $$selectedVal = Array.prototype.filter
+                        .call($event.target.options, function(o) {
+                          return o.selected
+                        })
+                        .map(function(o) {
+                          var val = "_value" in o ? o._value : o.value
+                          return val
+                        })
+                      _vm.$set(
+                        _vm.material,
+                        "material_unit_id",
+                        $event.target.multiple
+                          ? $$selectedVal
+                          : $$selectedVal[0]
+                      )
+                    },
+                    function($event) {
+                      _vm.updateMaterialUnit()
+                    }
+                  ]
+                }
+              },
+              _vm._l(_vm.material_units, function(material_unit) {
+                return _c(
+                  "option",
+                  {
+                    domProps: {
+                      value: material_unit.id,
+                      selected:
+                        material_unit.id === _vm.material.material_unit_id
+                    }
+                  },
+                  [
+                    _vm._v(
+                      "\n                     " +
+                        _vm._s(material_unit.name) +
+                        "\n                 "
+                    )
+                  ]
+                )
+              })
+            ),
+            _vm._v(" "),
+            _c("input", {
+              directives: [
+                {
+                  name: "model",
+                  rawName: "v-model",
+                  value: _vm.material.pivot.rate,
+                  expression: "material.pivot.rate"
+                }
+              ],
+              staticClass: "form-control col-3 ml-2",
+              attrs: {
+                type: "text",
+                placeholder: "Расход/м2",
+                id: "material-" + _vm.material.id
+              },
+              domProps: { value: _vm.material.pivot.rate },
+              on: {
+                input: function($event) {
+                  if ($event.target.composing) {
+                    return
+                  }
+                  _vm.$set(_vm.material.pivot, "rate", $event.target.value)
+                }
+              }
+            }),
+            _vm._v(" "),
+            _c("div", { staticClass: "total-sum col-3 text-right pr-0" }, [
+              _vm._v("\n         " + _vm._s(_vm.materialPrice) + " Р\n      ")
+            ])
+          ]
+        )
+      ])
+    ]
+  )
 }
 var staticRenderFns = []
 render._withStripped = true

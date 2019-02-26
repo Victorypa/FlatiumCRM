@@ -37,13 +37,20 @@
               <div class="row pt-4">
                   <AddMaterial />
 
-                  <RoomServiceMaterial />
+                  <RoomServiceMaterial v-if="room_service.materials.length !== 0"
+                                       v-for="material in room_service.materials"
+                                       :material="material"
+                                       :material_units="material_units"
+                                       :key="'room-service-material-' + material.id"
+                                       @removed-material="handle()"
+                                       />
 
                   <Material v-if="filteredMaterials.length !== 0"
                             v-for="material in filteredMaterials"
                             :material="material"
                             :material_units="material_units"
                             :key="material.id"
+                            @added-material="handle()"
                             />
               </div>
 
@@ -114,6 +121,7 @@
             handle () {
                 this.searchQuery = ''
                 this.getService()
+                this.getCurrentRoomService()
             }
         },
 
@@ -121,6 +129,18 @@
           filteredMaterials() {
               if (this.service.length !== 0) {
                   let data = this.service.materials
+
+                  let room_service_material_ids = []
+
+                  if (this.room_service.length !== 0) {
+                      this.room_service.materials.forEach(room_service_material => {
+                          room_service_material_ids.push(room_service_material.id)
+                      })
+
+                      data = data.filter(row => {
+                          return room_service_material_ids.indexOf(row.id) < 0
+                      })
+                  }
 
                   data = data.filter(row => {
                     return Object.keys(row).some(key => {

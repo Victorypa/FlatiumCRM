@@ -24,7 +24,6 @@ class RoomServiceMaterialController extends Controller
 
     public function store(Order $order, Room $room, Service $service, Request $request)
     {
-
         $room_service = RoomService::where([
             ['room_id', $room->id], ['service_id', $service->id]
         ])->first();
@@ -38,8 +37,12 @@ class RoomServiceMaterialController extends Controller
         return response('added material', 200);
     }
 
-    public function remove()
+    public function remove(Order $order, Room $room, Service $service, Request $request)
     {
+        $room_service = RoomService::where([
+            ['room_id', $room->id], ['service_id', $service->id]
+        ])->first();
 
+        $room_service->materials()->detach($request->material_id);
     }
 }
