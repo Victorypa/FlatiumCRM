@@ -96734,6 +96734,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     props: ['material', 'material_units'],
@@ -96756,6 +96757,12 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         updateMaterialQuantity: function updateMaterialQuantity() {
             axios.patch('/api/materials/' + this.material.id + '/update', {
                 'quantity': this.material.quantity
+            });
+        },
+        updateRate: function updateRate() {
+            axios.patch('/api/orders/' + this.$route.params.id + '/rooms/' + this.$route.params.room_id + '/services/' + this.$route.params.service_id + '/materials/update', {
+                'material_id': this.material.id,
+                'rate': this.material.pivot.rate
             });
         }
     },
@@ -96931,6 +96938,9 @@ var render = function() {
               },
               domProps: { value: _vm.material.pivot.rate },
               on: {
+                change: function($event) {
+                  _vm.updateRate()
+                },
                 input: function($event) {
                   if ($event.target.composing) {
                     return

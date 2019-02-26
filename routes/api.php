@@ -204,6 +204,7 @@ use Illuminate\Http\Request;
                     Route::get('/{order}/rooms/{room}/services/{service}/materials', 'RoomServiceMaterialController@index');
                     Route::post('/{order}/rooms/{room}/services/{service}/materials/store', 'RoomServiceMaterialController@store');
                     Route::post('/{order}/rooms/{room}/services/{service}/materials/remove', 'RoomServiceMaterialController@remove');
+                    Route::patch('/{order}/rooms/{room}/services/{service}/materials/update', 'RoomServiceMaterialController@update');
                 });
             });
 

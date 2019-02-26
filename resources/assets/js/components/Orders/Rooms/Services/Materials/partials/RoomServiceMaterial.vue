@@ -50,6 +50,7 @@
                    placeholder="Расход/м2"
                    :id="'material-' + material.id"
                    v-model="material.pivot.rate"
+                   @change="updateRate()"
                    >
 
           <div class="total-sum col-3 text-right pr-0">
@@ -86,6 +87,13 @@
                     'quantity': this.material.quantity
                 })
             },
+
+            updateRate () {
+                axios.patch(`/api/orders/${this.$route.params.id}/rooms/${this.$route.params.room_id}/services/${this.$route.params.service_id}/materials/update`, {
+                    'material_id': this.material.id,
+                    'rate': this.material.pivot.rate
+                })
+            }
         },
 
         computed: {

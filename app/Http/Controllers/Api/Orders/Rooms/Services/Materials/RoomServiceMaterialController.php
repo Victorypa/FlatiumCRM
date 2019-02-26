@@ -31,8 +31,8 @@ class RoomServiceMaterialController extends Controller
         $room_service->materials()->attach($request->material_id);
 
         $room_service->materials()->updateExistingPivot($request->material_id, [
-                'rate' => $request->rate
-            ]);
+            'rate' => $request->rate
+        ]);
 
         return response('added material', 200);
     }
@@ -44,5 +44,16 @@ class RoomServiceMaterialController extends Controller
         ])->first();
 
         $room_service->materials()->detach($request->material_id);
+    }
+
+    public function update(Order $order, Room $room, Service $service, Request $request)
+    {
+        $room_service = RoomService::where([
+            ['room_id', $room->id], ['service_id', $service->id]
+        ])->first();
+
+        $room_service->materials()->updateExistingPivot($request->material_id, [
+            'rate' => $request->rate
+        ]);
     }
 }
