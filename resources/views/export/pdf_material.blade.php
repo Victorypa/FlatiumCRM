@@ -106,7 +106,9 @@
                                 <th class="table-caption"></th>
                                 <td class="table-caption"></td>
                                 <td class="table-caption"></td>
-                                <td class="table-caption"></td>
+                                <td class="table-caption">
+                                    <strong class="font-size-fix"><b>{{ number_format($room->price, 0, ',', ' ') }} Р</b></strong>
+                                </td>
                             </tr>
                         </table>
                     </div>
@@ -114,76 +116,82 @@
             @endif
 
             <div class="value-materials-wrapper">
-                @if ($order->discount)
-                    <table class="border-free">
-                        <tr class="border-free">
-                            <th class="table-caption border-free background-free"></th>
+                <div class="px-20 value-materials">
+                    @if ($material_names)
+                        <div class="main-subtitle col-10">
+                            Предварительный расчет строительных материалов
+                        </div>
+                    @endif
+                </div>
 
-                            <td class="py-25 table-caption border-free ml-20"><strong><b>ИТОГО:</b></strong>
-                                <br>
-                                <span class="font-size-fix">Скидка {{ $order->discount }}%</span>
-                            </td>
-                            <td class="table-caption border-free ml-15" colspan="2">
-                                <strong class="font-size-fix"><b>{{ number_format((int) $order->original_price, 0, '', ' ') }} Р</b></strong>
-                                <strong class="font-size-fix"><b>{{ number_format((int) $order->price, 0, '', ' ') }} Р</b></strong>
-                            </td>
+                <table>
+                        @if ($material_names)
+                            <tr>
+                                <th class="table-subtitle">Наименование
+                                </th>
+                                <td class="table-subtitle">Кол-во</td>
+                                <td class="table-subtitle">Цена</td>
+                                <td class="table-subtitle">Стоимость</td>
+                            </tr>
 
-                        </tr>
+                            @foreach ($material_names as $id => $name)
+                                <tr class="table-materials">
+                                    <th class="table-materials-subtitle">{{ $name }}</th>
+                                    @if ($material_quantites[$id] != 0)
+                                        <td>{{ ceil($material_rates[$id] / $material_quantites[$id]) }} шт</td>
+                                    @else
+                                        <td>0 шт</td>
+                                    @endif
+                                    <td>{{ $material_prices[$id] }} Р</td>
+
+                                    @if ($material_quantites[$id] != 0)
+                                        <td>{{ number_format((int) ceil($material_rates[$id] / $material_quantites[$id]) * $material_prices[$id], 0, '', ' ') }} Р</td>
+                                    @else
+                                        <td>0 Р</td>
+                                    @endif
+                                </tr>
+                            @endforeach
+
+                            <tr class="borders">
+                                <th class="table-caption full-summ-wrapper"></th>
+                                <td class="material-summ full-summ-wrapper py-15" colspan="2">Итого по материалам:</td>
+                                <td class="material-summ full-summ-wrapper material-summ-value py-15"> {{ number_format((int) $material_total_price, 0, '', ' ') }} Р</td>
+                            </tr>
+                        @endif
+
+                        @if ($order->discount)
+                            <table class="border-free">
+                                <tr class="border-free">
+                                    <th class="table-caption border-free background-free"></th>
+
+                                    <td class="py-25 table-caption border-free ml-20"><strong><b>ИТОГО:</b></strong>
+                                        <br>
+                                        <span class="font-size-fix">Скидка {{ $order->discount }}%</span>
+                                    </td>
+                                    <td class="table-caption border-free ml-15" colspan="2">
+                                        <strong class="font-size-fix"><b>{{ number_format((int) $order->original_price, 0, '', ' ') }} Р</b></strong>
+                                        <strong class="font-size-fix"><b>{{ number_format((int) $order->price, 0, '', ' ') }} Р</b></strong>
+                                    </td>
+
+                                </tr>
+                            </table>
+                        @endif
+
+                        @if ($order->markup)
+                            <table class="border-free">
+                                <tr class="border-free">
+                                    <th class="table-caption border-free background-free"></th>
+
+                                    <td class="py-25 table-caption border-free ml-20"><strong><b>ИТОГО:</b></strong></td>
+
+                                    <td class="table-caption border-free ml-15 font-size-fix" colspan="2">{{ number_format((int) $order->price, 0, '', ' ') }} Р
+                                    </td>
+
+                                </tr>
+                            </table>
+                        @endif
+                        
                     </table>
-                @endif
-
-                @if ($order->markup)
-                    <table class="border-free">
-                        <tr class="border-free">
-                            <th class="table-caption border-free background-free"></th>
-
-                            <td class="py-25 table-caption border-free ml-20"><strong><b>ИТОГО:</b></strong></td>
-
-                            <td class="table-caption border-free ml-15 font-size-fix" colspan="2">{{ number_format((int) $order->price, 0, '', ' ') }} Р
-                            </td>
-
-                        </tr>
-                    </table>
-                @endif
-
-                @if ($order->discount === null && $order->markup === null)
-                  <div class="container">
-                      <div class="row">
-                          <strong><b>
-                              ИТОГО ПО ВЕДОМОСТИ И СТОИМОСТИ РАБОТ:
-                              {{ number_format($order->price, 0, '', ' ') }} Р
-                          </b></strong>
-                      </div>
-                  </div>
-                @endif
-            </div>
-
-            <div class="value-materials-wrapper">
-                <table class="border-free">
-                    <tr class="border-free">
-                        <th class="table-caption border-free background-free"></th>
-
-                        <td class="py-25 table-caption border-free ml-20"><strong><b>ИТОГО:</b></strong>
-
-                        </td>
-                        <td class="table-caption border-free ml-15" colspan="2">
-                            <strong class="font-size-fix"><b>{{ number_format((int) $order->original_price, 0, '', ' ') }} Р</b></strong>
-                            <strong class="font-size-fix"><b>{{ number_format((int) $order->price, 0, '', ' ') }} Р</b></strong>
-                        </td>
-                    </tr>
-                </table>
-
-                {{-- <table class="border-free">
-                    <tr class="border-free">
-                        <th class="table-caption border-free background-free"></th>
-
-                        <td class="py-25 table-caption border-free ml-20"><strong><b>ИТОГО:</b></strong></td>
-
-                        <td class="table-caption border-free ml-15 font-size-fix" colspan="2"> Р
-                        </td>
-
-                    </tr>
-                </table> --}}
             </div>
 
             <div class="container header-name">
@@ -217,16 +225,6 @@
                                   </td>
                               </tr>
                           </table>
-
-                          {{-- <div class="container">
-                            <table class="border-free">
-                                <tr class="border-free">
-                                    <th class="table-caption border-free background-free"></th>
-                                    <td class="py-25 table-caption border-free ml-20"><strong><b>ИТОГО ПО РЕКОМЕНДУЕМЫМ РАБОТАМ:</b></strong></td>
-                                    <td class="table-caption border-free ml-15 font-size-fix" colspan="2"><strong><b>{{ number_format($room->price, 0, ',', ' ') }} Р</b></strong></td>
-                                </tr>
-                            </table>
-                          </div> --}}
                       </div>
                   @endforeach
               @endif
