@@ -37,7 +37,7 @@ class OrderController extends Controller
     {
         switch (request('option')) {
             case '1':
-                return $this->fullCopy($order);
+                return $order->fullCopy();
                 break;
 
             case '2':
@@ -135,61 +135,5 @@ class OrderController extends Controller
             "data" => "$name.xlsx"
         ]);
 
-    }
-
-    protected function fullCopy(Order $order)
-    {
-        $newOrder = Order::create([
-            'order_name' => "{$order->order_name} копия",
-            'address' => "{$order->address} копия",
-            'created_at' => Carbon::now(),
-            'original_price' => $order->original_price,
-            'price' => $order->price,
-            'isCopy' => true
-        ]);
-
-        foreach ($order->rooms as $room) {
-            $newRoom = $newOrder->rooms()->create([
-                'room_type_id' => $room->room_type_id,
-                'length' => $room->length,
-                'width' => $room->width,
-                'height' => $room->height,
-                'price' => $room->price,
-                'original_price' => $order->original_price,
-                'description' => $room->description,
-                'priority' => $room->priority
-            ]);
-
-            $newRoom->update([
-                'area' => $room->area,
-                'wall_area' => $room->wall_area,
-                'perimeter' => $room->perimeter,
-            ]);
-
-            foreach ($room->windows as $window) {
-                $newRoom->windows()->create([
-                    'type' => $window->type,
-                    'length' => $window->length,
-                    'width' => $window->width,
-                    'quantity' => $window->quantity
-                ]);
-            }
-
-            foreach ($room->room_services as $room_service) {
-                $newRoom->room_services()->create([
-                    'service_id' =>  $room_service->service_id,
-                    'service_type_id' => $room_service->service_type_id,
-                    'service_unit_id' => $room_service->service_unit_id,
-                    'quantity' => $room_service->quantity,
-                    'price' => $room_service->price,
-                    'priority' => $room_service->priority
-                ]);
-            }
-        }
-
-        return response()->json([
-            $newOrder,
-            $newOrder->rooms()->first()
-        ]);
     }
 }
