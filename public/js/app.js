@@ -53356,6 +53356,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
 
 
 
@@ -53552,7 +53556,15 @@ var render = function() {
                     { staticClass: "col-md-10 px-0" },
                     [
                       _vm.order.length !== 0
-                        ? _c("OrderDetail", { attrs: { order: _vm.order } })
+                        ? _c("OrderDetail", {
+                            attrs: {
+                              order: _vm.order,
+                              service_price: _vm.service_price,
+                              material_price: _vm.material_price,
+                              income_amount: _vm.income_amount,
+                              profit: _vm.profit
+                            }
+                          })
                         : _vm._e(),
                       _vm._v(" "),
                       _c("div", { staticClass: "col-12" }, [
@@ -96386,7 +96398,27 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-    props: ['order']
+    props: ['order', 'service_price', 'material_price', 'income_amount', 'profit'],
+
+    created: function created() {
+        console.log(this.service_price);
+    },
+
+
+    computed: {
+        servicePrice: function servicePrice() {
+            return new Intl.NumberFormat('ru-Ru').format(parseInt(this.service_price));
+        },
+        materialPrice: function materialPrice() {
+            return new Intl.NumberFormat('ru-Ru').format(parseInt(this.material_price));
+        },
+        income: function income() {
+            return new Intl.NumberFormat('ru-Ru').format(parseInt(this.income_amount));
+        },
+        filteredProfit: function filteredProfit() {
+            return new Intl.NumberFormat('ru-Ru').format(parseInt(this.profit));
+        }
+    }
 });
 
 /***/ }),
@@ -96440,7 +96472,27 @@ var render = function() {
           )
         ],
         1
-      )
+      ),
+      _vm._v(" "),
+      _c("div", { staticClass: "col-12 pt-3 d-flex" }, [
+        _c("div", { staticClass: "main-subtitle px-15 col-auto pl-0" }, [
+          _vm._v(" Итого: " + _vm._s(_vm.servicePrice) + " Р "),
+          _c("span", [_vm._v("(работы)")])
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "main-subtitle px-15 col-auto" }, [
+          _vm._v(" " + _vm._s(_vm.materialPrice) + " Р"),
+          _c("span", [_vm._v("(материалы)")])
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "main-subtitle px-15 col-auto" }, [
+          _vm._v(" Приход: " + _vm._s(_vm.income) + " Р")
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "main-subtitle px-15 col-auto" }, [
+          _vm._v(" Прибыль: " + _vm._s(_vm.filteredProfit) + " Р")
+        ])
+      ])
     ]
   )
 }

@@ -11,6 +11,10 @@
 
                     <OrderDetail v-if="order.length !== 0"
                                  :order="order"
+                                 :service_price="service_price"
+                                 :material_price="material_price"
+                                 :income_amount="income_amount"
+                                 :profit="profit"
                                  />
 
                   <div class="col-12">

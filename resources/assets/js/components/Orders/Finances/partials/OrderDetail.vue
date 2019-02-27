@@ -12,18 +12,40 @@
           </router-link>
       </div>
 
-      <!-- <div class="col-12 pt-3 d-flex">
-        <div class="main-subtitle px-15 col-auto pl-0"> Итого: {{ new Intl.NumberFormat('ru-Ru').format(parseInt(service_price)) }} Р <span>(работы)</span></div>
-        <div class="main-subtitle px-15 col-auto"> {{ new Intl.NumberFormat('ru-Ru').format(parseInt(material_price)) }} Р<span>(материалы)</span></div>
-        <div class="main-subtitle px-15 col-auto"> Приход: {{ new Intl.NumberFormat('ru-Ru').format(parseInt(income_amount)) }} Р</div>
-        <div class="main-subtitle px-15 col-auto"> Прибыль: {{ new Intl.NumberFormat('ru-Ru').format(parseInt(profit)) }} Р</div>
-      </div> -->
+      <div class="col-12 pt-3 d-flex">
+          <div class="main-subtitle px-15 col-auto pl-0"> Итого: {{ servicePrice }} Р <span>(работы)</span></div>
+          <div class="main-subtitle px-15 col-auto"> {{ materialPrice }} Р<span>(материалы)</span></div>
+          <div class="main-subtitle px-15 col-auto"> Приход: {{ income }} Р</div>
+          <div class="main-subtitle px-15 col-auto"> Прибыль: {{ filteredProfit }} Р</div>
+      </div>
 
     </div>
 </template>
 
 <script>
     export default {
-        props: ['order']
+        props: ['order', 'service_price', 'material_price', 'income_amount', 'profit'],
+
+        created () {
+            console.log(this.service_price);
+        },
+
+        computed: {
+            servicePrice () {
+                return new Intl.NumberFormat('ru-Ru').format(parseInt(this.service_price))
+            },
+
+            materialPrice () {
+                return new Intl.NumberFormat('ru-Ru').format(parseInt(this.material_price))
+            },
+
+            income () {
+                return new Intl.NumberFormat('ru-Ru').format(parseInt(this.income_amount))
+            },
+
+            filteredProfit () {
+                return new Intl.NumberFormat('ru-Ru').format(parseInt(this.profit))
+            }
+        }
     }
 </script>
