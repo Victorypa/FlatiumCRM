@@ -8,7 +8,7 @@ use App\Models\Orders\Rooms\Room;
 use App\Models\Orders\Uploads\Folder;
 use App\Models\Orders\Steps\OrderStep;
 use App\Models\Orders\Financial\Finance;
-use App\Models\Traits\Orders\OrderCalculationTrait;
+use App\Models\Traits\Orders\{OrderCalculationTrait, OrderCopyTrait};
 use Illuminate\Database\Eloquent\{Model, SoftDeletes};
 use App\Models\Orders\Acts\{ExtraOrderAct, FinishedOrderAct};
 

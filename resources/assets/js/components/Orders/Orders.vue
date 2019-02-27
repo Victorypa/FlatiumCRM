@@ -24,7 +24,6 @@
                            type="search" placeholder="Введите адрес"
                            v-model="quickSearchQuery"
                            >
-                    <i class="fa fa-search"></i>
                   </div>
               </div>
 

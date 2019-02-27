@@ -41,7 +41,7 @@ class OrderController extends Controller
                 break;
 
             case '2':
-                return $this->optionalCopy($order);
+                return $order->optionalCopy();
                 break;
             default:
                 return null;
@@ -185,45 +185,6 @@ class OrderController extends Controller
                     'priority' => $room_service->priority
                 ]);
             }
-        }
-
-        return response()->json([
-            $newOrder,
-            $newOrder->rooms()->first()
-        ]);
-    }
-
-    protected function optionalCopy(Order $order)
-    {
-        $newOrder = Order::create([
-            'order_name' => "{$order->order_name} копия",
-            'address' => "{$order->address} копия",
-            'original_price' => $order->original_price,
-            'price' => $order->price,
-            'created_at' => Carbon::now(),
-            'isCopy' => true
-        ]);
-
-        foreach ($order->rooms as $room) {
-            $newRoom = $newOrder->rooms()->create([
-                'room_type_id' => $room->room_type_id,
-                'length' => $room->length,
-                'width' => $room->width,
-                'height' => $room->height,
-                'price' => $room->price,
-                'original_price' => $order->original_price,
-                'description' => $room->description,
-            ]);
-
-            foreach ($room->windows as $window) {
-                $newRoom->windows()->create([
-                    'type' => $window->type,
-                    'length' => $window->length,
-                    'width' => $window->width,
-                    'quantity' => $window->quantity
-                ]);
-            }
-
         }
 
         return response()->json([
