@@ -123,71 +123,13 @@
 
                   </div>
 
-
                   <div class="col-12 px-0 bg mt-3">
                     <table class="table table-hover">
                           <tbody>
-                              <template v-for="finance in filteredFinances">
-                                  <tr style="background-color: #DEFFE8;" v-if="finance.finance_type === 'income'">
-                                    <td class="pl-4">+{{ finance.price }}</td>
-                                    <td>{{ finance.reason }}</td>
-                                    <td>{{ dateFormatter(finance.inputed_at) }}</td>
-                                    <td>
-                                        <button @click="deleteFinance(finance.id)" class="add-button add-button--remove d-flex align-items-center" title="Удалить материал">
-                                              <img src="/img/del.svg" alt="add-button">
-                                              <div class="remove-materials ml-1">
-                                                Удалить
-                                              </div>
-                                        </button>
-                                    </td>
-                                    <td>
-                                      <div class="form-check custom-control checkbox">
-                                        <input class="form-check-input check"
-                                               :id="'finance-' + finance.id"
-                                               type="checkbox"
-                                               :checked="finance.can_be_showed"
-                                               @click="updateFinance(finance)"
-                                               >
-                                        <label class="form-check-label" :for="'finance-' + finance.id">
-                                          показывать
-                                        </label>
-                                      </div>
-                                    </td>
-                                    <td>&nbsp;</td>
-                                  </tr>
-
-                                  <tr v-if="finance.finance_type === 'expense'">
-                                    <td class="pl-4">-{{ finance.price }}</td>
-                                    <td>{{ finance.reason }}</td>
-                                    <td>{{ dateFormatter(finance.inputed_at) }}</td>
-                                    <td>
-                                        <button @click="deleteFinance(finance.id)" class="add-button add-button--remove d-flex align-items-center" title="Удалить материал">
-                                              <img src="/img/del.svg" alt="add-button">
-                                              <div class="remove-materials ml-1">
-                                                Удалить
-                                              </div>
-                                        </button>
-                                    </td>
-                                    <td>
-                                      <div class="form-check custom-control checkbox">
-                                        <input class="form-check-input check"
-                                               :id="'finance-' + finance.id"
-                                               type="checkbox"
-                                               :checked="finance.can_be_showed"
-                                               @click="updateFinance(finance)"
-                                               >
-                                        <label class="form-check-label" :for="'finance-' + finance.id">
-                                          показывать
-                                        </label>
-                                      </div>
-                                    </td>
-
-                                    <td v-if="finance.finance_files.length">
-                                        <a :href="'/storage/finances/' + finance.finance_files[0].file_path">смотреть файл</a>
-                                    </td>
-                                  </tr>
-                              </template>
-
+                              <Finance v-for="finance in filteredFinances"
+                                       :finance="finance"
+                                       :key="finance.id"
+                                       />
                           </tbody>
                     </table>
                   </div>
@@ -205,11 +147,12 @@
 
 <script>
 import OrderDetail from './partials/OrderDetail'
+import Finance from './partials/Finance'
+
 import Datepicker from "vuejs-datepicker"
 import { ru } from "vuejs-datepicker/dist/locale"
 import vue2Dropzone from 'vue2-dropzone'
 import 'vue2-dropzone/dist/vue2Dropzone.min.css'
-let moment = require("moment")
 
 export default {
     data () {
@@ -251,7 +194,7 @@ export default {
     },
 
     components: {
-        Datepicker, OrderDetail,
+        Datepicker, OrderDetail, Finance,
         vueDropzone: vue2Dropzone,
     },
 
@@ -353,26 +296,7 @@ export default {
 
         },
 
-        updateFinance (finance) {
-          axios.patch(`/api/orders/${this.$route.params.id}/finance/${finance.id}/update`, {
-            'can_be_showed': finance.can_be_showed ? false : true
-          }).then(response => {
-              this.getOrder()
-          })
-        },
 
-        deleteFinance (id) {
-            if (confirm('Удалить ?')) {
-                axios.delete(`/api/orders/${this.$route.params.id}/finance/${id}/delete`)
-                     .then(response => {
-                         this.getOrder()
-                     })
-            }
-        },
-
-        dateFormatter(dateString) {
-          return this.moment(new Date(dateString)).format("DD-MM-YYYY");
-        },
     },
 
     computed: {

@@ -53201,70 +53201,14 @@ exports.push([module.i, "\ninput[data-v-a478bd48]:required:valid {\n  border-col
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__partials_OrderDetail__ = __webpack_require__(443);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__partials_OrderDetail___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__partials_OrderDetail__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_vuejs_datepicker__ = __webpack_require__(5);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_vuejs_datepicker_dist_locale__ = __webpack_require__(6);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_vue2_dropzone__ = __webpack_require__(149);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_vue2_dropzone___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_vue2_dropzone__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_vue2_dropzone_dist_vue2Dropzone_min_css__ = __webpack_require__(150);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_vue2_dropzone_dist_vue2Dropzone_min_css___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4_vue2_dropzone_dist_vue2Dropzone_min_css__);
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__partials_Finance__ = __webpack_require__(446);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__partials_Finance___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__partials_Finance__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_vuejs_datepicker__ = __webpack_require__(5);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_vuejs_datepicker_dist_locale__ = __webpack_require__(6);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_vue2_dropzone__ = __webpack_require__(149);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_vue2_dropzone___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4_vue2_dropzone__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_vue2_dropzone_dist_vue2Dropzone_min_css__ = __webpack_require__(150);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_vue2_dropzone_dist_vue2Dropzone_min_css___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_5_vue2_dropzone_dist_vue2Dropzone_min_css__);
 //
 //
 //
@@ -53418,7 +53362,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 
 
-var moment = __webpack_require__(0);
+
+
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     data: function data() {
@@ -53442,11 +53387,11 @@ var moment = __webpack_require__(0);
 
             file: null,
 
-            ru: __WEBPACK_IMPORTED_MODULE_2_vuejs_datepicker_dist_locale__["a" /* ru */],
+            ru: __WEBPACK_IMPORTED_MODULE_3_vuejs_datepicker_dist_locale__["a" /* ru */],
             moment: moment,
 
             dropzoneOptions: {
-                url: "/api/orders/" + this.$route.params.id + "/finance/store",
+                url: '/api/orders/' + this.$route.params.id + '/finance/store',
                 paramName: 'file_path',
                 autoProcessQueue: false,
                 thumbnailWidth: 100,
@@ -53461,8 +53406,8 @@ var moment = __webpack_require__(0);
 
 
     components: {
-        Datepicker: __WEBPACK_IMPORTED_MODULE_1_vuejs_datepicker__["a" /* default */], OrderDetail: __WEBPACK_IMPORTED_MODULE_0__partials_OrderDetail___default.a,
-        vueDropzone: __WEBPACK_IMPORTED_MODULE_3_vue2_dropzone___default.a
+        Datepicker: __WEBPACK_IMPORTED_MODULE_2_vuejs_datepicker__["a" /* default */], OrderDetail: __WEBPACK_IMPORTED_MODULE_0__partials_OrderDetail___default.a, Finance: __WEBPACK_IMPORTED_MODULE_1__partials_Finance___default.a,
+        vueDropzone: __WEBPACK_IMPORTED_MODULE_4_vue2_dropzone___default.a
     },
 
     mounted: function mounted() {
@@ -53474,7 +53419,7 @@ var moment = __webpack_require__(0);
         getOrder: function getOrder() {
             var _this = this;
 
-            return axios.get("/api/orders/" + this.$route.params.id).then(function (response) {
+            return axios.get('/api/orders/' + this.$route.params.id).then(function (response) {
                 _this.order = response.data;
 
                 _this.service_price = _this.order.price === null ? 0 : _this.order.price;
@@ -53519,7 +53464,7 @@ var moment = __webpack_require__(0);
             var _this2 = this;
 
             if (this.income_reason !== null && this.income_date !== null) {
-                axios.post("/api/orders/" + this.$route.params.id + "/finance/store", {
+                axios.post('/api/orders/' + this.$route.params.id + '/finance/store', {
                     'type': 'income',
                     'income': this.income,
                     'income_date': this.income_date,
@@ -53536,7 +53481,7 @@ var moment = __webpack_require__(0);
 
             if (this.expense_reason !== null && this.expense_date !== null) {
                 if (this.expense_reason === 'Оплата материалов') {
-                    axios.post("/api/orders/" + this.$route.params.id + "/finance/store", {
+                    axios.post('/api/orders/' + this.$route.params.id + '/finance/store', {
                         'type': 'expense',
                         'income': this.expense,
                         'income_date': this.expense_date,
@@ -53548,7 +53493,7 @@ var moment = __webpack_require__(0);
                         }, 3000);
                     });
                 } else {
-                    axios.post("/api/orders/" + this.$route.params.id + "/finance/store", {
+                    axios.post('/api/orders/' + this.$route.params.id + '/finance/store', {
                         'type': 'expense',
                         'income': this.expense,
                         'income_date': this.expense_date,
@@ -53560,27 +53505,6 @@ var moment = __webpack_require__(0);
             } else {
                 alert('Вводи причину или дату');
             }
-        },
-        updateFinance: function updateFinance(finance) {
-            var _this4 = this;
-
-            axios.patch("/api/orders/" + this.$route.params.id + "/finance/" + finance.id + "/update", {
-                'can_be_showed': finance.can_be_showed ? false : true
-            }).then(function (response) {
-                _this4.getOrder();
-            });
-        },
-        deleteFinance: function deleteFinance(id) {
-            var _this5 = this;
-
-            if (confirm('Удалить ?')) {
-                axios.delete("/api/orders/" + this.$route.params.id + "/finance/" + id + "/delete").then(function (response) {
-                    _this5.getOrder();
-                });
-            }
-        },
-        dateFormatter: function dateFormatter(dateString) {
-            return this.moment(new Date(dateString)).format("DD-MM-YYYY");
         }
     },
 
@@ -54073,253 +53997,12 @@ var render = function() {
                         _c("table", { staticClass: "table table-hover" }, [
                           _c(
                             "tbody",
-                            [
-                              _vm._l(_vm.filteredFinances, function(finance) {
-                                return [
-                                  finance.finance_type === "income"
-                                    ? _c(
-                                        "tr",
-                                        {
-                                          staticStyle: {
-                                            "background-color": "#DEFFE8"
-                                          }
-                                        },
-                                        [
-                                          _c("td", { staticClass: "pl-4" }, [
-                                            _vm._v("+" + _vm._s(finance.price))
-                                          ]),
-                                          _vm._v(" "),
-                                          _c("td", [
-                                            _vm._v(_vm._s(finance.reason))
-                                          ]),
-                                          _vm._v(" "),
-                                          _c("td", [
-                                            _vm._v(
-                                              _vm._s(
-                                                _vm.dateFormatter(
-                                                  finance.inputed_at
-                                                )
-                                              )
-                                            )
-                                          ]),
-                                          _vm._v(" "),
-                                          _c("td", [
-                                            _c(
-                                              "button",
-                                              {
-                                                staticClass:
-                                                  "add-button add-button--remove d-flex align-items-center",
-                                                attrs: {
-                                                  title: "Удалить материал"
-                                                },
-                                                on: {
-                                                  click: function($event) {
-                                                    _vm.deleteFinance(
-                                                      finance.id
-                                                    )
-                                                  }
-                                                }
-                                              },
-                                              [
-                                                _c("img", {
-                                                  attrs: {
-                                                    src: "/img/del.svg",
-                                                    alt: "add-button"
-                                                  }
-                                                }),
-                                                _vm._v(" "),
-                                                _c(
-                                                  "div",
-                                                  {
-                                                    staticClass:
-                                                      "remove-materials ml-1"
-                                                  },
-                                                  [
-                                                    _vm._v(
-                                                      "\n                                            Удалить\n                                          "
-                                                    )
-                                                  ]
-                                                )
-                                              ]
-                                            )
-                                          ]),
-                                          _vm._v(" "),
-                                          _c("td", [
-                                            _c(
-                                              "div",
-                                              {
-                                                staticClass:
-                                                  "form-check custom-control checkbox"
-                                              },
-                                              [
-                                                _c("input", {
-                                                  staticClass:
-                                                    "form-check-input check",
-                                                  attrs: {
-                                                    id: "finance-" + finance.id,
-                                                    type: "checkbox"
-                                                  },
-                                                  domProps: {
-                                                    checked:
-                                                      finance.can_be_showed
-                                                  },
-                                                  on: {
-                                                    click: function($event) {
-                                                      _vm.updateFinance(finance)
-                                                    }
-                                                  }
-                                                }),
-                                                _vm._v(" "),
-                                                _c(
-                                                  "label",
-                                                  {
-                                                    staticClass:
-                                                      "form-check-label",
-                                                    attrs: {
-                                                      for:
-                                                        "finance-" + finance.id
-                                                    }
-                                                  },
-                                                  [
-                                                    _vm._v(
-                                                      "\n                                      показывать\n                                    "
-                                                    )
-                                                  ]
-                                                )
-                                              ]
-                                            )
-                                          ]),
-                                          _vm._v(" "),
-                                          _c("td", [_vm._v(" ")])
-                                        ]
-                                      )
-                                    : _vm._e(),
-                                  _vm._v(" "),
-                                  finance.finance_type === "expense"
-                                    ? _c("tr", [
-                                        _c("td", { staticClass: "pl-4" }, [
-                                          _vm._v("-" + _vm._s(finance.price))
-                                        ]),
-                                        _vm._v(" "),
-                                        _c("td", [
-                                          _vm._v(_vm._s(finance.reason))
-                                        ]),
-                                        _vm._v(" "),
-                                        _c("td", [
-                                          _vm._v(
-                                            _vm._s(
-                                              _vm.dateFormatter(
-                                                finance.inputed_at
-                                              )
-                                            )
-                                          )
-                                        ]),
-                                        _vm._v(" "),
-                                        _c("td", [
-                                          _c(
-                                            "button",
-                                            {
-                                              staticClass:
-                                                "add-button add-button--remove d-flex align-items-center",
-                                              attrs: {
-                                                title: "Удалить материал"
-                                              },
-                                              on: {
-                                                click: function($event) {
-                                                  _vm.deleteFinance(finance.id)
-                                                }
-                                              }
-                                            },
-                                            [
-                                              _c("img", {
-                                                attrs: {
-                                                  src: "/img/del.svg",
-                                                  alt: "add-button"
-                                                }
-                                              }),
-                                              _vm._v(" "),
-                                              _c(
-                                                "div",
-                                                {
-                                                  staticClass:
-                                                    "remove-materials ml-1"
-                                                },
-                                                [
-                                                  _vm._v(
-                                                    "\n                                            Удалить\n                                          "
-                                                  )
-                                                ]
-                                              )
-                                            ]
-                                          )
-                                        ]),
-                                        _vm._v(" "),
-                                        _c("td", [
-                                          _c(
-                                            "div",
-                                            {
-                                              staticClass:
-                                                "form-check custom-control checkbox"
-                                            },
-                                            [
-                                              _c("input", {
-                                                staticClass:
-                                                  "form-check-input check",
-                                                attrs: {
-                                                  id: "finance-" + finance.id,
-                                                  type: "checkbox"
-                                                },
-                                                domProps: {
-                                                  checked: finance.can_be_showed
-                                                },
-                                                on: {
-                                                  click: function($event) {
-                                                    _vm.updateFinance(finance)
-                                                  }
-                                                }
-                                              }),
-                                              _vm._v(" "),
-                                              _c(
-                                                "label",
-                                                {
-                                                  staticClass:
-                                                    "form-check-label",
-                                                  attrs: {
-                                                    for: "finance-" + finance.id
-                                                  }
-                                                },
-                                                [
-                                                  _vm._v(
-                                                    "\n                                      показывать\n                                    "
-                                                  )
-                                                ]
-                                              )
-                                            ]
-                                          )
-                                        ]),
-                                        _vm._v(" "),
-                                        finance.finance_files.length
-                                          ? _c("td", [
-                                              _c(
-                                                "a",
-                                                {
-                                                  attrs: {
-                                                    href:
-                                                      "/storage/finances/" +
-                                                      finance.finance_files[0]
-                                                        .file_path
-                                                  }
-                                                },
-                                                [_vm._v("смотреть файл")]
-                                              )
-                                            ])
-                                          : _vm._e()
-                                      ])
-                                    : _vm._e()
-                                ]
+                            _vm._l(_vm.filteredFinances, function(finance) {
+                              return _c("Finance", {
+                                key: finance.id,
+                                attrs: { finance: finance }
                               })
-                            ],
-                            2
+                            })
                           )
                         ])
                       ])
@@ -96768,6 +96451,251 @@ if (false) {
   module.hot.accept()
   if (module.hot.data) {
     require("vue-hot-reload-api")      .rerender("data-v-89f093f6", module.exports)
+  }
+}
+
+/***/ }),
+/* 446 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+function injectStyle (ssrContext) {
+  if (disposed) return
+  __webpack_require__(447)
+}
+var normalizeComponent = __webpack_require__(1)
+/* script */
+var __vue_script__ = __webpack_require__(449)
+/* template */
+var __vue_template__ = __webpack_require__(450)
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = injectStyle
+/* scopeId */
+var __vue_scopeId__ = "data-v-333823c0"
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources/assets/js/components/Orders/Finances/partials/Finance.vue"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-333823c0", Component.options)
+  } else {
+    hotAPI.reload("data-v-333823c0", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 447 */
+/***/ (function(module, exports, __webpack_require__) {
+
+// style-loader: Adds some css to the DOM by adding a <style> tag
+
+// load the styles
+var content = __webpack_require__(448);
+if(typeof content === 'string') content = [[module.i, content, '']];
+if(content.locals) module.exports = content.locals;
+// add the styles to the DOM
+var update = __webpack_require__(3)("4e7aa04f", content, false, {});
+// Hot Module Replacement
+if(false) {
+ // When the styles change, update the <style> tags
+ if(!content.locals) {
+   module.hot.accept("!!../../../../../../../node_modules/css-loader/index.js!../../../../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-333823c0\",\"scoped\":true,\"hasInlineConfig\":true}!../../../../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./Finance.vue", function() {
+     var newContent = require("!!../../../../../../../node_modules/css-loader/index.js!../../../../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-333823c0\",\"scoped\":true,\"hasInlineConfig\":true}!../../../../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./Finance.vue");
+     if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+     update(newContent);
+   });
+ }
+ // When the module is disposed, remove the <style> tags
+ module.hot.dispose(function() { update(); });
+}
+
+/***/ }),
+/* 448 */
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(2)(false);
+// imports
+
+
+// module
+exports.push([module.i, "\n.income-color[data-v-333823c0] {\n    background-color: #DEFFE8;\n}\n", ""]);
+
+// exports
+
+
+/***/ }),
+/* 449 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+    props: ['finance'],
+
+    methods: {
+        updateFinance: function updateFinance() {
+            axios.patch('/api/orders/' + this.$route.params.id + '/finance/' + this.finance.id + '/update', {
+                'can_be_showed': this.finance.can_be_showed ? false : true
+            });
+        },
+        deleteFinance: function deleteFinance() {
+            var _this = this;
+
+            if (confirm('Удалить ?')) {
+                axios.delete('/api/orders/' + this.$route.params.id + '/finance/' + this.finance.id + '/delete').then(function (response) {
+                    _this.$emit('finance-changed');
+                });
+            }
+        }
+    },
+
+    computed: {
+        filteredInputedAt: function filteredInputedAt() {
+            return moment(new Date(this.finance.inputed_at)).format("DD-MM-YYYY");
+        },
+        financeType: function financeType() {
+            return this.finance.finance_type === 'income';
+        }
+    }
+});
+
+/***/ }),
+/* 450 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c(
+    "tr",
+    { class: { "income-color": _vm.financeType ? true : false } },
+    [
+      _c("td", { staticClass: "pl-4" }, [
+        _vm._v(
+          "\n      " +
+            _vm._s(_vm.financeType ? "+" : "-") +
+            _vm._s(_vm.finance.price) +
+            "\n  "
+        )
+      ]),
+      _vm._v(" "),
+      _c("td", [_vm._v(_vm._s(_vm.finance.reason))]),
+      _vm._v(" "),
+      _c("td", [_vm._v(_vm._s(_vm.filteredInputedAt))]),
+      _vm._v(" "),
+      _c("td", [
+        _c(
+          "button",
+          {
+            staticClass:
+              "add-button add-button--remove d-flex align-items-center",
+            on: {
+              click: function($event) {
+                _vm.deleteFinance()
+              }
+            }
+          },
+          [
+            _c("img", { attrs: { src: "/img/del.svg", alt: "add-button" } }),
+            _vm._v(" "),
+            _c("div", { staticClass: "remove-materials ml-1" }, [
+              _vm._v("\n              Удалить\n            ")
+            ])
+          ]
+        )
+      ]),
+      _vm._v(" "),
+      _c("td", [
+        _c("div", { staticClass: "form-check custom-control checkbox" }, [
+          _c("input", {
+            staticClass: "form-check-input check",
+            attrs: { id: "finance-" + _vm.finance.id, type: "checkbox" },
+            domProps: { checked: _vm.finance.can_be_showed },
+            on: {
+              click: function($event) {
+                _vm.updateFinance()
+              }
+            }
+          }),
+          _vm._v(" "),
+          _c(
+            "label",
+            {
+              staticClass: "form-check-label",
+              attrs: { for: "finance-" + _vm.finance.id }
+            },
+            [_vm._v("\n        показывать\n      ")]
+          )
+        ])
+      ]),
+      _vm._v(" "),
+      _c("td", [_vm._v(" ")])
+    ]
+  )
+}
+var staticRenderFns = []
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-333823c0", module.exports)
   }
 }
 
