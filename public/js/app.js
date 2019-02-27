@@ -54591,10 +54591,12 @@ exports.push([module.i, "\n.form-check-label[data-v-8a9461b8] {\n  padding-top: 
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vuejs_datepicker__ = __webpack_require__(5);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_vuejs_datepicker_dist_locale__ = __webpack_require__(6);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__mixins_OrderExportCollection__ = __webpack_require__(137);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__mixins_ServiceCollection__ = __webpack_require__(152);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__partials_OrderDetail__ = __webpack_require__(451);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__partials_OrderDetail___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__partials_OrderDetail__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_vuejs_datepicker__ = __webpack_require__(5);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_vuejs_datepicker_dist_locale__ = __webpack_require__(6);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__mixins_OrderExportCollection__ = __webpack_require__(137);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__mixins_ServiceCollection__ = __webpack_require__(152);
 //
 //
 //
@@ -54903,36 +54905,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
+
 
 
 
@@ -54940,11 +54913,11 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-    mixins: [__WEBPACK_IMPORTED_MODULE_2__mixins_OrderExportCollection__["a" /* default */], __WEBPACK_IMPORTED_MODULE_3__mixins_ServiceCollection__["a" /* default */]],
+    mixins: [__WEBPACK_IMPORTED_MODULE_3__mixins_OrderExportCollection__["a" /* default */], __WEBPACK_IMPORTED_MODULE_4__mixins_ServiceCollection__["a" /* default */]],
 
     data: function data() {
         return {
-            ru: __WEBPACK_IMPORTED_MODULE_1_vuejs_datepicker_dist_locale__["a" /* ru */],
+            ru: __WEBPACK_IMPORTED_MODULE_2_vuejs_datepicker_dist_locale__["a" /* ru */],
             order: [],
 
             order_step_descriptions: [],
@@ -54962,7 +54935,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 
     components: {
-        Datepicker: __WEBPACK_IMPORTED_MODULE_0_vuejs_datepicker__["a" /* default */]
+        Datepicker: __WEBPACK_IMPORTED_MODULE_1_vuejs_datepicker__["a" /* default */], OrderDetail: __WEBPACK_IMPORTED_MODULE_0__partials_OrderDetail___default.a
     },
 
     created: function created() {
@@ -55074,743 +55047,694 @@ var render = function() {
       _c("basic-header"),
       _vm._v(" "),
       _c("section", { staticClass: "work-stages" }, [
-        _c(
-          "div",
-          { staticClass: "container-fluid px-0" },
-          [
-            _c(
-              "div",
-              { staticClass: "row" },
-              [
-                _c("navigation"),
-                _vm._v(" "),
-                _c(
-                  "div",
-                  { staticClass: "col-md-10 px-0" },
-                  [
-                    _c(
-                      "div",
-                      {
-                        staticClass:
-                          "row col-12 fixed-part align-items-center shadow-light"
-                      },
-                      [
-                        _vm._m(0),
-                        _vm._v(" "),
-                        _c(
-                          "div",
-                          { staticClass: "col-md-2" },
-                          [
-                            _vm.order_steps.length
-                              ? _c(
-                                  "router-link",
-                                  {
-                                    attrs: {
-                                      to: {
-                                        name: "order-step-graphic",
-                                        params: { id: _vm.order.id }
-                                      }
-                                    }
-                                  },
-                                  [
-                                    _c(
-                                      "button",
-                                      {
-                                        staticClass: "primary-button w-100",
-                                        attrs: {
-                                          type: "button",
-                                          onClick:
-                                            "window.location.reload(true)"
-                                        }
-                                      },
-                                      [
-                                        _vm._v(
-                                          "\n                        Смотреть график\n                    "
-                                        )
-                                      ]
-                                    )
-                                  ]
-                                )
-                              : _vm._e()
-                          ],
-                          1
-                        ),
-                        _vm._v(" "),
-                        _c("div", { staticClass: "col-md-6 pt-3" }, [
-                          _c("h2", { staticClass: "main-subtitle" }, [
-                            _vm._v(
-                              " Итого по смете: " +
-                                _vm._s(
-                                  new Intl.NumberFormat("ru-Ru").format(
-                                    parseInt(_vm.order.price)
-                                  )
-                                ) +
-                                " Р"
-                            )
-                          ])
-                        ])
-                      ]
-                    ),
-                    _vm._v(" "),
-                    _c("div", { staticClass: "stages__pt" }),
-                    _vm._v(" "),
-                    _vm._l(_vm.order_steps, function(order_step, index) {
-                      return [
-                        _c(
-                          "div",
-                          {
-                            key: index,
-                            staticClass: "px-0 mx-4 mt-5 stages shadow-light",
-                            style: { border: "3px solid " + order_step.color }
-                          },
-                          [
-                            _c(
-                              "div",
-                              {
-                                staticClass:
-                                  "row w-100 align-items-center py-4 mb-3 stages-border"
-                              },
-                              [
-                                _c(
-                                  "div",
-                                  {
-                                    staticClass:
-                                      "col-12 d-flex align-items-center justify-content-between mb-2"
-                                  },
-                                  [
-                                    _c(
-                                      "div",
-                                      { staticClass: "col-md-6" },
-                                      [
-                                        _vm.order_step_descriptions[
-                                          order_step.id
-                                        ]
-                                          ? [
-                                              !_vm.show_input
-                                                ? [
-                                                    _c(
-                                                      "div",
-                                                      {
-                                                        staticClass:
-                                                          "main-subtitle",
-                                                        on: {
-                                                          click: function(
-                                                            $event
-                                                          ) {
-                                                            _vm.showInput()
-                                                          }
-                                                        }
-                                                      },
-                                                      [
-                                                        _vm._v(
-                                                          "\n                                        " +
-                                                            _vm._s(
-                                                              _vm
-                                                                .order_step_descriptions[
-                                                                order_step.id
-                                                              ]
-                                                            ) +
-                                                            "\n                                    "
-                                                        )
-                                                      ]
-                                                    )
-                                                  ]
-                                                : [
-                                                    _c("input", {
-                                                      directives: [
-                                                        {
-                                                          name: "model",
-                                                          rawName: "v-model",
-                                                          value:
-                                                            _vm
-                                                              .order_step_descriptions[
-                                                              order_step.id
-                                                            ],
-                                                          expression:
-                                                            "order_step_descriptions[order_step.id]"
-                                                        }
-                                                      ],
+        _c("div", { staticClass: "container-fluid px-0" }, [
+          _c(
+            "div",
+            { staticClass: "row" },
+            [
+              _c("navigation"),
+              _vm._v(" "),
+              _c(
+                "div",
+                { staticClass: "col-md-10 px-0" },
+                [
+                  _c("OrderDetail", { attrs: { order: _vm.order } }),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "stages__pt" }),
+                  _vm._v(" "),
+                  _vm._l(_vm.order_steps, function(order_step, index) {
+                    return [
+                      _c(
+                        "div",
+                        {
+                          key: index,
+                          staticClass: "px-0 mx-4 mt-5 stages shadow-light",
+                          style: { border: "3px solid " + order_step.color }
+                        },
+                        [
+                          _c(
+                            "div",
+                            {
+                              staticClass:
+                                "row w-100 align-items-center py-4 mb-3 stages-border"
+                            },
+                            [
+                              _c(
+                                "div",
+                                {
+                                  staticClass:
+                                    "col-12 d-flex align-items-center justify-content-between mb-2"
+                                },
+                                [
+                                  _c(
+                                    "div",
+                                    { staticClass: "col-md-6" },
+                                    [
+                                      _vm.order_step_descriptions[order_step.id]
+                                        ? [
+                                            !_vm.show_input
+                                              ? [
+                                                  _c(
+                                                    "div",
+                                                    {
                                                       staticClass:
-                                                        "form-control",
-                                                      domProps: {
-                                                        value:
-                                                          _vm
-                                                            .order_step_descriptions[
-                                                            order_step.id
-                                                          ]
-                                                      },
+                                                        "main-subtitle",
                                                       on: {
-                                                        mouseleave: function(
+                                                        click: function(
                                                           $event
                                                         ) {
-                                                          _vm.updateOrderStepDescription(
-                                                            order_step.id,
+                                                          _vm.showInput()
+                                                        }
+                                                      }
+                                                    },
+                                                    [
+                                                      _vm._v(
+                                                        "\n                                        " +
+                                                          _vm._s(
                                                             _vm
                                                               .order_step_descriptions[
                                                               order_step.id
                                                             ]
-                                                          )
-                                                        },
-                                                        input: function(
-                                                          $event
-                                                        ) {
-                                                          if (
-                                                            $event.target
-                                                              .composing
-                                                          ) {
-                                                            return
-                                                          }
-                                                          _vm.$set(
-                                                            _vm.order_step_descriptions,
-                                                            order_step.id,
-                                                            $event.target.value
-                                                          )
-                                                        }
-                                                      }
-                                                    })
-                                                  ]
-                                            ]
-                                          : [
-                                              !_vm.show_input
-                                                ? [
-                                                    _c(
-                                                      "div",
-                                                      {
-                                                        staticClass:
-                                                          "main-subtitle",
-                                                        on: {
-                                                          click: function(
-                                                            $event
-                                                          ) {
-                                                            _vm.showInput()
-                                                          }
-                                                        }
-                                                      },
-                                                      [
-                                                        _vm._v(
-                                                          "\n                                        " +
-                                                            _vm._s(
-                                                              order_step.name
-                                                            ) +
-                                                            "\n                                        "
-                                                        ),
-                                                        _c("img", {
-                                                          attrs: {
-                                                            src:
-                                                              "/img/edit.svg",
-                                                            alt: "add-button",
-                                                            title:
-                                                              "Редактировать"
-                                                          }
-                                                        })
-                                                      ]
-                                                    )
-                                                  ]
-                                                : [
-                                                    _c("input", {
-                                                      directives: [
-                                                        {
-                                                          name: "model",
-                                                          rawName: "v-model",
-                                                          value:
-                                                            _vm
-                                                              .order_step_descriptions[
-                                                              order_step.id
-                                                            ],
-                                                          expression:
-                                                            "order_step_descriptions[order_step.id]"
-                                                        }
-                                                      ],
-                                                      staticClass:
-                                                        "form-control",
-                                                      domProps: {
-                                                        value:
-                                                          _vm
-                                                            .order_step_descriptions[
-                                                            order_step.id
-                                                          ]
-                                                      },
-                                                      on: {
-                                                        mouseleave: function(
-                                                          $event
-                                                        ) {
-                                                          _vm.updateOrderStepDescription(
-                                                            order_step.id,
-                                                            _vm
-                                                              .order_step_descriptions[
-                                                              order_step.id
-                                                            ]
-                                                          )
-                                                        },
-                                                        input: function(
-                                                          $event
-                                                        ) {
-                                                          if (
-                                                            $event.target
-                                                              .composing
-                                                          ) {
-                                                            return
-                                                          }
-                                                          _vm.$set(
-                                                            _vm.order_step_descriptions,
-                                                            order_step.id,
-                                                            $event.target.value
-                                                          )
-                                                        }
-                                                      }
-                                                    })
-                                                  ]
-                                            ]
-                                      ],
-                                      2
-                                    ),
-                                    _vm._v(" "),
-                                    _c(
-                                      "div",
-                                      {
-                                        staticClass:
-                                          "col-md-6 d-flex justify-content-end align-items-center pl-0"
-                                      },
-                                      [
-                                        _c("datepicker", {
-                                          staticClass: "my-datepicker",
-                                          attrs: {
-                                            "calendar-class":
-                                              "my-datepicker_calendar",
-                                            language: _vm.ru,
-                                            orientation: "top",
-                                            placeholder: "Начало"
-                                          },
-                                          on: {
-                                            input: function($event) {
-                                              _vm.updateOrderStepBeginAt(
-                                                order_step.id,
-                                                _vm.order_step_begin_ats[
-                                                  order_step.id
+                                                          ) +
+                                                          "\n                                    "
+                                                      )
+                                                    ]
+                                                  )
                                                 ]
-                                              )
-                                            }
-                                          },
-                                          model: {
-                                            value:
+                                              : [
+                                                  _c("input", {
+                                                    directives: [
+                                                      {
+                                                        name: "model",
+                                                        rawName: "v-model",
+                                                        value:
+                                                          _vm
+                                                            .order_step_descriptions[
+                                                            order_step.id
+                                                          ],
+                                                        expression:
+                                                          "order_step_descriptions[order_step.id]"
+                                                      }
+                                                    ],
+                                                    staticClass: "form-control",
+                                                    domProps: {
+                                                      value:
+                                                        _vm
+                                                          .order_step_descriptions[
+                                                          order_step.id
+                                                        ]
+                                                    },
+                                                    on: {
+                                                      mouseleave: function(
+                                                        $event
+                                                      ) {
+                                                        _vm.updateOrderStepDescription(
+                                                          order_step.id,
+                                                          _vm
+                                                            .order_step_descriptions[
+                                                            order_step.id
+                                                          ]
+                                                        )
+                                                      },
+                                                      input: function($event) {
+                                                        if (
+                                                          $event.target
+                                                            .composing
+                                                        ) {
+                                                          return
+                                                        }
+                                                        _vm.$set(
+                                                          _vm.order_step_descriptions,
+                                                          order_step.id,
+                                                          $event.target.value
+                                                        )
+                                                      }
+                                                    }
+                                                  })
+                                                ]
+                                          ]
+                                        : [
+                                            !_vm.show_input
+                                              ? [
+                                                  _c(
+                                                    "div",
+                                                    {
+                                                      staticClass:
+                                                        "main-subtitle",
+                                                      on: {
+                                                        click: function(
+                                                          $event
+                                                        ) {
+                                                          _vm.showInput()
+                                                        }
+                                                      }
+                                                    },
+                                                    [
+                                                      _vm._v(
+                                                        "\n                                        " +
+                                                          _vm._s(
+                                                            order_step.name
+                                                          ) +
+                                                          "\n                                        "
+                                                      ),
+                                                      _c("img", {
+                                                        attrs: {
+                                                          src: "/img/edit.svg",
+                                                          alt: "add-button",
+                                                          title: "Редактировать"
+                                                        }
+                                                      })
+                                                    ]
+                                                  )
+                                                ]
+                                              : [
+                                                  _c("input", {
+                                                    directives: [
+                                                      {
+                                                        name: "model",
+                                                        rawName: "v-model",
+                                                        value:
+                                                          _vm
+                                                            .order_step_descriptions[
+                                                            order_step.id
+                                                          ],
+                                                        expression:
+                                                          "order_step_descriptions[order_step.id]"
+                                                      }
+                                                    ],
+                                                    staticClass: "form-control",
+                                                    domProps: {
+                                                      value:
+                                                        _vm
+                                                          .order_step_descriptions[
+                                                          order_step.id
+                                                        ]
+                                                    },
+                                                    on: {
+                                                      mouseleave: function(
+                                                        $event
+                                                      ) {
+                                                        _vm.updateOrderStepDescription(
+                                                          order_step.id,
+                                                          _vm
+                                                            .order_step_descriptions[
+                                                            order_step.id
+                                                          ]
+                                                        )
+                                                      },
+                                                      input: function($event) {
+                                                        if (
+                                                          $event.target
+                                                            .composing
+                                                        ) {
+                                                          return
+                                                        }
+                                                        _vm.$set(
+                                                          _vm.order_step_descriptions,
+                                                          order_step.id,
+                                                          $event.target.value
+                                                        )
+                                                      }
+                                                    }
+                                                  })
+                                                ]
+                                          ]
+                                    ],
+                                    2
+                                  ),
+                                  _vm._v(" "),
+                                  _c(
+                                    "div",
+                                    {
+                                      staticClass:
+                                        "col-md-6 d-flex justify-content-end align-items-center pl-0"
+                                    },
+                                    [
+                                      _c("datepicker", {
+                                        staticClass: "my-datepicker",
+                                        attrs: {
+                                          "calendar-class":
+                                            "my-datepicker_calendar",
+                                          language: _vm.ru,
+                                          orientation: "top",
+                                          placeholder: "Начало"
+                                        },
+                                        on: {
+                                          input: function($event) {
+                                            _vm.updateOrderStepBeginAt(
+                                              order_step.id,
                                               _vm.order_step_begin_ats[
                                                 order_step.id
-                                              ],
-                                            callback: function($$v) {
-                                              _vm.$set(
-                                                _vm.order_step_begin_ats,
-                                                order_step.id,
-                                                $$v
-                                              )
-                                            },
-                                            expression:
-                                              "order_step_begin_ats[order_step.id]"
+                                              ]
+                                            )
                                           }
-                                        }),
-                                        _vm._v(" "),
-                                        _c("datepicker", {
-                                          staticClass: "my-datepicker ml-3",
-                                          attrs: {
-                                            "calendar-class":
-                                              "my-datepicker_calendar",
-                                            language: _vm.ru,
-                                            placeholder: "Окончание"
+                                        },
+                                        model: {
+                                          value:
+                                            _vm.order_step_begin_ats[
+                                              order_step.id
+                                            ],
+                                          callback: function($$v) {
+                                            _vm.$set(
+                                              _vm.order_step_begin_ats,
+                                              order_step.id,
+                                              $$v
+                                            )
                                           },
-                                          on: {
-                                            input: function($event) {
-                                              _vm.updateOrderStepFinishAt(
-                                                order_step.id,
-                                                _vm.order_step_finish_ats[
-                                                  order_step.id
-                                                ]
-                                              )
-                                            }
-                                          },
-                                          model: {
-                                            value:
+                                          expression:
+                                            "order_step_begin_ats[order_step.id]"
+                                        }
+                                      }),
+                                      _vm._v(" "),
+                                      _c("datepicker", {
+                                        staticClass: "my-datepicker ml-3",
+                                        attrs: {
+                                          "calendar-class":
+                                            "my-datepicker_calendar",
+                                          language: _vm.ru,
+                                          placeholder: "Окончание"
+                                        },
+                                        on: {
+                                          input: function($event) {
+                                            _vm.updateOrderStepFinishAt(
+                                              order_step.id,
                                               _vm.order_step_finish_ats[
                                                 order_step.id
-                                              ],
-                                            callback: function($$v) {
-                                              _vm.$set(
-                                                _vm.order_step_finish_ats,
-                                                order_step.id,
-                                                $$v
-                                              )
-                                            },
-                                            expression:
-                                              "order_step_finish_ats[order_step.id]"
+                                              ]
+                                            )
                                           }
-                                        })
-                                      ],
-                                      1
-                                    )
-                                  ]
-                                ),
-                                _vm._v(" "),
-                                _c(
-                                  "div",
-                                  { staticClass: "rooms_wrapper col-12 px-0" },
-                                  [
-                                    order_step.room_steps
-                                      ? [
-                                          _vm._l(
-                                            order_step.room_steps,
-                                            function(room_step, index) {
-                                              return [
-                                                room_step.services.length
-                                                  ? [
+                                        },
+                                        model: {
+                                          value:
+                                            _vm.order_step_finish_ats[
+                                              order_step.id
+                                            ],
+                                          callback: function($$v) {
+                                            _vm.$set(
+                                              _vm.order_step_finish_ats,
+                                              order_step.id,
+                                              $$v
+                                            )
+                                          },
+                                          expression:
+                                            "order_step_finish_ats[order_step.id]"
+                                        }
+                                      })
+                                    ],
+                                    1
+                                  )
+                                ]
+                              ),
+                              _vm._v(" "),
+                              _c(
+                                "div",
+                                { staticClass: "rooms_wrapper col-12 px-0" },
+                                [
+                                  order_step.room_steps
+                                    ? [
+                                        _vm._l(order_step.room_steps, function(
+                                          room_step,
+                                          index
+                                        ) {
+                                          return [
+                                            room_step.services.length
+                                              ? [
+                                                  _c(
+                                                    "div",
+                                                    {
+                                                      staticClass:
+                                                        "col-12 d-flex align-items-center"
+                                                    },
+                                                    [
                                                       _c(
-                                                        "div",
+                                                        "h2",
                                                         {
                                                           staticClass:
-                                                            "col-12 d-flex align-items-center"
+                                                            "col-6 main-subtitle main-subtitle--font py-4 pl-3"
                                                         },
                                                         [
-                                                          _c(
-                                                            "h2",
-                                                            {
-                                                              staticClass:
-                                                                "col-6 main-subtitle main-subtitle--font py-4 pl-3"
-                                                            },
-                                                            [
-                                                              room_step.room
-                                                                .description
-                                                                ? [
-                                                                    _vm._v(
-                                                                      "\n                                              " +
-                                                                        _vm._s(
-                                                                          room_step
-                                                                            .room
-                                                                            .description
-                                                                        ) +
-                                                                        "\n                                          "
-                                                                    )
-                                                                  ]
-                                                                : [
-                                                                    _vm._v(
-                                                                      "\n                                              " +
-                                                                        _vm._s(
-                                                                          room_step
-                                                                            .room
-                                                                            .room_type
-                                                                            .type
-                                                                        ) +
-                                                                        "\n                                          "
-                                                                    )
-                                                                  ],
-                                                              _vm._v(
-                                                                "\n                                          " +
-                                                                  _vm._s(
-                                                                    index +
-                                                                      parseInt(
-                                                                        1
-                                                                      )
-                                                                  ) +
-                                                                  "\n                                      "
-                                                              )
-                                                            ],
-                                                            2
-                                                          ),
-                                                          _vm._v(" "),
                                                           room_step.room
-                                                            .room_type_id === 1
+                                                            .description
                                                             ? [
-                                                                _c(
-                                                                  "div",
-                                                                  {
-                                                                    staticClass:
-                                                                      "col-6 d-flex justify-content-end align-items-center pt-3"
-                                                                  },
-                                                                  [
-                                                                    _c(
-                                                                      "div",
-                                                                      {
-                                                                        staticClass:
-                                                                          "projects__desc-item pr-3"
-                                                                      },
-                                                                      [
-                                                                        _vm._v(
-                                                                          "S: " +
-                                                                            _vm._s(
-                                                                              parseFloat(
-                                                                                room_step
-                                                                                  .room
-                                                                                  .area
-                                                                              ).toFixed(
-                                                                                2
-                                                                              )
-                                                                            ) +
-                                                                            " м"
-                                                                        ),
-                                                                        _c(
-                                                                          "sup",
-                                                                          [
-                                                                            _vm._v(
-                                                                              "2"
-                                                                            )
-                                                                          ]
-                                                                        )
-                                                                      ]
-                                                                    ),
-                                                                    _vm._v(" "),
-                                                                    _c(
-                                                                      "div",
-                                                                      {
-                                                                        staticClass:
-                                                                          "projects__desc-item pr-3"
-                                                                      },
-                                                                      [
-                                                                        _vm._v(
-                                                                          "H: " +
-                                                                            _vm._s(
-                                                                              parseFloat(
-                                                                                room_step
-                                                                                  .room
-                                                                                  .height
-                                                                              ).toFixed(
-                                                                                2
-                                                                              )
-                                                                            ) +
-                                                                            " м"
-                                                                        )
-                                                                      ]
-                                                                    ),
-                                                                    _vm._v(" "),
-                                                                    _c(
-                                                                      "div",
-                                                                      {
-                                                                        staticClass:
-                                                                          "projects__desc-item pr-3"
-                                                                      },
-                                                                      [
-                                                                        _vm._v(
-                                                                          "S стен: " +
-                                                                            _vm._s(
-                                                                              parseFloat(
-                                                                                room_step
-                                                                                  .room
-                                                                                  .wall_area
-                                                                              ).toFixed(
-                                                                                2
-                                                                              )
-                                                                            ) +
-                                                                            " м"
-                                                                        ),
-                                                                        _c(
-                                                                          "sup",
-                                                                          [
-                                                                            _vm._v(
-                                                                              "2"
-                                                                            )
-                                                                          ]
-                                                                        )
-                                                                      ]
-                                                                    ),
-                                                                    _vm._v(" "),
-                                                                    _c(
-                                                                      "div",
-                                                                      {
-                                                                        staticClass:
-                                                                          "projects__desc-item"
-                                                                      },
-                                                                      [
-                                                                        _vm._v(
-                                                                          "P: " +
-                                                                            _vm._s(
-                                                                              parseFloat(
-                                                                                room_step
-                                                                                  .room
-                                                                                  .perimeter
-                                                                              ).toFixed(
-                                                                                2
-                                                                              )
-                                                                            ) +
-                                                                            " м. п."
-                                                                        )
-                                                                      ]
-                                                                    )
-                                                                  ]
+                                                                _vm._v(
+                                                                  "\n                                              " +
+                                                                    _vm._s(
+                                                                      room_step
+                                                                        .room
+                                                                        .description
+                                                                    ) +
+                                                                    "\n                                          "
                                                                 )
                                                               ]
-                                                            : _vm._e()
+                                                            : [
+                                                                _vm._v(
+                                                                  "\n                                              " +
+                                                                    _vm._s(
+                                                                      room_step
+                                                                        .room
+                                                                        .room_type
+                                                                        .type
+                                                                    ) +
+                                                                    "\n                                          "
+                                                                )
+                                                              ],
+                                                          _vm._v(
+                                                            "\n                                          " +
+                                                              _vm._s(
+                                                                index +
+                                                                  parseInt(1)
+                                                              ) +
+                                                              "\n                                      "
+                                                          )
                                                         ],
                                                         2
                                                       ),
                                                       _vm._v(" "),
+                                                      room_step.room
+                                                        .room_type_id === 1
+                                                        ? [
+                                                            _c(
+                                                              "div",
+                                                              {
+                                                                staticClass:
+                                                                  "col-6 d-flex justify-content-end align-items-center pt-3"
+                                                              },
+                                                              [
+                                                                _c(
+                                                                  "div",
+                                                                  {
+                                                                    staticClass:
+                                                                      "projects__desc-item pr-3"
+                                                                  },
+                                                                  [
+                                                                    _vm._v(
+                                                                      "S: " +
+                                                                        _vm._s(
+                                                                          parseFloat(
+                                                                            room_step
+                                                                              .room
+                                                                              .area
+                                                                          ).toFixed(
+                                                                            2
+                                                                          )
+                                                                        ) +
+                                                                        " м"
+                                                                    ),
+                                                                    _c("sup", [
+                                                                      _vm._v(
+                                                                        "2"
+                                                                      )
+                                                                    ])
+                                                                  ]
+                                                                ),
+                                                                _vm._v(" "),
+                                                                _c(
+                                                                  "div",
+                                                                  {
+                                                                    staticClass:
+                                                                      "projects__desc-item pr-3"
+                                                                  },
+                                                                  [
+                                                                    _vm._v(
+                                                                      "H: " +
+                                                                        _vm._s(
+                                                                          parseFloat(
+                                                                            room_step
+                                                                              .room
+                                                                              .height
+                                                                          ).toFixed(
+                                                                            2
+                                                                          )
+                                                                        ) +
+                                                                        " м"
+                                                                    )
+                                                                  ]
+                                                                ),
+                                                                _vm._v(" "),
+                                                                _c(
+                                                                  "div",
+                                                                  {
+                                                                    staticClass:
+                                                                      "projects__desc-item pr-3"
+                                                                  },
+                                                                  [
+                                                                    _vm._v(
+                                                                      "S стен: " +
+                                                                        _vm._s(
+                                                                          parseFloat(
+                                                                            room_step
+                                                                              .room
+                                                                              .wall_area
+                                                                          ).toFixed(
+                                                                            2
+                                                                          )
+                                                                        ) +
+                                                                        " м"
+                                                                    ),
+                                                                    _c("sup", [
+                                                                      _vm._v(
+                                                                        "2"
+                                                                      )
+                                                                    ])
+                                                                  ]
+                                                                ),
+                                                                _vm._v(" "),
+                                                                _c(
+                                                                  "div",
+                                                                  {
+                                                                    staticClass:
+                                                                      "projects__desc-item"
+                                                                  },
+                                                                  [
+                                                                    _vm._v(
+                                                                      "P: " +
+                                                                        _vm._s(
+                                                                          parseFloat(
+                                                                            room_step
+                                                                              .room
+                                                                              .perimeter
+                                                                          ).toFixed(
+                                                                            2
+                                                                          )
+                                                                        ) +
+                                                                        " м. п."
+                                                                    )
+                                                                  ]
+                                                                )
+                                                              ]
+                                                            )
+                                                          ]
+                                                        : _vm._e()
+                                                    ],
+                                                    2
+                                                  ),
+                                                  _vm._v(" "),
+                                                  _c(
+                                                    "div",
+                                                    {
+                                                      staticClass:
+                                                        "col-12 d-flex align-items-center"
+                                                    },
+                                                    [
                                                       _c(
                                                         "div",
                                                         {
                                                           staticClass:
-                                                            "col-12 d-flex align-items-center"
+                                                            "col-6 table-subtitle table-subtitle__items px-3"
                                                         },
                                                         [
-                                                          _c(
-                                                            "div",
-                                                            {
-                                                              staticClass:
-                                                                "col-6 table-subtitle table-subtitle__items px-3"
-                                                            },
-                                                            [
-                                                              _vm._v(
-                                                                "Наименование\n                                      "
-                                                              )
-                                                            ]
-                                                          ),
-                                                          _vm._v(" "),
-                                                          _vm._m(1, true)
+                                                          _vm._v(
+                                                            "Наименование\n                                      "
+                                                          )
                                                         ]
                                                       ),
                                                       _vm._v(" "),
+                                                      _vm._m(0, true)
+                                                    ]
+                                                  ),
+                                                  _vm._v(" "),
+                                                  _c(
+                                                    "div",
+                                                    { staticClass: "col-12" },
+                                                    [
                                                       _c(
-                                                        "div",
+                                                        "table",
                                                         {
-                                                          staticClass: "col-12"
+                                                          staticClass:
+                                                            "table drag-table"
                                                         },
                                                         [
                                                           _c(
-                                                            "table",
-                                                            {
-                                                              staticClass:
-                                                                "table drag-table"
-                                                            },
+                                                            "tbody",
                                                             [
-                                                              _c(
-                                                                "tbody",
-                                                                [
-                                                                  room_step.services
-                                                                    ? [
-                                                                        _vm._l(
-                                                                          _vm.groupByServiceType(
-                                                                            room_step.services
-                                                                          ),
-                                                                          function(
-                                                                            room_step_services,
-                                                                            service_type_id
-                                                                          ) {
-                                                                            return [
+                                                              room_step.services
+                                                                ? [
+                                                                    _vm._l(
+                                                                      _vm.groupByServiceType(
+                                                                        room_step.services
+                                                                      ),
+                                                                      function(
+                                                                        room_step_services,
+                                                                        service_type_id
+                                                                      ) {
+                                                                        return [
+                                                                          _c(
+                                                                            "tr",
+                                                                            [
                                                                               _c(
-                                                                                "tr",
+                                                                                "th",
+                                                                                {
+                                                                                  staticClass:
+                                                                                    "table__transparent-row",
+                                                                                  attrs: {
+                                                                                    colspan:
+                                                                                      "4"
+                                                                                  }
+                                                                                },
                                                                                 [
-                                                                                  _c(
-                                                                                    "th",
-                                                                                    {
-                                                                                      staticClass:
-                                                                                        "table__transparent-row",
-                                                                                      attrs: {
-                                                                                        colspan:
-                                                                                          "4"
-                                                                                      }
-                                                                                    },
-                                                                                    [
-                                                                                      _vm._v(
-                                                                                        "\n                                                        " +
-                                                                                          _vm._s(
-                                                                                            _vm.getServiceTypeName(
-                                                                                              service_type_id
-                                                                                            )
-                                                                                          ) +
-                                                                                          "\n                                                    "
-                                                                                      )
-                                                                                    ]
+                                                                                  _vm._v(
+                                                                                    "\n                                                        " +
+                                                                                      _vm._s(
+                                                                                        _vm.getServiceTypeName(
+                                                                                          service_type_id
+                                                                                        )
+                                                                                      ) +
+                                                                                      "\n                                                    "
                                                                                   )
                                                                                 ]
-                                                                              ),
-                                                                              _vm._v(
-                                                                                " "
-                                                                              ),
-                                                                              _vm._l(
-                                                                                room_step_services,
-                                                                                function(
-                                                                                  room_step_service
-                                                                                ) {
-                                                                                  return [
+                                                                              )
+                                                                            ]
+                                                                          ),
+                                                                          _vm._v(
+                                                                            " "
+                                                                          ),
+                                                                          _vm._l(
+                                                                            room_step_services,
+                                                                            function(
+                                                                              room_step_service
+                                                                            ) {
+                                                                              return [
+                                                                                _c(
+                                                                                  "tr",
+                                                                                  [
                                                                                     _c(
-                                                                                      "tr",
+                                                                                      "div",
+                                                                                      {
+                                                                                        staticClass:
+                                                                                          "d-flex justify-content-between",
+                                                                                        style: {
+                                                                                          "background-color":
+                                                                                            order_step.opacity_color
+                                                                                        }
+                                                                                      },
                                                                                       [
                                                                                         _c(
-                                                                                          "div",
+                                                                                          "th",
                                                                                           {
                                                                                             staticClass:
-                                                                                              "d-flex justify-content-between",
-                                                                                            style: {
-                                                                                              "background-color":
-                                                                                                order_step.opacity_color
+                                                                                              "col-6",
+                                                                                            attrs: {
+                                                                                              scope:
+                                                                                                "row"
                                                                                             }
                                                                                           },
                                                                                           [
                                                                                             _c(
-                                                                                              "th",
+                                                                                              "div",
                                                                                               {
                                                                                                 staticClass:
-                                                                                                  "col-6",
-                                                                                                attrs: {
-                                                                                                  scope:
-                                                                                                    "row"
-                                                                                                }
+                                                                                                  "form-check custom-control checkbox"
                                                                                               },
                                                                                               [
                                                                                                 _c(
-                                                                                                  "div",
+                                                                                                  "input",
                                                                                                   {
                                                                                                     staticClass:
-                                                                                                      "form-check custom-control checkbox"
+                                                                                                      "form-check-input check",
+                                                                                                    attrs: {
+                                                                                                      type:
+                                                                                                        "checkbox",
+                                                                                                      id:
+                                                                                                        "room-step-" +
+                                                                                                        room_step.id +
+                                                                                                        "-room-step-service-" +
+                                                                                                        room_step_service.id
+                                                                                                    },
+                                                                                                    domProps: {
+                                                                                                      checked: true
+                                                                                                    },
+                                                                                                    on: {
+                                                                                                      click: function(
+                                                                                                        $event
+                                                                                                      ) {
+                                                                                                        _vm.detachSelectedService(
+                                                                                                          room_step.id,
+                                                                                                          room_step_service.id
+                                                                                                        )
+                                                                                                      }
+                                                                                                    }
+                                                                                                  }
+                                                                                                ),
+                                                                                                _vm._v(
+                                                                                                  " "
+                                                                                                ),
+                                                                                                _c(
+                                                                                                  "label",
+                                                                                                  {
+                                                                                                    staticClass:
+                                                                                                      "form-check-label d-block",
+                                                                                                    attrs: {
+                                                                                                      for:
+                                                                                                        "room-step-" +
+                                                                                                        room_step.id +
+                                                                                                        "-room-step-service-" +
+                                                                                                        room_step_service.id
+                                                                                                    }
                                                                                                   },
                                                                                                   [
-                                                                                                    _c(
-                                                                                                      "input",
-                                                                                                      {
-                                                                                                        staticClass:
-                                                                                                          "form-check-input check",
-                                                                                                        attrs: {
-                                                                                                          type:
-                                                                                                            "checkbox",
-                                                                                                          id:
-                                                                                                            "room-step-" +
-                                                                                                            room_step.id +
-                                                                                                            "-room-step-service-" +
-                                                                                                            room_step_service.id
-                                                                                                        },
-                                                                                                        domProps: {
-                                                                                                          checked: true
-                                                                                                        },
-                                                                                                        on: {
-                                                                                                          click: function(
-                                                                                                            $event
-                                                                                                          ) {
-                                                                                                            _vm.detachSelectedService(
-                                                                                                              room_step.id,
-                                                                                                              room_step_service.id
-                                                                                                            )
-                                                                                                          }
-                                                                                                        }
-                                                                                                      }
-                                                                                                    ),
                                                                                                     _vm._v(
-                                                                                                      " "
-                                                                                                    ),
-                                                                                                    _c(
-                                                                                                      "label",
-                                                                                                      {
-                                                                                                        staticClass:
-                                                                                                          "form-check-label d-block",
-                                                                                                        attrs: {
-                                                                                                          for:
-                                                                                                            "room-step-" +
-                                                                                                            room_step.id +
-                                                                                                            "-room-step-service-" +
-                                                                                                            room_step_service.id
-                                                                                                        }
-                                                                                                      },
-                                                                                                      [
-                                                                                                        _vm._v(
-                                                                                                          "\n                                                                      " +
-                                                                                                            _vm._s(
-                                                                                                              room_step_service.name
-                                                                                                            ) +
-                                                                                                            "\n                                                                "
-                                                                                                        )
-                                                                                                      ]
+                                                                                                      "\n                                                                      " +
+                                                                                                        _vm._s(
+                                                                                                          room_step_service.name
+                                                                                                        ) +
+                                                                                                        "\n                                                                "
+                                                                                                    )
+                                                                                                  ]
+                                                                                                )
+                                                                                              ]
+                                                                                            )
+                                                                                          ]
+                                                                                        ),
+                                                                                        _vm._v(
+                                                                                          " "
+                                                                                        ),
+                                                                                        _c(
+                                                                                          "div",
+                                                                                          {
+                                                                                            staticClass:
+                                                                                              "col-6 d-flex justify-content-end"
+                                                                                          },
+                                                                                          [
+                                                                                            _c(
+                                                                                              "td",
+                                                                                              [
+                                                                                                _vm._v(
+                                                                                                  _vm._s(
+                                                                                                    parseFloat(
+                                                                                                      room_step_service
+                                                                                                        .pivot
+                                                                                                        .quantity
+                                                                                                    ).toFixed(
+                                                                                                      2
+                                                                                                    )
+                                                                                                  ) +
+                                                                                                    " м"
+                                                                                                ),
+                                                                                                _c(
+                                                                                                  "sup",
+                                                                                                  [
+                                                                                                    _vm._v(
+                                                                                                      "2"
                                                                                                     )
                                                                                                   ]
                                                                                                 )
@@ -55820,83 +55744,46 @@ var render = function() {
                                                                                               " "
                                                                                             ),
                                                                                             _c(
-                                                                                              "div",
-                                                                                              {
-                                                                                                staticClass:
-                                                                                                  "col-6 d-flex justify-content-end"
-                                                                                              },
+                                                                                              "td",
                                                                                               [
-                                                                                                _c(
-                                                                                                  "td",
-                                                                                                  [
-                                                                                                    _vm._v(
-                                                                                                      _vm._s(
-                                                                                                        parseFloat(
-                                                                                                          room_step_service
-                                                                                                            .pivot
-                                                                                                            .quantity
-                                                                                                        ).toFixed(
-                                                                                                          2
-                                                                                                        )
-                                                                                                      ) +
-                                                                                                        " м"
-                                                                                                    ),
-                                                                                                    _c(
-                                                                                                      "sup",
-                                                                                                      [
-                                                                                                        _vm._v(
-                                                                                                          "2"
-                                                                                                        )
-                                                                                                      ]
-                                                                                                    )
-                                                                                                  ]
-                                                                                                ),
                                                                                                 _vm._v(
-                                                                                                  " "
+                                                                                                  _vm._s(
+                                                                                                    new Intl.NumberFormat(
+                                                                                                      "ru-Ru"
+                                                                                                    ).format(
+                                                                                                      parseInt(
+                                                                                                        room_step_service.price
+                                                                                                      )
+                                                                                                    )
+                                                                                                  ) +
+                                                                                                    " Р/ м"
                                                                                                 ),
                                                                                                 _c(
-                                                                                                  "td",
+                                                                                                  "sup",
                                                                                                   [
                                                                                                     _vm._v(
-                                                                                                      _vm._s(
-                                                                                                        new Intl.NumberFormat(
-                                                                                                          "ru-Ru"
-                                                                                                        ).format(
-                                                                                                          parseInt(
-                                                                                                            room_step_service.price
-                                                                                                          )
-                                                                                                        )
-                                                                                                      ) +
-                                                                                                        " Р/ м"
-                                                                                                    ),
-                                                                                                    _c(
-                                                                                                      "sup",
-                                                                                                      [
-                                                                                                        _vm._v(
-                                                                                                          "2"
-                                                                                                        )
-                                                                                                      ]
+                                                                                                      "2"
                                                                                                     )
                                                                                                   ]
-                                                                                                ),
+                                                                                                )
+                                                                                              ]
+                                                                                            ),
+                                                                                            _vm._v(
+                                                                                              " "
+                                                                                            ),
+                                                                                            _c(
+                                                                                              "td",
+                                                                                              [
                                                                                                 _vm._v(
-                                                                                                  " "
-                                                                                                ),
-                                                                                                _c(
-                                                                                                  "td",
-                                                                                                  [
-                                                                                                    _vm._v(
-                                                                                                      _vm._s(
-                                                                                                        _vm.priceCount(
-                                                                                                          room_step_service
-                                                                                                            .pivot
-                                                                                                            .quantity,
-                                                                                                          room_step_service.price
-                                                                                                        )
-                                                                                                      ) +
-                                                                                                        " Р"
+                                                                                                  _vm._s(
+                                                                                                    _vm.priceCount(
+                                                                                                      room_step_service
+                                                                                                        .pivot
+                                                                                                        .quantity,
+                                                                                                      room_step_service.price
                                                                                                     )
-                                                                                                  ]
+                                                                                                  ) +
+                                                                                                    " Р"
                                                                                                 )
                                                                                               ]
                                                                                             )
@@ -55905,794 +55792,730 @@ var render = function() {
                                                                                       ]
                                                                                     )
                                                                                   ]
-                                                                                }
-                                                                              )
-                                                                            ]
-                                                                          }
-                                                                        )
-                                                                      ]
-                                                                    : _vm._e()
-                                                                ],
-                                                                2
-                                                              )
-                                                            ]
+                                                                                )
+                                                                              ]
+                                                                            }
+                                                                          )
+                                                                        ]
+                                                                      }
+                                                                    )
+                                                                  ]
+                                                                : _vm._e()
+                                                            ],
+                                                            2
                                                           )
                                                         ]
                                                       )
                                                     ]
-                                                  : _vm._e()
-                                              ]
-                                            }
-                                          ),
-                                          _vm._v(" "),
-                                          _c("div", { staticClass: "col-12" }, [
-                                            _c(
-                                              "div",
-                                              {
-                                                staticClass:
-                                                  "col-12 d-flex align-items-center pl-0"
-                                              },
-                                              [
-                                                _c(
-                                                  "div",
-                                                  { staticClass: "col-6 pl-0" },
-                                                  [
+                                                  )
+                                                ]
+                                              : _vm._e()
+                                          ]
+                                        }),
+                                        _vm._v(" "),
+                                        _c("div", { staticClass: "col-12" }, [
+                                          _c(
+                                            "div",
+                                            {
+                                              staticClass:
+                                                "col-12 d-flex align-items-center pl-0"
+                                            },
+                                            [
+                                              _c(
+                                                "div",
+                                                { staticClass: "col-6 pl-0" },
+                                                [
+                                                  _c(
+                                                    "button",
+                                                    {
+                                                      staticClass:
+                                                        "add-button add-button--remove d-flex align-items-center",
+                                                      attrs: {
+                                                        title: "Удалить этап"
+                                                      },
+                                                      on: {
+                                                        click: function(
+                                                          $event
+                                                        ) {
+                                                          _vm.deleteOrderStep(
+                                                            order_step.id
+                                                          )
+                                                        }
+                                                      }
+                                                    },
+                                                    [
+                                                      _c("img", {
+                                                        staticClass: "mr-2",
+                                                        attrs: {
+                                                          src: "/img/del.svg",
+                                                          alt: "add-button"
+                                                        }
+                                                      }),
+                                                      _vm._v(
+                                                        "\n                                          Удалить этап\n                                  "
+                                                      )
+                                                    ]
+                                                  )
+                                                ]
+                                              ),
+                                              _vm._v(" "),
+                                              _c(
+                                                "div",
+                                                {
+                                                  staticClass:
+                                                    "stages__summ col-6 text-right"
+                                                },
+                                                [
+                                                  _vm._v(
+                                                    "\n                                 Итого за этап: "
+                                                  ),
+                                                  _c("span", [
+                                                    _vm._v(
+                                                      _vm._s(
+                                                        new Intl.NumberFormat(
+                                                          "ru-Ru"
+                                                        ).format(
+                                                          order_step.price
+                                                        )
+                                                      ) + " Р"
+                                                    )
+                                                  ])
+                                                ]
+                                              )
+                                            ]
+                                          )
+                                        ])
+                                      ]
+                                    : _vm._e()
+                                ],
+                                2
+                              )
+                            ]
+                          )
+                        ]
+                      )
+                    ]
+                  }),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "row col-12" }, [
+                    _c(
+                      "button",
+                      {
+                        staticClass: "add-space-button py-2",
+                        on: {
+                          click: function($event) {
+                            _vm.createNewOrderStep()
+                          }
+                        }
+                      },
+                      [_vm._v("\n            + Создать новый этап\n        ")]
+                    )
+                  ]),
+                  _vm._v(" "),
+                  _vm._l(_vm.order.rooms, function(room, index) {
+                    return _vm.order.rooms
+                      ? _c("div", { staticClass: "col-12 px-0" }, [
+                          _c(
+                            "div",
+                            { staticClass: "col-12 d-flex align-items-center" },
+                            [
+                              _c(
+                                "h2",
+                                {
+                                  staticClass: "col-6 main-subtitle py-4 pl-3"
+                                },
+                                [
+                                  _vm._v(
+                                    "\n            " +
+                                      _vm._s(
+                                        room.description
+                                          ? room.description
+                                          : room.room_type.type
+                                      ) +
+                                      "\n          "
+                                  )
+                                ]
+                              ),
+                              _vm._v(" "),
+                              _c(
+                                "div",
+                                {
+                                  staticClass:
+                                    "col-6 d-flex justify-content-end align-items-center pt-3 pl-3"
+                                },
+                                [
+                                  _c(
+                                    "div",
+                                    { staticClass: "projects__desc-item pr-3" },
+                                    [
+                                      _vm._v(
+                                        "S: " +
+                                          _vm._s(
+                                            parseFloat(room.area).toFixed(2)
+                                          ) +
+                                          " м"
+                                      ),
+                                      _c("sup", [_vm._v("2")])
+                                    ]
+                                  ),
+                                  _vm._v(" "),
+                                  _c(
+                                    "div",
+                                    { staticClass: "projects__desc-item pr-3" },
+                                    [
+                                      _vm._v(
+                                        "H: " +
+                                          _vm._s(
+                                            parseFloat(room.height).toFixed(2)
+                                          ) +
+                                          " м"
+                                      )
+                                    ]
+                                  ),
+                                  _vm._v(" "),
+                                  _c(
+                                    "div",
+                                    { staticClass: "projects__desc-item pr-3" },
+                                    [
+                                      _vm._v(
+                                        "S стен: " +
+                                          _vm._s(
+                                            parseFloat(room.wall_area).toFixed(
+                                              2
+                                            )
+                                          ) +
+                                          " м"
+                                      ),
+                                      _c("sup", [_vm._v("2")])
+                                    ]
+                                  ),
+                                  _vm._v(" "),
+                                  _c(
+                                    "div",
+                                    { staticClass: "projects__desc-item" },
+                                    [
+                                      _vm._v(
+                                        "P: " +
+                                          _vm._s(
+                                            parseFloat(room.perimeter).toFixed(
+                                              2
+                                            )
+                                          ) +
+                                          " м. п."
+                                      )
+                                    ]
+                                  )
+                                ]
+                              )
+                            ]
+                          ),
+                          _vm._v(" "),
+                          _vm._m(1, true),
+                          _vm._v(" "),
+                          _c("div", { staticClass: "material-info" }, [
+                            _c("div", { staticClass: "row mx-3" }, [
+                              _c("div", { staticClass: "col-12 px-0" }, [
+                                _c(
+                                  "table",
+                                  { staticClass: "table drag-table" },
+                                  [
+                                    room.room_services
+                                      ? _c(
+                                          "tbody",
+                                          [
+                                            _vm._l(
+                                              _vm.groupByServiceType(
+                                                room.room_services
+                                              ),
+                                              function(
+                                                room_services,
+                                                service_type_id
+                                              ) {
+                                                return [
+                                                  _c("tr", [
                                                     _c(
-                                                      "button",
+                                                      "th",
                                                       {
                                                         staticClass:
-                                                          "add-button add-button--remove d-flex align-items-center",
-                                                        attrs: {
-                                                          title: "Удалить этап"
-                                                        },
-                                                        on: {
-                                                          click: function(
-                                                            $event
-                                                          ) {
-                                                            _vm.deleteOrderStep(
-                                                              order_step.id
-                                                            )
-                                                          }
-                                                        }
+                                                          "table__transparent-row",
+                                                        attrs: { colspan: "4" }
                                                       },
                                                       [
-                                                        _c("img", {
-                                                          staticClass: "mr-2",
-                                                          attrs: {
-                                                            src: "/img/del.svg",
-                                                            alt: "add-button"
-                                                          }
-                                                        }),
-                                                        _vm._v(
-                                                          "\n                                          Удалить этап\n                                  "
-                                                        )
-                                                      ]
+                                                        _vm.service_types
+                                                          ? [
+                                                              _vm._v(
+                                                                "\n                                    " +
+                                                                  _vm._s(
+                                                                    _vm.getServiceTypeName(
+                                                                      service_type_id
+                                                                    )
+                                                                  ) +
+                                                                  "\n                                "
+                                                              )
+                                                            ]
+                                                          : _vm._e()
+                                                      ],
+                                                      2
                                                     )
-                                                  ]
-                                                ),
-                                                _vm._v(" "),
-                                                _c(
-                                                  "div",
-                                                  {
-                                                    staticClass:
-                                                      "stages__summ col-6 text-right"
-                                                  },
-                                                  [
-                                                    _vm._v(
-                                                      "\n                                 Итого за этап: "
-                                                    ),
-                                                    _c("span", [
-                                                      _vm._v(
-                                                        _vm._s(
-                                                          new Intl.NumberFormat(
-                                                            "ru-Ru"
-                                                          ).format(
-                                                            order_step.price
-                                                          )
-                                                        ) + " Р"
-                                                      )
-                                                    ])
-                                                  ]
-                                                )
-                                              ]
-                                            )
-                                          ])
-                                        ]
-                                      : _vm._e()
-                                  ],
-                                  2
-                                )
-                              ]
-                            )
-                          ]
-                        )
-                      ]
-                    }),
-                    _vm._v(" "),
-                    _c("div", { staticClass: "row col-12" }, [
-                      _c(
-                        "button",
-                        {
-                          staticClass: "add-space-button py-2",
-                          on: {
-                            click: function($event) {
-                              _vm.createNewOrderStep()
-                            }
-                          }
-                        },
-                        [_vm._v("\n            + Создать новый этап\n        ")]
-                      )
-                    ]),
-                    _vm._v(" "),
-                    _vm._l(_vm.order.rooms, function(room, index) {
-                      return _vm.order.rooms
-                        ? _c("div", { staticClass: "col-12 px-0" }, [
-                            _c(
-                              "div",
-                              {
-                                staticClass: "col-12 d-flex align-items-center"
-                              },
-                              [
-                                _c(
-                                  "h2",
-                                  {
-                                    staticClass: "col-6 main-subtitle py-4 pl-3"
-                                  },
-                                  [
-                                    _vm._v(
-                                      "\n            " +
-                                        _vm._s(
-                                          room.description
-                                            ? room.description
-                                            : room.room_type.type
-                                        ) +
-                                        "\n          "
-                                    )
-                                  ]
-                                ),
-                                _vm._v(" "),
-                                _c(
-                                  "div",
-                                  {
-                                    staticClass:
-                                      "col-6 d-flex justify-content-end align-items-center pt-3 pl-3"
-                                  },
-                                  [
-                                    _c(
-                                      "div",
-                                      {
-                                        staticClass: "projects__desc-item pr-3"
-                                      },
-                                      [
-                                        _vm._v(
-                                          "S: " +
-                                            _vm._s(
-                                              parseFloat(room.area).toFixed(2)
-                                            ) +
-                                            " м"
-                                        ),
-                                        _c("sup", [_vm._v("2")])
-                                      ]
-                                    ),
-                                    _vm._v(" "),
-                                    _c(
-                                      "div",
-                                      {
-                                        staticClass: "projects__desc-item pr-3"
-                                      },
-                                      [
-                                        _vm._v(
-                                          "H: " +
-                                            _vm._s(
-                                              parseFloat(room.height).toFixed(2)
-                                            ) +
-                                            " м"
-                                        )
-                                      ]
-                                    ),
-                                    _vm._v(" "),
-                                    _c(
-                                      "div",
-                                      {
-                                        staticClass: "projects__desc-item pr-3"
-                                      },
-                                      [
-                                        _vm._v(
-                                          "S стен: " +
-                                            _vm._s(
-                                              parseFloat(
-                                                room.wall_area
-                                              ).toFixed(2)
-                                            ) +
-                                            " м"
-                                        ),
-                                        _c("sup", [_vm._v("2")])
-                                      ]
-                                    ),
-                                    _vm._v(" "),
-                                    _c(
-                                      "div",
-                                      { staticClass: "projects__desc-item" },
-                                      [
-                                        _vm._v(
-                                          "P: " +
-                                            _vm._s(
-                                              parseFloat(
-                                                room.perimeter
-                                              ).toFixed(2)
-                                            ) +
-                                            " м. п."
-                                        )
-                                      ]
-                                    )
-                                  ]
-                                )
-                              ]
-                            ),
-                            _vm._v(" "),
-                            _vm._m(2, true),
-                            _vm._v(" "),
-                            _c("div", { staticClass: "material-info" }, [
-                              _c("div", { staticClass: "row mx-3" }, [
-                                _c("div", { staticClass: "col-12 px-0" }, [
-                                  _c(
-                                    "table",
-                                    { staticClass: "table drag-table" },
-                                    [
-                                      room.room_services
-                                        ? _c(
-                                            "tbody",
-                                            [
-                                              _vm._l(
-                                                _vm.groupByServiceType(
-                                                  room.room_services
-                                                ),
-                                                function(
-                                                  room_services,
-                                                  service_type_id
-                                                ) {
-                                                  return [
-                                                    _c("tr", [
-                                                      _c(
-                                                        "th",
-                                                        {
-                                                          staticClass:
-                                                            "table__transparent-row",
-                                                          attrs: {
-                                                            colspan: "4"
-                                                          }
-                                                        },
-                                                        [
-                                                          _vm.service_types
-                                                            ? [
-                                                                _vm._v(
-                                                                  "\n                                    " +
-                                                                    _vm._s(
-                                                                      _vm.getServiceTypeName(
-                                                                        service_type_id
-                                                                      )
-                                                                    ) +
-                                                                    "\n                                "
-                                                                )
-                                                              ]
-                                                            : _vm._e()
-                                                        ],
-                                                        2
-                                                      )
-                                                    ]),
-                                                    _vm._v(" "),
-                                                    _c(
-                                                      "tr",
-                                                      _vm._l(
-                                                        room_services,
-                                                        function(room_service) {
-                                                          return _c(
-                                                            "div",
-                                                            {
-                                                              staticClass:
-                                                                "item d-flex justify-content-between"
-                                                            },
-                                                            [
-                                                              _c(
-                                                                "th",
-                                                                {
-                                                                  staticClass:
-                                                                    "col-6",
-                                                                  attrs: {
-                                                                    scope: "row"
-                                                                  }
-                                                                },
-                                                                [
-                                                                  _c(
-                                                                    "div",
-                                                                    {
-                                                                      staticClass:
-                                                                        "form-check custom-control checkbox"
-                                                                    },
-                                                                    [
-                                                                      _c(
-                                                                        "input",
-                                                                        {
-                                                                          staticClass:
-                                                                            "form-check-input check",
-                                                                          attrs: {
-                                                                            type:
-                                                                              "checkbox",
-                                                                            id:
-                                                                              "room-" +
-                                                                              room.id +
-                                                                              "-service-" +
-                                                                              room_service.service_id
-                                                                          },
-                                                                          on: {
-                                                                            click: function(
-                                                                              $event
-                                                                            ) {
-                                                                              _vm.addSelectedServiceIds(
-                                                                                room.id,
-                                                                                room_service.service_id,
-                                                                                room_service.quantity
-                                                                              )
-                                                                            }
+                                                  ]),
+                                                  _vm._v(" "),
+                                                  _c(
+                                                    "tr",
+                                                    _vm._l(
+                                                      room_services,
+                                                      function(room_service) {
+                                                        return _c(
+                                                          "div",
+                                                          {
+                                                            staticClass:
+                                                              "item d-flex justify-content-between"
+                                                          },
+                                                          [
+                                                            _c(
+                                                              "th",
+                                                              {
+                                                                staticClass:
+                                                                  "col-6",
+                                                                attrs: {
+                                                                  scope: "row"
+                                                                }
+                                                              },
+                                                              [
+                                                                _c(
+                                                                  "div",
+                                                                  {
+                                                                    staticClass:
+                                                                      "form-check custom-control checkbox"
+                                                                  },
+                                                                  [
+                                                                    _c(
+                                                                      "input",
+                                                                      {
+                                                                        staticClass:
+                                                                          "form-check-input check",
+                                                                        attrs: {
+                                                                          type:
+                                                                            "checkbox",
+                                                                          id:
+                                                                            "room-" +
+                                                                            room.id +
+                                                                            "-service-" +
+                                                                            room_service.service_id
+                                                                        },
+                                                                        on: {
+                                                                          click: function(
+                                                                            $event
+                                                                          ) {
+                                                                            _vm.addSelectedServiceIds(
+                                                                              room.id,
+                                                                              room_service.service_id,
+                                                                              room_service.quantity
+                                                                            )
                                                                           }
                                                                         }
-                                                                      ),
+                                                                      }
+                                                                    ),
+                                                                    _vm._v(" "),
+                                                                    _c(
+                                                                      "label",
+                                                                      {
+                                                                        staticClass:
+                                                                          "form-check-label d-block",
+                                                                        attrs: {
+                                                                          for:
+                                                                            "room-" +
+                                                                            room.id +
+                                                                            "-service-" +
+                                                                            room_service.service_id
+                                                                        }
+                                                                      },
+                                                                      [
+                                                                        _vm._v(
+                                                                          "\n                                        " +
+                                                                            _vm._s(
+                                                                              _vm.getServiceDetails(
+                                                                                room_service.service_id,
+                                                                                "name"
+                                                                              )
+                                                                            ) +
+                                                                            "\n                                    "
+                                                                        )
+                                                                      ]
+                                                                    )
+                                                                  ]
+                                                                )
+                                                              ]
+                                                            ),
+                                                            _vm._v(" "),
+                                                            _c(
+                                                              "div",
+                                                              {
+                                                                staticClass:
+                                                                  "col-6 d-flex justify-content-end px-0"
+                                                              },
+                                                              [
+                                                                _c("td", [
+                                                                  _vm._v(
+                                                                    _vm._s(
+                                                                      parseFloat(
+                                                                        room_service.quantity
+                                                                      ).toFixed(
+                                                                        2
+                                                                      )
+                                                                    ) +
+                                                                      " " +
+                                                                      _vm._s(
+                                                                        room_service
+                                                                          .unit
+                                                                          .name
+                                                                      )
+                                                                  )
+                                                                ]),
+                                                                _vm._v(" "),
+                                                                _vm.order
+                                                                  .discount
+                                                                  ? [
+                                                                      _vm.getServiceDetails(
+                                                                        room_service.service_id,
+                                                                        "can_be_discounted"
+                                                                      )
+                                                                        ? [
+                                                                            _c(
+                                                                              "td",
+                                                                              [
+                                                                                _vm._v(
+                                                                                  _vm._s(
+                                                                                    parseInt(
+                                                                                      _vm.getServiceDetails(
+                                                                                        room_service.service_id,
+                                                                                        "price"
+                                                                                      ) *
+                                                                                        (1 -
+                                                                                          parseInt(
+                                                                                            _vm
+                                                                                              .order
+                                                                                              .discount
+                                                                                          ) /
+                                                                                            100)
+                                                                                    )
+                                                                                  ) +
+                                                                                    " Р/" +
+                                                                                    _vm._s(
+                                                                                      room_service
+                                                                                        .unit
+                                                                                        .name
+                                                                                    )
+                                                                                )
+                                                                              ]
+                                                                            ),
+                                                                            _vm._v(
+                                                                              " "
+                                                                            ),
+                                                                            _c(
+                                                                              "td",
+                                                                              [
+                                                                                _vm._v(
+                                                                                  _vm._s(
+                                                                                    _vm.priceCount(
+                                                                                      room_service.quantity,
+                                                                                      _vm.getServiceDetails(
+                                                                                        room_service.service_id,
+                                                                                        "price"
+                                                                                      ) *
+                                                                                        (1 -
+                                                                                          parseFloat(
+                                                                                            _vm
+                                                                                              .order
+                                                                                              .discount
+                                                                                          ) /
+                                                                                            100)
+                                                                                    )
+                                                                                  ) +
+                                                                                    " Р"
+                                                                                )
+                                                                              ]
+                                                                            )
+                                                                          ]
+                                                                        : [
+                                                                            _c(
+                                                                              "td",
+                                                                              [
+                                                                                _vm._v(
+                                                                                  _vm._s(
+                                                                                    parseInt(
+                                                                                      _vm.getServiceDetails(
+                                                                                        room_service.service_id,
+                                                                                        "price"
+                                                                                      )
+                                                                                    )
+                                                                                  ) +
+                                                                                    " Р/" +
+                                                                                    _vm._s(
+                                                                                      room_service
+                                                                                        .unit
+                                                                                        .name
+                                                                                    )
+                                                                                )
+                                                                              ]
+                                                                            ),
+                                                                            _vm._v(
+                                                                              " "
+                                                                            ),
+                                                                            _c(
+                                                                              "td",
+                                                                              [
+                                                                                _vm._v(
+                                                                                  _vm._s(
+                                                                                    _vm.priceCount(
+                                                                                      room_service.quantity,
+                                                                                      _vm.getServiceDetails(
+                                                                                        room_service.service_id,
+                                                                                        "price"
+                                                                                      )
+                                                                                    )
+                                                                                  ) +
+                                                                                    " Р"
+                                                                                )
+                                                                              ]
+                                                                            )
+                                                                          ]
+                                                                    ]
+                                                                  : _vm._e(),
+                                                                _vm._v(" "),
+                                                                _vm.order.markup
+                                                                  ? [
+                                                                      _c("td", [
+                                                                        _vm._v(
+                                                                          _vm._s(
+                                                                            parseInt(
+                                                                              _vm.getServiceDetails(
+                                                                                room_service.service_id,
+                                                                                "price"
+                                                                              ) *
+                                                                                (1 +
+                                                                                  parseInt(
+                                                                                    _vm
+                                                                                      .order
+                                                                                      .markup
+                                                                                  ) /
+                                                                                    100)
+                                                                            )
+                                                                          ) +
+                                                                            " Р/" +
+                                                                            _vm._s(
+                                                                              room_service
+                                                                                .unit
+                                                                                .name
+                                                                            )
+                                                                        )
+                                                                      ]),
                                                                       _vm._v(
                                                                         " "
                                                                       ),
-                                                                      _c(
-                                                                        "label",
-                                                                        {
-                                                                          staticClass:
-                                                                            "form-check-label d-block",
-                                                                          attrs: {
-                                                                            for:
-                                                                              "room-" +
-                                                                              room.id +
-                                                                              "-service-" +
-                                                                              room_service.service_id
-                                                                          }
-                                                                        },
-                                                                        [
-                                                                          _vm._v(
-                                                                            "\n                                        " +
-                                                                              _vm._s(
-                                                                                _vm.getServiceDetails(
-                                                                                  room_service.service_id,
-                                                                                  "name"
-                                                                                )
-                                                                              ) +
-                                                                              "\n                                    "
-                                                                          )
-                                                                        ]
-                                                                      )
+                                                                      _c("td", [
+                                                                        _vm._v(
+                                                                          _vm._s(
+                                                                            _vm.priceCount(
+                                                                              room_service.quantity,
+                                                                              _vm.getServiceDetails(
+                                                                                room_service.service_id,
+                                                                                "price"
+                                                                              ) *
+                                                                                (1 +
+                                                                                  parseFloat(
+                                                                                    _vm
+                                                                                      .order
+                                                                                      .markup
+                                                                                  ) /
+                                                                                    100)
+                                                                            )
+                                                                          ) +
+                                                                            " Р"
+                                                                        )
+                                                                      ])
                                                                     ]
-                                                                  )
-                                                                ]
-                                                              ),
-                                                              _vm._v(" "),
-                                                              _c(
-                                                                "div",
-                                                                {
-                                                                  staticClass:
-                                                                    "col-6 d-flex justify-content-end px-0"
-                                                                },
-                                                                [
-                                                                  _c("td", [
-                                                                    _vm._v(
-                                                                      _vm._s(
-                                                                        parseFloat(
-                                                                          room_service.quantity
-                                                                        ).toFixed(
-                                                                          2
-                                                                        )
-                                                                      ) +
-                                                                        " " +
-                                                                        _vm._s(
-                                                                          room_service
-                                                                            .unit
-                                                                            .name
-                                                                        )
-                                                                    )
-                                                                  ]),
-                                                                  _vm._v(" "),
-                                                                  _vm.order
-                                                                    .discount
-                                                                    ? [
-                                                                        _vm.getServiceDetails(
-                                                                          room_service.service_id,
-                                                                          "can_be_discounted"
-                                                                        )
-                                                                          ? [
-                                                                              _c(
-                                                                                "td",
-                                                                                [
-                                                                                  _vm._v(
-                                                                                    _vm._s(
-                                                                                      parseInt(
-                                                                                        _vm.getServiceDetails(
-                                                                                          room_service.service_id,
-                                                                                          "price"
-                                                                                        ) *
-                                                                                          (1 -
-                                                                                            parseInt(
-                                                                                              _vm
-                                                                                                .order
-                                                                                                .discount
-                                                                                            ) /
-                                                                                              100)
-                                                                                      )
-                                                                                    ) +
-                                                                                      " Р/" +
-                                                                                      _vm._s(
-                                                                                        room_service
-                                                                                          .unit
-                                                                                          .name
-                                                                                      )
-                                                                                  )
-                                                                                ]
-                                                                              ),
-                                                                              _vm._v(
-                                                                                " "
-                                                                              ),
-                                                                              _c(
-                                                                                "td",
-                                                                                [
-                                                                                  _vm._v(
-                                                                                    _vm._s(
-                                                                                      _vm.priceCount(
-                                                                                        room_service.quantity,
-                                                                                        _vm.getServiceDetails(
-                                                                                          room_service.service_id,
-                                                                                          "price"
-                                                                                        ) *
-                                                                                          (1 -
-                                                                                            parseFloat(
-                                                                                              _vm
-                                                                                                .order
-                                                                                                .discount
-                                                                                            ) /
-                                                                                              100)
-                                                                                      )
-                                                                                    ) +
-                                                                                      " Р"
-                                                                                  )
-                                                                                ]
-                                                                              )
-                                                                            ]
-                                                                          : [
-                                                                              _c(
-                                                                                "td",
-                                                                                [
-                                                                                  _vm._v(
-                                                                                    _vm._s(
-                                                                                      parseInt(
-                                                                                        _vm.getServiceDetails(
-                                                                                          room_service.service_id,
-                                                                                          "price"
-                                                                                        )
-                                                                                      )
-                                                                                    ) +
-                                                                                      " Р/" +
-                                                                                      _vm._s(
-                                                                                        room_service
-                                                                                          .unit
-                                                                                          .name
-                                                                                      )
-                                                                                  )
-                                                                                ]
-                                                                              ),
-                                                                              _vm._v(
-                                                                                " "
-                                                                              ),
-                                                                              _c(
-                                                                                "td",
-                                                                                [
-                                                                                  _vm._v(
-                                                                                    _vm._s(
-                                                                                      _vm.priceCount(
-                                                                                        room_service.quantity,
-                                                                                        _vm.getServiceDetails(
-                                                                                          room_service.service_id,
-                                                                                          "price"
-                                                                                        )
-                                                                                      )
-                                                                                    ) +
-                                                                                      " Р"
-                                                                                  )
-                                                                                ]
-                                                                              )
-                                                                            ]
-                                                                      ]
-                                                                    : _vm._e(),
-                                                                  _vm._v(" "),
-                                                                  _vm.order
-                                                                    .markup
-                                                                    ? [
-                                                                        _c(
-                                                                          "td",
-                                                                          [
-                                                                            _vm._v(
-                                                                              _vm._s(
-                                                                                parseInt(
-                                                                                  _vm.getServiceDetails(
-                                                                                    room_service.service_id,
-                                                                                    "price"
-                                                                                  ) *
-                                                                                    (1 +
-                                                                                      parseInt(
-                                                                                        _vm
-                                                                                          .order
-                                                                                          .markup
-                                                                                      ) /
-                                                                                        100)
-                                                                                )
-                                                                              ) +
-                                                                                " Р/" +
-                                                                                _vm._s(
-                                                                                  room_service
-                                                                                    .unit
-                                                                                    .name
-                                                                                )
-                                                                            )
-                                                                          ]
-                                                                        ),
+                                                                  : _vm._e(),
+                                                                _vm._v(" "),
+                                                                _vm.order
+                                                                  .discount ===
+                                                                  null &&
+                                                                _vm.order
+                                                                  .markup ===
+                                                                  null
+                                                                  ? [
+                                                                      _c("td", [
                                                                         _vm._v(
-                                                                          " "
-                                                                        ),
-                                                                        _c(
-                                                                          "td",
-                                                                          [
-                                                                            _vm._v(
-                                                                              _vm._s(
-                                                                                _vm.priceCount(
-                                                                                  room_service.quantity,
-                                                                                  _vm.getServiceDetails(
-                                                                                    room_service.service_id,
-                                                                                    "price"
-                                                                                  ) *
-                                                                                    (1 +
-                                                                                      parseFloat(
-                                                                                        _vm
-                                                                                          .order
-                                                                                          .markup
-                                                                                      ) /
-                                                                                        100)
-                                                                                )
-                                                                              ) +
-                                                                                " Р"
+                                                                          _vm._s(
+                                                                            parseInt(
+                                                                              _vm.getServiceDetails(
+                                                                                room_service.service_id,
+                                                                                "price"
+                                                                              )
                                                                             )
-                                                                          ]
+                                                                          ) +
+                                                                            " Р/" +
+                                                                            _vm._s(
+                                                                              room_service
+                                                                                .unit
+                                                                                .name
+                                                                            )
                                                                         )
-                                                                      ]
-                                                                    : _vm._e(),
-                                                                  _vm._v(" "),
-                                                                  _vm.order
-                                                                    .discount ===
-                                                                    null &&
-                                                                  _vm.order
-                                                                    .markup ===
-                                                                    null
-                                                                    ? [
-                                                                        _c(
-                                                                          "td",
-                                                                          [
-                                                                            _vm._v(
-                                                                              _vm._s(
-                                                                                parseInt(
-                                                                                  _vm.getServiceDetails(
-                                                                                    room_service.service_id,
-                                                                                    "price"
-                                                                                  )
-                                                                                )
-                                                                              ) +
-                                                                                " Р/" +
-                                                                                _vm._s(
-                                                                                  room_service
-                                                                                    .unit
-                                                                                    .name
-                                                                                )
-                                                                            )
-                                                                          ]
-                                                                        ),
+                                                                      ]),
+                                                                      _vm._v(
+                                                                        " "
+                                                                      ),
+                                                                      _c("td", [
                                                                         _vm._v(
-                                                                          " "
-                                                                        ),
-                                                                        _c(
-                                                                          "td",
-                                                                          [
-                                                                            _vm._v(
-                                                                              _vm._s(
-                                                                                _vm.priceCount(
-                                                                                  room_service.quantity,
-                                                                                  _vm.getServiceDetails(
-                                                                                    room_service.service_id,
-                                                                                    "price"
-                                                                                  )
-                                                                                )
-                                                                              ) +
-                                                                                " Р"
+                                                                          _vm._s(
+                                                                            _vm.priceCount(
+                                                                              room_service.quantity,
+                                                                              _vm.getServiceDetails(
+                                                                                room_service.service_id,
+                                                                                "price"
+                                                                              )
                                                                             )
-                                                                          ]
+                                                                          ) +
+                                                                            " Р"
                                                                         )
-                                                                      ]
-                                                                    : _vm._e()
-                                                                ],
-                                                                2
-                                                              )
-                                                            ]
-                                                          )
-                                                        }
-                                                      )
+                                                                      ])
+                                                                    ]
+                                                                  : _vm._e()
+                                                              ],
+                                                              2
+                                                            )
+                                                          ]
+                                                        )
+                                                      }
                                                     )
-                                                  ]
-                                                }
-                                              )
-                                            ],
-                                            2
-                                          )
-                                        : _vm._e()
-                                    ]
-                                  )
-                                ])
+                                                  )
+                                                ]
+                                              }
+                                            )
+                                          ],
+                                          2
+                                        )
+                                      : _vm._e()
+                                  ]
+                                )
                               ])
                             ])
                           ])
-                        : _vm._e()
-                    }),
-                    _vm._v(" "),
-                    _c("div", { staticStyle: { "margin-bottom": "10em" } })
-                  ],
-                  2
-                )
-              ],
-              1
-            ),
-            _vm._v(" "),
-            _vm.selected_service_ids.length
-              ? [
+                        ])
+                      : _vm._e()
+                  }),
+                  _vm._v(" "),
+                  _c("div", { staticStyle: { "margin-bottom": "10em" } })
+                ],
+                2
+              )
+            ],
+            1
+          ),
+          _vm._v(" "),
+          _vm.selected_service_ids.length
+            ? _c(
+                "div",
+                {
+                  staticClass: "fixed-footer d-flex align-items-center col-10"
+                },
+                [
                   _c(
                     "div",
                     {
                       staticClass:
-                        "fixed-footer d-flex align-items-center col-10"
+                        "col-12 d-flex align-items-center justify-content-end pr-0"
                     },
                     [
-                      _c(
-                        "div",
-                        {
-                          staticClass:
-                            "col-12 d-flex align-items-center justify-content-end pr-0"
-                        },
-                        [
-                          _c(
-                            "div",
-                            { staticClass: "col-md-2" },
-                            [
-                              _vm.order_steps
-                                ? [
-                                    _c(
-                                      "select",
-                                      {
-                                        directives: [
-                                          {
-                                            name: "model",
-                                            rawName: "v-model",
-                                            value: _vm.selected_order_step_id,
-                                            expression: "selected_order_step_id"
-                                          }
-                                        ],
-                                        staticClass: "w-100 form-control",
-                                        on: {
-                                          change: function($event) {
-                                            var $$selectedVal = Array.prototype.filter
-                                              .call(
-                                                $event.target.options,
-                                                function(o) {
-                                                  return o.selected
-                                                }
-                                              )
-                                              .map(function(o) {
-                                                var val =
-                                                  "_value" in o
-                                                    ? o._value
-                                                    : o.value
-                                                return val
-                                              })
-                                            _vm.selected_order_step_id = $event
-                                              .target.multiple
-                                              ? $$selectedVal
-                                              : $$selectedVal[0]
-                                          }
-                                        }
-                                      },
-                                      [
-                                        _c("option", { attrs: { value: "" } }, [
-                                          _vm._v("Выберите")
-                                        ]),
-                                        _vm._v(" "),
-                                        _vm._l(_vm.order_steps, function(
-                                          order_step,
-                                          index
-                                        ) {
-                                          return _c(
-                                            "option",
-                                            {
-                                              domProps: { value: order_step.id }
-                                            },
-                                            [
-                                              order_step.description
-                                                ? [
-                                                    _vm._v(
-                                                      "\n                                  " +
-                                                        _vm._s(
-                                                          order_step.description
-                                                        ) +
-                                                        "\n                              "
-                                                    )
-                                                  ]
-                                                : [
-                                                    _vm._v(
-                                                      "\n                                  " +
-                                                        _vm._s(
-                                                          order_step.name
-                                                        ) +
-                                                        "\n                              "
-                                                    )
-                                                  ]
-                                            ],
-                                            2
-                                          )
-                                        })
-                                      ],
-                                      2
-                                    )
-                                  ]
-                                : _vm._e()
-                            ],
-                            2
-                          ),
-                          _vm._v(" "),
-                          _c("div", { staticClass: "col-md-2" }, [
+                      _vm.order_steps
+                        ? _c("div", { staticClass: "col-md-2" }, [
                             _c(
-                              "button",
+                              "select",
                               {
-                                staticClass: "primary-button w-100",
-                                attrs: { type: "button" },
+                                directives: [
+                                  {
+                                    name: "model",
+                                    rawName: "v-model",
+                                    value: _vm.selected_order_step_id,
+                                    expression: "selected_order_step_id"
+                                  }
+                                ],
+                                staticClass: "w-100 form-control",
                                 on: {
-                                  click: function($event) {
-                                    _vm.linkSelectedServicesToRoomStepServices()
+                                  change: function($event) {
+                                    var $$selectedVal = Array.prototype.filter
+                                      .call($event.target.options, function(o) {
+                                        return o.selected
+                                      })
+                                      .map(function(o) {
+                                        var val =
+                                          "_value" in o ? o._value : o.value
+                                        return val
+                                      })
+                                    _vm.selected_order_step_id = $event.target
+                                      .multiple
+                                      ? $$selectedVal
+                                      : $$selectedVal[0]
                                   }
                                 }
                               },
-                              [_vm._v("Добавить")]
+                              [
+                                _c("option", { attrs: { value: "" } }, [
+                                  _vm._v("Выберите")
+                                ]),
+                                _vm._v(" "),
+                                _vm._l(_vm.order_steps, function(
+                                  order_step,
+                                  index
+                                ) {
+                                  return _c(
+                                    "option",
+                                    { domProps: { value: order_step.id } },
+                                    [
+                                      _vm._v(
+                                        "\n                      " +
+                                          _vm._s(
+                                            order_step.description
+                                              ? order_step.description
+                                              : order_step.name
+                                          ) +
+                                          "\n                  "
+                                      )
+                                    ]
+                                  )
+                                })
+                              ],
+                              2
                             )
                           ])
-                        ]
-                      )
+                        : _vm._e(),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "col-md-2" }, [
+                        _c(
+                          "button",
+                          {
+                            staticClass: "primary-button w-100",
+                            attrs: { type: "button" },
+                            on: {
+                              click: function($event) {
+                                _vm.linkSelectedServicesToRoomStepServices()
+                              }
+                            }
+                          },
+                          [_vm._v("Добавить")]
+                        )
+                      ])
                     ]
                   )
                 ]
-              : _vm._e()
-          ],
-          2
-        )
+              )
+            : _vm._e()
+        ])
       ])
     ],
     1
   )
 }
 var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "col-md-10" }, [
-      _c("h1", { staticClass: "main-caption w-100" }, [
-        _vm._v("\n                Этапы работ\n              ")
-      ])
-    ])
-  },
   function() {
     var _vm = this
     var _h = _vm.$createElement
@@ -96770,6 +96593,166 @@ $(window).scroll(function () {
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
+
+/***/ }),
+/* 450 */,
+/* 451 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+var normalizeComponent = __webpack_require__(1)
+/* script */
+var __vue_script__ = __webpack_require__(452)
+/* template */
+var __vue_template__ = __webpack_require__(453)
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = null
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources/assets/js/components/Orders/Steps/partials/OrderDetail.vue"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-1e008fed", Component.options)
+  } else {
+    hotAPI.reload("data-v-1e008fed", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 452 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+    props: ['order'],
+
+    computed: {
+        orderPrice: function orderPrice() {
+            return new Intl.NumberFormat('ru-Ru').format(parseInt(this.order.price));
+        }
+    }
+});
+
+/***/ }),
+/* 453 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c(
+    "div",
+    { staticClass: "row col-12 fixed-part align-items-center shadow-light" },
+    [
+      _vm._m(0),
+      _vm._v(" "),
+      _c(
+        "div",
+        { staticClass: "col-md-2" },
+        [
+          _c(
+            "router-link",
+            {
+              attrs: {
+                to: { name: "order-step-graphic", params: { id: _vm.order.id } }
+              }
+            },
+            [
+              _c(
+                "button",
+                {
+                  staticClass: "primary-button w-100",
+                  attrs: {
+                    type: "button",
+                    onClick: "window.location.reload(true)"
+                  }
+                },
+                [_vm._v("\n              Смотреть график\n          ")]
+              )
+            ]
+          )
+        ],
+        1
+      ),
+      _vm._v(" "),
+      _c("div", { staticClass: "col-md-6 pt-3" }, [
+        _c("h2", { staticClass: "main-subtitle" }, [
+          _vm._v(" Итого по смете: " + _vm._s(_vm.orderPrice) + " Р")
+        ])
+      ])
+    ]
+  )
+}
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "col-md-10" }, [
+      _c("h1", { staticClass: "main-caption w-100" }, [
+        _vm._v("\n      Этапы работ\n    ")
+      ])
+    ])
+  }
+]
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-1e008fed", module.exports)
+  }
+}
 
 /***/ })
 /******/ ]);

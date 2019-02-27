@@ -10,26 +10,7 @@
 
           <div class="col-md-10 px-0">
 
-            <div class="row col-12 fixed-part align-items-center shadow-light">
-
-              <div class="col-md-10">
-                <h1 class="main-caption w-100">
-                  Этапы работ
-                </h1>
-              </div>
-
-              <div class="col-md-2">
-                  <router-link v-if="order_steps.length" :to="{ name: 'order-step-graphic', params: { id: order.id } }">
-                      <button type="button" class="primary-button w-100" onClick="window.location.reload(true)">
-                          Смотреть график
-                      </button>
-                  </router-link>
-              </div>
-
-              <div class="col-md-6 pt-3">
-                <h2 class="main-subtitle"> Итого по смете: {{ new Intl.NumberFormat('ru-Ru').format(parseInt(order.price)) }} Р</h2>
-              </div>
-            </div>
+              <OrderDetail :order="order" />
 
             <div class="stages__pt"></div>
 
@@ -304,32 +285,21 @@
           </div>
         </div>
 
-        <template v-if="selected_service_ids.length">
-            <div class="fixed-footer d-flex align-items-center col-10">
-              <div class="col-12 d-flex align-items-center justify-content-end pr-0">
-                <div class="col-md-2">
-                    <template v-if="order_steps">
-                        <select class="w-100 form-control" v-model="selected_order_step_id">
-                            <option value="">Выберите</option>
-                            <option v-for="(order_step, index) in order_steps" :value="order_step.id">
-                                <template v-if="order_step.description">
-                                    {{ order_step.description }}
-                                </template>
-                                <template v-else>
-                                    {{ order_step.name }}
-                                </template>
-                            </option>
-                        </select>
-                    </template>
-                </div>
-                <div class="col-md-2">
-                  <button type="button" class="primary-button w-100" @click="linkSelectedServicesToRoomStepServices()">Добавить</button>
-                </div>
-              </div>
+        <div class="fixed-footer d-flex align-items-center col-10" v-if="selected_service_ids.length">
+          <div class="col-12 d-flex align-items-center justify-content-end pr-0">
+            <div class="col-md-2" v-if="order_steps">
+                <select class="w-100 form-control" v-model="selected_order_step_id">
+                    <option value="">Выберите</option>
+                    <option v-for="(order_step, index) in order_steps" :value="order_step.id">
+                        {{ order_step.description ? order_step.description : order_step.name }}
+                    </option>
+                </select>
             </div>
-        </template>
-
-
+            <div class="col-md-2">
+              <button type="button" class="primary-button w-100" @click="linkSelectedServicesToRoomStepServices()">Добавить</button>
+            </div>
+          </div>
+        </div>
 
       </div>
     </section>
@@ -337,6 +307,7 @@
 </template>
 
 <script>
+  import OrderDetail from './partials/OrderDetail'
   import Datepicker from "vuejs-datepicker"
   import { ru } from "vuejs-datepicker/dist/locale"
   import OrderExportCollection from '../../../mixins/OrderExportCollection'
@@ -364,7 +335,7 @@
     },
 
     components: {
-      Datepicker
+      Datepicker, OrderDetail
     },
 
     created () {

@@ -157,6 +157,7 @@ class OrderController extends Controller
                 'price' => $room->price,
                 'original_price' => $order->original_price,
                 'description' => $room->description,
+                'priority' => $room->priority
             ]);
 
             $newRoom->update([
@@ -180,7 +181,8 @@ class OrderController extends Controller
                     'service_type_id' => $room_service->service_type_id,
                     'service_unit_id' => $room_service->service_unit_id,
                     'quantity' => $room_service->quantity,
-                    'price' => $room_service->price
+                    'price' => $room_service->price,
+                    'priority' => $room_service->priority
                 ]);
             }
         }
