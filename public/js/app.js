@@ -53199,12 +53199,14 @@ exports.push([module.i, "\ninput[data-v-a478bd48]:required:valid {\n  border-col
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vuejs_datepicker__ = __webpack_require__(5);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_vuejs_datepicker_dist_locale__ = __webpack_require__(6);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_vue2_dropzone__ = __webpack_require__(149);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_vue2_dropzone___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_vue2_dropzone__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_vue2_dropzone_dist_vue2Dropzone_min_css__ = __webpack_require__(150);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_vue2_dropzone_dist_vue2Dropzone_min_css___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_vue2_dropzone_dist_vue2Dropzone_min_css__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__partials_OrderDetail__ = __webpack_require__(443);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__partials_OrderDetail___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__partials_OrderDetail__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_vuejs_datepicker__ = __webpack_require__(5);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_vuejs_datepicker_dist_locale__ = __webpack_require__(6);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_vue2_dropzone__ = __webpack_require__(149);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_vue2_dropzone___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_vue2_dropzone__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_vue2_dropzone_dist_vue2Dropzone_min_css__ = __webpack_require__(150);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_vue2_dropzone_dist_vue2Dropzone_min_css___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4_vue2_dropzone_dist_vue2Dropzone_min_css__);
 //
 //
 //
@@ -53413,66 +53415,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
+
 
 
 
@@ -53502,7 +53445,7 @@ var moment = __webpack_require__(0);
 
             file: null,
 
-            ru: __WEBPACK_IMPORTED_MODULE_1_vuejs_datepicker_dist_locale__["a" /* ru */],
+            ru: __WEBPACK_IMPORTED_MODULE_2_vuejs_datepicker_dist_locale__["a" /* ru */],
             moment: moment,
 
             dropzoneOptions: {
@@ -53521,8 +53464,8 @@ var moment = __webpack_require__(0);
 
 
     components: {
-        Datepicker: __WEBPACK_IMPORTED_MODULE_0_vuejs_datepicker__["a" /* default */],
-        vueDropzone: __WEBPACK_IMPORTED_MODULE_2_vue2_dropzone___default.a
+        Datepicker: __WEBPACK_IMPORTED_MODULE_1_vuejs_datepicker__["a" /* default */], OrderDetail: __WEBPACK_IMPORTED_MODULE_0__partials_OrderDetail___default.a,
+        vueDropzone: __WEBPACK_IMPORTED_MODULE_3_vue2_dropzone___default.a
     },
 
     mounted: function mounted() {
@@ -53687,165 +53630,9 @@ var render = function() {
                     "div",
                     { staticClass: "col-md-10 px-0" },
                     [
-                      _c(
-                        "div",
-                        {
-                          staticClass:
-                            "row col-10 fixed-part shadow bg-white rounded pl-3 align-items-center"
-                        },
-                        [
-                          _c("div", { staticClass: "col-md-8" }, [
-                            _c("h1", { staticClass: "main-caption" }, [
-                              _vm._v(
-                                "\n                    " +
-                                  _vm._s(_vm.order.order_name) +
-                                  " (" +
-                                  _vm._s(_vm.order.address) +
-                                  ")\n                  "
-                              )
-                            ])
-                          ]),
-                          _vm._v(" "),
-                          _vm.order.rooms
-                            ? [
-                                _c(
-                                  "div",
-                                  { staticClass: "col-md-2 ml-auto" },
-                                  [
-                                    _vm.order.rooms.length
-                                      ? [
-                                          _c(
-                                            "router-link",
-                                            {
-                                              attrs: {
-                                                to: {
-                                                  name: "room-show",
-                                                  params: {
-                                                    id: _vm.order.id,
-                                                    room_id:
-                                                      _vm.order.rooms[
-                                                        _vm.order.rooms.length -
-                                                          1
-                                                      ].id
-                                                  }
-                                                }
-                                              }
-                                            },
-                                            [
-                                              _c(
-                                                "button",
-                                                {
-                                                  staticClass:
-                                                    "primary-button w-100",
-                                                  attrs: { type: "button" }
-                                                },
-                                                [_vm._v("Редактировать")]
-                                              )
-                                            ]
-                                          )
-                                        ]
-                                      : [
-                                          _c(
-                                            "router-link",
-                                            {
-                                              attrs: {
-                                                to: {
-                                                  name: "order-show",
-                                                  params: { id: _vm.order.id }
-                                                }
-                                              }
-                                            },
-                                            [
-                                              _c(
-                                                "button",
-                                                {
-                                                  staticClass:
-                                                    "primary-button w-100",
-                                                  attrs: { type: "button" }
-                                                },
-                                                [_vm._v("Редактировать")]
-                                              )
-                                            ]
-                                          )
-                                        ]
-                                  ],
-                                  2
-                                )
-                              ]
-                            : _vm._e(),
-                          _vm._v(" "),
-                          _c("div", { staticClass: "col-12 pt-3 d-flex" }, [
-                            _c(
-                              "div",
-                              {
-                                staticClass: "main-subtitle px-15 col-auto pl-0"
-                              },
-                              [
-                                _vm._v(
-                                  " Итого: " +
-                                    _vm._s(
-                                      new Intl.NumberFormat("ru-Ru").format(
-                                        parseInt(_vm.service_price)
-                                      )
-                                    ) +
-                                    " Р "
-                                ),
-                                _c("span", [_vm._v("(работы)")])
-                              ]
-                            ),
-                            _vm._v(" "),
-                            _c(
-                              "div",
-                              { staticClass: "main-subtitle px-15 col-auto" },
-                              [
-                                _vm._v(
-                                  " " +
-                                    _vm._s(
-                                      new Intl.NumberFormat("ru-Ru").format(
-                                        parseInt(_vm.material_price)
-                                      )
-                                    ) +
-                                    " Р"
-                                ),
-                                _c("span", [_vm._v("(материалы)")])
-                              ]
-                            ),
-                            _vm._v(" "),
-                            _c(
-                              "div",
-                              { staticClass: "main-subtitle px-15 col-auto" },
-                              [
-                                _vm._v(
-                                  " Приход: " +
-                                    _vm._s(
-                                      new Intl.NumberFormat("ru-Ru").format(
-                                        parseInt(_vm.income_amount)
-                                      )
-                                    ) +
-                                    " Р"
-                                )
-                              ]
-                            ),
-                            _vm._v(" "),
-                            _c(
-                              "div",
-                              { staticClass: "main-subtitle px-15 col-auto" },
-                              [
-                                _vm._v(
-                                  " Прибыль: " +
-                                    _vm._s(
-                                      new Intl.NumberFormat("ru-Ru").format(
-                                        parseInt(_vm.profit)
-                                      )
-                                    ) +
-                                    " Р"
-                                )
-                              ]
-                            )
-                          ])
-                        ],
-                        2
-                      ),
+                      _vm.order.length !== 0
+                        ? _c("OrderDetail", { attrs: { order: _vm.order } })
+                        : _vm._e(),
                       _vm._v(" "),
                       _c("div", { staticClass: "col-12" }, [
                         _c("div", { staticClass: "main-content" }, [
@@ -53948,138 +53735,67 @@ var render = function() {
                                       [_vm._v("Причина")]
                                     ),
                                     _vm._v(" "),
-                                    _vm.order.finished_order_acts
-                                      ? [
-                                          _vm._l(
-                                            _vm.order.finished_order_acts,
-                                            function(
-                                              finished_order_act,
-                                              index
-                                            ) {
-                                              return [
-                                                finished_order_act.description
-                                                  ? [
-                                                      _c(
-                                                        "option",
-                                                        {
-                                                          domProps: {
-                                                            value:
-                                                              finished_order_act.description
-                                                          }
-                                                        },
-                                                        [
-                                                          _vm._v(
-                                                            "\n                                        " +
-                                                              _vm._s(
-                                                                finished_order_act.description
-                                                              ) +
-                                                              " (" +
-                                                              _vm._s(
-                                                                parseInt(
-                                                                  index
-                                                                ) + 1
-                                                              ) +
-                                                              ")\n                                    "
-                                                          )
-                                                        ]
-                                                      )
-                                                    ]
-                                                  : [
-                                                      _c(
-                                                        "option",
-                                                        {
-                                                          domProps: {
-                                                            value:
-                                                              finished_order_act.name
-                                                          }
-                                                        },
-                                                        [
-                                                          _vm._v(
-                                                            "\n                                        " +
-                                                              _vm._s(
-                                                                finished_order_act.name
-                                                              ) +
-                                                              " (" +
-                                                              _vm._s(
-                                                                parseInt(
-                                                                  index
-                                                                ) + 1
-                                                              ) +
-                                                              ")\n                                    "
-                                                          )
-                                                        ]
-                                                      )
-                                                    ]
+                                    _vm._l(
+                                      _vm.order.finished_order_acts,
+                                      function(finished_order_act, index) {
+                                        return _vm.order.finished_order_acts
+                                          ? _c(
+                                              "option",
+                                              {
+                                                domProps: {
+                                                  value:
+                                                    finished_order_act.description
+                                                }
+                                              },
+                                              [
+                                                _vm._v(
+                                                  "\n                            " +
+                                                    _vm._s(
+                                                      finished_order_act.description
+                                                        ? finished_order_act.description
+                                                        : finished_order_act.name
+                                                    ) +
+                                                    " (" +
+                                                    _vm._s(
+                                                      parseInt(index) + 1
+                                                    ) +
+                                                    ")\n                        "
+                                                )
                                               ]
-                                            }
-                                          )
-                                        ]
-                                      : _vm._e(),
+                                            )
+                                          : _vm._e()
+                                      }
+                                    ),
                                     _vm._v(" "),
-                                    _vm.order.extra_order_acts
-                                      ? [
-                                          _vm._l(
-                                            _vm.order.extra_order_acts,
-                                            function(extra_order_act, index) {
-                                              return [
-                                                extra_order_act.description
-                                                  ? [
-                                                      _c(
-                                                        "option",
-                                                        {
-                                                          domProps: {
-                                                            value:
-                                                              extra_order_act.description
-                                                          }
-                                                        },
-                                                        [
-                                                          _vm._v(
-                                                            "\n                                        " +
-                                                              _vm._s(
-                                                                extra_order_act.description
-                                                              ) +
-                                                              " (" +
-                                                              _vm._s(
-                                                                parseInt(
-                                                                  index
-                                                                ) + 1
-                                                              ) +
-                                                              ")\n                                    "
-                                                          )
-                                                        ]
-                                                      )
-                                                    ]
-                                                  : [
-                                                      _c(
-                                                        "option",
-                                                        {
-                                                          domProps: {
-                                                            value:
-                                                              extra_order_act.name
-                                                          }
-                                                        },
-                                                        [
-                                                          _vm._v(
-                                                            "\n                                        " +
-                                                              _vm._s(
-                                                                extra_order_act.name
-                                                              ) +
-                                                              " (" +
-                                                              _vm._s(
-                                                                parseInt(
-                                                                  index
-                                                                ) + 1
-                                                              ) +
-                                                              ")\n                                    "
-                                                          )
-                                                        ]
-                                                      )
-                                                    ]
-                                              ]
-                                            }
+                                    _vm._l(_vm.order.extra_order_acts, function(
+                                      extra_order_act,
+                                      index
+                                    ) {
+                                      return _vm.order.extra_order_acts
+                                        ? _c(
+                                            "option",
+                                            {
+                                              domProps: {
+                                                value:
+                                                  extra_order_act.description
+                                              }
+                                            },
+                                            [
+                                              _vm._v(
+                                                "\n                            " +
+                                                  _vm._s(
+                                                    extra_order_act.description
+                                                      ? extra_order_act.description
+                                                      : extra_order_act.name
+                                                  ) +
+                                                  " (" +
+                                                  _vm._s(parseInt(index) + 1) +
+                                                  ")\n                        "
+                                              )
+                                            ]
                                           )
-                                        ]
-                                      : _vm._e(),
+                                        : _vm._e()
+                                    }),
                                     _vm._v(" "),
                                     _c(
                                       "option",
@@ -54241,138 +53957,67 @@ var render = function() {
                                       [_vm._v("Оплата рабочим")]
                                     ),
                                     _vm._v(" "),
-                                    _vm.order.finished_order_acts
-                                      ? [
-                                          _vm._l(
-                                            _vm.order.finished_order_acts,
-                                            function(
-                                              finished_order_act,
-                                              index
-                                            ) {
-                                              return [
-                                                finished_order_act.description
-                                                  ? [
-                                                      _c(
-                                                        "option",
-                                                        {
-                                                          domProps: {
-                                                            value:
-                                                              finished_order_act.description
-                                                          }
-                                                        },
-                                                        [
-                                                          _vm._v(
-                                                            "\n                                              " +
-                                                              _vm._s(
-                                                                finished_order_act.description
-                                                              ) +
-                                                              " (" +
-                                                              _vm._s(
-                                                                parseInt(
-                                                                  index
-                                                                ) + 1
-                                                              ) +
-                                                              ")\n                                          "
-                                                          )
-                                                        ]
-                                                      )
-                                                    ]
-                                                  : [
-                                                      _c(
-                                                        "option",
-                                                        {
-                                                          domProps: {
-                                                            value:
-                                                              finished_order_act.name
-                                                          }
-                                                        },
-                                                        [
-                                                          _vm._v(
-                                                            "\n                                              " +
-                                                              _vm._s(
-                                                                finished_order_act.name
-                                                              ) +
-                                                              " (" +
-                                                              _vm._s(
-                                                                parseInt(
-                                                                  index
-                                                                ) + 1
-                                                              ) +
-                                                              ")\n                                          "
-                                                          )
-                                                        ]
-                                                      )
-                                                    ]
+                                    _vm._l(
+                                      _vm.order.finished_order_acts,
+                                      function(finished_order_act, index) {
+                                        return _vm.order.finished_order_acts
+                                          ? _c(
+                                              "option",
+                                              {
+                                                domProps: {
+                                                  value:
+                                                    finished_order_act.description
+                                                }
+                                              },
+                                              [
+                                                _vm._v(
+                                                  "\n                                  " +
+                                                    _vm._s(
+                                                      finished_order_act.description
+                                                        ? finished_order_act.description
+                                                        : finished_order_act.name
+                                                    ) +
+                                                    " (" +
+                                                    _vm._s(
+                                                      parseInt(index) + 1
+                                                    ) +
+                                                    ")\n                              "
+                                                )
                                               ]
-                                            }
-                                          )
-                                        ]
-                                      : _vm._e(),
+                                            )
+                                          : _vm._e()
+                                      }
+                                    ),
                                     _vm._v(" "),
-                                    _vm.order.extra_order_acts
-                                      ? [
-                                          _vm._l(
-                                            _vm.order.extra_order_acts,
-                                            function(extra_order_act, index) {
-                                              return [
-                                                extra_order_act.description
-                                                  ? [
-                                                      _c(
-                                                        "option",
-                                                        {
-                                                          domProps: {
-                                                            value:
-                                                              extra_order_act.description
-                                                          }
-                                                        },
-                                                        [
-                                                          _vm._v(
-                                                            "\n                                              " +
-                                                              _vm._s(
-                                                                extra_order_act.description
-                                                              ) +
-                                                              " (" +
-                                                              _vm._s(
-                                                                parseInt(
-                                                                  index
-                                                                ) + 1
-                                                              ) +
-                                                              ")\n                                          "
-                                                          )
-                                                        ]
-                                                      )
-                                                    ]
-                                                  : [
-                                                      _c(
-                                                        "option",
-                                                        {
-                                                          domProps: {
-                                                            value:
-                                                              extra_order_act.name
-                                                          }
-                                                        },
-                                                        [
-                                                          _vm._v(
-                                                            "\n                                              " +
-                                                              _vm._s(
-                                                                extra_order_act.name
-                                                              ) +
-                                                              " (" +
-                                                              _vm._s(
-                                                                parseInt(
-                                                                  index
-                                                                ) + 1
-                                                              ) +
-                                                              ")\n                                          "
-                                                          )
-                                                        ]
-                                                      )
-                                                    ]
-                                              ]
-                                            }
+                                    _vm._l(_vm.order.extra_order_acts, function(
+                                      extra_order_act,
+                                      index
+                                    ) {
+                                      return _vm.order.extra_order_acts
+                                        ? _c(
+                                            "option",
+                                            {
+                                              domProps: {
+                                                value:
+                                                  extra_order_act.description
+                                              }
+                                            },
+                                            [
+                                              _vm._v(
+                                                "\n                                  " +
+                                                  _vm._s(
+                                                    extra_order_act.description
+                                                      ? extra_order_act.description
+                                                      : extra_order_act.name
+                                                  ) +
+                                                  " (" +
+                                                  _vm._s(parseInt(index) + 1) +
+                                                  ")\n                              "
+                                              )
+                                            ]
                                           )
-                                        ]
-                                      : _vm._e()
+                                        : _vm._e()
+                                    })
                                   ],
                                   2
                                 )
@@ -97045,6 +96690,154 @@ $(window).scroll(function () {
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
+
+/***/ }),
+/* 442 */,
+/* 443 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+var normalizeComponent = __webpack_require__(1)
+/* script */
+var __vue_script__ = __webpack_require__(444)
+/* template */
+var __vue_template__ = __webpack_require__(445)
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = null
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources/assets/js/components/Orders/Finances/partials/OrderDetail.vue"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-89f093f6", Component.options)
+  } else {
+    hotAPI.reload("data-v-89f093f6", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 444 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+    props: ['order']
+});
+
+/***/ }),
+/* 445 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c(
+    "div",
+    {
+      staticClass:
+        "row col-10 fixed-part shadow bg-white rounded pl-3 align-items-center"
+    },
+    [
+      _c("div", { staticClass: "col-md-8" }, [
+        _c("h1", { staticClass: "main-caption" }, [
+          _vm._v(
+            "\n      " +
+              _vm._s(_vm.order.order_name) +
+              " (" +
+              _vm._s(_vm.order.address) +
+              ")\n    "
+          )
+        ])
+      ]),
+      _vm._v(" "),
+      _c(
+        "div",
+        { staticClass: "col-md-2 ml-auto" },
+        [
+          _c(
+            "router-link",
+            {
+              attrs: {
+                to: { name: "order-panel", params: { id: _vm.order.id } }
+              }
+            },
+            [
+              _c(
+                "button",
+                {
+                  staticClass: "primary-button w-100",
+                  attrs: { type: "button" }
+                },
+                [_vm._v("Редактировать")]
+              )
+            ]
+          )
+        ],
+        1
+      )
+    ]
+  )
+}
+var staticRenderFns = []
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-89f093f6", module.exports)
+  }
+}
 
 /***/ })
 /******/ ]);

@@ -9,37 +9,9 @@
 
                 <div class="col-md-10 px-0">
 
-                  <div class="row col-10 fixed-part shadow bg-white rounded pl-3 align-items-center">
-                    <div class="col-md-8">
-                      <h1 class="main-caption">
-                        {{ order.order_name }} ({{ order.address }})
-                      </h1>
-                    </div>
-
-                    <template v-if="order.rooms">
-                        <div class="col-md-2 ml-auto">
-                            <template v-if="order.rooms.length">
-                                    <router-link :to="{ name: 'room-show', params: { id: order.id, room_id: order.rooms[order.rooms.length - 1].id } }">
-                                        <button type="button" class="primary-button w-100">Редактировать</button>
-                                    </router-link>
-                            </template>
-                            <template v-else>
-                                <router-link :to="{ name: 'order-show', params: { id: order.id } }">
-                                      <button type="button" class="primary-button w-100">Редактировать</button>
-                                </router-link>
-                            </template>
-                        </div>
-                    </template>
-
-
-                    <div class="col-12 pt-3 d-flex">
-                      <div class="main-subtitle px-15 col-auto pl-0"> Итого: {{ new Intl.NumberFormat('ru-Ru').format(parseInt(service_price)) }} Р <span>(работы)</span></div>
-                      <div class="main-subtitle px-15 col-auto"> {{ new Intl.NumberFormat('ru-Ru').format(parseInt(material_price)) }} Р<span>(материалы)</span></div>
-                      <div class="main-subtitle px-15 col-auto"> Приход: {{ new Intl.NumberFormat('ru-Ru').format(parseInt(income_amount)) }} Р</div>
-                      <div class="main-subtitle px-15 col-auto"> Прибыль: {{ new Intl.NumberFormat('ru-Ru').format(parseInt(profit)) }} Р</div>
-                    </div>
-
-                  </div>
+                    <OrderDetail v-if="order.length !== 0"
+                                 :order="order"
+                                 />
 
                   <div class="col-12">
 
@@ -62,35 +34,19 @@
                           <select class="form-control" v-model="income_reason">
                             <option selected disabled value="null">Причина</option>
 
-                            <template v-if="order.finished_order_acts">
-                                <template v-for="(finished_order_act, index) in order.finished_order_acts">
-                                    <template v-if="finished_order_act.description">
-                                        <option :value="finished_order_act.description">
-                                            {{ finished_order_act.description }} ({{ parseInt(index) + 1 }})
-                                        </option>
-                                    </template>
-                                    <template v-else>
-                                        <option :value="finished_order_act.name">
-                                            {{ finished_order_act.name }} ({{ parseInt(index) + 1 }})
-                                        </option>
-                                    </template>
+                            <option v-if="order.finished_order_acts"
+                                    v-for="(finished_order_act, index) in order.finished_order_acts"
+                                    :value="finished_order_act.description"
+                                    >
+                                {{ finished_order_act.description ? finished_order_act.description : finished_order_act.name }} ({{ parseInt(index) + 1 }})
+                            </option>
 
-                                </template>
-                            </template>
-                            <template v-if="order.extra_order_acts">
-                                <template v-for="(extra_order_act, index) in order.extra_order_acts">
-                                    <template v-if="extra_order_act.description">
-                                        <option :value="extra_order_act.description">
-                                            {{ extra_order_act.description }} ({{ parseInt(index) + 1 }})
-                                        </option>
-                                    </template>
-                                    <template v-else>
-                                        <option :value="extra_order_act.name">
-                                            {{ extra_order_act.name }} ({{ parseInt(index) + 1 }})
-                                        </option>
-                                    </template>
-                                </template>
-                            </template>
+                            <option v-if="order.extra_order_acts"
+                                    v-for="(extra_order_act, index) in order.extra_order_acts"
+                                    :value="extra_order_act.description"
+                                    >
+                                {{ extra_order_act.description ? extra_order_act.description : extra_order_act.name }} ({{ parseInt(index) + 1 }})
+                            </option>
 
                             <option value="Оплата материалов от клиента">Оплата материалов от клиента</option>
                             <option value="Аванс">Аванс</option>
@@ -125,35 +81,19 @@
                                   <option value="Оплата материалов">Оплата материалов</option>
                                   <option value="Оплата рабочим">Оплата рабочим</option>
 
-                                  <template v-if="order.finished_order_acts">
-                                      <template v-for="(finished_order_act, index) in order.finished_order_acts">
-                                          <template v-if="finished_order_act.description">
-                                              <option :value="finished_order_act.description">
-                                                  {{ finished_order_act.description }} ({{ parseInt(index) + 1 }})
-                                              </option>
-                                          </template>
-                                          <template v-else>
-                                              <option :value="finished_order_act.name">
-                                                  {{ finished_order_act.name }} ({{ parseInt(index) + 1 }})
-                                              </option>
-                                          </template>
+                                  <option v-if="order.finished_order_acts"
+                                          v-for="(finished_order_act, index) in order.finished_order_acts"
+                                          :value="finished_order_act.description"
+                                          >
+                                      {{ finished_order_act.description ? finished_order_act.description : finished_order_act.name }} ({{ parseInt(index) + 1 }})
+                                  </option>
 
-                                      </template>
-                                  </template>
-                                  <template v-if="order.extra_order_acts">
-                                      <template v-for="(extra_order_act, index) in order.extra_order_acts">
-                                          <template v-if="extra_order_act.description">
-                                              <option :value="extra_order_act.description">
-                                                  {{ extra_order_act.description }} ({{ parseInt(index) + 1 }})
-                                              </option>
-                                          </template>
-                                          <template v-else>
-                                              <option :value="extra_order_act.name">
-                                                  {{ extra_order_act.name }} ({{ parseInt(index) + 1 }})
-                                              </option>
-                                          </template>
-                                      </template>
-                                  </template>
+                                  <option v-if="order.extra_order_acts"
+                                          v-for="(extra_order_act, index) in order.extra_order_acts"
+                                          :value="extra_order_act.description"
+                                          >
+                                      {{ extra_order_act.description ? extra_order_act.description : extra_order_act.name }} ({{ parseInt(index) + 1 }})
+                                  </option>
                               </select>
                             </div>
                             <div class="col-2">
@@ -267,6 +207,7 @@
 
 
 <script>
+import OrderDetail from './partials/OrderDetail'
 import Datepicker from "vuejs-datepicker"
 import { ru } from "vuejs-datepicker/dist/locale"
 import vue2Dropzone from 'vue2-dropzone'
@@ -313,7 +254,7 @@ export default {
     },
 
     components: {
-        Datepicker,
+        Datepicker, OrderDetail,
         vueDropzone: vue2Dropzone,
     },
 
