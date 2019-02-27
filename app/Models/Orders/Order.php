@@ -14,7 +14,7 @@ use App\Models\Orders\Acts\{ExtraOrderAct, FinishedOrderAct};
 
 class Order extends Model
 {
-    use SoftDeletes, OrderCalculationTrait;
+    use SoftDeletes, OrderCalculationTrait, OrderCopyTrait;
 
     protected $guarded = [];
 
