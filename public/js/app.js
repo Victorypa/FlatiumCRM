@@ -53412,9 +53412,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
-//
-//
 
 
 
@@ -54072,327 +54069,262 @@ var render = function() {
                         ])
                       ]),
                       _vm._v(" "),
-                      _vm.finances
-                        ? [
-                            _c("div", { staticClass: "col-12 px-0 bg mt-3" }, [
-                              _c(
-                                "table",
-                                { staticClass: "table table-hover" },
-                                [
-                                  _c(
-                                    "tbody",
-                                    [
-                                      _vm._l(_vm.filteredFinances, function(
-                                        finance
-                                      ) {
-                                        return [
-                                          finance.finance_type === "income"
-                                            ? [
+                      _c("div", { staticClass: "col-12 px-0 bg mt-3" }, [
+                        _c("table", { staticClass: "table table-hover" }, [
+                          _c(
+                            "tbody",
+                            [
+                              _vm._l(_vm.filteredFinances, function(finance) {
+                                return [
+                                  finance.finance_type === "income"
+                                    ? _c(
+                                        "tr",
+                                        {
+                                          staticStyle: {
+                                            "background-color": "#DEFFE8"
+                                          }
+                                        },
+                                        [
+                                          _c("td", { staticClass: "pl-4" }, [
+                                            _vm._v("+" + _vm._s(finance.price))
+                                          ]),
+                                          _vm._v(" "),
+                                          _c("td", [
+                                            _vm._v(_vm._s(finance.reason))
+                                          ]),
+                                          _vm._v(" "),
+                                          _c("td", [
+                                            _vm._v(
+                                              _vm._s(
+                                                _vm.dateFormatter(
+                                                  finance.inputed_at
+                                                )
+                                              )
+                                            )
+                                          ]),
+                                          _vm._v(" "),
+                                          _c("td", [
+                                            _c(
+                                              "button",
+                                              {
+                                                staticClass:
+                                                  "add-button add-button--remove d-flex align-items-center",
+                                                attrs: {
+                                                  title: "Удалить материал"
+                                                },
+                                                on: {
+                                                  click: function($event) {
+                                                    _vm.deleteFinance(
+                                                      finance.id
+                                                    )
+                                                  }
+                                                }
+                                              },
+                                              [
+                                                _c("img", {
+                                                  attrs: {
+                                                    src: "/img/del.svg",
+                                                    alt: "add-button"
+                                                  }
+                                                }),
+                                                _vm._v(" "),
                                                 _c(
-                                                  "tr",
+                                                  "div",
                                                   {
-                                                    staticStyle: {
-                                                      "background-color":
-                                                        "#DEFFE8"
-                                                    }
+                                                    staticClass:
+                                                      "remove-materials ml-1"
                                                   },
                                                   [
-                                                    _c(
-                                                      "td",
-                                                      { staticClass: "pl-4" },
-                                                      [
-                                                        _vm._v(
-                                                          "+" +
-                                                            _vm._s(
-                                                              finance.price
-                                                            )
-                                                        )
-                                                      ]
-                                                    ),
-                                                    _vm._v(" "),
-                                                    _c("td", [
-                                                      _vm._v(
-                                                        _vm._s(finance.reason)
-                                                      )
-                                                    ]),
-                                                    _vm._v(" "),
-                                                    _c("td", [
-                                                      _vm._v(
-                                                        _vm._s(
-                                                          _vm.dateFormatter(
-                                                            finance.inputed_at
-                                                          )
-                                                        )
-                                                      )
-                                                    ]),
-                                                    _vm._v(" "),
-                                                    _c("td", [
-                                                      _c(
-                                                        "button",
-                                                        {
-                                                          staticClass:
-                                                            "add-button add-button--remove d-flex align-items-center",
-                                                          attrs: {
-                                                            title:
-                                                              "Удалить материал"
-                                                          },
-                                                          on: {
-                                                            click: function(
-                                                              $event
-                                                            ) {
-                                                              _vm.deleteFinance(
-                                                                finance.id
-                                                              )
-                                                            }
-                                                          }
-                                                        },
-                                                        [
-                                                          _c("img", {
-                                                            attrs: {
-                                                              src:
-                                                                "/img/del.svg",
-                                                              alt: "add-button"
-                                                            }
-                                                          }),
-                                                          _vm._v(" "),
-                                                          _c(
-                                                            "div",
-                                                            {
-                                                              staticClass:
-                                                                "remove-materials ml-1"
-                                                            },
-                                                            [
-                                                              _vm._v(
-                                                                "\n                                                    Удалить\n                                                  "
-                                                              )
-                                                            ]
-                                                          )
-                                                        ]
-                                                      )
-                                                    ]),
-                                                    _vm._v(" "),
-                                                    _c("td", [
-                                                      _c(
-                                                        "div",
-                                                        {
-                                                          staticClass:
-                                                            "form-check custom-control checkbox"
-                                                        },
-                                                        [
-                                                          _c("input", {
-                                                            staticClass:
-                                                              "form-check-input check",
-                                                            attrs: {
-                                                              id:
-                                                                "finance-" +
-                                                                finance.id,
-                                                              type: "checkbox"
-                                                            },
-                                                            domProps: {
-                                                              checked:
-                                                                finance.can_be_showed
-                                                            },
-                                                            on: {
-                                                              click: function(
-                                                                $event
-                                                              ) {
-                                                                _vm.updateFinance(
-                                                                  finance
-                                                                )
-                                                              }
-                                                            }
-                                                          }),
-                                                          _vm._v(" "),
-                                                          _c(
-                                                            "label",
-                                                            {
-                                                              staticClass:
-                                                                "form-check-label",
-                                                              attrs: {
-                                                                for:
-                                                                  "finance-" +
-                                                                  finance.id
-                                                              }
-                                                            },
-                                                            [
-                                                              _vm._v(
-                                                                "\n                                              показывать\n                                            "
-                                                              )
-                                                            ]
-                                                          )
-                                                        ]
-                                                      )
-                                                    ]),
-                                                    _vm._v(" "),
-                                                    _c("td", [_vm._v(" ")])
+                                                    _vm._v(
+                                                      "\n                                            Удалить\n                                          "
+                                                    )
                                                   ]
                                                 )
                                               ]
-                                            : _vm._e(),
+                                            )
+                                          ]),
                                           _vm._v(" "),
-                                          finance.finance_type === "expense"
-                                            ? [
-                                                _c("tr", [
-                                                  _c(
-                                                    "td",
-                                                    { staticClass: "pl-4" },
-                                                    [
-                                                      _vm._v(
-                                                        "-" +
-                                                          _vm._s(finance.price)
-                                                      )
-                                                    ]
-                                                  ),
-                                                  _vm._v(" "),
-                                                  _c("td", [
+                                          _c("td", [
+                                            _c(
+                                              "div",
+                                              {
+                                                staticClass:
+                                                  "form-check custom-control checkbox"
+                                              },
+                                              [
+                                                _c("input", {
+                                                  staticClass:
+                                                    "form-check-input check",
+                                                  attrs: {
+                                                    id: "finance-" + finance.id,
+                                                    type: "checkbox"
+                                                  },
+                                                  domProps: {
+                                                    checked:
+                                                      finance.can_be_showed
+                                                  },
+                                                  on: {
+                                                    click: function($event) {
+                                                      _vm.updateFinance(finance)
+                                                    }
+                                                  }
+                                                }),
+                                                _vm._v(" "),
+                                                _c(
+                                                  "label",
+                                                  {
+                                                    staticClass:
+                                                      "form-check-label",
+                                                    attrs: {
+                                                      for:
+                                                        "finance-" + finance.id
+                                                    }
+                                                  },
+                                                  [
                                                     _vm._v(
-                                                      _vm._s(finance.reason)
+                                                      "\n                                      показывать\n                                    "
                                                     )
-                                                  ]),
-                                                  _vm._v(" "),
-                                                  _c("td", [
-                                                    _vm._v(
-                                                      _vm._s(
-                                                        _vm.dateFormatter(
-                                                          finance.inputed_at
-                                                        )
-                                                      )
-                                                    )
-                                                  ]),
-                                                  _vm._v(" "),
-                                                  _c("td", [
-                                                    _c(
-                                                      "button",
-                                                      {
-                                                        staticClass:
-                                                          "add-button add-button--remove d-flex align-items-center",
-                                                        attrs: {
-                                                          title:
-                                                            "Удалить материал"
-                                                        },
-                                                        on: {
-                                                          click: function(
-                                                            $event
-                                                          ) {
-                                                            _vm.deleteFinance(
-                                                              finance.id
-                                                            )
-                                                          }
-                                                        }
-                                                      },
-                                                      [
-                                                        _c("img", {
-                                                          attrs: {
-                                                            src: "/img/del.svg",
-                                                            alt: "add-button"
-                                                          }
-                                                        }),
-                                                        _vm._v(" "),
-                                                        _c(
-                                                          "div",
-                                                          {
-                                                            staticClass:
-                                                              "remove-materials ml-1"
-                                                          },
-                                                          [
-                                                            _vm._v(
-                                                              "\n                                                    Удалить\n                                                  "
-                                                            )
-                                                          ]
-                                                        )
-                                                      ]
-                                                    )
-                                                  ]),
-                                                  _vm._v(" "),
-                                                  _c("td", [
-                                                    _c(
-                                                      "div",
-                                                      {
-                                                        staticClass:
-                                                          "form-check custom-control checkbox"
-                                                      },
-                                                      [
-                                                        _c("input", {
-                                                          staticClass:
-                                                            "form-check-input check",
-                                                          attrs: {
-                                                            id:
-                                                              "finance-" +
-                                                              finance.id,
-                                                            type: "checkbox"
-                                                          },
-                                                          domProps: {
-                                                            checked:
-                                                              finance.can_be_showed
-                                                          },
-                                                          on: {
-                                                            click: function(
-                                                              $event
-                                                            ) {
-                                                              _vm.updateFinance(
-                                                                finance
-                                                              )
-                                                            }
-                                                          }
-                                                        }),
-                                                        _vm._v(" "),
-                                                        _c(
-                                                          "label",
-                                                          {
-                                                            staticClass:
-                                                              "form-check-label",
-                                                            attrs: {
-                                                              for:
-                                                                "finance-" +
-                                                                finance.id
-                                                            }
-                                                          },
-                                                          [
-                                                            _vm._v(
-                                                              "\n                                              показывать\n                                            "
-                                                            )
-                                                          ]
-                                                        )
-                                                      ]
-                                                    )
-                                                  ]),
-                                                  _vm._v(" "),
-                                                  finance.finance_files.length
-                                                    ? _c("td", [
-                                                        _c(
-                                                          "a",
-                                                          {
-                                                            attrs: {
-                                                              href:
-                                                                "/storage/finances/" +
-                                                                finance
-                                                                  .finance_files[0]
-                                                                  .file_path
-                                                            }
-                                                          },
-                                                          [
-                                                            _vm._v(
-                                                              "смотреть файл"
-                                                            )
-                                                          ]
-                                                        )
-                                                      ])
-                                                    : _vm._e()
-                                                ])
+                                                  ]
+                                                )
                                               ]
-                                            : _vm._e()
+                                            )
+                                          ]),
+                                          _vm._v(" "),
+                                          _c("td", [_vm._v(" ")])
                                         ]
-                                      })
-                                    ],
-                                    2
-                                  )
+                                      )
+                                    : _vm._e(),
+                                  _vm._v(" "),
+                                  finance.finance_type === "expense"
+                                    ? _c("tr", [
+                                        _c("td", { staticClass: "pl-4" }, [
+                                          _vm._v("-" + _vm._s(finance.price))
+                                        ]),
+                                        _vm._v(" "),
+                                        _c("td", [
+                                          _vm._v(_vm._s(finance.reason))
+                                        ]),
+                                        _vm._v(" "),
+                                        _c("td", [
+                                          _vm._v(
+                                            _vm._s(
+                                              _vm.dateFormatter(
+                                                finance.inputed_at
+                                              )
+                                            )
+                                          )
+                                        ]),
+                                        _vm._v(" "),
+                                        _c("td", [
+                                          _c(
+                                            "button",
+                                            {
+                                              staticClass:
+                                                "add-button add-button--remove d-flex align-items-center",
+                                              attrs: {
+                                                title: "Удалить материал"
+                                              },
+                                              on: {
+                                                click: function($event) {
+                                                  _vm.deleteFinance(finance.id)
+                                                }
+                                              }
+                                            },
+                                            [
+                                              _c("img", {
+                                                attrs: {
+                                                  src: "/img/del.svg",
+                                                  alt: "add-button"
+                                                }
+                                              }),
+                                              _vm._v(" "),
+                                              _c(
+                                                "div",
+                                                {
+                                                  staticClass:
+                                                    "remove-materials ml-1"
+                                                },
+                                                [
+                                                  _vm._v(
+                                                    "\n                                            Удалить\n                                          "
+                                                  )
+                                                ]
+                                              )
+                                            ]
+                                          )
+                                        ]),
+                                        _vm._v(" "),
+                                        _c("td", [
+                                          _c(
+                                            "div",
+                                            {
+                                              staticClass:
+                                                "form-check custom-control checkbox"
+                                            },
+                                            [
+                                              _c("input", {
+                                                staticClass:
+                                                  "form-check-input check",
+                                                attrs: {
+                                                  id: "finance-" + finance.id,
+                                                  type: "checkbox"
+                                                },
+                                                domProps: {
+                                                  checked: finance.can_be_showed
+                                                },
+                                                on: {
+                                                  click: function($event) {
+                                                    _vm.updateFinance(finance)
+                                                  }
+                                                }
+                                              }),
+                                              _vm._v(" "),
+                                              _c(
+                                                "label",
+                                                {
+                                                  staticClass:
+                                                    "form-check-label",
+                                                  attrs: {
+                                                    for: "finance-" + finance.id
+                                                  }
+                                                },
+                                                [
+                                                  _vm._v(
+                                                    "\n                                      показывать\n                                    "
+                                                  )
+                                                ]
+                                              )
+                                            ]
+                                          )
+                                        ]),
+                                        _vm._v(" "),
+                                        finance.finance_files.length
+                                          ? _c("td", [
+                                              _c(
+                                                "a",
+                                                {
+                                                  attrs: {
+                                                    href:
+                                                      "/storage/finances/" +
+                                                      finance.finance_files[0]
+                                                        .file_path
+                                                  }
+                                                },
+                                                [_vm._v("смотреть файл")]
+                                              )
+                                            ])
+                                          : _vm._e()
+                                      ])
+                                    : _vm._e()
                                 ]
-                              )
-                            ])
-                          ]
-                        : _vm._e()
+                              })
+                            ],
+                            2
+                          )
+                        ])
+                      ])
                     ],
-                    2
+                    1
                   )
                 ],
                 1

@@ -96,6 +96,7 @@
                                   </option>
                               </select>
                             </div>
+
                             <div class="col-2">
                               <datepicker class="my-datepicker"
                                           :language="ru"
@@ -115,86 +116,82 @@
                                 </vue-dropzone>
                             </div>
 
-                      <button type="submit" style="display:none;"></button>
+                            <button type="submit" style="display:none;"></button>
                       </form>
 
                     </div>
 
                   </div>
 
-                  <template v-if="finances">
-                      <div class="col-12 px-0 bg mt-3">
-                        <table class="table table-hover">
-                              <tbody>
-                                  <template v-for="finance in filteredFinances">
-                                      <template v-if="finance.finance_type === 'income'">
-                                          <tr style="background-color: #DEFFE8;">
-                                            <td class="pl-4">+{{ finance.price }}</td>
-                                            <td>{{ finance.reason }}</td>
-                                            <td>{{ dateFormatter(finance.inputed_at) }}</td>
-                                            <td>
-                                                <button @click="deleteFinance(finance.id)" class="add-button add-button--remove d-flex align-items-center" title="Удалить материал">
-                                                      <img src="/img/del.svg" alt="add-button">
-                                                      <div class="remove-materials ml-1">
-                                                        Удалить
-                                                      </div>
-                                                </button>
-                                            </td>
-                                            <td>
-                                              <div class="form-check custom-control checkbox">
-                                                <input class="form-check-input check"
-                                                       :id="'finance-' + finance.id"
-                                                       type="checkbox"
-                                                       :checked="finance.can_be_showed"
-                                                       @click="updateFinance(finance)"
-                                                       >
-                                                <label class="form-check-label" :for="'finance-' + finance.id">
-                                                  показывать
-                                                </label>
+
+                  <div class="col-12 px-0 bg mt-3">
+                    <table class="table table-hover">
+                          <tbody>
+                              <template v-for="finance in filteredFinances">
+                                  <tr style="background-color: #DEFFE8;" v-if="finance.finance_type === 'income'">
+                                    <td class="pl-4">+{{ finance.price }}</td>
+                                    <td>{{ finance.reason }}</td>
+                                    <td>{{ dateFormatter(finance.inputed_at) }}</td>
+                                    <td>
+                                        <button @click="deleteFinance(finance.id)" class="add-button add-button--remove d-flex align-items-center" title="Удалить материал">
+                                              <img src="/img/del.svg" alt="add-button">
+                                              <div class="remove-materials ml-1">
+                                                Удалить
                                               </div>
-                                            </td>
-                                            <td>&nbsp;</td>
-                                          </tr>
-                                      </template>
-                                      <template v-if="finance.finance_type === 'expense'">
-                                          <tr>
-                                            <td class="pl-4">-{{ finance.price }}</td>
-                                            <td>{{ finance.reason }}</td>
-                                            <td>{{ dateFormatter(finance.inputed_at) }}</td>
-                                            <td>
-                                                <button @click="deleteFinance(finance.id)" class="add-button add-button--remove d-flex align-items-center" title="Удалить материал">
-                                                      <img src="/img/del.svg" alt="add-button">
-                                                      <div class="remove-materials ml-1">
-                                                        Удалить
-                                                      </div>
-                                                </button>
-                                            </td>
-                                            <td>
-                                              <div class="form-check custom-control checkbox">
-                                                <input class="form-check-input check"
-                                                       :id="'finance-' + finance.id"
-                                                       type="checkbox"
-                                                       :checked="finance.can_be_showed"
-                                                       @click="updateFinance(finance)"
-                                                       >
-                                                <label class="form-check-label" :for="'finance-' + finance.id">
-                                                  показывать
-                                                </label>
+                                        </button>
+                                    </td>
+                                    <td>
+                                      <div class="form-check custom-control checkbox">
+                                        <input class="form-check-input check"
+                                               :id="'finance-' + finance.id"
+                                               type="checkbox"
+                                               :checked="finance.can_be_showed"
+                                               @click="updateFinance(finance)"
+                                               >
+                                        <label class="form-check-label" :for="'finance-' + finance.id">
+                                          показывать
+                                        </label>
+                                      </div>
+                                    </td>
+                                    <td>&nbsp;</td>
+                                  </tr>
+
+                                  <tr v-if="finance.finance_type === 'expense'">
+                                    <td class="pl-4">-{{ finance.price }}</td>
+                                    <td>{{ finance.reason }}</td>
+                                    <td>{{ dateFormatter(finance.inputed_at) }}</td>
+                                    <td>
+                                        <button @click="deleteFinance(finance.id)" class="add-button add-button--remove d-flex align-items-center" title="Удалить материал">
+                                              <img src="/img/del.svg" alt="add-button">
+                                              <div class="remove-materials ml-1">
+                                                Удалить
                                               </div>
-                                            </td>
+                                        </button>
+                                    </td>
+                                    <td>
+                                      <div class="form-check custom-control checkbox">
+                                        <input class="form-check-input check"
+                                               :id="'finance-' + finance.id"
+                                               type="checkbox"
+                                               :checked="finance.can_be_showed"
+                                               @click="updateFinance(finance)"
+                                               >
+                                        <label class="form-check-label" :for="'finance-' + finance.id">
+                                          показывать
+                                        </label>
+                                      </div>
+                                    </td>
 
-                                            <td v-if="finance.finance_files.length">
-                                                <a :href="'/storage/finances/' + finance.finance_files[0].file_path">смотреть файл</a>
-                                            </td>
-                                          </tr>
-                                      </template>
+                                    <td v-if="finance.finance_files.length">
+                                        <a :href="'/storage/finances/' + finance.finance_files[0].file_path">смотреть файл</a>
+                                    </td>
+                                  </tr>
+                              </template>
 
-                                  </template>
+                          </tbody>
+                    </table>
+                  </div>
 
-                              </tbody>
-                        </table>
-                      </div>
-                  </template>
 
 
                 </div>
