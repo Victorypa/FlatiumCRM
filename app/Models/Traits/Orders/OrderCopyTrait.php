@@ -15,7 +15,10 @@ trait OrderCopyTrait
             'original_price' => $this->original_price,
             'price' => $this->price,
             'created_at' => Carbon::now(),
-            'isCopy' => true
+            'isCopy' => true,
+            'manager_id' => $this->manager_id,
+            'client_name' => $this->client_name,
+            'processing' => $this->processing
         ]);
 
         foreach ($this->rooms as $room) {
@@ -55,7 +58,10 @@ trait OrderCopyTrait
             'created_at' => Carbon::now(),
             'original_price' => $this->original_price,
             'price' => $this->price,
-            'isCopy' => true
+            'isCopy' => true,
+            'manager_id' => $this->manager_id,
+            'client_name' => $this->client_name,
+            'processing' => $this->processing
         ]);
 
         foreach ($this->rooms as $room) {
