@@ -26,13 +26,23 @@
           </label>
         </div>
       </td>
-      <td>&nbsp;</td>
+
+      <td v-if="finance.finance_files.length !== 0">
+          <a target="_blank" :href="'/storage/finances/' + finance.finance_files[0].file_path">смотреть файл</a>
+      </td>
+      <td v-else>
+          &nbsp;
+      </td>
     </tr>
 </template>
 
 <script>
     export default {
         props: ['finance'],
+
+        created () {
+            console.log(this.finance);
+        },
 
         methods: {
             updateFinance () {

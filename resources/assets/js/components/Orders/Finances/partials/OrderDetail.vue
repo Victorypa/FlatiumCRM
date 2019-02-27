@@ -26,10 +26,6 @@
     export default {
         props: ['order', 'service_price', 'material_price', 'income_amount', 'profit'],
 
-        created () {
-            console.log(this.service_price);
-        },
-
         computed: {
             servicePrice () {
                 return new Intl.NumberFormat('ru-Ru').format(parseInt(this.service_price))
