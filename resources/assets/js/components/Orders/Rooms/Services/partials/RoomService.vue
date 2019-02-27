@@ -9,7 +9,7 @@
                    @change="updatePriority()"
                    >
 
-            <label class="col-md-2 mb-0 d-flex align-items-center">
+            <label class="col-md-3 mb-0 d-flex align-items-center">
                 <div class="form-check custom-control d-flex edit-show"
                      >
                     <input class="form-check-input"
@@ -31,10 +31,10 @@
                 </div>
             </label>
 
-            <div class="col-md-9 pr-0">
+            <div class="col-md-8">
               <div class="form-group form-group--margin d-flex align-items-center">
                   <input type="number"
-                         class="form-control w-85 col-md-2"
+                         class="form-control col-md-1"
                          placeholder="Кол-во"
                          min="0"
                          v-model="room_service.quantity"
@@ -45,18 +45,18 @@
                       {{ room_service.unit.name }}
                   </div>
 
-                  <input  type="number"
-                          class="form-control w-85 col-md-1"
-                          min="0"
-                          disabled
-                          :value="room_service.service.price"
+                  <input type="number"
+                         class="form-control col-md-2"
+                         min="0"
+                         disabled
+                         :value="room_service.service.price"
                           >
 
                   <div class="inputs-caption col-md-2">
                       Р/{{ room_service.unit.name }}
                   </div>
 
-                  <div class="form-group__calc w-85 col-2">
+                  <div class="form-group__calc col-md-2">
                       {{ servicePrice }} Р
                   </div>
 
@@ -64,7 +64,7 @@
                   <div class="col-md-2">
                       <input type="number"
                              v-if="checkServiceMarkup"
-                             class="form-control w-85"
+                             class="form-control"
                              min="0"
                              placeholder="Наценка"
                              v-model="room_service.markup"
@@ -74,7 +74,7 @@
 
                   <div class="col-md-auto">
                       <router-link :to="{ name: 'actual-material', params: { id: room_service.room.order_id, room_id: room_service.room_id, service_id: room_service.service_id }}">
-                          <button class="add-button " title="Добавить материалы">
+                          <button class="add-button">
                               <img src="/img/plus-circle.svg" alt="add-button">
                           </button>
                       </router-link>
